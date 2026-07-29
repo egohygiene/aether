@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "workflows": {
+    "speckit": {
+      "name": "Local Spec-Driven Development Cycle",
+      "version": "1.1.0",
+      "description": "Runs specify, plan, tasks, and implement with human review gates",
+      "source": "aether-migration",
+      "updated_at": "2026-07-19"
+    }
+  }
+}
