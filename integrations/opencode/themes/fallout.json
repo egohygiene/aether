@@ -1,0 +1,54 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "bg": "#0b0f0b",
+    "panel": "#101610",
+    "panel2": "#151d15",
+    "border": "#1f2a1f",
+
+    "pipGreen": "#00ff41",
+    "pipGreenSoft": "#4cff73",
+    "pipGreenDim": "#1e7a33",
+
+    "amber": "#ffb347",
+    "red": "#ff4d4d"
+  },
+  "theme": {
+    "primary": { "dark": "pipGreen" },
+    "secondary": { "dark": "pipGreenSoft" },
+    "accent": { "dark": "amber" },
+
+    "error": { "dark": "red" },
+    "warning": { "dark": "amber" },
+    "success": { "dark": "pipGreenSoft" },
+    "info": { "dark": "pipGreen" },
+
+    "text": { "dark": "pipGreen" },
+    "textMuted": { "dark": "pipGreenDim" },
+
+    "background": { "dark": "bg" },
+    "backgroundPanel": { "dark": "panel" },
+    "backgroundElement": { "dark": "panel2" },
+
+    "border": { "dark": "border" },
+    "borderActive": { "dark": "pipGreen" },
+    "borderSubtle": { "dark": "pipGreenDim" },
+
+    "markdownText": { "dark": "pipGreen" },
+    "markdownHeading": { "dark": "pipGreenSoft" },
+    "markdownLink": { "dark": "pipGreenSoft" },
+    "markdownLinkText": { "dark": "pipGreen" },
+    "markdownCode": { "dark": "amber" },
+    "markdownBlockQuote": { "dark": "pipGreenDim" },
+
+    "syntaxComment": { "dark": "pipGreenDim" },
+    "syntaxKeyword": { "dark": "pipGreenSoft" },
+    "syntaxFunction": { "dark": "pipGreen" },
+    "syntaxVariable": { "dark": "pipGreen" },
+    "syntaxString": { "dark": "amber" },
+    "syntaxNumber": { "dark": "amber" },
+    "syntaxType": { "dark": "pipGreenSoft" },
+    "syntaxOperator": { "dark": "pipGreenSoft" },
+    "syntaxPunctuation": { "dark": "pipGreen" }
+  }
+}

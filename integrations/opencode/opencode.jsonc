@@ -1,0 +1,134 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "share": "disabled",
+  "default_agent": "build",
+  "model": "ollama/qwen2.5-coder:7b",
+  "small_model": "ollama/llama3.2:latest",
+
+  "instructions": [
+    ".agents/instructions/repository.md",
+    ".agents/instructions/privacy.md"
+  ],
+
+  "permission": {
+    "read": "allow",
+    "edit": "ask",
+    "bash": "ask",
+    "webfetch": "ask",
+    "websearch": "ask",
+    "question": "allow",
+    "skill": "allow"
+  },
+
+  "agent": {
+    "build": {
+      "description": "Implements and verifies scoped changes in the target repository.",
+      "mode": "primary",
+      "model": "ollama/qwen2.5-coder:7b",
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "bash": "ask",
+        "webfetch": "ask"
+      }
+    },
+    "plan": {
+      "description": "Explores the repository and produces non-mutating implementation plans.",
+      "mode": "primary",
+      "model": "ollama/qwen3:8b",
+      "permission": {
+        "read": "allow",
+        "edit": "deny",
+        "bash": "ask",
+        "webfetch": "ask"
+      }
+    },
+    "spec": {
+      "description": "Creates and refines specifications while keeping implementation gated.",
+      "mode": "primary",
+      "model": "ollama/qwen3:8b",
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "bash": "ask",
+        "webfetch": "ask"
+      }
+    },
+    "knowledge-reviewer": {
+      "description": "Reviews normalized captures, extracted knowledge, synapses, provenance, and coverage without writing files.",
+      "mode": "subagent",
+      "model": "ollama/qwen2.5:14b",
+      "permission": {
+        "read": "allow",
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny",
+        "websearch": "deny"
+      }
+    },
+    "fast-reviewer": {
+      "description": "Performs inexpensive local consistency and code reviews.",
+      "mode": "subagent",
+      "model": "ollama/qwen3:8b",
+      "permission": {
+        "read": "allow",
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
+      }
+    },
+    "visual-reviewer": {
+      "description": "Reviews images and visual artifacts without modifying repository files.",
+      "mode": "subagent",
+      "model": "ollama/qwen3-vl:latest",
+      "permission": {
+        "read": "allow",
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
+      }
+    }
+  },
+
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama Local",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "llama3.2:latest": {
+          "name": "Llama 3.2 Fast",
+          "limit": { "context": 8192, "output": 2048 }
+        },
+        "qwen3:8b": {
+          "name": "Qwen 3 8B General",
+          "tool_call": true,
+          "limit": { "context": 16384, "output": 4096 }
+        },
+        "qwen2.5-coder:7b": {
+          "name": "Qwen 2.5 Coder 7B",
+          "tool_call": true,
+          "limit": { "context": 16384, "output": 4096 }
+        },
+        "qwen2.5:14b": {
+          "name": "Qwen 2.5 14B Knowledge",
+          "tool_call": true,
+          "limit": { "context": 16384, "output": 4096 }
+        },
+        "qwen3-vl:latest": {
+          "name": "Qwen 3 VL",
+          "attachment": true,
+          "tool_call": true,
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": { "context": 8192, "output": 2048 }
+        }
+      }
+    }
+  }
+}
