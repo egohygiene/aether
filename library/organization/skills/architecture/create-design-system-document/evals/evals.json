@@ -1,0 +1,47 @@
+{
+  "schema": "aether.skill-evaluations/v1",
+  "skill": "create-design-system-document",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "valid-experience-source-set",
+      "description": "Create a valid DESIGN_SYSTEM.md from sufficient upstream evidence.",
+      "expected": [
+        "Answers the primary experience question",
+        "Preserves accessibility and agency",
+        "Respects document boundaries",
+        "Passes specification acceptance criteria"
+      ]
+    },
+    {
+      "id": "implementation-dominated-input",
+      "description": "Input consists primarily of components, token values, or framework code.",
+      "expected": [
+        "Separates semantic intent from implementation",
+        "Excludes accidental framework coupling",
+        "Retains relevant design evidence",
+        "Explains downstream implementation ownership"
+      ]
+    },
+    {
+      "id": "conflicting-product-identities",
+      "description": "Multiple products have distinct visual systems and partially conflicting patterns.",
+      "expected": [
+        "Preserves legitimate product individuality",
+        "Identifies shared human-centered guarantees",
+        "Does not force visual sameness",
+        "Surfaces unresolved canonicalization decisions"
+      ]
+    },
+    {
+      "id": "accessibility-conflict",
+      "description": "A proposed aesthetic or motion rule conflicts with accessibility or user control.",
+      "expected": [
+        "Prioritizes accessibility and meaningful control",
+        "Identifies the conflict explicitly",
+        "Rejects or constrains the unsafe rule",
+        "Records a compliant alternative or open decision"
+      ]
+    }
+  ]
+}

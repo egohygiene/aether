@@ -1,0 +1,85 @@
+---
+schema: aether.skill/v1
+id: create-specification-file
+title: Create Specification File
+kind: skill
+version: 1.0.0
+status: draft
+owners:
+  - egohygiene
+created: 2026-08-02
+updated: 2026-08-02
+domain: authoring
+tags:
+  - authoring
+  - workflow
+  - validation
+depends_on: []
+related: []
+supersedes: []
+implements:
+  - specfile
+---
+
+# Create Specification File
+
+    ## Purpose
+
+    Execute the reusable procedure governed by `specfile`.
+
+    Primary question:
+
+    > What implementation contract is required, and how will conformance be validated?
+
+    ## Required Inputs
+
+    Resolve:
+
+    - governing specification and version
+    - current source or repository state
+    - scope and constraints
+    - upstream architecture or evidence
+    - output location
+    - validation expectations
+    - unresolved decisions
+
+    Missing evidence must remain visible.
+
+    ## Workflow
+
+    1. gather source context and identify the problem
+2. separate facts, decisions, assumptions, and proposals
+3. define purpose, goals, and non-goals
+4. choose type and canonical ownership
+5. define requirements, architecture, interfaces, and dependencies
+6. organize implementation work into bounded phases
+7. define validation and acceptance criteria
+8. record risks, edge cases, and open questions
+9. validate against the specification standard
+
+    ## Output Contract
+
+    Primary output:
+
+        <artifact-id>.spec.md
+
+    Also report assumptions, evidence gaps, validation status, unresolved
+    questions, and downstream actions requiring separate authorization.
+
+    ## Constraints
+
+    - Follow the governing specification.
+    - Preserve provenance and uncertainty.
+    - Do not invent authority, evidence, or current behavior.
+    - Do not silently expand scope.
+    - Do not claim completion when required validation is missing.
+    - Keep proposed downstream work separate from authorized execution.
+
+    ## Completion Criteria
+
+    - [ ] Governing specification is resolved.
+    - [ ] Scope and constraints are explicit.
+    - [ ] Required evidence was inspected.
+    - [ ] The primary output was created.
+    - [ ] Validation was executed or its absence documented.
+    - [ ] Open questions and authorization needs are visible.

@@ -1,0 +1,37 @@
+{
+  "schema": "aether.skill-evaluations/v1",
+  "skill": "create-ontology-document",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "valid-source-set",
+      "description": "Create a valid ONTOLOGY.md from sufficient evidence.",
+      "expected": [
+        "Answers the primary question",
+        "Respects document boundaries",
+        "Preserves provenance and uncertainty",
+        "Passes specification acceptance criteria"
+      ]
+    },
+    {
+      "id": "conflicting-evidence",
+      "description": "Available sources contain conflicting definitions or assumptions.",
+      "expected": [
+        "Does not silently reconcile conflicts",
+        "Preserves provenance",
+        "Labels uncertainty",
+        "Reports follow-up work"
+      ]
+    },
+    {
+      "id": "implementation-leak",
+      "description": "Input is dominated by implementation details.",
+      "expected": [
+        "Separates conceptual meaning from implementation",
+        "Excludes accidental technical structure",
+        "Retains relevant evidence",
+        "Explains the boundary"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "aether.skill-evaluations/v1",
+  "skill": "create-meta-architecture-document",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "meta-architecture-valid",
+      "description": "Create a valid META.md from sufficient evidence.",
+      "expected": [
+        "Answers the primary question",
+        "Respects document boundaries",
+        "Preserves upstream terminology",
+        "Passes the governing specification"
+      ]
+    },
+    {
+      "id": "meta-architecture-missing-evidence",
+      "description": "Required evidence is incomplete or contradictory.",
+      "expected": [
+        "Does not invent facts or authority",
+        "Labels assumptions",
+        "Surfaces contradictions",
+        "Reports provisional or blocked completion"
+      ]
+    },
+    {
+      "id": "meta-architecture-anti-pattern",
+      "description": "Input material is dominated by a known anti-pattern.",
+      "expected": [
+        "Identifies the anti-pattern",
+        "Does not preserve it as canonical architecture",
+        "Explains the ownership boundary",
+        "Produces a safe revision or follow-up"
+      ]
+    }
+  ]
+}

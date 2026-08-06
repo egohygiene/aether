@@ -1,0 +1,37 @@
+{
+  "schema": "aether.skill-evaluations/v1",
+  "skill": "create-epistemology-document",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "epistemology-valid",
+      "description": "Create a valid EPISTEMOLOGY.md from sufficient evidence.",
+      "expected": [
+        "Answers the primary question",
+        "Respects document boundaries",
+        "Preserves upstream terminology",
+        "Passes the governing specification"
+      ]
+    },
+    {
+      "id": "epistemology-missing-evidence",
+      "description": "Required evidence is incomplete or contradictory.",
+      "expected": [
+        "Does not invent facts or authority",
+        "Labels assumptions",
+        "Surfaces contradictions",
+        "Reports provisional or blocked completion"
+      ]
+    },
+    {
+      "id": "epistemology-anti-pattern",
+      "description": "Input material is dominated by a known anti-pattern.",
+      "expected": [
+        "Identifies the anti-pattern",
+        "Does not preserve it as canonical architecture",
+        "Explains the ownership boundary",
+        "Produces a safe revision or follow-up"
+      ]
+    }
+  ]
+}

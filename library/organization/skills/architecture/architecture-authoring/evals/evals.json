@@ -1,0 +1,25 @@
+{
+  "schema": "aether.skill-evaluations/v1",
+  "skill": "architecture-authoring",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "minimal-document-set",
+      "description": "Select only documents justified by a small repository.",
+      "expected": [
+        "No unnecessary placeholders",
+        "Selection is explained",
+        "Dependency order is used"
+      ]
+    },
+    {
+      "id": "conflicting-ownership",
+      "description": "Two documents claim the same architectural concern.",
+      "expected": [
+        "Conflict is surfaced",
+        "No silent merge occurs",
+        "A safe follow-up is proposed"
+      ]
+    }
+  ]
+}

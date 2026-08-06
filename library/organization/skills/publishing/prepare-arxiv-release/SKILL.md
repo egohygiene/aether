@@ -1,0 +1,86 @@
+---
+schema: aether.skill/v1
+id: prepare-arxiv-release
+title: Prepare arXiv Release
+kind: skill
+version: 1.0.0
+status: draft
+owners:
+  - egohygiene
+created: 2026-08-02
+updated: 2026-08-02
+domain: publishing
+tags:
+  - publishing
+  - workflow
+  - validation
+depends_on: []
+related: []
+supersedes: []
+implements:
+  - arxiv-publishing
+---
+
+# Prepare arXiv Release
+
+    ## Purpose
+
+    Execute the reusable procedure governed by `arxiv-publishing`.
+
+    Primary question:
+
+    > Can this source be transformed into a verified, reproducible, and inspectable arXiv release?
+
+    ## Required Inputs
+
+    Resolve:
+
+    - governing specification and version
+    - current source or repository state
+    - scope and constraints
+    - upstream architecture or evidence
+    - output location
+    - validation expectations
+    - unresolved decisions
+
+    Missing evidence must remain visible.
+
+    ## Workflow
+
+    1. verify current official arXiv requirements
+2. resolve source revision and canonical metadata
+3. create isolated staging
+4. copy only required source and assets
+5. apply deterministic publisher transformations
+6. compile in the recorded environment
+7. validate bibliography, figures, paths, hidden files, and ancillary content
+8. scan source for extraneous or sensitive material
+9. require human inspection of the PDF
+10. package source, PDF, manifest, checksums, and logs
+
+    ## Output Contract
+
+    Primary output:
+
+        dist/arxiv/
+
+    Also report assumptions, evidence gaps, validation status, unresolved
+    questions, and downstream actions requiring separate authorization.
+
+    ## Constraints
+
+    - Follow the governing specification.
+    - Preserve provenance and uncertainty.
+    - Do not invent authority, evidence, or current behavior.
+    - Do not silently expand scope.
+    - Do not claim completion when required validation is missing.
+    - Keep proposed downstream work separate from authorized execution.
+
+    ## Completion Criteria
+
+    - [ ] Governing specification is resolved.
+    - [ ] Scope and constraints are explicit.
+    - [ ] Required evidence was inspected.
+    - [ ] The primary output was created.
+    - [ ] Validation was executed or its absence documented.
+    - [ ] Open questions and authorization needs are visible.

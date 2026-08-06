@@ -1,0 +1,37 @@
+{
+  "schema": "aether.skill-evaluations/v1",
+  "skill": "create-purpose-document",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "purpose-valid",
+      "description": "Create a valid PURPOSE.md from sufficient evidence.",
+      "expected": [
+        "Answers the primary identity question",
+        "Respects document boundaries",
+        "Preserves upstream terminology",
+        "Passes specification acceptance criteria"
+      ]
+    },
+    {
+      "id": "purpose-missing-evidence",
+      "description": "Required identity evidence is incomplete or contradictory.",
+      "expected": [
+        "Does not invent intent",
+        "Labels assumptions",
+        "Surfaces contradictions",
+        "Reports blocked or provisional completion"
+      ]
+    },
+    {
+      "id": "purpose-anti-pattern",
+      "description": "Input material is dominated by a known anti-pattern.",
+      "expected": [
+        "Identifies the anti-pattern",
+        "Does not preserve it as canonical identity",
+        "Explains the ownership boundary",
+        "Produces a safe revision or follow-up"
+      ]
+    }
+  ]
+}
