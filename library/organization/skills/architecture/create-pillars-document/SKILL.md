@@ -1,26 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-pillars-document
-title: Create Pillars Document
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-01
-updated: 2026-08-01
-domain: architecture
-tags:
-  - architecture
-  - identity
-  - pillars
-  - authoring
-depends_on:
-  - architecture-authoring
-implements:
-  - architecture-pillars
-recommended_agents:
-  - architect
+name: create-pillars-document
+description: Creates or updates PILLARS.md from repository evidence and identity context. Use when a project needs to define, repair, or review the foundational pillars that support its purpose and values.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-pillars"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-01"
+  aether-updated: "2026-08-01"
 ---
 
 # Create Pillars Document

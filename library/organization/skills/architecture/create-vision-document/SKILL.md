@@ -1,26 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-vision-document
-title: Create Vision Document
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-01
-updated: 2026-08-01
-domain: architecture
-tags:
-  - architecture
-  - identity
-  - vision
-  - authoring
-depends_on:
-  - architecture-authoring
-implements:
-  - architecture-vision
-recommended_agents:
-  - architect
+name: create-vision-document
+description: Creates or updates VISION.md from repository evidence and identity context. Use when a project needs to define, repair, or review the aspirational future state it is working toward.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-vision"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-01"
+  aether-updated: "2026-08-01"
 ---
 
 # Create Vision Document

@@ -1,10 +1,16 @@
 ---
 name: create-methodology-document
-description: Create or refine METHODOLOGY.md using the corresponding Aether architecture specification.
-version: 1.0.0
-status: active
-specs:
-  - architecture-methodology
+description: Creates or refines METHODOLOGY.md using the corresponding Aether architecture specification. Use when a project needs to establish or validate how it executes and governs its work process.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-methodology"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-01"
+  aether-updated: "2026-08-01"
 ---
 
 # METHODOLOGY.md

@@ -1,24 +1,16 @@
 ---
-schema: aether.skill/v1
-id: prepare-arxiv-release
-title: Prepare arXiv Release
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-02
-updated: 2026-08-02
-domain: publishing
-tags:
-  - publishing
-  - workflow
-  - validation
-depends_on: []
-related: []
-supersedes: []
-implements:
-  - arxiv-publishing
+name: prepare-arxiv-release
+description: Prepares a verified, reproducible arXiv release package from repository source. Use when a project needs to compile, validate, and package a submission for the arXiv preprint server.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "arxiv-publishing"
+  aether-scope: "organization"
+  aether-domain: "publishing"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-02"
+  aether-updated: "2026-08-02"
 ---
 
 # Prepare arXiv Release

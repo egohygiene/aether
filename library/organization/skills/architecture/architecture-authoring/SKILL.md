@@ -1,24 +1,16 @@
 ---
-schema: aether.skill/v1
-id: architecture-authoring
-title: Architecture Authoring
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-01
-updated: 2026-08-01
-domain: architecture
-tags:
-  - architecture
-  - authoring
-  - documentation
-  - orchestration
-implements:
-  - architecture-document
-recommended_agents:
-  - architect
+name: architecture-authoring
+description: Guides selection, sequencing, authoring, updating, and validation of architecture documents for a repository, product, platform, or organization. Use when establishing, repairing, or planning a set of architecture documents.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-document"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-01"
+  aether-updated: "2026-08-01"
 ---
 
 # Architecture Authoring

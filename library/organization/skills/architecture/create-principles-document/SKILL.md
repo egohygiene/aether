@@ -1,26 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-principles-document
-title: Create Principles Document
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-01
-updated: 2026-08-01
-domain: architecture
-tags:
-  - architecture
-  - identity
-  - principles
-  - authoring
-depends_on:
-  - architecture-authoring
-implements:
-  - architecture-principles
-recommended_agents:
-  - architect
+name: create-principles-document
+description: Creates or updates PRINCIPLES.md from repository evidence and values. Use when a project needs to define, repair, or review the guiding principles that govern its decisions and behavior.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-principles"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-01"
+  aether-updated: "2026-08-01"
 ---
 
 # Create Principles Document

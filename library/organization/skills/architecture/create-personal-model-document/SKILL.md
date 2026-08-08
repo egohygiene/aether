@@ -1,27 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-personal-model-document
-title: Create Personal Model Document
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-02
-updated: 2026-08-02
-domain: architecture
-tags:
-  - architecture
-  - domain
-  - authoring
-depends_on:
-  - architecture-authoring
-related: []
-supersedes: []
-implements:
-  - architecture-personal-model
-recommended_agents:
-  - architect
+name: create-personal-model-document
+description: Creates or refines PERSONAL_MODEL.md using the corresponding Aether architecture specification. Use when a project needs to establish or review the personal conceptual model guiding its design decisions.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-personal-model"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-02"
+  aether-updated: "2026-08-02"
 ---
 
 # Create Personal Model Document

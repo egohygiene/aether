@@ -1,24 +1,16 @@
 ---
-schema: aether.skill/v1
-id: audit-repository
-title: Audit Repository
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-02
-updated: 2026-08-02
-domain: quality
-tags:
-  - quality
-  - workflow
-  - validation
-depends_on: []
-related: []
-supersedes: []
-implements:
-  - auditor
+name: audit-repository
+description: Audits a repository for quality, alignment, risk, and strengths using observable evidence. Use when a project needs an impartial assessment of its current state and actionable findings.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "auditor"
+  aether-scope: "organization"
+  aether-domain: "quality"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-02"
+  aether-updated: "2026-08-02"
 ---
 
 # Audit Repository

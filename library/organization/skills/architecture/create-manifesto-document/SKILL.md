@@ -1,26 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-manifesto-document
-title: Create Manifesto Document
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-01
-updated: 2026-08-01
-domain: architecture
-tags:
-  - architecture
-  - identity
-  - manifesto
-  - authoring
-depends_on:
-  - architecture-authoring
-implements:
-  - architecture-manifesto
-recommended_agents:
-  - architect
+name: create-manifesto-document
+description: Creates or updates MANIFESTO.md from repository evidence and values. Use when a project needs to define, repair, or review its public statement of values, commitments, and beliefs.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-manifesto"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-01"
+  aether-updated: "2026-08-01"
 ---
 
 # Create Manifesto Document

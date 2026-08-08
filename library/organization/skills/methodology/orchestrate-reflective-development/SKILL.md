@@ -1,24 +1,16 @@
 ---
-schema: aether.skill/v1
-id: orchestrate-reflective-development
-title: Orchestrate Reflective Development
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-02
-updated: 2026-08-02
-domain: methodology
-tags:
-  - methodology
-  - workflow
-  - validation
-depends_on: []
-related: []
-supersedes: []
-implements:
-  - reflector
+name: orchestrate-reflective-development
+description: Orchestrates a bounded reflective development cycle by planning, executing, and auditing one unit of work. Use when a development cycle needs to proceed, pause, synchronize, or complete with human alignment.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "reflector"
+  aether-scope: "organization"
+  aether-domain: "methodology"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-02"
+  aether-updated: "2026-08-02"
 ---
 
 # Orchestrate Reflective Development

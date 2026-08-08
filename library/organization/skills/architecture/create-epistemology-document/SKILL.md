@@ -1,26 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-epistemology-document
-title: Create Epistemology Document
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-02
-updated: 2026-08-02
-domain: architecture
-tags:
-  - architecture
-  - meta
-  - epistemology
-  - authoring
-depends_on:
-  - architecture-authoring
-implements:
-  - architecture-epistemology
-recommended_agents:
-  - architect
+name: create-epistemology-document
+description: Creates or updates EPISTEMOLOGY.md from repository evidence and architecture context. Use when a project needs to define, repair, or review how it acquires and validates knowledge.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-epistemology"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-02"
+  aether-updated: "2026-08-02"
 ---
 
 # Create Epistemology Document
