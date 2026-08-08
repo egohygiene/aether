@@ -143,15 +143,15 @@ class TestAetherValidatorRegressions(unittest.TestCase):
             fx.root / "library/organization/specs/domain/duplicate.spec.md",
             (fx.root / "library/organization/specs/domain/example.spec.md").read_text(),
         )
-        diags, _ = fx.validator().validate_specs()
+        diags, _, _ = fx.validator().validate_specs()
         self.assertTrue(any(d.rule_id == "AETHER_SPEC_006" for d in diags))
 
     def test_missing_relationship_target(self):
         fx = ValidatorFixture.create()
         spec = fx.root / "library/organization/specs/domain/example.spec.md"
         spec.write_text(spec.read_text().replace("depends_on: []", "depends_on:\n  - missing-spec"), encoding="utf-8")
-        _spec_diags, specs = fx.validator().validate_specs()
-        diags = fx.validator().validate_graph(specs)
+        _spec_diags, specs, paths = fx.validator().validate_specs()
+        diags = fx.validator().validate_graph(specs, paths)
         self.assertTrue(any(d.rule_id == "AETHER_GRAPH_001" for d in diags))
 
     def test_dependency_cycle(self):
@@ -181,8 +181,8 @@ Second.
         )
         first = fx.root / "library/organization/specs/domain/example.spec.md"
         first.write_text(first.read_text().replace("depends_on: []", "depends_on:\n  - second-spec"), encoding="utf-8")
-        _spec_diags, specs = fx.validator().validate_specs()
-        diags = fx.validator().validate_graph(specs)
+        _spec_diags, specs, paths = fx.validator().validate_specs()
+        diags = fx.validator().validate_graph(specs, paths)
         self.assertTrue(any(d.rule_id == "AETHER_GRAPH_003" for d in diags))
 
     def test_missing_template_or_eval(self):
@@ -204,7 +204,7 @@ Second.
         spec = fx.root / "library/organization/specs/domain/example.spec.md"
         spec.write_text(spec.read_text().replace("schema: aether.specification/v1", "schema: ["), encoding="utf-8")
         json_diags = fx.validator().validate_json_files()
-        spec_diags, _ = fx.validator().validate_specs()
+        spec_diags, _, _ = fx.validator().validate_specs()
         self.assertTrue(any(d.rule_id == "AETHER_JSON_001" for d in json_diags))
         self.assertTrue(any(d.rule_id == "AETHER_FRONTMATTER_002" for d in spec_diags))
 

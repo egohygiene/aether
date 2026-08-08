@@ -389,28 +389,24 @@ class AetherValidator:
 
         return diagnostics, by_id, path_by_id
 
-    def validate_specs(self) -> tuple[list[Diagnostic], dict[str, dict[str, Any]]]:
-        diagnostics, by_id, _ = self._collect_specs()
-        return diagnostics, by_id
+    def validate_specs(self) -> tuple[list[Diagnostic], dict[str, dict[str, Any]], dict[str, Path]]:
+        diagnostics, by_id, path_by_id = self._collect_specs()
+        return diagnostics, by_id, path_by_id
 
-    def validate_graph(self, specs_by_id: dict[str, dict[str, Any]]) -> list[Diagnostic]:
+    def validate_graph(self, specs_by_id: dict[str, dict[str, Any]], spec_paths: dict[str, Path] | None = None) -> list[Diagnostic]:
         diagnostics: list[Diagnostic] = []
         bare_skill, _prefixed_skill, _skill_paths = self._skill_identity_maps()
+        spec_paths = spec_paths or {}
 
         graph: dict[str, list[str]] = {sid: [] for sid in specs_by_id}
 
         for spec_id, fm in specs_by_id.items():
             artifact_id = f"specification/{spec_id}"
-            source_path = self.specs_root
-            for path in self._spec_files():
-                m, _ = _parse_frontmatter(path)
-                if m and m.get("id") == spec_id:
-                    source_path = path
-                    break
+            source_path = spec_paths.get(spec_id, self.specs_root)
             rel_file = _rel(source_path, self.repo_root)
 
-            for field in ("depends_on", "supersedes"):
-                raw = fm.get(field) or []
+            for rel_field in ("depends_on", "supersedes"):
+                raw = fm.get(rel_field) or []
                 refs = raw if isinstance(raw, list) else [raw]
                 for ref in refs:
                     if not isinstance(ref, str):
@@ -420,12 +416,12 @@ class AetherValidator:
                         diagnostics.append(Diagnostic(
                             rule_id="AETHER_GRAPH_001",
                             severity="error",
-                            message=f"Unresolved {field} target '{ref}'.",
+                            message=f"Unresolved {rel_field} target '{ref}'.",
                             guidance="Use existing specification IDs in relationship fields.",
                             artifact_id=artifact_id,
                             file=rel_file,
                             line=1,
-                            context={"field": field, "target": ref},
+                            context={"field": rel_field, "target": ref},
                         ))
 
             raw_related = fm.get("related") or []
@@ -504,7 +500,8 @@ class AetherValidator:
 
         for spec_path in self._spec_files():
             fm, _ = _parse_frontmatter(spec_path)
-            assert fm is not None
+            if fm is None:
+                continue
             spec_id = str(fm["id"])
             source_path = _rel(spec_path, self.repo_root)
             source_digest = _sha256_utf8_lf(spec_path)
@@ -575,7 +572,8 @@ class AetherValidator:
         for skill_dir in self._skill_dirs():
             skill_path = skill_dir / "SKILL.md"
             fm, _ = _parse_frontmatter(skill_path)
-            assert fm is not None
+            if fm is None:
+                continue
             name = str(fm.get("name", skill_dir.name))
             source_path = _rel(skill_path, self.repo_root)
             source_digest = _sha256_utf8_lf(skill_path)
@@ -702,6 +700,8 @@ class AetherValidator:
         for path in sorted(self.repo_root.rglob("*.json")):
             if ".git" in path.parts:
                 continue
+            if "dist" in path.parts:
+                continue
             rel = _rel(path, self.repo_root)
             try:
                 json.loads(path.read_text(encoding="utf-8"))
@@ -729,7 +729,7 @@ class AetherValidator:
                 first = path.read_text(encoding="utf-8").splitlines()[0]
             except (UnicodeDecodeError, IndexError):
                 continue
-            if first.startswith("#!") and re.search(r"(^|/)(bash|sh)(\\s|$)", first.strip()):
+            if first.startswith("#!") and re.search(r"(^|/)(bash|sh)(\s|$)", first.strip()):
                 shell_files.append(path)
 
         for path in shell_files:
@@ -965,18 +965,17 @@ class AetherValidator:
 
     def run_validation(self, scopes: set[str], strict_staging: bool = False, catalog_check: bool = True) -> list[Diagnostic]:
         diagnostics: list[Diagnostic] = []
-        specs_diags, specs_by_id = ([], {})
+        specs_diags, specs_by_id, spec_paths = ([], {}, {})
 
         if "skills" in scopes:
             diagnostics.extend(self.validate_skills())
         if "specifications" in scopes:
-            specs_diags, specs_by_id = self.validate_specs()
+            specs_diags, specs_by_id, spec_paths = self.validate_specs()
             diagnostics.extend(specs_diags)
         if "graph" in scopes:
             if not specs_by_id:
-                specs_diags, specs_by_id = self.validate_specs()
-                diagnostics.extend(specs_diags)
-            diagnostics.extend(self.validate_graph(specs_by_id))
+                _specs_diags, specs_by_id, spec_paths = self.validate_specs()
+            diagnostics.extend(self.validate_graph(specs_by_id, spec_paths))
             diagnostics.extend(self.validate_skill_spec_mapping(specs_by_id))
         if "catalog" in scopes:
             diagnostics.extend(self.validate_catalog(check_only=catalog_check))
@@ -1093,7 +1092,7 @@ def command_catalog_generate(args: argparse.Namespace) -> int:
 
 
 def command_test(_args: argparse.Namespace) -> int:
-    root = find_repo_root(Path.cwd())
+    root = find_repo_root(Path(_args.repo_root).resolve() if _args.repo_root else Path.cwd())
     suite = unittest.defaultTestLoader.discover(str(root / "tests"))
     result = unittest.TextTestRunner(verbosity=2).run(suite)
     return EXIT_OK if result.wasSuccessful() else EXIT_VALIDATION_FAILED

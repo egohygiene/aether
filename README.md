@@ -38,10 +38,10 @@ Conceptual relationship:
 Use the repository launcher from any working directory:
 
 ```sh
-/home/runner/work/aether/aether/aether validate --format text
-/home/runner/work/aether/aether/aether validate --format json
-/home/runner/work/aether/aether/aether catalog generate --check
-/home/runner/work/aether/aether/aether test
+./aether validate --format text
+./aether validate --format json
+./aether catalog generate --check
+./aether test
 ```
 
 ### Exit codes
