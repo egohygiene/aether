@@ -1,0 +1,31 @@
+{
+  "acquired_at": "unknown",
+  "acquisition_method": "unknown",
+  "compatibility": {
+    "required_tools": []
+  },
+  "consumer_profile": "unknown",
+  "content_hash": {
+    "algorithm": "unknown",
+    "value": "unknown"
+  },
+  "executable_resources": "unknown",
+  "id": "external/example-skill",
+  "pinned_install_example": "gh skill install --pin v1.2.3 owner/repo/skills/example",
+  "redistribution_permission": "unknown",
+  "redistribution_status": "unknown",
+  "review_state": "unknown",
+  "reviewed_at": "unknown",
+  "source_type": "skill",
+  "trust_classification": "unknown",
+  "upstream_license": {
+    "notice_path_or_unknown": "unknown",
+    "spdx_or_unknown": "unknown"
+  },
+  "upstream_ref": {
+    "commit": "unknown",
+    "tag": "v1.2.3"
+  },
+  "upstream_repository": "https://github.com/example/skills",
+  "upstream_skill_path": "skills/example/SKILL.md"
+}

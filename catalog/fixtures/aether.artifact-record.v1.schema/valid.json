@@ -1,0 +1,46 @@
+{
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "dependencies": [
+    "specification/architecture-purpose"
+  ],
+  "deprecation": {
+    "replacement_id": null
+  },
+  "description": "Example skill description.",
+  "domain": "architecture",
+  "generated_distribution_paths": [
+    "dist/skills/example-skill/SKILL.md"
+  ],
+  "id": "skill/example-skill",
+  "implements_specification_id": "specification/architecture-purpose",
+  "kind": "skill",
+  "license": "MIT",
+  "lifecycle": {
+    "state": "draft"
+  },
+  "owner": {
+    "maintainers": [
+      "egohygiene"
+    ],
+    "primary": "egohygiene"
+  },
+  "related_ids": [],
+  "release": {
+    "included": false
+  },
+  "scope": "organization",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "source_path": "library/organization/skills/architecture/create-purpose-document/SKILL.md",
+  "supersedes_ids": [],
+  "tags": [
+    "architecture",
+    "skill"
+  ],
+  "title": "Example Skill"
+}

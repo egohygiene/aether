@@ -1,0 +1,197 @@
+{
+  "$id": "aether.external-source-record/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "acquired_at": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "acquisition_method": {
+      "enum": [
+        "git-archive",
+        "git-clone",
+        "manual",
+        "unknown"
+      ],
+      "type": "string"
+    },
+    "compatibility": {
+      "additionalProperties": false,
+      "properties": {
+        "required_tools": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "required_tools"
+      ],
+      "type": "object"
+    },
+    "consumer_profile": {
+      "enum": [
+        "human-review",
+        "agent-assisted",
+        "automated",
+        "unknown"
+      ],
+      "type": "string"
+    },
+    "content_hash": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "enum": [
+            "sha256-utf8-lf",
+            "sha256-tree",
+            "unknown"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "pattern": "^(unknown|[a-f0-9]{64})$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "algorithm",
+        "value"
+      ],
+      "type": "object"
+    },
+    "executable_resources": {
+      "enum": [
+        "yes",
+        "no",
+        "unknown"
+      ],
+      "type": "string"
+    },
+    "id": {
+      "pattern": "^external/[a-z0-9-]+$",
+      "type": "string"
+    },
+    "pinned_install_example": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "redistribution_permission": {
+      "enum": [
+        "allowed",
+        "disallowed",
+        "unknown"
+      ],
+      "type": "string"
+    },
+    "redistribution_status": {
+      "enum": [
+        "verified",
+        "unverified",
+        "unknown"
+      ],
+      "type": "string"
+    },
+    "review_state": {
+      "enum": [
+        "pending",
+        "reviewed",
+        "rejected",
+        "unknown"
+      ],
+      "type": "string"
+    },
+    "reviewed_at": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_type": {
+      "enum": [
+        "skill",
+        "specification",
+        "agent",
+        "instruction",
+        "hook",
+        "other"
+      ],
+      "type": "string"
+    },
+    "trust_classification": {
+      "enum": [
+        "trusted",
+        "restricted",
+        "untrusted",
+        "unknown"
+      ],
+      "type": "string"
+    },
+    "upstream_license": {
+      "additionalProperties": false,
+      "properties": {
+        "notice_path_or_unknown": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "spdx_or_unknown": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "spdx_or_unknown",
+        "notice_path_or_unknown"
+      ],
+      "type": "object"
+    },
+    "upstream_ref": {
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "pattern": "^(unknown|[a-f0-9]{7,64})$",
+          "type": "string"
+        },
+        "tag": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "tag",
+        "commit"
+      ],
+      "type": "object"
+    },
+    "upstream_repository": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "upstream_skill_path": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "upstream_repository",
+    "upstream_ref",
+    "upstream_skill_path",
+    "source_type",
+    "acquisition_method",
+    "upstream_license",
+    "content_hash",
+    "acquired_at",
+    "reviewed_at",
+    "review_state",
+    "trust_classification",
+    "compatibility",
+    "executable_resources",
+    "consumer_profile",
+    "pinned_install_example",
+    "redistribution_permission",
+    "redistribution_status"
+  ],
+  "title": "Aether external source record",
+  "type": "object"
+}

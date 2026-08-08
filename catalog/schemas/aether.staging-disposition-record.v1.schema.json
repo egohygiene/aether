@@ -1,0 +1,64 @@
+{
+  "$id": "aether.staging-disposition-record/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "disposition": {
+      "enum": [
+        "preserve-migration-evidence",
+        "ingest-planned",
+        "external-reference",
+        "not-adopted"
+      ],
+      "type": "string"
+    },
+    "hash_algorithm": {
+      "enum": [
+        "sha256-utf8-lf",
+        "sha256-tree",
+        "unknown"
+      ],
+      "type": "string"
+    },
+    "hash_status": {
+      "enum": [
+        "reconstructed",
+        "unverified",
+        "unknown"
+      ],
+      "type": "string"
+    },
+    "lock_reference": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reason": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "staging_path": {
+      "pattern": "^\\.staging/",
+      "type": "string"
+    },
+    "trust_classification": {
+      "enum": [
+        "trusted",
+        "restricted",
+        "untrusted",
+        "unknown"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "staging_path",
+    "disposition",
+    "reason",
+    "lock_reference",
+    "hash_status",
+    "hash_algorithm",
+    "trust_classification"
+  ],
+  "title": "Aether staging disposition record",
+  "type": "object"
+}

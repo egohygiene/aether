@@ -1,0 +1,84 @@
+{
+  "artifacts": [
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Spec",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-purpose.spec.md"
+      ],
+      "id": "specification/architecture-purpose",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "stable"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": true
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "source_path": "library/organization/specs/architecture/identity/purpose.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture"
+      ],
+      "title": "Purpose"
+    }
+  ],
+  "authority": {
+    "canonical_source_of_truth": "frontmatter",
+    "catalog_role_when_overlap": "derived"
+  },
+  "lifecycle_policy": {
+    "allowed_transitions": [
+      {
+        "from": "draft",
+        "to": "experimental"
+      }
+    ],
+    "breaking_change_policy": "major artifact version + new repository release tag",
+    "deprecated_requires_replacement": true,
+    "releasable_states": [
+      "stable"
+    ],
+    "retired_id_reuse": false,
+    "staged_external_policy": "tracked separately",
+    "states": [
+      "draft",
+      "experimental",
+      "stable",
+      "deprecated",
+      "retired"
+    ]
+  },
+  "schema_version": "aether.artifact-catalog/v1",
+  "serialization": {
+    "canonical_json": "json.dumps(sort_keys=true,separators=(\",\",\":\"))",
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "source_digest_algorithm": "sha256-utf8-lf"
+  },
+  "versioning": {
+    "artifact_version_contract": "artifact_version is per-record semver",
+    "repository_release_tag_contract": "repo tag pins artifact set"
+  }
+}

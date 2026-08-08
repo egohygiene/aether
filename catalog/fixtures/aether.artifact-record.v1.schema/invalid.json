@@ -1,0 +1,37 @@
+{
+  "artifact_version": "1.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "dependencies": [],
+  "deprecation": {
+    "replacement_id": null
+  },
+  "description": "Bad",
+  "domain": "architecture",
+  "generated_distribution_paths": [],
+  "id": "badid",
+  "implements_specification_id": null,
+  "kind": "skill",
+  "license": "MIT",
+  "lifecycle": {
+    "state": "unknown"
+  },
+  "owner": {
+    "maintainers": [],
+    "primary": "x"
+  },
+  "related_ids": [],
+  "release": {
+    "included": true
+  },
+  "scope": "organization",
+  "source_digest": {
+    "algorithm": "sha1",
+    "value": "abc"
+  },
+  "source_path": "library/organization/skills/x/SKILL.md",
+  "supersedes_ids": [],
+  "tags": [],
+  "title": "Bad"
+}

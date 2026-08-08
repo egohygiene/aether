@@ -1,0 +1,2442 @@
+{
+  "artifacts": [
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Guides selection, sequencing, authoring, updating, and validation of architecture documents for a repository, product, platform, or organization. Use when establishing, repairing, or planning a set of architecture documents.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/architecture-authoring/SKILL.md"
+      ],
+      "id": "skill/architecture-authoring",
+      "implements_specification_id": "specification/architecture-document",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "25ff85d5b9bd560546e7be12a17b5bca8e05285bba3b97c1925eabb8f3eb3417"
+      },
+      "source_path": "library/organization/skills/architecture/architecture-authoring/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Architecture Authoring"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/auditor"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Audits a repository for quality, alignment, risk, and strengths using observable evidence. Use when a project needs an impartial assessment of its current state and actionable findings.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/skills/audit-repository/SKILL.md"
+      ],
+      "id": "skill/audit-repository",
+      "implements_specification_id": "specification/auditor",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "197da818e259a8f0377cf6eb6579cae053243c8e2a419bcdfe5951d0d5759ee5"
+      },
+      "source_path": "library/organization/skills/quality/audit-repository/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "quality",
+        "skill"
+      ],
+      "title": "Audit Repository"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-ai-constitution"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates AI_CONSTITUTION.md from repository evidence and policy. Use when a project needs to define, repair, or review the rules and oversight under which AI systems may participate in its work.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-ai-constitution-document/SKILL.md"
+      ],
+      "id": "skill/create-ai-constitution-document",
+      "implements_specification_id": "specification/architecture-ai-constitution",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "51e71e0798e9088e7071c2a979d0b8f8a3765dfcc76135f05327f9ffca6efcc6"
+      },
+      "source_path": "library/organization/skills/architecture/create-ai-constitution-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create AI Constitution Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-architecture"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates ARCHITECTURE.md from repository evidence. Use when a project needs to define, repair, or review its structural organization, boundaries, and dependency rules.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-architecture-document/SKILL.md"
+      ],
+      "id": "skill/create-architecture-document",
+      "implements_specification_id": "specification/architecture-architecture",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "e9cef372280af44826617ad06b0a276758ce2678ef7b1e68917fecd24b059a2a"
+      },
+      "source_path": "library/organization/skills/architecture/create-architecture-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Architecture Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-decisions"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates DECISIONS.md with architectural decision records (ADRs) from repository evidence. Use when a project needs to capture, repair, or review architectural decisions and their rationale.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-decisions-document/SKILL.md"
+      ],
+      "id": "skill/create-decisions-document",
+      "implements_specification_id": "specification/architecture-decisions",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "9a55c26c08e0f6ef5310b7e519c2619d303db362579f1061b4a6f3782eabb1d7"
+      },
+      "source_path": "library/organization/skills/architecture/create-decisions-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Decisions Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-design"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or refines DESIGN.md using the corresponding Aether architecture specification. Use when a project needs to establish, update, or validate its design experience documentation.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-design-document/SKILL.md"
+      ],
+      "id": "skill/create-design-document",
+      "implements_specification_id": "specification/architecture-design",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "8042711b74658f5c24e7aa4cf45c732a29d55de79b132cdfb885e2aed7024e35"
+      },
+      "source_path": "library/organization/skills/architecture/create-design-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Design Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-design-system"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or refines DESIGN_SYSTEM.md using the corresponding Aether architecture specification. Use when a project needs to establish or update its canonical design system documentation.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-design-system-document/SKILL.md"
+      ],
+      "id": "skill/create-design-system-document",
+      "implements_specification_id": "specification/architecture-design-system",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c96a1e7bf6e72b8442791a23c76841ec936c9b7f58210fd02ddea1539b361c5d"
+      },
+      "source_path": "library/organization/skills/architecture/create-design-system-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Design System Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-epistemology"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates EPISTEMOLOGY.md from repository evidence and architecture context. Use when a project needs to define, repair, or review how it acquires and validates knowledge.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-epistemology-document/SKILL.md"
+      ],
+      "id": "skill/create-epistemology-document",
+      "implements_specification_id": "specification/architecture-epistemology",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "0d7ed01478d17e550759c356ec01767e7691e49eb7ac9d8d61d7dbbe9e0fc586"
+      },
+      "source_path": "library/organization/skills/architecture/create-epistemology-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Epistemology Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-foundations"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates FOUNDATIONS.md from repository evidence. Use when a project needs to define, repair, or review enduring assumptions, invariants, and baseline architectural constraints.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-foundations-document/SKILL.md"
+      ],
+      "id": "skill/create-foundations-document",
+      "implements_specification_id": "specification/architecture-foundations",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "42c91db1a6d4ba652a15c451d3491222b7246b37b9307da486c029d234c1d0e6"
+      },
+      "source_path": "library/organization/skills/architecture/create-foundations-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Foundations Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-manifesto"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates MANIFESTO.md from repository evidence and values. Use when a project needs to define, repair, or review its public statement of values, commitments, and beliefs.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-manifesto-document/SKILL.md"
+      ],
+      "id": "skill/create-manifesto-document",
+      "implements_specification_id": "specification/architecture-manifesto",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "af2a6ee0b3f27a95bd79fa21d92506bfda59a1146f24fc16d580f2b6be31f8c4"
+      },
+      "source_path": "library/organization/skills/architecture/create-manifesto-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Manifesto Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-meta"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates META.md describing the architecture of the architecture system itself. Use when a project needs to define or review the meta-level rules governing its architecture documentation.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-meta-architecture-document/SKILL.md"
+      ],
+      "id": "skill/create-meta-architecture-document",
+      "implements_specification_id": "specification/architecture-meta",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "f8e86465d0690a8c3c1efd5e188e991d212943cceb7c1f9be2f021bbbf91b531"
+      },
+      "source_path": "library/organization/skills/architecture/create-meta-architecture-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Meta Architecture Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-methodology"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates METHODOLOGY.md from repository evidence. Use when a project needs to define, repair, or review its repeatable way of moving from ideas to validated outcomes.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-methodology-document/SKILL.md"
+      ],
+      "id": "skill/create-methodology-document",
+      "implements_specification_id": "specification/architecture-methodology",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "bf7aa7d96771b8cb69120c8c68b4ae085d2f3ebb0a2caa183786461782da143b"
+      },
+      "source_path": "library/organization/skills/architecture/create-methodology-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Methodology Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-ontology"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or refines ONTOLOGY.md using the corresponding Aether architecture specification. Use when a project needs to establish or validate its canonical vocabulary and domain model.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-ontology-document/SKILL.md"
+      ],
+      "id": "skill/create-ontology-document",
+      "implements_specification_id": "specification/architecture-ontology",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "b191a01e4e4409fa8e9d3b309a547159fe791954a97e7e5fe156843603e82872"
+      },
+      "source_path": "library/organization/skills/architecture/create-ontology-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Ontology Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-personal-model"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or refines PERSONAL_MODEL.md using the corresponding Aether architecture specification. Use when a project needs to establish or review the personal conceptual model guiding its design decisions.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-personal-model-document/SKILL.md"
+      ],
+      "id": "skill/create-personal-model-document",
+      "implements_specification_id": "specification/architecture-personal-model",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "8396ab9c4a654ffe6bf35d4736c37811af0d76902f90d55075c2a683e9e21a0e"
+      },
+      "source_path": "library/organization/skills/architecture/create-personal-model-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Personal Model Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-pillars"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates PILLARS.md from repository evidence and identity context. Use when a project needs to define, repair, or review the foundational pillars that support its purpose and values.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-pillars-document/SKILL.md"
+      ],
+      "id": "skill/create-pillars-document",
+      "implements_specification_id": "specification/architecture-pillars",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "2111512718e6861a5c66f47e14aab14121a492200d83886950f56569dbdc1469"
+      },
+      "source_path": "library/organization/skills/architecture/create-pillars-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Pillars Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-principles"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates PRINCIPLES.md from repository evidence and values. Use when a project needs to define, repair, or review the guiding principles that govern its decisions and behavior.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-principles-document/SKILL.md"
+      ],
+      "id": "skill/create-principles-document",
+      "implements_specification_id": "specification/architecture-principles",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "38074819b3bd9eb9cd6efda6e2cc7f962864373cd8200b809c53cd793019b80e"
+      },
+      "source_path": "library/organization/skills/architecture/create-principles-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Principles Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-purpose"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates PURPOSE.md from repository evidence. Use when a project needs to define, repair, or review why it exists and whom it serves.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-purpose-document/SKILL.md"
+      ],
+      "id": "skill/create-purpose-document",
+      "implements_specification_id": "specification/architecture-purpose",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "0b2b945fb5bfeae3c02066a04973432bc76848cb3f728dd4bc49292b8499c509"
+      },
+      "source_path": "library/organization/skills/architecture/create-purpose-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Purpose Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-roadmap"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates ROADMAP.md from repository evidence. Use when a project needs to define, repair, or review its strategic capability evolution and sequencing across time horizons.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-roadmap-document/SKILL.md"
+      ],
+      "id": "skill/create-roadmap-document",
+      "implements_specification_id": "specification/architecture-roadmap",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "921ed6d6964f9a9e202d7a52f35ea8fcdffca310992e4baeeaac16b74ec402b5"
+      },
+      "source_path": "library/organization/skills/architecture/create-roadmap-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Roadmap Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/specfile"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates a new Aether specification file conforming to the specfile standard. Use when a project needs to define, structure, or validate an implementation contract and its acceptance criteria.",
+      "domain": "authoring",
+      "generated_distribution_paths": [
+        "dist/skills/create-specification-file/SKILL.md"
+      ],
+      "id": "skill/create-specification-file",
+      "implements_specification_id": "specification/specfile",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "2173169a2ad5c417554bea595e50e13b8d53ddb563740625e49633be9a4b9dfe"
+      },
+      "source_path": "library/organization/skills/authoring/create-specification-file/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "authoring",
+        "skill"
+      ],
+      "title": "Create Specification File"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-system"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates SYSTEM.md from repository evidence. Use when a project needs to define, repair, or review its logical system decomposition, capability ownership, and high-level interactions.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-system-document/SKILL.md"
+      ],
+      "id": "skill/create-system-document",
+      "implements_specification_id": "specification/architecture-system",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "2c91a59487bc02c2132ec9344b50e1a60c76a7702c071af3ee6435daa37791ae"
+      },
+      "source_path": "library/organization/skills/architecture/create-system-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create System Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-vision"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates VISION.md from repository evidence and identity context. Use when a project needs to define, repair, or review the aspirational future state it is working toward.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/create-vision-document/SKILL.md"
+      ],
+      "id": "skill/create-vision-document",
+      "implements_specification_id": "specification/architecture-vision",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "88316f29159a60a611f23935d2bd6c1489d20b9eb4efe4207a4d4d59c002c916"
+      },
+      "source_path": "library/organization/skills/architecture/create-vision-document/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Create Vision Document"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/reflector"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Orchestrates a bounded reflective development cycle by planning, executing, and auditing one unit of work. Use when a development cycle needs to proceed, pause, synchronize, or complete with human alignment.",
+      "domain": "methodology",
+      "generated_distribution_paths": [
+        "dist/skills/orchestrate-reflective-development/SKILL.md"
+      ],
+      "id": "skill/orchestrate-reflective-development",
+      "implements_specification_id": "specification/reflector",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "a0f93d539faaa147ec86a8f9415c387d684ebbed11923b1f49db37f34285cf07"
+      },
+      "source_path": "library/organization/skills/methodology/orchestrate-reflective-development/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "methodology",
+        "skill"
+      ],
+      "title": "Orchestrate Reflective Development"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/arxiv-publishing"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Prepares a verified, reproducible arXiv release package from repository source. Use when a project needs to compile, validate, and package a submission for the arXiv preprint server.",
+      "domain": "publishing",
+      "generated_distribution_paths": [
+        "dist/skills/prepare-arxiv-release/SKILL.md"
+      ],
+      "id": "skill/prepare-arxiv-release",
+      "implements_specification_id": "specification/arxiv-publishing",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Draft skills are excluded from release manifests."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "558143c3e95fd0a3f937c5e34e55d8575a2c3d50ed0c69e837b4c8b7fd061354"
+      },
+      "source_path": "library/organization/skills/publishing/prepare-arxiv-release/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "publishing",
+        "skill"
+      ],
+      "title": "Prepare arXiv Release"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-purpose",
+        "specification/architecture-vision",
+        "specification/architecture-principles",
+        "specification/architecture-epistemology"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `AI_CONSTITUTION.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-ai-constitution.spec.md"
+      ],
+      "id": "specification/architecture-ai-constitution",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-decisions",
+        "skill/create-ai-constitution-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c66ec3d58683d7d719b905b769372f73eada83201c0f7e6e281e8dd51baf8023"
+      },
+      "source_path": "library/organization/specs/architecture/meta/ai-constitution.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "meta",
+        "ai",
+        "constitution",
+        "governance",
+        "safety"
+      ],
+      "title": "AI Constitution Architecture Document Specification"
+    },
+    {
+      "artifact_version": "1.1.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how the `ARCHITECTURE.md` architecture document shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-architecture.spec.md"
+      ],
+      "id": "specification/architecture-architecture",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-foundations",
+        "specification/architecture-system",
+        "specification/architecture-design",
+        "specification/architecture-ontology"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "5b5bfa5b664f30c14a1c69fbfef5f44fc4744c3a733649555aae7a8cf1dedc82"
+      },
+      "source_path": "library/organization/specs/architecture/foundation/architecture.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "specification",
+        "system-design",
+        "structure",
+        "engineering"
+      ],
+      "title": "Architecture Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-principles",
+        "specification/architecture-epistemology",
+        "specification/architecture-foundations",
+        "specification/architecture-system",
+        "specification/architecture-architecture"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `DECISIONS.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-decisions.spec.md"
+      ],
+      "id": "specification/architecture-decisions",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-ai-constitution",
+        "specification/architecture-methodology",
+        "specification/architecture-roadmap",
+        "skill/create-decisions-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "86b930db1a209248ebc832d2a8889d9b768348d43989b87f6f32f6db1966f0ed"
+      },
+      "source_path": "library/organization/specs/architecture/governance/decisions.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "governance",
+        "decisions",
+        "adr",
+        "institutional-memory",
+        "traceability"
+      ],
+      "title": "Decisions Architecture Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-purpose",
+        "specification/architecture-vision",
+        "specification/architecture-principles",
+        "specification/architecture-personal-model"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `DESIGN.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-design.spec.md"
+      ],
+      "id": "specification/architecture-design",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-design-system",
+        "specification/architecture-ontology",
+        "specification/architecture-foundations",
+        "specification/architecture-system",
+        "specification/architecture-architecture",
+        "skill/create-design-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "dec29cf4534b4f3e26885adc5269be2ac95349682a941cf02393a5369cfe3ea7"
+      },
+      "source_path": "library/organization/specs/architecture/experience/design.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "experience",
+        "design",
+        "design-philosophy",
+        "human-centered",
+        "accessibility"
+      ],
+      "title": "Design Architecture Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-purpose",
+        "specification/architecture-principles",
+        "specification/architecture-personal-model",
+        "specification/architecture-design"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `DESIGN_SYSTEM.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-design-system.spec.md"
+      ],
+      "id": "specification/architecture-design-system",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-ontology",
+        "specification/architecture-foundations",
+        "specification/architecture-architecture",
+        "skill/create-design-system-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6ed217dc66860b7ff487c011a8a755c35c7df9e42030b769bdc3f5da37982dc0"
+      },
+      "source_path": "library/organization/specs/architecture/experience/design-system.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "experience",
+        "design-system",
+        "visual-language",
+        "interaction-language",
+        "accessibility"
+      ],
+      "title": "Design System Architecture Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines the canonical standard for authoring architecture document specifications and the architecture documents produced from them throughout the Ego Hygiene ecosystem.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-document.spec.md"
+      ],
+      "id": "specification/architecture-document",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-purpose",
+        "specification/architecture-vision",
+        "specification/architecture-principles",
+        "specification/architecture-pillars",
+        "specification/architecture-manifesto",
+        "specification/architecture-epistemology",
+        "specification/architecture-ai-constitution",
+        "specification/architecture-ontology",
+        "specification/architecture-personal-model",
+        "specification/architecture-foundations",
+        "specification/architecture-system",
+        "specification/architecture-architecture",
+        "specification/architecture-methodology",
+        "specification/architecture-roadmap",
+        "specification/architecture-design",
+        "specification/architecture-design-system",
+        "specification/architecture-decisions"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "4bd865cd2ef4fdb4771b8ee0139858c8cf2dbd64bda77c81226d8d328666830b"
+      },
+      "source_path": "library/organization/specs/architecture/document.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "documentation",
+        "authoring",
+        "specification",
+        "standard"
+      ],
+      "title": "Architecture Document Specification Standard"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-purpose",
+        "specification/architecture-principles"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `EPISTEMOLOGY.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-epistemology.spec.md"
+      ],
+      "id": "specification/architecture-epistemology",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-ai-constitution",
+        "specification/architecture-decisions",
+        "skill/create-epistemology-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "76f3cfee66cb9ad14d4cf880cc4f6565bef4777056be7b9e9d62e9857a426deb"
+      },
+      "source_path": "library/organization/specs/architecture/meta/epistemology.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "meta",
+        "epistemology",
+        "knowledge",
+        "evidence",
+        "provenance"
+      ],
+      "title": "Epistemology Architecture Document Specification"
+    },
+    {
+      "artifact_version": "1.1.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how the `FOUNDATIONS.md` architecture document shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-foundations.spec.md"
+      ],
+      "id": "specification/architecture-foundations",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-principles",
+        "specification/architecture-methodology",
+        "specification/architecture-system"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "0147b9501db5ba7fc8aba890c854a5849a654c9924bd1cacee7812727cbdf7ab"
+      },
+      "source_path": "library/organization/specs/architecture/foundation/foundations.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "specification",
+        "foundations",
+        "assumptions",
+        "invariants"
+      ],
+      "title": "Foundations Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-purpose",
+        "specification/architecture-vision",
+        "specification/architecture-principles",
+        "specification/architecture-pillars"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `MANIFESTO.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-manifesto.spec.md"
+      ],
+      "id": "specification/architecture-manifesto",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-foundations",
+        "skill/create-manifesto-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c3bbf55857e95ef80eec233a301a57056b6eb7b976b54e539d71dc186a44b080"
+      },
+      "source_path": "library/organization/specs/architecture/identity/manifesto.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "identity",
+        "manifesto",
+        "authoring"
+      ],
+      "title": "Manifesto Architecture Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-epistemology",
+        "specification/architecture-ai-constitution"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `META.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-meta.spec.md"
+      ],
+      "id": "specification/architecture-meta",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-decisions",
+        "skill/architecture-authoring",
+        "skill/create-meta-architecture-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "46c6cd637dc52c976016894072fc16e520ab509a1757a20443a9fafaa1ce6b7a"
+      },
+      "source_path": "library/organization/specs/architecture/meta/meta.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "meta",
+        "framework",
+        "catalog",
+        "governance",
+        "navigation"
+      ],
+      "title": "Meta Architecture Document Specification"
+    },
+    {
+      "artifact_version": "1.1.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how the `METHODOLOGY.md` architecture document shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-methodology.spec.md"
+      ],
+      "id": "specification/architecture-methodology",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-principles",
+        "specification/architecture-foundations",
+        "specification/architecture-architecture"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "43a03c53983f5749d3eb76d79463477b57d883842baf64f86a96b855b7e31e18"
+      },
+      "source_path": "library/organization/specs/architecture/foundation/methodology.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "specification",
+        "methodology",
+        "workflow",
+        "engineering-practice"
+      ],
+      "title": "Methodology Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-purpose",
+        "specification/architecture-vision",
+        "specification/architecture-principles",
+        "specification/architecture-epistemology"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `ONTOLOGY.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-ontology.spec.md"
+      ],
+      "id": "specification/architecture-ontology",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-personal-model",
+        "specification/architecture-system",
+        "specification/architecture-architecture",
+        "specification/architecture-design",
+        "skill/create-ontology-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "65d9957b8a43bf0c11764fc63ea496ec01dd96e2dd41c0f813d38809a769ac39"
+      },
+      "source_path": "library/organization/specs/architecture/domain/ontology.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "domain",
+        "ontology",
+        "ubiquitous-language",
+        "conceptual-model"
+      ],
+      "title": "Ontology Architecture Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-purpose",
+        "specification/architecture-vision",
+        "specification/architecture-principles",
+        "specification/architecture-epistemology",
+        "specification/architecture-ontology"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `PERSONAL_MODEL.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-personal-model.spec.md"
+      ],
+      "id": "specification/architecture-personal-model",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-ai-constitution",
+        "specification/architecture-system",
+        "specification/architecture-architecture",
+        "specification/architecture-design",
+        "specification/architecture-design-system",
+        "skill/create-personal-model-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "4cda5116040f8893993850e3e19b22bc3379ebcfbcc32c08669baa5630e5ebce"
+      },
+      "source_path": "library/organization/specs/architecture/domain/personal-model.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "domain",
+        "personal-model",
+        "human-centered",
+        "agency",
+        "privacy"
+      ],
+      "title": "Personal Model Architecture Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-purpose",
+        "specification/architecture-vision",
+        "specification/architecture-principles"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `PILLARS.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-pillars.spec.md"
+      ],
+      "id": "specification/architecture-pillars",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-manifesto",
+        "specification/architecture-foundations",
+        "specification/architecture-system",
+        "specification/architecture-roadmap",
+        "skill/create-pillars-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "f99bef8013679b1460b94c2bc9c0394e90e134cc8869de068be4ac8e6b72bd6e"
+      },
+      "source_path": "library/organization/specs/architecture/identity/pillars.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "identity",
+        "pillars",
+        "authoring"
+      ],
+      "title": "Pillars Architecture Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-purpose",
+        "specification/architecture-vision"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `PRINCIPLES.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-principles.spec.md"
+      ],
+      "id": "specification/architecture-principles",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-pillars",
+        "specification/architecture-manifesto",
+        "specification/architecture-methodology",
+        "specification/architecture-foundations",
+        "skill/create-principles-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "b2ef055e4db5fa5cac7a554659c34e5438f1a2b99e8eddd6116582f888e429ab"
+      },
+      "source_path": "library/organization/specs/architecture/identity/principles.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "identity",
+        "principles",
+        "authoring"
+      ],
+      "title": "Principles Architecture Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `PURPOSE.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-purpose.spec.md"
+      ],
+      "id": "specification/architecture-purpose",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-vision",
+        "specification/architecture-principles",
+        "specification/architecture-pillars",
+        "specification/architecture-manifesto",
+        "skill/create-purpose-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "be80d5c48cbad892af779ae078f4d9fe074218a1c85926010ad707e193444aaa"
+      },
+      "source_path": "library/organization/specs/architecture/identity/purpose.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "identity",
+        "purpose",
+        "authoring"
+      ],
+      "title": "Purpose Architecture Document Specification"
+    },
+    {
+      "artifact_version": "1.1.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-vision"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how the `ROADMAP.md` architecture document shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-roadmap.spec.md"
+      ],
+      "id": "specification/architecture-roadmap",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-pillars",
+        "specification/architecture-system"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "1834775bc451be9e0b836af4e1948a18b30f89ea1087e6de29921af5f68b7bf4"
+      },
+      "source_path": "library/organization/specs/architecture/foundation/roadmap.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "specification",
+        "roadmap",
+        "strategy",
+        "planning"
+      ],
+      "title": "Roadmap Document Specification"
+    },
+    {
+      "artifact_version": "1.1.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-ontology"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how the `SYSTEM.md` architecture document shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-system.spec.md"
+      ],
+      "id": "specification/architecture-system",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-architecture",
+        "specification/architecture-foundations"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "f6661d475b4aff892558c554515966ce6c2b67bc60b6d17fdfb8999a0c806204"
+      },
+      "source_path": "library/organization/specs/architecture/foundation/system.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "specification",
+        "systems",
+        "decomposition",
+        "boundaries"
+      ],
+      "title": "System Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document",
+        "specification/architecture-purpose"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how `VISION.md` shall be authored, maintained, and validated.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-vision.spec.md"
+      ],
+      "id": "specification/architecture-vision",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-principles",
+        "specification/architecture-pillars",
+        "specification/architecture-manifesto",
+        "specification/architecture-roadmap",
+        "skill/create-vision-document"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "5fa677da1c3ed95bbab36e9c9f389914eee2946728febf1e0c07db453dc2a921"
+      },
+      "source_path": "library/organization/specs/architecture/identity/vision.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "identity",
+        "vision",
+        "authoring"
+      ],
+      "title": "Vision Architecture Document Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/specfile"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines deterministic, publisher-agnostic scholarly publishing infrastructure with first-class arXiv support.",
+      "domain": "publishing",
+      "generated_distribution_paths": [
+        "dist/specs/arxiv-publishing.spec.md"
+      ],
+      "id": "specification/arxiv-publishing",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/prepare-arxiv-release"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "ea389c04c58b9d2c22e2c5d24103d86ff6339557d6cfefccbc0267e8c6b2ee08"
+      },
+      "source_path": "library/organization/specs/publishing/arxiv.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "arxiv",
+        "scholarly-publishing",
+        "deterministic-builds",
+        "accessibility",
+        "release-engineering"
+      ],
+      "title": "arXiv Publishing Infrastructure Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/specfile"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines a repository-agnostic contract for evidence-based, read-only auditing.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/specs/auditor.spec.md"
+      ],
+      "id": "specification/auditor",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "source_state": "approved",
+        "state": "stable"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/reflector",
+        "skill/audit-repository"
+      ],
+      "release": {
+        "included": true,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "f9f4d56673cefac4233fad4d53c78d1ba0726201b7e097bb78f67a721b81e62f"
+      },
+      "source_path": "library/organization/specs/quality/auditor.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "audit",
+        "repository",
+        "quality",
+        "evidence",
+        "read-only"
+      ],
+      "title": "Repository Auditor Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/specfile",
+        "specification/auditor"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines a human-governed recursive development method for AI-assisted software engineering.",
+      "domain": "methodology",
+      "generated_distribution_paths": [
+        "dist/specs/reflector.spec.md"
+      ],
+      "id": "specification/reflector",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/orchestrate-reflective-development"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "f2c4a7f60f1d7afd25b2a353a5e3bf1cdc5db3e8fe28d0f8ab47c983a592947b"
+      },
+      "source_path": "library/organization/specs/methodology/reflector.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "reflective-development",
+        "recursive-ai",
+        "human-governance",
+        "synchronization",
+        "drift-containment"
+      ],
+      "title": "Reflective Development System Specification"
+    },
+    {
+      "artifact_version": "2.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how specification files shall be authored, organized, maintained, validated, and consumed.",
+      "domain": "authoring",
+      "generated_distribution_paths": [
+        "dist/specs/specfile.spec.md"
+      ],
+      "id": "specification/specfile",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/auditor",
+        "specification/reflector",
+        "specification/arxiv-publishing",
+        "skill/create-specification-file"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "ab1526ba0a27f67ab359ef7a8b57f59271e05a1297ef6f25e984963a7817d985"
+      },
+      "source_path": "library/organization/specs/authoring/specfile.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "specification",
+        "authoring",
+        "implementation-contract",
+        "validation"
+      ],
+      "title": "Specification File Standard"
+    }
+  ],
+  "authority": {
+    "canonical_source_of_truth": "Canonical source files in library/organization/specs/*.spec.md and library/organization/skills/**/SKILL.md are authoritative for overlapping metadata.",
+    "catalog_role_when_overlap": "The catalog is a derived, machine-readable index that must remain synchronized with canonical frontmatter; tooling should treat divergence as a validation error."
+  },
+  "lifecycle_policy": {
+    "allowed_transitions": [
+      {
+        "from": "draft",
+        "to": "experimental"
+      },
+      {
+        "from": "experimental",
+        "to": "stable"
+      },
+      {
+        "from": "stable",
+        "to": "deprecated"
+      },
+      {
+        "from": "deprecated",
+        "to": "retired"
+      }
+    ],
+    "breaking_change_policy": "A breaking change requires a major artifact version bump and inclusion in a new repository release manifest tag.",
+    "deprecated_requires_replacement": true,
+    "releasable_states": [
+      "stable"
+    ],
+    "retired_id_reuse": false,
+    "staged_external_policy": "Staged or external artifacts are tracked with external-source and staging-disposition records and are not treated as first-party lifecycle entries.",
+    "states": [
+      "draft",
+      "experimental",
+      "stable",
+      "deprecated",
+      "retired"
+    ]
+  },
+  "schema_version": "aether.artifact-catalog/v1",
+  "serialization": {
+    "canonical_json": "json.dumps(sort_keys=true,separators=(\",\",\":\"))",
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "source_digest_algorithm": "sha256-utf8-lf"
+  },
+  "versioning": {
+    "artifact_version_contract": "artifact_version is per-artifact semver and may change independently of repository release tags.",
+    "repository_release_tag_contract": "A repository release tag (for gh skill install --pin) identifies an immutable release manifest snapshot."
+  }
+}

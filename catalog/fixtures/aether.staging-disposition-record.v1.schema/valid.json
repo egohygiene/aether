@@ -1,0 +1,9 @@
+{
+  "disposition": "preserve-migration-evidence",
+  "hash_algorithm": "unknown",
+  "hash_status": "unverified",
+  "lock_reference": ".staging/manifests/skills-lock.json",
+  "reason": "Retained until hash algorithm reconstruction is complete.",
+  "staging_path": ".staging/skills/example/SKILL.md",
+  "trust_classification": "unknown"
+}

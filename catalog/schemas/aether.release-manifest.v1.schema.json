@@ -1,0 +1,63 @@
+{
+  "$id": "aether.release-manifest/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "artifact_id": {
+            "pattern": "^[a-z]+/[a-z0-9-]+$",
+            "type": "string"
+          },
+          "artifact_version": {
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$",
+            "type": "string"
+          },
+          "source_digest": {
+            "additionalProperties": false,
+            "properties": {
+              "algorithm": {
+                "const": "sha256-utf8-lf",
+                "type": "string"
+              },
+              "value": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "algorithm",
+              "value"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "artifact_id",
+          "artifact_version",
+          "source_digest"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "repository_release_tag": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "aether.release-manifest/v1",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "repository_release_tag",
+    "artifacts"
+  ],
+  "title": "Aether release manifest",
+  "type": "object"
+}
