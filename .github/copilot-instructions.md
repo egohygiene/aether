@@ -76,7 +76,7 @@ find . -maxdepth 1 -type f \
 grep -rn '\](\./' library/organization/ *.md .github/ | grep -v '.git'
 
 # Confirm spec front-matter has required fields
-grep -l "^schema: aether.specification/v1" library/organization/specs/**/*.spec.md
+find library/organization/specs -name "*.spec.md" | xargs grep -l "^schema: aether.specification/v1"
 ```
 
 ---
