@@ -586,5 +586,244 @@ class TestEvalHarness(unittest.TestCase):
         self.assertEqual(eval_errors, [])
 
 
+class TestAgentValidator(unittest.TestCase):
+    """Deterministic tests for library/organization/agents/validate-agents.py."""
+
+    # ------------------------------------------------------------------
+    # Helpers
+    # ------------------------------------------------------------------
+
+    def _run_validator(self, agents_dir: Path) -> tuple[int, str]:
+        """Execute validate-agents.py against *agents_dir* and return (returncode, output)."""
+        import subprocess
+
+        script = (
+            Path(__file__).resolve().parents[1]
+            / "library"
+            / "organization"
+            / "agents"
+            / "validate-agents.py"
+        )
+        result = subprocess.run(
+            [__import__("sys").executable, str(script)],
+            capture_output=True,
+            text=True,
+            env={**__import__("os").environ, "PYTHONPATH": ""},
+        )
+        return result.returncode, result.stdout + result.stderr
+
+    # ------------------------------------------------------------------
+    # Canonical library smoke test
+    # ------------------------------------------------------------------
+
+    def test_canonical_agents_all_valid(self) -> None:
+        """All nine canonical agent source files must pass validation."""
+        agents_dir = (
+            Path(__file__).resolve().parents[1]
+            / "library"
+            / "organization"
+            / "agents"
+        )
+        rc, output = self._run_validator(agents_dir)
+        self.assertEqual(rc, 0, msg=f"validate-agents.py exited non-zero:\n{output}")
+        self.assertIn("9 agent(s) validated successfully", output)
+
+    # ------------------------------------------------------------------
+    # Unit tests for projection builder
+    # ------------------------------------------------------------------
+
+    def test_projection_check_passes_for_current_dist(self) -> None:
+        """--check must report no drift for the committed projections."""
+        import subprocess
+
+        script = (
+            Path(__file__).resolve().parents[1]
+            / "library"
+            / "organization"
+            / "agents"
+            / "build-projections.py"
+        )
+        result = subprocess.run(
+            [__import__("sys").executable, str(script), "--check"],
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(
+            result.returncode,
+            0,
+            msg=f"build-projections.py --check reported drift:\n{result.stdout}{result.stderr}",
+        )
+
+    # ------------------------------------------------------------------
+    # Schema unit tests (inline, no subprocess)
+    # ------------------------------------------------------------------
+
+    def _write_agent(self, base: Path, agent_id: str, fm_override: dict | None = None, body: str | None = None) -> Path:
+        fm = {
+            "aether-id": agent_id,
+            "name": "Test Agent",
+            "description": "A deterministic test agent. Use during validation tests.",
+            "tools": ["read", "search"],
+            "metadata": {
+                "aether-version": "1.0.0",
+                "aether-status": "draft",
+                "aether-scope": "organization",
+                "aether-domain": "quality",
+                "aether-owners": "egohygiene",
+                "aether-created": "2026-08-08",
+                "aether-updated": "2026-08-08",
+                "aether-skills": [],
+                "aether-specs": [],
+            },
+        }
+        if fm_override:
+            fm.update(fm_override)
+
+        if body is None:
+            body = (
+                "\n## Mission\n\nTest.\n"
+                "\n## Operating contract\n\nTest.\n"
+                "\n## Workflow\n\n1. Test.\n"
+                "\n## Boundaries\n\n- Test.\n"
+                "\n## Completion\n\nTest.\n"
+            )
+
+        import yaml as _yaml
+
+        agent_dir = base / agent_id
+        agent_dir.mkdir(parents=True, exist_ok=True)
+        agent_file = agent_dir / "AGENT.md"
+        agent_file.write_text(f"---\n{_yaml.dump(fm)}---\n{body}", encoding="utf-8")
+        return agent_file
+
+    def _validate_inline(self, agents_dir: Path) -> tuple[int, str]:
+        import subprocess
+        import tempfile
+
+        # Write a tiny wrapper that sets BASE/SKILLS_DIR/SPECS_DIR explicitly
+        # and delegates to the canonical validator logic, avoiding fragile
+        # string-patch of the source file.
+        repo_root = Path(__file__).resolve().parents[1]
+        skills_dir = repo_root / "library" / "organization" / "skills"
+        specs_dir = repo_root / "library" / "organization" / "specs"
+        validator_script = (
+            repo_root / "library" / "organization" / "agents" / "validate-agents.py"
+        )
+
+        wrapper = (
+            "import sys\n"
+            "from pathlib import Path\n"
+            f"_agents_dir = Path({str(agents_dir)!r})\n"
+            f"_skills_dir = Path({str(skills_dir)!r})\n"
+            f"_specs_dir = Path({str(specs_dir)!r})\n"
+            f"_script = Path({str(validator_script)!r})\n"
+            "import types\n"
+            "mod = types.ModuleType('validate_agents')\n"
+            "mod.__file__ = str(_script)\n"
+            "src = _script.read_text(encoding='utf-8')\n"
+            "exec(compile(src, str(_script), 'exec'), mod.__dict__)\n"
+            "mod.BASE = _agents_dir\n"
+            "mod.SKILLS_DIR = _skills_dir\n"
+            "mod.SPECS_DIR = _specs_dir\n"
+            "sys.exit(mod.main())\n"
+        )
+
+        with tempfile.NamedTemporaryFile(suffix=".py", mode="w", delete=False, encoding="utf-8") as tf:
+            tf.write(wrapper)
+            wrapper_path = tf.name
+
+        try:
+            result = subprocess.run(
+                [__import__("sys").executable, wrapper_path],
+                capture_output=True,
+                text=True,
+            )
+        finally:
+            Path(wrapper_path).unlink(missing_ok=True)
+
+        return result.returncode, result.stdout + result.stderr
+
+    def test_valid_agent_passes(self) -> None:
+        import tempfile
+
+        with tempfile.TemporaryDirectory(prefix="aether-agent-test-") as tmp:
+            base = Path(tmp)
+            self._write_agent(base, "test-agent")
+            rc, output = self._validate_inline(base)
+        self.assertEqual(rc, 0, msg=output)
+
+    def test_missing_aether_id_fails(self) -> None:
+        import tempfile
+
+        with tempfile.TemporaryDirectory(prefix="aether-agent-test-") as tmp:
+            base = Path(tmp)
+            self._write_agent(base, "test-agent", fm_override={"aether-id": None})
+            rc, output = self._validate_inline(base)
+        self.assertNotEqual(rc, 0, msg=output)
+
+    def test_aether_id_mismatch_fails(self) -> None:
+        import tempfile
+
+        with tempfile.TemporaryDirectory(prefix="aether-agent-test-") as tmp:
+            base = Path(tmp)
+            self._write_agent(base, "test-agent", fm_override={"aether-id": "wrong-id"})
+            rc, output = self._validate_inline(base)
+        self.assertNotEqual(rc, 0, msg=output)
+        self.assertIn("does not match directory name", output)
+
+    def test_empty_tools_fails(self) -> None:
+        import tempfile
+
+        with tempfile.TemporaryDirectory(prefix="aether-agent-test-") as tmp:
+            base = Path(tmp)
+            self._write_agent(base, "test-agent", fm_override={"tools": []})
+            rc, output = self._validate_inline(base)
+        self.assertNotEqual(rc, 0, msg=output)
+        self.assertIn("tools list must not be empty", output)
+
+    def test_unknown_tool_fails(self) -> None:
+        import tempfile
+
+        with tempfile.TemporaryDirectory(prefix="aether-agent-test-") as tmp:
+            base = Path(tmp)
+            self._write_agent(base, "test-agent", fm_override={"tools": ["read", "admin"]})
+            rc, output = self._validate_inline(base)
+        self.assertNotEqual(rc, 0, msg=output)
+        self.assertIn("unknown tool 'admin'", output)
+
+    def test_missing_body_section_fails(self) -> None:
+        import tempfile
+
+        with tempfile.TemporaryDirectory(prefix="aether-agent-test-") as tmp:
+            base = Path(tmp)
+            self._write_agent(
+                base,
+                "test-agent",
+                body="\n## Mission\n\nTest.\n\n## Workflow\n\n1. Test.\n",
+            )
+            rc, output = self._validate_inline(base)
+        self.assertNotEqual(rc, 0, msg=output)
+        self.assertIn("## Operating contract", output)
+
+    def test_invalid_status_fails(self) -> None:
+        import tempfile
+
+        with tempfile.TemporaryDirectory(prefix="aether-agent-test-") as tmp:
+            base = Path(tmp)
+            meta = {
+                "aether-version": "1.0.0",
+                "aether-status": "published",  # invalid
+                "aether-scope": "organization",
+                "aether-domain": "quality",
+                "aether-owners": "egohygiene",
+                "aether-created": "2026-08-08",
+                "aether-updated": "2026-08-08",
+            }
+            self._write_agent(base, "test-agent", fm_override={"metadata": meta})
+            rc, output = self._validate_inline(base)
+        self.assertNotEqual(rc, 0, msg=output)
+        self.assertIn("aether-status", output)
+
+
 if __name__ == "__main__":
     unittest.main()

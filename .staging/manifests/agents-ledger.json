@@ -1,0 +1,83 @@
+{
+  "schema": "aether.staging-ledger/v1",
+  "updated": "2026-08-08",
+  "notes": "Nine generic agent roles have been adopted into the canonical Aether agent library at library/organization/agents/. Four domain/product-specific agents remain in staging as move-out items for the consumer owner (Alan). Staged files are preserved until the canonical source delta is confirmed complete (ADR-005 deletion gate).",
+  "covered": {
+    "architect": {
+      "staged-path": ".staging/agents/architect.agent.md",
+      "canonical-path": "library/organization/agents/architect/AGENT.md",
+      "status": "adopted",
+      "adopted": "2026-08-08"
+    },
+    "arxiv-publisher": {
+      "staged-path": ".staging/agents/arxiv-publisher.agent.md",
+      "canonical-path": "library/organization/agents/arxiv-publisher/AGENT.md",
+      "status": "adopted",
+      "adopted": "2026-08-08"
+    },
+    "auditor": {
+      "staged-path": ".staging/agents/auditor.agent.md",
+      "canonical-path": "library/organization/agents/auditor/AGENT.md",
+      "status": "adopted",
+      "adopted": "2026-08-08"
+    },
+    "bug-fix-teammate": {
+      "staged-path": ".staging/agents/bug-fix-teammate.agent.md",
+      "canonical-path": "library/organization/agents/bug-fix-teammate/AGENT.md",
+      "status": "adopted",
+      "adopted": "2026-08-08"
+    },
+    "cleanup-specialist": {
+      "staged-path": ".staging/agents/cleanup-specialist.agent.md",
+      "canonical-path": "library/organization/agents/cleanup-specialist/AGENT.md",
+      "status": "adopted",
+      "adopted": "2026-08-08"
+    },
+    "github-issue-creator": {
+      "staged-path": ".staging/agents/github-issue-creator.agent.md",
+      "canonical-path": "library/organization/agents/github-issue-creator/AGENT.md",
+      "status": "adopted",
+      "adopted": "2026-08-08"
+    },
+    "implementation-planner": {
+      "staged-path": ".staging/agents/implementation-planner.agent.md",
+      "canonical-path": "library/organization/agents/implementation-planner/AGENT.md",
+      "status": "adopted",
+      "adopted": "2026-08-08"
+    },
+    "specfile-creator": {
+      "staged-path": ".staging/agents/specfile-creator.agent.md",
+      "canonical-path": "library/organization/agents/specfile-creator/AGENT.md",
+      "status": "adopted",
+      "adopted": "2026-08-08"
+    },
+    "test-specialist": {
+      "staged-path": ".staging/agents/test-specialist.agent.md",
+      "canonical-path": "library/organization/agents/test-specialist/AGENT.md",
+      "status": "adopted",
+      "adopted": "2026-08-08"
+    }
+  },
+  "move-out": {
+    "flutter-architect": {
+      "staged-path": ".staging/agents/flutter-architect.agent.md",
+      "reason": "domain/product-specific (Flutter); excluded from Aether adoption",
+      "owner": "Alan"
+    },
+    "flutter-engineer": {
+      "staged-path": ".staging/agents/flutter-engineer.agent.md",
+      "reason": "domain/product-specific (Flutter); excluded from Aether adoption",
+      "owner": "Alan"
+    },
+    "knowledge-extractor": {
+      "staged-path": ".staging/agents/knowledge-extractor.agent.md",
+      "reason": "domain/product-specific (Mindgarden); excluded from Aether adoption",
+      "owner": "Alan"
+    },
+    "synapse-creator": {
+      "staged-path": ".staging/agents/synapse-creator.agent.md",
+      "reason": "domain/product-specific (Mindgarden); excluded from Aether adoption",
+      "owner": "Alan"
+    }
+  }
+}
