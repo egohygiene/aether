@@ -1,0 +1,9 @@
+{
+  "staging_path": ".staging/skills/implementation-planning/SKILL.md",
+  "disposition": "preserve-migration-evidence",
+  "reason": "Canonical first-party skill package was created at library/organization/skills/authoring/implementation-planning/ and the staged copy was removed after provenance and source-delta were preserved.",
+  "lock_reference": ".staging/manifests/skills-lock.json",
+  "hash_status": "unknown",
+  "hash_algorithm": "unknown",
+  "trust_classification": "trusted"
+}

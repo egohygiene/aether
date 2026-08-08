@@ -1,0 +1,9 @@
+{
+  "staging_path": ".staging/skills/github-issue-authoring/SKILL.md",
+  "disposition": "preserve-migration-evidence",
+  "reason": "Canonical first-party skill package was created at library/organization/skills/authoring/github-issue-authoring/ and the staged copy was removed after provenance, formatting rules, and source-delta decisions were preserved.",
+  "lock_reference": ".staging/manifests/skills-lock.json",
+  "hash_status": "unknown",
+  "hash_algorithm": "unknown",
+  "trust_classification": "trusted"
+}
