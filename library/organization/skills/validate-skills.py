@@ -17,7 +17,7 @@ except ImportError:
     print("ERROR: PyYAML is required. Install with: pip install pyyaml", file=sys.stderr)
     sys.exit(2)
 
-BASE = os.path.join(os.path.dirname(__file__))
+BASE = os.path.dirname(os.path.abspath(__file__))
 
 ALLOWED_TOP = {"name", "description", "license", "compatibility", "metadata", "allowed-tools"}
 REQUIRED = {"name", "description"}
