@@ -698,50 +698,50 @@ class TestAgentValidator(unittest.TestCase):
 
     def _validate_inline(self, agents_dir: Path) -> tuple[int, str]:
         import subprocess
-        import sys as _sys
+        import tempfile
 
-        # Re-run validate-agents.py but override the BASE so it scans our temp dir.
-        script = (
-            Path(__file__).resolve().parents[1]
-            / "library"
-            / "organization"
-            / "agents"
-            / "validate-agents.py"
-        )
-        # We patch the script by running it via exec with BASE overridden.
-        # Simpler: use subprocess with env var — but the script uses __file__.
-        # Instead, directly import and call — but it uses module-level globals.
-        # Easiest deterministic approach: read, patch BASE, exec in isolated ns.
-        source = script.read_text(encoding="utf-8")
-        source = source.replace(
-            "BASE = Path(__file__).resolve().parent",
-            f"BASE = Path({str(agents_dir)!r})",
-        )
-        # Also patch SKILLS_DIR and SPECS_DIR to avoid false "unknown skill" errors
+        # Write a tiny wrapper that sets BASE/SKILLS_DIR/SPECS_DIR explicitly
+        # and delegates to the canonical validator logic, avoiding fragile
+        # string-patch of the source file.
         repo_root = Path(__file__).resolve().parents[1]
-        source = source.replace(
-            "SKILLS_DIR = BASE.parent / \"skills\"",
-            f"SKILLS_DIR = Path({str(repo_root / 'library' / 'organization' / 'skills')!r})",
-        )
-        source = source.replace(
-            "SPECS_DIR = BASE.parent / \"specs\"",
-            f"SPECS_DIR = Path({str(repo_root / 'library' / 'organization' / 'specs')!r})",
+        skills_dir = repo_root / "library" / "organization" / "skills"
+        specs_dir = repo_root / "library" / "organization" / "specs"
+        validator_script = (
+            repo_root / "library" / "organization" / "agents" / "validate-agents.py"
         )
 
-        import io
-        import contextlib
+        wrapper = (
+            "import sys\n"
+            "from pathlib import Path\n"
+            f"_agents_dir = Path({str(agents_dir)!r})\n"
+            f"_skills_dir = Path({str(skills_dir)!r})\n"
+            f"_specs_dir = Path({str(specs_dir)!r})\n"
+            f"_script = Path({str(validator_script)!r})\n"
+            "import types\n"
+            "mod = types.ModuleType('validate_agents')\n"
+            "mod.__file__ = str(_script)\n"
+            "src = _script.read_text(encoding='utf-8')\n"
+            "exec(compile(src, str(_script), 'exec'), mod.__dict__)\n"
+            "mod.BASE = _agents_dir\n"
+            "mod.SKILLS_DIR = _skills_dir\n"
+            "mod.SPECS_DIR = _specs_dir\n"
+            "sys.exit(mod.main())\n"
+        )
 
-        captured = io.StringIO()
-        ns: dict = {}
-        with contextlib.redirect_stdout(captured):
-            with contextlib.redirect_stderr(captured):
-                try:
-                    exec(compile(source, str(script), "exec"), ns)  # noqa: S102
-                    rc = ns["main"]()
-                except SystemExit as exc:
-                    rc = exc.code if isinstance(exc.code, int) else 1
+        with tempfile.NamedTemporaryFile(suffix=".py", mode="w", delete=False, encoding="utf-8") as tf:
+            tf.write(wrapper)
+            wrapper_path = tf.name
 
-        return rc, captured.getvalue()
+        try:
+            result = subprocess.run(
+                [__import__("sys").executable, wrapper_path],
+                capture_output=True,
+                text=True,
+            )
+        finally:
+            Path(wrapper_path).unlink(missing_ok=True)
+
+        return result.returncode, result.stdout + result.stderr
 
     def test_valid_agent_passes(self) -> None:
         import tempfile

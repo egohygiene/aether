@@ -102,6 +102,8 @@ def validate_agent(dir_name: str, path: Path, skill_ids: set, spec_ids: set):
         )
     if not ID_RE.match(str(aether_id)):
         errors.append(f"aether-id '{aether_id}' is not valid kebab-case")
+    elif len(str(aether_id)) > 64:
+        errors.append(f"aether-id '{aether_id}' exceeds 64-character maximum")
 
     # tools must be explicit list of allowed values
     tools = fm.get("tools")

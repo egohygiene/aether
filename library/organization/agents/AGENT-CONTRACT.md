@@ -92,11 +92,12 @@ Projection is performed by `build-projections.py`. For each source `AGENT.md`:
 
 1. The `aether-id` field is removed.
 2. The entire `metadata` block is removed.
-3. Internal Aether skill and spec links are rewritten to consumer-local paths
-   (repository projection: `.agents/skills/<skill>/SKILL.md`; organization
-   projection: `.agents/skills/<skill>/SKILL.md` relative to the org repo
-   root).
-4. The output filename is `{aether-id}.agent.md`.
+3. Internal skill links (``../skills/<domain>/<skill>/SKILL.md``) are rewritten
+   to the consumer-local path ``.agents/skills/<skill>/SKILL.md`` for both
+   repository and organization projections.
+4. Internal spec links (``../specs/<path>/<file>.spec.md``) are rewritten to
+   ``.github/specs/<path>/<file>.spec.md`` for repository projections and
+   ``specs/<path>/<file>.spec.md`` for organization projections.
 
 ---
 
@@ -110,13 +111,17 @@ Projection is performed by `build-projections.py`. For each source `AGENT.md`:
 
 ## Tool and permission policy
 
-- Read-only roles (`architect`, `auditor`, `specfile-creator`,
-  `implementation-planner`, `github-issue-creator`, `arxiv-publisher`)
-  must not include `edit` or `execute`.
-- Mutation roles (`bug-fix-teammate`, `cleanup-specialist`, `test-specialist`)
-  may include `edit` and `execute` for their bounded work.
+- Architecture and planning roles (`architect`, `specfile-creator`,
+  `implementation-planner`, `github-issue-creator`) must not include
+  `edit` (except for documentation artifacts) or `execute`.
+- Audit roles (`auditor`) must not include `edit` or `execute`; audit must remain non-destructive.
+- Implementation-capable roles (`bug-fix-teammate`, `cleanup-specialist`,
+  `test-specialist`) may include `edit` and `execute` for their bounded work.
+- Publishing roles (`arxiv-publisher`) may include `edit` and `execute` when
+  the role requires building and validating release artifacts.
 - `web` is permitted when the role requires live documentation lookup.
 - MCP server credentials must not be embedded in agent profiles.
+- Omitting the `tools` field implies broad access on some hosts; this contract requires the field to be explicit.
 
 ---
 
