@@ -122,3 +122,14 @@ Report documents created, updated, omitted, blocked, or requiring follow-up.
 The skill is complete when the applicable specifications are resolved, the
 necessary document set is justified, authoring order is explicit, focused skills
 are selected, changed documents pass validation, and unresolved work is visible.
+
+## Staged Variant
+
+A staged candidate at `.staging/skills/architecture-authoring/` carries the
+same skill name. The canonical skill defines the orchestrator role for
+architecture-document selection, sequencing, and validation. The staged
+candidate may contain additional workflow detail or divergent framing.
+
+Issue 016 should compare the two and extract any unique content from the
+staged copy before retiring it. Do not copy the staged file wholesale into
+canonical source.

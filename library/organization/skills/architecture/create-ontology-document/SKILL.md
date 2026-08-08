@@ -15,32 +15,32 @@ metadata:
 
 # Create Ontology Document
 
-    ## Purpose
+## Purpose
 
-    Create or update `ONTOLOGY.md` in conformance with `architecture-ontology`.
+Create or update `ONTOLOGY.md` in conformance with `architecture-ontology`.
 
-    The document must answer:
+The document must answer:
 
-    > What exists in this domain, what does each concept mean, and how do the concepts relate?
+> What exists in this domain, what does each concept mean, and how do the concepts relate?
 
-    ## Use This Skill When
+## Use This Skill When
 
-    - the canonical document is missing
-    - terminology or assumptions are inconsistent
-    - upstream architecture has changed
-    - a repository is establishing or repairing its domain model
-    - downstream architecture needs a stable canonical reference
+- the canonical document is missing
+- terminology or assumptions are inconsistent
+- upstream architecture has changed
+- a repository is establishing or repairing its domain model
+- downstream architecture needs a stable canonical reference
 
-    ## Required Inputs
+## Required Inputs
 
-    Resolve the governing specification, upstream architecture, relevant
-    evidence, existing terminology or assumptions, and downstream consumers.
+Resolve the governing specification, upstream architecture, relevant
+evidence, existing terminology or assumptions, and downstream consumers.
 
-    Missing evidence must be recorded rather than invented.
+Missing evidence must be recorded rather than invented.
 
-    ## Workflow
+## Workflow
 
-    1. define the domain boundary
+1. define the domain boundary
 2. collect terminology from architecture, documentation, code, and users
 3. separate concepts from implementation artifacts
 4. group synonyms and distinguish overloaded terms
@@ -50,41 +50,41 @@ metadata:
 8. surface conflicts and unknowns
 9. report downstream migration impact
 
-    ## Output Contract
+## Output Contract
 
-    Produce:
+Produce:
 
-    - `ONTOLOGY.md`
-    - governing specification identifier and version
-    - assumptions and unresolved questions
-    - validation results
-    - downstream migration or review recommendations
+- `ONTOLOGY.md`
+- governing specification identifier and version
+- assumptions and unresolved questions
+- validation results
+- downstream migration or review recommendations
 
-    ## Constraints
+## Constraints
 
-    - Preserve canonical terminology.
-    - Separate evidence, assumptions, and inference.
-    - Do not fabricate domain or human knowledge.
-    - Do not silently resolve contradictions.
-    - Do not leak implementation structure into canonical concepts.
-    - Do not claim completion when required evidence is missing.
+- Preserve canonical terminology.
+- Separate evidence, assumptions, and inference.
+- Do not fabricate domain or human knowledge.
+- Do not silently resolve contradictions.
+- Do not leak implementation structure into canonical concepts.
+- Do not claim completion when required evidence is missing.
 
-    ## Validation
+## Validation
 
-    Use:
+Use:
 
-        references/validation-checklist.md
+    references/validation-checklist.md
 
-    and the acceptance criteria in:
+and the acceptance criteria in:
 
-        architecture-ontology
+    architecture-ontology
 
-    ## Completion Criteria
+## Completion Criteria
 
-    - [ ] The governing specification is identified.
-    - [ ] Required upstream artifacts have been read.
-    - [ ] The primary question is answered.
-    - [ ] Boundaries are respected.
-    - [ ] Assumptions and open questions are visible.
-    - [ ] Structural, semantic, relationship, and evidence checks pass.
-    - [ ] Downstream impacts are reported.
+- [ ] The governing specification is identified.
+- [ ] Required upstream artifacts have been read.
+- [ ] The primary question is answered.
+- [ ] Boundaries are respected.
+- [ ] Assumptions and open questions are visible.
+- [ ] Structural, semantic, relationship, and evidence checks pass.
+- [ ] Downstream impacts are reported.

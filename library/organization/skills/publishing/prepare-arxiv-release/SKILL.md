@@ -15,31 +15,31 @@ metadata:
 
 # Prepare arXiv Release
 
-    ## Purpose
+## Purpose
 
-    Execute the reusable procedure governed by `arxiv-publishing`.
+Execute the reusable procedure governed by `arxiv-publishing`.
 
-    Primary question:
+Primary question:
 
-    > Can this source be transformed into a verified, reproducible, and inspectable arXiv release?
+> Can this source be transformed into a verified, reproducible, and inspectable arXiv release?
 
-    ## Required Inputs
+## Required Inputs
 
-    Resolve:
+Resolve:
 
-    - governing specification and version
-    - current source or repository state
-    - scope and constraints
-    - upstream architecture or evidence
-    - output location
-    - validation expectations
-    - unresolved decisions
+- governing specification and version
+- current source or repository state
+- scope and constraints
+- upstream architecture or evidence
+- output location
+- validation expectations
+- unresolved decisions
 
-    Missing evidence must remain visible.
+Missing evidence must remain visible.
 
-    ## Workflow
+## Workflow
 
-    1. verify current official arXiv requirements
+1. verify current official arXiv requirements
 2. resolve source revision and canonical metadata
 3. create isolated staging
 4. copy only required source and assets
@@ -50,29 +50,40 @@ metadata:
 9. require human inspection of the PDF
 10. package source, PDF, manifest, checksums, and logs
 
-    ## Output Contract
+## Output Contract
 
-    Primary output:
+Primary output:
 
-        dist/arxiv/
+    dist/arxiv/
 
-    Also report assumptions, evidence gaps, validation status, unresolved
-    questions, and downstream actions requiring separate authorization.
+Also report assumptions, evidence gaps, validation status, unresolved
+questions, and downstream actions requiring separate authorization.
 
-    ## Constraints
+## Constraints
 
-    - Follow the governing specification.
-    - Preserve provenance and uncertainty.
-    - Do not invent authority, evidence, or current behavior.
-    - Do not silently expand scope.
-    - Do not claim completion when required validation is missing.
-    - Keep proposed downstream work separate from authorized execution.
+- Follow the governing specification.
+- Preserve provenance and uncertainty.
+- Do not invent authority, evidence, or current behavior.
+- Do not silently expand scope.
+- Do not claim completion when required validation is missing.
+- Keep proposed downstream work separate from authorized execution.
 
-    ## Completion Criteria
+## Completion Criteria
 
-    - [ ] Governing specification is resolved.
-    - [ ] Scope and constraints are explicit.
-    - [ ] Required evidence was inspected.
-    - [ ] The primary output was created.
-    - [ ] Validation was executed or its absence documented.
-    - [ ] Open questions and authorization needs are visible.
+- [ ] Governing specification is resolved.
+- [ ] Scope and constraints are explicit.
+- [ ] Required evidence was inspected.
+- [ ] The primary output was created.
+- [ ] Validation was executed or its absence documented.
+- [ ] Open questions and authorization needs are visible.
+
+## Staged Variant
+
+A staged candidate at `.staging/skills/arxiv-publishing/` covers similar
+ground under the name `arxiv-publishing`. The canonical skill is named
+`prepare-arxiv-release` and is governed by the `arxiv-publishing` specification.
+
+Issue 016 should compare the two and extract any unique submission-format
+guidance, checklist detail, or arXiv-requirement references from the staged
+copy before retiring it. Do not copy the staged file wholesale into canonical
+source.
