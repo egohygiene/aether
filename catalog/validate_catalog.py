@@ -5,12 +5,11 @@ from __future__ import annotations
 
 import hashlib
 import json
-import re
+import subprocess
 import sys
 from pathlib import Path
 
-import yaml
-from jsonschema import Draft202012Validator, RefResolver
+from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_DIR = ROOT / "catalog"
@@ -51,26 +50,11 @@ def source_digest(path: Path) -> str:
     return hashlib.sha256(normalized_text_bytes(path)).hexdigest()
 
 
-def parse_frontmatter(path: Path):
-    text = path.read_text(encoding="utf-8")
-    m = re.match(r"^---\n(.*?)\n---\n", text, re.DOTALL)
-    if not m:
-        return {}
-    return yaml.safe_load(m.group(1)) or {}
-
-
 def build_validators():
-    store = {}
-    for sf in SCHEMA_FILES:
-        schema = load_json(SCHEMAS_DIR / sf)
-        store[schema["$id"]] = schema
-        store[str((SCHEMAS_DIR / sf).resolve())] = schema
     validators = {}
     for sf in SCHEMA_FILES:
         schema = load_json(SCHEMAS_DIR / sf)
-        base_uri = str((SCHEMAS_DIR / sf).resolve())
-        resolver = RefResolver(base_uri=base_uri, referrer=schema, store=store)
-        validators[sf.removesuffix(".json")] = Draft202012Validator(schema, resolver=resolver)
+        validators[sf.removesuffix(".json")] = Draft202012Validator(schema)
     return validators
 
 
@@ -128,10 +112,10 @@ def validate_catalog(validators):
 
     spec_count = sum(1 for a in artifacts if a.get("kind") == "specification")
     skill_count = sum(1 for a in artifacts if a.get("kind") == "skill")
-    if spec_count != 23:
-        errors.append(f"Expected 23 specification records, got {spec_count}")
-    if skill_count != 23:
-        errors.append(f"Expected 23 skill records, got {skill_count}")
+    if spec_count != len(spec_files):
+        errors.append(f"Expected {len(spec_files)} specification records, got {spec_count}")
+    if skill_count != len(skill_files):
+        errors.append(f"Expected {len(skill_files)} skill records, got {skill_count}")
 
     id_set = set(ids)
     for a in artifacts:
@@ -154,15 +138,14 @@ def validate_catalog(validators):
         if expected_digest != actual_digest:
             errors.append(f"Digest mismatch for {a.get('id')}: expected {expected_digest}, got {actual_digest}")
 
-    # Determinism check: two consecutive canonical serializations + digest snapshots must match.
-    snapshot_1 = {
-        "catalog_digest": hashlib.sha256(canonical_json_bytes(catalog)).hexdigest(),
-        "source_digests": {a["id"]: a["source_digest"]["value"] for a in artifacts},
-    }
-    snapshot_2 = {
-        "catalog_digest": hashlib.sha256(canonical_json_bytes(catalog)).hexdigest(),
-        "source_digests": {a["id"]: a["source_digest"]["value"] for a in artifacts},
-    }
+    snapshot_1 = subprocess.check_output(
+        [sys.executable, str(Path(__file__).resolve()), "--print-digest-snapshot"],
+        text=True,
+    ).strip()
+    snapshot_2 = subprocess.check_output(
+        [sys.executable, str(Path(__file__).resolve()), "--print-digest-snapshot"],
+        text=True,
+    ).strip()
     if snapshot_1 != snapshot_2:
         errors.append("Determinism failure: snapshots differ across consecutive runs")
 
@@ -170,6 +153,19 @@ def validate_catalog(validators):
 
 
 def main() -> int:
+    if "--print-digest-snapshot" in sys.argv:
+        catalog = load_json(CATALOG_PATH)
+        artifacts = catalog.get("artifacts", [])
+        snapshot = {
+            "catalog_digest": hashlib.sha256(canonical_json_bytes(catalog)).hexdigest(),
+            "source_digests": {
+                artifact["id"]: source_digest(ROOT / artifact["source_path"])
+                for artifact in artifacts
+            },
+        }
+        print(json.dumps(snapshot, sort_keys=True, separators=(",", ":")))
+        return 0
+
     validators = build_validators()
     errors = []
     errors.extend(validate_fixtures(validators))

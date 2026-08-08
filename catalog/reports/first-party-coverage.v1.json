@@ -5,7 +5,6 @@
     "catalog_skill_records": 23,
     "catalog_spec_records": 23
   },
-  "generated_at": "2026-08-08T00:00:00Z",
   "schema_version": "aether.catalog-coverage/v1",
   "skill_paths": [
     "library/organization/skills/architecture/architecture-authoring/SKILL.md",

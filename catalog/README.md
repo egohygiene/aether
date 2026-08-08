@@ -62,5 +62,5 @@ Later issues can extend these contracts to:
 From repository root:
 
 ```sh
-python3 /home/runner/work/aether/aether/catalog/validate_catalog.py
+python3 catalog/validate_catalog.py
 ```
