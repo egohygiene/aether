@@ -15,39 +15,39 @@ metadata:
 
 # Create Design System Document
 
-            ## Purpose
+## Purpose
 
-            Create or update `DESIGN_SYSTEM.md` in conformance with
-            `architecture-design-system`.
+Create or update `DESIGN_SYSTEM.md` in conformance with
+`architecture-design-system`.
 
-            The document must answer:
+The document must answer:
 
-            > How should the intended experience be expressed consistently across products, platforms, and implementations?
+> How should the intended experience be expressed consistently across products, platforms, and implementations?
 
-            ## Use This Skill When
+## Use This Skill When
 
-            - the canonical experience document is missing
-            - experience intent or design language is inconsistent
-            - upstream identity or personal-model architecture has changed
-            - a product is establishing or repairing its experience architecture
-            - downstream design or implementation needs a stable source of truth
+- the canonical experience document is missing
+- experience intent or design language is inconsistent
+- upstream identity or personal-model architecture has changed
+- a product is establishing or repairing its experience architecture
+- downstream design or implementation needs a stable source of truth
 
-            ## Required Inputs
+## Required Inputs
 
-            Resolve:
+Resolve:
 
-            - the governing specification
-            - required upstream architecture documents
-            - relevant user, accessibility, and design evidence
-            - existing product experiences
-            - known inconsistencies and exceptions
-            - downstream consumers
+- the governing specification
+- required upstream architecture documents
+- relevant user, accessibility, and design evidence
+- existing product experiences
+- known inconsistencies and exceptions
+- downstream consumers
 
-            Missing evidence must be recorded rather than invented.
+Missing evidence must be recorded rather than invented.
 
-            ## Workflow
+## Workflow
 
-            1. read the design philosophy and personal model
+1. read the design philosophy and personal model
 2. inventory existing visual, interaction, content, and motion patterns
 3. separate semantic roles from implementation values
 4. identify reusable patterns, variants, and local exceptions
@@ -58,41 +58,41 @@ metadata:
 9. define contribution, governance, and deprecation behavior
 10. validate downstream token and component implementability
 
-            ## Output Contract
+## Output Contract
 
-            Produce:
+Produce:
 
-            - `DESIGN_SYSTEM.md`
-            - governing specification identifier and version
-            - evidence, assumptions, and unresolved questions
-            - validation results
-            - downstream migration or review recommendations
+- `DESIGN_SYSTEM.md`
+- governing specification identifier and version
+- evidence, assumptions, and unresolved questions
+- validation results
+- downstream migration or review recommendations
 
-            ## Constraints
+## Constraints
 
-            - Preserve human agency and accessibility.
-            - Separate experience intent from implementation.
-            - Do not fabricate user needs or research findings.
-            - Do not silently resolve contradictions.
-            - Do not treat one product implementation as universally canonical.
-            - Do not claim completion when required evidence is missing.
+- Preserve human agency and accessibility.
+- Separate experience intent from implementation.
+- Do not fabricate user needs or research findings.
+- Do not silently resolve contradictions.
+- Do not treat one product implementation as universally canonical.
+- Do not claim completion when required evidence is missing.
 
-            ## Validation
+## Validation
 
-            Use:
+Use:
 
-                references/validation-checklist.md
+    references/validation-checklist.md
 
-            and the acceptance criteria in:
+and the acceptance criteria in:
 
-                architecture-design-system
+    architecture-design-system
 
-            ## Completion Criteria
+## Completion Criteria
 
-            - [ ] The governing specification is identified.
-            - [ ] Required upstream artifacts have been read.
-            - [ ] The primary question is answered.
-            - [ ] Responsibilities and non-responsibilities are respected.
-            - [ ] Accessibility and agency are addressed.
-            - [ ] Evidence, assumptions, and open questions are visible.
-            - [ ] Downstream impacts are reported.
+- [ ] The governing specification is identified.
+- [ ] Required upstream artifacts have been read.
+- [ ] The primary question is answered.
+- [ ] Responsibilities and non-responsibilities are respected.
+- [ ] Accessibility and agency are addressed.
+- [ ] Evidence, assumptions, and open questions are visible.
+- [ ] Downstream impacts are reported.

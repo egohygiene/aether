@@ -15,31 +15,31 @@ metadata:
 
 # Orchestrate Reflective Development
 
-    ## Purpose
+## Purpose
 
-    Execute the reusable procedure governed by `reflector`.
+Execute the reusable procedure governed by `reflector`.
 
-    Primary question:
+Primary question:
 
-    > How should the current bounded development cycle proceed, pause, synchronize, or complete?
+> How should the current bounded development cycle proceed, pause, synchronize, or complete?
 
-    ## Required Inputs
+## Required Inputs
 
-    Resolve:
+Resolve:
 
-    - governing specification and version
-    - current source or repository state
-    - scope and constraints
-    - upstream architecture or evidence
-    - output location
-    - validation expectations
-    - unresolved decisions
+- governing specification and version
+- current source or repository state
+- scope and constraints
+- upstream architecture or evidence
+- output location
+- validation expectations
+- unresolved decisions
 
-    Missing evidence must remain visible.
+Missing evidence must remain visible.
 
-    ## Workflow
+## Workflow
 
-    1. resolve current cycle state and human alignment anchor
+1. resolve current cycle state and human alignment anchor
 2. define scope, exclusions, mode, and recursion budget
 3. read source specifications, issues, architecture, and prior cycles
 4. plan and execute one bounded work unit
@@ -49,29 +49,29 @@ metadata:
 8. record state and safe resume point
 9. stop at the synchronization boundary
 
-    ## Output Contract
+## Output Contract
 
-    Primary output:
+Primary output:
 
-        reflective cycle record
+    reflective cycle record
 
-    Also report assumptions, evidence gaps, validation status, unresolved
-    questions, and downstream actions requiring separate authorization.
+Also report assumptions, evidence gaps, validation status, unresolved
+questions, and downstream actions requiring separate authorization.
 
-    ## Constraints
+## Constraints
 
-    - Follow the governing specification.
-    - Preserve provenance and uncertainty.
-    - Do not invent authority, evidence, or current behavior.
-    - Do not silently expand scope.
-    - Do not claim completion when required validation is missing.
-    - Keep proposed downstream work separate from authorized execution.
+- Follow the governing specification.
+- Preserve provenance and uncertainty.
+- Do not invent authority, evidence, or current behavior.
+- Do not silently expand scope.
+- Do not claim completion when required validation is missing.
+- Keep proposed downstream work separate from authorized execution.
 
-    ## Completion Criteria
+## Completion Criteria
 
-    - [ ] Governing specification is resolved.
-    - [ ] Scope and constraints are explicit.
-    - [ ] Required evidence was inspected.
-    - [ ] The primary output was created.
-    - [ ] Validation was executed or its absence documented.
-    - [ ] Open questions and authorization needs are visible.
+- [ ] Governing specification is resolved.
+- [ ] Scope and constraints are explicit.
+- [ ] Required evidence was inspected.
+- [ ] The primary output was created.
+- [ ] Validation was executed or its absence documented.
+- [ ] Open questions and authorization needs are visible.
