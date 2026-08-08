@@ -32,3 +32,34 @@ Conceptual relationship:
 
     arxiv
         applies deterministic release engineering to scholarly publishing
+
+## Canonical validation interface
+
+Use the repository launcher from any working directory:
+
+```sh
+./aether validate --format text
+./aether validate --format json
+./aether catalog generate --check
+./aether test
+```
+
+### Exit codes
+
+- `0`: validation success
+- `1`: validation failure (one or more error diagnostics)
+- `2`: invalid invocation or repository resolution error
+- `3`: internal/tooling error
+
+### Diagnostic schema
+
+JSON output uses `schema_version: aether.validation-diagnostics/v1` and each
+diagnostic emits:
+
+- stable `rule_id`
+- `severity`
+- optional `artifact_id`
+- optional `file` and `line`
+- concise `message`
+- remediation `guidance`
+- machine-readable `context`
