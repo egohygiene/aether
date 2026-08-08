@@ -1,26 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-ai-constitution-document
-title: Create AI Constitution Document
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-02
-updated: 2026-08-02
-domain: architecture
-tags:
-  - architecture
-  - meta
-  - ai-constitution
-  - authoring
-depends_on:
-  - architecture-authoring
-implements:
-  - architecture-ai-constitution
-recommended_agents:
-  - architect
+name: create-ai-constitution-document
+description: Creates or updates AI_CONSTITUTION.md from repository evidence and policy. Use when a project needs to define, repair, or review the rules and oversight under which AI systems may participate in its work.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-ai-constitution"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-02"
+  aether-updated: "2026-08-02"
 ---
 
 # Create AI Constitution Document

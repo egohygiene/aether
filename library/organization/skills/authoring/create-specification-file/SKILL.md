@@ -1,24 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-specification-file
-title: Create Specification File
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-02
-updated: 2026-08-02
-domain: authoring
-tags:
-  - authoring
-  - workflow
-  - validation
-depends_on: []
-related: []
-supersedes: []
-implements:
-  - specfile
+name: create-specification-file
+description: Creates a new Aether specification file conforming to the specfile standard. Use when a project needs to define, structure, or validate an implementation contract and its acceptance criteria.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "specfile"
+  aether-scope: "organization"
+  aether-domain: "authoring"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-02"
+  aether-updated: "2026-08-02"
 ---
 
 # Create Specification File

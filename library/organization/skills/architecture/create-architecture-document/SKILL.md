@@ -1,10 +1,16 @@
 ---
 name: create-architecture-document
-description: Create or refine ARCHITECTURE.md using the corresponding Aether architecture specification.
-version: 1.0.0
-status: active
-specs:
-  - architecture-architecture
+description: Creates or refines ARCHITECTURE.md using the corresponding Aether architecture specification. Use when a project needs to establish, update, or validate its ARCHITECTURE.md conformance.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-architecture"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-01"
+  aether-updated: "2026-08-01"
 ---
 
 # ARCHITECTURE.md

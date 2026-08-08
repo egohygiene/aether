@@ -1,10 +1,16 @@
 ---
 name: create-system-document
-description: Create or refine SYSTEM.md using the corresponding Aether architecture specification.
-version: 1.0.0
-status: active
-specs:
-  - architecture-system
+description: Creates or refines SYSTEM.md using the corresponding Aether architecture specification. Use when a project needs to establish or validate its canonical system-level runtime and deployment documentation.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-system"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-01"
+  aether-updated: "2026-08-01"
 ---
 
 # SYSTEM.md

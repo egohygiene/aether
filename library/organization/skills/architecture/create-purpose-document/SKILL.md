@@ -1,26 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-purpose-document
-title: Create Purpose Document
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-01
-updated: 2026-08-01
-domain: architecture
-tags:
-  - architecture
-  - identity
-  - purpose
-  - authoring
-depends_on:
-  - architecture-authoring
-implements:
-  - architecture-purpose
-recommended_agents:
-  - architect
+name: create-purpose-document
+description: Creates or updates PURPOSE.md from repository evidence. Use when a project needs to define, repair, or review why it exists and whom it serves.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-purpose"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-01"
+  aether-updated: "2026-08-01"
 ---
 
 # Create Purpose Document

@@ -1,27 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-design-system-document
-title: Create Design System Document
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-02
-updated: 2026-08-02
-domain: architecture
-tags:
-  - architecture
-  - experience
-  - authoring
-depends_on:
-  - architecture-authoring
-related: []
-supersedes: []
-implements:
-  - architecture-design-system
-recommended_agents:
-  - architect
+name: create-design-system-document
+description: Creates or refines DESIGN_SYSTEM.md using the corresponding Aether architecture specification. Use when a project needs to establish or update its canonical design system documentation.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-design-system"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-02"
+  aether-updated: "2026-08-02"
 ---
 
 # Create Design System Document

@@ -1,27 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-ontology-document
-title: Create Ontology Document
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-02
-updated: 2026-08-02
-domain: architecture
-tags:
-  - architecture
-  - domain
-  - authoring
-depends_on:
-  - architecture-authoring
-related: []
-supersedes: []
-implements:
-  - architecture-ontology
-recommended_agents:
-  - architect
+name: create-ontology-document
+description: Creates or refines ONTOLOGY.md using the corresponding Aether architecture specification. Use when a project needs to establish or validate its canonical vocabulary and domain model.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-ontology"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-02"
+  aether-updated: "2026-08-02"
 ---
 
 # Create Ontology Document

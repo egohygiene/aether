@@ -1,29 +1,16 @@
 ---
-schema: aether.skill/v1
-id: create-decisions-document
-title: Create Decisions Document
-kind: skill
-version: 1.0.0
-status: draft
-owners:
-  - egohygiene
-created: 2026-08-02
-updated: 2026-08-02
-domain: architecture
-tags:
-  - architecture
-  - governance
-  - decisions
-  - adr
-  - authoring
-depends_on:
-  - architecture-authoring
-related: []
-supersedes: []
-implements:
-  - architecture-decisions
-recommended_agents:
-  - architect
+name: create-decisions-document
+description: Creates or updates DECISIONS.md with architectural decision records (ADRs) from repository evidence. Use when a project needs to capture, repair, or review architectural decisions and their rationale.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-decisions"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-02"
+  aether-updated: "2026-08-02"
 ---
 
 # Create Decisions Document

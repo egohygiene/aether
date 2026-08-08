@@ -1,10 +1,16 @@
 ---
 name: create-roadmap-document
-description: Create or refine ROADMAP.md using the corresponding Aether architecture specification.
-version: 1.0.0
-status: active
-specs:
-  - architecture-roadmap
+description: Creates or refines ROADMAP.md using the corresponding Aether architecture specification. Use when a project needs to establish, update, or validate its strategic direction and planned milestones.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+  aether-status: "draft"
+  aether-spec-id: "architecture-roadmap"
+  aether-scope: "organization"
+  aether-domain: "architecture"
+  aether-owners: "egohygiene"
+  aether-created: "2026-08-01"
+  aether-updated: "2026-08-01"
 ---
 
 # ROADMAP.md
