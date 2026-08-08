@@ -1,0 +1,108 @@
+{
+  "$id": "aether.skill-evaluations/v2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Aether skill evaluation definitions v2",
+  "description": "Versioned schema for first-party skill evaluation case files. Supports deterministic structural validation (Layer 1) and routing evaluation (Layer 2). Optional model-assisted evaluation is isolated and must not run on pull requests.",
+  "type": "object",
+  "required": ["schema", "skill", "version", "cases"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "aether.skill-evaluations/v2",
+      "description": "Schema identifier. Must be 'aether.skill-evaluations/v2'."
+    },
+    "skill": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Canonical skill name matching the SKILL.md 'name' field and package directory."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of this eval definition file."
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Ordered list of evaluation cases. Each first-party skill must include at least one case for each required category: positive, negative, insufficient-evidence, and boundary.",
+      "items": {
+        "type": "object",
+        "required": ["id", "description", "category", "trigger", "expected"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Unique kebab-case identifier for this case within the skill's eval file."
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Human-readable description of the scenario being evaluated."
+          },
+          "category": {
+            "type": "string",
+            "enum": ["positive", "negative", "insufficient-evidence", "boundary", "failure"],
+            "description": "Evaluation category. 'positive': canonical use succeeds. 'negative': skill should not trigger. 'insufficient-evidence': required input is missing or contradictory. 'boundary': edge or pressure test. 'failure': known safe-failure behavior."
+          },
+          "trigger": {
+            "type": "string",
+            "enum": ["should-trigger", "should-not-trigger", "not-applicable"],
+            "description": "Expected routing decision. 'should-trigger': skill is the correct tool. 'should-not-trigger': skill must decline. 'not-applicable': trigger is not meaningful for this case."
+          },
+          "tags": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "description": "Optional categorization tags for filtering and reporting."
+          },
+          "expected": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 1},
+            "description": "Prose statements describing the required behavior or output. Preserved from v1 for human reviewability."
+          },
+          "prohibited": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "description": "Behaviors that must NOT appear in the output. Used for safe-failure and negative cases."
+          },
+          "assertions": {
+            "type": "array",
+            "description": "Deterministic assertions that can be checked against fixture output without a model.",
+            "items": {
+              "type": "object",
+              "required": ["type", "value"],
+              "additionalProperties": false,
+              "description": "A single deterministic assertion checkable without model inference.",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "contains",
+                    "not-contains",
+                    "matches-pattern",
+                    "not-matches-pattern",
+                    "file-exists",
+                    "file-not-exists"
+                  ],
+                  "description": "Assertion type."
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Expected value, pattern, or path depending on assertion type."
+                }
+              }
+            }
+          },
+          "fixture": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Optional relative path (from evals/) to a fixture input file for this case."
+          }
+        }
+      }
+    }
+  }
+}
