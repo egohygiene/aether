@@ -28,9 +28,6 @@ depends_on:
   - architecture-epistemology
 related:
   - architecture-decisions
-  - agent-system
-  - privacy-policy
-  - security-policy
   - create-ai-constitution-document
 supersedes: []
 ---

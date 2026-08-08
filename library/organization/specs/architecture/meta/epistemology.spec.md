@@ -27,8 +27,6 @@ depends_on:
 related:
   - architecture-ai-constitution
   - architecture-decisions
-  - knowledge-extraction
-  - source-capture
   - create-epistemology-document
 supersedes: []
 ---

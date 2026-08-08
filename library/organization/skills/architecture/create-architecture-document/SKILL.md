@@ -4,7 +4,7 @@ description: Create or refine ARCHITECTURE.md using the corresponding Aether arc
 version: 1.0.0
 status: active
 specs:
-  - library/organization/specs/architecture/foundation/architecture-document
+  - architecture-architecture
 ---
 
 # ARCHITECTURE.md

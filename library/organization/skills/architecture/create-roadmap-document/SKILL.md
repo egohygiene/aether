@@ -4,7 +4,7 @@ description: Create or refine ROADMAP.md using the corresponding Aether architec
 version: 1.0.0
 status: active
 specs:
-  - library/organization/specs/architecture/foundation/roadmap-document
+  - architecture-roadmap
 ---
 
 # ROADMAP.md
