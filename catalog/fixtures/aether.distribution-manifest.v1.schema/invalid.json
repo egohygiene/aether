@@ -1,0 +1,15 @@
+{
+  "artifact_id": "specification/architecture-purpose",
+  "artifact_version": "1.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "dist/architecture-purpose",
+  "generated_paths": [],
+  "generator": "aether-catalog v1",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "abc"
+  }
+}

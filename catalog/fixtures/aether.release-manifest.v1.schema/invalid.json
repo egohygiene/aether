@@ -1,0 +1,14 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "bad",
+      "artifact_version": "1.0",
+      "source_digest": {
+        "algorithm": "sha1",
+        "value": "x"
+      }
+    }
+  ],
+  "repository_release_tag": "",
+  "schema_version": "aether.release-manifest/v1"
+}

@@ -1,0 +1,82 @@
+{
+  "$id": "aether.distribution-manifest/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_id": {
+      "pattern": "^[a-z]+/[a-z0-9-]+$",
+      "type": "string"
+    },
+    "artifact_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$",
+      "type": "string"
+    },
+    "compatibility": {
+      "additionalProperties": false,
+      "properties": {
+        "notes": {
+          "type": "string"
+        },
+        "required_tools": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "required_tools"
+      ],
+      "type": "object"
+    },
+    "distribution_id": {
+      "pattern": "^distribution/[a-z0-9-]+$",
+      "type": "string"
+    },
+    "generated_paths": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "generator": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "aether.distribution-manifest/v1",
+      "type": "string"
+    },
+    "source_digest": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "const": "sha256-utf8-lf",
+          "type": "string"
+        },
+        "value": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "algorithm",
+        "value"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "distribution_id",
+    "artifact_id",
+    "artifact_version",
+    "source_digest",
+    "generated_paths",
+    "generator",
+    "compatibility"
+  ],
+  "title": "Aether distribution manifest",
+  "type": "object"
+}

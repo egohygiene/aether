@@ -1,0 +1,36 @@
+{
+  "$id": "aether.evaluation-definition/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_id": {
+      "pattern": "^[a-z]+/[a-z0-9-]+$",
+      "type": "string"
+    },
+    "evaluation_id": {
+      "pattern": "^evaluation/[a-z0-9-]+$",
+      "type": "string"
+    },
+    "method": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "metric": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "name": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "evaluation_id",
+    "artifact_id",
+    "name",
+    "metric",
+    "method"
+  ],
+  "title": "Aether evaluation definition",
+  "type": "object"
+}

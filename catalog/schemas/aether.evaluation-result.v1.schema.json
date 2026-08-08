@@ -1,0 +1,57 @@
+{
+  "$id": "aether.evaluation-result/v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_id": {
+      "pattern": "^[a-z]+/[a-z0-9-]+$",
+      "type": "string"
+    },
+    "evaluation_id": {
+      "pattern": "^evaluation/[a-z0-9-]+$",
+      "type": "string"
+    },
+    "evidence_digest": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "enum": [
+            "sha256-utf8-lf",
+            "unknown"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "pattern": "^(unknown|[a-f0-9]{64})$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "algorithm",
+        "value"
+      ],
+      "type": "object"
+    },
+    "score": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "fail",
+        "unknown"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "evaluation_id",
+    "artifact_id",
+    "status",
+    "score",
+    "evidence_digest"
+  ],
+  "title": "Aether evaluation result",
+  "type": "object"
+}

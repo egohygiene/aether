@@ -1,0 +1,10 @@
+{
+  "artifact_id": "bad",
+  "evaluation_id": "evaluation/spec-coverage",
+  "evidence_digest": {
+    "algorithm": "sha1",
+    "value": "abc"
+  },
+  "score": -1,
+  "status": "ok"
+}

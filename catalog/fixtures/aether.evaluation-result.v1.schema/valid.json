@@ -1,0 +1,10 @@
+{
+  "artifact_id": "specification/architecture-purpose",
+  "evaluation_id": "evaluation/spec-coverage",
+  "evidence_digest": {
+    "algorithm": "unknown",
+    "value": "unknown"
+  },
+  "score": 1.0,
+  "status": "pass"
+}

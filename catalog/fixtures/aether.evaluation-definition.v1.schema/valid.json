@@ -1,0 +1,7 @@
+{
+  "artifact_id": "specification/architecture-purpose",
+  "evaluation_id": "evaluation/spec-coverage",
+  "method": "count-canonical-artifacts",
+  "metric": "coverage",
+  "name": "Spec coverage"
+}

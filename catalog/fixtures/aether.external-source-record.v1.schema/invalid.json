@@ -1,0 +1,30 @@
+{
+  "acquired_at": "2026-08-01T00:00:00Z",
+  "acquisition_method": "git-clone",
+  "compatibility": {
+    "required_tools": []
+  },
+  "consumer_profile": "human-review",
+  "content_hash": {
+    "algorithm": "sha256-tree",
+    "value": "abc"
+  },
+  "executable_resources": "maybe",
+  "id": "external/example-skill",
+  "pinned_install_example": "x",
+  "redistribution_permission": "allowed",
+  "redistribution_status": "verified",
+  "review_state": "reviewed",
+  "reviewed_at": "2026-08-01T00:00:00Z",
+  "source_type": "skill",
+  "upstream_license": {
+    "notice_path_or_unknown": "LICENSE",
+    "spdx_or_unknown": "MIT"
+  },
+  "upstream_ref": {
+    "commit": "NOTHEX",
+    "tag": "v1.2.3"
+  },
+  "upstream_repository": "https://github.com/example/skills",
+  "upstream_skill_path": "skills/example/SKILL.md"
+}
