@@ -1,0 +1,21 @@
+{
+  "artifact_id": "skill/test-engineering",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/test-engineering",
+  "generated_paths": [
+    "dist/skills/test-engineering/SKILL.md",
+    "dist/skills/test-engineering/evals/evals.json",
+    "dist/skills/test-engineering/references/determinism-checklist.md",
+    "dist/skills/test-engineering/templates/TEST_PLAN.template.md",
+    "dist/skills/test-engineering/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "f3f46e30cf05932420e70ba9cc54af5dc0f7b3a344ec123ee0d6079431e98771"
+  }
+}

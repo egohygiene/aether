@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-methodology-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-methodology-document",
+  "generated_paths": [
+    "dist/skills/create-methodology-document/SKILL.md",
+    "dist/skills/create-methodology-document/evals/evals.json",
+    "dist/skills/create-methodology-document/references/authoring-guide.md",
+    "dist/skills/create-methodology-document/references/validation-checklist.md",
+    "dist/skills/create-methodology-document/templates/METHODOLOGY.template.md",
+    "dist/skills/create-methodology-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "bf7aa7d96771b8cb69120c8c68b4ae085d2f3ebb0a2caa183786461782da143b"
+  }
+}

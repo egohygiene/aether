@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-foundations-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-foundations-document",
+  "generated_paths": [
+    "dist/skills/create-foundations-document/SKILL.md",
+    "dist/skills/create-foundations-document/evals/evals.json",
+    "dist/skills/create-foundations-document/references/authoring-guide.md",
+    "dist/skills/create-foundations-document/references/validation-checklist.md",
+    "dist/skills/create-foundations-document/templates/FOUNDATIONS.template.md",
+    "dist/skills/create-foundations-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "42c91db1a6d4ba652a15c451d3491222b7246b37b9307da486c029d234c1d0e6"
+  }
+}

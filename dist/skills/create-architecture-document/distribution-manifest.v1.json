@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-architecture-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-architecture-document",
+  "generated_paths": [
+    "dist/skills/create-architecture-document/SKILL.md",
+    "dist/skills/create-architecture-document/evals/evals.json",
+    "dist/skills/create-architecture-document/references/authoring-guide.md",
+    "dist/skills/create-architecture-document/references/validation-checklist.md",
+    "dist/skills/create-architecture-document/templates/ARCHITECTURE.template.md",
+    "dist/skills/create-architecture-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "e9cef372280af44826617ad06b0a276758ce2678ef7b1e68917fecd24b059a2a"
+  }
+}

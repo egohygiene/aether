@@ -1,0 +1,21 @@
+{
+  "artifact_id": "skill/github-issue-authoring",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/github-issue-authoring",
+  "generated_paths": [
+    "dist/skills/github-issue-authoring/SKILL.md",
+    "dist/skills/github-issue-authoring/evals/evals.json",
+    "dist/skills/github-issue-authoring/references/copy-ready-checklist.md",
+    "dist/skills/github-issue-authoring/templates/GITHUB_ISSUE.template.md",
+    "dist/skills/github-issue-authoring/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "283dfda2eb2bb383c984341d428a32c5dd00f28ace22c486e1cc1def2a274bf5"
+  }
+}

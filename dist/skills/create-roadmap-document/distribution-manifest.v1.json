@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-roadmap-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-roadmap-document",
+  "generated_paths": [
+    "dist/skills/create-roadmap-document/SKILL.md",
+    "dist/skills/create-roadmap-document/evals/evals.json",
+    "dist/skills/create-roadmap-document/references/authoring-guide.md",
+    "dist/skills/create-roadmap-document/references/validation-checklist.md",
+    "dist/skills/create-roadmap-document/templates/ROADMAP.template.md",
+    "dist/skills/create-roadmap-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "921ed6d6964f9a9e202d7a52f35ea8fcdffca310992e4baeeaac16b74ec402b5"
+  }
+}

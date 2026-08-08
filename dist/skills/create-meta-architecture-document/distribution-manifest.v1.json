@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-meta-architecture-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-meta-architecture-document",
+  "generated_paths": [
+    "dist/skills/create-meta-architecture-document/SKILL.md",
+    "dist/skills/create-meta-architecture-document/evals/evals.json",
+    "dist/skills/create-meta-architecture-document/references/examples-and-antipatterns.md",
+    "dist/skills/create-meta-architecture-document/references/validation-checklist.md",
+    "dist/skills/create-meta-architecture-document/templates/META.template.md",
+    "dist/skills/create-meta-architecture-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "f8e86465d0690a8c3c1efd5e188e991d212943cceb7c1f9be2f021bbbf91b531"
+  }
+}

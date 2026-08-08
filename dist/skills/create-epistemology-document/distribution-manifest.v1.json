@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-epistemology-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-epistemology-document",
+  "generated_paths": [
+    "dist/skills/create-epistemology-document/SKILL.md",
+    "dist/skills/create-epistemology-document/evals/evals.json",
+    "dist/skills/create-epistemology-document/references/examples-and-antipatterns.md",
+    "dist/skills/create-epistemology-document/references/validation-checklist.md",
+    "dist/skills/create-epistemology-document/templates/EPISTEMOLOGY.template.md",
+    "dist/skills/create-epistemology-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "0d7ed01478d17e550759c356ec01767e7691e49eb7ac9d8d61d7dbbe9e0fc586"
+  }
+}
