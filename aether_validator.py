@@ -9,7 +9,8 @@ import re
 import subprocess
 import sys
 import unittest
-from datetime import date, datetime
+import uuid
+from datetime import date, datetime, timezone
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
@@ -102,6 +103,27 @@ def _parse_frontmatter(path: Path) -> tuple[dict[str, Any] | None, Diagnostic | 
             line=1,
         )
     return data, None
+
+
+def _run_assertion(atype: str, value: str, text: str, skill_dir: Path) -> bool:
+    """Evaluate a single deterministic assertion against golden text or filesystem.
+
+    Supported types: contains, not-contains, matches-pattern, not-matches-pattern,
+    file-exists, file-not-exists.
+    """
+    if atype == "contains":
+        return value in text
+    if atype == "not-contains":
+        return value not in text
+    if atype == "matches-pattern":
+        return bool(re.search(value, text))
+    if atype == "not-matches-pattern":
+        return not bool(re.search(value, text))
+    if atype == "file-exists":
+        return (skill_dir / value).exists()
+    if atype == "file-not-exists":
+        return not (skill_dir / value).exists()
+    return False
 
 
 class AetherValidator:
@@ -963,6 +985,350 @@ class AetherValidator:
                 ))
         return diagnostics
 
+    # ------------------------------------------------------------------ #
+    # Eval harness — Layer 1 deterministic structural evaluation          #
+    # ------------------------------------------------------------------ #
+
+    _EVAL_SCHEMA_V2 = "aether.skill-evaluations/v2"
+    _EVAL_SCHEMA_V1 = "aether.skill-evaluations/v1"
+    _EVAL_REQUIRED_CATEGORIES = frozenset({"positive", "negative", "insufficient-evidence", "boundary"})
+
+    def _load_eval_v2_schema(self) -> tuple[dict[str, Any] | None, Diagnostic | None]:
+        schema_path = (
+            self.repo_root / "catalog" / "schemas" / "aether.skill-evaluations.v2.schema.json"
+        )
+        try:
+            return json.loads(schema_path.read_text(encoding="utf-8")), None
+        except FileNotFoundError:
+            return None, Diagnostic(
+                rule_id="AETHER_EVAL_000",
+                severity="error",
+                message="Eval v2 schema not found at catalog/schemas/aether.skill-evaluations.v2.schema.json.",
+                guidance="Ensure the v2 eval schema file exists in catalog/schemas/.",
+            )
+        except json.JSONDecodeError as exc:
+            return None, Diagnostic(
+                rule_id="AETHER_EVAL_000",
+                severity="error",
+                message=f"Eval v2 schema is malformed JSON: {exc}",
+                guidance="Fix catalog/schemas/aether.skill-evaluations.v2.schema.json.",
+            )
+
+    def validate_evals(self) -> list[Diagnostic]:
+        """Layer 1 deterministic structural evaluation for all first-party skill evals."""
+        diagnostics: list[Diagnostic] = []
+        v2_schema, schema_err = self._load_eval_v2_schema()
+        if schema_err:
+            diagnostics.append(schema_err)
+            return diagnostics
+
+        assert v2_schema is not None
+        jsonschema_validator = Draft202012Validator(v2_schema)
+
+        for skill_dir in self._skill_dirs():
+            evals_path = skill_dir / "evals" / "evals.json"
+            if not evals_path.exists():
+                continue  # already reported by validate_skills (AETHER_SKILL_009)
+
+            rel = _rel(evals_path, self.repo_root)
+            artifact_id = f"skill/{skill_dir.name}"
+
+            try:
+                data = json.loads(evals_path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError:
+                continue  # already reported by validate_json_files (AETHER_JSON_001)
+
+            schema_version = data.get("schema", "")
+
+            if schema_version == self._EVAL_SCHEMA_V1:
+                diagnostics.append(Diagnostic(
+                    rule_id="AETHER_EVAL_006",
+                    severity="warning",
+                    message=f"Eval file uses deprecated schema '{self._EVAL_SCHEMA_V1}'. Migrate to v2.",
+                    guidance="Upgrade to 'aether.skill-evaluations/v2' and add required category/trigger fields.",
+                    artifact_id=artifact_id,
+                    file=rel,
+                ))
+                continue
+
+            if schema_version != self._EVAL_SCHEMA_V2:
+                diagnostics.append(Diagnostic(
+                    rule_id="AETHER_EVAL_007",
+                    severity="error",
+                    message=f"Unknown eval schema '{schema_version}'.",
+                    guidance="Use 'aether.skill-evaluations/v2' as the schema value.",
+                    artifact_id=artifact_id,
+                    file=rel,
+                ))
+                continue
+
+            # JSON Schema validation against v2
+            schema_errors = sorted(jsonschema_validator.iter_errors(data), key=str)
+            for err in schema_errors:
+                path_str = " > ".join(str(p) for p in err.absolute_path) if err.absolute_path else "(root)"
+                diagnostics.append(Diagnostic(
+                    rule_id="AETHER_EVAL_001",
+                    severity="error",
+                    message=f"Eval schema violation at {path_str}: {err.message}",
+                    guidance="Fix the eval definition to conform to aether.skill-evaluations/v2.",
+                    artifact_id=artifact_id,
+                    file=rel,
+                    context={"schema_path": path_str},
+                ))
+            if schema_errors:
+                continue
+
+            cases = data.get("cases", [])
+
+            # Unique case IDs
+            seen_ids: set[str] = set()
+            for case in cases:
+                cid = case.get("id", "")
+                if cid in seen_ids:
+                    diagnostics.append(Diagnostic(
+                        rule_id="AETHER_EVAL_002",
+                        severity="error",
+                        message=f"Duplicate case ID '{cid}'.",
+                        guidance="Assign a unique kebab-case ID to each eval case.",
+                        artifact_id=artifact_id,
+                        file=rel,
+                    ))
+                seen_ids.add(cid)
+
+            # Required categories
+            present_cats = {c.get("category") for c in cases}
+            missing_cats = self._EVAL_REQUIRED_CATEGORIES - present_cats
+            if missing_cats:
+                diagnostics.append(Diagnostic(
+                    rule_id="AETHER_EVAL_003",
+                    severity="error",
+                    message=f"Missing required eval categories: {', '.join(sorted(missing_cats))}.",
+                    guidance=(
+                        "Add at least one case for each required category: "
+                        "positive, negative, insufficient-evidence, boundary."
+                    ),
+                    artifact_id=artifact_id,
+                    file=rel,
+                    context={"missing": sorted(missing_cats)},
+                ))
+
+            # Fixture existence
+            for case in cases:
+                fixture = case.get("fixture")
+                if fixture:
+                    fixture_path = (skill_dir / "evals" / fixture).resolve()
+                    if not fixture_path.exists():
+                        diagnostics.append(Diagnostic(
+                            rule_id="AETHER_EVAL_004",
+                            severity="error",
+                            message=f"Case '{case['id']}' references missing fixture '{fixture}'.",
+                            guidance="Create the referenced fixture file or correct the path.",
+                            artifact_id=artifact_id,
+                            file=rel,
+                            context={"fixture": fixture},
+                        ))
+
+            # Golden fixture drift — empty goldens are suspicious
+            goldens_dir = skill_dir / "evals" / "goldens"
+            for case in cases:
+                cid = case.get("id", "")
+                golden_path = goldens_dir / f"{cid}.golden.txt"
+                if golden_path.exists():
+                    if not golden_path.read_text(encoding="utf-8").strip():
+                        diagnostics.append(Diagnostic(
+                            rule_id="AETHER_EVAL_005",
+                            severity="warning",
+                            message=f"Golden fixture for case '{cid}' is empty.",
+                            guidance="Populate or remove the golden fixture file.",
+                            artifact_id=artifact_id,
+                            file=_rel(golden_path, self.repo_root),
+                        ))
+
+        return diagnostics
+
+    def run_evals(
+        self,
+        skill_filter: str | None = None,
+        mode: str = "deterministic",
+    ) -> dict[str, Any]:
+        """Run the eval harness and return versioned JSON results.
+
+        Only the deterministic mode is supported by this method. Optional
+        model-assisted evaluation is not implemented here and must never run
+        silently on pull requests.
+
+        Returns a dict matching the aether.eval-run-result/v1 structure.
+        """
+        run_id = str(uuid.uuid4())
+        timestamp = datetime.now(tz=timezone.utc).isoformat()
+
+        skill_results: list[dict[str, Any]] = []
+        total_cases = 0
+        total_passed = 0
+        total_failed = 0
+        total_skipped = 0
+
+        for skill_dir in self._skill_dirs():
+            skill_name = skill_dir.name
+            if skill_filter and skill_name != skill_filter:
+                continue
+
+            evals_path = skill_dir / "evals" / "evals.json"
+            if not evals_path.exists():
+                skill_results.append({
+                    "skill": skill_name,
+                    "status": "skip",
+                    "reason": "evals/evals.json not found",
+                    "cases": [],
+                })
+                total_skipped += 1
+                continue
+
+            try:
+                data = json.loads(evals_path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as exc:
+                skill_results.append({
+                    "skill": skill_name,
+                    "status": "fail",
+                    "reason": f"malformed JSON: {exc}",
+                    "cases": [],
+                })
+                total_failed += 1
+                continue
+
+            schema_version = data.get("schema", "")
+            if schema_version != self._EVAL_SCHEMA_V2:
+                skill_results.append({
+                    "skill": skill_name,
+                    "status": "skip",
+                    "reason": f"schema '{schema_version}' is not v2; migrate to run evals",
+                    "cases": [],
+                })
+                total_skipped += 1
+                continue
+
+            case_results: list[dict[str, Any]] = []
+            skill_pass = 0
+            skill_fail = 0
+
+            cases = data.get("cases", [])
+
+            # Check required categories
+            present_cats = {c.get("category") for c in cases}
+            missing_cats = self._EVAL_REQUIRED_CATEGORIES - present_cats
+
+            # Check fixture existence
+            fixture_errors: dict[str, str] = {}
+            for case in cases:
+                fixture = case.get("fixture")
+                if fixture:
+                    fixture_path = (skill_dir / "evals" / fixture).resolve()
+                    if not fixture_path.exists():
+                        fixture_errors[case["id"]] = fixture
+
+            # Check goldens
+            goldens_dir = skill_dir / "evals" / "goldens"
+            golden_drift: dict[str, str] = {}
+            for case in cases:
+                cid = case.get("id", "")
+                golden_path = goldens_dir / f"{cid}.golden.txt"
+                if golden_path.exists():
+                    content = golden_path.read_text(encoding="utf-8").strip()
+                    if not content:
+                        golden_drift[cid] = "golden is empty"
+
+            for case_idx, case in enumerate(cases):
+                cid = case.get("id", "")
+                checks: list[dict[str, Any]] = []
+                passed = True
+
+                # Check: fixture exists if declared
+                if cid in fixture_errors:
+                    checks.append({
+                        "check": "fixture-exists",
+                        "status": "fail",
+                        "detail": f"missing fixture '{fixture_errors[cid]}'",
+                    })
+                    passed = False
+                elif case.get("fixture"):
+                    checks.append({"check": "fixture-exists", "status": "pass"})
+
+                # Check: golden not empty
+                if cid in golden_drift:
+                    checks.append({
+                        "check": "golden-not-empty",
+                        "status": "fail",
+                        "detail": golden_drift[cid],
+                    })
+                    passed = False
+
+                # Check: required categories present (report on first case only)
+                if missing_cats and case_idx == 0:
+                    checks.append({
+                        "check": "required-categories",
+                        "status": "fail",
+                        "detail": f"missing categories: {', '.join(sorted(missing_cats))}",
+                    })
+                    passed = False
+
+                # Deterministic string assertions against golden if available
+                golden_path = goldens_dir / f"{cid}.golden.txt"
+                if golden_path.exists():
+                    golden_text = golden_path.read_text(encoding="utf-8")
+                    for assertion in case.get("assertions", []):
+                        atype = assertion.get("type", "")
+                        avalue = assertion.get("value", "")
+                        result = _run_assertion(atype, avalue, golden_text, skill_dir)
+                        checks.append({
+                            "check": f"assertion/{atype}",
+                            "status": "pass" if result else "fail",
+                            "detail": avalue,
+                        })
+                        if not result:
+                            passed = False
+
+                case_status = "pass" if passed else "fail"
+                case_results.append({
+                    "id": cid,
+                    "category": case.get("category"),
+                    "trigger": case.get("trigger"),
+                    "status": case_status,
+                    "checks": checks,
+                })
+                total_cases += 1
+                if passed:
+                    skill_pass += 1
+                    total_passed += 1
+                else:
+                    skill_fail += 1
+                    total_failed += 1
+
+            skill_status = "pass" if skill_fail == 0 else "fail"
+            skill_results.append({
+                "skill": skill_name,
+                "status": skill_status,
+                "cases_total": len(cases),
+                "cases_passed": skill_pass,
+                "cases_failed": skill_fail,
+                "cases": case_results,
+            })
+
+        overall_status = "pass" if total_failed == 0 else "fail"
+        return {
+            "schema": "aether.eval-run-result/v1",
+            "run_id": run_id,
+            "timestamp": timestamp,
+            "mode": mode,
+            "skill_filter": skill_filter,
+            "status": overall_status,
+            "skills_evaluated": len(skill_results),
+            "total_cases": total_cases,
+            "total_passed": total_passed,
+            "total_failed": total_failed,
+            "total_skipped": total_skipped,
+            "results": skill_results,
+        }
+
     def run_validation(self, scopes: set[str], strict_staging: bool = False, catalog_check: bool = True) -> list[Diagnostic]:
         diagnostics: list[Diagnostic] = []
         specs_diags, specs_by_id, spec_paths = ([], {}, {})
@@ -991,6 +1357,8 @@ class AetherValidator:
             diagnostics.extend(self.validate_shell_syntax())
         if "links" in scopes:
             diagnostics.extend(self.validate_markdown_links())
+        if "evals" in scopes:
+            diagnostics.extend(self.validate_evals())
 
         return diagnostics
 
@@ -1055,9 +1423,11 @@ def command_validate(args: argparse.Namespace) -> int:
         scopes.add("shell")
     if args.links:
         scopes.add("links")
+    if args.evals:
+        scopes.add("evals")
 
     if not scopes:
-        scopes = {"skills", "specifications", "graph", "catalog", "distribution", "provenance", "staging", "json", "shell", "links"}
+        scopes = {"skills", "specifications", "graph", "catalog", "distribution", "provenance", "staging", "json", "shell", "links", "evals"}
 
     diagnostics = validator.run_validation(
         scopes=scopes,
@@ -1098,6 +1468,119 @@ def command_test(_args: argparse.Namespace) -> int:
     return EXIT_OK if result.wasSuccessful() else EXIT_VALIDATION_FAILED
 
 
+def _format_eval_text(results: dict[str, Any]) -> str:
+    lines = [
+        f"Eval run {results['run_id']}",
+        f"Timestamp : {results['timestamp']}",
+        f"Mode      : {results['mode']}",
+        f"Status    : {results['status'].upper()}",
+        f"Skills    : {results['skills_evaluated']}",
+        f"Cases     : {results['total_cases']} total, "
+        f"{results['total_passed']} passed, "
+        f"{results['total_failed']} failed, "
+        f"{results['total_skipped']} skipped",
+        "",
+    ]
+    for sr in results.get("results", []):
+        skill = sr["skill"]
+        status = sr["status"].upper()
+        if sr["status"] == "skip":
+            lines.append(f"  SKIP  {skill}  ({sr.get('reason', '')})")
+            continue
+        lines.append(
+            f"  {status:<4}  {skill}"
+            f"  ({sr.get('cases_passed', 0)}/{sr.get('cases_total', 0)} cases passed)"
+        )
+        for cr in sr.get("cases", []):
+            if cr["status"] == "fail":
+                lines.append(f"          FAIL  [{cr['category']}] {cr['id']}")
+                for chk in cr.get("checks", []):
+                    if chk["status"] == "fail":
+                        detail = chk.get("detail", "")
+                        lines.append(f"                - {chk['check']}: {detail}")
+    lines.append("")
+    if results["status"] == "pass":
+        lines.append("All eval checks passed.")
+    else:
+        lines.append(f"Eval run FAILED with {results['total_failed']} failed case(s).")
+    return "\n".join(lines)
+
+
+def command_eval_run(args: argparse.Namespace) -> int:
+    """Run the deterministic eval harness."""
+    root = find_repo_root(Path(args.repo_root).resolve() if args.repo_root else Path.cwd())
+    validator = AetherValidator(root)
+
+    mode = getattr(args, "mode", "deterministic")
+    skill_filter = getattr(args, "skill", None)
+
+    results = validator.run_evals(skill_filter=skill_filter, mode=mode)
+
+    fmt = getattr(args, "format", "text")
+    if fmt == "json":
+        print(json.dumps(results, indent=2))
+    else:
+        print(_format_eval_text(results))
+
+    return EXIT_OK if results["status"] == "pass" else EXIT_VALIDATION_FAILED
+
+
+def command_eval_update_golden(args: argparse.Namespace) -> int:
+    """Update a golden fixture for a specific eval case.
+
+    Requires --confirm to prevent accidental implicit updates. The golden file is
+    written (or overwritten) at evals/goldens/<case-id>.golden.txt within the
+    skill package. The caller is expected to review the diff before committing.
+    """
+    if not args.confirm:
+        print(
+            "ERROR: --confirm is required to update a golden fixture.\n"
+            "Review the diff after updating and commit intentionally.",
+            file=sys.stderr,
+        )
+        return EXIT_INVALID_INVOCATION
+
+    root = find_repo_root(Path(args.repo_root).resolve() if args.repo_root else Path.cwd())
+    skills_root = root / "library" / "organization" / "skills"
+
+    case_id: str = args.case
+    skill_filter: str | None = getattr(args, "skill", None)
+    content: str = args.content if args.content else sys.stdin.read()
+
+    found = False
+    for evals_path in sorted(skills_root.rglob("evals/evals.json")):
+        try:
+            data = json.loads(evals_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+
+        if skill_filter and data.get("skill") != skill_filter:
+            continue
+
+        case_ids = [c.get("id") for c in data.get("cases", [])]
+        if case_id not in case_ids:
+            continue
+
+        skill_dir = evals_path.parent.parent
+        goldens_dir = skill_dir / "evals" / "goldens"
+        goldens_dir.mkdir(exist_ok=True)
+        golden_path = goldens_dir / f"{case_id}.golden.txt"
+
+        golden_path.write_text(content, encoding="utf-8")
+        print(f"Updated golden fixture: {golden_path.relative_to(root)}")
+        found = True
+
+    if not found:
+        print(
+            f"ERROR: Case '{case_id}' not found in any skill eval file"
+            + (f" for skill '{skill_filter}'" if skill_filter else "") + ".",
+            file=sys.stderr,
+        )
+        return EXIT_INVALID_INVOCATION
+
+    return EXIT_OK
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="aether", description="Canonical deterministic Aether validation and catalog tooling.")
     parser.add_argument("--repo-root", help="Explicit repository root path. Defaults to auto-detected from current working directory.")
@@ -1117,6 +1600,7 @@ def build_parser() -> argparse.ArgumentParser:
     validate.add_argument("--json-files", action="store_true", help="Run only JSON syntax validation rules.")
     validate.add_argument("--shell", action="store_true", help="Run only shebang-aware shell syntax validation rules.")
     validate.add_argument("--links", action="store_true", help="Run only markdown link/path traversal validation rules.")
+    validate.add_argument("--evals", action="store_true", help="Run only eval schema and structural validation rules.")
     validate.set_defaults(handler=command_validate)
 
     catalog = subparsers.add_parser("catalog", help="Catalog generation commands.")
@@ -1124,6 +1608,52 @@ def build_parser() -> argparse.ArgumentParser:
     catalog_generate = catalog_sub.add_parser("generate", help="Generate or check deterministic first-party catalog.")
     catalog_generate.add_argument("--check", action="store_true", help="Check for drift without rewriting files.")
     catalog_generate.set_defaults(handler=command_catalog_generate)
+
+    eval_cmd = subparsers.add_parser("eval", help="Skill evaluation harness commands.")
+    eval_sub = eval_cmd.add_subparsers(dest="eval_command", required=True)
+
+    eval_run = eval_sub.add_parser("run", help="Run the deterministic eval harness.")
+    eval_run.add_argument(
+        "--skill",
+        metavar="SKILL",
+        help="Run evals only for the named skill (e.g. create-purpose-document).",
+    )
+    eval_run.add_argument(
+        "--mode",
+        choices=["deterministic"],
+        default="deterministic",
+        help="Evaluation mode. Only 'deterministic' is supported; model-assisted evaluation must be run separately.",
+    )
+    eval_run.add_argument(
+        "--format",
+        choices=["text", "json"],
+        default="text",
+        help="Output format.",
+    )
+    eval_run.set_defaults(handler=command_eval_run)
+
+    eval_golden = eval_sub.add_parser(
+        "update-golden",
+        help="Update a golden fixture for an eval case. Requires --confirm to prevent implicit updates.",
+    )
+    eval_golden.add_argument("--case", required=True, metavar="CASE_ID", help="Eval case ID to update.")
+    eval_golden.add_argument(
+        "--skill",
+        metavar="SKILL",
+        help="Restrict search to the named skill (optional but recommended for ambiguous IDs).",
+    )
+    eval_golden.add_argument(
+        "--content",
+        metavar="TEXT",
+        default="",
+        help="New golden text content. If omitted, content is read from stdin.",
+    )
+    eval_golden.add_argument(
+        "--confirm",
+        action="store_true",
+        help="Required flag: confirms that the golden update is intentional. Produces a reviewable file diff.",
+    )
+    eval_golden.set_defaults(handler=command_eval_update_golden)
 
     test = subparsers.add_parser("test", help="Run validator test suite.")
     test.set_defaults(handler=command_test)
