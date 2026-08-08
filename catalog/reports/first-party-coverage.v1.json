@@ -1,8 +1,8 @@
 {
   "counts": {
-    "canonical_skill_files": 23,
+    "canonical_skill_files": 29,
     "canonical_spec_files": 23,
-    "catalog_skill_records": 23,
+    "catalog_skill_records": 29,
     "catalog_spec_records": 23
   },
   "schema_version": "aether.catalog-coverage/v1",
@@ -27,9 +27,15 @@
     "library/organization/skills/architecture/create-system-document/SKILL.md",
     "library/organization/skills/architecture/create-vision-document/SKILL.md",
     "library/organization/skills/authoring/create-specification-file/SKILL.md",
+    "library/organization/skills/authoring/github-issue-authoring/SKILL.md",
+    "library/organization/skills/authoring/implementation-planning/SKILL.md",
+    "library/organization/skills/authoring/skill-authoring/SKILL.md",
     "library/organization/skills/methodology/orchestrate-reflective-development/SKILL.md",
     "library/organization/skills/publishing/prepare-arxiv-release/SKILL.md",
-    "library/organization/skills/quality/audit-repository/SKILL.md"
+    "library/organization/skills/quality/audit-repository/SKILL.md",
+    "library/organization/skills/quality/bug-fixing/SKILL.md",
+    "library/organization/skills/quality/repository-cleanup/SKILL.md",
+    "library/organization/skills/quality/test-engineering/SKILL.md"
   ],
   "spec_paths": [
     "library/organization/specs/architecture/document.spec.md",

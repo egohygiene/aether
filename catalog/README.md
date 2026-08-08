@@ -7,7 +7,7 @@ provenance, plus the initial first-party catalog.
 
 - `schemas/` — versioned JSON Schemas
 - `fixtures/` — valid/invalid examples per schema
-- `first-party/catalog.v1.json` — canonical first-party artifact catalog (23 specs + 23 skills)
+- `first-party/catalog.v1.json` — canonical first-party artifact catalog (23 specs + 29 skills)
 - `reports/first-party-coverage.v1.json` — coverage report for canonical corpus
 - `validate_catalog.py` — deterministic validator
 

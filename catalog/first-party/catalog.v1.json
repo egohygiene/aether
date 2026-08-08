@@ -1,4 +1,5 @@
 {
+  "schema_version": "aether.artifact-catalog/v1",
   "artifacts": [
     {
       "artifact_version": "1.0.0",
@@ -93,6 +94,51 @@
         "skill"
       ],
       "title": "Audit Repository"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Reproduces, diagnoses, fixes, and validates a concrete software defect with the smallest safe change and regression protection. Use when a bug report, failing test, regression, crash, or incorrect behavior requires corrective engineering work.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/skills/bug-fixing/SKILL.md"
+      ],
+      "id": "skill/bug-fixing",
+      "implements_specification_id": null,
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "experimental"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "96894e0ad81cc6330ce8904ba9103e8de120363cc523e2c621074889fcc04374"
+      },
+      "source_path": "library/organization/skills/quality/bug-fixing/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "quality",
+        "skill"
+      ],
+      "title": "Bug Fixing"
     },
     {
       "artifact_version": "1.0.0",
@@ -992,6 +1038,96 @@
       "compatibility": {
         "required_tools": []
       },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Converts evidence, specifications, audits, bug reports, and rough notes into scoped, copy-ready GitHub issues or dependency-aware issue batches. Use when defining implementation work clearly without performing the implementation itself.",
+      "domain": "authoring",
+      "generated_distribution_paths": [
+        "dist/skills/github-issue-authoring/SKILL.md"
+      ],
+      "id": "skill/github-issue-authoring",
+      "implements_specification_id": null,
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "experimental"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "283dfda2eb2bb383c984341d428a32c5dd00f28ace22c486e1cc1def2a274bf5"
+      },
+      "source_path": "library/organization/skills/authoring/github-issue-authoring/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "authoring",
+        "skill"
+      ],
+      "title": "Github Issue Authoring"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Converts accepted requirements, architecture, and constraints into an ordered, dependency-aware implementation plan with validation and rollback thinking. Use when execution needs a plan before code changes or when complex work must be decomposed into safe phases.",
+      "domain": "authoring",
+      "generated_distribution_paths": [
+        "dist/skills/implementation-planning/SKILL.md"
+      ],
+      "id": "skill/implementation-planning",
+      "implements_specification_id": null,
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "experimental"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "2c87f62f2703f8f40035b562fb5b5d0561dc0948500c8d81b3f30b25448922d6"
+      },
+      "source_path": "library/organization/skills/authoring/implementation-planning/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "authoring",
+        "skill"
+      ],
+      "title": "Implementation Planning"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
       "dependencies": [
         "specification/reflector"
       ],
@@ -1080,6 +1216,141 @@
         "skill"
       ],
       "title": "Prepare arXiv Release"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Performs behavior-preserving repository hygiene, consistency, and low-risk cleanup with explicit classification of safe, unsafe, and uncertain changes. Use when reducing clutter or inconsistency without redesigning the system.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/skills/repository-cleanup/SKILL.md"
+      ],
+      "id": "skill/repository-cleanup",
+      "implements_specification_id": null,
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "experimental"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "5c5a84c1f92313a65053e4a76961ee9c17a2763393a6a66b318a5526a54ed405"
+      },
+      "source_path": "library/organization/skills/quality/repository-cleanup/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "quality",
+        "skill"
+      ],
+      "title": "Repository Cleanup"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates, curates, upgrades, or validates portable Aether skill packages with normalized metadata, progressive disclosure, deterministic evals, and explicit provenance. Use when adding or maintaining reusable first-party skills rather than solving a one-off task.",
+      "domain": "authoring",
+      "generated_distribution_paths": [
+        "dist/skills/skill-authoring/SKILL.md"
+      ],
+      "id": "skill/skill-authoring",
+      "implements_specification_id": null,
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "experimental"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "013535792af23e1e0148b54e7bec43d46393ea7557f38e79d6f4b89b61ba35ab"
+      },
+      "source_path": "library/organization/skills/authoring/skill-authoring/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "authoring",
+        "skill"
+      ],
+      "title": "Skill Authoring"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Designs, implements, repairs, or reviews deterministic automated tests that protect meaningful behavior without chasing superficial coverage. Use when confidence is insufficient and stronger regression or validation evidence is needed.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/skills/test-engineering/SKILL.md"
+      ],
+      "id": "skill/test-engineering",
+      "implements_specification_id": null,
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "experimental"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "f3f46e30cf05932420e70ba9cc54af5dc0f7b3a344ec123ee0d6079431e98771"
+      },
+      "source_path": "library/organization/skills/quality/test-engineering/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "quality",
+        "skill"
+      ],
+      "title": "Test Engineering"
     },
     {
       "artifact_version": "2.0.0",
@@ -2394,6 +2665,16 @@
     "canonical_source_of_truth": "Canonical source files in library/organization/specs/*.spec.md and library/organization/skills/**/SKILL.md are authoritative for overlapping metadata.",
     "catalog_role_when_overlap": "The catalog is a derived, machine-readable index that must remain synchronized with canonical frontmatter; tooling should treat divergence as a validation error."
   },
+  "versioning": {
+    "artifact_version_contract": "artifact_version is per-artifact semver and may change independently of repository release tags.",
+    "repository_release_tag_contract": "A repository release tag (for gh skill install --pin) identifies an immutable release manifest snapshot."
+  },
+  "serialization": {
+    "canonical_json": "json.dumps(sort_keys=true,separators=(\",\",\":\"))",
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "source_digest_algorithm": "sha256-utf8-lf"
+  },
   "lifecycle_policy": {
     "allowed_transitions": [
       {
@@ -2427,16 +2708,5 @@
       "deprecated",
       "retired"
     ]
-  },
-  "schema_version": "aether.artifact-catalog/v1",
-  "serialization": {
-    "canonical_json": "json.dumps(sort_keys=true,separators=(\",\",\":\"))",
-    "encoding": "UTF-8",
-    "line_endings": "LF",
-    "source_digest_algorithm": "sha256-utf8-lf"
-  },
-  "versioning": {
-    "artifact_version_contract": "artifact_version is per-artifact semver and may change independently of repository release tags.",
-    "repository_release_tag_contract": "A repository release tag (for gh skill install --pin) identifies an immutable release manifest snapshot."
   }
 }

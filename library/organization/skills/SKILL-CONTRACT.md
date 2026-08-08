@@ -54,7 +54,7 @@ Codex-compatible runtimes.
 | Key | Type | Description |
 |---|---|---|
 | `aether-version` | string (semver) | Skill version in Aether catalog |
-| `aether-status` | string | Lifecycle state: `draft`, `stable`, `deprecated`, `retired` |
+| `aether-status` | string | Lifecycle state: `draft`, `experimental`, `stable`, `deprecated`, `retired` |
 | `aether-spec-id` | string | ID of the Aether specification this skill implements |
 | `aether-scope` | string | `organization`, `repository`, or `personal` |
 | `aether-domain` | string | Primary domain: `architecture`, `authoring`, etc. |
@@ -112,7 +112,7 @@ metadata:
 
 ## Validation
 
-Run the deterministic validator to check all 23 canonical skills:
+Run the deterministic validator to check all 29 canonical skills:
 
 ```sh
 python3 library/organization/skills/validate-skills.py
