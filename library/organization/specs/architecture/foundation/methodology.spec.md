@@ -1,15 +1,30 @@
 ---
-title: Document Specification — METHODOLOGY.md
-version: 1.1
-date_created: 2026-07-18
-last_updated: 2026-08-02
-owner: Ego Hygiene
+schema: aether.specification/v1
+id: architecture-methodology
+title: Methodology Document Specification
+kind: specification
+version: 1.1.0
+status: draft
+owners:
+  - egohygiene
+created: 2026-07-18
+updated: 2026-08-02
+domain: architecture
 tags:
   - architecture
   - specification
   - methodology
   - workflow
   - engineering-practice
+applies_to:
+  - architecture-documents
+depends_on:
+  - architecture-document
+related:
+  - architecture-principles
+  - architecture-foundations
+  - architecture-architecture
+supersedes: []
 ---
 
 ## Introduction

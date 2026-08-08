@@ -4,7 +4,7 @@ description: Create or refine SYSTEM.md using the corresponding Aether architect
 version: 1.0.0
 status: active
 specs:
-  - library/organization/specs/architecture/foundation/system-document
+  - architecture-system
 ---
 
 # SYSTEM.md

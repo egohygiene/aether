@@ -4,7 +4,7 @@ description: Create or refine FOUNDATIONS.md using the corresponding Aether arch
 version: 1.0.0
 status: active
 specs:
-  - library/organization/specs/architecture/foundation/foundations-document
+  - architecture-foundations
 ---
 
 # FOUNDATIONS.md

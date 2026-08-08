@@ -1,15 +1,30 @@
 ---
-title: Document Specification — SYSTEM.md
-version: 1.1
-date_created: 2026-07-18
-last_updated: 2026-08-02
-owner: Ego Hygiene
+schema: aether.specification/v1
+id: architecture-system
+title: System Document Specification
+kind: specification
+version: 1.1.0
+status: draft
+owners:
+  - egohygiene
+created: 2026-07-18
+updated: 2026-08-02
+domain: architecture
 tags:
   - architecture
   - specification
   - systems
   - decomposition
   - boundaries
+applies_to:
+  - architecture-documents
+depends_on:
+  - architecture-document
+  - architecture-ontology
+related:
+  - architecture-architecture
+  - architecture-foundations
+supersedes: []
 ---
 
 ## Introduction

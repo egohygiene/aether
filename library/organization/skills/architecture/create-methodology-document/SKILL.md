@@ -4,7 +4,7 @@ description: Create or refine METHODOLOGY.md using the corresponding Aether arch
 version: 1.0.0
 status: active
 specs:
-  - library/organization/specs/architecture/foundation/methodology-document
+  - architecture-methodology
 ---
 
 # METHODOLOGY.md
