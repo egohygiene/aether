@@ -29,6 +29,9 @@ jobs:
       release_ref: ${{ steps.release-context.outputs.release_ref }}
     env:
       RUN_REPORT_DIR: .artifacts/release-validation
+      AETHER_E2E_REPORT_DIR: .artifacts/release-validation/consumer-installation
+      AETHER_E2E_REMOTE_REPOSITORY: egohygiene/aether
+      AETHER_E2E_REMOTE_TAG: ${{ steps.release-context.outputs.release_tag }}
     steps:
       - name: Resolve validated release tag
         id: release-context
@@ -73,6 +76,7 @@ jobs:
           RELEASE_TAG: ${{ steps.release-context.outputs.release_tag }}
         run: |
           set -euo pipefail
+          export AETHER_E2E_REMOTE_COMMIT="$(git rev-parse HEAD)"
           mkdir -p "${RUN_REPORT_DIR}"
           rm -rf dist
           ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build.txt"

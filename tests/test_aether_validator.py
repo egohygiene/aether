@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from aether_validator import AetherValidator
+from aether_validator import AetherValidator, validate_portable_skill_package
 
 
 def write(path: Path, content: str) -> None:
@@ -823,6 +823,87 @@ class TestAgentValidator(unittest.TestCase):
             rc, output = self._validate_inline(base)
         self.assertNotEqual(rc, 0, msg=output)
         self.assertIn("aether-status", output)
+
+
+class TestPortableSkillPackageValidator(unittest.TestCase):
+    def _make_portable_skill(self) -> Path:
+        tmp = Path(tempfile.mkdtemp(prefix="aether-portable-skill-"))
+        skill_dir = tmp / "example-skill"
+        write(
+            skill_dir / "SKILL.md",
+            """---
+name: example-skill
+description: Demonstrates a portable skill package. Use when validating installed package rules.
+license: MIT
+metadata:
+  aether-version: "1.0.0"
+---
+
+# Example Skill
+
+See [Reference](references/reference.md).
+""",
+        )
+        write(skill_dir / "references" / "reference.md", "# Reference\n")
+        write(skill_dir / "templates" / "template.md", "# Template\n")
+        write(
+            skill_dir / "evals" / "evals.json",
+            json.dumps(_VALID_EVALS_V2, indent=2) + "\n",
+        )
+        write(
+            skill_dir / "distribution-manifest.v1.json",
+            json.dumps(
+                {
+                    "schema_version": "aether.distribution-manifest/v1",
+                    "distribution_id": "distribution/example-skill",
+                    "artifact_id": "skill/example-skill",
+                    "artifact_version": "1.0.0",
+                    "source_digest": {
+                        "algorithm": "sha256-utf8-lf",
+                        "value": "a" * 64,
+                    },
+                    "generated_paths": [
+                        "dist/skills/example-skill/SKILL.md",
+                        "dist/skills/example-skill/references/reference.md",
+                        "dist/skills/example-skill/templates/template.md",
+                        "dist/skills/example-skill/evals/evals.json",
+                        "dist/skills/example-skill/distribution-manifest.v1.json",
+                    ],
+                    "generator": "test",
+                    "compatibility": {"required_tools": []},
+                },
+                indent=2,
+            )
+            + "\n",
+        )
+        return skill_dir
+
+    def test_valid_portable_skill_package_passes(self):
+        skill_dir = self._make_portable_skill()
+        diags = validate_portable_skill_package(skill_dir)
+        self.assertEqual([d for d in diags if d.severity == "error"], [])
+
+    def test_absolute_local_path_leak_fails(self):
+        skill_dir = self._make_portable_skill()
+        skill_path = skill_dir / "SKILL.md"
+        skill_path.write_text(
+            skill_path.read_text(encoding="utf-8").replace(
+                'metadata:\n  aether-version: "1.0.0"\n',
+                'metadata:\n  aether-version: "1.0.0"\n  local-path: /tmp/private-source/example-skill\n',
+            ),
+            encoding="utf-8",
+        )
+        diags = validate_portable_skill_package(skill_dir)
+        self.assertTrue(any(d.rule_id == "AETHER_PORTABLE_006" for d in diags))
+
+    def test_missing_generated_manifest_path_fails(self):
+        skill_dir = self._make_portable_skill()
+        manifest_path = skill_dir / "distribution-manifest.v1.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["generated_paths"].append("dist/skills/example-skill/references/missing.md")
+        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+        diags = validate_portable_skill_package(skill_dir)
+        self.assertTrue(any(d.rule_id == "AETHER_PORTABLE_012" for d in diags))
 
 
 if __name__ == "__main__":

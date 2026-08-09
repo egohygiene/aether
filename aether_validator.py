@@ -35,6 +35,13 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 SPEC_STATUS = {"draft", "stable", "deprecated", "retired", "approved"}
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+ABSOLUTE_LOCAL_PATH_RE = re.compile(r"(^|[\s\"'=:(\[])/(?:tmp|home|Users|private|var/folders)/[^\s\"')\]]+")
+SECRET_LEAK_PATTERNS = (
+    re.compile(r"\bghp_[A-Za-z0-9]{36,}\b"),
+    re.compile(r"\bgithub_pat_[A-Za-z0-9_]{20,}\b"),
+    re.compile(r"-----BEGIN (?:RSA|OPENSSH|EC|DSA) PRIVATE KEY-----"),
+    re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
+)
 
 
 @dataclass
@@ -124,6 +131,278 @@ def _run_assertion(atype: str, value: str, text: str, skill_dir: Path) -> bool:
     if atype == "file-not-exists":
         return not (skill_dir / value).exists()
     return False
+
+
+def _is_within_directory(path: Path, root: Path) -> bool:
+    try:
+        path.relative_to(root)
+        return True
+    except ValueError:
+        return False
+
+
+def validate_portable_skill_package(skill_dir: Path) -> list[Diagnostic]:
+    """Validate a self-contained installed/generated skill package without repo context."""
+    diagnostics: list[Diagnostic] = []
+    skill_dir = skill_dir.resolve()
+    artifact_id = f"skill/{skill_dir.name}"
+    skill_md = skill_dir / "SKILL.md"
+    manifest_path = skill_dir / "distribution-manifest.v1.json"
+
+    def package_rel(path: Path) -> str:
+        try:
+            return path.relative_to(skill_dir).as_posix() or "."
+        except ValueError:
+            return path.as_posix()
+
+    if not skill_md.exists():
+        diagnostics.append(Diagnostic(
+            rule_id="AETHER_PORTABLE_001",
+            severity="error",
+            message="Portable skill package is missing SKILL.md.",
+            guidance="Ensure the installed/generated package contains a root SKILL.md file.",
+            artifact_id=artifact_id,
+            file="SKILL.md",
+        ))
+        return diagnostics
+
+    fm, err = _parse_frontmatter(skill_md)
+    if err:
+        err.rule_id = "AETHER_PORTABLE_002"
+        err.file = "SKILL.md"
+        err.artifact_id = artifact_id
+        diagnostics.append(err)
+    else:
+        if fm is None:
+            return diagnostics
+        for key in SKILL_REQUIRED_TOP:
+            if key not in fm:
+                diagnostics.append(Diagnostic(
+                    rule_id="AETHER_PORTABLE_003",
+                    severity="error",
+                    message=f"Portable skill package is missing required field '{key}'.",
+                    guidance="Keep portable SKILL.md frontmatter aligned with Agent Skills requirements.",
+                    artifact_id=artifact_id,
+                    file="SKILL.md",
+                    line=1,
+                    context={"field": key},
+                ))
+        name = str(fm.get("name", ""))
+        if name and name != skill_dir.name:
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_PORTABLE_004",
+                severity="error",
+                message=f"Portable skill name '{name}' does not match package directory '{skill_dir.name}'.",
+                guidance="Publish/install the package under a directory matching the skill name.",
+                artifact_id=artifact_id,
+                file="SKILL.md",
+                line=1,
+            ))
+        desc = fm.get("description")
+        if not isinstance(desc, str) or "use when" not in desc.lower():
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_PORTABLE_005",
+                severity="error",
+                message="Portable skill description must include loading guidance ('Use when ...').",
+                guidance="Keep installed SKILL.md description portable and discoverable.",
+                artifact_id=artifact_id,
+                file="SKILL.md",
+                line=1,
+            ))
+        metadata = fm.get("metadata") if isinstance(fm.get("metadata"), dict) else {}
+        local_path = metadata.get("local-path")
+        if isinstance(local_path, str) and Path(local_path).is_absolute():
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_PORTABLE_006",
+                severity="error",
+                message="Portable skill package leaks an absolute local source path.",
+                guidance="Installed packages must not retain absolute local path metadata.",
+                artifact_id=artifact_id,
+                file="SKILL.md",
+                line=1,
+                context={"field": "metadata.local-path"},
+            ))
+
+    for required_path in [
+        skill_dir / "references",
+        skill_dir / "templates",
+        skill_dir / "evals" / "evals.json",
+        manifest_path,
+    ]:
+        if not required_path.exists():
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_PORTABLE_007",
+                severity="error",
+                message=f"Portable skill package is missing required content '{package_rel(required_path)}'.",
+                guidance="Portable packages must remain self-contained after installation.",
+                artifact_id=artifact_id,
+                file=package_rel(required_path),
+            ))
+
+    if manifest_path.exists():
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_PORTABLE_008",
+                severity="error",
+                message=f"Portable distribution manifest is not valid JSON: {exc}",
+                guidance="Regenerate the portable package distribution manifest.",
+                artifact_id=artifact_id,
+                file="distribution-manifest.v1.json",
+            ))
+        else:
+            expected_prefix = f"dist/skills/{skill_dir.name}/"
+            if manifest.get("schema_version") != "aether.distribution-manifest/v1":
+                diagnostics.append(Diagnostic(
+                    rule_id="AETHER_PORTABLE_009",
+                    severity="error",
+                    message="Portable distribution manifest uses an unexpected schema version.",
+                    guidance="Regenerate the package with the current distribution builder.",
+                    artifact_id=artifact_id,
+                    file="distribution-manifest.v1.json",
+                ))
+            for generated_path in manifest.get("generated_paths", []):
+                if not isinstance(generated_path, str) or not generated_path.startswith(expected_prefix):
+                    diagnostics.append(Diagnostic(
+                        rule_id="AETHER_PORTABLE_010",
+                        severity="error",
+                        message=f"Portable distribution manifest contains an invalid generated path '{generated_path}'.",
+                        guidance="Generated paths must remain rooted at dist/skills/<skill-name>/.",
+                        artifact_id=artifact_id,
+                        file="distribution-manifest.v1.json",
+                        context={"generated_path": generated_path},
+                    ))
+                    continue
+                rel_path = Path(generated_path.removeprefix(expected_prefix))
+                target = (skill_dir / rel_path).resolve()
+                if not _is_within_directory(target, skill_dir):
+                    diagnostics.append(Diagnostic(
+                        rule_id="AETHER_PORTABLE_011",
+                        severity="error",
+                        message=f"Generated path escapes the portable package boundary: '{generated_path}'.",
+                        guidance="Keep portable package manifests scoped to package-local files only.",
+                        artifact_id=artifact_id,
+                        file="distribution-manifest.v1.json",
+                        context={"generated_path": generated_path},
+                    ))
+                    continue
+                if not target.exists():
+                    diagnostics.append(Diagnostic(
+                        rule_id="AETHER_PORTABLE_012",
+                        severity="error",
+                        message=f"Generated path listed in the portable manifest is missing: '{generated_path}'.",
+                        guidance="Ensure every manifest entry exists after installation.",
+                        artifact_id=artifact_id,
+                        file="distribution-manifest.v1.json",
+                        context={"generated_path": generated_path},
+                    ))
+
+    for path in sorted(skill_dir.rglob("*")):
+        rel = package_rel(path)
+        if any(part == ".staging" for part in path.parts):
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_PORTABLE_013",
+                severity="error",
+                message="Portable package includes staged-only content.",
+                guidance="Do not ship .staging content in portable skill packages.",
+                artifact_id=artifact_id,
+                file=rel,
+            ))
+        if path.is_symlink():
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_PORTABLE_014",
+                severity="error",
+                message="Portable package must not contain symlinks.",
+                guidance="Copy portable package resources instead of linking them.",
+                artifact_id=artifact_id,
+                file=rel,
+            ))
+        if not path.is_file():
+            continue
+        if path.suffix.lower() not in {".md", ".json", ".txt", ".yaml", ".yml", ".sh", ".py", ".js", ".mjs"}:
+            continue
+        text = path.read_text(encoding="utf-8")
+        if "library/organization/" in text:
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_PORTABLE_015",
+                severity="error",
+                message="Portable package leaks a canonical-source-only path.",
+                guidance="Installed packages must not reference canonical source paths at runtime.",
+                artifact_id=artifact_id,
+                file=rel,
+            ))
+        if ".staging/" in text:
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_PORTABLE_016",
+                severity="error",
+                message="Portable package leaks staged-only provenance paths.",
+                guidance="Remove staged-only references from portable artifacts.",
+                artifact_id=artifact_id,
+                file=rel,
+            ))
+        if ABSOLUTE_LOCAL_PATH_RE.search(text):
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_PORTABLE_017",
+                severity="error",
+                message="Portable package contains an absolute local filesystem path.",
+                guidance="Strip local filesystem paths from installed package contents.",
+                artifact_id=artifact_id,
+                file=rel,
+            ))
+        if any(pattern.search(text) for pattern in SECRET_LEAK_PATTERNS):
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_PORTABLE_018",
+                severity="error",
+                message="Portable package appears to contain secret-like material.",
+                guidance="Remove credentials, tokens, and private keys from portable artifacts.",
+                artifact_id=artifact_id,
+                file=rel,
+            ))
+        if path.suffix.lower() == ".md":
+            for line_no, line in enumerate(text.splitlines(), start=1):
+                for raw in MARKDOWN_LINK_RE.findall(line):
+                    target = raw.split("#", 1)[0].strip()
+                    if not target or target.startswith(("http://", "https://", "mailto:", "tel:")):
+                        continue
+                    if target.startswith("/"):
+                        diagnostics.append(Diagnostic(
+                            rule_id="AETHER_PORTABLE_019",
+                            severity="error",
+                            message=f"Portable markdown link uses an absolute path '{target}'.",
+                            guidance="Keep installed markdown links package-local and relative.",
+                            artifact_id=artifact_id,
+                            file=rel,
+                            line=line_no,
+                            context={"link": target},
+                        ))
+                        continue
+                    resolved = (path.parent / target).resolve()
+                    if not _is_within_directory(resolved, skill_dir):
+                        diagnostics.append(Diagnostic(
+                            rule_id="AETHER_PORTABLE_020",
+                            severity="error",
+                            message=f"Portable markdown link escapes package boundary: '{target}'.",
+                            guidance="Keep installed markdown links inside the portable skill package.",
+                            artifact_id=artifact_id,
+                            file=rel,
+                            line=line_no,
+                            context={"link": target},
+                        ))
+                        continue
+                    if not resolved.exists():
+                        diagnostics.append(Diagnostic(
+                            rule_id="AETHER_PORTABLE_021",
+                            severity="error",
+                            message=f"Portable markdown link target is missing: '{target}'.",
+                            guidance="Ensure installed package resources resolve without canonical source access.",
+                            artifact_id=artifact_id,
+                            file=rel,
+                            line=line_no,
+                            context={"link": target},
+                        ))
+
+    return diagnostics
 
 
 class AetherValidator:
