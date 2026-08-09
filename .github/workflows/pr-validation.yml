@@ -43,6 +43,7 @@ jobs:
           ./aether distribution build --output-directory "dist" --check | tee "${RUN_REPORT_DIR}/distribution-check.txt"
           ./aether validate --format "text" | tee "${RUN_REPORT_DIR}/validate.txt"
           ./aether validate --shell --format "text" | tee "${RUN_REPORT_DIR}/shell.txt"
+          ./aether validate --staging --strict-staging --format "text" | tee "${RUN_REPORT_DIR}/staging.txt"
           ./aether catalog generate --check | tee "${RUN_REPORT_DIR}/catalog-generate.txt"
           python3 catalog/validate_catalog.py | tee "${RUN_REPORT_DIR}/catalog-schema.txt"
           ./aether eval run --mode "deterministic" --format "text" | tee "${RUN_REPORT_DIR}/evals.txt"

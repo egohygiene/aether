@@ -12,3 +12,5 @@ This repository follows release-tag based versioning for install pinning and rel
 
 - Documentation overhaul for product-level README, contributor workflow, provenance, release/pinning, and safety guidance.
 - Added read-only PR validation and explicit tagged first-party skill release workflows with deterministic rebuild checks and release metadata generation.
+- Added strict staging CI validation (`--staging --strict-staging`) to the PR workflow; any unclassified top-level `.staging/` directory now fails CI.
+- Published staging evacuation status document (`docs/staging-evacuation-status.md`) covering the current disposition of all 734 staged files, precondition blockers, and bounded residual backlog.
