@@ -1,0 +1,219 @@
+name: Release first-party skills
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Existing repository tag to validate and publish
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-first-party-skills-${{ github.event.inputs.release_tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  validate-release:
+    runs-on: ubuntu-latest
+    outputs:
+      release_tag: ${{ steps.release-context.outputs.release_tag }}
+      release_ref: ${{ steps.release-context.outputs.release_ref }}
+    env:
+      RUN_REPORT_DIR: .artifacts/release-validation
+    steps:
+      - name: Resolve validated release tag
+        id: release-context
+        env:
+          INPUT_RELEASE_TAG: ${{ github.event.inputs.release_tag || '' }}
+          REF_NAME: ${{ github.ref_name }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          if [ "${EVENT_NAME}" = "workflow_dispatch" ]; then
+            release_tag="${INPUT_RELEASE_TAG}"
+          else
+            release_tag="${REF_NAME}"
+          fi
+          if [[ ! "${release_tag}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([-.+][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Release tag must match v<major>.<minor>.<patch>[suffix]" >&2
+            exit 1
+          fi
+          echo "release_tag=${release_tag}" >> "${GITHUB_OUTPUT}"
+          echo "release_ref=refs/tags/${release_tag}" >> "${GITHUB_OUTPUT}"
+
+      - name: Check out tagged commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ steps.release-context.outputs.release_ref }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.lock
+
+      - name: Install deterministic tooling
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --requirement requirements-dev.lock
+
+      - name: Rebuild and validate tagged commit
+        env:
+          RELEASE_TAG: ${{ steps.release-context.outputs.release_tag }}
+        run: |
+          set -euo pipefail
+          mkdir -p "${RUN_REPORT_DIR}"
+          rm -rf dist
+          ./aether validate --format "text" | tee "${RUN_REPORT_DIR}/validate.txt"
+          ./aether validate --shell --format "text" | tee "${RUN_REPORT_DIR}/shell.txt"
+          ./aether catalog generate --check | tee "${RUN_REPORT_DIR}/catalog-generate.txt"
+          python3 catalog/validate_catalog.py | tee "${RUN_REPORT_DIR}/catalog-schema.txt"
+          ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build.txt"
+          ./aether distribution build --output-directory "dist" --check | tee "${RUN_REPORT_DIR}/distribution-check.txt"
+          ./aether eval run --mode "deterministic" --format "text" | tee "${RUN_REPORT_DIR}/evals.txt"
+          ./aether test | tee "${RUN_REPORT_DIR}/tests.txt"
+          python3 library/organization/skills/build-release-artifacts.py \
+            --release-tag "${RELEASE_TAG}" \
+            --output-directory "dist" \
+            --commit-sha "${GITHUB_SHA}" | tee "${RUN_REPORT_DIR}/release-artifacts.txt"
+          RELEASE_TAG_CHECK="${RELEASE_TAG}" python3 - <<'PY' | tee "${RUN_REPORT_DIR}/release-manifest-check.txt"
+          import json
+          import os
+          from pathlib import Path
+          manifest = json.loads(Path("dist/release/release-manifest.v1.json").read_text(encoding="utf-8"))
+          release_tag = os.environ["RELEASE_TAG_CHECK"]
+          if manifest["repository_release_tag"] != release_tag:
+              raise SystemExit(f"release manifest tag mismatch: {manifest['repository_release_tag']} != {release_tag}")
+          print(f"Release manifest matches {release_tag}")
+          PY
+          gh skill publish "dist" --dry-run | tee "${RUN_REPORT_DIR}/gh-skill-publish-dry-run.txt"
+
+      - name: Verify release reproducibility
+        run: |
+          set -euo pipefail
+          rm -rf dist /tmp/aether-release-pass-1 /tmp/aether-release-pass-2
+          ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build-pass-1.txt"
+          cp -R dist /tmp/aether-release-pass-1
+          rm -rf dist
+          ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build-pass-2.txt"
+          cp -R dist /tmp/aether-release-pass-2
+          diff -ru /tmp/aether-release-pass-1 /tmp/aether-release-pass-2 | tee "${RUN_REPORT_DIR}/distribution-reproducibility.diff"
+
+      - name: Upload validation diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: release-validation-diagnostics
+          path: .artifacts/release-validation/
+          if-no-files-found: error
+
+  publish-release:
+    needs: validate-release
+    runs-on: ubuntu-latest
+    environment:
+      name: first-party-skill-release
+    permissions:
+      contents: write
+      attestations: write
+      id-token: write
+    env:
+      RELEASE_TAG: ${{ needs.validate-release.outputs.release_tag }}
+      RELEASE_REF: ${{ needs.validate-release.outputs.release_ref }}
+      RUN_REPORT_DIR: .artifacts/release-publication
+    steps:
+      - name: Check out approved tag
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ env.RELEASE_REF }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.lock
+
+      - name: Install deterministic tooling
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --requirement requirements-dev.lock
+
+      - name: Rebuild approved release payload
+        run: |
+          set -euo pipefail
+          mkdir -p "${RUN_REPORT_DIR}"
+          rm -rf dist
+          ./aether validate --format "text" | tee "${RUN_REPORT_DIR}/validate.txt"
+          ./aether catalog generate --check | tee "${RUN_REPORT_DIR}/catalog-generate.txt"
+          python3 catalog/validate_catalog.py | tee "${RUN_REPORT_DIR}/catalog-schema.txt"
+          ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build.txt"
+          ./aether distribution build --output-directory "dist" --check | tee "${RUN_REPORT_DIR}/distribution-check.txt"
+          ./aether eval run --mode "deterministic" --format "text" | tee "${RUN_REPORT_DIR}/evals.txt"
+          ./aether test | tee "${RUN_REPORT_DIR}/tests.txt"
+          python3 library/organization/skills/build-release-artifacts.py \
+            --release-tag "${RELEASE_TAG}" \
+            --output-directory "dist" \
+            --commit-sha "${GITHUB_SHA}" | tee "${RUN_REPORT_DIR}/release-artifacts.txt"
+          gh skill publish "dist" --dry-run | tee "${RUN_REPORT_DIR}/gh-skill-publish-dry-run.txt"
+
+      - name: Create deterministic release archive
+        id: archive
+        run: |
+          set -euo pipefail
+          archive_path="dist/release/aether-${RELEASE_TAG#v}-dist.tar.gz"
+          tar \
+            --sort=name \
+            --mtime='UTC 1970-01-01' \
+            --owner=0 \
+            --group=0 \
+            --numeric-owner \
+            -czf "${archive_path}" \
+            -C dist skills github release
+          echo "path=${archive_path}" >> "${GITHUB_OUTPUT}"
+
+      - name: Publish or reuse GitHub release
+        run: |
+          set -euo pipefail
+          if gh release view "${RELEASE_TAG}" >/dev/null 2>&1; then
+            echo "Release ${RELEASE_TAG} already exists; skipping gh skill publish." | tee "${RUN_REPORT_DIR}/publish.txt"
+          else
+            gh skill publish "dist" --tag "${RELEASE_TAG}" | tee "${RUN_REPORT_DIR}/publish.txt"
+          fi
+
+      - name: Attach release metadata assets
+        run: |
+          set -euo pipefail
+          gh release upload "${RELEASE_TAG}" \
+            dist/release/release-manifest.v1.json \
+            dist/release/checksums.txt \
+            dist/release/release-provenance.v1.json \
+            dist/release/LICENSE.notices.txt \
+            dist/release/release-notes.md \
+            "${{ steps.archive.outputs.path }}" \
+            --clobber | tee "${RUN_REPORT_DIR}/release-upload.txt"
+
+      - name: Attest release archive provenance
+        if: success()
+        continue-on-error: true
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+        with:
+          subject-path: ${{ steps.archive.outputs.path }}
+
+      - name: Upload release bundle
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: first-party-skill-release-bundle-${{ env.RELEASE_TAG }}
+          path: |
+            dist/
+            .artifacts/release-publication/
+          if-no-files-found: error
