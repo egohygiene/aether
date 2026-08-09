@@ -133,6 +133,14 @@ def _run_assertion(atype: str, value: str, text: str, skill_dir: Path) -> bool:
     return False
 
 
+def _is_within_directory(path: Path, root: Path) -> bool:
+    try:
+        path.relative_to(root)
+        return True
+    except ValueError:
+        return False
+
+
 def validate_portable_skill_package(skill_dir: Path) -> list[Diagnostic]:
     """Validate a self-contained installed/generated skill package without repo context."""
     diagnostics: list[Diagnostic] = []
@@ -165,7 +173,8 @@ def validate_portable_skill_package(skill_dir: Path) -> list[Diagnostic]:
         err.artifact_id = artifact_id
         diagnostics.append(err)
     else:
-        assert fm is not None
+        if fm is None:
+            return diagnostics
         for key in SKILL_REQUIRED_TOP:
             if key not in fm:
                 diagnostics.append(Diagnostic(
@@ -267,7 +276,7 @@ def validate_portable_skill_package(skill_dir: Path) -> list[Diagnostic]:
                     continue
                 rel_path = Path(generated_path.removeprefix(expected_prefix))
                 target = (skill_dir / rel_path).resolve()
-                if not str(target).startswith(str(skill_dir)):
+                if not _is_within_directory(target, skill_dir):
                     diagnostics.append(Diagnostic(
                         rule_id="AETHER_PORTABLE_011",
                         severity="error",
@@ -369,7 +378,7 @@ def validate_portable_skill_package(skill_dir: Path) -> list[Diagnostic]:
                         ))
                         continue
                     resolved = (path.parent / target).resolve()
-                    if not str(resolved).startswith(str(skill_dir)):
+                    if not _is_within_directory(resolved, skill_dir):
                         diagnostics.append(Diagnostic(
                             rule_id="AETHER_PORTABLE_020",
                             severity="error",

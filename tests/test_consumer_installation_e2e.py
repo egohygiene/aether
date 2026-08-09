@@ -273,15 +273,28 @@ class ConsumerInstallationHarness:
                 f"Portable validator passes for {skill_name}",
                 diagnostics=diagnostics,
             )
-            manifest = json.loads((package_dir / "distribution-manifest.v1.json").read_text(encoding="utf-8"))
-            self.check(
-                scenario,
-                f"manifest-{skill_name}",
-                all((package_dir / Path(path).relative_to(f"dist/skills/{skill_name}")).exists() for path in manifest["generated_paths"]),
-                f"Manifest resources resolve for {skill_name}",
-            )
-            evals = json.loads((package_dir / "evals" / "evals.json").read_text(encoding="utf-8"))
-            categories = {case["category"] for case in evals.get("cases", []) if "category" in case}
+            manifest_path = package_dir / "distribution-manifest.v1.json"
+            if manifest_path.exists():
+                manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                self.check(
+                    scenario,
+                    f"manifest-{skill_name}",
+                    all((package_dir / Path(path).relative_to(f"dist/skills/{skill_name}")).exists() for path in manifest["generated_paths"]),
+                    f"Manifest resources resolve for {skill_name}",
+                )
+            else:
+                self.check(
+                    scenario,
+                    f"manifest-{skill_name}",
+                    False,
+                    f"Manifest exists for {skill_name}",
+                )
+            evals_path = package_dir / "evals" / "evals.json"
+            if evals_path.exists():
+                evals = json.loads(evals_path.read_text(encoding="utf-8"))
+                categories = {case["category"] for case in evals.get("cases", []) if "category" in case}
+            else:
+                categories = set()
             self.check(
                 scenario,
                 f"routing-{skill_name}",
