@@ -1,0 +1,19 @@
+{
+  "staging_path": ".staging/hooks/fix-broken-links/",
+  "disposition": "move-out",
+  "owner": "Egolint",
+  "reason": "Link validation is a lint concern owned by Egolint; hook delivery into agents is a Relay concern. Embedding a link-fixer directly in an Aether hook duplicates responsibilities and bypasses the governed lint pipeline.",
+  "safety_concerns": [
+    "Link repair (write) is more dangerous than link detection (read); combining both in a hook without human confirmation is unsafe.",
+    "External HTTP requests from a hook can leak repository metadata and paths to third-party servers.",
+    "No timeout or retry limit on network requests; susceptible to denial of service via slow responses."
+  ],
+  "adoption_blocked_by": [
+    "No ownership in Aether (lint and CI wiring belong to Egolint/Relay).",
+    "No tests or JSON payload fixtures.",
+    "Repair action is irreversible without git; failure policy is undocumented."
+  ],
+  "adr_reference": "DECISIONS.md#adr-007",
+  "reviewed_date": "2026-08-09",
+  "trust_classification": "untrusted-prototype"
+}

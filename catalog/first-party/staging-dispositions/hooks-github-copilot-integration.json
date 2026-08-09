@@ -1,0 +1,30 @@
+{
+  "staging_paths": [
+    ".staging/integrations/github-copilot/hooks/",
+    ".staging/integrations/github-copilot/scripts/"
+  ],
+  "disposition": "reject",
+  "owner": null,
+  "reason": "The GitHub Copilot integration hooks and scripts fail multiple portability, dependency, and safety checks. They are not suitable for adoption as Aether-first-party artifacts. Consumer-specific hook wiring belongs to Empathy, not Aether.",
+  "safety_concerns": [
+    "session-start.sh requires Taskfile.yml to be present in the repository root; this file is absent from the current snapshot. The hook fails with an unintelligible error rather than a safe diagnostic.",
+    "session-start.sh uses GNU 'date --date' syntax, which is not portable to macOS BSD 'date'. Declared macOS compatibility is therefore false.",
+    "Shell scripts in the snapshot are not executable (missing +x bit); they cannot run as written.",
+    "pre-tool-use.sh validates tool names but lacks JSON payload fixtures to test valid, invalid, malicious, missing-tool, and privacy cases.",
+    "error-occurred.sh logs error messages that may contain private content from agent responses.",
+    "The hooks.json wires all three events (sessionStart, preToolUse, errorOccurred) without documenting which events are opt-in and which are always-on.",
+    "No PowerShell parity is verified between .sh and .ps1 variants; behavioral divergence is undocumented."
+  ],
+  "adoption_blocked_by": [
+    "Hard dependency on absent Taskfile.yml.",
+    "Non-portable GNU date syntax breaks macOS.",
+    "Non-executable .sh files in snapshot.",
+    "No JSON payload fixtures.",
+    "No verified PowerShell behavioral parity.",
+    "Consumer-specific wiring belongs to Empathy, not Aether.",
+    "Error logging may capture private agent response content."
+  ],
+  "adr_reference": "DECISIONS.md#adr-007",
+  "reviewed_date": "2026-08-09",
+  "trust_classification": "untrusted-prototype"
+}
