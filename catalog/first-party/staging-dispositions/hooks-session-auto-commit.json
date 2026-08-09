@@ -1,0 +1,23 @@
+{
+  "staging_path": ".staging/hooks/session-auto-commit/",
+  "disposition": "reject",
+  "owner": null,
+  "reason": "Session auto-commit is explicitly identified as unsafe for universal default adoption. Automatically committing agent-produced changes without human review removes a critical safety checkpoint. This prototype must not be distributed as a default hook and must remain in .staging/ if retained as research evidence only.",
+  "safety_concerns": [
+    "Commits agent-produced changes to the repository without human review or explicit opt-in per session.",
+    "A compromised or misbehaving agent could commit malicious or privacy-violating content automatically.",
+    "Failure of the commit step (e.g., merge conflict, protected branch) leaves the repository in an undefined state with no recovery documentation.",
+    "Auto-commit combined with session-logger creates a permanent record of potentially private session content."
+  ],
+  "adoption_blocked_by": [
+    "Explicitly ruled out as a default by issue 015 non-goals.",
+    "No human-confirmation gate before commit.",
+    "No failure recovery documentation.",
+    "Privacy risk when combined with session content that includes prompts or environment data.",
+    "No tests or JSON payload fixtures."
+  ],
+  "distribution_exclusion": true,
+  "adr_reference": "DECISIONS.md#adr-007",
+  "reviewed_date": "2026-08-09",
+  "trust_classification": "untrusted-prototype"
+}

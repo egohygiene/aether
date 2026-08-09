@@ -1,0 +1,28 @@
+{
+  "staging_path": ".staging/hooks/tool-guardian/",
+  "disposition": "needs-human-review",
+  "owner": null,
+  "reason": "Tool-guardian is the only staged prototype with a plausible Aether-first-party justification: it acts as a pre-tool-use safety screener without duplicating Egolint or Relay responsibilities. However, it has unresolved security issues that require human review before adoption can be accepted. Deferred to a subsequent issue.",
+  "safety_concerns": [
+    "Regex patterns in PATTERNS array are matched against attacker-controlled tool input using ERE ('grep -iE'). A crafted tool name or input could manipulate pattern matching through regex metacharacters.",
+    "Allowlist check uses shell glob matching ('*pattern*') against combined tool name and input; a crafted pattern in TOOL_GUARD_ALLOWLIST could cause unexpected allow decisions.",
+    "JSON input parsed via both 'jq' and grep/sed fallback; the fallback uses unanchored regex that can be fooled by crafted JSON field order or escaped characters.",
+    "Log file path from TOOL_GUARD_LOG_DIR is not validated; a crafted environment variable could redirect logs to arbitrary paths (path traversal).",
+    "Uses 'date -u' which is portable; however, 'date --date' appears in the dependency-license-checker and governance-audit; this script is clean on that point.",
+    "No PowerShell parity; behavior on Windows is undefined.",
+    "No JSON payload fixtures or tests exist."
+  ],
+  "adoption_conditions": [
+    "Regex injection risk in pattern matching must be eliminated (treat tool input as plain string, not ERE input).",
+    "JSON input must be parsed exclusively via 'jq' with explicit failure when 'jq' is absent (fail-closed, not silent fallback).",
+    "Log path must be validated to remain within the repository root.",
+    "Full PowerShell equivalent with equivalent test coverage.",
+    "JSON payload fixtures for valid, invalid, malicious, missing-jq, allow, deny, and platform cases.",
+    "Shdoc docstrings on all functions; 'printf' used throughout.",
+    "Threat model covering all required categories documented.",
+    "Human review of adopted threat-pattern list for false-allow and false-deny cases."
+  ],
+  "adr_reference": "DECISIONS.md#adr-007",
+  "reviewed_date": "2026-08-09",
+  "trust_classification": "untrusted-prototype"
+}

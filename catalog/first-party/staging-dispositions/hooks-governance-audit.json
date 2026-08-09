@@ -1,0 +1,21 @@
+{
+  "staging_path": ".staging/hooks/governance-audit/",
+  "disposition": "reject",
+  "owner": null,
+  "reason": "The governance-audit prototype references obsolete monolith paths (mindgarden, tools/mindcap) that do not exist in the current repository snapshot. It silently fails open when 'jq' is absent because the fallback produces an empty log entry rather than an error. It logs the current working directory path at session start, which may reveal private path information. No failure policy, no tests, and no PowerShell parity exist.",
+  "safety_concerns": [
+    "Hard-dependency on 'jq' with silent empty-log fallback is a false-allow failure mode.",
+    "Logging CWD at session start may disclose private directory structures.",
+    "References to mindgarden and tools/mindcap indicate the script was authored for a different repository and has not been ported."
+  ],
+  "adoption_blocked_by": [
+    "Obsolete repository paths baked into the script.",
+    "Silent fail-open when 'jq' is absent.",
+    "Privacy risk from unconditional CWD logging.",
+    "No tests or JSON payload fixtures.",
+    "No PowerShell parity."
+  ],
+  "adr_reference": "DECISIONS.md#adr-007",
+  "reviewed_date": "2026-08-09",
+  "trust_classification": "untrusted-prototype"
+}

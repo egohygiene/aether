@@ -23,6 +23,7 @@ request; do not edit past decisions in place—append a superseding ADR instead.
 | [ADR-004](#adr-004) | Repository-release vs. per-artifact versioning | Accepted |
 | [ADR-005](#adr-005) | Staged-material lifecycle and deletion gate | Accepted |
 | [ADR-006](#adr-006) | Whether generated `dist/` content is committed or release-only | Accepted |
+| [ADR-007](#adr-007) | Staged hook prototype disposition for first release | Accepted |
 
 ---
 
@@ -266,6 +267,101 @@ GitHub Releases.
 
 ---
 
+## ADR-007
+
+**Question:** What disposition applies to each staged hook prototype for the first Aether release?
+
+**Date:** 2026-08-09
+**Status:** Accepted
+
+### Context
+
+Issue 015 required an audit of all staged hook prototypes against security,
+privacy, portability, testability, and ownership criteria.  Hooks execute code
+at an agent trust boundary and are held to stricter requirements than passive
+skill instructions.
+
+The staged hooks are:
+
+| Prototype path | Candidate use |
+|---|---|
+| `.staging/hooks/dependency-license-checker/` | License compliance gate at session end |
+| `.staging/hooks/fix-broken-links/` | Link validation and repair |
+| `.staging/hooks/governance-audit/` | Repository governance logging |
+| `.staging/hooks/secrets-scanner/` | Secret detection at session end |
+| `.staging/hooks/session-auto-commit/` | Automatic commit at session end |
+| `.staging/hooks/session-logger/` | Prompt and session content logging |
+| `.staging/hooks/tool-guardian/` | Pre-tool-use threat screening |
+| `.staging/integrations/github-copilot/hooks/` + `scripts/` | GitHub Copilot-specific wiring |
+
+Observed concerns included: obsolete monolith paths; non-portable `date --date`
+(GNU-only); non-executable `.sh` files; unsafe universal auto-commit; raw
+prompt logging; overlap with Egolint/Relay responsibilities; and absent tests,
+threat models, and PowerShell parity.
+
+### Decision
+
+**No staged hook prototype is promoted to a first-party Aether release artifact
+in this issue.**
+
+Each prototype receives the following disposition:
+
+| Prototype | Disposition | Owner | Rationale |
+|---|---|---|---|
+| `dependency-license-checker` | **move-out** | Egolint | License scanning is a lint concern; duplicating it in a hook creates two conflicting authorities. |
+| `fix-broken-links` | **move-out** | Egolint | Link checking is a lint concern owned by Egolint; hook delivery channel is Relay. |
+| `governance-audit` | **reject** | — | References obsolete monolith paths (`mindgarden`, `tools/mindcap`); silently fails open when `jq` is absent; logs working-directory path at session start, which may reveal private information. |
+| `secrets-scanner` | **move-out** | Egolint | Secret scanning is a security-lint concern owned by Egolint; duplicating scanners in hooks creates false confidence. |
+| `session-auto-commit` | **reject** | — | Auto-commit is unsafe as a universal default; violates the explicit non-goal in the issue. Must not be distributed as a default. If retained as research it stays in `.staging/` and is excluded from distributions. |
+| `session-logger` | **reject** | — | Logs raw prompts, environment content, and working-directory paths by default, which captures private material without consent. |
+| `tool-guardian` | **needs-human-review** | — | Closest to a justified Aether provider adapter (pre-tool-use safety screening), but contains regex-injection risk in the pattern-matching loop and has no tests or PowerShell parity. Deferred to a subsequent issue after human review. |
+| `integrations/github-copilot/hooks/` + `scripts/` | **reject** | — | `session-start.sh` hard-codes a `Taskfile.yml` dependency absent from the repository; uses GNU `date --date` (non-portable to macOS BSD `date`); `.sh` files are not executable in the snapshot; `pre-tool-use.sh` lacks validation fixtures; no PowerShell equivalence is verified. |
+
+### Rationale
+
+- Rejecting or deferring all prototypes is preferable to releasing unsafe hooks
+  under time pressure.
+- Move-out dispositions correctly attribute ownership without deleting staging
+  evidence prematurely (ADR-005 deletion gate).
+- `tool-guardian` is the only prototype with a plausible Aether-first-party
+  justification, but it requires human review before adoption can be accepted.
+
+### Constraints on future hook releases
+
+Any hook promoted from `.staging/` to a first-party Aether release must satisfy
+all of the following before merging:
+
+1. Ownership classification: Aether provider adapter confirmed (not Egolint/Relay).
+2. Threat model: covering untrusted JSON input, command injection, path
+   traversal, secret/prompt/environment disclosure, denial of service, false
+   allow/false deny, platform differences, and compromised dependencies.
+3. Explicit fail-open or fail-closed policy documented and tested.
+4. Input parsed as structured data; never evaluated as shell code.
+5. Declared macOS/Linux/Windows compatibility tested via fixtures or narrowed.
+6. Missing dependencies produce safe, diagnosed behavior (not silent fail-open).
+7. Shell functions use shdoc docstrings and `printf`; strict mode enabled.
+8. Underlying lint/license/secret/link checks delegated to Egolint/Relay.
+9. JSON payload fixtures for every supported event; tests for valid, invalid,
+   malicious, missing-tool, platform, allow, deny, and privacy cases.
+10. Packaged separately from skill distributions; registered in the catalog.
+11. Install, disable, diagnostics, and uninstall documentation present.
+12. No raw prompt, environment variable, tool payload, credential, private path,
+    or captured source content logged by default.
+
+### Consequences
+
+- No hook artifacts are released in the first Aether release.
+- `.staging/hooks/` files are **not removed** (ADR-005 deletion gate; human
+  review not yet complete).
+- Move-out items remain in `.staging/` until Alan reviews and transfers them.
+- `tool-guardian` is deferred to a subsequent issue for human review.
+- Disposition records for each prototype are added to
+  `catalog/first-party/staging-dispositions/`.
+- The safety guide at `docs/agent-and-hook-safety-guide.md` is updated to
+  reflect the threat model and failure-policy requirements.
+
+---
+
 ## Unresolved Questions Captured Here
 
 | ID | Question | Linked ADR |
@@ -273,3 +369,4 @@ GitHub Releases.
 | OQ-D1 | Whether ArXiv is a first-class distribution channel | Deferred; see [`PURPOSE.md §7`](PURPOSE.md#7-open-questions) |
 | OQ-D2 | Whether per-artifact versioning will be needed at larger scale | Deferred; may supersede ADR-004 |
 | OQ-D3 | Whether hooks belong in Mantle or Relay | Deferred; see [`SYSTEM.md §10`](SYSTEM.md#10-open-questions) |
+| OQ-D4 | Whether `tool-guardian` qualifies as an Aether provider adapter | Deferred; see ADR-007; requires human review |

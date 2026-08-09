@@ -1,0 +1,19 @@
+{
+  "staging_path": ".staging/hooks/dependency-license-checker/",
+  "disposition": "move-out",
+  "owner": "Egolint",
+  "reason": "License scanning is a lint concern owned by Egolint. Duplicating a license checker in an Aether hook creates two conflicting authorities and obscures the canonical enforcement point. The implementation should be consumed from a stable Egolint command rather than re-implemented here.",
+  "safety_concerns": [
+    "Uses 'git diff HEAD' without verifying clean working tree; diff output is treated as trusted package data.",
+    "License lookup shells out to package manager CLIs whose output is not validated before use.",
+    "Log directory is created unconditionally and may reveal repository structure in shared environments."
+  ],
+  "adoption_blocked_by": [
+    "No ownership in Aether (lint responsibility belongs to Egolint).",
+    "No tests or JSON payload fixtures.",
+    "No PowerShell parity despite macOS/Linux/Windows claim."
+  ],
+  "adr_reference": "DECISIONS.md#adr-007",
+  "reviewed_date": "2026-08-09",
+  "trust_classification": "untrusted-prototype"
+}
