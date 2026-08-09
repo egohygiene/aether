@@ -8,7 +8,9 @@ provenance, plus the initial first-party catalog.
 - `schemas/` — versioned JSON Schemas
 - `fixtures/` — valid/invalid examples per schema
 - `first-party/catalog.v1.json` — canonical first-party artifact catalog (23 specs + 29 skills)
+- `external/approved-skills.v1.json` — governed external skill catalog entries reconstructed from staged provenance
 - `reports/first-party-coverage.v1.json` — coverage report for canonical corpus
+- `reports/staged-skills-inventory.v1.json` — complete staged-skill inventory with per-item migration disposition
 - `validate_catalog.py` — deterministic validator
 
 ## Authority when fields overlap
