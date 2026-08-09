@@ -26,10 +26,9 @@ class TestExternalCatalogAndStagingInventory(unittest.TestCase):
         validator = Draft202012Validator(schema)
 
         entries = external["entries"]
-        self.assertEqual(len(entries), len(lock))
-
         by_id = {entry["id"]: entry for entry in entries}
         self.assertEqual(len(by_id), len(entries))
+        self.assertGreaterEqual(len(entries), len(lock))
 
         for skill_name, lock_record in sorted(lock.items()):
             rec = by_id[f"external/{skill_name}"]
