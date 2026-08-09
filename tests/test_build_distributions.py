@@ -305,6 +305,13 @@ class TestBuildIntegration(unittest.TestCase):
             if f.is_file():
                 self.assertEqual(contents_before.get(str(f)), f.read_bytes())
 
+    def test_build_honors_custom_output_directory(self):
+        _make_skill(self._tmp, "alpha-skill")
+        custom_output = self._tmp / "custom-dist"
+        rc = bd.build(check=False, output_directory=custom_output)
+        self.assertEqual(rc, 0)
+        self.assertTrue((custom_output / "skills" / "alpha-skill" / "SKILL.md").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -47,8 +47,9 @@ class TestExternalCatalogAndStagingInventory(unittest.TestCase):
             if d.is_dir() and (d / "SKILL.md").exists()
         }
         historical_paths = {
-            self._load_json(p)["staging_path"]
+            staging_path
             for p in sorted(FIRST_PARTY_DISP_DIR.glob("*.json"))
+            for staging_path in self._historical_staging_paths(self._load_json(p))
         }
 
         entry_paths = {entry["staging_path"] for entry in entries}
@@ -65,6 +66,15 @@ class TestExternalCatalogAndStagingInventory(unittest.TestCase):
 
         allowed = set(inventory["classification_categories"])
         self.assertTrue(all(entry["classification"] in allowed for entry in entries))
+
+    def _historical_staging_paths(self, record: dict) -> list[str]:
+        if "staging_path" in record:
+            paths = [record["staging_path"]]
+        elif "staging_paths" in record:
+            paths = list(record["staging_paths"])
+        else:
+            self.fail("staging disposition record must define staging_path or staging_paths")
+        return [path for path in paths if path.startswith(".staging/skills/")]
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 """Build deterministic portable skill distributions from canonical source.
 
 Usage:
-    python3 library/organization/skills/build-distributions.py [--check]
+    python3 library/organization/skills/build-distributions.py [--check] [--output-directory dist]
 
 Options:
     --check    Verify that existing distributions are up to date; exit non-zero
@@ -184,7 +184,8 @@ def _build_skill_dist(skill_name: str, source_dir: Path) -> dict[str, bytes]:
 # Build / check
 # ---------------------------------------------------------------------------
 
-def build(check: bool = False) -> int:
+def build(check: bool = False, output_directory: Path | None = None) -> int:
+    dist_dir = (output_directory or (REPO_ROOT / "dist")) / "skills"
     skills = find_skills()
     if not skills:
         print("WARNING: no SKILL.md files found under library/organization/skills/", file=sys.stderr)
@@ -202,20 +203,21 @@ def build(check: bool = False) -> int:
             continue
 
         for rel_path, content in file_map.items():
-            out_path = REPO_ROOT / rel_path
+            out_path = dist_dir / Path(rel_path).relative_to("dist/skills")
+            display_path = _normalized_display_path(out_path)
             if check:
                 if not out_path.exists():
-                    print(f"DRIFT  missing: {rel_path}")
+                    print(f"DRIFT  missing: {display_path}")
                     drift += 1
                 elif out_path.read_bytes() != content:
-                    print(f"DRIFT  stale:   {rel_path}")
+                    print(f"DRIFT  stale:   {display_path}")
                     drift += 1
                 else:
-                    print(f"OK     {rel_path}")
+                    print(f"OK     {display_path}")
             else:
                 out_path.parent.mkdir(parents=True, exist_ok=True)
                 out_path.write_bytes(content)
-                print(f"wrote  {rel_path}")
+                print(f"wrote  {display_path}")
                 written += 1
 
     if check:
@@ -240,8 +242,20 @@ def main() -> int:
         action="store_true",
         help="Detect drift without writing files",
     )
+    parser.add_argument(
+        "--output-directory",
+        default="dist",
+        help="Base output directory for generated distributions.",
+    )
     args = parser.parse_args()
-    return build(check=args.check)
+    return build(check=args.check, output_directory=(REPO_ROOT / args.output_directory))
+
+
+def _normalized_display_path(path: Path) -> str:
+    try:
+        return path.relative_to(REPO_ROOT).as_posix()
+    except ValueError:
+        return path.as_posix()
 
 
 if __name__ == "__main__":

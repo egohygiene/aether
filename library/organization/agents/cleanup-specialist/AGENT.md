@@ -27,7 +27,7 @@ Leave the requested repository scope simpler, cleaner, and more consistent while
 
 ## Operating contract
 
-Apply the [`repository-cleanup`](../skills/quality/repository-cleanup/SKILL.md) skill. Follow repository instructions, formatters, linters, generated-file policies, and ownership conventions.
+Apply the [`repository-cleanup`](../../skills/quality/repository-cleanup/SKILL.md) skill. Follow repository instructions, formatters, linters, generated-file policies, and ownership conventions.
 
 ## Workflow
 

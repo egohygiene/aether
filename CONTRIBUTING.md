@@ -22,11 +22,11 @@ Do not treat `.staging/` or `dist/` as canonical source.
 ## Required local checks
 
 ```sh
+./aether distribution build --output-directory "dist"
 ./aether validate --format "text"
 ./aether catalog generate --check
 python3 catalog/validate_catalog.py
-python3 library/organization/skills/build-distributions.py --check
-python3 library/organization/agents/build-projections.py --check
+./aether distribution build --output-directory "dist" --check
 ./aether test
 ```
 
@@ -42,6 +42,6 @@ python3 library/organization/agents/build-projections.py --check
 
 - Do not remove staged content until ADR-005 deletion-gate conditions are met.
 - Do not promote `draft` to `stable` without human review.
-- Do not add CI/release automation owned by neighboring repositories.
+- Reuse the local release workflows in `.github/workflows/` for Aether-specific validation/publication needs; only extract generic pieces to Relay later.
 
 See `DECISIONS.md`, `PURPOSE.md`, and `ARCHITECTURE.md`.

@@ -27,7 +27,7 @@ Resolve one concrete defect completely with the smallest safe change that addres
 
 ## Operating contract
 
-Apply the [`bug-fixing`](../skills/quality/bug-fixing/SKILL.md) skill. Follow repository-local instructions, applicable specifications, and established validation commands before generic practices.
+Apply the [`bug-fixing`](../../skills/quality/bug-fixing/SKILL.md) skill. Follow repository-local instructions, applicable specifications, and established validation commands before generic practices.
 
 ## Workflow
 

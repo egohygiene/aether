@@ -27,7 +27,7 @@ Bridge approved architecture and implementation. Produce a plan that a human or 
 
 ## Operating contract
 
-Apply the [`implementation-planning`](../skills/authoring/implementation-planning/SKILL.md) skill. Treat repository instructions, approved specifications, architecture decisions, and acceptance criteria as constraints rather than suggestions.
+Apply the [`implementation-planning`](../../skills/authoring/implementation-planning/SKILL.md) skill. Treat repository instructions, approved specifications, architecture decisions, and acceptance criteria as constraints rather than suggestions.
 
 ## Workflow
 

@@ -64,10 +64,9 @@ pip install -r requirements-dev.lock
 From repository root:
 
 ```sh
+./aether distribution build --output-directory "dist"
 ./aether validate --format "text"
 ./aether catalog generate --check
-python3 library/organization/skills/build-distributions.py --check
-python3 library/organization/agents/build-projections.py --check
 ./aether test
 ```
 
@@ -76,6 +75,7 @@ python3 library/organization/agents/build-projections.py --check
 Primary validator:
 
 ```sh
+./aether distribution build --output-directory "dist"
 ./aether validate --format "text"
 ./aether validate --format "json"
 ```
@@ -110,13 +110,15 @@ Test suite:
 Build deterministic first-party skill distributions:
 
 ```sh
-python3 library/organization/skills/build-distributions.py
-python3 library/organization/skills/build-distributions.py --check
+./aether distribution build --output-directory "dist"
+./aether distribution build --output-directory "dist" --check
 ```
 
-Build deterministic GitHub agent projections:
+Underlying generators remain available when a narrower check is needed:
 
 ```sh
+python3 library/organization/skills/build-distributions.py
+python3 library/organization/skills/build-distributions.py --check
 python3 library/organization/agents/build-projections.py
 python3 library/organization/agents/build-projections.py --check
 ```
@@ -182,6 +184,7 @@ At present, GitHub CLI exposes `update` but no dedicated `remove` subcommand; re
 - Artifact versions are per-record metadata in the first-party catalog.
 - Breaking changes require major version increments in artifact metadata and release documentation.
 - Only stable artifacts are eligible for release manifests.
+- Release publication is explicit through `.github/workflows/release-first-party-skills.yml`; PR validation stays read-only in `.github/workflows/pr-validation.yml`.
 
 See `CHANGELOG.md` and `docs/release-and-pinning-guide.md`.
 

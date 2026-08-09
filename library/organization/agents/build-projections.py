@@ -2,7 +2,7 @@
 """Build GitHub repository and organization agent projections from canonical source.
 
 Usage:
-    python3 library/organization/agents/build-projections.py [--check]
+    python3 library/organization/agents/build-projections.py [--check] [--output-directory dist]
 
 Options:
     --check    Verify that existing projections are up to date; exit non-zero if drift detected.
@@ -43,11 +43,11 @@ ORG_PROJ = REPO_ROOT / "dist" / "github" / "organization" / "agents"
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 
-# Rewrite ``../skills/<domain>/<skill>/SKILL.md``  →  ``.agents/skills/<skill>/SKILL.md``
-_SKILL_LINK_RE = re.compile(r"\.\./skills/[^/]+/([^/]+)/SKILL\.md")
+# Rewrite ``../../skills/<domain>/<skill>/SKILL.md``  →  ``.agents/skills/<skill>/SKILL.md``
+_SKILL_LINK_RE = re.compile(r"(?:\.\./){2}skills/[^/]+/([^/]+)/SKILL\.md")
 
-# Rewrite ``../specs/<path>`` — capture remaining path after ``../specs/``
-_SPEC_LINK_RE = re.compile(r"\.\./specs/([^\s\)\"']+)")
+# Rewrite ``../../specs/<path>`` — capture remaining path after ``../../specs/``
+_SPEC_LINK_RE = re.compile(r"(?:\.\./){2}specs/([^\s\)\"']+)")
 
 STRIP_FIELDS = {"aether-id", "metadata"}
 
@@ -88,28 +88,31 @@ def find_agents() -> list[tuple[str, Path]]:
     return results
 
 
-def build(check: bool = False) -> int:
+def build(check: bool = False, output_directory: Path | None = None) -> int:
+    base_output = output_directory or (REPO_ROOT / "dist")
+    repo_proj = base_output / "github" / "repository" / ".github" / "agents"
+    org_proj = base_output / "github" / "organization" / "agents"
     agents = find_agents()
     if not agents:
         print("WARNING: no AGENT.md files found", file=sys.stderr)
         return 0
 
-    REPO_PROJ.mkdir(parents=True, exist_ok=True)
-    ORG_PROJ.mkdir(parents=True, exist_ok=True)
+    repo_proj.mkdir(parents=True, exist_ok=True)
+    org_proj.mkdir(parents=True, exist_ok=True)
 
     drift = 0
 
     for agent_id, source in agents:
         filename = f"{agent_id}.agent.md"
 
-        repo_content = project_agent(agent_id, source, REPO_PROJ, ".github/specs")
-        org_content = project_agent(agent_id, source, ORG_PROJ, "specs")
+        repo_content = project_agent(agent_id, source, repo_proj, ".github/specs")
+        org_content = project_agent(agent_id, source, org_proj, "specs")
 
         for out_path, content in [
-            (REPO_PROJ / filename, repo_content),
-            (ORG_PROJ / filename, org_content),
+            (repo_proj / filename, repo_content),
+            (org_proj / filename, org_content),
         ]:
-            rel = out_path.relative_to(REPO_ROOT)
+            rel = _normalized_display_path(out_path)
             if check:
                 if not out_path.exists():
                     print(f"DRIFT  missing projection: {rel}")
@@ -136,8 +139,20 @@ def build(check: bool = False) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="Check for drift without writing files")
+    parser.add_argument(
+        "--output-directory",
+        default="dist",
+        help="Base output directory for generated projections.",
+    )
     args = parser.parse_args()
-    return build(check=args.check)
+    return build(check=args.check, output_directory=(REPO_ROOT / args.output_directory))
+
+
+def _normalized_display_path(path: Path) -> str:
+    try:
+        return path.relative_to(REPO_ROOT).as_posix()
+    except ValueError:
+        return path.as_posix()
 
 
 if __name__ == "__main__":

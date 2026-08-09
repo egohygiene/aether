@@ -1461,6 +1461,34 @@ def command_catalog_generate(args: argparse.Namespace) -> int:
     return EXIT_OK
 
 
+def _run_python_script(script_path: Path, *, check: bool, output_directory: str) -> int:
+    cmd = [sys.executable, str(script_path), "--output-directory", output_directory]
+    if check:
+        cmd.append("--check")
+    result = subprocess.run(cmd)
+    return result.returncode
+
+
+def command_distribution_build(args: argparse.Namespace) -> int:
+    root = find_repo_root(Path(args.repo_root).resolve() if args.repo_root else Path.cwd())
+    output_directory = getattr(args, "output_directory", "dist")
+    scripts = [
+        root / "library" / "organization" / "specs" / "build-distributions.py",
+        root / "library" / "organization" / "skills" / "build-distributions.py",
+        root / "library" / "organization" / "agents" / "build-projections.py",
+    ]
+    exit_code = EXIT_OK
+    for script_path in scripts:
+        rc = _run_python_script(
+            script_path,
+            check=bool(getattr(args, "check", False)),
+            output_directory=output_directory,
+        )
+        if rc != EXIT_OK:
+            exit_code = rc
+    return exit_code
+
+
 def command_test(_args: argparse.Namespace) -> int:
     root = find_repo_root(Path(_args.repo_root).resolve() if _args.repo_root else Path.cwd())
     suite = unittest.defaultTestLoader.discover(str(root / "tests"))
@@ -1608,6 +1636,24 @@ def build_parser() -> argparse.ArgumentParser:
     catalog_generate = catalog_sub.add_parser("generate", help="Generate or check deterministic first-party catalog.")
     catalog_generate.add_argument("--check", action="store_true", help="Check for drift without rewriting files.")
     catalog_generate.set_defaults(handler=command_catalog_generate)
+
+    distribution = subparsers.add_parser("distribution", help="Distribution build commands.")
+    distribution_sub = distribution.add_subparsers(dest="distribution_command", required=True)
+    distribution_build = distribution_sub.add_parser(
+        "build",
+        help="Build or check deterministic specification/skill distributions and agent projections.",
+    )
+    distribution_build.add_argument(
+        "--output-directory",
+        default="dist",
+        help="Base output directory for generated distribution artifacts.",
+    )
+    distribution_build.add_argument(
+        "--check",
+        action="store_true",
+        help="Check for drift without rewriting files.",
+    )
+    distribution_build.set_defaults(handler=command_distribution_build)
 
     eval_cmd = subparsers.add_parser("eval", help="Skill evaluation harness commands.")
     eval_sub = eval_cmd.add_subparsers(dest="eval_command", required=True)

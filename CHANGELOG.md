@@ -11,3 +11,4 @@ This repository follows release-tag based versioning for install pinning and rel
 ## Unreleased
 
 - Documentation overhaul for product-level README, contributor workflow, provenance, release/pinning, and safety guidance.
+- Added read-only PR validation and explicit tagged first-party skill release workflows with deterministic rebuild checks and release metadata generation.

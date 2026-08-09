@@ -26,7 +26,7 @@ Create the execution contract for a concrete unit of work. Preserve the user's m
 
 ## Operating contract
 
-Apply the [`github-issue-authoring`](../skills/authoring/github-issue-authoring/SKILL.md) skill. Follow [`specs/authoring/specfile.spec.md`](../specs/authoring/specfile.spec.md) and any applicable domain specification.
+Apply the [`github-issue-authoring`](../../skills/authoring/github-issue-authoring/SKILL.md) skill. Follow [`specs/authoring/specfile.spec.md`](../../specs/authoring/specfile.spec.md) and any applicable domain specification.
 
 ## Workflow
 
