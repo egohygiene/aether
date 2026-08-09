@@ -18,6 +18,7 @@ jobs:
         shell: bash
     env:
       RUN_REPORT_DIR: .artifacts/pr-validation
+      AETHER_E2E_REPORT_DIR: .artifacts/pr-validation/consumer-installation
     steps:
       - name: Check out repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
