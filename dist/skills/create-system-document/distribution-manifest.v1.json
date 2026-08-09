@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-system-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-system-document",
+  "generated_paths": [
+    "dist/skills/create-system-document/SKILL.md",
+    "dist/skills/create-system-document/evals/evals.json",
+    "dist/skills/create-system-document/references/authoring-guide.md",
+    "dist/skills/create-system-document/references/validation-checklist.md",
+    "dist/skills/create-system-document/templates/SYSTEM.template.md",
+    "dist/skills/create-system-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "2c91a59487bc02c2132ec9344b50e1a60c76a7702c071af3ee6435daa37791ae"
+  }
+}

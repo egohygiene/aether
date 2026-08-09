@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/audit-repository",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/audit-repository",
+  "generated_paths": [
+    "dist/skills/audit-repository/SKILL.md",
+    "dist/skills/audit-repository/evals/evals.json",
+    "dist/skills/audit-repository/references/finding-classification-guide.md",
+    "dist/skills/audit-repository/references/validation-checklist.md",
+    "dist/skills/audit-repository/templates/AUDIT.template.md",
+    "dist/skills/audit-repository/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "197da818e259a8f0377cf6eb6579cae053243c8e2a419bcdfe5951d0d5759ee5"
+  }
+}

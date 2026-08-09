@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-purpose-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-purpose-document",
+  "generated_paths": [
+    "dist/skills/create-purpose-document/SKILL.md",
+    "dist/skills/create-purpose-document/evals/evals.json",
+    "dist/skills/create-purpose-document/references/examples-and-antipatterns.md",
+    "dist/skills/create-purpose-document/references/validation-checklist.md",
+    "dist/skills/create-purpose-document/templates/PURPOSE.template.md",
+    "dist/skills/create-purpose-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "0b2b945fb5bfeae3c02066a04973432bc76848cb3f728dd4bc49292b8499c509"
+  }
+}

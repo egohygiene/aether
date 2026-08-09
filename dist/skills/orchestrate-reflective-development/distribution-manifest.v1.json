@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/orchestrate-reflective-development",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/orchestrate-reflective-development",
+  "generated_paths": [
+    "dist/skills/orchestrate-reflective-development/SKILL.md",
+    "dist/skills/orchestrate-reflective-development/evals/evals.json",
+    "dist/skills/orchestrate-reflective-development/references/recursion-and-synchronization-guide.md",
+    "dist/skills/orchestrate-reflective-development/references/validation-checklist.md",
+    "dist/skills/orchestrate-reflective-development/templates/REFLECTIVE_CYCLE.template.md",
+    "dist/skills/orchestrate-reflective-development/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "a0f93d539faaa147ec86a8f9415c387d684ebbed11923b1f49db37f34285cf07"
+  }
+}

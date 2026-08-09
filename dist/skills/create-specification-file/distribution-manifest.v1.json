@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-specification-file",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-specification-file",
+  "generated_paths": [
+    "dist/skills/create-specification-file/SKILL.md",
+    "dist/skills/create-specification-file/evals/evals.json",
+    "dist/skills/create-specification-file/references/specification-authoring-guide.md",
+    "dist/skills/create-specification-file/references/validation-checklist.md",
+    "dist/skills/create-specification-file/templates/SPECIFICATION.template.md",
+    "dist/skills/create-specification-file/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "2173169a2ad5c417554bea595e50e13b8d53ddb563740625e49633be9a4b9dfe"
+  }
+}

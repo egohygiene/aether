@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-ontology-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-ontology-document",
+  "generated_paths": [
+    "dist/skills/create-ontology-document/SKILL.md",
+    "dist/skills/create-ontology-document/evals/evals.json",
+    "dist/skills/create-ontology-document/references/concept-modeling-guide.md",
+    "dist/skills/create-ontology-document/references/validation-checklist.md",
+    "dist/skills/create-ontology-document/templates/ONTOLOGY.template.md",
+    "dist/skills/create-ontology-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "b191a01e4e4409fa8e9d3b309a547159fe791954a97e7e5fe156843603e82872"
+  }
+}

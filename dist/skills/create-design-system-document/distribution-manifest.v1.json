@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-design-system-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-design-system-document",
+  "generated_paths": [
+    "dist/skills/create-design-system-document/SKILL.md",
+    "dist/skills/create-design-system-document/evals/evals.json",
+    "dist/skills/create-design-system-document/references/design-system-boundaries.md",
+    "dist/skills/create-design-system-document/references/validation-checklist.md",
+    "dist/skills/create-design-system-document/templates/DESIGN_SYSTEM.template.md",
+    "dist/skills/create-design-system-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "c96a1e7bf6e72b8442791a23c76841ec936c9b7f58210fd02ddea1539b361c5d"
+  }
+}

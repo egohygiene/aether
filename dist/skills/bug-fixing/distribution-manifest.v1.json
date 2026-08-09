@@ -1,0 +1,21 @@
+{
+  "artifact_id": "skill/bug-fixing",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/bug-fixing",
+  "generated_paths": [
+    "dist/skills/bug-fixing/SKILL.md",
+    "dist/skills/bug-fixing/evals/evals.json",
+    "dist/skills/bug-fixing/references/regression-checklist.md",
+    "dist/skills/bug-fixing/templates/BUG_FIX_REPORT.template.md",
+    "dist/skills/bug-fixing/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "96894e0ad81cc6330ce8904ba9103e8de120363cc523e2c621074889fcc04374"
+  }
+}

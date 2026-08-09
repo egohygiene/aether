@@ -1,0 +1,21 @@
+{
+  "artifact_id": "skill/repository-cleanup",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/repository-cleanup",
+  "generated_paths": [
+    "dist/skills/repository-cleanup/SKILL.md",
+    "dist/skills/repository-cleanup/evals/evals.json",
+    "dist/skills/repository-cleanup/references/classification-checklist.md",
+    "dist/skills/repository-cleanup/templates/CLEANUP_PLAN.template.md",
+    "dist/skills/repository-cleanup/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "5c5a84c1f92313a65053e4a76961ee9c17a2763393a6a66b318a5526a54ed405"
+  }
+}

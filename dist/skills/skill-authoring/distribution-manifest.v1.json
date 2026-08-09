@@ -1,0 +1,21 @@
+{
+  "artifact_id": "skill/skill-authoring",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/skill-authoring",
+  "generated_paths": [
+    "dist/skills/skill-authoring/SKILL.md",
+    "dist/skills/skill-authoring/evals/evals.json",
+    "dist/skills/skill-authoring/references/validation-checklist.md",
+    "dist/skills/skill-authoring/templates/SKILL.template.md",
+    "dist/skills/skill-authoring/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "013535792af23e1e0148b54e7bec43d46393ea7557f38e79d6f4b89b61ba35ab"
+  }
+}

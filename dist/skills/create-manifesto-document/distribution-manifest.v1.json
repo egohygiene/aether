@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-manifesto-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-manifesto-document",
+  "generated_paths": [
+    "dist/skills/create-manifesto-document/SKILL.md",
+    "dist/skills/create-manifesto-document/evals/evals.json",
+    "dist/skills/create-manifesto-document/references/examples-and-antipatterns.md",
+    "dist/skills/create-manifesto-document/references/validation-checklist.md",
+    "dist/skills/create-manifesto-document/templates/MANIFESTO.template.md",
+    "dist/skills/create-manifesto-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "af2a6ee0b3f27a95bd79fa21d92506bfda59a1146f24fc16d580f2b6be31f8c4"
+  }
+}

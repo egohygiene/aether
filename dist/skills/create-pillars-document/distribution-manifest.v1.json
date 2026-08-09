@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-pillars-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-pillars-document",
+  "generated_paths": [
+    "dist/skills/create-pillars-document/SKILL.md",
+    "dist/skills/create-pillars-document/evals/evals.json",
+    "dist/skills/create-pillars-document/references/examples-and-antipatterns.md",
+    "dist/skills/create-pillars-document/references/validation-checklist.md",
+    "dist/skills/create-pillars-document/templates/PILLARS.template.md",
+    "dist/skills/create-pillars-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "2111512718e6861a5c66f47e14aab14121a492200d83886950f56569dbdc1469"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "artifact_id": "skill/implementation-planning",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/implementation-planning",
+  "generated_paths": [
+    "dist/skills/implementation-planning/SKILL.md",
+    "dist/skills/implementation-planning/evals/evals.json",
+    "dist/skills/implementation-planning/references/phase-design-checklist.md",
+    "dist/skills/implementation-planning/templates/IMPLEMENTATION_PLAN.template.md",
+    "dist/skills/implementation-planning/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "2c87f62f2703f8f40035b562fb5b5d0561dc0948500c8d81b3f30b25448922d6"
+  }
+}

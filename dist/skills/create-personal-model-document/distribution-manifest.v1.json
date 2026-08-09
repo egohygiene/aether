@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-personal-model-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-personal-model-document",
+  "generated_paths": [
+    "dist/skills/create-personal-model-document/SKILL.md",
+    "dist/skills/create-personal-model-document/evals/evals.json",
+    "dist/skills/create-personal-model-document/references/human-model-safeguards.md",
+    "dist/skills/create-personal-model-document/references/validation-checklist.md",
+    "dist/skills/create-personal-model-document/templates/PERSONAL_MODEL.template.md",
+    "dist/skills/create-personal-model-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "8396ab9c4a654ffe6bf35d4736c37811af0d76902f90d55075c2a683e9e21a0e"
+  }
+}

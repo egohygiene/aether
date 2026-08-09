@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-vision-document",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-vision-document",
+  "generated_paths": [
+    "dist/skills/create-vision-document/SKILL.md",
+    "dist/skills/create-vision-document/evals/evals.json",
+    "dist/skills/create-vision-document/references/examples-and-antipatterns.md",
+    "dist/skills/create-vision-document/references/validation-checklist.md",
+    "dist/skills/create-vision-document/templates/VISION.template.md",
+    "dist/skills/create-vision-document/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "88316f29159a60a611f23935d2bd6c1489d20b9eb4efe4207a4d4d59c002c916"
+  }
+}

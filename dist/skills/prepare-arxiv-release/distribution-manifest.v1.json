@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/prepare-arxiv-release",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/prepare-arxiv-release",
+  "generated_paths": [
+    "dist/skills/prepare-arxiv-release/SKILL.md",
+    "dist/skills/prepare-arxiv-release/evals/evals.json",
+    "dist/skills/prepare-arxiv-release/references/official-arxiv-baseline.md",
+    "dist/skills/prepare-arxiv-release/references/validation-checklist.md",
+    "dist/skills/prepare-arxiv-release/templates/ARXIV_RELEASE_MANIFEST.template.json",
+    "dist/skills/prepare-arxiv-release/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "558143c3e95fd0a3f937c5e34e55d8575a2c3d50ed0c69e837b4c8b7fd061354"
+  }
+}
