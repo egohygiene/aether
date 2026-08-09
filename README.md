@@ -6,7 +6,8 @@ Aether is Ego Hygiene’s canonical first-party library of reusable AI specifica
 
 - Repository status: active, with canonical source in `library/organization/`.
 - Publishing/install surfaces (`gh skill`, release tags) are preview-dependent and may change CLI behavior.
-- Artifact lifecycle: `draft -> experimental -> stable -> deprecated -> retired`.
+- Artifact lifecycle policy: `draft -> stable -> deprecated -> retired` (see `ARCHITECTURE.md`).
+- Catalog records may also include `experimental` state where explicitly defined by catalog contracts.
 - Only `stable` artifacts are releasable per catalog policy.
 
 ## 2) What Aether owns (and does not own)
@@ -19,32 +20,32 @@ Aether owns:
 Aether does **not** own:
 - Org-wide deployment automation, CI baseline, templates, environment provisioning, shell command runtime tooling, lint implementation, release orchestration, or conformance enforcement in consumer repos.
 
-See `/home/runner/work/aether/aether/PURPOSE.md#4-what-aether-is-not`.
+See `PURPOSE.md#4-what-aether-is-not`.
 
 ## 3) Architecture: canonical vs generated
 
 Canonical source:
-- `/home/runner/work/aether/aether/library/organization/specs/`
-- `/home/runner/work/aether/aether/library/organization/skills/`
-- `/home/runner/work/aether/aether/library/organization/agents/`
+- `library/organization/specs/`
+- `library/organization/skills/`
+- `library/organization/agents/`
 
 Generated artifacts:
-- `/home/runner/work/aether/aether/catalog/first-party/catalog.v1.json`
-- `/home/runner/work/aether/aether/dist/skills/`
-- `/home/runner/work/aether/aether/dist/github/`
+- `catalog/first-party/catalog.v1.json`
+- `dist/skills/`
+- `dist/github/`
 
 `.staging/` is non-canonical migration/provenance holding space and cannot be emptied without ADR-005 deletion-gate requirements (`DECISIONS.md#adr-005`).
 
 ## 4) First-party catalog summary
 
-Current canonical inventory (from repository contents):
+Current canonical inventory snapshot (recompute with the commands shown):
 - 23 specifications (`find library/organization/specs -name "*.spec.md"`)
 - 29 skills (`find library/organization/skills -name "SKILL.md"`)
 - 9 canonical agent profiles (`find library/organization/agents -name "AGENT.md"`)
 
 Machine-readable catalog and provenance:
-- `/home/runner/work/aether/aether/catalog/first-party/catalog.v1.json`
-- `/home/runner/work/aether/aether/catalog/external/approved-skills.v1.json`
+- `catalog/first-party/catalog.v1.json`
+- `catalog/external/approved-skills.v1.json`
 
 ## 5) Prerequisites
 
@@ -60,7 +61,7 @@ pip install -r requirements-dev.lock
 
 ## 6) Quickstart
 
-From repository root (`/home/runner/work/aether/aether`):
+From repository root:
 
 ```sh
 ./aether validate --format "text"
@@ -182,17 +183,17 @@ At present, GitHub CLI exposes `update` but no dedicated `remove` subcommand; re
 - Breaking changes require major version increments in artifact metadata and release documentation.
 - Only stable artifacts are eligible for release manifests.
 
-See `/home/runner/work/aether/aether/CHANGELOG.md` and `/home/runner/work/aether/aether/docs/release-and-pinning-guide.md`.
+See `CHANGELOG.md` and `docs/release-and-pinning-guide.md`.
 
 ## 13) External-skill provenance policy
 
 External skill records must be reconstructable from staged provenance evidence and validated against schema:
 
-- `/home/runner/work/aether/aether/catalog/external/approved-skills.v1.json`
-- `/home/runner/work/aether/aether/catalog/schemas/aether.external-source-record.v1.schema.json`
-- `/home/runner/work/aether/aether/.staging/manifests/skills-lock.json`
+- `catalog/external/approved-skills.v1.json`
+- `catalog/schemas/aether.external-source-record.v1.schema.json`
+- `.staging/manifests/skills-lock.json`
 
-Policy and review workflow: `/home/runner/work/aether/aether/docs/external-source-review-guide.md`.
+Policy and review workflow: `docs/external-source-review-guide.md`.
 
 ## 14) Security, privacy, and executable-resource warning
 
@@ -200,7 +201,7 @@ Policy and review workflow: `/home/runner/work/aether/aether/docs/external-sourc
 - Review tools, links, scripts, and external references before promotion or installation.
 - Never commit credentials/secrets in frontmatter, templates, eval fixtures, or hooks.
 
-See `/home/runner/work/aether/aether/SECURITY.md` and `/home/runner/work/aether/aether/docs/agent-and-hook-safety-guide.md`.
+See `SECURITY.md` and `docs/agent-and-hook-safety-guide.md`.
 
 ## 15) Contribution workflow
 
@@ -209,7 +210,7 @@ See `/home/runner/work/aether/aether/SECURITY.md` and `/home/runner/work/aether/
 3. Regenerate derived artifacts when required.
 4. Submit focused PRs with clear scope and evidence.
 
-Detailed process: `/home/runner/work/aether/aether/CONTRIBUTING.md`.
+Detailed process: `CONTRIBUTING.md`.
 
 ## 16) Ecosystem boundaries
 
@@ -229,5 +230,5 @@ Consumer-local instructions override Aether defaults in consumer context.
 
 ## 17) License and support
 
-- License: `/home/runner/work/aether/aether/LICENSE`
-- Support: `/home/runner/work/aether/aether/SUPPORT.md`
+- License: `LICENSE`
+- Support: `SUPPORT.md`
