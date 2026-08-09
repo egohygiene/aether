@@ -21,6 +21,9 @@ concurrency:
 jobs:
   validate-release:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     outputs:
       release_tag: ${{ steps.release-context.outputs.release_tag }}
       release_ref: ${{ steps.release-context.outputs.release_ref }}
@@ -72,12 +75,12 @@ jobs:
           set -euo pipefail
           mkdir -p "${RUN_REPORT_DIR}"
           rm -rf dist
+          ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build.txt"
+          ./aether distribution build --output-directory "dist" --check | tee "${RUN_REPORT_DIR}/distribution-check.txt"
           ./aether validate --format "text" | tee "${RUN_REPORT_DIR}/validate.txt"
           ./aether validate --shell --format "text" | tee "${RUN_REPORT_DIR}/shell.txt"
           ./aether catalog generate --check | tee "${RUN_REPORT_DIR}/catalog-generate.txt"
           python3 catalog/validate_catalog.py | tee "${RUN_REPORT_DIR}/catalog-schema.txt"
-          ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build.txt"
-          ./aether distribution build --output-directory "dist" --check | tee "${RUN_REPORT_DIR}/distribution-check.txt"
           ./aether eval run --mode "deterministic" --format "text" | tee "${RUN_REPORT_DIR}/evals.txt"
           ./aether test | tee "${RUN_REPORT_DIR}/tests.txt"
           python3 library/organization/skills/build-release-artifacts.py \
@@ -118,6 +121,9 @@ jobs:
   publish-release:
     needs: validate-release
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     environment:
       name: first-party-skill-release
     permissions:
@@ -152,11 +158,11 @@ jobs:
           set -euo pipefail
           mkdir -p "${RUN_REPORT_DIR}"
           rm -rf dist
+          ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build.txt"
+          ./aether distribution build --output-directory "dist" --check | tee "${RUN_REPORT_DIR}/distribution-check.txt"
           ./aether validate --format "text" | tee "${RUN_REPORT_DIR}/validate.txt"
           ./aether catalog generate --check | tee "${RUN_REPORT_DIR}/catalog-generate.txt"
           python3 catalog/validate_catalog.py | tee "${RUN_REPORT_DIR}/catalog-schema.txt"
-          ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build.txt"
-          ./aether distribution build --output-directory "dist" --check | tee "${RUN_REPORT_DIR}/distribution-check.txt"
           ./aether eval run --mode "deterministic" --format "text" | tee "${RUN_REPORT_DIR}/evals.txt"
           ./aether test | tee "${RUN_REPORT_DIR}/tests.txt"
           python3 library/organization/skills/build-release-artifacts.py \

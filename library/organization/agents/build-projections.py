@@ -43,11 +43,11 @@ ORG_PROJ = REPO_ROOT / "dist" / "github" / "organization" / "agents"
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 
-# Rewrite ``../skills/<domain>/<skill>/SKILL.md``  →  ``.agents/skills/<skill>/SKILL.md``
-_SKILL_LINK_RE = re.compile(r"\.\./skills/[^/]+/([^/]+)/SKILL\.md")
+# Rewrite ``../../skills/<domain>/<skill>/SKILL.md``  →  ``.agents/skills/<skill>/SKILL.md``
+_SKILL_LINK_RE = re.compile(r"(?:\.\./){2}skills/[^/]+/([^/]+)/SKILL\.md")
 
-# Rewrite ``../specs/<path>`` — capture remaining path after ``../specs/``
-_SPEC_LINK_RE = re.compile(r"\.\./specs/([^\s\)\"']+)")
+# Rewrite ``../../specs/<path>`` — capture remaining path after ``../../specs/``
+_SPEC_LINK_RE = re.compile(r"(?:\.\./){2}specs/([^\s\)\"']+)")
 
 STRIP_FIELDS = {"aether-id", "metadata"}
 

@@ -1473,6 +1473,7 @@ def command_distribution_build(args: argparse.Namespace) -> int:
     root = find_repo_root(Path(args.repo_root).resolve() if args.repo_root else Path.cwd())
     output_directory = getattr(args, "output_directory", "dist")
     scripts = [
+        root / "library" / "organization" / "specs" / "build-distributions.py",
         root / "library" / "organization" / "skills" / "build-distributions.py",
         root / "library" / "organization" / "agents" / "build-projections.py",
     ]
@@ -1640,7 +1641,7 @@ def build_parser() -> argparse.ArgumentParser:
     distribution_sub = distribution.add_subparsers(dest="distribution_command", required=True)
     distribution_build = distribution_sub.add_parser(
         "build",
-        help="Build or check deterministic skill distributions and agent projections.",
+        help="Build or check deterministic specification/skill distributions and agent projections.",
     )
     distribution_build.add_argument(
         "--output-directory",

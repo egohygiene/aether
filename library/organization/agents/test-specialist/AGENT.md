@@ -27,7 +27,7 @@ Improve confidence in behavior through focused, maintainable tests and evidence-
 
 ## Operating contract
 
-Apply the [`test-engineering`](../skills/quality/test-engineering/SKILL.md) skill. Follow repository test conventions and any domain-specific strategy document.
+Apply the [`test-engineering`](../../skills/quality/test-engineering/SKILL.md) skill. Follow repository test conventions and any domain-specific strategy document.
 
 ## Workflow
 

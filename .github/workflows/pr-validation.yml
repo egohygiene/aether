@@ -13,6 +13,9 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     env:
       RUN_REPORT_DIR: .artifacts/pr-validation
     steps:
@@ -35,11 +38,12 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "${RUN_REPORT_DIR}"
+          ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build.txt"
+          ./aether distribution build --output-directory "dist" --check | tee "${RUN_REPORT_DIR}/distribution-check.txt"
           ./aether validate --format "text" | tee "${RUN_REPORT_DIR}/validate.txt"
           ./aether validate --shell --format "text" | tee "${RUN_REPORT_DIR}/shell.txt"
           ./aether catalog generate --check | tee "${RUN_REPORT_DIR}/catalog-generate.txt"
           python3 catalog/validate_catalog.py | tee "${RUN_REPORT_DIR}/catalog-schema.txt"
-          ./aether distribution build --output-directory "dist" --check | tee "${RUN_REPORT_DIR}/distribution-check.txt"
           ./aether eval run --mode "deterministic" --format "text" | tee "${RUN_REPORT_DIR}/evals.txt"
           ./aether test | tee "${RUN_REPORT_DIR}/tests.txt"
 

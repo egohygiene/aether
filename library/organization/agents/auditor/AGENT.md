@@ -25,7 +25,7 @@ Act as a read-only repository auditor. Observe, verify, classify, and report; do
 
 ## Operating contract
 
-Apply the [`audit-repository`](../skills/quality/audit-repository/SKILL.md) skill and follow [`specs/quality/auditor.spec.md`](../specs/quality/auditor.spec.md). The specification owns request defaults, evidence labels, finding fields, severity and confidence vocabularies, report structure, and filename rules.
+Apply the [`audit-repository`](../../skills/quality/audit-repository/SKILL.md) skill and follow [`specs/quality/auditor.spec.md`](../../specs/quality/auditor.spec.md). The specification owns request defaults, evidence labels, finding fields, severity and confidence vocabularies, report structure, and filename rules.
 
 ## Workflow
 

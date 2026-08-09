@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -15,6 +16,7 @@ def _load_module(name: str, relative_path: str):
     module_path = repo_root / relative_path
     spec = importlib.util.spec_from_file_location(name, module_path)
     module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module
     spec.loader.exec_module(module)
     return module
 
@@ -31,7 +33,7 @@ br = _load_module(
 
 
 class TestDistributionBuildCommand(unittest.TestCase):
-    def test_distribution_build_runs_both_generators(self):
+    def test_distribution_build_runs_all_generators(self):
         args = type(
             "Args",
             (),
@@ -46,10 +48,11 @@ class TestDistributionBuildCommand(unittest.TestCase):
                 rc = av.command_distribution_build(args)
 
         self.assertEqual(rc, 0)
-        self.assertEqual(run_script.call_count, 2)
+        self.assertEqual(run_script.call_count, 3)
         calls = run_script.call_args_list
-        self.assertTrue(str(calls[0].kwargs["script_path"]).endswith("build-distributions.py"))
-        self.assertTrue(str(calls[1].kwargs["script_path"]).endswith("build-projections.py"))
+        self.assertTrue(str(calls[0].args[0]).endswith("specs/build-distributions.py"))
+        self.assertTrue(str(calls[1].args[0]).endswith("skills/build-distributions.py"))
+        self.assertTrue(str(calls[2].args[0]).endswith("build-projections.py"))
         self.assertTrue(all(call.kwargs["check"] for call in calls))
         self.assertTrue(all(call.kwargs["output_directory"] == "dist-out" for call in calls))
 
@@ -79,7 +82,9 @@ class TestBuildProjections(unittest.TestCase):
             "metadata:\n"
             "  aether-version: 1.0.0\n"
             "---\n"
-            "\n## Mission\n\nTest.\n",
+            "\n## Mission\n\n"
+            "Use [skill](../../skills/quality/test-engineering/SKILL.md) and "
+            "[spec](../../specs/quality/auditor.spec.md).\n",
             encoding="utf-8",
         )
 
@@ -97,6 +102,16 @@ class TestBuildProjections(unittest.TestCase):
                 / "test-agent.agent.md"
             ).exists()
         )
+        projected = (
+            output_directory
+            / "github"
+            / "repository"
+            / ".github"
+            / "agents"
+            / "test-agent.agent.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn(".agents/skills/test-engineering/SKILL.md", projected)
+        self.assertIn(".github/specs/quality/auditor.spec.md", projected)
         self.assertTrue(
             (
                 output_directory

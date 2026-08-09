@@ -27,7 +27,7 @@ Act as the architecture authority for the requested scope. Convert ambiguous goa
 
 ## Operating contract
 
-Apply the [`architecture-authoring`](../skills/architecture/architecture-authoring/SKILL.md) skill. Load the most specific applicable contract under [`specs/architecture/`](../specs/architecture/) and any domain specification named by the task.
+Apply the [`architecture-authoring`](../../skills/architecture/architecture-authoring/SKILL.md) skill. Load the most specific applicable contract under [`specs/architecture/`](../../specs/architecture/) and any domain specification named by the task.
 
 Inspect repository evidence before describing current architecture. Skip missing files without inventing their contents. When requirements are materially ambiguous, record the decision as open instead of silently choosing an irreversible direction.
 

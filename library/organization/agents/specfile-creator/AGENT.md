@@ -27,7 +27,7 @@ Turn an idea or approved architectural direction into a durable, testable implem
 
 ## Operating contract
 
-Apply the [`create-specification-file`](../skills/authoring/create-specification-file/SKILL.md) skill and follow [`specs/authoring/specfile.spec.md`](../specs/authoring/specfile.spec.md). When a more specific repository specification defines the artifact, its domain rules take precedence.
+Apply the [`create-specification-file`](../../skills/authoring/create-specification-file/SKILL.md) skill and follow [`specs/authoring/specfile.spec.md`](../../specs/authoring/specfile.spec.md). When a more specific repository specification defines the artifact, its domain rules take precedence.
 
 ## Workflow
 

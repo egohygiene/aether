@@ -120,7 +120,7 @@ def _build_checksums(output_directory: Path, release_dir: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
-def _build_license_notices(records: list[dict]) -> str:
+def _build_license_notices(records: list[dict], license_path: Path) -> str:
     header = [
         "Aether release license notices",
         "",
@@ -137,7 +137,7 @@ def _build_license_notices(records: list[dict]) -> str:
         [
             "",
             "--- LICENSE BEGIN ---",
-            LICENSE_PATH.read_text(encoding="utf-8").rstrip(),
+            license_path.read_text(encoding="utf-8").rstrip(),
             "--- LICENSE END ---",
             "",
         ]
@@ -222,19 +222,19 @@ def build_release_artifacts(
         encoding="utf-8",
     )
     (release_dir / "LICENSE.notices.txt").write_text(
-        _build_license_notices(records),
+        _build_license_notices(records, LICENSE_PATH),
         encoding="utf-8",
     )
     (release_dir / "release-notes.md").write_text(
         _build_release_notes(release_tag, release_manifest, CHANGELOG_PATH),
         encoding="utf-8",
     )
-    (release_dir / "release-provenance.v1.json").write_text(
-        _canonical_json(_build_provenance(release_tag, commit_sha, release_manifest, output_directory)),
-        encoding="utf-8",
-    )
     (release_dir / "checksums.txt").write_text(
         _build_checksums(output_directory, release_dir),
+        encoding="utf-8",
+    )
+    (release_dir / "release-provenance.v1.json").write_text(
+        _canonical_json(_build_provenance(release_tag, commit_sha, release_manifest, output_directory)),
         encoding="utf-8",
     )
     return release_dir

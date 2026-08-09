@@ -64,9 +64,9 @@ pip install -r requirements-dev.lock
 From repository root:
 
 ```sh
+./aether distribution build --output-directory "dist"
 ./aether validate --format "text"
 ./aether catalog generate --check
-./aether distribution build --output-directory "dist" --check
 ./aether test
 ```
 
@@ -75,6 +75,7 @@ From repository root:
 Primary validator:
 
 ```sh
+./aether distribution build --output-directory "dist"
 ./aether validate --format "text"
 ./aether validate --format "json"
 ```

@@ -22,6 +22,7 @@ Do not treat `.staging/` or `dist/` as canonical source.
 ## Required local checks
 
 ```sh
+./aether distribution build --output-directory "dist"
 ./aether validate --format "text"
 ./aether catalog generate --check
 python3 catalog/validate_catalog.py

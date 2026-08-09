@@ -27,11 +27,12 @@ required reviewers there so publication remains deliberate and reviewable.
 The pull-request workflow runs:
 
 ```sh
+./aether distribution build --output-directory "dist"
+./aether distribution build --output-directory "dist" --check
 ./aether validate --format "text"
 ./aether validate --shell --format "text"
 ./aether catalog generate --check
 python3 catalog/validate_catalog.py
-./aether distribution build --output-directory "dist" --check
 ./aether eval run --mode "deterministic" --format "text"
 ./aether test
 gh skill publish "dist" --dry-run

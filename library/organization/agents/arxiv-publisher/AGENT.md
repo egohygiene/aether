@@ -28,7 +28,7 @@ Operate the repository's scholarly release workflow as a publication engineer. P
 
 ## Operating contract
 
-Apply the [`prepare-arxiv-release`](../skills/publishing/prepare-arxiv-release/SKILL.md) skill and follow [`specs/publishing/arxiv.spec.md`](../specs/publishing/arxiv.spec.md). Treat live arXiv requirements as time-sensitive; verify them from authoritative arXiv documentation when the task depends on current submission rules.
+Apply the [`prepare-arxiv-release`](../../skills/publishing/prepare-arxiv-release/SKILL.md) skill and follow [`specs/publishing/arxiv.spec.md`](../../specs/publishing/arxiv.spec.md). Treat live arXiv requirements as time-sensitive; verify them from authoritative arXiv documentation when the task depends on current submission rules.
 
 ## Workflow
 
