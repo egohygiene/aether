@@ -1,0 +1,3695 @@
+{
+  "schema_version": "aether.staged-skills-inventory/v1",
+  "generated_at": "2026-08-09T01:39:29Z",
+  "evidence_sources": {
+    "skills_lock": ".staging/manifests/skills-lock.json",
+    "tasks_txt": {
+      "path": ".staging/tasks.txt",
+      "status": "not-found"
+    },
+    "first_party_disposition_dir": "catalog/first-party/staging-dispositions"
+  },
+  "inventory_totals": {
+    "direct_staged_skill_directories_current": 186,
+    "legacy_staged_skill_copies_current": 0,
+    "historical_removed_staged_skill_copies": 6,
+    "total_copied_staged_skills_accounted_for": 192
+  },
+  "classification_categories": [
+    "first-party candidate handled by another named issue",
+    "approved external catalog entry",
+    "cross-repository move-out item",
+    "exact duplicate",
+    "semantic duplicate/superseded candidate",
+    "unknown provenance requiring human review",
+    "rejected"
+  ],
+  "classification_counts": {
+    "approved external catalog entry": 56,
+    "first-party candidate handled by another named issue": 6,
+    "unknown provenance requiring human review": 130
+  },
+  "legacy_lock_hash_semantics": {
+    "lock_path": ".staging/manifests/skills-lock.json",
+    "hash_status": "unverified",
+    "hash_algorithm": "unknown",
+    "statement": "None of the legacy computedHash values are treated as reproducible source hashes until an authoritative acquisition/hash algorithm is reconstructed and documented."
+  },
+  "legacy_skill_copies_current": [],
+  "entries": [
+    {
+      "skill_key": "ab-testing",
+      "staging_path": ".staging/skills/ab-testing/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/ab-testing",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "1fd229160f6014f3f2d7c92cc7d2f991fbf8dc9ed68aac9793c71b408a6d1144"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/ab-testing/SKILL.md",
+        "computedHash": "c42af0107540e71dfe9605eca51b5100d96730d0bddf51085fc0c9429e40083c"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "acquire-codebase-knowledge",
+      "staging_path": ".staging/skills/acquire-codebase-knowledge/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "7fc72c93b27f10a5429e2dbedb8c6ec35b383a403078e2d74263a0795e6156a4"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "ad-creative",
+      "staging_path": ".staging/skills/ad-creative/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/ad-creative",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "e874d7bde2f55a5f0687c938ea9d3c1f210a73ff948d58ba3ee0e08631587702"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/ad-creative/SKILL.md",
+        "computedHash": "f5a61cff2ea986a03f0b89c424e0e48e61b931e05f7d7596b6d46fee3933d50b"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "add-educational-comments",
+      "staging_path": ".staging/skills/add-educational-comments/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "3153bc85fc41943e9e8d5833304d777aad69dde540c37bae580facb764faddbc"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "ads",
+      "staging_path": ".staging/skills/ads/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/ads",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "8be65c0dfa275bb42f238530e7ba4efe9a9d45bee74eaac02f0f2a644a8f1857"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/ads/SKILL.md",
+        "computedHash": "569e690ae2defe2abaea3d63dc955e0af5d99cbe2b52d2cb977fd2039aae31a2"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "agent-governance",
+      "staging_path": ".staging/skills/agent-governance/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "ca5e73f83941a1b8d7e7e8e6ac7bf6fa5f2d4d82a56a7e90fa1a599e66912499"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "agent-owasp-compliance",
+      "staging_path": ".staging/skills/agent-owasp-compliance/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "4c5424e7a79c2da2c7005012a9cbf240698801b160c3f105fded61c1c718ab5a"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "agent-supply-chain",
+      "staging_path": ".staging/skills/agent-supply-chain/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c580f94a653809de03e12da5f7691a1852e2ed483a2dc32c16783b916def3042"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "agentic-eval",
+      "staging_path": ".staging/skills/agentic-eval/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "d7466df563a5cc7eeea7be86cb6456a5ef1bd68930f223d6b194ba50f7c949b7"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "ai-prompt-engineering-safety-review",
+      "staging_path": ".staging/skills/ai-prompt-engineering-safety-review/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "4fc0d8069d5293c83cb5c71b810b1b7d65eaee4f6e4883b75d41a21a71851d68"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "ai-ready",
+      "staging_path": ".staging/skills/ai-ready/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "7c3308c46af9be87a1192222c2e725a8ca1dc63a8cabbcbde58bcb6c39e39483"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "ai-seo",
+      "staging_path": ".staging/skills/ai-seo/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/ai-seo",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "009333fb0cd44942caf83ae95a1acee24b1bfbb15eca14107b243106e3f32322"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/ai-seo/SKILL.md",
+        "computedHash": "a6265a6c9451a25987a94453f638e07bef84eb3f1cd73366d703fee79151cf09"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "ai-team-orchestration",
+      "staging_path": ".staging/skills/ai-team-orchestration/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "705c2dc965785b0348b97f97106807f4c3da30c1620eabea521fd6e242343dde"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "analytics",
+      "staging_path": ".staging/skills/analytics/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/analytics",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "16aab197f87bf6e2599d179061f1947d96acafe0a340837432d8ab96d2f8c55a"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/analytics/SKILL.md",
+        "computedHash": "11fcba681577e36b5ad88e391d932a9c94fb1e593e94010c750739eefa9c4057"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "animation-vocabulary",
+      "staging_path": ".staging/skills/animation-vocabulary/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/animation-vocabulary",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "d718b48fe3c7898804d588f050a2e266d82c9f5ef51da256c8cb8b5951527757"
+      },
+      "legacy_lock_entry": {
+        "source": "emilkowalski/skill",
+        "sourceType": "github",
+        "skillPath": "skills/animation-vocabulary/SKILL.md",
+        "computedHash": "39319fc9a33c15be08666b3685f58666f042ff36bb902b7814c0834a5ba99df4"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "apple-design",
+      "staging_path": ".staging/skills/apple-design/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/apple-design",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61"
+      },
+      "legacy_lock_entry": {
+        "source": "emilkowalski/skill",
+        "sourceType": "github",
+        "skillPath": "skills/apple-design/SKILL.md",
+        "computedHash": "8b94db67cb9edaad5f1501010804caa610131f1d2dfda0a27664b2e858deade3"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "architecture-authoring",
+      "staging_path": ".staging/skills/architecture-authoring/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "762bdb29d439e6a5aa20e864e34bf475b0de6420f9a17f91f800dd4644d84604"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "architecture-blueprint-generator",
+      "staging_path": ".staging/skills/architecture-blueprint-generator/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "7be447aa54e0be73e165b5f7501896fbd7e20c7085eea887391e2a4fd8b7a7e9"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "arxiv-publishing",
+      "staging_path": ".staging/skills/arxiv-publishing/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "edfac0add7a10f1d44f22b77a29a213649654f23083ad95b37faf835f12df184"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "aso",
+      "staging_path": ".staging/skills/aso/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/aso",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "158f42a00846d9e4bb2a27c0ecf8c10745891a45916dc3de9127a124c0a6dcfc"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/aso/SKILL.md",
+        "computedHash": "f84a1fb5cb1a8a7f7171bd60ae6850f24a82fa6af94bd5f12e5b3e9227480a34"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "brag-sheet",
+      "staging_path": ".staging/skills/brag-sheet/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "5cd1fee7d0dec1eda907c977076a6fb19f30578eb35a02a3889c6648c1817db4"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "breakdown-epic-arch",
+      "staging_path": ".staging/skills/breakdown-epic-arch/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "09e3d2e59885df3512634772846e5ca9a76f7be6026a4e3866faf265df245d5b"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "breakdown-epic-pm",
+      "staging_path": ".staging/skills/breakdown-epic-pm/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "a3806c11a5a02f0910c522df4e168cccf7078a90032a0378ab8f3d7a8be21f49"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "breakdown-feature-implementation",
+      "staging_path": ".staging/skills/breakdown-feature-implementation/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "626db877ae045bd842c4fae32d6402ca578a37626e49395e02727627c112ed4d"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "breakdown-feature-prd",
+      "staging_path": ".staging/skills/breakdown-feature-prd/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "471d00a9dd1fbfff3234e058749e7223d2657c6aa4cc5c2dfff4819479a9ca23"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "breakdown-plan",
+      "staging_path": ".staging/skills/breakdown-plan/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "8fa2a2ae47947531e59748c876b10847e1653dca45d3a54ae0918c8c789a5aa5"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "breakdown-test",
+      "staging_path": ".staging/skills/breakdown-test/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "ce4cc7e24fddfbd4055bca120fc7de7fd73f58d1693e61d2c992d5443acdee65"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "chrome-devtools",
+      "staging_path": ".staging/skills/chrome-devtools/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "52e66b9a5fae669b523d0321a4c3fa939fb753e3b0ed3fe4fa35757565d504c8"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "churn-prevention",
+      "staging_path": ".staging/skills/churn-prevention/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/churn-prevention",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "88fd25b77e44ef3689d68d54091df9659a40f5e905c8bdeb09bdeed3f049ad67"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/churn-prevention/SKILL.md",
+        "computedHash": "527c4740617d9eeea66e14c3f7b7ecede41d6b0520c252f413fdfd0b763a6c64"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "cli-mastery",
+      "staging_path": ".staging/skills/cli-mastery/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "059ab53adff4bb37b80f5e2017009eb698eaac2a9a595f6184cf639d86a7750f"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "cloud-design-patterns",
+      "staging_path": ".staging/skills/cloud-design-patterns/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "193ebb096bc95a3d3f80d63ad2a9f1d33b72a4ddd11eb571f6cf649bc77e584c"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "co-marketing",
+      "staging_path": ".staging/skills/co-marketing/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/co-marketing",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "893a3115b2e07abd5fa99568de6eb168a086db044cf44f4ba29e96ec324cbd74"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/co-marketing/SKILL.md",
+        "computedHash": "1f447a4e851f9e6be533c41d198e0a1b58d557bcfe57499dace0c7f1349ba6cb"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "code-exemplars-blueprint-generator",
+      "staging_path": ".staging/skills/code-exemplars-blueprint-generator/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "616d45d3238c7726adc3140ca05ec0ce22c878e2ee785c4df62bebec21c6605c"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "code-review-skill",
+      "staging_path": ".staging/skills/code-review-skill/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "84e5ffc9e1fd85a279b60859c0a5057475cd708043378562a9c4ea73ca6135d9"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "codeql",
+      "staging_path": ".staging/skills/codeql/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "e602d37f62772e71d6e97921710c7f53ecf97dde8f78a9b524ab64539185b1ef"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "cold-email",
+      "staging_path": ".staging/skills/cold-email/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/cold-email",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "b7f8d793169a5111c857e5720c6b80028686cc95d5a0d0d6570957c2710aff9e"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/cold-email/SKILL.md",
+        "computedHash": "be0b73511a6244b8b8aa9126225844cfe9e492f4c1ee6bffc57344ce5ee2a6e8"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "community-marketing",
+      "staging_path": ".staging/skills/community-marketing/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/community-marketing",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "edd8060b63820e620a0612af0a280cf3ee68d3eab80684932257205c8327d971"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/community-marketing/SKILL.md",
+        "computedHash": "d089fdcff8cf5a8623cfaee0fdb005f9470c8c7e3da0a4fb11bc9e10dff5b502"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "competitor-profiling",
+      "staging_path": ".staging/skills/competitor-profiling/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/competitor-profiling",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "ea7b5b7feb79ead8df038653c33aae96d38890784018a2b0afae9b2a1e21b3af"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/competitor-profiling/SKILL.md",
+        "computedHash": "d691200df7b02d85327192dd2203f97eec5a01e7748e9b171a5c9d6a584dc181"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "competitors",
+      "staging_path": ".staging/skills/competitors/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/competitors",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "99e9ea715b1ac6dbaedda345a27358fb5e099f7d4fd5be63789d6e65cf2a6f46"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/competitors/SKILL.md",
+        "computedHash": "6380b59f188f71552e4ea878f41518c387490d583c457f95c4d0f4161ccb7c71"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "content-strategy",
+      "staging_path": ".staging/skills/content-strategy/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/content-strategy",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "0611532b2a0dce8d0d5b783c99bba10d13a6d5fd7eecd829974012f74ea33258"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/content-strategy/SKILL.md",
+        "computedHash": "13824c129ab70874c57d766c2d844f8dac7a0b366845f108a73527c9d094c4f6"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "context-map",
+      "staging_path": ".staging/skills/context-map/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "cf02105bbf012287268e53a35b0c4354b8c60e1bfaf900cc3408a42eb6967fd3"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "conventional-branch",
+      "staging_path": ".staging/skills/conventional-branch/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "10dad646e44376ee1a12095125bbde70e886776263b012ee81d1eed5719b9be5"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "conventional-commit",
+      "staging_path": ".staging/skills/conventional-commit/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "3633634e4cc31fc0d3b311b056af35f1dabddf861be9db8b143ccce8f4274af7"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "convert-plaintext-to-md",
+      "staging_path": ".staging/skills/convert-plaintext-to-md/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "1d09b91980b06b381222c28420dfd5b4dc4e314466d860700f2cfd1aca472d84"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "copilot-cli-quickstart",
+      "staging_path": ".staging/skills/copilot-cli-quickstart/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "60e09dcd1638590ca39bbf0ef7a3550b13b0df608bf6fea95ed4e7a0a0aee414"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "copilot-instructions-blueprint-generator",
+      "staging_path": ".staging/skills/copilot-instructions-blueprint-generator/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "2b262771b9db318fd7ab58b5ccb4fce7b5b2a9c197a98b8f76b49652223c7f73"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "copilot-sdk",
+      "staging_path": ".staging/skills/copilot-sdk/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "7797828927a9a0c2234d73c0efe8fd5c7e302b8967de46d6fa57afc59cea0161"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "copilot-usage-metrics",
+      "staging_path": ".staging/skills/copilot-usage-metrics/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "90ba894a0f74960cf1bbc894e70435c317628f511bb12b298d31e79ca0048bc3"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "copy-editing",
+      "staging_path": ".staging/skills/copy-editing/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/copy-editing",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "9b5a20be3dc5513c8f0b4f4c4960857e4d28ed83698a5b33c8dde9dc75a47bf6"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/copy-editing/SKILL.md",
+        "computedHash": "ba4e44a8470b3ae2add3e0ffa74c85d8b0357db4ca2cf8cfa7b4abc9d94fc602"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "copywriting",
+      "staging_path": ".staging/skills/copywriting/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/copywriting",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "ecdaabca28863d1472f79ba637842fdf4ac2fd9acc92b215ab7f152e757b2a33"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/copywriting/SKILL.md",
+        "computedHash": "c8d63b1f77be04fd54981720de65697988810bd28331097dbe0aaf3e166d638a"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-agentsmd",
+      "staging_path": ".staging/skills/create-agentsmd/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "49e416fe2581887c07849358f2d36f4ff479335f6a07af3c0c6f132f5d128dc1"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-architectural-decision-record",
+      "staging_path": ".staging/skills/create-architectural-decision-record/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "73f663ffaee042e8f640fdea79ba0a8bc5c462b5129eb8fd58be8e3b77297797"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-github-action-workflow-specification",
+      "staging_path": ".staging/skills/create-github-action-workflow-specification/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "5e2a1bd43f74d7aa7128527a61d3dfffcdf6e37d0f2a106f7de6c5875fe5f881"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-github-issue-feature-from-specification",
+      "staging_path": ".staging/skills/create-github-issue-feature-from-specification/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "a41cb9224ff502b8d43fe2e78bba006e60c4d9895ae25857ee528294eb5839ea"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-github-issues-feature-from-implementation-plan",
+      "staging_path": ".staging/skills/create-github-issues-feature-from-implementation-plan/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "80ae1151c0d09217d33f5b4a92cec820ee90f8777b0580d691bcf472d5bf873e"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-github-issues-for-unmet-specification-requirements",
+      "staging_path": ".staging/skills/create-github-issues-for-unmet-specification-requirements/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "9b272695adfe5f9b25f88c0d62ac34bc9dcad6a1aa660f5852b2f6eb7d5c1315"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-implementation-plan",
+      "staging_path": ".staging/skills/create-implementation-plan/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6acae3a47c0ef687c80cef31db7faf7cf08d231e5168f4d95273ec19ca673db6"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-llms",
+      "staging_path": ".staging/skills/create-llms/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "226dffe33ff52f73908f8a134f1e3e48bf6024a0f6245731a866d4faa3c3ce9c"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-readme",
+      "staging_path": ".staging/skills/create-readme/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "678ea915a292a184875002bdd314d9f617f3e9c15e155697427f9ac09a3801aa"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-skill",
+      "staging_path": ".staging/skills/create-skill/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "5b16cee8d4dba26a91dbcde9874b6a6816bfd8c0b809cc5d396651e1b8b42dd5"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-specification",
+      "staging_path": ".staging/skills/create-specification/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "41699e94276d003ffc17d62a4eb5cc323c4deb4780ed45be9f75a98e224a5a87"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-technical-spike",
+      "staging_path": ".staging/skills/create-technical-spike/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "61a7882a3f2b1a62c35c66817c209f0dda10813aba9492c597810dec4ba414dc"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "create-tldr-page",
+      "staging_path": ".staging/skills/create-tldr-page/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "49d0aa4f130bd051b9b95a652fc123b4a2e873ebff5324864315c28439c62366"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "cro",
+      "staging_path": ".staging/skills/cro/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/cro",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "199016bec3b44bc6a7507b111b6028f6550cc852cd54c7d0df789f15d6f814c4"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/cro/SKILL.md",
+        "computedHash": "07f7a27c57e48f4b67230712f8efbc5bcc01611b35321b3c2c2e5279c9304bcd"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "customer-research",
+      "staging_path": ".staging/skills/customer-research/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/customer-research",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "f44c116c46904bba256604f62e97048c2872f389a963843254129cc511cdf1ff"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/customer-research/SKILL.md",
+        "computedHash": "a432ee6d37151c4b5b89045e8611f755d657e1339d9d67d928d73875ccd03a01"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "dependabot",
+      "staging_path": ".staging/skills/dependabot/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "a0fcda32e587c915a362e228193d41910c149c9dd064cae497399da2c2c9a2ed"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "devops-rollout-plan",
+      "staging_path": ".staging/skills/devops-rollout-plan/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "559e46f8b7bc85707ee4ddece2cf2fe23ce3b987eb809da659e22b0cf66d06a0"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "diagnose",
+      "staging_path": ".staging/skills/diagnose/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c7f2637e3ec9d449c8e9dcf43b3aefb865c2d7ebf9274161dee1f241ec6e76e3"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "directory-submissions",
+      "staging_path": ".staging/skills/directory-submissions/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/directory-submissions",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "dd08854f5cd1e16413dd588b13e02a32ce01dd3a9f4e9b1099f92a7b635ac24a"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/directory-submissions/SKILL.md",
+        "computedHash": "b737c3b9b9387bbeefd4fb5a003c1debaf273563f170665f6b9341c6818d121b"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "documentation-writer",
+      "staging_path": ".staging/skills/documentation-writer/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "0283273f8db4ab3d540c8e36d8eb869f1944584086b474cf8cb9cb8e7d490d7b"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "doublecheck",
+      "staging_path": ".staging/skills/doublecheck/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "451484b3f161b7b26ab50fb5e9db68e7c9be2f3910a49ccb5aa5e98c3dbca1d6"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "draw-io-diagram-generator",
+      "staging_path": ".staging/skills/draw-io-diagram-generator/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "103a12fe07eb52f8f72b00552b8efb5c3faf0f6c7caf224e7df12057eb129c6f"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "editorconfig",
+      "staging_path": ".staging/skills/editorconfig/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "660263212a471228cd41c894db0507ec34bfda552fa8cc870c63718c0a16b1e2"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "email-drafter",
+      "staging_path": ".staging/skills/email-drafter/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "ce3334896a931c6fa48bb46b4066397402128c6e9629921008149bbee432cbd2"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "emails",
+      "staging_path": ".staging/skills/emails/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/emails",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "1fbd54df4c59f48408057e7db0dfb1a53c033e6a4ca5cd1927a47c51ec28d8f1"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/emails/SKILL.md",
+        "computedHash": "261d986c2a1f1f5f823f8c889e16db723edb8a9d0fa5ede8412f981594715c49"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "emil-design-eng",
+      "staging_path": ".staging/skills/emil-design-eng/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/emil-design-eng",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7"
+      },
+      "legacy_lock_entry": {
+        "source": "emilkowalski/skill",
+        "sourceType": "github",
+        "skillPath": "skills/emil-design-eng/SKILL.md",
+        "computedHash": "41b0a4dc1a27164fe297845a6c6850a39e9242c42c9be999967fcee9df2c5974"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "eval-driven-dev",
+      "staging_path": ".staging/skills/eval-driven-dev/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "750f5470647ab4198a01e133b20470ed1e17477303af7fc96aa14b34e7efd8f2"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "excalidraw-diagram-generator",
+      "staging_path": ".staging/skills/excalidraw-diagram-generator/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6ff88dd206fe46f5372f30468c0e7b379032bc51e824a4208378ace7d7dcb620"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "finalize-agent-prompt",
+      "staging_path": ".staging/skills/finalize-agent-prompt/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "e18d59253e90c56ea5bbf2673b9a9f6f81a78600798a5fb5ea3fc8aacae0b1be"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "find-animation-opportunities",
+      "staging_path": ".staging/skills/find-animation-opportunities/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/find-animation-opportunities",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "91c1243164057fbf824088d12faea937878a757a7ac653e8288b775e8b27b882"
+      },
+      "legacy_lock_entry": {
+        "source": "emilkowalski/skill",
+        "sourceType": "github",
+        "skillPath": "skills/find-animation-opportunities/SKILL.md",
+        "computedHash": "8fb8492eb8fbed1313cb430b5831d925d9b8964ca24f3c41a6244cbd1fd98732"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "find-skills",
+      "staging_path": ".staging/skills/find-skills/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/find-skills",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6b798a63c2d5c0e4eebe7dcbfa1368eef500b85298af892f54c11db6cbe2d968"
+      },
+      "legacy_lock_entry": {
+        "source": "vercel-labs/skills",
+        "sourceType": "github",
+        "skillPath": "skills/find-skills/SKILL.md",
+        "computedHash": "9e1c8b3103f92fa8092568a44fe64858de7c5c9dc65ce4bea8f168080e889cfd"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "flutter-engineering",
+      "staging_path": ".staging/skills/flutter-engineering/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "b65b4fe2aca176ba0dc952df3c5323a7504d9ce8fa274f9f464e11530713c151"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "folder-structure-blueprint-generator",
+      "staging_path": ".staging/skills/folder-structure-blueprint-generator/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "3949834b4521bd2fef166809397230ce5a345d08494fb430019f9d36e425ae0c"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "free-tools",
+      "staging_path": ".staging/skills/free-tools/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/free-tools",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "76dc4535041899581cfea32a77094ed19dda5de718e9345caf1f236356f9a6b7"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/free-tools/SKILL.md",
+        "computedHash": "3fd8ab504b9b6d791b307baed7a87f49b455fc084ff367772c7418b8a57ce56d"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "freecad-scripts",
+      "staging_path": ".staging/skills/freecad-scripts/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "5d11befcc5d036493a0e7feefa93cd4acc4be23f74176e937ae955eddbdaefde"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "gdpr-compliant",
+      "staging_path": ".staging/skills/gdpr-compliant/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "8021b40355781a77fe192cd92bd1dddcc9d25b172114cfb428ac4dbf7bf5f0c3"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "gen-specs-as-issues",
+      "staging_path": ".staging/skills/gen-specs-as-issues/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "53d2950b05890f6565e3b2d0d6f5e360897204a3d8c5a3734a973ec9d536ba4f"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "generate-custom-instructions-from-codebase",
+      "staging_path": ".staging/skills/generate-custom-instructions-from-codebase/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "41bea458d9a9d0761edabbd51857e41673fcbc3e3e9e7db7941e2ebb66412451"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "generate-image",
+      "staging_path": ".staging/skills/generate-image/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "332c569be29eb529af4cdb050a5992b65d2ca40a7091514e08fdc961cee02c43"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "git-commit",
+      "staging_path": ".staging/skills/git-commit/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "0df47c4e421ffe109da5bfd07f7bd8bfecfeef5d6ff828d143e1e31d6779d549"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "github-actions-efficiency",
+      "staging_path": ".staging/skills/github-actions-efficiency/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c98d245b8ecbaa929ef4adaf229a06a49092cda13fdf59aac9d5ef50caa7ffd4"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "github-actions-hardening",
+      "staging_path": ".staging/skills/github-actions-hardening/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "d4a83861b9e6aa797758fdfe62b1a9a95f47b1001a5858faa9f6adeb0e6a583d"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "github-copilot-starter",
+      "staging_path": ".staging/skills/github-copilot-starter/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "705ac90cc7e06664028537e40f15556fb13589b054a869ff5ba1fcb602a5973e"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "github-issue",
+      "staging_path": ".staging/skills/github-issue/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "08f9a5c9e2cfae36e81866cdbbd872a8b969a70f1237ea6ac4cf5dcb35dc4ed4"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "github-issues",
+      "staging_path": ".staging/skills/github-issues/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "9cd07215088e70c74c1067d39b203821277db174a4dfd2426f677a05965c4ebe"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "github-release",
+      "staging_path": ".staging/skills/github-release/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "8c8e60c85cd1c77f616d5ccf82459b4f0ec20500a04d510e4a97a8aa9d31c87a"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "gsap-framer-scroll-animation",
+      "staging_path": ".staging/skills/gsap-framer-scroll-animation/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "77c815d5067d97b22194a9d0ea8b8a3dc2475c9e6de80ee89ed08562b9dc8d92"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "harness-engineering",
+      "staging_path": ".staging/skills/harness-engineering/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "179479267e37c600693c421d4b959ecf453f9a3c47642aa588b13e4aad7e7822"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "image",
+      "staging_path": ".staging/skills/image/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/image",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c34b67e249e558410ee960043d0de3c1d188dc3b6ba36d7714c16ec6f1fad46e"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/image/SKILL.md",
+        "computedHash": "e4b5511566d08a79f6f5fd26319eaaac0e18e1e238848c5a3fb2e9839e306ebe"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "image-annotations",
+      "staging_path": ".staging/skills/image-annotations/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "4ff642734b7b8f3ef502975e445f90746922c0a0539cd0eb5a82b56b58f90250"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "image-manipulation-image-magick",
+      "staging_path": ".staging/skills/image-manipulation-image-magick/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "00c8256ffa93abf08991ce41c104287c7436b1b95b1c2f1e95adb2568afbf2fb"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "impediment-prioritization",
+      "staging_path": ".staging/skills/impediment-prioritization/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "7175cf958fcd349131eab95beacb93986ff2351ea3aad59c86bc0e20f22adbd0"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "improve-animations",
+      "staging_path": ".staging/skills/improve-animations/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/improve-animations",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "68f17bbc4671593d2f43dba26a679243e2153ba5f26965fb7d59df52842534ff"
+      },
+      "legacy_lock_entry": {
+        "source": "emilkowalski/skill",
+        "sourceType": "github",
+        "skillPath": "skills/improve-animations/SKILL.md",
+        "computedHash": "eeb219a407e325b687af88db25771cc3018e3148245604112f5ac6990b6fd79c"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "influencer-marketing",
+      "staging_path": ".staging/skills/influencer-marketing/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/influencer-marketing",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "18820787500ad23177d753ce9c9db3954644a31b9afd7e751cafba04eadd3255"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/influencer-marketing/SKILL.md",
+        "computedHash": "c1024fd09bb644bb180cf2cf216859039c7a3de591822ec1bfd1703c8ffd5e38"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "knowledge-extraction",
+      "staging_path": ".staging/skills/knowledge-extraction/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "d49f20debbdc86ce4a8a5039d47987dfc8f0147e497a6b95317f259fda33e6d2"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "launch",
+      "staging_path": ".staging/skills/launch/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/launch",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6d8bbd61449c48c458b20457c0b698386fe808e7063a7baadc197fc179bd94bb"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/launch/SKILL.md",
+        "computedHash": "a2b19accde6cace3af7cb9875072163d436eb48f12bab900dff6d312507459e0"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "lead-magnets",
+      "staging_path": ".staging/skills/lead-magnets/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/lead-magnets",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "bfb1e260e56fb11611bfac94236e7ebf79433e3350012ecce2379eef0af25af8"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/lead-magnets/SKILL.md",
+        "computedHash": "268c83c38cc49d3e437042f5d4e3c31b822deb6012b9d5d7a1370ae500058018"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "linkedin-post-formatter",
+      "staging_path": ".staging/skills/linkedin-post-formatter/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "1bc4e0dd0d07c2099898268d0f689c44adccd5c51dd843c12575e2c2c2a662c2"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "lsp-setup",
+      "staging_path": ".staging/skills/lsp-setup/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "76600da1560322bcc6bbb5595a2a08653d69c2cba5584fdcf2d66666dfe91080"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "marketing-council",
+      "staging_path": ".staging/skills/marketing-council/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/marketing-council",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "0b94358427c344e1f5f50169770cce44e0b065ec8b05fc887a800daed008ac31"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/marketing-council/SKILL.md",
+        "computedHash": "ac7cb3d3b358b5168adb80eea696d00b45183e9d70a8a81309b917ebc911951c"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "marketing-ideas",
+      "staging_path": ".staging/skills/marketing-ideas/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/marketing-ideas",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "7fe1f79d008129c359f28ec733837693567a11f54bd578e1fd0d178ac69bbb8d"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/marketing-ideas/SKILL.md",
+        "computedHash": "c2a310c97126a0c493bae2b4b0e9fa767598bb2d139a747217fa1d8d7615e85d"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "marketing-loops",
+      "staging_path": ".staging/skills/marketing-loops/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/marketing-loops",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "db4ba419ee74c7ef4c6dacffdf92fa4038e720640a4b4b95e8766ad9ff269898"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/marketing-loops/SKILL.md",
+        "computedHash": "35027841740127f6a2ad5085811ea4bb95a889c27ba43204d4714793e45bcb61"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "marketing-plan",
+      "staging_path": ".staging/skills/marketing-plan/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/marketing-plan",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "548e1bd8f31fdef3ffb8edf4f3218a8162b4ac2f04b639affe547bee6dd0cba0"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/marketing-plan/SKILL.md",
+        "computedHash": "c6a0c9473c11a6b3c7ffe72bcf76417ce7e1a90330147fa1aac8dc9610ee1e38"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "marketing-psychology",
+      "staging_path": ".staging/skills/marketing-psychology/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/marketing-psychology",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "573bbe4f6e300e7fb75299e314f56e26382d284782caa2ae0e0f33eb2e646548"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/marketing-psychology/SKILL.md",
+        "computedHash": "50d735eb0f5c36f379ed2200f21aeacc9b9ad85667b5d33ec6111857352a1340"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "mcp-cli",
+      "staging_path": ".staging/skills/mcp-cli/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "57385eace9f9f1cbb87fa5295b8bfeb758d2f53c588d3825bcfa6fefacaa6b55"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "md-to-docx",
+      "staging_path": ".staging/skills/md-to-docx/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "59bd4ce6688e07583795b69cb90772a9f647589cc1d9944ef8c34103f9b00cd6"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "meeting-minutes",
+      "staging_path": ".staging/skills/meeting-minutes/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "a5c0b35a9824e8269e8c0716d8bb89e8baab97de46fc9da13ed1ddf6fc9c62e5"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "mini-context-graph",
+      "staging_path": ".staging/skills/mini-context-graph/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "b6aa833584e9d57c192f5c0287927232cb9f2d14cfb17ba86df4ca3f119c47c2"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "mkdocs-translations",
+      "staging_path": ".staging/skills/mkdocs-translations/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "fbd5469686cc9ca7b4d078b5000e01f6bbe6c17e919c2d65f513db84aa1aa7ce"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "multi-stage-dockerfile",
+      "staging_path": ".staging/skills/multi-stage-dockerfile/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "879576726d3631703b6a0a7dea5082125c9041081bd89be2a2fdd60bf0d45a99"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "offers",
+      "staging_path": ".staging/skills/offers/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/offers",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "cdc291bdf93b9ce135c39f034283acaee136b453239b7fe712823fae4f2d5a12"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/offers/SKILL.md",
+        "computedHash": "4e49425fc003bfc113cee7757ffa57de0859b1903dec89973cc599c42fca8942"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "onboarding",
+      "staging_path": ".staging/skills/onboarding/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/onboarding",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "15a802ffb73828730aba90b740426fbb8d2070721ee92d6f8737de4704e8ff0f"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/onboarding/SKILL.md",
+        "computedHash": "634b9ba0a4446d9358d3cbc316feefc2e9d618cd88d5a77f0bc6ec895ed5eb5f"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "paywalls",
+      "staging_path": ".staging/skills/paywalls/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/paywalls",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "d062c03f6b99e76ffaa367a1494ba80098b2033d4d74609b895373a024a8eac1"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/paywalls/SKILL.md",
+        "computedHash": "1f0b8d15770d2e7737b818408dc5877b2eadc4cab072cdfb3529349ab059815f"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "performance-review-writer",
+      "staging_path": ".staging/skills/performance-review-writer/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "f83b6f266f453d5a7fad35fc78228c2e095a9f5b791f631dad05e42884a7ad19"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "pick-ui-library",
+      "staging_path": ".staging/skills/pick-ui-library/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/pick-ui-library",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "4b889bd6c08358499ac4a7202b8af71ffbd3485d2468f7b09d0613bbe7b24bf4"
+      },
+      "legacy_lock_entry": {
+        "source": "emilkowalski/skill",
+        "sourceType": "github",
+        "skillPath": "skills/pick-ui-library/SKILL.md",
+        "computedHash": "f8d4d2cf4677bf54b14f35f62a741add93541bfcb67863315a40164365161b49"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "plantuml-ascii",
+      "staging_path": ".staging/skills/plantuml-ascii/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "923cfbc78cccd1ca627b62c5a45a12905c15cf1f2a02bb99acfd032a1233a10e"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "playwright-explore-website",
+      "staging_path": ".staging/skills/playwright-explore-website/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "574935d1a3fbca6336458df24d060b1490659d81d1987fd726c160f0ae61a250"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "popups",
+      "staging_path": ".staging/skills/popups/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/popups",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6c66e7f923c1eebc7eb7b94971af2e8016d3b5316e14bb1ad4b15ed3522084ce"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/popups/SKILL.md",
+        "computedHash": "95c5cb45dcbb05362168255d97ee68d53a5916d8de779bd08f5f70c9b0cabd36"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "pr-dashboard",
+      "staging_path": ".staging/skills/pr-dashboard/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "717ee44a274e74b3dfe819cdfc75645fa5fff64f2d9aeebca83ae0a92d9013a6"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "pr-screenshots",
+      "staging_path": ".staging/skills/pr-screenshots/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "bc2367dce072029d5e9527449b89782961fee150c3014b3494148c3e15c9fa44"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "prd",
+      "staging_path": ".staging/skills/prd/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "d675455f08550f0d566c9456a93649780e36bcbd677a0a305cd3aea3ff992330"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "premium-frontend-ui",
+      "staging_path": ".staging/skills/premium-frontend-ui/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "e511142bfdceaf6e6aa4faf03c13a6f38aaaadefaf5e0922dcc8718e892c3bc2"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "pricing",
+      "staging_path": ".staging/skills/pricing/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/pricing",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "a5d1cfe49b80569089b3d80f29b92075cf7554cef7e3cf618ef705a348a133f0"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/pricing/SKILL.md",
+        "computedHash": "7f2dfd6cb6b5924f5dc0b7add2ec46a1665f6796504a7891b0550bb33c2628dd"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "product-marketing",
+      "staging_path": ".staging/skills/product-marketing/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/product-marketing",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6dfd6bd485f62448385844cb9eceefcee0977c843d7a1c9e6077590d4e19d1ec"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/product-marketing/SKILL.md",
+        "computedHash": "b8a9cd747705923a7a29cda12e478594e3a5062d8f7c7bfbf19d7fc0b24cee76"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "programmatic-seo",
+      "staging_path": ".staging/skills/programmatic-seo/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/programmatic-seo",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "15cb5979cab5263ede902a830e03342869256ece17905bff240eef498e27cde1"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/programmatic-seo/SKILL.md",
+        "computedHash": "0bbdcbacfbe46fd78d774041ee49afd313505bb435b775dc246f4b8e6981d797"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "project-workflow-analysis-blueprint-generator",
+      "staging_path": ".staging/skills/project-workflow-analysis-blueprint-generator/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "227a9a14da5f808ff65b739613e16faa60827117c96f23fdc7c124579f23804f"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "prompt-optimizer",
+      "staging_path": ".staging/skills/prompt-optimizer/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6bb5df50ee5e45ca1cac1f7cc2fbc3af619f2635f6cd916831f6964a61a24199"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "prospecting",
+      "staging_path": ".staging/skills/prospecting/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/prospecting",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "beabb53a99b4df893216c18ba84198d7f2622cc83ef35043c09b218840498356"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/prospecting/SKILL.md",
+        "computedHash": "f7b35b4f30367988b2e71ec30a47c39b3c50a1aac3dfeb5c22e02ad8e86576a9"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "public-relations",
+      "staging_path": ".staging/skills/public-relations/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/public-relations",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "d1aeff136f23e2bf3296d11e86d51abedfd08996fc8bf0c1637dd96faaa693a4"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/public-relations/SKILL.md",
+        "computedHash": "1b13653b478b49049e4df4981ea032de63833387c4f914eadaeb070f6ecbdc5c"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "publish-to-pages",
+      "staging_path": ".staging/skills/publish-to-pages/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "9a5db8d348795c77d15ed3b4b7f5af3715179a7fad713cb3e661a22a7e6e8504"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "pytest-coverage",
+      "staging_path": ".staging/skills/pytest-coverage/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "374cce298936e7ad4f2f948be2a8f93cdc7a7209a6179409a28952cffdcd4ba6"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "python-pypi-package-builder",
+      "staging_path": ".staging/skills/python-pypi-package-builder/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "b9d118a203801c3aadd612c1b6f1710de64161cf28c6e8151bd69c127cc936fe"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "quality-playbook",
+      "staging_path": ".staging/skills/quality-playbook/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "dfa2eeb17c5f70673ac23e5635407a014c627e6a743f66812165a4aeededc890"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "yes"
+    },
+    {
+      "skill_key": "readme-blueprint-generator",
+      "staging_path": ".staging/skills/readme-blueprint-generator/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6bd41ae7fc43c8b63c881780b91a14e35a1f2a76375f63638f6810e0d811d960"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "refactor",
+      "staging_path": ".staging/skills/refactor/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "1240a41743cff8d003025ff33a8544036b77e14ed1eae5bd8ac3251f6e6e4770"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "refactor-plan",
+      "staging_path": ".staging/skills/refactor-plan/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "0365672aa779b2b8b81b1d68979d398995171b965ceb29418c87f912b56c6278"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "referrals",
+      "staging_path": ".staging/skills/referrals/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/referrals",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "4ddd01713b7ef3c3fb669fd3bb9a720641ee8db8b9ac327c35d6be3548a7f777"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/referrals/SKILL.md",
+        "computedHash": "1b9228f8c74abd2ad43f72baf34e7de1727dc56fba8ed8a54588bec181c39c97"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "remember",
+      "staging_path": ".staging/skills/remember/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "ee82a6bc502611409aedb292ee7542455c1a627e59ee0353bc9c10effe26da97"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "repository-audit",
+      "staging_path": ".staging/skills/repository-audit/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "af9f21603e9f99f9e732083fd3a1f673234162155f9fc37cef212f9bb047a7ef"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "resemble-detect",
+      "staging_path": ".staging/skills/resemble-detect/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "79fe6ef16077ec81a72d22186568b1cd77a4c75e515c580d1cd3b10a9b7435e1"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "review-and-refactor",
+      "staging_path": ".staging/skills/review-and-refactor/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "7257d54fd0a755e907d01be6fd982524f89d34304d2eabd8bf55dc4984bc4558"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "review-animations",
+      "staging_path": ".staging/skills/review-animations/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/review-animations",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d"
+      },
+      "legacy_lock_entry": {
+        "source": "emilkowalski/skill",
+        "sourceType": "github",
+        "skillPath": "skills/review-animations/SKILL.md",
+        "computedHash": "b9f669af5ae280c19a592a94611520335a81de25c88f225bf60ae4b2d66c8c7c"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "revops",
+      "staging_path": ".staging/skills/revops/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/revops",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "bb27b16ad41c5c2d4fea14c12359c6a01fc755f2bb91140f0c2c43b05b3adb10"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/revops/SKILL.md",
+        "computedHash": "3ed71e1704d4c27f846ac7a207e66030c91fe6fa7f8ce83bcf7f30fda3badb6d"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "sales-enablement",
+      "staging_path": ".staging/skills/sales-enablement/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/sales-enablement",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "d83c3244dd8e2e64d585f1ff0d760eff181587f06b90ceaf8127a4ce618265dd"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/sales-enablement/SKILL.md",
+        "computedHash": "554e501e3c5926eced49cae2fd3460a61252d8979891e212aad6e39ff999c703"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "schema",
+      "staging_path": ".staging/skills/schema/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/schema",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "d8b7aa7bcd9727a87fb5470a6c9ee252b99a7ccb84f637d7c67c5d155b507e0b"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/schema/SKILL.md",
+        "computedHash": "2f4807070c77b5c52af3a7e56d2ca5ee12ae2fd8b749d76ab68d3de40f323e78"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "screen-recording",
+      "staging_path": ".staging/skills/screen-recording/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "e2becd024ae83ed263e5a752b9d19fb2d3daef693644f539c448ea9ec7e24170"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "secret-scanning",
+      "staging_path": ".staging/skills/secret-scanning/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "8c32a4c2c23615db116071434f637a517636f7fed8ea82ff998f5c551d75aa66"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "security-review",
+      "staging_path": ".staging/skills/security-review/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "2a03fa17ff556216c9ad245ba467ba674a246d026b365d9d49cd35c4e12d978f"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "seo-audit",
+      "staging_path": ".staging/skills/seo-audit/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/seo-audit",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "3b03a2e07578e9964acac0b6907ae343a904c6547bfefe779ba326db5eedd1cb"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/seo-audit/SKILL.md",
+        "computedHash": "f2dc52130189068981f21e1c0bdc4471ac7cd9b08d8a1320604411aa0f950385"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "signup",
+      "staging_path": ".staging/skills/signup/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/signup",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "9395aabae64891ebdac5f31d17c83b9d47546dc0c9b22654c7b89e9b04da7cf6"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/signup/SKILL.md",
+        "computedHash": "9efbe9bc357581a924baa33a696b6d58a7126b7a4e4c472cebf18ed3d52cd2fd"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "site-architecture",
+      "staging_path": ".staging/skills/site-architecture/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/site-architecture",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "a47f693c6a4f45db89276d8c341b3aa3054090cc8002dd4a2635448d7d152492"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/site-architecture/SKILL.md",
+        "computedHash": "48a38c5e2b000d134c3db282364b1014bad362fa91d4618ad8c2eb7cee991208"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "sms",
+      "staging_path": ".staging/skills/sms/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/sms",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "bf649cfac0e3851f28b4746dc0dccb51c7526935b64cae7dd237b1b948c58842"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/sms/SKILL.md",
+        "computedHash": "289111572055b6dd00a34e2111b6d895081b13cb3bf8c8fa3b05717d0e2e2b52"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "social",
+      "staging_path": ".staging/skills/social/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/social",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "8cc93d9b361622cdb640e87969747b85603bed2d268e923179f8dfb4799ec8c7"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/social/SKILL.md",
+        "computedHash": "906a0529e4ee506c3e2ae81d6dab72d98d2933ec3dac0f332d6b8a2e67acf6a0"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "spec-authoring",
+      "staging_path": ".staging/skills/spec-authoring/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6de9df1043d98340367c43166605d0f41f3922e3bd8182910bf78ebbf42537cd"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "sql-code-review",
+      "staging_path": ".staging/skills/sql-code-review/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "9910b8e43f3f84828da30e0e69914acf3328719b7d3b38779750554292b80265"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "sql-optimization",
+      "staging_path": ".staging/skills/sql-optimization/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c63d67fcb0a9b634aeba314a2bbac75d522675f4214e5984a587e604d3158c11"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "structured-autonomy-implement",
+      "staging_path": ".staging/skills/structured-autonomy-implement/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "566ce5103d4585f88a0231ae6bdf0cffced33c9bff72a8c7480d15d646a15756"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "structured-autonomy-plan",
+      "staging_path": ".staging/skills/structured-autonomy-plan/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "beac2ce064ce4309df0efb859cfd74adcf2f1dc4185e38e3f56274a6cf0314df"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "synapse-creation",
+      "staging_path": ".staging/skills/synapse-creation/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "33483b595dfcf2bf1be22b810c725628ed4aa9793e12a72a960d42593c5ef008"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "threat-model-analyst",
+      "staging_path": ".staging/skills/threat-model-analyst/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "821c4a1acded1883b14bd2f3024ff830c2189513f291967d7b4e33e24d7cbc0a"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "threejs-animation",
+      "staging_path": ".staging/skills/threejs-animation/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c623426f141b4d57953e44932ed959032492f0482c79b89e0c8e5930902fe6d5"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "threejs-fundamentals",
+      "staging_path": ".staging/skills/threejs-fundamentals/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "bafd25ba2ceeec676d0fc727d846c5fd3cb252630275b493b4cdd21146cb1a8b"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "threejs-geometry",
+      "staging_path": ".staging/skills/threejs-geometry/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "a613b9a1a21227124bebe942033dd8d7281a4ffa2698b073b77124090026757b"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "threejs-interaction",
+      "staging_path": ".staging/skills/threejs-interaction/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "7c32b74d425efc342797e4f8cb9a0182b7c57cfa789a71a05686b454fecd550e"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "threejs-lighting",
+      "staging_path": ".staging/skills/threejs-lighting/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "a400d0eb8b89cdbaf7dfc97adac7c0f740ba9479b5c36a730c3bf3a04a0091ee"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "threejs-loaders",
+      "staging_path": ".staging/skills/threejs-loaders/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "49b142be4202cfc5a37f1774634c217be6df5794507cf3a5aa868b3d7be9f80d"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "threejs-materials",
+      "staging_path": ".staging/skills/threejs-materials/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "b3d059de792d9a9754edfb3d034516bee30cfa582367fe3a02f1e82add884190"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "threejs-postprocessing",
+      "staging_path": ".staging/skills/threejs-postprocessing/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c1b8761ff51021e2d76df7ed849078e2a78497d5b55cea5979e2fbac990bdfa0"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "threejs-shaders",
+      "staging_path": ".staging/skills/threejs-shaders/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c821b4867ce7e698dc3198aa721cdd37790580aa18b690e83a79858c5f2bb17d"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "threejs-textures",
+      "staging_path": ".staging/skills/threejs-textures/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "fe598388e8032510ad9e54ed6a7f427daf8ae7a58bae0c0399b091e5a787fd67"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "tldr-prompt",
+      "staging_path": ".staging/skills/tldr-prompt/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "cc4775a0c3bfcb6ac10bbde77f71b3db8f95ce59ae3e30c086ec82963aafbe52"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "ui-screenshots",
+      "staging_path": ".staging/skills/ui-screenshots/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "9b77e24be14b9eca921f7dc67a29d15fd69513c37849c5826bf0d322ff49a76f"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "video",
+      "staging_path": ".staging/skills/video/SKILL.md",
+      "classification": "approved external catalog entry",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": "external/video",
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "3b6d4864bae49dd3d60e7f6218e0de0803633989d68bdcf093a3771307387ac2"
+      },
+      "legacy_lock_entry": {
+        "source": "coreyhaines31/marketingskills",
+        "sourceType": "github",
+        "skillPath": "skills/video/SKILL.md",
+        "computedHash": "53f7082208785054a33bba07d188a4d1c8054c22b269146f3d3edccbeca7db81"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "web-design-reviewer",
+      "staging_path": ".staging/skills/web-design-reviewer/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "74b6157796800e214d1f3cc242b013cf18e4599d03017bd8fdf5841f3d2158b9"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "what-context-needed",
+      "staging_path": ".staging/skills/what-context-needed/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "0d33d0b7a8e17db883b875244edb773ea38a033770f0f64959100aca30d298fb"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "write-coding-standards-from-file",
+      "staging_path": ".staging/skills/write-coding-standards-from-file/SKILL.md",
+      "classification": "unknown provenance requiring human review",
+      "current_staging_state": "present",
+      "ownership": "third-party snapshot",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "355907465bc9ec1d1181ba80d717769f65be11622a61b649821a8d217e5e4511"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "no"
+    },
+    {
+      "skill_key": "bug-fixing",
+      "staging_path": ".staging/skills/bug-fixing/SKILL.md",
+      "classification": "first-party candidate handled by another named issue",
+      "current_staging_state": "removed",
+      "ownership": "ego-hygiene first-party",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "unknown",
+        "value": "unknown"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "unknown",
+      "evidence_record": "catalog/first-party/staging-dispositions/bug-fixing.json"
+    },
+    {
+      "skill_key": "github-issue-authoring",
+      "staging_path": ".staging/skills/github-issue-authoring/SKILL.md",
+      "classification": "first-party candidate handled by another named issue",
+      "current_staging_state": "removed",
+      "ownership": "ego-hygiene first-party",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "unknown",
+        "value": "unknown"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "unknown",
+      "evidence_record": "catalog/first-party/staging-dispositions/github-issue-authoring.json"
+    },
+    {
+      "skill_key": "implementation-planning",
+      "staging_path": ".staging/skills/implementation-planning/SKILL.md",
+      "classification": "first-party candidate handled by another named issue",
+      "current_staging_state": "removed",
+      "ownership": "ego-hygiene first-party",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "unknown",
+        "value": "unknown"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "unknown",
+      "evidence_record": "catalog/first-party/staging-dispositions/implementation-planning.json"
+    },
+    {
+      "skill_key": "repository-cleanup",
+      "staging_path": ".staging/skills/repository-cleanup/SKILL.md",
+      "classification": "first-party candidate handled by another named issue",
+      "current_staging_state": "removed",
+      "ownership": "ego-hygiene first-party",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "unknown",
+        "value": "unknown"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "unknown",
+      "evidence_record": "catalog/first-party/staging-dispositions/repository-cleanup.json"
+    },
+    {
+      "skill_key": "skill-authoring",
+      "staging_path": ".staging/skills/skill-authoring/SKILL.md",
+      "classification": "first-party candidate handled by another named issue",
+      "current_staging_state": "removed",
+      "ownership": "ego-hygiene first-party",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "unknown",
+        "value": "unknown"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "unknown",
+      "evidence_record": "catalog/first-party/staging-dispositions/skill-authoring.json"
+    },
+    {
+      "skill_key": "test-engineering",
+      "staging_path": ".staging/skills/test-engineering/SKILL.md",
+      "classification": "first-party candidate handled by another named issue",
+      "current_staging_state": "removed",
+      "ownership": "ego-hygiene first-party",
+      "external_catalog_id": null,
+      "content_hash": {
+        "algorithm": "unknown",
+        "value": "unknown"
+      },
+      "legacy_lock_entry": {
+        "source": "unknown",
+        "sourceType": "unknown",
+        "skillPath": "unknown",
+        "computedHash": "unknown"
+      },
+      "executable_resources": "unknown",
+      "evidence_record": "catalog/first-party/staging-dispositions/test-engineering.json"
+    }
+  ]
+}
