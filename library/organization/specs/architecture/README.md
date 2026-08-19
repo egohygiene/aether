@@ -96,6 +96,10 @@ python3 library/organization/specs/architecture/validate.py \
   --repository "/path/to/repository"
 ```
 
+The validator discovers canonical materializations at repository root and in a
+categorized `docs/architecture/**` layout. When both locations contain the
+same canonical filename, the categorized document is authoritative and the
+root file is treated as a navigation surface.
+
 Use `--require-complete-reference` only for repositories that intentionally
 adopt all 18 documents.
-
