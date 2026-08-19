@@ -69,14 +69,26 @@ def parse_document(path: Path) -> Document:
 def discover(repository: Path) -> tuple[list[Document], list[str]]:
     documents: list[Document] = []
     errors: list[str] = []
-    for filename in sorted(CANONICAL_FILES):
-        path = repository / filename
-        if not path.exists():
-            continue
+    paths: set[Path] = set()
+    architecture_root = repository / "docs" / "architecture"
+    if architecture_root.is_dir():
+        for filename in CANONICAL_FILES:
+            paths.update(architecture_root.rglob(filename))
+
+    # A categorized corpus may retain a root-level navigation pointer with the
+    # same canonical filename. Prefer the governed document below
+    # docs/architecture in that case; otherwise accept the root materialization.
+    categorized_names = {path.name for path in paths}
+    for filename in CANONICAL_FILES - categorized_names:
+        candidate = repository / filename
+        if candidate.exists():
+            paths.add(candidate)
+
+    for path in sorted(paths):
         try:
             documents.append(parse_document(path))
         except (OSError, UnicodeError, ValueError, yaml.YAMLError) as error:
-            errors.append(f"{filename}: {error}")
+            errors.append(f"{path.relative_to(repository)}: {error}")
     return documents, errors
 
 
