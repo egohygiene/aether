@@ -2,6 +2,11 @@
 
 Aether is Ego Hygiene’s canonical first-party library of reusable AI specifications, skills, and agent source with deterministic validation and build tooling.
 
+Architecture navigation: [META.md](META.md) inventories Aether's complete
+18-document architecture graph. The reusable materialization contract, schema,
+and consumer validator live under
+[library/organization/specs/architecture/](library/organization/specs/architecture/README.md).
+
 ## 1) Lifecycle and status
 
 - Repository status: active, with canonical source in `library/organization/`.

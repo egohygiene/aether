@@ -1,3 +1,30 @@
+---
+schema: aether.architecture-document/v1
+id: aether-decisions
+title: Aether Decisions
+kind: architecture-document
+version: 0.1.0
+status: draft
+owners:
+  - egohygiene
+created: 2026-08-08
+updated: 2026-08-19
+governed_by:
+  - architecture-decisions
+depends_on:
+  - aether-principles
+  - aether-epistemology
+  - aether-foundations
+  - aether-system
+  - aether-architecture
+related:
+  - aether-purpose
+  - aether-vision
+  - aether-pillars
+  - aether-manifesto
+supersedes: []
+---
+
 # DECISIONS.md — Architectural Decision Records
 
 > **Document owner:** This file  

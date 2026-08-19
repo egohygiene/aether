@@ -1,3 +1,26 @@
+---
+schema: aether.architecture-document/v1
+id: aether-purpose
+title: Aether Purpose
+kind: architecture-document
+version: 0.1.0
+status: draft
+owners:
+  - egohygiene
+created: 2026-08-08
+updated: 2026-08-19
+governed_by:
+  - architecture-purpose
+depends_on:
+  []
+related:
+  - aether-vision
+  - aether-principles
+  - aether-pillars
+  - aether-manifesto
+supersedes: []
+---
+
 # PURPOSE.md — Why Aether Exists
 
 > **Document owner:** `ARCHITECTURE.md`  

@@ -1,3 +1,29 @@
+---
+schema: aether.architecture-document/v1
+id: aether-roadmap
+title: Aether Roadmap
+kind: architecture-document
+version: 0.1.0
+status: draft
+owners:
+  - egohygiene
+created: 2026-08-08
+updated: 2026-08-19
+governed_by:
+  - architecture-roadmap
+depends_on:
+  - aether-vision
+  - aether-pillars
+  - aether-architecture
+  - aether-decisions
+related:
+  - aether-purpose
+  - aether-principles
+  - aether-manifesto
+  - aether-epistemology
+supersedes: []
+---
+
 # ROADMAP.md — Aether Phased Work Plan
 
 > **Document owner:** This file  
