@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aether.provenance-catalog/v1",
+  "title": "Aether normalized artifact provenance catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "records"],
+  "properties": {
+    "schema_version": {
+      "const": "aether.provenance-catalog/v1"
+    },
+    "records": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/record"}
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "value"],
+      "properties": {
+        "algorithm": {
+          "enum": ["sha256-utf8-lf", "sha256-tree"]
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "path", "revision", "digest"],
+      "properties": {
+        "repository": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "revision": {"type": "string", "minLength": 1},
+        "digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_tools"],
+      "properties": {
+        "required_tools": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "notes": {"type": "string"}
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state"],
+      "properties": {
+        "state": {
+          "enum": ["draft", "experimental", "stable", "deprecated", "retired"]
+        },
+        "source_state": {"type": "string"}
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "party",
+        "source",
+        "license",
+        "trust",
+        "lifecycle",
+        "compatibility",
+        "maintainers",
+        "publishable",
+        "blocked_reasons"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(specification|skill|agent|prompt|instruction|external)/[a-z0-9-]+$"
+        },
+        "kind": {
+          "enum": ["specification", "skill", "agent", "prompt", "instruction"]
+        },
+        "party": {
+          "enum": ["first-party", "external"]
+        },
+        "source": {"$ref": "#/$defs/source"},
+        "license": {"type": "string", "minLength": 1},
+        "trust": {
+          "enum": ["first-party", "trusted", "restricted", "untrusted", "unknown"]
+        },
+        "lifecycle": {"$ref": "#/$defs/lifecycle"},
+        "compatibility": {"$ref": "#/$defs/compatibility"},
+        "maintainers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "publishable": {"type": "boolean"},
+        "blocked_reasons": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}
