@@ -1,3 +1,29 @@
+---
+schema: aether.architecture-document/v1
+id: aether-ai-constitution
+title: Aether Ai Constitution
+kind: architecture-document
+version: 0.1.0
+status: draft
+owners:
+  - egohygiene
+created: 2026-08-08
+updated: 2026-08-19
+governed_by:
+  - architecture-ai-constitution
+depends_on:
+  - aether-purpose
+  - aether-vision
+  - aether-principles
+  - aether-epistemology
+related:
+  - aether-pillars
+  - aether-manifesto
+  - aether-ontology
+  - aether-personal-model
+supersedes: []
+---
+
 # AI_CONSTITUTION.md — Rules for AI Systems Acting in Aether
 
 > **Document owner:** This file  

@@ -1,3 +1,27 @@
+---
+schema: aether.architecture-document/v1
+id: aether-system
+title: Aether System
+kind: architecture-document
+version: 0.1.0
+status: draft
+owners:
+  - egohygiene
+created: 2026-08-08
+updated: 2026-08-19
+governed_by:
+  - architecture-system
+depends_on:
+  - aether-foundations
+  - aether-ontology
+related:
+  - aether-purpose
+  - aether-vision
+  - aether-principles
+  - aether-pillars
+supersedes: []
+---
+
 # SYSTEM.md — How Aether's Artifacts Relate
 
 > **Document owner:** This file  

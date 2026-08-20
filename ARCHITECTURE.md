@@ -1,3 +1,27 @@
+---
+schema: aether.architecture-document/v1
+id: aether-architecture
+title: Aether Architecture
+kind: architecture-document
+version: 0.1.0
+status: draft
+owners:
+  - egohygiene
+created: 2026-08-08
+updated: 2026-08-19
+governed_by:
+  - architecture-architecture
+depends_on:
+  - aether-foundations
+  - aether-system
+related:
+  - aether-purpose
+  - aether-vision
+  - aether-principles
+  - aether-pillars
+supersedes: []
+---
+
 # ARCHITECTURE.md — How Aether Is Structured
 
 > **Document owner:** This file  
