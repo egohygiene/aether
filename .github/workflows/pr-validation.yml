@@ -39,6 +39,10 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "${RUN_REPORT_DIR}"
+          cp "catalog/first-party/catalog.v1.json" "${RUN_REPORT_DIR}/catalog-current.v1.json"
+          ./aether catalog generate
+          cp "catalog/first-party/catalog.v1.json" "${RUN_REPORT_DIR}/catalog-generated.v1.json"
+          git restore "catalog/first-party/catalog.v1.json"
           ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build.txt"
           ./aether distribution build --output-directory "dist" --check | tee "${RUN_REPORT_DIR}/distribution-check.txt"
           ./aether validate --format "text" | tee "${RUN_REPORT_DIR}/validate.txt"
