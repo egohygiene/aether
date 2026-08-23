@@ -1,0 +1,38 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+vars:
+  DIST_DIR: '{{.DIST_DIR | default "dist"}}'
+
+tasks:
+  skills:build:
+    desc: Build deterministic Aether distributions
+    cmds:
+      - ./aether distribution build --output-directory "{{.DIST_DIR}}"
+
+  skills:publish:dry-run:
+    desc: Build and validate the gh skill publish payload without publishing
+    preconditions:
+      - sh: command -v gh >/dev/null 2>&1
+        msg: GitHub CLI (`gh`) is required for skill publish validation.
+    cmds:
+      - task: skills:build
+        vars:
+          DIST_DIR: "{{.DIST_DIR}}"
+      - gh skill publish "{{.DIST_DIR}}" --dry-run
+
+  skills:publish:
+    desc: Publish a tagged Aether skill release after the dry-run gate
+    requires:
+      vars:
+        - RELEASE_TAG
+    preconditions:
+      - sh: command -v gh >/dev/null 2>&1
+        msg: GitHub CLI (`gh`) is required for skill publication.
+    cmds:
+      - task: skills:publish:dry-run
+        vars:
+          DIST_DIR: "{{.DIST_DIR}}"
+      - gh skill publish "{{.DIST_DIR}}" --tag "{{.RELEASE_TAG}}"

@@ -57,6 +57,7 @@ Machine-readable catalog and provenance:
 - Python 3.12+
 - Git
 - GitHub CLI (`gh`) 2.96+ for skill publish/install flows
+- Task 3 (optional) for convenience wrappers in `Taskfile.yml`
 
 Install dev dependencies:
 
@@ -140,6 +141,16 @@ Validate publishability (no release write):
 ```sh
 gh skill publish "dist" --dry-run
 ```
+
+Optional Taskfile convenience wrappers build first and delegate to the same canonical command surface:
+
+```sh
+task skills:build
+task skills:publish:dry-run
+task skills:publish RELEASE_TAG="v1.0.0"
+```
+
+The live Taskfile publish path requires an explicit release tag and runs the dry-run task before publishing. See `docs/taskfile-workflows.md` for direct-command equivalents and ownership boundaries.
 
 ## 9) Install locally with GitHub CLI
 
