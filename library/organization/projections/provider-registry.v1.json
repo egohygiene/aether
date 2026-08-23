@@ -1,0 +1,93 @@
+{
+  "$schema": "../../../catalog/schemas/aether.projection-interface.v1.schema.json",
+  "schema_version": "aether.projection-interface/v1",
+  "interface_version": "1.0.0",
+  "last_verified": "2026-08-23",
+  "canonical_source": {
+    "owner": "egohygiene/aether",
+    "kind": "agent",
+    "path_pattern": "library/organization/agents/{agent_id}/AGENT.md"
+  },
+  "providers": [
+    {
+      "id": "github-copilot",
+      "display_name": "GitHub Copilot",
+      "status": "native",
+      "adapter": "github-agent-markdown",
+      "scopes": ["repository", "organization"],
+      "output_patterns": [
+        "dist/github/repository/.github/agents/{agent_id}.agent.md",
+        "dist/github/organization/agents/{agent_id}.agent.md"
+      ],
+      "shares_output_with": null,
+      "supported_features": ["description", "prompt", "tools"],
+      "unsupported_features": [],
+      "documentation": "https://docs.github.com/en/copilot/reference/custom-agents-configuration"
+    },
+    {
+      "id": "vscode-copilot",
+      "display_name": "Visual Studio Code Copilot",
+      "status": "native-shared",
+      "adapter": "github-agent-markdown",
+      "scopes": ["repository"],
+      "output_patterns": [
+        "dist/github/repository/.github/agents/{agent_id}.agent.md"
+      ],
+      "shares_output_with": "github-copilot",
+      "supported_features": ["description", "prompt", "tools"],
+      "unsupported_features": [],
+      "documentation": "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/create-custom-agents-in-your-ide"
+    },
+    {
+      "id": "claude-code",
+      "display_name": "Claude Code",
+      "status": "native",
+      "adapter": "claude-subagent-markdown",
+      "scopes": ["repository"],
+      "output_patterns": [
+        "dist/claude/repository/.claude/agents/{agent_id}.md"
+      ],
+      "shares_output_with": null,
+      "supported_features": ["description", "prompt", "tools"],
+      "unsupported_features": [],
+      "documentation": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "id": "opencode",
+      "display_name": "OpenCode",
+      "status": "native",
+      "adapter": "opencode-agent-markdown",
+      "scopes": ["repository"],
+      "output_patterns": [
+        "dist/opencode/repository/.opencode/agents/{agent_id}.md"
+      ],
+      "shares_output_with": null,
+      "supported_features": ["description", "prompt", "tool-permissions"],
+      "unsupported_features": [],
+      "documentation": "https://opencode.ai/docs/agents/"
+    },
+    {
+      "id": "zencoder",
+      "display_name": "Zencoder",
+      "status": "manual-import",
+      "adapter": "manual-import-json",
+      "scopes": ["repository", "organization"],
+      "output_patterns": [
+        "dist/zencoder/manual-import/agents.json"
+      ],
+      "shares_output_with": null,
+      "supported_features": ["description", "prompt", "canonical-tool-intent"],
+      "unsupported_features": ["verified-repository-native-agent-file"],
+      "documentation": "https://docs.zencoder.ai/features/custom-agents"
+    }
+  ],
+  "mcp_templates": [
+    {
+      "id": "github-mcp-local-docker",
+      "source": "library/organization/projections/templates/github-mcp.local-docker.json",
+      "output": "dist/mcp/github/.mcp.json",
+      "secret_policy": "environment-only",
+      "documentation": "https://github.com/github/github-mcp-server"
+    }
+  ]
+}

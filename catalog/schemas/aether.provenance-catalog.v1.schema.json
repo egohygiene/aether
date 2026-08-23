@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "aether.provenance-catalog/v1",
+  "$id": "https://egohygiene.io/schemas/aether/provenance-catalog/v1.json",
   "title": "Aether normalized artifact provenance catalog",
   "type": "object",
   "additionalProperties": false,

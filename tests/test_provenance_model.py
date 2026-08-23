@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import json
 from pathlib import Path
 import sys
 import unittest
@@ -23,6 +24,17 @@ from provenance_model import (  # noqa: E402
 class ProvenanceModelTests(unittest.TestCase):
     def test_repository_provenance_model_is_valid(self) -> None:
         self.assertEqual(check("all"), [])
+
+    def test_schema_uses_absolute_resolvable_identifier(self) -> None:
+        schema = json.loads(
+            (ROOT / "catalog/schemas/aether.provenance-catalog.v1.schema.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(
+            schema["$id"],
+            "https://egohygiene.io/schemas/aether/provenance-catalog/v1.json",
+        )
 
     def test_first_party_includes_agents(self) -> None:
         catalog = build_first_party()

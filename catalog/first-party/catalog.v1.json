@@ -1701,7 +1701,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "4bd865cd2ef4fdb4771b8ee0139858c8cf2dbd64bda77c81226d8d328666830b"
+        "value": "ef8c712ac8a45c823f20066853057eb7525a48af3a05083658382e9836c28bef"
       },
       "source_path": "library/organization/specs/architecture/document.spec.md",
       "supersedes_ids": [],
@@ -2338,6 +2338,58 @@
         "planning"
       ],
       "title": "Roadmap Document Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-document"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines how a repository selects, materializes, inventories,",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-set.spec.md"
+      ],
+      "id": "specification/architecture-set",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/architecture-authoring",
+        "specification/architecture-meta"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "dbbeaf6235d43fd924e088282def1d3dcd4f9dd072e04db1aa04a383dbd478c2"
+      },
+      "source_path": "library/organization/specs/architecture/set.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "applicability",
+        "materialization",
+        "validation"
+      ],
+      "title": "Architecture Document Set Specification"
     },
     {
       "artifact_version": "1.1.0",

@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://egohygiene.io/schemas/aether/projection-interface/v1.json",
+  "title": "Aether provider projection interface v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema_version",
+    "interface_version",
+    "last_verified",
+    "canonical_source",
+    "providers",
+    "mcp_templates"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": { "const": "aether.projection-interface/v1" },
+    "interface_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "last_verified": { "type": "string", "format": "date" },
+    "canonical_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "kind", "path_pattern"],
+      "properties": {
+        "owner": { "const": "egohygiene/aether" },
+        "kind": { "const": "agent" },
+        "path_pattern": { "type": "string", "minLength": 1 }
+      }
+    },
+    "providers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/provider" }
+    },
+    "mcp_templates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/mcpTemplate" }
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "display_name",
+        "status",
+        "adapter",
+        "scopes",
+        "output_patterns",
+        "shares_output_with",
+        "supported_features",
+        "unsupported_features",
+        "documentation"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "display_name": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["native", "native-shared", "manual-import", "unsupported"] },
+        "adapter": { "type": "string", "minLength": 1 },
+        "scopes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["repository", "organization", "user"] }
+        },
+        "output_patterns": { "$ref": "#/$defs/stringArray" },
+        "shares_output_with": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string", "minLength": 1 }
+          ]
+        },
+        "supported_features": { "$ref": "#/$defs/stringArray" },
+        "unsupported_features": { "$ref": "#/$defs/stringArray" },
+        "documentation": { "type": "string", "pattern": "^https://" }
+      }
+    },
+    "mcpTemplate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source", "output", "secret_policy", "documentation"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "source": { "type": "string", "minLength": 1 },
+        "output": { "type": "string", "minLength": 1 },
+        "secret_policy": { "enum": ["environment-only", "no-secret-required"] },
+        "documentation": { "type": "string", "pattern": "^https://" }
+      }
+    }
+  }
+}
