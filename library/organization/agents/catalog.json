@@ -12,7 +12,10 @@
       "tools": ["read", "search", "edit", "web"],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/architect.agent.md",
-        "github-organization": "dist/github/organization/agents/architect.agent.md"
+        "github-organization": "dist/github/organization/agents/architect.agent.md",
+        "vscode-repository": "dist/github/repository/.github/agents/architect.agent.md",
+        "claude-repository": "dist/claude/repository/.claude/agents/architect.md",
+        "opencode-repository": "dist/opencode/repository/.opencode/agents/architect.md"
       }
     },
     "arxiv-publisher": {
@@ -25,7 +28,10 @@
       "tools": ["read", "search", "edit", "execute", "web"],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/arxiv-publisher.agent.md",
-        "github-organization": "dist/github/organization/agents/arxiv-publisher.agent.md"
+        "github-organization": "dist/github/organization/agents/arxiv-publisher.agent.md",
+        "vscode-repository": "dist/github/repository/.github/agents/arxiv-publisher.agent.md",
+        "claude-repository": "dist/claude/repository/.claude/agents/arxiv-publisher.md",
+        "opencode-repository": "dist/opencode/repository/.opencode/agents/arxiv-publisher.md"
       }
     },
     "auditor": {
@@ -38,7 +44,10 @@
       "tools": ["read", "search"],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/auditor.agent.md",
-        "github-organization": "dist/github/organization/agents/auditor.agent.md"
+        "github-organization": "dist/github/organization/agents/auditor.agent.md",
+        "vscode-repository": "dist/github/repository/.github/agents/auditor.agent.md",
+        "claude-repository": "dist/claude/repository/.claude/agents/auditor.md",
+        "opencode-repository": "dist/opencode/repository/.opencode/agents/auditor.md"
       }
     },
     "bug-fix-teammate": {
@@ -51,7 +60,10 @@
       "tools": ["read", "search", "edit", "execute"],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/bug-fix-teammate.agent.md",
-        "github-organization": "dist/github/organization/agents/bug-fix-teammate.agent.md"
+        "github-organization": "dist/github/organization/agents/bug-fix-teammate.agent.md",
+        "vscode-repository": "dist/github/repository/.github/agents/bug-fix-teammate.agent.md",
+        "claude-repository": "dist/claude/repository/.claude/agents/bug-fix-teammate.md",
+        "opencode-repository": "dist/opencode/repository/.opencode/agents/bug-fix-teammate.md"
       }
     },
     "cleanup-specialist": {
@@ -64,7 +76,10 @@
       "tools": ["read", "search", "edit", "execute"],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/cleanup-specialist.agent.md",
-        "github-organization": "dist/github/organization/agents/cleanup-specialist.agent.md"
+        "github-organization": "dist/github/organization/agents/cleanup-specialist.agent.md",
+        "vscode-repository": "dist/github/repository/.github/agents/cleanup-specialist.agent.md",
+        "claude-repository": "dist/claude/repository/.claude/agents/cleanup-specialist.md",
+        "opencode-repository": "dist/opencode/repository/.opencode/agents/cleanup-specialist.md"
       }
     },
     "github-issue-creator": {
@@ -77,7 +92,10 @@
       "tools": ["read", "search", "web"],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/github-issue-creator.agent.md",
-        "github-organization": "dist/github/organization/agents/github-issue-creator.agent.md"
+        "github-organization": "dist/github/organization/agents/github-issue-creator.agent.md",
+        "vscode-repository": "dist/github/repository/.github/agents/github-issue-creator.agent.md",
+        "claude-repository": "dist/claude/repository/.claude/agents/github-issue-creator.md",
+        "opencode-repository": "dist/opencode/repository/.opencode/agents/github-issue-creator.md"
       }
     },
     "implementation-planner": {
@@ -90,7 +108,10 @@
       "tools": ["read", "search", "edit", "web"],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/implementation-planner.agent.md",
-        "github-organization": "dist/github/organization/agents/implementation-planner.agent.md"
+        "github-organization": "dist/github/organization/agents/implementation-planner.agent.md",
+        "vscode-repository": "dist/github/repository/.github/agents/implementation-planner.agent.md",
+        "claude-repository": "dist/claude/repository/.claude/agents/implementation-planner.md",
+        "opencode-repository": "dist/opencode/repository/.opencode/agents/implementation-planner.md"
       }
     },
     "specfile-creator": {
@@ -103,7 +124,10 @@
       "tools": ["read", "search", "edit", "web"],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/specfile-creator.agent.md",
-        "github-organization": "dist/github/organization/agents/specfile-creator.agent.md"
+        "github-organization": "dist/github/organization/agents/specfile-creator.agent.md",
+        "vscode-repository": "dist/github/repository/.github/agents/specfile-creator.agent.md",
+        "claude-repository": "dist/claude/repository/.claude/agents/specfile-creator.md",
+        "opencode-repository": "dist/opencode/repository/.opencode/agents/specfile-creator.md"
       }
     },
     "test-specialist": {
@@ -116,7 +140,10 @@
       "tools": ["read", "search", "edit", "execute"],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/test-specialist.agent.md",
-        "github-organization": "dist/github/organization/agents/test-specialist.agent.md"
+        "github-organization": "dist/github/organization/agents/test-specialist.agent.md",
+        "vscode-repository": "dist/github/repository/.github/agents/test-specialist.agent.md",
+        "claude-repository": "dist/claude/repository/.claude/agents/test-specialist.md",
+        "opencode-repository": "dist/opencode/repository/.opencode/agents/test-specialist.md"
       }
     }
   },
