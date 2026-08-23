@@ -1,0 +1,11 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+# Keep Taskfile as an ergonomic orchestration layer. Canonical implementation
+# remains in ./aether, GitHub CLI, and the repository's versioned build scripts.
+includes:
+  skills:
+    taskfile: ./.tasks/skills.yml
+    flatten: true
