@@ -161,7 +161,17 @@ Consumers own:
 - organization deployment policy;
 - repository-specific overrides.
 
-In particular, `egohygiene/empathy` consumes released Aether projections as part of editor/agent integration profiles. Empathy is not a prerequisite for defining the Aether projection interface.
+The dependency direction is:
+
+```text
+Aether projection contract/release
+        ↓
+Empathy editor/AI integration profile
+        ↓
+Holon materialization / consumer repository
+```
+
+`egohygiene/empathy#63` therefore consumes released Aether projections. It is a downstream integration/golden-consumer concern, not a prerequisite for defining the Aether projection interface.
 
 ## Validation
 
