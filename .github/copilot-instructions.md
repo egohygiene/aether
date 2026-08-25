@@ -41,6 +41,10 @@ Do **not** treat `.staging/`, `dist/`, or any other path as canonical source.
 5. **Validate local Markdown links** before finalizing documentation changes.
 6. **Consumer-local instructions override Aether defaults** for that consumer's
    context.
+7. **Run the decision-impact checkpoint before code changes.** Apply the
+   canonical
+   [`decision-impact.AGENTS.md`](../library/organization/projections/templates/decision-impact.AGENTS.md)
+   module by reference; do not copy or weaken its Hygiene contract pins.
 
 ---
 

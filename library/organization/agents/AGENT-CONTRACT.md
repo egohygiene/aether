@@ -98,6 +98,21 @@ Projection is performed by `build-projections.py`. For each source `AGENT.md`:
 4. Internal spec links (``../specs/<path>/<file>.spec.md``) are rewritten to
    ``.github/specs/<path>/<file>.spec.md`` for repository projections and
    ``specs/<path>/<file>.spec.md`` for organization projections.
+5. The shared decision-impact instruction at
+   [`../projections/templates/decision-impact.AGENTS.md`](../projections/templates/decision-impact.AGENTS.md)
+   is inserted exactly once in every generated agent projection. Canonical
+   role bodies do not copy this managed module.
+
+### Decision-impact inheritance
+
+The decision-impact module is the concise, always-on checkpoint for code-change
+tasks. It pins the versioned Hygiene ADR and Repository Intelligence contracts,
+preserves their proposal status, and defines create, update, supersede,
+reference, and `ADR not required` flows without redefining organization policy.
+
+Provider builders must replace the marked block in place when it already
+exists and reject malformed or duplicate marker sets. This keeps generated
+agent guidance and repository-root `AGENTS.md` integrations non-duplicative.
 
 ---
 

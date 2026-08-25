@@ -1,7 +1,7 @@
 {
   "$schema": "../../../catalog/schemas/aether.projection-interface.v1.schema.json",
   "schema_version": "aether.projection-interface/v1",
-  "interface_version": "1.0.0",
+  "interface_version": "1.1.0",
   "last_verified": "2026-08-23",
   "canonical_source": {
     "owner": "egohygiene/aether",
