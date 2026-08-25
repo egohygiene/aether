@@ -1,6 +1,7 @@
 # Aether provider projection contract
 
 Status: `aether.projection-interface/v1`  
+Interface version: `1.1.0`
 Owner: `egohygiene/aether`  
 Registry: [`provider-registry.v1.json`](provider-registry.v1.json)
 
@@ -42,6 +43,16 @@ The source owns:
 
 Provider adapters may transform syntax and paths, but they do not rewrite canonical intent.
 
+Every projected agent also receives the shared, canonical decision-impact
+module from
+[`templates/decision-impact.AGENTS.md`](templates/decision-impact.AGENTS.md).
+The module is injected through managed markers instead of being copied into
+each role source. It currently pins the proposed Hygiene ADR policy at version
+`1.0.0` and Repository Intelligence contract at `1.0.0-alpha.1`, both at
+immutable Hygiene revision `5e0602265b6ac5e5165b89f418e55a3fd12f8a64`.
+Its draft projection does not promote either upstream proposal or grant
+implementation authority.
+
 ## Projection states
 
 Every provider entry declares one of these states:
@@ -61,6 +72,8 @@ Every generated Markdown agent includes an `aether-projection` HTML comment imme
 - provider adapter;
 - canonical source path;
 - normalized SHA-256 source digest;
+- the decision-impact module version, upstream pins, source, and normalized
+  digest;
 - generator path.
 
 JSON/manual outputs carry equivalent provenance fields, and `dist/projections/manifest.v1.json` records hashes for every generated output.
@@ -130,6 +143,18 @@ dist/zencoder/manual-import/agents.json
 ```
 
 As of the registry's `last_verified` date, Aether has not verified a repository-native custom-agent file format for Zencoder. The generated JSON is therefore deliberately labeled `manual-import` and is input to the provider UI/catalog rather than a file that claims automatic discovery.
+
+### Repository-instruction fixture
+
+```text
+dist/fixtures/repository-instructions/AGENTS.md
+```
+
+This generated file is an integration fixture for repository-root guidance,
+not a consumer-owned instruction file to overwrite wholesale. Holon or another
+authorized installer must preserve repository commands, boundaries, and nested
+instruction precedence while reconciling the marked module. Reapplying the
+module replaces the existing marked block and never adds a second copy.
 
 ## GitHub MCP template
 

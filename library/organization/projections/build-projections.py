@@ -23,11 +23,23 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 AGENTS_DIR = REPO_ROOT / "library" / "organization" / "agents"
 REGISTRY_PATH = REPO_ROOT / "library" / "organization" / "projections" / "provider-registry.v1.json"
 SCHEMA_PATH = REPO_ROOT / "catalog" / "schemas" / "aether.projection-interface.v1.schema.json"
+DECISION_IMPACT_PATH = (
+    REPO_ROOT
+    / "library"
+    / "organization"
+    / "projections"
+    / "templates"
+    / "decision-impact.AGENTS.md"
+)
 GENERATOR_ID = "library/organization/projections/build-projections.py"
 INTERFACE_SCHEMA = "aether.projection-interface/v1"
+INTERFACE_VERSION = "1.1.0"
 MANIFEST_SCHEMA = "aether.projection-manifest/v1"
 MANUAL_IMPORT_SCHEMA = "aether.manual-agent-import/v1"
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
+INSTRUCTION_METADATA_RE = re.compile(r"<!-- aether-instruction (\{.*\}) -->")
+DECISION_IMPACT_START = "<!-- BEGIN AETHER DECISION-IMPACT -->"
+DECISION_IMPACT_END = "<!-- END AETHER DECISION-IMPACT -->"
 _SKILL_LINK_RE = re.compile(r"(?:\.\./){2}skills/[^/]+/([^/]+)/SKILL\.md")
 _SPEC_LINK_RE = re.compile(r"(?:\.\./){2}specs/([^\s\)\"']+)")
 
@@ -79,6 +91,80 @@ def _repo_relative(path: Path) -> str:
         return path.as_posix()
 
 
+def _load_decision_impact() -> tuple[dict[str, Any], str]:
+    """Load and validate the canonical decision-impact instruction module."""
+    if not DECISION_IMPACT_PATH.is_file():
+        raise ValueError(
+            f"decision-impact instruction is missing: {_repo_relative(DECISION_IMPACT_PATH)}"
+        )
+    text = _normalized_text(DECISION_IMPACT_PATH).strip()
+    if text.count(DECISION_IMPACT_START) != 1 or text.count(DECISION_IMPACT_END) != 1:
+        raise ValueError("decision-impact instruction must contain exactly one managed marker pair")
+    if text.index(DECISION_IMPACT_START) > text.index(DECISION_IMPACT_END):
+        raise ValueError("decision-impact instruction markers are out of order")
+
+    match = INSTRUCTION_METADATA_RE.search(text)
+    if match is None:
+        raise ValueError("decision-impact instruction is missing aether-instruction metadata")
+    try:
+        metadata = json.loads(match.group(1))
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"decision-impact instruction metadata is invalid JSON: {exc}") from exc
+    if not isinstance(metadata, dict):
+        raise ValueError("decision-impact instruction metadata must be an object")
+    for field in ("id", "version", "status", "inherits"):
+        if field not in metadata:
+            raise ValueError(f"decision-impact instruction metadata is missing {field}")
+    if metadata["id"] != "decision-impact":
+        raise ValueError("decision-impact instruction metadata has an unexpected id")
+    if not isinstance(metadata["inherits"], list) or not metadata["inherits"]:
+        raise ValueError("decision-impact instruction must inherit at least one pinned contract")
+    for inherited in metadata["inherits"]:
+        if not isinstance(inherited, dict) or not {
+            "contract",
+            "revision",
+            "source_url",
+            "status",
+        }.issubset(inherited):
+            raise ValueError(
+                "decision-impact inherited contracts require contract, revision, source_url, and status"
+            )
+    return metadata, text
+
+
+def _decision_impact_provenance() -> dict[str, Any]:
+    """Return provenance for the shared decision-impact module."""
+    metadata, _module = _load_decision_impact()
+    source_text = _normalized_text(DECISION_IMPACT_PATH)
+    return {
+        "id": metadata["id"],
+        "version": metadata["version"],
+        "status": metadata["status"],
+        "source": _repo_relative(DECISION_IMPACT_PATH),
+        "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": _sha256_text(source_text),
+        },
+        "inherits": metadata["inherits"],
+    }
+
+
+def _apply_decision_impact(body: str) -> str:
+    """Insert or refresh exactly one managed decision-impact block."""
+    _metadata, module = _load_decision_impact()
+    start_count = body.count(DECISION_IMPACT_START)
+    end_count = body.count(DECISION_IMPACT_END)
+    if start_count != end_count or start_count > 1:
+        raise ValueError("projected guidance contains an invalid decision-impact marker set")
+    if start_count == 0:
+        return f"{body.rstrip()}\n\n{module}\n"
+
+    start = body.index(DECISION_IMPACT_START)
+    end = body.index(DECISION_IMPACT_END, start) + len(DECISION_IMPACT_END)
+    parts = [body[:start].rstrip(), module, body[end:].lstrip()]
+    return "\n\n".join(part for part in parts if part).rstrip() + "\n"
+
+
 def load_registry() -> dict[str, Any]:
     """Load and validate the versioned provider registry."""
     registry = json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
@@ -91,6 +177,10 @@ def load_registry() -> dict[str, Any]:
             for error in errors
         )
         raise ValueError(f"provider registry does not satisfy its schema: {details}")
+    if registry["interface_version"] != INTERFACE_VERSION:
+        raise ValueError(
+            "provider registry interface_version does not match the projection builder"
+        )
     return registry
 
 
@@ -136,6 +226,7 @@ def _projection_provenance(provider: str, source: Path, source_text: str) -> dic
     """Return deterministic provenance shared by every projected agent."""
     return {
         "interface": INTERFACE_SCHEMA,
+        "interface_version": INTERFACE_VERSION,
         "provider": provider,
         "source": _repo_relative(source),
         "source_digest": {
@@ -143,6 +234,7 @@ def _projection_provenance(provider: str, source: Path, source_text: str) -> dic
             "value": _sha256_text(source_text),
         },
         "generator": GENERATOR_ID,
+        "instruction_modules": [_decision_impact_provenance()],
     }
 
 
@@ -161,6 +253,25 @@ def _render_markdown(frontmatter: dict[str, Any], provenance: str, body: str) ->
         sort_keys=False,
     ).rstrip()
     return f"---\n{yaml_text}\n---\n{provenance}\n\n{body.rstrip()}\n".encode("utf-8")
+
+
+def _agents_guidance_fixture() -> bytes:
+    """Render an install-review fixture for repository-root AGENTS.md guidance."""
+    _metadata, module = _load_decision_impact()
+    provenance = {
+        "interface": INTERFACE_SCHEMA,
+        "interface_version": INTERFACE_VERSION,
+        "kind": "repository-agents-guidance-fixture",
+        "instruction_modules": [_decision_impact_provenance()],
+        "generator": GENERATOR_ID,
+    }
+    return (
+        "# AGENTS.md\n\n"
+        f"<!-- aether-projection {_canonical_json(provenance)} -->\n\n"
+        "> Generated integration fixture. Preserve consumer-owned repository commands, "
+        "boundaries, and nested instruction precedence when installing this managed module.\n\n"
+        f"{module}\n"
+    ).encode("utf-8")
 
 
 def _mapped_tools(canonical_tools: list[str], mapping: dict[str, tuple[str, ...]]) -> list[str]:
@@ -277,19 +388,20 @@ def _build_files(registry: dict[str, Any]) -> dict[str, bytes]:
     for agent_id, source in find_agents():
         source_text = _normalized_text(source)
         frontmatter, body = _parse_agent(agent_id, source)
+        projected_body = _apply_decision_impact(body)
         source_provenance = _projection_provenance("canonical", source, source_text)
         source_records[agent_id] = source_provenance
 
         files[f"github/repository/.github/agents/{agent_id}.agent.md"] = _github_projection(
             frontmatter,
-            body,
+            projected_body,
             source,
             source_text,
             organization=False,
         )
         files[f"github/organization/agents/{agent_id}.agent.md"] = _github_projection(
             frontmatter,
-            body,
+            projected_body,
             source,
             source_text,
             organization=True,
@@ -297,13 +409,13 @@ def _build_files(registry: dict[str, Any]) -> dict[str, bytes]:
         files[f"claude/repository/.claude/agents/{agent_id}.md"] = _claude_projection(
             agent_id,
             frontmatter,
-            body,
+            projected_body,
             source,
             source_text,
         )
         files[f"opencode/repository/.opencode/agents/{agent_id}.md"] = _opencode_projection(
             frontmatter,
-            body,
+            projected_body,
             source,
             source_text,
         )
@@ -314,11 +426,12 @@ def _build_files(registry: dict[str, Any]) -> dict[str, bytes]:
                 "name": frontmatter["name"],
                 "description": frontmatter["description"],
                 "canonical_tools": list(frontmatter["tools"]),
-                "instructions": _rewrite_links(body, ".github/specs").rstrip(),
+                "instructions": _rewrite_links(projected_body, ".github/specs").rstrip(),
                 "provenance": source_provenance,
             }
         )
 
+    files["fixtures/repository-instructions/AGENTS.md"] = _agents_guidance_fixture()
     files["zencoder/manual-import/agents.json"] = _manual_zencoder_packet(zencoder_agents)
 
     for template in registry["mcp_templates"]:

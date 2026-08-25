@@ -8,7 +8,7 @@ status: draft
 owners:
   - egohygiene
 created: 2026-08-08
-updated: 2026-08-24
+updated: 2026-08-25
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -33,9 +33,9 @@ repository: egohygiene/aether
 visibility: public
 publication: central
 route: /roadmap/aether/
-updated: 2026-08-24
+updated: 2026-08-25
 -->
-## 2026-08-24 execution snapshot
+## 2026-08-25 execution snapshot
 
 > This evidence-reconciled snapshot is the issue-generation and visual-roadmap handoff. The longer-horizon strategy below remains canonical context; generated HTML, JSON, progress, issue plans, and commit lists are projections.
 
@@ -186,6 +186,33 @@ issues: []
 **Current evidence:**
 
 - Aether already owns reusable AI artifacts; roadmap authoring support is assigned there by the visual-roadmap specification.
+
+<!-- roadmap-step
+id: AET-Q07
+status: ready
+depends_on: [AET-Q01]
+issues: [49]
+-->
+#### AET-Q07 — Add the decision-impact instruction hook
+
+**State:** `ready`
+**Depends on:** `AET-Q01`
+
+**Outcome:** Every generated agent projection receives one concise,
+version-pinned checkpoint that distinguishes consequential decisions from
+routine implementation and preserves human decision authority.
+
+**Exit criteria:**
+
+- [ ] The shared module pins, rather than copies, the proposed Hygiene ADR and Repository Intelligence contracts.
+- [ ] Create, update, supersede, reference, and `ADR not required` flows cover consequential and routine examples.
+- [ ] Provider projections and a generated repository `AGENTS.md` fixture contain exactly one managed hook.
+- [ ] Deterministic tests reject malformed or duplicate managed blocks.
+
+**Current evidence:**
+
+- Issue #49 defines the decision-impact scope and acceptance criteria.
+- The pinned Hygiene contracts remain proposed; this step must not claim their acceptance.
 
 ### Roadmap-to-issue handoff
 
