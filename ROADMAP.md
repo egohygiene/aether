@@ -8,7 +8,7 @@ status: draft
 owners:
   - egohygiene
 created: 2026-08-08
-updated: 2026-08-19
+updated: 2026-08-24
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -25,6 +25,177 @@ supersedes: []
 ---
 
 # ROADMAP.md — Aether Phased Work Plan
+
+<!-- BEGIN ROADMAP EXECUTION SNAPSHOT -->
+<!-- roadmap-manifest
+schema: hygiene.roadmap/v1alpha1
+repository: egohygiene/aether
+visibility: public
+publication: central
+route: /roadmap/aether/
+updated: 2026-08-24
+-->
+## 2026-08-24 execution snapshot
+
+> This evidence-reconciled snapshot is the issue-generation and visual-roadmap handoff. The longer-horizon strategy below remains canonical context; generated HTML, JSON, progress, issue plans, and commit lists are projections.
+
+**Lifecycle:** active pre-release authoring plane  
+**Current gate:** Repair release workflow run 32672225496, which selected zero jobs, then publish the first immutable bundle release tracked by issue #38.  
+**North-star outcome:** Immutable, provenance-rich AI authoring bundles made from validated specifications, skills, and agents.
+
+### Visual roadmap publication
+
+**Mode:** `central`  
+**Route:** `/roadmap/aether/`  
+**Current publication evidence:** GitHub source and validation; release publication is configured but not proven.
+
+Publish the public-safe projection through egohygiene.io at /roadmap/aether/. This repository owns intent and acceptance evidence; it does not add a second site deployment.
+
+### Quest line
+
+<!-- roadmap-step
+id: AET-Q01
+status: complete
+depends_on: []
+issues: []
+-->
+#### AET-Q01 — Build the authoring corpus
+
+**State:** `complete`  
+**Depends on:** None
+
+**Outcome:** A substantial, structured corpus exists for authoring and validating AI behavior.
+
+**Exit criteria:**
+
+- [x] Specifications, skills, and agents are present in declared locations.
+- [x] Pull-request validation covers the corpus.
+
+**Current evidence:**
+
+- The audit counted 23 specifications, 29 skills, and 9 agents.
+- PR #47 merged at ce8308fdc230 with green PR validation.
+
+<!-- roadmap-step
+id: AET-Q02
+status: blocked
+depends_on: [AET-Q01]
+issues: []
+-->
+#### AET-Q02 — Repair release job selection
+
+**State:** `blocked`  
+**Depends on:** `AET-Q01`
+
+**Outcome:** A release invocation reliably schedules the intended build, attest, and publish jobs.
+
+**Exit criteria:**
+
+- [ ] A release dry run schedules at least one expected job.
+- [ ] The workflow fails explicitly when no releasable bundle is selected.
+
+**Current evidence:**
+
+- Release run 32672225496 failed with zero jobs.
+
+<!-- roadmap-step
+id: AET-Q03
+status: ready
+depends_on: [AET-Q01]
+issues: []
+-->
+#### AET-Q03 — Reconcile documentation with the corpus
+
+**State:** `ready`  
+**Depends on:** `AET-Q01`
+
+**Outcome:** Published documentation accurately inventories the current authoring surface.
+
+**Exit criteria:**
+
+- [ ] Counts and supported artifact types are generated or checked automatically.
+- [ ] Stale authoring and release instructions are removed.
+
+**Current evidence:**
+
+- The audited documentation was stale relative to the repository corpus.
+
+<!-- roadmap-step
+id: AET-Q04
+status: planned
+depends_on: [AET-Q02, AET-Q03]
+issues: []
+-->
+#### AET-Q04 — Version bundle provenance
+
+**State:** `planned`  
+**Depends on:** `AET-Q02`, `AET-Q03`
+
+**Outcome:** Every bundle identifies its source specifications, validation results, and immutable digest.
+
+**Exit criteria:**
+
+- [ ] The manifest and provenance schema are versioned.
+- [ ] Verification succeeds without trusting mutable branch state.
+
+**Current evidence:**
+
+- Immutable provenance is the stated target; no published bundle proof was observed.
+
+<!-- roadmap-step
+id: AET-Q05
+status: planned
+depends_on: [AET-Q04]
+issues: [38]
+-->
+#### AET-Q05 — Publish and consume the first release
+
+**State:** `planned`  
+**Depends on:** `AET-Q04`
+
+**Outcome:** Issue #38 closes with a tagged bundle used successfully by a downstream repository.
+
+**Exit criteria:**
+
+- [ ] A tagged release contains verified immutable artifacts.
+- [ ] A downstream consumer pins and validates the release.
+
+**Current evidence:**
+
+- Issue #38 tracks the first release.
+- No GitHub release was observed.
+
+<!-- roadmap-step
+id: AET-Q06
+status: planned
+depends_on: [HYG-Q06, AET-Q04]
+issues: []
+-->
+#### AET-Q06 — Publish the roadmap authoring kit
+
+**State:** `planned`  
+**Depends on:** `HYG-Q06`, `AET-Q04`
+
+**Outcome:** Versioned Aether guidance, templates, and evaluations help authors improve ROADMAP.md while leaving policy ownership in Hygiene.
+
+**Exit criteria:**
+
+- [ ] The kit generates stable IDs, outcomes, dependencies, issue hints, and exit criteria against the pinned Hygiene contract.
+- [ ] Evaluation fixtures reject invented completion evidence and accidental private publication.
+
+**Current evidence:**
+
+- Aether already owns reusable AI artifacts; roadmap authoring support is assigned there by the visual-roadmap specification.
+
+### Roadmap-to-issue handoff
+
+- A step is complete only when its exit criteria and required evidence are satisfied; commit count never determines progress.
+- Ready steps without an issue are candidates for the private, duplicate-aware roadmap.issue-plan.json dry run. Planned steps remain preview-only unless a reviewer explicitly opts them in with issue_policy: propose.
+- Issue creation or reconciliation requires human approval or an explicitly authorized Pace operation and returns issue references through a reviewable roadmap pull request.
+- Pull requests and commits should include Roadmap-Step: <ID>; historical evidence may be linked through existing issue and pull-request relationships.
+- Public rendering uses only allowlisted build-time evidence and never places a GitHub token or private issue plan in the browser artifact.
+
+<!-- END ROADMAP EXECUTION SNAPSHOT -->
 
 > **Document owner:** This file  
 > **Related:** [`PURPOSE.md`](PURPOSE.md) · [`ARCHITECTURE.md`](ARCHITECTURE.md) · [`DECISIONS.md`](DECISIONS.md)
