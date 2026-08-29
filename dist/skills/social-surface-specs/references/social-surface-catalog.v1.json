@@ -2,7 +2,7 @@
   "schema_version": "aether.social-surface-catalog/v1",
   "catalog": {
     "id": "catalog/social-surface-specs",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "lifecycle": {
       "state": "experimental"
     },
@@ -21,14 +21,14 @@
       "template_count": 302
     },
     "rights_review": {
-      "state": "pending",
-      "reviewed_at": null,
+      "state": "rejected",
+      "reviewed_at": "2026-08-29",
       "decision_reference": "https://github.com/egohygiene/aether/issues/54",
-      "notes": "The supplied source describes use as personal and non-commercial. Live terms and redistribution rights must be reviewed before any source-derived record is published in this public catalog."
+      "notes": "Terms reviewed on 2026-08-29 permit using specifications for personal or commercial creative work, but do not expressly authorize republication of the full directory as a public normalized catalog. Website content remains protected and template republication is prohibited. Aether therefore publishes no source-derived records or templates from this snapshot."
     },
     "release": {
       "included": false,
-      "reason": "Experimental catalog: source-rights review is pending, so no source-derived records or templates are distributed."
+      "reason": "Experimental metadata-only catalog: the source-rights review did not authorize public redistribution of normalized records or templates."
     }
   },
   "records": []

@@ -1,17 +1,17 @@
 {
   "catalog_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "fbe8a65f103aa3806bd1e9abb3d1661d0594cc88fdaac6a3f764943e22d503bb"
+    "value": "cc8186add31b923ceabdd0516c8f959823b36a0397262c2a03a1eef6d380e17e"
   },
   "catalog_id": "catalog/social-surface-specs",
-  "catalog_version": "1.0.0",
+  "catalog_version": "1.0.1",
   "generated_paths": [
     "dist/catalogs/social-surface-specs/catalog.v1.json",
     "dist/catalogs/social-surface-specs/distribution-manifest.v1.json"
   ],
   "generator": "catalog/social-surfaces/build-distribution.py",
   "publication": {
-    "reason": "Experimental catalog: source-rights review is pending, so no source-derived records or templates are distributed.",
+    "reason": "Experimental metadata-only catalog: the source-rights review did not authorize public redistribution of normalized records or templates.",
     "state": "blocked"
   },
   "schema_version": "aether.catalog-distribution-manifest/v1"

@@ -9,7 +9,9 @@ linked official source, verify the relevant values, and note the check in the
 handoff. If the live source differs, do not silently edit the pinned catalog:
 submit a reviewed catalog update with a new source snapshot and release lock.
 
-The external source candidate has a pending redistribution review in
-[#54](https://github.com/egohygiene/aether/issues/54). Do not copy the source
-archive, SVG templates, or source-derived records into another repository
-unless the recorded rights decision explicitly authorizes that use.
+The external source candidate's redistribution review is recorded in
+[#54](https://github.com/egohygiene/aether/issues/54). The reviewed terms allow
+using specifications for creative work, but do not expressly authorize
+republication of the full directory as a normalized public catalog. Do not
+copy the source archive, SVG templates, or source-derived records into another
+repository unless a later recorded decision explicitly authorizes that use.

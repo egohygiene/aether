@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/social-surface-specs",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.0.1",
   "compatibility": {
     "required_tools": []
   },
@@ -19,6 +19,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "ba2d0baa2dc8ecbfe3f268ac64dcaf31d9ab2dccb111b2f2a8ff7f44c4441a49"
+    "value": "33c29870108626a5f73267f97120d389447f52c96bb7d2587feeb6519b724b33"
   }
 }
