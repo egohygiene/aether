@@ -20,17 +20,17 @@
         "value": "13a44970b5d1fd7a232eabc6a2abe42e7ba5c4a6a68e21484717f2b70509a0ac"
       },
       "acquired_at": "2026-08-28T17:07:39Z",
-      "reviewed_at": "unknown",
-      "review_state": "pending",
-      "trust_classification": "unknown",
+      "reviewed_at": "2026-08-29",
+      "review_state": "reviewed",
+      "trust_classification": "restricted",
       "compatibility": {
         "required_tools": []
       },
       "executable_resources": "unknown",
       "consumer_profile": "human-review",
       "pinned_install_example": "not-installable: the supplied snapshot is an external source candidate and is not redistributed by Aether",
-      "redistribution_permission": "unknown",
-      "redistribution_status": "unverified"
+      "redistribution_permission": "disallowed",
+      "redistribution_status": "verified"
     }
   ]
 }

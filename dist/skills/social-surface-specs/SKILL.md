@@ -3,7 +3,7 @@ name: social-surface-specs
 description: Select and explain pinned social-media or advertising creative surfaces from a provenance-governed offline catalog. Use when work needs platform placement, dimensions, media limits, safe zones, or organic-versus-advertising distinctions.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.0.1"
   aether-status: "experimental"
   aether-scope: "organization"
   aether-domain: "marketing"
@@ -63,6 +63,7 @@ consequential, paid, or production requirements, verify the record's linked
 official source and say that a live check occurred. Do not copy source-pack
 templates, inject unpublished source data, or change rights/review status.
 
-The current catalog is experimental and rights-pending. Its empty records list
-is intentional: the source archive is registered by digest but is not
-redistributed through this skill until an explicit review authorizes that use.
+The current catalog is experimental and metadata-only. Its empty records list
+is intentional: the source review permits creative reference but did not
+authorize republication of the full directory as a normalized public catalog.
+The skill must not redistribute the source archive, records, or templates.

@@ -10,15 +10,18 @@ and pinned subset for a Brand Kit.
 
 `catalog.v1.json` records the supplied 2026-08-28 source snapshot by exact
 SHA-256 digest, capture timestamp, and inventory counts. The source candidate
-is registered in `../external/source-candidates.v1.json` with a pending rights
-review; [#54](https://github.com/egohygiene/aether/issues/54) owns that
-decision. The archive and its SVG templates are deliberately absent from this
-repository.
+is registered in `../external/source-candidates.v1.json`. The rights review in
+[#54](https://github.com/egohygiene/aether/issues/54) permits using the source
+for creative reference, but does not establish permission to republish the
+full directory as a normalized public catalog. The archive, source-derived
+records, and SVG templates are deliberately absent from this repository. See
+[`RIGHTS_REVIEW.md`](RIGHTS_REVIEW.md) for the recorded evidence and decision.
 
 No source-derived surface records may be added while the catalog's
-`rights_review.state` is `pending` or `rejected`. A review decision must name
-the permitted use and its evidence before changing the catalog to stable or
-release-included.
+`rights_review.state` is `rejected`. A future approval that clearly authorizes
+public normalized-record publication must name the permitted use and evidence,
+pin a new catalog version and digest, and pass ordinary release validation
+before changing the catalog to stable or release-included.
 
 ## Contract and unknowns
 

@@ -37,8 +37,13 @@ class SocialSurfaceCatalogTests(unittest.TestCase):
         )
         candidate = candidate_catalog["entries"][0]
         self.assertEqual(candidate["id"], "external/media-cheat-sheet-social-surface-snapshot")
-        self.assertEqual(candidate["review_state"], "pending")
-        self.assertEqual(candidate["redistribution_permission"], "unknown")
+        self.assertEqual(candidate["review_state"], "reviewed")
+        self.assertEqual(candidate["trust_classification"], "restricted")
+        self.assertEqual(candidate["redistribution_permission"], "disallowed")
+        self.assertEqual(candidate["redistribution_status"], "verified")
+        catalog = json.loads((CATALOG_DIR / "catalog.v1.json").read_text(encoding="utf-8"))
+        self.assertEqual(catalog["catalog"]["rights_review"]["state"], "rejected")
+        self.assertEqual(catalog["records"], [])
         self.assertFalse(any(path.suffix.lower() == ".svg" for path in CATALOG_DIR.rglob("*")))
         self.assertFalse((ROOT / "catalog/social-surfaces/social-media-specs.zip").exists())
 
@@ -69,7 +74,7 @@ class SocialSurfaceCatalogTests(unittest.TestCase):
                 (output / "catalogs/social-surface-specs/distribution-manifest.v1.json").read_text(encoding="utf-8")
             )
         self.assertEqual(manifest["catalog_id"], "catalog/social-surface-specs")
-        self.assertEqual(manifest["catalog_version"], "1.0.0")
+        self.assertEqual(manifest["catalog_version"], "1.0.1")
         self.assertRegex(manifest["catalog_digest"]["value"], r"^[a-f0-9]{64}$")
         self.assertEqual(manifest["publication"]["state"], "blocked")
 
