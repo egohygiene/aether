@@ -1222,6 +1222,53 @@
       "compatibility": {
         "required_tools": []
       },
+      "dependencies": [
+        "specification/social-campaign-handoff"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Prepares and reviews deterministic social campaign handoff packets from approved Identity social artifacts and a pinned Aether catalog. Use when platform-specific candidate copy and creative inputs need a human approval gate before export; do not use for posting, scheduling, account access, ad buying, or analytics.",
+      "domain": "marketing",
+      "generated_distribution_paths": [
+        "dist/skills/prepare-social-campaign-handoff/SKILL.md"
+      ],
+      "id": "skill/prepare-social-campaign-handoff",
+      "implements_specification_id": "specification/social-campaign-handoff",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "experimental"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "2b378cca19082091378ebf22a442baa703bfc1a079b073a8a368fb25a9dc4439"
+      },
+      "source_path": "library/organization/skills/marketing/prepare-social-campaign-handoff/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "marketing",
+        "skill"
+      ],
+      "title": "Prepare Social Campaign Handoff"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
       "dependencies": [],
       "deprecation": {
         "replacement_id": null
@@ -2704,6 +2751,57 @@
         "drift-containment"
       ],
       "title": "Reflective Development System Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines a deterministic handoff between approved Identity",
+      "domain": "marketing",
+      "generated_distribution_paths": [
+        "dist/specs/social-campaign-handoff.spec.md"
+      ],
+      "id": "specification/social-campaign-handoff",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/prepare-social-campaign-handoff",
+        "skill/social-surface-specs"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "ace9f14ad40fea1182f76a818f0b2d2115275ff04bb7b26d08713d8eb37956a7"
+      },
+      "source_path": "library/organization/specs/marketing/social-campaign-handoff.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "social-media",
+        "campaign-handoff",
+        "human-approval",
+        "provenance",
+        "deterministic-builds"
+      ],
+      "title": "Review-gated social campaign handoff specification"
     },
     {
       "artifact_version": "2.0.0",

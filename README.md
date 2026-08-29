@@ -44,8 +44,8 @@ Generated artifacts:
 ## 4) First-party catalog summary
 
 Current canonical inventory snapshot (recompute with the commands shown):
-- 23 specifications (`find library/organization/specs -name "*.spec.md"`)
-- 29 skills (`find library/organization/skills -name "SKILL.md"`)
+- 25 specifications (`find library/organization/specs -name "*.spec.md"`)
+- 31 skills (`find library/organization/skills -name "SKILL.md"`)
 - 9 canonical agent profiles (`find library/organization/agents -name "AGENT.md"`)
 
 Machine-readable catalog and provenance:
@@ -75,6 +75,23 @@ From repository root:
 ./aether catalog generate --check
 ./aether test
 ```
+
+Prepare a deterministic, human-reviewable social campaign packet from an exact
+Identity package, pinned Aether catalog, and user brief:
+
+```sh
+python3 \
+  "dist/skills/prepare-social-campaign-handoff/scripts/campaign-handoff.py" \
+  prepare \
+  --identity-package "identity-social-surfaces.json" \
+  --catalog "catalog.v1.json" \
+  --brief "campaign-brief.json" \
+  --output "campaign-handoff.json"
+```
+
+The skill never posts, schedules, buys ads, or accepts platform credentials.
+It authorizes immutable export only after freshness evidence, every required
+check, human review, and a digest-bound approval record are present.
 
 ## 7) Validation and tests
 

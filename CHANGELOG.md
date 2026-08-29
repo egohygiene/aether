@@ -10,6 +10,7 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## Unreleased
 
+- Added the review-gated social campaign handoff specification, schema, and portable skill with exact Identity/catalog locks, candidate-only drafts, freshness and checklist gates, digest-bound human approval, external-adapter receipts, deterministic examples, and adversarial tests (#53).
 - Documentation overhaul for product-level README, contributor workflow, provenance, release/pinning, and safety guidance.
 - Added read-only PR validation and explicit tagged first-party skill release workflows with deterministic rebuild checks and release metadata generation.
 - Added strict staging CI validation (`--staging --strict-staging`) to the PR workflow; any unclassified top-level `.staging/` directory now fails CI.

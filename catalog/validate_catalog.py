@@ -30,6 +30,7 @@ SCHEMA_FILES = [
     "aether.evaluation-definition.v1.schema.json",
     "aether.evaluation-result.v1.schema.json",
     "aether.social-surface-catalog.v1.schema.json",
+    "aether.social-campaign-handoff.v1.schema.json",
     "aether.catalog-distribution-manifest.v1.schema.json",
 ]
 

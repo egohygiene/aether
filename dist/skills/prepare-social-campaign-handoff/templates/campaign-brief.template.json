@@ -1,0 +1,38 @@
+{
+  "schema_version": "aether.social-campaign-brief/v1",
+  "campaign_id": "campaign/replace-me",
+  "version": "1.0.0",
+  "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "created_by": "replace-with-human-or-user-identity",
+  "objective": {
+    "value": "Describe the campaign objective supplied by the user.",
+    "source": "user-supplied"
+  },
+  "audience": {
+    "value": "Describe the intended audience supplied by the user.",
+    "source": "user-supplied"
+  },
+  "context": {
+    "value": "Describe the timing and context supplied by the user.",
+    "source": "user-supplied"
+  },
+  "selections": [
+    {
+      "id": "replace-with-channel-id",
+      "target_id": "replace-with-identity-target-id",
+      "candidate_copy": "Draft copy; it is not approved merely because it appears here.",
+      "copy_source": "user-supplied",
+      "claims": [
+        {
+          "text": "Candidate factual statement requiring review.",
+          "evidence": null
+        }
+      ],
+      "required_link": null,
+      "attribution": {
+        "required": false,
+        "text": null
+      }
+    }
+  ]
+}
