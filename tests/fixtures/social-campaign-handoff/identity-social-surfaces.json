@@ -1,0 +1,123 @@
+{
+  "schema": "identity.social-surface-package/v1",
+  "project": {
+    "id": "example-product",
+    "displayName": "Example Product",
+    "repository": "https://example.invalid/example-product",
+    "tagline": "Reviewed systems, ready to reuse.",
+    "kind": "product"
+  },
+  "source": {
+    "digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "sourceSchema": "identity.social-surface-source/v1",
+    "projectionVersion": "1.0.0"
+  },
+  "catalog": {
+    "id": "catalog/social-surface-specs",
+    "version": "9.0.0-test",
+    "digest": {
+      "algorithm": "sha256-utf8-lf",
+      "value": "1dc9175f0540d903c66f19b96b376ec5fb8f5209f140dd5ac698dbf0e60f9883"
+    },
+    "lifecycle": "stable",
+    "rightsReview": "approved",
+    "sourceSnapshot": {
+      "source_url": "https://example.invalid/platform-documentation",
+      "captured_at": "2026-08-29T00:00:00Z"
+    }
+  },
+  "targets": [
+    {
+      "id": "organic-post",
+      "surface": {
+        "id": "surface/example-network-organic-post",
+        "platform": "Example Network",
+        "placement": "Organic square post",
+        "use": "organic",
+        "contentType": "post",
+        "mediaFormat": "image",
+        "dimensions": {"widthPx": 1080, "heightPx": 1080},
+        "aspectRatio": "1:1",
+        "fileTypes": ["jpg", "png"],
+        "fileSizeLimitBytes": 8388608,
+        "durationLimitSeconds": null,
+        "safeZone": {"state": "unknown", "insets_px": null, "notes": "No official safe-zone geometry is available."},
+        "verification": {"state": "official", "reviewed_at": "2026-08-29T00:00:00Z", "note": "Synthetic official-source fixture."},
+        "source": {
+          "candidate_id": "external/example-official-source",
+          "url": "https://example.invalid/platform-documentation/organic-post",
+          "label": "Example Network organic post documentation",
+          "captured_at": "2026-08-29T00:00:00Z",
+          "snapshot_digest": {"algorithm": "sha256-bytes", "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
+        },
+        "lifecycle": "stable"
+      },
+      "content": {
+        "assetId": "mark",
+        "inputPath": "inputs/mark.svg",
+        "mediaType": "image/svg+xml",
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "altText": "A violet diamond inside a rounded square.",
+        "license": {"spdx": "MIT", "status": "approved", "attribution": "Copyright 2026 Example"},
+        "origin": {"creator": "Example", "method": "first-party", "source": "https://example.invalid/assets/mark", "capturedAt": "2026-08-29T00:00:00Z"},
+        "copy": {"source": "project.tagline", "value": "Reviewed systems, ready to reuse."},
+        "link": {"source": "project.repository", "value": "https://example.invalid/example-product"}
+      },
+      "approvals": {
+        "organizationDefault": "approve-social-default-organic-post",
+        "projectAdoption": "approve-social-adoption-organic-post",
+        "override": null
+      },
+      "status": {"state": "ready-for-rendering", "notes": ["Safe-zone geometry is unknown; a renderer must not invent one."]}
+    },
+    {
+      "id": "profile-header",
+      "surface": {
+        "id": "surface/example-network-profile-header",
+        "platform": "Example Network",
+        "placement": "Profile header",
+        "use": "organic",
+        "contentType": "profile-header",
+        "mediaFormat": "image",
+        "dimensions": {"widthPx": 1500, "heightPx": 500},
+        "aspectRatio": "3:1",
+        "fileTypes": ["jpg", "png"],
+        "fileSizeLimitBytes": 5242880,
+        "durationLimitSeconds": null,
+        "safeZone": {"state": "known", "insets_px": {"top": 48, "right": 96, "bottom": 48, "left": 320}, "notes": "Keep essential content outside the profile-image overlap."},
+        "verification": {"state": "official", "reviewed_at": "2026-08-29T00:00:00Z", "note": "Synthetic official-source fixture."},
+        "source": {
+          "candidate_id": "external/example-official-source",
+          "url": "https://example.invalid/platform-documentation/profile-header",
+          "label": "Example Network profile header documentation",
+          "captured_at": "2026-08-29T00:00:00Z",
+          "snapshot_digest": {"algorithm": "sha256-bytes", "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
+        },
+        "lifecycle": "stable"
+      },
+      "content": {
+        "assetId": "mark",
+        "inputPath": "inputs/mark.svg",
+        "mediaType": "image/svg+xml",
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "altText": "A violet diamond inside a rounded square.",
+        "license": {"spdx": "MIT", "status": "approved", "attribution": "Copyright 2026 Example"},
+        "origin": {"creator": "Example", "method": "first-party", "source": "https://example.invalid/assets/mark", "capturedAt": "2026-08-29T00:00:00Z"},
+        "copy": {"source": "project.displayName", "value": "Example Product"},
+        "link": {"source": "project.repository", "value": "https://example.invalid/example-product"}
+      },
+      "approvals": {
+        "organizationDefault": "approve-social-default-profile-header",
+        "projectAdoption": "approve-social-adoption-profile-header",
+        "override": null
+      },
+      "status": {"state": "ready-for-rendering", "notes": []}
+    }
+  ],
+  "handoff": {
+    "state": "publish-ready-input",
+    "publicationAuthorized": false,
+    "publisher": "human-or-external-tool",
+    "freshnessWarning": "Verify changed requirements before production use."
+  }
+}

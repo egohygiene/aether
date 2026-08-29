@@ -1,0 +1,248 @@
+{
+  "catalog": {
+    "captured_at": "2026-08-29T00:00:00Z",
+    "digest": {
+      "algorithm": "sha256-utf8-lf",
+      "value": "1dc9175f0540d903c66f19b96b376ec5fb8f5209f140dd5ac698dbf0e60f9883"
+    },
+    "freshness_notice": "This packet uses a dated, offline catalog. Verify consequential or changed requirements against every linked official source before export.",
+    "id": "catalog/social-surface-specs",
+    "live_verification": {
+      "evidence": null,
+      "required": true,
+      "status": "required",
+      "verified_at": null,
+      "verified_by": null
+    },
+    "source_urls": [
+      "https://example.invalid/platform-documentation/profile-header"
+    ],
+    "version": "9.0.0-test"
+  },
+  "channels": [
+    {
+      "asset": {
+        "alt_text": "A violet diamond inside a rounded square.",
+        "id": "mark",
+        "identity_approvals": {
+          "organizationDefault": "approve-social-default-profile-header",
+          "override": null,
+          "projectAdoption": "approve-social-adoption-profile-header"
+        },
+        "license": {
+          "attribution": "Copyright 2026 Example",
+          "spdx": "MIT",
+          "status": "approved"
+        },
+        "media_type": "image/svg+xml",
+        "origin": {
+          "capturedAt": "2026-08-29T00:00:00Z",
+          "creator": "Example",
+          "method": "first-party",
+          "source": "https://example.invalid/assets/mark"
+        },
+        "path": "inputs/mark.svg",
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "attribution": {
+        "required": true,
+        "text": "Copyright 2026 Example"
+      },
+      "copy": {
+        "approval_id": null,
+        "claims": [],
+        "source": "identity-approved",
+        "status": "candidate",
+        "text": "Example Product"
+      },
+      "id": "organization-header",
+      "provenance": {
+        "catalog_record_id": "surface/example-network-profile-header",
+        "catalog_source": {
+          "candidate_id": "external/example-official-source",
+          "captured_at": "2026-08-29T00:00:00Z",
+          "label": "Example Network profile header documentation",
+          "snapshot_digest": {
+            "algorithm": "sha256-bytes",
+            "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "url": "https://example.invalid/platform-documentation/profile-header"
+        },
+        "identity_target_path": "targets/profile-header.json"
+      },
+      "required_link": "https://example.invalid/example-product",
+      "surface": {
+        "aspectRatio": "3:1",
+        "contentType": "profile-header",
+        "dimensions": {
+          "heightPx": 500,
+          "widthPx": 1500
+        },
+        "durationLimitSeconds": null,
+        "fileSizeLimitBytes": 5242880,
+        "fileTypes": [
+          "jpg",
+          "png"
+        ],
+        "id": "surface/example-network-profile-header",
+        "lifecycle": "stable",
+        "mediaFormat": "image",
+        "placement": "Profile header",
+        "platform": "Example Network",
+        "safeZone": {
+          "insets_px": {
+            "bottom": 48,
+            "left": 320,
+            "right": 96,
+            "top": 48
+          },
+          "notes": "Keep essential content outside the profile-image overlap.",
+          "state": "known"
+        },
+        "source": {
+          "candidate_id": "external/example-official-source",
+          "captured_at": "2026-08-29T00:00:00Z",
+          "label": "Example Network profile header documentation",
+          "snapshot_digest": {
+            "algorithm": "sha256-bytes",
+            "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "url": "https://example.invalid/platform-documentation/profile-header"
+        },
+        "use": "organic",
+        "verification": {
+          "note": "Synthetic official-source fixture.",
+          "reviewed_at": "2026-08-29T00:00:00Z",
+          "state": "official"
+        }
+      },
+      "target_id": "profile-header"
+    }
+  ],
+  "external_handoff": {
+    "adapter": null,
+    "allowed_action": "immutable-export-only",
+    "authorization_approval_id": null,
+    "authorized": false
+  },
+  "identity": {
+    "artifact_schema": "identity.social-surface-package/v1",
+    "artifact_version": "1.0.0",
+    "package_digest": {
+      "algorithm": "sha256-canonical-json",
+      "value": "ed4b1b148d551f43b5cdd9daec989f79b2488818a73748cfdd0a3c0be9fbbd58"
+    },
+    "project_id": "example-product",
+    "source_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "intent": {
+    "audience": {
+      "source": "user-supplied",
+      "value": "Existing open-source collaborators."
+    },
+    "context": {
+      "source": "user-supplied",
+      "value": "A human-reviewed organization announcement example."
+    },
+    "objective": {
+      "source": "user-supplied",
+      "value": "Introduce the reviewed organization identity."
+    }
+  },
+  "lifecycle": {
+    "history": [
+      {
+        "actor": "example-maintainer",
+        "from": null,
+        "occurred_at": "2026-08-29T10:00:00Z",
+        "reason": "Created from locked Identity, catalog, and user-supplied brief inputs.",
+        "to": "draft"
+      }
+    ]
+  },
+  "packet": {
+    "created_at": "2026-08-29T10:00:00Z",
+    "id": "campaign/example-organization-announcement",
+    "state": "draft",
+    "superseded_by": null,
+    "version": "1.0.0"
+  },
+  "publication": {
+    "receipt": null,
+    "status": "not-published"
+  },
+  "publishing_checklist": [
+    {
+      "completed_at": null,
+      "completed_by": null,
+      "evidence": null,
+      "id": "identity-integrity",
+      "required": true,
+      "status": "pending"
+    },
+    {
+      "completed_at": null,
+      "completed_by": null,
+      "evidence": null,
+      "id": "catalog-lock",
+      "required": true,
+      "status": "pending"
+    },
+    {
+      "completed_at": null,
+      "completed_by": null,
+      "evidence": null,
+      "id": "catalog-freshness",
+      "required": true,
+      "status": "pending"
+    },
+    {
+      "completed_at": null,
+      "completed_by": null,
+      "evidence": null,
+      "id": "surface-constraints",
+      "required": true,
+      "status": "pending"
+    },
+    {
+      "completed_at": null,
+      "completed_by": null,
+      "evidence": null,
+      "id": "copy-and-claims",
+      "required": true,
+      "status": "pending"
+    },
+    {
+      "completed_at": null,
+      "completed_by": null,
+      "evidence": null,
+      "id": "links-and-attribution",
+      "required": true,
+      "status": "pending"
+    },
+    {
+      "completed_at": null,
+      "completed_by": null,
+      "evidence": null,
+      "id": "final-creative",
+      "required": true,
+      "status": "pending"
+    },
+    {
+      "completed_at": null,
+      "completed_by": null,
+      "evidence": null,
+      "id": "credential-free-export",
+      "required": true,
+      "status": "pending"
+    }
+  ],
+  "review": {
+    "approval": null,
+    "notes": null,
+    "reviewed_at": null,
+    "reviewed_by": null,
+    "status": "pending"
+  },
+  "schema_version": "aether.social-campaign-handoff/v1"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "aether.social-campaign-brief/v1",
+  "campaign_id": "campaign/example-product-release",
+  "version": "1.0.0",
+  "created_at": "2026-08-29T11:00:00Z",
+  "created_by": "example-maintainer",
+  "objective": {"value": "Prepare a candidate product release announcement.", "source": "user-supplied"},
+  "audience": {"value": "Repository maintainers evaluating the release.", "source": "user-supplied"},
+  "context": {"value": "A synthetic release example with no real unpublished campaign.", "source": "user-supplied"},
+  "selections": [
+    {
+      "id": "release-post",
+      "target_id": "organic-post",
+      "candidate_copy": "Example Product 1.0 is ready for maintainer review.",
+      "copy_source": "user-supplied",
+      "claims": [
+        {"text": "Version 1.0 is available for review.", "evidence": "https://example.invalid/releases/1.0"}
+      ],
+      "required_link": "https://example.invalid/example-product",
+      "attribution": {"required": true, "text": "Copyright 2026 Example"}
+    }
+  ]
+}

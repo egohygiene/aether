@@ -1,0 +1,30 @@
+{
+  "schema_version": "aether.social-campaign-handoff/v1",
+  "packet": {
+    "id": "campaign/invalid",
+    "version": "1.0.0",
+    "state": "draft",
+    "created_at": "2026-08-29T10:00:00Z",
+    "superseded_by": null
+  },
+  "intent": {},
+  "identity": {},
+  "catalog": {},
+  "channels": [],
+  "review": {
+    "status": "approved-for-export",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "notes": null,
+    "approval": null
+  },
+  "publishing_checklist": [],
+  "external_handoff": {
+    "authorized": true,
+    "allowed_action": "direct-publish",
+    "authorization_approval_id": null,
+    "adapter": "unsafe"
+  },
+  "publication": {"status": "published", "receipt": null},
+  "lifecycle": {"history": []}
+}

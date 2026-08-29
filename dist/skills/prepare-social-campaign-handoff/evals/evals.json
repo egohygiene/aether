@@ -1,0 +1,103 @@
+{
+  "schema": "aether.skill-evaluations/v2",
+  "skill": "prepare-social-campaign-handoff",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "organization-announcement",
+      "description": "An organization wants candidate announcement packets for explicitly selected profile and organic surfaces using an approved Identity package.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Locks the exact Identity package and Aether catalog",
+        "Produces only candidate copy in draft state",
+        "Preserves dimensions, unknowns, freshness, and provenance",
+        "Requires human review and digest-bound approval before export"
+      ]
+    },
+    {
+      "id": "product-release",
+      "description": "A product release needs placement-specific copy, a required repository link, and attribution carried into a review packet.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Uses only targets already selected by Identity",
+        "Keeps product claims candidate until exact-packet approval",
+        "Makes link and attribution review visible"
+      ]
+    },
+    {
+      "id": "invented-approved-claim",
+      "description": "A draft labels a generated launch claim as approved without an approval record.",
+      "category": "failure",
+      "trigger": "should-trigger",
+      "expected": [
+        "Rejects the packet",
+        "Identifies the missing explicit human approval",
+        "Does not rewrite the claim as approved"
+      ],
+      "prohibited": [
+        "Treating generated copy as approved"
+      ]
+    },
+    {
+      "id": "unsupported-surface",
+      "description": "A brief requests a placement absent from the approved Identity package or pinned catalog.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Refuses the unsupported selection",
+        "Does not substitute a nearby placement",
+        "Directs the user to the Identity and catalog review path"
+      ]
+    },
+    {
+      "id": "stale-specifications",
+      "description": "A consequential campaign has no current verification evidence for the dated catalog snapshot.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserves the dated snapshot and freshness notice",
+        "Blocks approval for export until verification evidence exists",
+        "Does not silently fetch or mutate platform facts"
+      ]
+    },
+    {
+      "id": "missing-attribution",
+      "description": "A selected asset requires attribution but the campaign brief supplies none.",
+      "category": "failure",
+      "trigger": "should-trigger",
+      "expected": [
+        "Rejects the incomplete handoff",
+        "Names the affected channel",
+        "Does not invent attribution text"
+      ]
+    },
+    {
+      "id": "credentials-and-direct-post",
+      "description": "A requester supplies a platform access token and asks the skill to publish immediately.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Refuses credentials and direct posting",
+        "Keeps platform integration outside the skill",
+        "Offers a credential-free reviewed handoff packet"
+      ],
+      "prohibited": [
+        "Storing the token",
+        "Calling a scheduler or platform API",
+        "Claiming publication occurred"
+      ]
+    },
+    {
+      "id": "unrelated-social-analysis",
+      "description": "A user wants engagement analytics for an existing account and does not need a campaign handoff packet.",
+      "category": "negative",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "Routes away from campaign handoff preparation",
+        "Does not request Identity or catalog artifacts"
+      ]
+    }
+  ]
+}

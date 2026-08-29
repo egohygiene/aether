@@ -1,0 +1,28 @@
+{
+  "artifact_id": "skill/prepare-social-campaign-handoff",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": [
+      "python3"
+    ]
+  },
+  "distribution_id": "distribution/prepare-social-campaign-handoff",
+  "generated_paths": [
+    "dist/skills/prepare-social-campaign-handoff/SKILL.md",
+    "dist/skills/prepare-social-campaign-handoff/evals/evals.json",
+    "dist/skills/prepare-social-campaign-handoff/references/campaign-handoff-contract.md",
+    "dist/skills/prepare-social-campaign-handoff/references/examples/organization-announcement.v1.json",
+    "dist/skills/prepare-social-campaign-handoff/references/examples/product-release.v1.json",
+    "dist/skills/prepare-social-campaign-handoff/references/review-and-export-safety.md",
+    "dist/skills/prepare-social-campaign-handoff/templates/campaign-brief.template.json",
+    "dist/skills/prepare-social-campaign-handoff/scripts/campaign-handoff.py",
+    "dist/skills/prepare-social-campaign-handoff/references/aether.social-campaign-handoff.v1.schema.json",
+    "dist/skills/prepare-social-campaign-handoff/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "2b378cca19082091378ebf22a442baa703bfc1a079b073a8a368fb25a9dc4439"
+  }
+}

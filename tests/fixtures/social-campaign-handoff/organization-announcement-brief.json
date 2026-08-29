@@ -1,0 +1,21 @@
+{
+  "schema_version": "aether.social-campaign-brief/v1",
+  "campaign_id": "campaign/example-organization-announcement",
+  "version": "1.0.0",
+  "created_at": "2026-08-29T10:00:00Z",
+  "created_by": "example-maintainer",
+  "objective": {"value": "Introduce the reviewed organization identity.", "source": "user-supplied"},
+  "audience": {"value": "Existing open-source collaborators.", "source": "user-supplied"},
+  "context": {"value": "A human-reviewed organization announcement example.", "source": "user-supplied"},
+  "selections": [
+    {
+      "id": "organization-header",
+      "target_id": "profile-header",
+      "candidate_copy": "Example Product",
+      "copy_source": "identity-approved",
+      "claims": [],
+      "required_link": "https://example.invalid/example-product",
+      "attribution": {"required": true, "text": "Copyright 2026 Example"}
+    }
+  ]
+}
