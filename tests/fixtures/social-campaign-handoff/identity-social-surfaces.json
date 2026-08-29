@@ -17,7 +17,7 @@
     "version": "9.0.0-test",
     "digest": {
       "algorithm": "sha256-utf8-lf",
-      "value": "1dc9175f0540d903c66f19b96b376ec5fb8f5209f140dd5ac698dbf0e60f9883"
+      "value": "32ac68a2b26344ef8dd944db7582cabf949cef1aad1908010cbdc5036b12ae04"
     },
     "lifecycle": "stable",
     "rightsReview": "approved",

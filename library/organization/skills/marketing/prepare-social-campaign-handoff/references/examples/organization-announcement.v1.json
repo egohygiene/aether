@@ -3,7 +3,7 @@
     "captured_at": "2026-08-29T00:00:00Z",
     "digest": {
       "algorithm": "sha256-utf8-lf",
-      "value": "1dc9175f0540d903c66f19b96b376ec5fb8f5209f140dd5ac698dbf0e60f9883"
+      "value": "32ac68a2b26344ef8dd944db7582cabf949cef1aad1908010cbdc5036b12ae04"
     },
     "freshness_notice": "This packet uses a dated, offline catalog. Verify consequential or changed requirements against every linked official source before export.",
     "id": "catalog/social-surface-specs",
@@ -130,7 +130,7 @@
     "artifact_version": "1.0.0",
     "package_digest": {
       "algorithm": "sha256-canonical-json",
-      "value": "ed4b1b148d551f43b5cdd9daec989f79b2488818a73748cfdd0a3c0be9fbbd58"
+      "value": "f79e0dee771fd8a4883958d9e16eb5ef25d68ad6b58942771ab44557f948a490"
     },
     "project_id": "example-product",
     "source_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
