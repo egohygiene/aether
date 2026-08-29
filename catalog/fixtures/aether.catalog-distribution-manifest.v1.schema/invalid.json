@@ -1,0 +1,15 @@
+{
+  "schema_version": "aether.catalog-distribution-manifest/v1",
+  "catalog_id": "example-catalog",
+  "catalog_version": "1.0",
+  "catalog_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "short"
+  },
+  "generated_paths": [],
+  "generator": "",
+  "publication": {
+    "state": "published",
+    "reason": ""
+  }
+}

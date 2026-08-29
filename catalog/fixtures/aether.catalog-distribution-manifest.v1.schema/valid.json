@@ -1,0 +1,17 @@
+{
+  "schema_version": "aether.catalog-distribution-manifest/v1",
+  "catalog_id": "catalog/example-catalog",
+  "catalog_version": "1.0.0",
+  "catalog_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "generated_paths": [
+    "dist/catalogs/example-catalog/catalog.v1.json"
+  ],
+  "generator": "catalog/example/build.py",
+  "publication": {
+    "state": "blocked",
+    "reason": "Review pending."
+  }
+}

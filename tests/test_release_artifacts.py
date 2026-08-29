@@ -48,11 +48,12 @@ class TestDistributionBuildCommand(unittest.TestCase):
                 rc = av.command_distribution_build(args)
 
         self.assertEqual(rc, 0)
-        self.assertEqual(run_script.call_count, 3)
+        self.assertEqual(run_script.call_count, 4)
         calls = run_script.call_args_list
         self.assertTrue(str(calls[0].args[0]).endswith("specs/build-distributions.py"))
         self.assertTrue(str(calls[1].args[0]).endswith("skills/build-distributions.py"))
         self.assertTrue(str(calls[2].args[0]).endswith("build-projections.py"))
+        self.assertTrue(str(calls[3].args[0]).endswith("social-surfaces/build-distribution.py"))
         self.assertTrue(all(call.kwargs["check"] for call in calls))
         self.assertTrue(all(call.kwargs["output_directory"] == "dist-out" for call in calls))
 
@@ -188,16 +189,33 @@ class TestBuildReleaseArtifacts(unittest.TestCase):
         self._orig_license_path = br.LICENSE_PATH
         self._orig_changelog_path = br.CHANGELOG_PATH
         self._orig_schema_path = br.RELEASE_SCHEMA_PATH
+        self._orig_social_catalog_path = br.SOCIAL_SURFACE_CATALOG_PATH
         br.CATALOG_PATH = self.catalog_path
         br.LICENSE_PATH = self.license_path
         br.CHANGELOG_PATH = self.changelog_path
         br.RELEASE_SCHEMA_PATH = self.schema_path
+        br.SOCIAL_SURFACE_CATALOG_PATH = self._tmp / "social-catalog.json"
+        br.SOCIAL_SURFACE_CATALOG_PATH.write_text(
+            json.dumps(
+                {
+                    "catalog": {
+                        "id": "catalog/social-surface-specs",
+                        "version": "1.0.0",
+                        "lifecycle": {"state": "experimental"},
+                        "rights_review": {"state": "pending"},
+                        "release": {"included": False}
+                    }
+                }
+            ) + "\n",
+            encoding="utf-8",
+        )
 
     def tearDown(self):
         br.CATALOG_PATH = self._orig_catalog_path
         br.LICENSE_PATH = self._orig_license_path
         br.CHANGELOG_PATH = self._orig_changelog_path
         br.RELEASE_SCHEMA_PATH = self._orig_schema_path
+        br.SOCIAL_SURFACE_CATALOG_PATH = self._orig_social_catalog_path
 
     def test_build_release_artifacts_writes_expected_files(self):
         release_dir = br.build_release_artifacts("v1.2.3", self.output_directory, "deadbeef")
@@ -218,6 +236,38 @@ class TestBuildReleaseArtifacts(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             br.build_release_artifacts("v1.2.3", self.output_directory, "deadbeef")
+
+    def test_stable_rights_approved_catalog_is_included(self):
+        catalog_dir = self.output_directory / "catalogs" / "social-surface-specs"
+        catalog_dir.mkdir(parents=True, exist_ok=True)
+        (catalog_dir / "distribution-manifest.v1.json").write_text(
+            json.dumps(
+                {
+                    "catalog_id": "catalog/social-surface-specs",
+                    "catalog_version": "1.0.0",
+                    "catalog_digest": {"algorithm": "sha256-utf8-lf", "value": "b" * 64}
+                }
+            ) + "\n",
+            encoding="utf-8",
+        )
+        br.SOCIAL_SURFACE_CATALOG_PATH.write_text(
+            json.dumps(
+                {
+                    "catalog": {
+                        "id": "catalog/social-surface-specs",
+                        "version": "1.0.0",
+                        "lifecycle": {"state": "stable"},
+                        "rights_review": {"state": "approved"},
+                        "release": {"included": True}
+                    }
+                }
+            ) + "\n",
+            encoding="utf-8",
+        )
+
+        release_dir = br.build_release_artifacts("v1.2.3", self.output_directory, "deadbeef")
+        manifest = json.loads((release_dir / "release-manifest.v1.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["catalogs"][0]["catalog_id"], "catalog/social-surface-specs")
 
 
 if __name__ == "__main__":

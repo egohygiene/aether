@@ -1,0 +1,13 @@
+{
+  "schema_version": "aether.social-surface-catalog/v1",
+  "catalog": {
+    "id": "catalog/example-surfaces",
+    "version": "not-semver"
+  },
+  "records": [
+    {
+      "id": "surface/Example",
+      "use": "both"
+    }
+  ]
+}

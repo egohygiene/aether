@@ -9,6 +9,7 @@ Aether already has mature source-specific catalogs:
 - `catalog/first-party/catalog.v1.json` for canonical specifications and skills;
 - `library/organization/agents/catalog.json` for reusable agent source;
 - `catalog/external/approved-skills.v1.json` for reviewed external skills.
+- `catalog/external/source-candidates.v1.json` for provenance-preserving external sources that are not approved for redistribution or publication.
 
 Those sources evolved at different times and therefore use different field names. They remain valid compatibility/source catalogs. `catalog/provenance_model.py` projects them into one normalized model for policy decisions without making a provider format or a generated report canonical.
 

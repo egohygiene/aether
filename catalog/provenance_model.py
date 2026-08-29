@@ -17,7 +17,10 @@ from jsonschema import Draft202012Validator
 
 ROOT = Path(__file__).resolve().parents[1]
 FIRST_PARTY_CATALOG = ROOT / "catalog" / "first-party" / "catalog.v1.json"
-EXTERNAL_CATALOG = ROOT / "catalog" / "external" / "approved-skills.v1.json"
+EXTERNAL_CATALOGS = (
+    ROOT / "catalog" / "external" / "approved-skills.v1.json",
+    ROOT / "catalog" / "external" / "source-candidates.v1.json",
+)
 AGENT_CATALOG = ROOT / "library" / "organization" / "agents" / "catalog.json"
 SCHEMA_PATH = ROOT / "catalog" / "schemas" / "aether.provenance-catalog.v1.schema.json"
 REPOSITORY_LICENSE = "MIT"
@@ -97,7 +100,7 @@ def _publishability(record: dict[str, Any]) -> tuple[bool, list[str]]:
 
     if not revision or revision == "unknown" or REVISION_RE.fullmatch(revision) is None:
         reasons.append("source revision is not an immutable commit or semantic version")
-    if digest.get("algorithm") not in {"sha256-utf8-lf", "sha256-tree"}:
+    if digest.get("algorithm") not in {"sha256-utf8-lf", "sha256-tree", "sha256-bytes"}:
         reasons.append("source digest algorithm is unsupported")
     if not isinstance(digest.get("value"), str) or HEX_64_RE.fullmatch(digest["value"]) is None:
         reasons.append("source digest is missing or invalid")
@@ -272,15 +275,19 @@ def _external_lifecycle(entry: dict[str, Any]) -> dict[str, str]:
 
 def build_external() -> dict[str, Any]:
     """Build the normalized external provenance catalog."""
-    source_catalog = load_json(EXTERNAL_CATALOG)
-    entries = source_catalog.get("entries")
-    if not isinstance(entries, list):
-        raise ValueError(f"{EXTERNAL_CATALOG} entries must be an array")
+    entries: list[dict[str, Any]] = []
+    for catalog_path in EXTERNAL_CATALOGS:
+        source_catalog = load_json(catalog_path)
+        candidate_entries = source_catalog.get("entries")
+        if not isinstance(candidate_entries, list):
+            raise ValueError(f"{catalog_path} entries must be an array")
+        for entry in candidate_entries:
+            if not isinstance(entry, dict):
+                raise ValueError(f"{catalog_path} entries must be objects")
+            entries.append(entry)
 
     records: list[dict[str, Any]] = []
     for entry in entries:
-        if not isinstance(entry, dict):
-            raise ValueError("external catalog entries must be objects")
         source_type = str(entry.get("source_type", "other"))
         if source_type not in {"skill", "specification", "agent", "prompt", "instruction"}:
             raise ValueError(f"unsupported external source_type: {source_type}")
@@ -402,12 +409,14 @@ def check(scope: str) -> list[str]:
             errors.append(f"missing canonical agent records: {missing}")
 
     if scope in {"external", "all"}:
-        external_catalog = load_json(EXTERNAL_CATALOG)
-        expected_external = {
-            str(entry.get("id"))
-            for entry in external_catalog.get("entries", [])
-            if isinstance(entry, dict)
-        }
+        expected_external = set()
+        for catalog_path in EXTERNAL_CATALOGS:
+            external_catalog = load_json(catalog_path)
+            expected_external.update(
+                str(entry.get("id"))
+                for entry in external_catalog.get("entries", [])
+                if isinstance(entry, dict)
+            )
         present = {
             record["id"] for record in first["records"] if record.get("party") == "external"
         }

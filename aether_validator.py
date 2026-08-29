@@ -323,7 +323,10 @@ def validate_portable_skill_package(skill_dir: Path) -> list[Diagnostic]:
         if path.suffix.lower() not in {".md", ".json", ".txt", ".yaml", ".yml", ".sh", ".py", ".js", ".mjs"}:
             continue
         text = path.read_text(encoding="utf-8")
-        if "library/organization/" in text:
+        # The generated manifest may name the canonical builder for provenance.
+        # That is not a runtime reference and does not make the installed
+        # package depend on canonical source paths.
+        if "library/organization/" in text and path != manifest_path:
             diagnostics.append(Diagnostic(
                 rule_id="AETHER_PORTABLE_015",
                 severity="error",
@@ -1755,6 +1758,7 @@ def command_distribution_build(args: argparse.Namespace) -> int:
         root / "library" / "organization" / "specs" / "build-distributions.py",
         root / "library" / "organization" / "skills" / "build-distributions.py",
         root / "library" / "organization" / "agents" / "build-projections.py",
+        root / "catalog" / "social-surfaces" / "build-distribution.py",
     ]
     exit_code = EXIT_OK
     for script_path in scripts:

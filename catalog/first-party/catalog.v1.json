@@ -1316,6 +1316,51 @@
       "deprecation": {
         "replacement_id": null
       },
+      "description": "Select and explain pinned social-media or advertising creative surfaces from a provenance-governed offline catalog. Use when work needs platform placement, dimensions, media limits, safe zones, or organic-versus-advertising distinctions.",
+      "domain": "marketing",
+      "generated_distribution_paths": [
+        "dist/skills/social-surface-specs/SKILL.md"
+      ],
+      "id": "skill/social-surface-specs",
+      "implements_specification_id": null,
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "experimental"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "ba2d0baa2dc8ecbfe3f268ac64dcaf31d9ab2dccb111b2f2a8ff7f44c4441a49"
+      },
+      "source_path": "library/organization/skills/marketing/social-surface-specs/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "marketing",
+        "skill"
+      ],
+      "title": "Social Surface Specs"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
       "description": "Designs, implements, repairs, or reviews deterministic automated tests that protect meaningful behavior without chasing superficial coverage. Use when confidence is insufficient and stronger regression or validation evidence is needed.",
       "domain": "quality",
       "generated_distribution_paths": [

@@ -21,6 +21,7 @@ CATALOG_PATH = REPO_ROOT / "catalog" / "first-party" / "catalog.v1.json"
 RELEASE_SCHEMA_PATH = REPO_ROOT / "catalog" / "schemas" / "aether.release-manifest.v1.schema.json"
 LICENSE_PATH = REPO_ROOT / "LICENSE"
 CHANGELOG_PATH = REPO_ROOT / "CHANGELOG.md"
+SOCIAL_SURFACE_CATALOG_PATH = REPO_ROOT / "catalog" / "social-surfaces" / "catalog.v1.json"
 
 
 def _canonical_json(data: object) -> str:
@@ -61,6 +62,37 @@ def _load_distribution_manifest(output_directory: Path, skill_name: str) -> dict
     return _read_json(manifest_path)
 
 
+def _load_release_catalogs(output_directory: Path) -> list[dict]:
+    """Return stable, rights-approved catalogs eligible for this release."""
+    catalog = _read_json(SOCIAL_SURFACE_CATALOG_PATH)
+    metadata = catalog.get("catalog") if isinstance(catalog.get("catalog"), dict) else {}
+    lifecycle = metadata.get("lifecycle") if isinstance(metadata.get("lifecycle"), dict) else {}
+    rights_review = metadata.get("rights_review") if isinstance(metadata.get("rights_review"), dict) else {}
+    release = metadata.get("release") if isinstance(metadata.get("release"), dict) else {}
+    if not (
+        lifecycle.get("state") == "stable"
+        and rights_review.get("state") == "approved"
+        and release.get("included") is True
+    ):
+        return []
+
+    catalog_name = str(metadata.get("id", "")).split("/", 1)[-1]
+    manifest_path = output_directory / "catalogs" / catalog_name / "distribution-manifest.v1.json"
+    if not manifest_path.exists():
+        raise ValueError(f"missing catalog distribution manifest: {manifest_path}")
+    manifest = _read_json(manifest_path)
+    catalog_digest = manifest.get("catalog_digest") or {}
+    if manifest.get("catalog_id") != metadata.get("id"):
+        raise ValueError("catalog distribution id does not match canonical catalog")
+    if manifest.get("catalog_version") != metadata.get("version"):
+        raise ValueError("catalog distribution version does not match canonical catalog")
+    return [{
+        "catalog_id": metadata["id"],
+        "catalog_version": metadata["version"],
+        "catalog_digest": catalog_digest,
+    }]
+
+
 def _build_release_manifest(release_tag: str, records: list[dict], output_directory: Path) -> dict:
     artifacts = []
     for record in records:
@@ -94,11 +126,15 @@ def _build_release_manifest(release_tag: str, records: list[dict], output_direct
             "only catalog records with lifecycle.state=stable and release.included=true may be released"
         )
 
-    return {
+    manifest = {
         "schema_version": "aether.release-manifest/v1",
         "repository_release_tag": release_tag,
         "artifacts": artifacts,
     }
+    catalogs = _load_release_catalogs(output_directory)
+    if catalogs:
+        manifest["catalogs"] = catalogs
+    return manifest
 
 
 def _validate_release_manifest(release_manifest: dict, schema_path: Path) -> None:
@@ -175,6 +211,12 @@ def _build_release_notes(release_tag: str, release_manifest: dict, changelog_pat
         "## Included first-party skills",
         *artifact_lines,
     ]
+    catalog_lines = [
+        f"- `{catalog['catalog_id']}` @ `{catalog['catalog_version']}`"
+        for catalog in release_manifest.get("catalogs", [])
+    ]
+    if catalog_lines:
+        lines.extend(["", "## Included governed catalogs", *catalog_lines])
     if changelog_excerpt:
         lines.extend(["", "## Changelog excerpt", changelog_excerpt])
     lines.append("")
