@@ -9,6 +9,8 @@ provenance, lifecycle, and distribution.
 - `fixtures/` — valid/invalid examples per schema
 - `first-party/catalog.v1.json` — canonical compatibility catalog for the current specification and skill corpus
 - `external/approved-skills.v1.json` — governed external skill catalog entries reconstructed from staged provenance
+- `external/source-candidates.v1.json` — non-publishable external source candidates, including their rights-review state
+- `social-surfaces/` — versioned social-surface contract, offline catalog, query tool, and deterministic distribution builder
 - `PROVENANCE.md` — shared lifecycle, trust, provenance, and stable-publication policy
 - `provenance_model.py` — deterministic normalized provenance projection across first-party specs/skills/agents and reviewed external artifacts
 - `reports/first-party-coverage.v1.json` — coverage report for the canonical spec/skill corpus
@@ -62,6 +64,7 @@ First-party and external artifacts are never conflated:
 
 - first-party canonical source receives `first-party` trust;
 - reviewed external source preserves its upstream repository/revision, license, digest, and external trust classification;
+- a pending external source candidate remains external, non-publishable, and cannot silently populate a stable first-party catalog;
 - external review does not silently reclassify content as first-party;
 - restricted, unknown, or untrusted source cannot enter stable publication.
 

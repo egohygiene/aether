@@ -1,0 +1,72 @@
+{
+  "schema_version": "aether.social-surface-catalog/v1",
+  "catalog": {
+    "id": "catalog/example-surfaces",
+    "version": "1.0.0",
+    "lifecycle": {
+      "state": "experimental"
+    },
+    "source_candidates": [
+      "external/example-source"
+    ],
+    "source_snapshot": {
+      "source_url": "https://example.invalid/",
+      "captured_at": "2026-08-28T00:00:00Z",
+      "digest": {
+        "algorithm": "sha256-bytes",
+        "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "platform_count": 1,
+      "record_count": 1,
+      "template_count": 0
+    },
+    "rights_review": {
+      "state": "pending",
+      "reviewed_at": null,
+      "decision_reference": null,
+      "notes": "Review pending."
+    },
+    "release": {
+      "included": false,
+      "reason": "Review pending."
+    }
+  },
+  "records": [
+    {
+      "id": "surface/example-organic-image",
+      "platform": "Example",
+      "placement": "Post",
+      "use": "organic",
+      "content_type": "post",
+      "media_format": "image",
+      "dimensions": null,
+      "aspect_ratio": null,
+      "file_types": null,
+      "file_size_limit_bytes": null,
+      "duration_limit_seconds": null,
+      "safe_zone": {
+        "state": "unknown",
+        "insets_px": null,
+        "notes": null
+      },
+      "verification": {
+        "state": "unknown",
+        "reviewed_at": null,
+        "note": null
+      },
+      "source": {
+        "candidate_id": "external/example-source",
+        "url": "https://example.invalid/source",
+        "label": "Example source",
+        "captured_at": "2026-08-28T00:00:00Z",
+        "snapshot_digest": {
+          "algorithm": "sha256-bytes",
+          "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "lifecycle": {
+        "state": "experimental"
+      }
+    }
+  ]
+}

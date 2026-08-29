@@ -21,6 +21,7 @@ This script writes a self-contained distribution package at:
     ├── evals/                             # copied verbatim (when present)
     ├── references/                        # copied verbatim (when present)
     ├── templates/                         # copied verbatim (when present)
+    ├── scripts/                           # copied verbatim (when present)
     └── distribution-manifest.v1.json     # generated provenance manifest
 
 Rules
@@ -28,8 +29,11 @@ Rules
 1. Canonical source is never modified.
 2. Generated files are never hand-edited; the manifest header makes this explicit.
 3. The source digest covers only the canonical SKILL.md file (UTF-8, LF-normalised).
-4. Companion directories (evals/, references/, templates/) are copied verbatim.
-5. If ``--check`` is passed the script prints OK/DRIFT lines and exits non-zero
+4. Companion directories (evals/, references/, templates/, scripts/) are copied verbatim.
+5. Frontmatter may declare narrowly scoped repository resources for a portable
+   package in ``metadata.aether-distribution-resources``. Each resource must
+   name a repository-relative source file and a package-relative destination.
+6. If ``--check`` is passed the script prints OK/DRIFT lines and exits non-zero
    on any drift without writing anything.
 """
 
@@ -55,7 +59,7 @@ DIST_DIR = REPO_ROOT / "dist" / "skills"
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 GENERATOR_ID = "library/organization/skills/build-distributions.py"
-COMPANION_DIRS = ("evals", "references", "templates")
+COMPANION_DIRS = ("evals", "references", "templates", "scripts")
 
 
 # ---------------------------------------------------------------------------
@@ -82,6 +86,54 @@ def _read_frontmatter(path: Path) -> dict:
     if not m:
         raise ValueError(f"no YAML frontmatter in {path}")
     return yaml.safe_load(m.group(1)) or {}
+
+
+def _distribution_resources(frontmatter: dict) -> list[tuple[Path, Path]]:
+    """Return validated (repository source, package destination) resources.
+
+    Canonical skills are usually self-contained. This narrow escape hatch keeps
+    a governed catalog canonical in one location while placing an immutable
+    copy in an installed package.
+    """
+    metadata = frontmatter.get("metadata")
+    if not isinstance(metadata, dict):
+        return []
+    resources = metadata.get("aether-distribution-resources", [])
+    if resources is None:
+        return []
+    if not isinstance(resources, list):
+        raise ValueError("metadata.aether-distribution-resources must be a list")
+
+    result: list[tuple[Path, Path]] = []
+    destinations: set[Path] = set()
+    for resource in resources:
+        if not isinstance(resource, dict):
+            raise ValueError("each aether-distribution-resources entry must be a mapping")
+        source_value = resource.get("source")
+        destination_value = resource.get("destination")
+        if not isinstance(source_value, str) or not isinstance(destination_value, str):
+            raise ValueError("distribution resources require string source and destination fields")
+
+        source_relative = Path(source_value)
+        destination = Path(destination_value)
+        if source_relative.is_absolute() or ".." in source_relative.parts:
+            raise ValueError(f"distribution resource source escapes repository: {source_value}")
+        if destination.is_absolute() or ".." in destination.parts or destination == Path("."):
+            raise ValueError(f"distribution resource destination escapes package: {destination_value}")
+
+        source = (REPO_ROOT / source_relative).resolve()
+        try:
+            source.relative_to(REPO_ROOT.resolve())
+        except ValueError as exc:
+            raise ValueError(f"distribution resource source escapes repository: {source_value}") from exc
+        if not source.is_file():
+            raise ValueError(f"distribution resource source is not a file: {source_value}")
+        if destination in destinations:
+            raise ValueError(f"duplicate distribution resource destination: {destination_value}")
+        destinations.add(destination)
+        result.append((source, destination))
+
+    return sorted(result, key=lambda item: item[1].as_posix())
 
 
 # ---------------------------------------------------------------------------
@@ -138,7 +190,7 @@ def _build_manifest(
 # Per-skill distribution
 # ---------------------------------------------------------------------------
 
-def _collect_generated_paths(skill_name: str, source_dir: Path) -> list[str]:
+def _collect_generated_paths(skill_name: str, source_dir: Path, frontmatter: dict) -> list[str]:
     """Enumerate all paths that will be written to dist/skills/<name>/."""
     paths = [f"dist/skills/{skill_name}/SKILL.md"]
     for companion in COMPANION_DIRS:
@@ -148,6 +200,8 @@ def _collect_generated_paths(skill_name: str, source_dir: Path) -> list[str]:
                 if f.is_file():
                     rel = f.relative_to(source_dir)
                     paths.append(f"dist/skills/{skill_name}/{rel.as_posix()}")
+    for _source, destination in _distribution_resources(frontmatter):
+        paths.append(f"dist/skills/{skill_name}/{destination.as_posix()}")
     paths.append(f"dist/skills/{skill_name}/distribution-manifest.v1.json")
     return paths
 
@@ -156,7 +210,7 @@ def _build_skill_dist(skill_name: str, source_dir: Path) -> dict[str, bytes]:
     """Return mapping of relative-to-repo-root path → file bytes for one skill."""
     source_md = source_dir / "SKILL.md"
     fm = _read_frontmatter(source_md)
-    generated_paths = _collect_generated_paths(skill_name, source_dir)
+    generated_paths = _collect_generated_paths(skill_name, source_dir, fm)
 
     out: dict[str, bytes] = {}
 
@@ -171,6 +225,9 @@ def _build_skill_dist(skill_name: str, source_dir: Path) -> dict[str, bytes]:
                 if f.is_file():
                     rel = f.relative_to(source_dir)
                     out[f"dist/skills/{skill_name}/{rel.as_posix()}"] = f.read_bytes()
+
+    for source, destination in _distribution_resources(fm):
+        out[f"dist/skills/{skill_name}/{destination.as_posix()}"] = source.read_bytes()
 
     # distribution manifest
     manifest = _build_manifest(skill_name, fm, source_md, generated_paths)

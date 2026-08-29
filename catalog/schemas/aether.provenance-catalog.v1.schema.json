@@ -21,7 +21,7 @@
       "required": ["algorithm", "value"],
       "properties": {
         "algorithm": {
-          "enum": ["sha256-utf8-lf", "sha256-tree"]
+          "enum": ["sha256-utf8-lf", "sha256-tree", "sha256-bytes"]
         },
         "value": {
           "type": "string",

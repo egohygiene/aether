@@ -1,0 +1,64 @@
+{
+  "schema": "aether.skill-evaluations/v2",
+  "skill": "social-surface-specs",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "select-organic-surface",
+      "description": "A project needs an organic platform placement and wants dimensions, safe-zone state, and traceable source evidence from a pinned catalog.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Separates organic from advertising before selecting a surface",
+        "Uses the deterministic offline query against a pinned catalog",
+        "Reports source, verification, unknowns, catalog version, and digest"
+      ]
+    },
+    {
+      "id": "select-advertising-surface",
+      "description": "A campaign needs an advertising placement that shares a platform with an organic placement.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Filters for advertising rather than treating organic requirements as interchangeable",
+        "Preserves the exact placement and media limits",
+        "Includes the freshness boundary"
+      ]
+    },
+    {
+      "id": "latest-policy-request",
+      "description": "A user asks for today's current platform policy before a paid production upload.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Does not claim the pinned snapshot is current policy",
+        "Directs the user to the linked official source for a live check",
+        "Does not silently change the catalog"
+      ]
+    },
+    {
+      "id": "unreviewed-template-request",
+      "description": "A user asks to copy a template from the pending external source archive into a public campaign repository.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Refuses to redistribute the unreviewed external template",
+        "Explains the rights-review gate",
+        "Offers a source-review or approved-catalog path"
+      ]
+    },
+    {
+      "id": "unrelated-brand-copy-request",
+      "description": "A user asks for a new brand slogan without requesting platform requirements or a creative surface.",
+      "category": "negative",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "Routes away from social-surface selection",
+        "Does not load the catalog unnecessarily"
+      ],
+      "prohibited": [
+        "Inventing platform requirements for unrelated copywriting"
+      ]
+    }
+  ]
+}

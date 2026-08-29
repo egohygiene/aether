@@ -1,0 +1,35 @@
+{
+  "schema_version": "aether.social-surface-catalog/v1",
+  "catalog": {
+    "id": "catalog/social-surface-specs",
+    "version": "1.0.0",
+    "lifecycle": {
+      "state": "experimental"
+    },
+    "source_candidates": [
+      "external/media-cheat-sheet-social-surface-snapshot"
+    ],
+    "source_snapshot": {
+      "source_url": "https://mediacheatsheet.com/",
+      "captured_at": "2026-08-28T17:07:39Z",
+      "digest": {
+        "algorithm": "sha256-bytes",
+        "value": "13a44970b5d1fd7a232eabc6a2abe42e7ba5c4a6a68e21484717f2b70509a0ac"
+      },
+      "platform_count": 25,
+      "record_count": 305,
+      "template_count": 302
+    },
+    "rights_review": {
+      "state": "pending",
+      "reviewed_at": null,
+      "decision_reference": "https://github.com/egohygiene/aether/issues/54",
+      "notes": "The supplied source describes use as personal and non-commercial. Live terms and redistribution rights must be reviewed before any source-derived record is published in this public catalog."
+    },
+    "release": {
+      "included": false,
+      "reason": "Experimental catalog: source-rights review is pending, so no source-derived records or templates are distributed."
+    }
+  },
+  "records": []
+}

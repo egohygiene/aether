@@ -44,6 +44,46 @@
       "minItems": 1,
       "type": "array"
     },
+    "catalogs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "catalog_digest": {
+            "additionalProperties": false,
+            "properties": {
+              "algorithm": {
+                "const": "sha256-utf8-lf",
+                "type": "string"
+              },
+              "value": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "algorithm",
+              "value"
+            ],
+            "type": "object"
+          },
+          "catalog_id": {
+            "pattern": "^catalog/[a-z0-9-]+$",
+            "type": "string"
+          },
+          "catalog_version": {
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "catalog_id",
+          "catalog_version",
+          "catalog_digest"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
     "repository_release_tag": {
       "minLength": 1,
       "type": "string"

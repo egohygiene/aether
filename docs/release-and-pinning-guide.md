@@ -76,6 +76,7 @@ and only refreshes attached assets with `gh release upload --clobber`. Tags are 
 ## Release metadata contents
 
 - `release-manifest.v1.json` — repository tag plus release-eligible first-party skills
+- `release-manifest.v1.json` may also list release-eligible governed catalogs, with their exact version and digest
 - `checksums.txt` — SHA-256 digests for generated release payload files
 - `release-provenance.v1.json` — source commit, included artifacts, and output digests
 - `LICENSE.notices.txt` — repository license plus included artifact license summary
@@ -113,6 +114,28 @@ gh skill update --unpin
 Rollback or supersede by publishing a newer repository tag (for example `v1.0.1`)
 and asking consumers to repin or update. Do not delete or retag a bad release; mark
 the bad tag deprecated in release notes and publish the corrective tag.
+
+### Catalog lockfiles
+
+When a consumer uses a governed catalog, record the repository tag **and** the
+catalog identity, version, and digest from `dist/catalogs/<name>/distribution-manifest.v1.json`:
+
+```json
+{
+  "repository": "egohygiene/aether",
+  "repository_release_tag": "v1.2.3",
+  "catalog_id": "catalog/social-surface-specs",
+  "catalog_version": "1.0.0",
+  "catalog_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "<digest from the release manifest>"
+  }
+}
+```
+
+Only catalogs marked stable, rights-approved, and release-included may appear
+in release metadata. An experimental catalog can be evaluated from source but
+must not be represented as a published policy snapshot.
 
 ## Deprecation versus deletion
 

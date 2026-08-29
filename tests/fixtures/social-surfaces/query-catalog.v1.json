@@ -1,0 +1,55 @@
+{
+  "schema_version": "aether.social-surface-catalog/v1",
+  "catalog": {
+    "id": "catalog/social-surface-specs",
+    "version": "1.0.0",
+    "lifecycle": {"state": "experimental"},
+    "source_candidates": ["external/example-source"],
+    "source_snapshot": {
+      "source_url": "https://example.invalid/",
+      "captured_at": "2026-08-28T00:00:00Z",
+      "digest": {"algorithm": "sha256-bytes", "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "platform_count": 1,
+      "record_count": 2,
+      "template_count": 0
+    },
+    "rights_review": {"state": "approved", "reviewed_at": "2026-08-29T00:00:00Z", "decision_reference": "test", "notes": "Synthetic test fixture."},
+    "release": {"included": false, "reason": "Synthetic fixture only."}
+  },
+  "records": [
+    {
+      "id": "surface/example-network-ad-video",
+      "platform": "Example Network",
+      "placement": "Vertical video ad",
+      "use": "advertising",
+      "content_type": "ad",
+      "media_format": "video",
+      "dimensions": {"width_px": 1080, "height_px": 1920},
+      "aspect_ratio": "9:16",
+      "file_types": ["mp4"],
+      "file_size_limit_bytes": null,
+      "duration_limit_seconds": null,
+      "safe_zone": {"state": "unknown", "insets_px": null, "notes": null},
+      "verification": {"state": "reference", "reviewed_at": "2026-08-28T00:00:00Z", "note": null},
+      "source": {"candidate_id": "external/example-source", "url": "https://example.invalid/ad", "label": "Example ad source", "captured_at": "2026-08-28T00:00:00Z", "snapshot_digest": {"algorithm": "sha256-bytes", "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}},
+      "lifecycle": {"state": "experimental"}
+    },
+    {
+      "id": "surface/example-network-organic-image",
+      "platform": "Example Network",
+      "placement": "Organic image post",
+      "use": "organic",
+      "content_type": "post",
+      "media_format": "image",
+      "dimensions": {"width_px": 1080, "height_px": 1080},
+      "aspect_ratio": "1:1",
+      "file_types": ["jpg", "png"],
+      "file_size_limit_bytes": null,
+      "duration_limit_seconds": null,
+      "safe_zone": {"state": "not-applicable", "insets_px": null, "notes": null},
+      "verification": {"state": "official", "reviewed_at": "2026-08-28T00:00:00Z", "note": "Synthetic source."},
+      "source": {"candidate_id": "external/example-source", "url": "https://example.invalid/organic", "label": "Example organic source", "captured_at": "2026-08-28T00:00:00Z", "snapshot_digest": {"algorithm": "sha256-bytes", "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}},
+      "lifecycle": {"state": "experimental"}
+    }
+  ]
+}

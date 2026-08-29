@@ -1,0 +1,135 @@
+{
+  "$id": "https://egohygiene.io/schemas/aether/social-surface-catalog/v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Aether social-surface specification catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "catalog", "records"],
+  "properties": {
+    "schema_version": {"const": "aether.social-surface-catalog/v1"},
+    "catalog": {"$ref": "#/$defs/catalog"},
+    "records": {"type": "array", "items": {"$ref": "#/$defs/record"}}
+  },
+  "$defs": {
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "value"],
+      "properties": {
+        "algorithm": {"enum": ["sha256-utf8-lf", "sha256-bytes"]},
+        "value": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state"],
+      "properties": {"state": {"enum": ["draft", "experimental", "stable", "deprecated", "retired"]}}
+    },
+    "catalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "lifecycle", "source_candidates", "source_snapshot", "rights_review", "release"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^catalog/[a-z0-9-]+$"},
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"},
+        "lifecycle": {"$ref": "#/$defs/lifecycle"},
+        "source_candidates": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^external/[a-z0-9-]+$"}},
+        "source_snapshot": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source_url", "captured_at", "digest", "platform_count", "record_count", "template_count"],
+          "properties": {
+            "source_url": {"type": "string", "minLength": 1},
+            "captured_at": {"type": "string", "minLength": 1},
+            "digest": {"$ref": "#/$defs/digest"},
+            "platform_count": {"type": "integer", "minimum": 0},
+            "record_count": {"type": "integer", "minimum": 0},
+            "template_count": {"type": "integer", "minimum": 0}
+          }
+        },
+        "rights_review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state", "reviewed_at", "decision_reference", "notes"],
+          "properties": {
+            "state": {"enum": ["pending", "approved", "rejected"]},
+            "reviewed_at": {"type": ["string", "null"]},
+            "decision_reference": {"type": ["string", "null"]},
+            "notes": {"type": "string", "minLength": 1}
+          }
+        },
+        "release": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["included", "reason"],
+          "properties": {
+            "included": {"type": "boolean"},
+            "reason": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "platform", "placement", "use", "content_type", "media_format", "dimensions", "aspect_ratio", "file_types", "file_size_limit_bytes", "duration_limit_seconds", "safe_zone", "verification", "source", "lifecycle"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^surface/[a-z0-9-]+$"},
+        "platform": {"type": "string", "minLength": 1},
+        "placement": {"type": "string", "minLength": 1},
+        "use": {"enum": ["organic", "advertising"]},
+        "content_type": {"type": ["string", "null"]},
+        "media_format": {"type": ["string", "null"]},
+        "dimensions": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "object", "additionalProperties": false, "required": ["width_px", "height_px"], "properties": {"width_px": {"type": "integer", "minimum": 1}, "height_px": {"type": "integer", "minimum": 1}}}
+          ]
+        },
+        "aspect_ratio": {"type": ["string", "null"]},
+        "file_types": {"oneOf": [{"type": "null"}, {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}]},
+        "file_size_limit_bytes": {"type": ["integer", "null"], "minimum": 0},
+        "duration_limit_seconds": {"type": ["number", "null"], "minimum": 0},
+        "safe_zone": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state", "insets_px", "notes"],
+          "properties": {
+            "state": {"enum": ["known", "unknown", "not-applicable"]},
+            "insets_px": {
+              "oneOf": [
+                {"type": "null"},
+                {"type": "object", "additionalProperties": false, "required": ["top", "right", "bottom", "left"], "properties": {"top": {"type": "integer", "minimum": 0}, "right": {"type": "integer", "minimum": 0}, "bottom": {"type": "integer", "minimum": 0}, "left": {"type": "integer", "minimum": 0}}}
+              ]
+            },
+            "notes": {"type": ["string", "null"]}
+          }
+        },
+        "verification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["state", "reviewed_at", "note"],
+          "properties": {
+            "state": {"enum": ["official", "reference", "unverified", "unknown", "conflicting"]},
+            "reviewed_at": {"type": ["string", "null"]},
+            "note": {"type": ["string", "null"]}
+          }
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["candidate_id", "url", "label", "captured_at", "snapshot_digest"],
+          "properties": {
+            "candidate_id": {"type": "string", "pattern": "^external/[a-z0-9-]+$"},
+            "url": {"type": "string", "minLength": 1},
+            "label": {"type": "string", "minLength": 1},
+            "captured_at": {"type": "string", "minLength": 1},
+            "snapshot_digest": {"$ref": "#/$defs/digest"}
+          }
+        },
+        "lifecycle": {"$ref": "#/$defs/lifecycle"}
+      }
+    }
+  }
+}

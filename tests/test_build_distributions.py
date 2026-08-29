@@ -244,6 +244,43 @@ class TestBuildSkillDist(unittest.TestCase):
         map2 = bd._build_skill_dist("my-skill", skill_dir)
         self.assertEqual(map1, map2)
 
+    def test_packages_declared_repository_resource(self):
+        skill_dir = _make_skill(self._tmp, "my-skill")
+        resource = self._tmp / "catalog" / "example.v1.json"
+        _write(resource, '{"version": 1}\n')
+        skill_md = skill_dir / "SKILL.md"
+        skill_md.write_text(
+            skill_md.read_text(encoding="utf-8").replace(
+                "  aether-updated: \"2026-08-01\"\n",
+                "  aether-updated: \"2026-08-01\"\n"
+                "  aether-distribution-resources:\n"
+                "    - source: \"catalog/example.v1.json\"\n"
+                "      destination: \"references/example.v1.json\"\n",
+            ),
+            encoding="utf-8",
+        )
+        file_map = bd._build_skill_dist("my-skill", skill_dir)
+        self.assertEqual(
+            file_map["dist/skills/my-skill/references/example.v1.json"],
+            b'{"version": 1}\n',
+        )
+
+    def test_rejects_distribution_resource_path_escape(self):
+        skill_dir = _make_skill(self._tmp, "my-skill")
+        skill_md = skill_dir / "SKILL.md"
+        skill_md.write_text(
+            skill_md.read_text(encoding="utf-8").replace(
+                "  aether-updated: \"2026-08-01\"\n",
+                "  aether-updated: \"2026-08-01\"\n"
+                "  aether-distribution-resources:\n"
+                "    - source: \"../outside.json\"\n"
+                "      destination: \"references/example.v1.json\"\n",
+            ),
+            encoding="utf-8",
+        )
+        with self.assertRaisesRegex(ValueError, "escapes repository"):
+            bd._build_skill_dist("my-skill", skill_dir)
+
 
 class TestBuildIntegration(unittest.TestCase):
     """End-to-end: build() writes correct files to a temp dist dir."""

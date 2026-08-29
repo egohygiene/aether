@@ -16,6 +16,9 @@ CATALOG_DIR = ROOT / "catalog"
 SCHEMAS_DIR = CATALOG_DIR / "schemas"
 FIXTURES_DIR = CATALOG_DIR / "fixtures"
 CATALOG_PATH = CATALOG_DIR / "first-party" / "catalog.v1.json"
+EXTERNAL_SOURCE_CANDIDATES_PATH = CATALOG_DIR / "external" / "source-candidates.v1.json"
+SOCIAL_SURFACE_CATALOG_PATH = CATALOG_DIR / "social-surfaces" / "catalog.v1.json"
+SOCIAL_SURFACE_VALIDATOR_PATH = CATALOG_DIR / "social-surfaces" / "validate.py"
 
 SCHEMA_FILES = [
     "aether.artifact-record.v1.schema.json",
@@ -26,6 +29,8 @@ SCHEMA_FILES = [
     "aether.staging-disposition-record.v1.schema.json",
     "aether.evaluation-definition.v1.schema.json",
     "aether.evaluation-result.v1.schema.json",
+    "aether.social-surface-catalog.v1.schema.json",
+    "aether.catalog-distribution-manifest.v1.schema.json",
 ]
 
 SKILLS_DIR = ROOT / "library" / "organization" / "skills"
@@ -152,6 +157,38 @@ def validate_catalog(validators):
     return errors
 
 
+def validate_external_source_candidates(validators):
+    errors = []
+    candidate_catalog = load_json(EXTERNAL_SOURCE_CANDIDATES_PATH)
+    if candidate_catalog.get("schema_version") != "aether.external-source-candidates/v1":
+        errors.append("External source candidates use an unexpected schema version")
+    entries = candidate_catalog.get("entries")
+    if not isinstance(entries, list):
+        return errors + ["External source candidates entries must be an array"]
+    identifiers = [entry.get("id") for entry in entries if isinstance(entry, dict)]
+    if identifiers != sorted(identifiers):
+        errors.append("External source candidate records must be sorted by id")
+    if len(identifiers) != len(set(identifiers)):
+        errors.append("External source candidate record IDs are not unique")
+    validator = validators["aether.external-source-record.v1.schema"]
+    for entry in entries:
+        for error in validator.iter_errors(entry):
+            errors.append(f"External source candidate schema violation: {error.message}")
+    return errors
+
+
+def validate_social_surface_catalog():
+    result = subprocess.run(
+        [sys.executable, str(SOCIAL_SURFACE_VALIDATOR_PATH), "--catalog", str(SOCIAL_SURFACE_CATALOG_PATH)],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode == 0:
+        return []
+    detail = (result.stderr or result.stdout).strip() or "unknown social-surface catalog validation failure"
+    return [f"Social-surface catalog validation failed: {detail}"]
+
+
 def main() -> int:
     if "--print-digest-snapshot" in sys.argv:
         catalog = load_json(CATALOG_PATH)
@@ -170,6 +207,8 @@ def main() -> int:
     errors = []
     errors.extend(validate_fixtures(validators))
     errors.extend(validate_catalog(validators))
+    errors.extend(validate_external_source_candidates(validators))
+    errors.extend(validate_social_surface_catalog())
 
     if errors:
         print(f"VALIDATION FAILED -- {len(errors)} error(s):")

@@ -1,0 +1,18 @@
+{
+  "catalog_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "fbe8a65f103aa3806bd1e9abb3d1661d0594cc88fdaac6a3f764943e22d503bb"
+  },
+  "catalog_id": "catalog/social-surface-specs",
+  "catalog_version": "1.0.0",
+  "generated_paths": [
+    "dist/catalogs/social-surface-specs/catalog.v1.json",
+    "dist/catalogs/social-surface-specs/distribution-manifest.v1.json"
+  ],
+  "generator": "catalog/social-surfaces/build-distribution.py",
+  "publication": {
+    "reason": "Experimental catalog: source-rights review is pending, so no source-derived records or templates are distributed.",
+    "state": "blocked"
+  },
+  "schema_version": "aether.catalog-distribution-manifest/v1"
+}
