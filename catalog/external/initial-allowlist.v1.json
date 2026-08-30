@@ -1,0 +1,72 @@
+{
+  "schema_version": "aether.external-source-allowlist/v1",
+  "allowlist_version": "1.0.0",
+  "review_register": "source-review-register.v1.json",
+  "reviewed_at": "2026-08-30T23:00:00Z",
+  "default_disposition": "deny",
+  "entries": [
+    {
+      "artifact_id": "external/animation-vocabulary",
+      "source_id": "external-source/emilkowalski-skill",
+      "upstream_ref": {"tag": "unknown", "commit": "de33dbed000212b54400a33767d1e4d03654db2a"},
+      "content_hash": {"algorithm": "sha256-utf8-lf", "value": "d718b48fe3c7898804d588f050a2e266d82c9f5ef51da256c8cb8b5951527757"},
+      "use_boundary": "agent-assisted-reference-only",
+      "requires_human_review": true,
+      "prohibited_actions": ["automatic installation", "automatic execution", "first-party promotion", "external delivery"]
+    },
+    {
+      "artifact_id": "external/apple-design",
+      "source_id": "external-source/emilkowalski-skill",
+      "upstream_ref": {"tag": "unknown", "commit": "de33dbed000212b54400a33767d1e4d03654db2a"},
+      "content_hash": {"algorithm": "sha256-utf8-lf", "value": "11840b24a11d7f94f39c6aaab074750ae4e4de4ef54ee4b1dd97e16ebd485e61"},
+      "use_boundary": "agent-assisted-reference-only",
+      "requires_human_review": true,
+      "prohibited_actions": ["automatic installation", "automatic execution", "first-party promotion", "external delivery"]
+    },
+    {
+      "artifact_id": "external/emil-design-eng",
+      "source_id": "external-source/emilkowalski-skill",
+      "upstream_ref": {"tag": "unknown", "commit": "de33dbed000212b54400a33767d1e4d03654db2a"},
+      "content_hash": {"algorithm": "sha256-utf8-lf", "value": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7"},
+      "use_boundary": "agent-assisted-reference-only",
+      "requires_human_review": true,
+      "prohibited_actions": ["automatic installation", "automatic execution", "first-party promotion", "external delivery"]
+    },
+    {
+      "artifact_id": "external/find-animation-opportunities",
+      "source_id": "external-source/emilkowalski-skill",
+      "upstream_ref": {"tag": "unknown", "commit": "de33dbed000212b54400a33767d1e4d03654db2a"},
+      "content_hash": {"algorithm": "sha256-utf8-lf", "value": "91c1243164057fbf824088d12faea937878a757a7ac653e8288b775e8b27b882"},
+      "use_boundary": "agent-assisted-reference-only",
+      "requires_human_review": true,
+      "prohibited_actions": ["automatic installation", "automatic execution", "first-party promotion", "external delivery"]
+    },
+    {
+      "artifact_id": "external/improve-animations",
+      "source_id": "external-source/emilkowalski-skill",
+      "upstream_ref": {"tag": "unknown", "commit": "de33dbed000212b54400a33767d1e4d03654db2a"},
+      "content_hash": {"algorithm": "sha256-utf8-lf", "value": "68f17bbc4671593d2f43dba26a679243e2153ba5f26965fb7d59df52842534ff"},
+      "use_boundary": "agent-assisted-reference-only",
+      "requires_human_review": true,
+      "prohibited_actions": ["automatic installation", "automatic execution", "first-party promotion", "external delivery"]
+    },
+    {
+      "artifact_id": "external/pick-ui-library",
+      "source_id": "external-source/emilkowalski-skill",
+      "upstream_ref": {"tag": "unknown", "commit": "de33dbed000212b54400a33767d1e4d03654db2a"},
+      "content_hash": {"algorithm": "sha256-utf8-lf", "value": "4b889bd6c08358499ac4a7202b8af71ffbd3485d2468f7b09d0613bbe7b24bf4"},
+      "use_boundary": "agent-assisted-reference-only",
+      "requires_human_review": true,
+      "prohibited_actions": ["automatic installation", "automatic execution", "first-party promotion", "external delivery"]
+    },
+    {
+      "artifact_id": "external/review-animations",
+      "source_id": "external-source/emilkowalski-skill",
+      "upstream_ref": {"tag": "unknown", "commit": "de33dbed000212b54400a33767d1e4d03654db2a"},
+      "content_hash": {"algorithm": "sha256-utf8-lf", "value": "61cf8ac0c4c8e1f63385298c546b16c65ca9aec34abddcd04e821c16712d671d"},
+      "use_boundary": "agent-assisted-reference-only",
+      "requires_human_review": true,
+      "prohibited_actions": ["automatic installation", "automatic execution", "first-party promotion", "external delivery"]
+    }
+  ]
+}

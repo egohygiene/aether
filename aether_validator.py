@@ -1200,6 +1200,23 @@ class AetherValidator:
             file=_rel(lock_path, self.repo_root),
         ))
 
+        external_validator = self.repo_root / "catalog" / "external" / "validate.py"
+        if external_validator.exists():
+            result = subprocess.run(
+                [sys.executable, str(external_validator)],
+                capture_output=True,
+                text=True,
+            )
+            if result.returncode != 0:
+                detail = (result.stderr or result.stdout).strip() or "unknown external source governance failure"
+                diagnostics.append(Diagnostic(
+                    rule_id="AETHER_PROVENANCE_010",
+                    severity="error",
+                    message=f"External source governance validation failed: {detail}",
+                    guidance="Repair the source review register or bounded allowlist before accepting external source provenance.",
+                    file=_rel(external_validator, self.repo_root),
+                ))
+
         return diagnostics
 
     def validate_distribution(self) -> list[Diagnostic]:

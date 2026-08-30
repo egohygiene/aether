@@ -17,6 +17,7 @@ SCHEMAS_DIR = CATALOG_DIR / "schemas"
 FIXTURES_DIR = CATALOG_DIR / "fixtures"
 CATALOG_PATH = CATALOG_DIR / "first-party" / "catalog.v1.json"
 EXTERNAL_SOURCE_CANDIDATES_PATH = CATALOG_DIR / "external" / "source-candidates.v1.json"
+EXTERNAL_SOURCE_GOVERNANCE_VALIDATOR_PATH = CATALOG_DIR / "external" / "validate.py"
 SOCIAL_SURFACE_CATALOG_PATH = CATALOG_DIR / "social-surfaces" / "catalog.v1.json"
 SOCIAL_SURFACE_VALIDATOR_PATH = CATALOG_DIR / "social-surfaces" / "validate.py"
 
@@ -24,6 +25,8 @@ SCHEMA_FILES = [
     "aether.artifact-record.v1.schema.json",
     "aether.artifact-catalog.v1.schema.json",
     "aether.external-source-record.v1.schema.json",
+    "aether.external-source-review-register.v1.schema.json",
+    "aether.external-source-allowlist.v1.schema.json",
     "aether.distribution-manifest.v1.schema.json",
     "aether.release-manifest.v1.schema.json",
     "aether.staging-disposition-record.v1.schema.json",
@@ -178,6 +181,18 @@ def validate_external_source_candidates(validators):
     return errors
 
 
+def validate_external_source_governance():
+    result = subprocess.run(
+        [sys.executable, str(EXTERNAL_SOURCE_GOVERNANCE_VALIDATOR_PATH)],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode == 0:
+        return []
+    detail = (result.stderr or result.stdout).strip() or "unknown external source governance validation failure"
+    return [f"External source governance validation failed: {detail}"]
+
+
 def validate_social_surface_catalog():
     result = subprocess.run(
         [sys.executable, str(SOCIAL_SURFACE_VALIDATOR_PATH), "--catalog", str(SOCIAL_SURFACE_CATALOG_PATH)],
@@ -209,6 +224,7 @@ def main() -> int:
     errors.extend(validate_fixtures(validators))
     errors.extend(validate_catalog(validators))
     errors.extend(validate_external_source_candidates(validators))
+    errors.extend(validate_external_source_governance())
     errors.extend(validate_social_surface_catalog())
 
     if errors:

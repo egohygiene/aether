@@ -1,0 +1,134 @@
+{
+  "schema_version": "aether.external-source-review-register/v1",
+  "catalog_version": "1.0.0",
+  "reviewed_at": "2026-08-30T23:00:00Z",
+  "reviewer": "egohygiene",
+  "coverage": {
+    "captured_artifact_count": 57,
+    "captured_source_count": 4,
+    "coverage_rule": "Every unique upstream repository or captured web snapshot represented by the external catalogs must have exactly one source decision."
+  },
+  "sources": [
+    {
+      "id": "external-source/coreyhaines31-marketingskills",
+      "upstream_repository": "https://github.com/coreyhaines31/marketingskills",
+      "source_kind": "git-repository",
+      "pinned_revision": {"kind": "git-commit", "value": "7868cb9251fad80a73d26e488a5ad5f6c4a9f335"},
+      "captured_artifact_count": 48,
+      "decision": "deferred",
+      "decision_reason": "The MIT-licensed, pinned source is active at review, but the captured corpus contains outbound marketing and persuasion workflows. Each selected skill needs prompt-safety and external-effects review before it can enter the bounded corpus.",
+      "assessment": {
+        "license": {"state": "verified", "evidence": "The captured source record and the upstream repository both identify the MIT license."},
+        "maintenance": {"state": "active-at-review", "evidence": "The public upstream repository was not archived and reported activity during the August 2026 review."},
+        "trust": {"state": "restricted", "evidence": "The corpus remains externally authored and includes guidance that could lead to external communications."},
+        "duplication": {"state": "verified", "evidence": "No captured external artifact identifier duplicates a canonical first-party skill identifier."},
+        "relevance": {"state": "deferred", "evidence": "Marketing guidance may be useful later, but it is outside the lowest-risk initial corpus."},
+        "vulnerability": {"state": "deferred", "evidence": "Review individual references, links, tool calls, and external-action instructions before selection."}
+      },
+      "constraints": [
+        "Do not install or execute automatically.",
+        "Do not promote into first-party source.",
+        "Do not use for outreach, publishing, advertising, or other external delivery without separate authorization.",
+        "Review each skill independently before allowlisting."
+      ],
+      "next_review": {
+        "not_after": "2026-09-30",
+        "events": [
+          "A specific marketing skill is proposed for use.",
+          "An upstream security advisory or material license change is identified.",
+          "The pinned revision is proposed for update."
+        ]
+      }
+    },
+    {
+      "id": "external-source/emilkowalski-skill",
+      "upstream_repository": "https://github.com/emilkowalski/skill",
+      "source_kind": "git-repository",
+      "pinned_revision": {"kind": "git-commit", "value": "de33dbed000212b54400a33767d1e4d03654db2a"},
+      "captured_artifact_count": 7,
+      "decision": "allowlisted",
+      "decision_reason": "The seven captured design and animation skills are MIT-licensed, pinned, non-executable in the captured inventory, and relevant to product, site, and creative review. They are allowlisted only as agent-assisted reference material.",
+      "assessment": {
+        "license": {"state": "verified", "evidence": "The captured source records preserve an MIT license reference for every selected artifact."},
+        "maintenance": {"state": "redirected-at-review", "evidence": "The original GitHub API endpoint redirected during review; the allowlist remains frozen to the captured immutable commit until a successor source is reviewed."},
+        "trust": {"state": "restricted", "evidence": "Allowlisting preserves external ownership and does not grant first-party or stable-publication status."},
+        "duplication": {"state": "verified", "evidence": "No selected artifact identifier collides with a canonical first-party skill identifier."},
+        "relevance": {"state": "verified", "evidence": "The source directly supports animation vocabulary, interaction design, and UI review work already present in the organization."},
+        "vulnerability": {"state": "not-applicable", "evidence": "The selected captured records declare no executable resources; review remains required before following any embedded instruction or link."}
+      },
+      "constraints": [
+        "Use only as agent-assisted reference material with human review.",
+        "Do not execute embedded instructions or install tools automatically.",
+        "Do not promote content into first-party source without a separate adoption decision.",
+        "Do not update the pin by following a redirect; review the successor source first."
+      ],
+      "next_review": {
+        "not_after": "2026-09-30",
+        "events": [
+          "A successor repository is proposed for the pinned source.",
+          "An upstream security advisory or material license change is identified.",
+          "A selected artifact is proposed for first-party adoption."
+        ]
+      }
+    },
+    {
+      "id": "external-source/media-cheat-sheet-social-surface-snapshot",
+      "upstream_repository": "https://mediacheatsheet.com/",
+      "source_kind": "web-snapshot",
+      "pinned_revision": {"kind": "content-digest", "value": "13a44970b5d1fd7a232eabc6a2abe42e7ba5c4a6a68e21484717f2b70509a0ac"},
+      "captured_artifact_count": 1,
+      "decision": "rejected",
+      "decision_reason": "The captured social-surface snapshot has an unknown license, no immutable upstream commit, and verified disallowed redistribution. It remains provenance evidence only and cannot enter the external allowlist.",
+      "assessment": {
+        "license": {"state": "unknown", "evidence": "The candidate record identifies no SPDX license and points to external terms for review."},
+        "maintenance": {"state": "unknown", "evidence": "A manual web snapshot cannot establish an update or maintenance history."},
+        "trust": {"state": "restricted", "evidence": "The candidate is limited to human-review provenance evidence and is not redistributed."},
+        "duplication": {"state": "verified", "evidence": "The candidate is not represented as a canonical first-party artifact or allowlisted external skill."},
+        "relevance": {"state": "deferred", "evidence": "The underlying subject may be useful, but this capture cannot satisfy Aether's reusable-source requirements."},
+        "vulnerability": {"state": "not-applicable", "evidence": "The rejected snapshot is neither installed nor executed."}
+      },
+      "constraints": [
+        "Do not redistribute the snapshot or derived source text.",
+        "Do not install or treat it as an Aether artifact.",
+        "Use only to preserve the historical rights-review decision."
+      ],
+      "next_review": {
+        "not_after": "2027-08-30",
+        "events": [
+          "The publisher grants clear reusable terms.",
+          "A new independently licensed source is proposed."
+        ]
+      }
+    },
+    {
+      "id": "external-source/vercel-labs-skills",
+      "upstream_repository": "https://github.com/vercel-labs/skills",
+      "source_kind": "git-repository",
+      "pinned_revision": {"kind": "git-commit", "value": "941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c"},
+      "captured_artifact_count": 1,
+      "decision": "deferred",
+      "decision_reason": "The MIT-licensed, pinned source is active at review, but its captured discovery skill can expand the external supply chain. It needs a dedicated runtime, telemetry, and transitive-source review before selection.",
+      "assessment": {
+        "license": {"state": "verified", "evidence": "The captured source record and the upstream repository both identify the MIT license."},
+        "maintenance": {"state": "active-at-review", "evidence": "The public upstream repository was not archived and reported activity during the August 2026 review."},
+        "trust": {"state": "restricted", "evidence": "The captured skill's purpose is discovery of further third-party skills, which expands the supply-chain boundary."},
+        "duplication": {"state": "verified", "evidence": "The captured artifact identifier does not duplicate a canonical first-party skill identifier."},
+        "relevance": {"state": "deferred", "evidence": "Discovery may be useful, but it is not needed for the initial bounded corpus."},
+        "vulnerability": {"state": "deferred", "evidence": "Review the tool runtime, telemetry behavior, and every transitive source before installation or execution."}
+      },
+      "constraints": [
+        "Do not install or execute automatically.",
+        "Do not use discovery output as an allowlist.",
+        "Do not promote discovered material into first-party source without independent review."
+      ],
+      "next_review": {
+        "not_after": "2026-09-30",
+        "events": [
+          "The discovery skill is proposed for use.",
+          "An upstream security advisory or material license change is identified.",
+          "The runtime or telemetry behavior changes."
+        ]
+      }
+    }
+  ]
+}
