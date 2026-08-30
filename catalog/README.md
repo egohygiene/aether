@@ -110,3 +110,14 @@ python3 catalog/provenance_model.py generate \
 ```
 
 Generated review files are not canonical source and should not be edited as a substitute for the underlying artifact/catalog records.
+
+## External source selection
+
+The reviewed external catalog is not an execution allowlist. The source review
+register covers every captured upstream source with an allowlisted, deferred,
+or rejected decision. The initial allowlist is deny-by-default and grants only
+human-reviewed, agent-assisted reference use for its exact immutable records.
+
+Run the external cross-catalog check with:
+
+    python3 catalog/external/validate.py

@@ -1,0 +1,32 @@
+{
+  "schema_version": "aether.external-source-review-register/v1",
+  "catalog_version": "1.0.0",
+  "reviewed_at": "2026-08-30T00:00:00Z",
+  "reviewer": "egohygiene",
+  "coverage": {
+    "captured_artifact_count": 1,
+    "captured_source_count": 1,
+    "coverage_rule": "Every captured source has one decision record."
+  },
+  "sources": [
+    {
+      "id": "external-source/example",
+      "upstream_repository": "https://github.com/example/skills",
+      "source_kind": "git-repository",
+      "pinned_revision": {"kind": "git-commit", "value": "1234567"},
+      "captured_artifact_count": 1,
+      "decision": "allowlisted",
+      "decision_reason": "The bounded example is suitable for review.",
+      "assessment": {
+        "license": {"state": "verified", "evidence": "MIT"},
+        "maintenance": {"state": "active-at-review", "evidence": "Recent upstream activity"},
+        "trust": {"state": "restricted", "evidence": "External material remains externally owned"},
+        "duplication": {"state": "verified", "evidence": "No exact catalog identifier collision"},
+        "relevance": {"state": "verified", "evidence": "Fits the stated use boundary"},
+        "vulnerability": {"state": "not-applicable", "evidence": "Text-only review scope"}
+      },
+      "constraints": ["No automatic execution"],
+      "next_review": {"not_after": "2026-09-30", "events": ["upstream security advisory"]}
+    }
+  ]
+}

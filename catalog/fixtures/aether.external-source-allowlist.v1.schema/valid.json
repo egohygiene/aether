@@ -1,0 +1,21 @@
+{
+  "schema_version": "aether.external-source-allowlist/v1",
+  "allowlist_version": "1.0.0",
+  "review_register": "source-review-register.v1.json",
+  "reviewed_at": "2026-08-30T00:00:00Z",
+  "default_disposition": "deny",
+  "entries": [
+    {
+      "artifact_id": "external/example",
+      "source_id": "external-source/example",
+      "upstream_ref": {"tag": "unknown", "commit": "1234567"},
+      "content_hash": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "use_boundary": "agent-assisted-reference-only",
+      "requires_human_review": true,
+      "prohibited_actions": ["automatic installation"]
+    }
+  ]
+}

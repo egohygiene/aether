@@ -1,0 +1,8 @@
+{
+  "schema_version": "aether.external-source-allowlist/v1",
+  "allowlist_version": "1.0.0",
+  "review_register": "wrong.json",
+  "reviewed_at": "2026-08-30T00:00:00Z",
+  "default_disposition": "allow",
+  "entries": []
+}

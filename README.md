@@ -268,3 +268,13 @@ Consumer-local instructions override Aether defaults in consumer context.
 
 - License: `LICENSE`
 - Support: `SUPPORT.md`
+
+## 18) External source selection
+
+The external review register evaluates every captured source. The initial
+allowlist is intentionally deny-by-default and contains only immutable,
+external, agent-assisted reference records. It does not authorize automatic
+installation, execution, first-party promotion, or external delivery.
+
+Use the external source review guide and review cadence document before
+selecting or updating an external artifact.

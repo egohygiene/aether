@@ -1,0 +1,57 @@
+{
+  "$id": "https://egohygiene.io/schemas/aether/external-source-allowlist/v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Aether external source allowlist",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "allowlist_version", "review_register", "reviewed_at", "default_disposition", "entries"],
+  "properties": {
+    "schema_version": {"const": "aether.external-source-allowlist/v1"},
+    "allowlist_version": {"pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$", "type": "string"},
+    "review_register": {"const": "source-review-register.v1.json"},
+    "reviewed_at": {"format": "date-time", "type": "string"},
+    "default_disposition": {"const": "deny"},
+    "entries": {
+      "items": {"$ref": "#/$defs/entry"},
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "$defs": {
+    "entry": {
+      "additionalProperties": false,
+      "required": ["artifact_id", "source_id", "upstream_ref", "content_hash", "use_boundary", "requires_human_review", "prohibited_actions"],
+      "properties": {
+        "artifact_id": {"pattern": "^external/[a-z0-9-]+$", "type": "string"},
+        "source_id": {"pattern": "^external-source/[a-z0-9-]+$", "type": "string"},
+        "upstream_ref": {
+          "additionalProperties": false,
+          "required": ["tag", "commit"],
+          "properties": {
+            "tag": {"minLength": 1, "type": "string"},
+            "commit": {"pattern": "^[a-f0-9]{7,64}$", "type": "string"}
+          },
+          "type": "object"
+        },
+        "content_hash": {
+          "additionalProperties": false,
+          "required": ["algorithm", "value"],
+          "properties": {
+            "algorithm": {"const": "sha256-utf8-lf"},
+            "value": {"pattern": "^[a-f0-9]{64}$", "type": "string"}
+          },
+          "type": "object"
+        },
+        "use_boundary": {"const": "agent-assisted-reference-only"},
+        "requires_human_review": {"const": true},
+        "prohibited_actions": {
+          "items": {"minLength": 1, "type": "string"},
+          "minItems": 1,
+          "uniqueItems": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

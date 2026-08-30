@@ -152,3 +152,15 @@ The normalized provenance view does not replace source ownership:
 - future publication tooling consumes normalized policy rather than copying source records into a provider-specific format.
 
 This preserves Aether ADR-001 and ADR-003 while giving all artifact kinds one lifecycle/provenance vocabulary.
+
+## External source selection
+
+Reviewing an external record preserves provenance; it does not make the record
+first-party, stable, or automatically usable. The external allowlist is
+deny-by-default. A listed artifact remains external and restricted, and cannot
+be installed or executed automatically, promoted to first-party source, or
+used for external delivery.
+
+The source review register holds routine and event-driven review dates. See the
+external review cadence document before updating a pin or selecting a deferred
+artifact.

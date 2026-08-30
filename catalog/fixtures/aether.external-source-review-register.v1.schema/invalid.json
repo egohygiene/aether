@@ -1,0 +1,12 @@
+{
+  "schema_version": "aether.external-source-review-register/v1",
+  "catalog_version": "not-semver",
+  "reviewed_at": "2026-08-30T00:00:00Z",
+  "reviewer": "egohygiene",
+  "coverage": {
+    "captured_artifact_count": 1,
+    "captured_source_count": 1,
+    "coverage_rule": "Every captured source has one decision record."
+  },
+  "sources": []
+}
