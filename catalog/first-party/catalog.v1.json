@@ -851,6 +851,53 @@
         "required_tools": []
       },
       "dependencies": [
+        "specification/repository-journal"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Produces a bounded, evidence-labelled repository activity journal from supplied context. Use when scheduled or manual repository reporting needs a reviewable summary; do not use for repository changes or message delivery.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/skills/create-repository-journal/SKILL.md"
+      ],
+      "id": "skill/create-repository-journal",
+      "implements_specification_id": "specification/repository-journal",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "20478640d878d5d9b4d06e934f6a72f825e7292bec9acfc78c909e4f8f4702c7"
+      },
+      "source_path": "library/organization/skills/quality/create-repository-journal/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "quality",
+        "skill"
+      ],
+      "title": "Create Repository Journal"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
         "specification/architecture-roadmap"
       ],
       "deprecation": {
@@ -2751,6 +2798,54 @@
         "drift-containment"
       ],
       "title": "Reflective Development System Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "A repository journal is a bounded decision aid, not an automation authority.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/specs/repository-journal.spec.md"
+      ],
+      "id": "specification/repository-journal",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "330ffbc376821cff40c95ff25c8f53538a61846ced2f86d35acb6b8b10c7251b"
+      },
+      "source_path": "library/organization/specs/quality/repository-journal.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "repository",
+        "journal",
+        "reporting",
+        "provenance",
+        "prompt-safety"
+      ],
+      "title": "Repository Journal Specification"
     },
     {
       "artifact_version": "1.0.0",
