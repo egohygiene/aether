@@ -9,6 +9,8 @@ provenance, lifecycle, and distribution.
 - `fixtures/` — valid/invalid examples per schema
 - `schemas/aether.social-campaign-handoff.v1.schema.json` — closed review,
   approval, immutable-export, and external-publication receipt contract
+- `schemas/aether.repository-release.v1.schema.json` — repository profile,
+  semantic-version, changelog, delivery, evidence, and manual-handoff contract
 - `first-party/catalog.v1.json` — canonical compatibility catalog for the current specification and skill corpus
 - `external/approved-skills.v1.json` — governed external skill catalog entries reconstructed from staged provenance
 - `external/source-candidates.v1.json` — non-publishable external source candidates, including their rights-review state

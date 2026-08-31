@@ -1,0 +1,39 @@
+---
+# Repository-owned handoffs required by repository-release/v1. These commands
+# do not create a tag, publish an artifact, or use external credentials.
+
+version: "3"
+
+tasks:
+  release:plan:
+    desc: Validate Aether's release declaration and print a read-only plan
+    cmds:
+      - python3 "library/organization/specs/release/validate.py" --repository "." --format "json"
+
+  release:prepare:
+    desc: Preflight a reviewed Aether release candidate without mutating it
+    requires:
+      vars:
+        - RELEASE_VERSION
+    cmds:
+      - python3 "library/organization/specs/release/validate.py" --repository "." --release-version "{{.RELEASE_VERSION}}"
+      - echo "Prepare {{.RELEASE_VERSION}} in a reviewed release PR by promoting CHANGELOG.md Unreleased content and updating declared authorities."
+
+  release:verify:
+    desc: Verify a reviewed Aether release candidate before manual publication
+    requires:
+      vars:
+        - RELEASE_VERSION
+    cmds:
+      - python3 "library/organization/specs/release/validate.py" --repository "." --release-version "{{.RELEASE_VERSION}}" --format "json"
+
+  release:publish:
+    desc: Print the explicit manual release handoff after verification
+    requires:
+      vars:
+        - RELEASE_VERSION
+    cmds:
+      - task: release:verify
+        vars:
+          RELEASE_VERSION: "{{.RELEASE_VERSION}}"
+      - echo "Handoff only: create the immutable {{.RELEASE_VERSION}} tag from reviewed default-branch history, then manually dispatch .github/workflows/release-first-party-skills.yml."

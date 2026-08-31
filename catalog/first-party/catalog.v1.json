@@ -1270,6 +1270,53 @@
         "required_tools": []
       },
       "dependencies": [
+        "specification/repository-release"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Authors or reviews a versioned repository release declaration and changelog plan. Use when establishing, migrating, or checking a semantic release convention; do not use to publish packages, tags, images, sites, or archives.",
+      "domain": "publishing",
+      "generated_distribution_paths": [
+        "dist/skills/prepare-repository-release/SKILL.md"
+      ],
+      "id": "skill/prepare-repository-release",
+      "implements_specification_id": "specification/repository-release",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "e6c2142e5f90f17bc30377baf37e97375da1c92921a8cd8ad4e498e17237e54d"
+      },
+      "source_path": "library/organization/skills/publishing/prepare-repository-release/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "publishing",
+        "skill"
+      ],
+      "title": "Prepare Repository Release"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
         "specification/social-campaign-handoff"
       ],
       "deprecation": {
@@ -2846,6 +2893,55 @@
         "prompt-safety"
       ],
       "title": "Repository Journal Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines the provider-neutral release convention for Ego",
+      "domain": "release",
+      "generated_distribution_paths": [
+        "dist/specs/repository-release.spec.md"
+      ],
+      "id": "specification/repository-release",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "efa833d9f5bdbcf6255ee2900a229aa35be386bbcb72b69cdd6f3d5948e22c43"
+      },
+      "source_path": "library/organization/specs/release/repository-release.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "release-engineering",
+        "semantic-versioning",
+        "changelog",
+        "provenance",
+        "rollback",
+        "taskfile"
+      ],
+      "title": "Repository Release and Changelog Specification"
     },
     {
       "artifact_version": "1.0.0",

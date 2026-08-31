@@ -1,0 +1,10 @@
+{
+  "schema_version": "egohygiene.repository-release/v1",
+  "repository": {"id": "egohygiene/documentation-site", "lifecycle": "active", "release_profile": "static-site"},
+  "release": {"state": "unreleased", "tag_prefix": "v", "immutable_tags": true, "major_alias": "disabled"},
+  "changelog": {"path": "CHANGELOG.md", "format": "keep-a-changelog/1.1", "unreleased_heading": "Unreleased"},
+  "components": [{"id": "docs-site", "kind": "static-site", "version_authority": {"kind": "package-json", "path": "package.json"}}],
+  "delivery": {"channels": [{"kind": "github-release", "state": "configured"}, {"kind": "site-deployment", "state": "external", "notes": "Deployment build ID and URL are separate provider receipts."}]},
+  "evidence": {"source": "required", "change": "required", "provenance": "available", "sbom": "not-applicable", "signature": "unavailable", "rollback": {"strategy": "redeploy-prior-artifact", "instructions": "Redeploy the previously verified site artifact; do not move the release tag."}},
+  "automation": {"taskfile_path": "Taskfile.yml", "tasks": {"plan": "release:plan", "prepare": "release:prepare", "verify": "release:verify", "publish": "release:publish"}, "github": {"manual_dispatch_required": true, "workflow_path": ".github/workflows/release.yml", "state": "configured"}}
+}

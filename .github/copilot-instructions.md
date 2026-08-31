@@ -45,6 +45,12 @@ Do **not** treat `.staging/`, `dist/`, or any other path as canonical source.
    canonical
    [`decision-impact.AGENTS.md`](../library/organization/projections/templates/decision-impact.AGENTS.md)
    module by reference; do not copy or weaken its Hygiene contract pins.
+8. **Follow the repository release declaration before changing versioning or
+   publication behavior.** Read [`AGENTS.md`](../AGENTS.md),
+   [`.egohygiene/release.json`](../.egohygiene/release.json), and the
+   [`repository-release`](../library/organization/specs/release/repository-release.spec.md)
+   specification. Release preparation is reviewable; publishing remains an
+   explicit manual, repository-owned action.
 
 ---
 

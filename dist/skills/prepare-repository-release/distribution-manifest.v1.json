@@ -1,0 +1,25 @@
+{
+  "artifact_id": "skill/prepare-repository-release",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": [
+      "python3"
+    ]
+  },
+  "distribution_id": "distribution/prepare-repository-release",
+  "generated_paths": [
+    "dist/skills/prepare-repository-release/SKILL.md",
+    "dist/skills/prepare-repository-release/evals/evals.json",
+    "dist/skills/prepare-repository-release/references/release-authoring.md",
+    "dist/skills/prepare-repository-release/templates/repository-release.json",
+    "dist/skills/prepare-repository-release/references/aether.repository-release.v1.schema.json",
+    "dist/skills/prepare-repository-release/scripts/validate-release-declaration.py",
+    "dist/skills/prepare-repository-release/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "e6c2142e5f90f17bc30377baf37e97375da1c92921a8cd8ad4e498e17237e54d"
+  }
+}

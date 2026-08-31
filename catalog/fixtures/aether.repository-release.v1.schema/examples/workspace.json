@@ -1,0 +1,10 @@
+{
+  "schema_version": "egohygiene.repository-release/v1",
+  "repository": {"id": "egohygiene/platform-workspace", "lifecycle": "active", "release_profile": "workspace"},
+  "release": {"state": "unreleased", "tag_prefix": "v", "immutable_tags": true, "major_alias": "optional"},
+  "changelog": {"path": "CHANGELOG.md", "format": "keep-a-changelog/1.1", "unreleased_heading": "Unreleased"},
+  "components": [{"id": "workspace-core", "kind": "workspace", "version_authority": {"kind": "workspace-manifest", "path": "Cargo.toml"}}, {"id": "workspace-ui", "kind": "npm-package", "version_authority": {"kind": "package-json", "path": "packages/ui/package.json"}}],
+  "delivery": {"channels": [{"kind": "github-release", "state": "configured"}, {"kind": "package-registry", "state": "external"}]},
+  "evidence": {"source": "required", "change": "required", "provenance": "required", "sbom": "external", "signature": "external", "rollback": {"strategy": "revert-and-successor-tag", "instructions": "Correct the affected authority and release a successor that names each changed component."}},
+  "automation": {"taskfile_path": "Taskfile.yml", "tasks": {"plan": "release:plan", "prepare": "release:prepare", "verify": "release:verify", "publish": "release:publish"}, "github": {"manual_dispatch_required": true, "workflow_path": ".github/workflows/release.yml", "state": "configured"}}
+}

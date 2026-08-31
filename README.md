@@ -44,8 +44,8 @@ Generated artifacts:
 ## 4) First-party catalog summary
 
 Current canonical inventory snapshot (recompute with the commands shown):
-- 25 specifications (`find library/organization/specs -name "*.spec.md"`)
-- 31 skills (`find library/organization/skills -name "SKILL.md"`)
+- 27 specifications (`find library/organization/specs -name "*.spec.md"`)
+- 33 skills (`find library/organization/skills -name "SKILL.md"`)
 - 9 canonical agent profiles (`find library/organization/agents -name "AGENT.md"`)
 
 Machine-readable catalog and provenance:
@@ -220,6 +220,12 @@ At present, GitHub CLI exposes `update` but no dedicated `remove` subcommand; re
 - Release publication is explicit through `.github/workflows/release-first-party-skills.yml`; PR validation stays read-only in `.github/workflows/pr-validation.yml`.
 
 See `CHANGELOG.md` and `docs/release-and-pinning-guide.md`.
+
+Every active Ego Hygiene repository also declares its repository-level release
+profile, version authorities, changelog, evidence, and manual handoff in
+`.egohygiene/release.json`. The canonical convention and migration guide are
+[`repository-release`](library/organization/specs/release/repository-release.spec.md)
+and [repository release convention](docs/repository-release-convention.md).
 
 ## 13) External-skill provenance policy
 
