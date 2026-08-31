@@ -15,6 +15,9 @@
     "automation"
   ],
   "properties": {
+    "$schema": {
+      "const": "https://egohygiene.io/schemas/aether/repository-release/v1.json"
+    },
     "schema_version": {
       "const": "egohygiene.repository-release/v1"
     },
