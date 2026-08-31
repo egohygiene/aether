@@ -1,0 +1,10 @@
+{
+  "schema_version": "egohygiene.repository-release/v1",
+  "repository": {"id": "egohygiene/standard", "lifecycle": "active", "release_profile": "contract"},
+  "release": {"state": "unreleased", "tag_prefix": "v", "immutable_tags": true, "major_alias": "optional"},
+  "changelog": {"path": "CHANGELOG.md", "format": "keep-a-changelog/1.1", "unreleased_heading": "Unreleased"},
+  "components": [{"id": "standard-catalog", "kind": "catalog", "version_authority": {"kind": "catalog-record", "path": "catalog/v1.json", "selector": "version"}}],
+  "delivery": {"channels": [{"kind": "github-release", "state": "configured", "relay_profile": "unavailable"}]},
+  "evidence": {"source": "required", "change": "required", "provenance": "required", "sbom": "unavailable", "signature": "unavailable", "rollback": {"strategy": "revert-and-successor-tag", "instructions": "Publish a successor release that corrects the contract; never alter the original tag."}},
+  "automation": {"taskfile_path": "Taskfile.yml", "tasks": {"plan": "release:plan", "prepare": "release:prepare", "verify": "release:verify", "publish": "release:publish"}, "github": {"manual_dispatch_required": true, "workflow_path": ".github/workflows/release.yml", "state": "configured"}}
+}

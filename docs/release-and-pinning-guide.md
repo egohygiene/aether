@@ -17,7 +17,7 @@
 | Workflow | Trigger | Permissions | Purpose |
 | --- | --- | --- | --- |
 | `.github/workflows/pr-validation.yml` | `pull_request` | `contents: read` | Deterministic PR validation only; no publish credentials |
-| `.github/workflows/release-first-party-skills.yml` | tag push `v*` or manual dispatch with `release_tag` | read-only validation job, `contents: write` only in gated publish job | Explicit tagged publication |
+| `.github/workflows/release-first-party-skills.yml` | Manual dispatch from the default branch with an existing `release_tag` | read-only validation job, `contents: write` only in gated publish job | Explicit immutable tagged publication |
 
 The publication job targets the `first-party-skill-release` environment. Configure
 required reviewers there so publication remains deliberate and reviewable.
@@ -43,7 +43,8 @@ Failure uploads contain only command logs and diffs from `.artifacts/`.
 
 ## Release validation and publication flow
 
-1. Resolve an explicit tag from `workflow_dispatch.release_tag` or the pushed tag.
+1. Create the exact immutable tag from reviewed default-branch history, then
+   manually dispatch the workflow from the default branch with `release_tag`.
 2. Check out the tagged commit in a clean runner.
 3. Rebuild `dist/`, rerun deterministic validation/tests/evals, and verify two-build reproducibility.
 4. Generate release metadata with:
@@ -70,8 +71,8 @@ Failure uploads contain only command logs and diffs from `.artifacts/`.
    - `dist/release/LICENSE.notices.txt`
    - `dist/release/release-notes.md`
 
-If a GitHub release already exists for the tag, the workflow skips `gh skill publish`
-and only refreshes attached assets with `gh release upload --clobber`. Tags are never rewritten.
+The workflow refuses an existing GitHub release or release asset for the tag;
+it never replaces a published asset. Tags are never rewritten.
 
 ## Release metadata contents
 

@@ -6,6 +6,9 @@ version: "3"
 # Keep Taskfile as an ergonomic orchestration layer. Canonical implementation
 # remains in ./aether, GitHub CLI, and the repository's versioned build scripts.
 includes:
+  release:
+    taskfile: ./.tasks/release.yml
+    flatten: true
   skills:
     taskfile: ./.tasks/skills.yml
     flatten: true

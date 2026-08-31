@@ -1,0 +1,10 @@
+{
+  "schema_version": "egohygiene.repository-release/v1",
+  "repository": {"id": "egohygiene/archive", "lifecycle": "archived", "release_profile": "internal-only"},
+  "release": {"state": "frozen", "tag_prefix": "v", "immutable_tags": true, "major_alias": "disabled"},
+  "changelog": {"path": "CHANGELOG.md", "format": "keep-a-changelog/1.1", "unreleased_heading": "Unreleased"},
+  "components": [{"id": "historical-record", "kind": "internal", "version_authority": {"kind": "external", "selector": "historical-release-register"}}],
+  "delivery": {"channels": [{"kind": "internal-distribution", "state": "not-applicable", "notes": "This repository is retained for historical reference only."}]},
+  "evidence": {"source": "available", "change": "available", "provenance": "unavailable", "sbom": "unavailable", "signature": "unavailable", "rollback": {"strategy": "freeze", "instructions": "Do not prepare a new release; retain the historical record and document corrections separately."}},
+  "automation": {"taskfile_path": "Taskfile.yml", "tasks": {"plan": "release:plan", "prepare": "release:prepare", "verify": "release:verify", "publish": "release:publish"}, "github": {"manual_dispatch_required": true, "workflow_path": ".github/workflows/release.yml", "state": "unavailable"}}
+}

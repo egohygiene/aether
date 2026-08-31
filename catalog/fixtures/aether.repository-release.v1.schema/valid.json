@@ -1,0 +1,68 @@
+{
+  "schema_version": "egohygiene.repository-release/v1",
+  "repository": {
+    "id": "egohygiene/example",
+    "lifecycle": "active",
+    "release_profile": "python-package"
+  },
+  "release": {
+    "state": "unreleased",
+    "tag_prefix": "v",
+    "immutable_tags": true,
+    "major_alias": "optional"
+  },
+  "changelog": {
+    "path": "CHANGELOG.md",
+    "format": "keep-a-changelog/1.1",
+    "unreleased_heading": "Unreleased"
+  },
+  "components": [
+    {
+      "id": "example-package",
+      "kind": "python-package",
+      "version_authority": {
+        "kind": "pyproject-project",
+        "path": "pyproject.toml"
+      }
+    }
+  ],
+  "delivery": {
+    "channels": [
+      {
+        "kind": "github-release",
+        "state": "configured",
+        "relay_profile": "python-package"
+      },
+      {
+        "kind": "package-registry",
+        "state": "external",
+        "notes": "PyPI credentials remain repository-owned."
+      }
+    ]
+  },
+  "evidence": {
+    "source": "required",
+    "change": "required",
+    "provenance": "required",
+    "sbom": "required",
+    "signature": "external",
+    "rollback": {
+      "strategy": "revoke-channel",
+      "instructions": "Deprecate the affected package and publish a corrected successor version."
+    }
+  },
+  "automation": {
+    "taskfile_path": "Taskfile.yml",
+    "tasks": {
+      "plan": "release:plan",
+      "prepare": "release:prepare",
+      "verify": "release:verify",
+      "publish": "release:publish"
+    },
+    "github": {
+      "manual_dispatch_required": true,
+      "workflow_path": ".github/workflows/release.yml",
+      "state": "configured"
+    }
+  }
+}

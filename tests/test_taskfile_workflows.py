@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import unittest
 
@@ -15,6 +16,8 @@ class TaskfileWorkflowTests(unittest.TestCase):
     def test_root_taskfile_composes_skill_tasks(self) -> None:
         root = yaml.safe_load((ROOT / "Taskfile.yml").read_text(encoding="utf-8"))
         self.assertEqual(str(root["version"]), "3")
+        self.assertEqual(root["includes"]["release"]["taskfile"], "./.tasks/release.yml")
+        self.assertTrue(root["includes"]["release"]["flatten"])
         self.assertEqual(root["includes"]["skills"]["taskfile"], "./.tasks/skills.yml")
         self.assertTrue(root["includes"]["skills"]["flatten"])
 
@@ -41,10 +44,24 @@ class TaskfileWorkflowTests(unittest.TestCase):
     def test_taskfiles_do_not_embed_credentials(self) -> None:
         content = "\n".join(
             path.read_text(encoding="utf-8")
-            for path in (ROOT / "Taskfile.yml", ROOT / ".tasks" / "skills.yml")
+            for path in (
+                ROOT / "Taskfile.yml",
+                ROOT / ".tasks" / "skills.yml",
+                ROOT / ".tasks" / "release.yml",
+            )
         ).lower()
         for forbidden in ("github_token:", "gh_token:", "personal_access_token:", "bearer "):
             self.assertNotIn(forbidden, content)
+
+    def test_release_handoffs_are_explicit_and_non_publishing(self) -> None:
+        workflow = yaml.safe_load((ROOT / ".tasks" / "release.yml").read_text(encoding="utf-8"))
+        tasks = workflow["tasks"]
+        for name in ("release:plan", "release:prepare", "release:verify", "release:publish"):
+            self.assertIn(name, tasks)
+        self.assertEqual(tasks["release:publish"]["requires"]["vars"], ["RELEASE_VERSION"])
+        serialized = json.dumps(workflow, sort_keys=True).lower()
+        self.assertNotIn("gh release", serialized)
+        self.assertNotIn("git tag", serialized)
 
 
 if __name__ == "__main__":
