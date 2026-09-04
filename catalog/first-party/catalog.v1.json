@@ -381,6 +381,53 @@
         "required_tools": []
       },
       "dependencies": [
+        "specification/diagnosis-record"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates or updates an evidence-labelled technical diagnosis record from supplied logs, code, commands, and debugging context. Use when an investigation needs a durable, resumable trace without implying that a root cause is confirmed or a fix is authorized.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/skills/create-diagnosis-record/SKILL.md"
+      ],
+      "id": "skill/create-diagnosis-record",
+      "implements_specification_id": "specification/diagnosis-record",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "68923d96542858b36c38e2a2166addb1ae2ddcfb22bfc29696fb4fd65afb29b8"
+      },
+      "source_path": "library/organization/skills/quality/create-diagnosis-record/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "quality",
+        "skill"
+      ],
+      "title": "Create Diagnosis Record"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
         "specification/architecture-epistemology"
       ],
       "deprecation": {
@@ -2792,6 +2839,61 @@
         "read-only"
       ],
       "title": "Repository Auditor Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/specfile"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "A diagnosis record is a durable, evidence-labelled account of a bounded",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/specs/diagnosis-record.spec.md"
+      ],
+      "id": "specification/diagnosis-record",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/bug-fixing",
+        "skill/create-diagnosis-record",
+        "specification/auditor",
+        "specification/repository-journal"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "b695aac9e9fd72cbcf9ffd4b96f137e7a476da0d952fcc5b73b37b7d5ad43e86"
+      },
+      "source_path": "library/organization/specs/quality/diagnosis-record.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "diagnosis",
+        "debugging",
+        "evidence",
+        "provenance",
+        "traceability"
+      ],
+      "title": "Diagnosis Record Specification"
     },
     {
       "artifact_version": "2.0.0",

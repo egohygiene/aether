@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/create-diagnosis-record",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/create-diagnosis-record",
+  "generated_paths": [
+    "dist/skills/create-diagnosis-record/SKILL.md",
+    "dist/skills/create-diagnosis-record/evals/evals.json",
+    "dist/skills/create-diagnosis-record/references/record-contract.md",
+    "dist/skills/create-diagnosis-record/templates/DIAGNOSIS_RECORD.template.md",
+    "dist/skills/create-diagnosis-record/references/aether.diagnosis-record.v1.schema.json",
+    "dist/skills/create-diagnosis-record/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "68923d96542858b36c38e2a2166addb1ae2ddcfb22bfc29696fb4fd65afb29b8"
+  }
+}

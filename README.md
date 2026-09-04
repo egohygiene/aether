@@ -44,8 +44,8 @@ Generated artifacts:
 ## 4) First-party catalog summary
 
 Current canonical inventory snapshot (recompute with the commands shown):
-- 27 specifications (`find library/organization/specs -name "*.spec.md"`)
-- 33 skills (`find library/organization/skills -name "SKILL.md"`)
+- 28 specifications (`find library/organization/specs -name "*.spec.md"`)
+- 34 skills (`find library/organization/skills -name "SKILL.md"`)
 - 9 canonical agent profiles (`find library/organization/agents -name "AGENT.md"`)
 
 Machine-readable catalog and provenance:
