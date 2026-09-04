@@ -3,12 +3,12 @@ schema: aether.specification/v1
 id: architecture-document
 title: Architecture Document Specification Standard
 kind: specification
-version: 2.0.0
+version: 2.1.0
 status: draft
 owners:
   - egohygiene
 created: 2026-07-18
-updated: 2026-08-01
+updated: 2026-08-19
 domain: architecture
 tags:
   - architecture
@@ -38,6 +38,7 @@ related:
   - architecture-design
   - architecture-design-system
   - architecture-decisions
+  - architecture-set
 supersedes: []
 ---
 
@@ -311,6 +312,28 @@ Metadata constraints:
 - Dependencies shall reference artifact identifiers rather than file paths.
 - Directory placement shall not substitute for metadata.
 - Metadata changes affecting interpretation shall participate in versioning.
+
+## 6.1 Materialized Architecture Document Metadata
+
+Every repository-specific architecture document shall contain YAML frontmatter
+that validates against `architecture-document.schema.json` and includes:
+
+- `schema: aether.architecture-document/v1`
+- a stable, scope-prefixed `id`
+- `title`
+- `kind: architecture-document`
+- semantic `version`
+- lifecycle `status`
+- one or more `owners`
+- `created` and `updated` dates
+- one or more `governed_by` specification identifiers
+- `depends_on`, `related`, and `supersedes` identifier arrays
+
+Materialized identifiers are repository-specific. Governing specification
+identifiers are organization-wide. The materialized document shall not copy the
+specification identifier as its own identifier.
+
+Selection and set-level behavior are governed by `architecture-set`.
 
 ## 7. Standard Specification Structure
 

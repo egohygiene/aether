@@ -2794,6 +2794,54 @@
       "title": "Repository Auditor Specification"
     },
     {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines a portable, inspectable packet for moving public",
+      "domain": "evidence",
+      "generated_distribution_paths": [
+        "dist/specs/cross-agent-evidence.spec.md"
+      ],
+      "id": "specification/cross-agent-evidence",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "c19131aada40404b22b40dc56184b92be45eb41e454dedc77c88b637d51cbef9"
+      },
+      "source_path": "library/organization/specs/evidence/cross-agent-evidence.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "cross-agent",
+        "evidence",
+        "provenance",
+        "public-data",
+        "least-authority"
+      ],
+      "title": "Cross-agent public evidence packet specification"
+    },
+    {
       "artifact_version": "2.0.0",
       "compatibility": {
         "required_tools": []

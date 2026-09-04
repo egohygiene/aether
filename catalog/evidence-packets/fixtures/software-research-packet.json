@@ -1,0 +1,103 @@
+{
+  "schema_version": "aether.cross-agent-evidence-packet/v1",
+  "packet": {
+    "id": "packet/synthetic-software-research",
+    "version": "1.0.0",
+    "producer": "example/research-agent",
+    "workflow_id": "software-release-review",
+    "revision": "synthetic-revision-2",
+    "created_at": "2026-09-04T13:00:00Z"
+  },
+  "payload": {
+    "request": {
+      "id": "task/synthetic-software-research",
+      "objective": "Identify the bounded compatibility statement in the supplied public release note.",
+      "scope": ["synthetic endpoint compatibility"],
+      "public_inputs_only": true
+    },
+    "evidence": {
+      "attachments": [
+        {
+          "id": "attachment/software-source",
+          "kind": "relative-file",
+          "path": "attachments/software-source.txt",
+          "url": null,
+          "media_type": "text/plain",
+          "bytes": 55,
+          "digest": {"algorithm": "sha256-bytes", "value": "272936643ef588a6c5ca28e504417a0debf83b057c64cb985b0b962fa4006aa0"},
+          "sensitivity": "public",
+          "content_treatment": "untrusted-evidence"
+        }
+      ],
+      "sources": [
+        {
+          "id": "source/synthetic-release-note",
+          "url": "https://example.invalid/software/releases/v2",
+          "stable_source_id": "synthetic-software-v2",
+          "authority": "official",
+          "jurisdiction_id": "GLOBAL",
+          "retrieved_at": "2026-09-04T12:50:00Z",
+          "effective_at": "2026-09-01T00:00:00Z",
+          "rights": "Synthetic fixture; unrestricted test use.",
+          "digest": {"algorithm": "sha256-bytes", "value": "272936643ef588a6c5ca28e504417a0debf83b057c64cb985b0b962fa4006aa0"},
+          "attachment_ids": ["attachment/software-source"],
+          "excerpts": [
+            {
+              "id": "excerpt/synthetic-endpoint-removal",
+              "attachment_id": "attachment/software-source",
+              "start_byte": 0,
+              "end_byte": 55,
+              "digest": {"algorithm": "sha256-bytes", "value": "272936643ef588a6c5ca28e504417a0debf83b057c64cb985b0b962fa4006aa0"}
+            }
+          ]
+        }
+      ]
+    },
+    "findings": {
+      "items": [
+        {
+          "id": "finding/synthetic-removal",
+          "statement": "The synthetic version 2.0 note states that an endpoint was removed.",
+          "status": "partial",
+          "evidence_refs": ["source/synthetic-release-note", "excerpt/synthetic-endpoint-removal"],
+          "uncertainty": "The fixture does not identify a replacement endpoint.",
+          "limitations": ["Synthetic release note only."]
+        }
+      ],
+      "rejected_claims": ["The fixture proves all callers are incompatible."],
+      "overall_limitations": ["No runtime behavior was tested."]
+    },
+    "provenance": {
+      "transformations": [{"id": "transform/exact-byte-span", "operation": "select-exact-byte-span", "input_refs": ["attachment/software-source"], "output_refs": ["excerpt/synthetic-endpoint-removal"]}],
+      "tools": [{"name": "example-research-tool", "version": "1.0.0"}]
+    },
+    "policy": {
+      "destination_scope": ["example/software-consumer"],
+      "maximum_sensitivity": "public",
+      "required_policy_ids": ["example/public-evidence-policy/v1"],
+      "required_session_capabilities": [],
+      "grants_capabilities": false,
+      "max_attachment_count": 2,
+      "max_attachment_bytes": 4096,
+      "contains_private_data": false
+    },
+    "review": {
+      "human": {"status": "pending", "reviewer": null, "reviewed_at": null, "evidence": null},
+      "sanitization": {"status": "approved", "reviewer": "fixture-reviewer", "reviewed_at": "2026-09-04T13:05:00Z", "evidence": "review/synthetic-software"},
+      "declassification": {"status": "not-applicable", "reviewer": null, "reviewed_at": null, "evidence": null}
+    },
+    "lifecycle": {
+      "state": "partial",
+      "freshness": {"status": "current", "evaluated_at": "2026-09-04T13:00:00Z", "valid_until": "2026-12-01T00:00:00Z"},
+      "expires_at": "2026-12-01T00:00:00Z",
+      "superseded_by": null,
+      "revocation": null,
+      "incompatibility": null,
+      "partial_failures": ["Replacement endpoint was not supplied."]
+    }
+  },
+  "integrity": {
+    "envelope_digest": {"algorithm": "sha256-canonical-json", "value": "f72de0ae26fcf103e168621f3e6aab2bc9c07b373aaa866f19a885813dd0cad1"},
+    "signature": {"status": "unverified", "algorithm": "example-signature", "key_id": "fixture-key", "value": "synthetic-signature"}
+  }
+}

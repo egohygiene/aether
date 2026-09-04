@@ -1,0 +1,38 @@
+{
+  "schema_version": "aether.sanitized-research-request/v1",
+  "request": {
+    "id": "request/synthetic-public-law-search",
+    "version": "1.0.0",
+    "producer": "example/confidential-workflow-boundary",
+    "created_at": "2026-09-04T10:00:00Z"
+  },
+  "payload": {
+    "objective": "Find official public sources describing a synthetic notice rule.",
+    "public_queries": ["site:example.invalid synthetic notice rule"],
+    "destination_scope": ["public-research-zone"],
+    "required_policy_ids": ["egohygiene/hygiene#39"],
+    "required_session_capabilities": ["public-web-search"],
+    "maximum_sensitivity": "public",
+    "contains_private_data": false,
+    "contains_credentials": false,
+    "review": {
+      "sanitization": {
+        "status": "approved",
+        "reviewer": "fixture-reviewer",
+        "reviewed_at": "2026-09-04T10:05:00Z",
+        "evidence": "review/synthetic-request",
+        "reviewed_digest": {"algorithm": "sha256-canonical-json", "value": "e1a0b0cc091cde72f955d3524c675eb24159f2d4dbc86eb2c93530e423df589f"}
+      },
+      "declassification": {
+        "status": "approved",
+        "reviewer": "fixture-reviewer",
+        "reviewed_at": "2026-09-04T10:05:00Z",
+        "evidence": "review/synthetic-request",
+        "reviewed_digest": {"algorithm": "sha256-canonical-json", "value": "e1a0b0cc091cde72f955d3524c675eb24159f2d4dbc86eb2c93530e423df589f"}
+      }
+    }
+  },
+  "integrity": {
+    "envelope_digest": {"algorithm": "sha256-canonical-json", "value": "3e89b101f15b34e2dfd36c9f51f4a6d5090665c2f51de13fe4e220fab39944bd"}
+  }
+}

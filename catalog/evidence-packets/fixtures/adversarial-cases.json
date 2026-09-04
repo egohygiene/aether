@@ -1,0 +1,48 @@
+{
+  "schema_version": "aether.evidence-adversarial-cases/v1",
+  "base_packet": "legal-source-packet.json",
+  "cases": [
+    {
+      "id": "prompt-injection-as-instructions",
+      "operation": "replace",
+      "pointer": "/payload/evidence/attachments/0/content_treatment",
+      "value": "instructions",
+      "expected_error": "untrusted-evidence"
+    },
+    {
+      "id": "private-facts-indicator",
+      "operation": "replace",
+      "pointer": "/payload/policy/contains_private_data",
+      "value": true,
+      "expected_error": "False was expected"
+    },
+    {
+      "id": "oversized-attachment",
+      "operation": "replace",
+      "pointer": "/payload/evidence/attachments/0/bytes",
+      "value": 8192,
+      "expected_error": "above limit"
+    },
+    {
+      "id": "path-traversal",
+      "operation": "replace",
+      "pointer": "/payload/evidence/attachments/0/path",
+      "value": "../private.txt",
+      "expected_error": "traversal-free"
+    },
+    {
+      "id": "digest-mismatch",
+      "operation": "replace",
+      "pointer": "/payload/evidence/attachments/0/digest/value",
+      "value": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "expected_error": "digest mismatch"
+    },
+    {
+      "id": "stale-authority-marked-current",
+      "operation": "replace",
+      "pointer": "/payload/lifecycle/freshness/valid_until",
+      "value": "2026-01-01T00:00:00Z",
+      "expected_error": "stale authority"
+    }
+  ]
+}

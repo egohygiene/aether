@@ -1,0 +1,22 @@
+{
+  "schema_version": "aether.evidence-projection/v1",
+  "projection": {
+    "id": "projection/synthetic-legal-filesystem",
+    "adapter_kind": "filesystem",
+    "adapter_id": "example/immutable-file-export",
+    "created_at": "2026-09-04T12:10:00Z"
+  },
+  "packet_ref": {
+    "id": "packet/synthetic-legal-source",
+    "schema_version": "aether.cross-agent-evidence-packet/v1",
+    "digest": {"algorithm": "sha256-canonical-json", "value": "cfc04a1dd14c7274e7f21221d4fa9285e76efb80e50fc48910b0cb403a1278d3"}
+  },
+  "authority": {
+    "destination_scope": ["egohygiene/realm#25"],
+    "maximum_sensitivity": "public",
+    "required_policy_ids": ["egohygiene/hygiene#39"],
+    "required_session_capabilities": ["public-evidence-import"],
+    "grants_capabilities": false,
+    "content_transformation": "none"
+  }
+}
