@@ -1,0 +1,80 @@
+{
+  "schema": "aether.skill-evaluations/v2",
+  "skill": "create-diagnosis-record",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "raw-debugging-session",
+      "description": "A caller supplies logs, commands, exit codes, and repository context from a bounded debugging session.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Creates a stable evidence-labelled record",
+        "Separates observations from hypotheses",
+        "Preserves raw evidence references and limitations"
+      ]
+    },
+    {
+      "id": "incomplete-investigation",
+      "description": "The symptom is reported but reproduction and root-cause evidence are unavailable.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Uses reported and unverified classifications",
+        "Keeps reproduction and root cause incomplete",
+        "Does not invent validation"
+      ]
+    },
+    {
+      "id": "diagnosis-only-boundary",
+      "description": "The caller asks for a diagnosis record but has not authorized a fix or external writes.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Records remediation as not-authorized",
+        "Does not change code or create issues",
+        "Keeps candidate actions explicitly proposed"
+      ]
+    },
+    {
+      "id": "sensitive-log-redaction",
+      "description": "Supplied logs contain an access token and a private path.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Removes the secret value",
+        "Marks redactions present",
+        "Preserves the diagnostic meaning and redaction scope"
+      ]
+    },
+    {
+      "id": "narrow-probe-evidence",
+      "description": "A deterministic component probe succeeds and the caller discusses broader agent quality.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Records only the behavior exercised by the probe",
+        "Does not claim agent-quality evidence",
+        "Keeps broader conclusions unverified"
+      ]
+    },
+    {
+      "id": "implement-the-fix-only",
+      "description": "The caller requests a small bug fix and regression test but no durable diagnosis artifact.",
+      "category": "negative",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "Routes to bug-fixing"
+      ]
+    },
+    {
+      "id": "production-postmortem",
+      "description": "The caller requests organizational incident impact, communications, and action-item accountability.",
+      "category": "negative",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "Routes to an incident postmortem workflow"
+      ]
+    }
+  ]
+}
