@@ -9,6 +9,14 @@ provenance, lifecycle, and distribution.
 - `fixtures/` — valid/invalid examples per schema
 - `schemas/aether.social-campaign-handoff.v1.schema.json` — closed review,
   approval, immutable-export, and external-publication receipt contract
+- `schemas/aether.cross-agent-evidence-packet.v1.schema.json` — public evidence,
+  exact-span, provenance, review, lifecycle, and least-authority packet contract
+- `schemas/aether.sanitized-research-request.v1.schema.json` — separately
+  reviewed public request contract for outbound research boundaries
+- `schemas/aether.evidence-projection.v1.schema.json` — provider, MCP, A2A,
+  filesystem, and queue projection authority ceiling
+- `evidence-packets/` — deterministic importer, usage, and synthetic legal and
+  software fixtures with adversarial mutation cases
 - `schemas/aether.repository-release.v1.schema.json` — repository profile,
   semantic-version, changelog, delivery, evidence, and manual-handoff contract
 - `first-party/catalog.v1.json` — canonical compatibility catalog for the current specification and skill corpus

@@ -1,0 +1,71 @@
+{
+  "$id": "https://egohygiene.io/schemas/aether/sanitized-research-request/v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Aether sanitized outbound research request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "request", "payload", "integrity"],
+  "properties": {
+    "schema_version": {"const": "aether.sanitized-research-request/v1"},
+    "request": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "version", "producer", "created_at"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^request/[a-z0-9][a-z0-9._/-]*$"},
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "producer": {"type": "string", "minLength": 1},
+        "created_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "payload": {
+      "type": "object", "additionalProperties": false,
+      "required": ["objective", "public_queries", "destination_scope", "required_policy_ids", "required_session_capabilities", "maximum_sensitivity", "contains_private_data", "contains_credentials", "review"],
+      "properties": {
+        "objective": {"type": "string", "minLength": 1},
+        "public_queries": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "destination_scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "required_policy_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "required_session_capabilities": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "maximum_sensitivity": {"const": "public"},
+        "contains_private_data": {"const": false},
+        "contains_credentials": {"const": false},
+        "review": {
+          "type": "object", "additionalProperties": false,
+          "required": ["sanitization", "declassification"],
+          "properties": {
+            "sanitization": {"$ref": "#/$defs/approval"},
+            "declassification": {"$ref": "#/$defs/approval"}
+          }
+        }
+      }
+    },
+    "integrity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["envelope_digest"],
+      "properties": {
+        "envelope_digest": {"$ref": "#/$defs/digest"}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["algorithm", "value"],
+      "properties": {
+        "algorithm": {"const": "sha256-canonical-json"},
+        "value": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "approval": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "reviewer", "reviewed_at", "evidence", "reviewed_digest"],
+      "properties": {
+        "status": {"const": "approved"},
+        "reviewer": {"type": "string", "minLength": 1},
+        "reviewed_at": {"type": "string", "format": "date-time"},
+        "evidence": {"type": "string", "minLength": 1},
+        "reviewed_digest": {"$ref": "#/$defs/digest"}
+      }
+    }
+  }
+}

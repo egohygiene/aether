@@ -1,0 +1,110 @@
+{
+  "schema_version": "aether.cross-agent-evidence-packet/v1",
+  "packet": {
+    "id": "packet/synthetic-legal-source",
+    "version": "1.0.0",
+    "producer": "egohygiene/akashic",
+    "workflow_id": "legal-source-snapshot-export",
+    "revision": "synthetic-revision-1",
+    "created_at": "2026-09-04T12:00:00Z"
+  },
+  "payload": {
+    "request": {
+      "id": "task/synthetic-legal-research",
+      "objective": "Identify the bounded notice rule in the supplied public source.",
+      "scope": ["synthetic employment notice rule"],
+      "public_inputs_only": true
+    },
+    "evidence": {
+      "attachments": [
+        {
+          "id": "attachment/legal-source",
+          "kind": "relative-file",
+          "path": "attachments/legal-source.txt",
+          "url": null,
+          "media_type": "text/plain",
+          "bytes": 60,
+          "digest": {"algorithm": "sha256-bytes", "value": "a99140e4dee296af73cbdd7cd93a32f3583fd1e7c05e73ca496260ac4ea12fe5"},
+          "sensitivity": "public",
+          "content_treatment": "untrusted-evidence"
+        }
+      ],
+      "sources": [
+        {
+          "id": "source/synthetic-statute",
+          "url": "https://example.invalid/law/synthetic-statute",
+          "stable_source_id": "synthetic-statute-section-1",
+          "authority": "primary",
+          "jurisdiction_id": "US-MA",
+          "retrieved_at": "2026-09-04T11:00:00Z",
+          "effective_at": "2026-01-01T00:00:00Z",
+          "rights": "Synthetic fixture; unrestricted test use.",
+          "digest": {"algorithm": "sha256-bytes", "value": "a99140e4dee296af73cbdd7cd93a32f3583fd1e7c05e73ca496260ac4ea12fe5"},
+          "attachment_ids": ["attachment/legal-source"],
+          "excerpts": [
+            {
+              "id": "excerpt/synthetic-notice-rule",
+              "attachment_id": "attachment/legal-source",
+              "start_byte": 0,
+              "end_byte": 60,
+              "digest": {"algorithm": "sha256-bytes", "value": "a99140e4dee296af73cbdd7cd93a32f3583fd1e7c05e73ca496260ac4ea12fe5"}
+            }
+          ]
+        }
+      ]
+    },
+    "findings": {
+      "items": [
+        {
+          "id": "finding/synthetic-notice",
+          "statement": "The synthetic source states a notice requirement for covered employers.",
+          "status": "supported",
+          "evidence_refs": ["source/synthetic-statute", "excerpt/synthetic-notice-rule"],
+          "uncertainty": "",
+          "limitations": ["Synthetic source; not legal advice."]
+        }
+      ],
+      "rejected_claims": ["The fixture establishes any real-world legal duty."],
+      "overall_limitations": ["No real jurisdictional applicability is inferred."]
+    },
+    "provenance": {
+      "transformations": [
+        {
+          "id": "transform/exact-byte-span",
+          "operation": "select-exact-byte-span",
+          "input_refs": ["attachment/legal-source"],
+          "output_refs": ["excerpt/synthetic-notice-rule"]
+        }
+      ],
+      "tools": [{"name": "akashic", "version": "synthetic"}]
+    },
+    "policy": {
+      "destination_scope": ["egohygiene/realm#25"],
+      "maximum_sensitivity": "public",
+      "required_policy_ids": ["egohygiene/hygiene#39"],
+      "required_session_capabilities": ["public-evidence-import"],
+      "grants_capabilities": false,
+      "max_attachment_count": 4,
+      "max_attachment_bytes": 4096,
+      "contains_private_data": false
+    },
+    "review": {
+      "human": {"status": "approved", "reviewer": "fixture-reviewer", "reviewed_at": "2026-09-04T12:05:00Z", "evidence": "review/synthetic-legal"},
+      "sanitization": {"status": "approved", "reviewer": "fixture-reviewer", "reviewed_at": "2026-09-04T12:05:00Z", "evidence": "review/synthetic-legal"},
+      "declassification": {"status": "not-applicable", "reviewer": null, "reviewed_at": null, "evidence": null}
+    },
+    "lifecycle": {
+      "state": "ready",
+      "freshness": {"status": "current", "evaluated_at": "2026-09-04T12:00:00Z", "valid_until": "2027-01-01T00:00:00Z"},
+      "expires_at": "2027-01-01T00:00:00Z",
+      "superseded_by": null,
+      "revocation": null,
+      "incompatibility": null,
+      "partial_failures": []
+    }
+  },
+  "integrity": {
+    "envelope_digest": {"algorithm": "sha256-canonical-json", "value": "cfc04a1dd14c7274e7f21221d4fa9285e76efb80e50fc48910b0cb403a1278d3"},
+    "signature": {"status": "unsigned", "algorithm": null, "key_id": null, "value": null}
+  }
+}
