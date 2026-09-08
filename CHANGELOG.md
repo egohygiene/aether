@@ -10,6 +10,9 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Added the provider-neutral repository continuity specification, schema,
+  bounded root Markdown template, maintenance skill, prototype migration
+  report, deterministic fixtures, and downstream integration map (#79).
 - Added the versioned organization-wide repository release and changelog
   contract, schema, migration guide, portable authoring skill, Aether
   declaration, and safe Taskfile handoffs (#61).

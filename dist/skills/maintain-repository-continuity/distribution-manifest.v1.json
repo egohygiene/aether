@@ -1,0 +1,27 @@
+{
+  "artifact_id": "skill/maintain-repository-continuity",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": [
+      "git"
+    ]
+  },
+  "distribution_id": "distribution/maintain-repository-continuity",
+  "generated_paths": [
+    "dist/skills/maintain-repository-continuity/SKILL.md",
+    "dist/skills/maintain-repository-continuity/evals/evals.json",
+    "dist/skills/maintain-repository-continuity/references/antidote-migration.md",
+    "dist/skills/maintain-repository-continuity/references/contract-and-authoring-guide.md",
+    "dist/skills/maintain-repository-continuity/references/privacy-and-trust.md",
+    "dist/skills/maintain-repository-continuity/references/validation-checklist.md",
+    "dist/skills/maintain-repository-continuity/templates/CONTINUITY.template.md",
+    "dist/skills/maintain-repository-continuity/references/aether.repository-continuity.v1.schema.json",
+    "dist/skills/maintain-repository-continuity/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "9d2b7cf79af48e418534746c88c34cc939efb8ada66fc4e3dc0a43007d9f167b"
+  }
+}
