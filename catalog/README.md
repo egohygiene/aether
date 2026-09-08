@@ -19,6 +19,9 @@ provenance, lifecycle, and distribution.
   software fixtures with adversarial mutation cases
 - `schemas/aether.repository-release.v1.schema.json` — repository profile,
   semantic-version, changelog, delivery, evidence, and manual-handoff contract
+- `schemas/aether.repository-continuity.v1.schema.json` — root operational
+  handoff metadata, base/candidate/live state, review evidence, size, privacy,
+  and stale/superseded lifecycle contract
 - `first-party/catalog.v1.json` — canonical compatibility catalog for the current specification and skill corpus
 - `external/approved-skills.v1.json` — governed external skill catalog entries reconstructed from staged provenance
 - `external/source-candidates.v1.json` — non-publishable external source candidates, including their rights-review state

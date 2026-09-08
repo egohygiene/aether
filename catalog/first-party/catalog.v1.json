@@ -1176,6 +1176,53 @@
         "required_tools": []
       },
       "dependencies": [
+        "specification/repository-continuity"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates, reads, reconciles, compacts, and verifies a repository-root CONTINUITY.md operational handoff. Use when resuming repository work in a fresh session, repairing stale task state, or preparing an authorized repository change for pull-request review; do not use for conversation archiving, roadmap authoring, automatic merges, publication, or unrelated read-only questions.",
+      "domain": "methodology",
+      "generated_distribution_paths": [
+        "dist/skills/maintain-repository-continuity/SKILL.md"
+      ],
+      "id": "skill/maintain-repository-continuity",
+      "implements_specification_id": "specification/repository-continuity",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "9d2b7cf79af48e418534746c88c34cc939efb8ada66fc4e3dc0a43007d9f167b"
+      },
+      "source_path": "library/organization/skills/methodology/maintain-repository-continuity/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "methodology",
+        "skill"
+      ],
+      "title": "Maintain Repository Continuity"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
         "specification/reflector"
       ],
       "deprecation": {
@@ -2893,6 +2940,57 @@
         "drift-containment"
       ],
       "title": "Reflective Development System Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "A repository continuity document is a concise, repository-owned checkpoint",
+      "domain": "methodology",
+      "generated_distribution_paths": [
+        "dist/specs/repository-continuity.spec.md"
+      ],
+      "id": "specification/repository-continuity",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/maintain-repository-continuity",
+        "specification/repository-journal"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "362b7040a0c3dba3477d37edd641d3bf8fab9a447808d262c9576346eae93dae"
+      },
+      "source_path": "library/organization/specs/methodology/repository-continuity.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "repository",
+        "continuity",
+        "handoff",
+        "provenance",
+        "privacy"
+      ],
+      "title": "Repository Continuity Specification"
     },
     {
       "artifact_version": "1.0.0",
