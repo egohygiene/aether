@@ -89,6 +89,32 @@ copies.  Canonical source files must **not** contain these keys.
 
 ---
 
+## Repository continuity composition
+
+Repository-scoped skills are classified in the canonical disposition inventory:
+
+[`../instructions/repository-continuity/continuity-dispositions.v1.json`](../instructions/repository-continuity/continuity-dispositions.v1.json)
+
+Each applicable skill composes the single canonical
+`maintain-repository-continuity` procedure instead of copying that procedure.
+The visible composition block in a consuming skill must:
+
+- carry exactly one `aether-continuity-disposition` marker;
+- describe its domain-specific evidence contribution and prohibited claims;
+- require **Resume** before work selection when `startup_read` is true;
+- require **Refresh** and **Verify** after domain validation and before pull-request
+  presentation when `pre_pr_write` is true;
+- preserve an explicit read-only or reader boundary without gaining edit
+  authority; and
+- leave a reasoned `not-applicable` skill unchanged.
+
+The inventory, not a copied workflow, is the reviewable source for every
+reader, writer, reader-writer, read-only, or not-applicable disposition.
+Static skill text does not install or guarantee an automatic pre-pull-request
+hook.
+
+---
+
 ## Valid example
 
 ```yaml
@@ -112,7 +138,7 @@ metadata:
 
 ## Validation
 
-Run the deterministic validator to check all 29 canonical skills:
+Run the deterministic validator to check all 34 canonical skills:
 
 ```sh
 python3 library/organization/skills/validate-skills.py

@@ -3,17 +3,29 @@ name: audit-repository
 description: Audits a repository for quality, alignment, risk, and strengths using observable evidence. Use when a project needs an impartial assessment of its current state and actionable findings.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "auditor"
   aether-scope: "organization"
   aether-domain: "quality"
   aether-owners: "egohygiene"
   aether-created: "2026-08-02"
-  aether-updated: "2026-08-02"
+  aether-updated: "2026-09-08"
 ---
 
 # Audit Repository
+
+<!-- aether-continuity-disposition: read-only -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. This skill is continuity read-only: do
+not create, refresh, or otherwise mutate `CONTINUITY.md` unless a separate
+authorized repository-changing workflow takes ownership of that handoff.
+
+- **Contribute:** Audit scope, observed findings, confidence, evidence gaps, and executed checks
+- **Never claim:** Permission to modify CONTINUITY.md, apply fixes, or convert recommendations into completed work
 
 ## Purpose
 

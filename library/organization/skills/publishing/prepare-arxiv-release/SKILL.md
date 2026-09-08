@@ -3,17 +3,31 @@ name: prepare-arxiv-release
 description: Prepares a verified, reproducible arXiv release package from repository source. Use when a project needs to compile, validate, and package a submission for the arXiv preprint server.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "arxiv-publishing"
   aether-scope: "organization"
   aether-domain: "publishing"
   aether-owners: "egohygiene"
   aether-created: "2026-08-02"
-  aether-updated: "2026-08-02"
+  aether-updated: "2026-09-08"
 ---
 
 # Prepare arXiv Release
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Source revision, build environment, artifact inventory, exact checks, warnings, and manual submission steps
+- **Never claim:** That an artifact was submitted, endorsed, accepted, or published without external evidence
 
 ## Purpose
 

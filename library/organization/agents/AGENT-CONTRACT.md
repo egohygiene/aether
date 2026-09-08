@@ -80,9 +80,11 @@ Each `AGENT.md` body must contain the following sections in order:
 2. `## Operating contract` — linked canonical skills and specs with paths relative to
    `library/organization/` (e.g. `../skills/<domain>/<skill>/SKILL.md`), and
    governing specifications.
-3. `## Workflow` — numbered ordered procedure
-4. `## Boundaries` — explicit non-responsibilities and prohibited behaviors
-5. `## Completion` — definition of done
+3. `## Continuity composition` — the role's disposition, domain evidence, and
+   prohibited continuity claims
+4. `## Workflow` — numbered ordered procedure
+5. `## Boundaries` — explicit non-responsibilities and prohibited behaviors
+6. `## Completion` — definition of done
 
 ---
 
@@ -102,6 +104,11 @@ Projection is performed by `build-projections.py`. For each source `AGENT.md`:
    [`../projections/templates/decision-impact.AGENTS.md`](../projections/templates/decision-impact.AGENTS.md)
    is inserted exactly once in every generated agent projection. Canonical
    role bodies do not copy this managed module.
+6. The shared repository-continuity instruction at
+   [`../instructions/repository-continuity/INSTRUCTION.md`](../instructions/repository-continuity/INSTRUCTION.md)
+   is inserted exactly once beside the decision-impact module. Projection
+   provenance records both modules and the agent's reviewed continuity
+   disposition.
 
 ### Decision-impact inheritance
 
@@ -113,6 +120,20 @@ reference, and `ADR not required` flows without redefining organization policy.
 Provider builders must replace the marked block in place when it already
 exists and reject malformed or duplicate marker sets. This keeps generated
 agent guidance and repository-root `AGENTS.md` integrations non-duplicative.
+
+### Repository-continuity inheritance
+
+Every canonical agent composes `maintain-repository-continuity`. Its reviewed
+reader, reader-writer, or read-only classification and domain evidence are
+defined in
+[`../instructions/repository-continuity/continuity-dispositions.v1.json`](../instructions/repository-continuity/continuity-dispositions.v1.json).
+Composition may not add tools or authority. In particular, the Auditor remains
+read-only and the GitHub Issue Creator remains a reader unless separately
+authorized to modify repository files.
+
+The generated instruction module is a compact pointer to the root
+`CONTINUITY.md`, not a duplicate handoff or an automatic hook. Consumer
+installation and enforcement remain downstream responsibilities.
 
 ---
 

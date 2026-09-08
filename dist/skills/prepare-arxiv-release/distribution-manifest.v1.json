@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/prepare-arxiv-release",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -17,6 +17,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "558143c3e95fd0a3f937c5e34e55d8575a2c3d50ed0c69e837b4c8b7fd061354"
+    "value": "391cb3fb61ce53c5a92708258e035a5c1f5c6c7f18a5f48acfed28f315076fca"
   }
 }

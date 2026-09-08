@@ -3,16 +3,30 @@ name: test-engineering
 description: Designs, implements, repairs, or reviews deterministic automated tests that protect meaningful behavior without chasing superficial coverage. Use when confidence is insufficient and stronger regression or validation evidence is needed.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "experimental"
   aether-scope: "organization"
   aether-domain: "quality"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-08-08"
+  aether-updated: "2026-09-08"
 ---
 
 # Test Engineering
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Behavior under test, deterministic coverage, exact commands and outcomes, remaining gaps, and residual risk
+- **Never claim:** That tests prove behavior, environments, or integrations they did not exercise
 
 ## Purpose
 

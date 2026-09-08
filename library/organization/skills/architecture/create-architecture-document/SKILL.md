@@ -3,17 +3,31 @@ name: create-architecture-document
 description: Creates or updates ARCHITECTURE.md from repository evidence. Use when a project needs to define, repair, or review its structural organization, boundaries, and dependency rules.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "architecture-architecture"
   aether-scope: "organization"
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-08-01"
-  aether-updated: "2026-08-08"
+  aether-updated: "2026-09-08"
 ---
 
 # Create Architecture Document
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Observed structural boundaries, dependencies, decisions, validation, and open questions
+- **Never claim:** That unverified current architecture or proposed decisions are established fact
 
 ## Purpose
 

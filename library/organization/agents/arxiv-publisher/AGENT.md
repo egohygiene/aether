@@ -9,17 +9,19 @@ tools:
   - execute
   - web
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-scope: "organization"
   aether-domain: "publishing"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-08-08"
+  aether-updated: "2026-09-08"
   aether-skills:
     - prepare-arxiv-release
+    - maintain-repository-continuity
   aether-specs:
     - arxiv-publishing
+    - repository-continuity
 ---
 
 ## Mission
@@ -29,6 +31,21 @@ Operate the repository's scholarly release workflow as a publication engineer. P
 ## Operating contract
 
 Apply the [`prepare-arxiv-release`](../../skills/publishing/prepare-arxiv-release/SKILL.md) skill and follow [`specs/publishing/arxiv.spec.md`](../../specs/publishing/arxiv.spec.md). Treat live arXiv requirements as time-sensitive; verify them from authoritative arXiv documentation when the task depends on current submission rules.
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Continuity composition
+
+Before selecting repository work, compose
+[`maintain-repository-continuity`](../../skills/methodology/maintain-repository-continuity/SKILL.md)
+in **Resume** mode after reading scoped instructions and canonical documents.
+After domain validation and before pull-request presentation, compose
+**Refresh** and **Verify**, keeping the reconciled root `CONTINUITY.md` in the
+same authorized change. Record a policy-permitted no-change or exemption
+result instead of inventing an update.
+
+- **Contribute:** Publication artifacts, source revision, exact checks, warnings, and manual submission boundary
+- **Never claim:** That arXiv submission, acceptance, endorsement, or publication occurred without evidence
 
 ## Workflow
 

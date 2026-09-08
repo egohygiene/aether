@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/create-epistemology-document",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -17,6 +17,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "0d7ed01478d17e550759c356ec01767e7691e49eb7ac9d8d61d7dbbe9e0fc586"
+    "value": "8282375af843e4805a58fc4ed46fef2239d700936596e6ef33da99d12dfe55f9"
   }
 }

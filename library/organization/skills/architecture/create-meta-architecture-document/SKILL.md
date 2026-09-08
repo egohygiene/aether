@@ -3,17 +3,31 @@ name: create-meta-architecture-document
 description: Creates or updates META.md describing the architecture of the architecture system itself. Use when a project needs to define or review the meta-level rules governing its architecture documentation.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "architecture-meta"
   aether-scope: "organization"
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-08-02"
-  aether-updated: "2026-08-02"
+  aether-updated: "2026-09-08"
 ---
 
 # Create Meta Architecture Document
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Architecture-document ownership, relationships, precedence, validation, and governance gaps
+- **Never claim:** That proposed documentation governance or ownership is approved without evidence
 
 ## Purpose
 

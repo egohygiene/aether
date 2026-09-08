@@ -6,14 +6,14 @@ compatibility:
   required_tools:
     - python3
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "experimental"
   aether-spec-id: "social-campaign-handoff"
   aether-scope: "organization"
   aether-domain: "marketing"
   aether-owners: "egohygiene"
   aether-created: "2026-08-29"
-  aether-updated: "2026-08-29"
+  aether-updated: "2026-09-08"
   aether-executable-resources:
     - "scripts/campaign-handoff.py"
   aether-distribution-resources:
@@ -22,6 +22,20 @@ metadata:
 ---
 
 # Prepare a social campaign handoff
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Input locks, packet digest, review state, exact validation, freshness limitations, and export boundary
+- **Never claim:** That candidate content is approved, exported, posted, scheduled, or published without evidence
 
 Build a reviewable packet without becoming a publisher or a second source of
 brand/platform truth.

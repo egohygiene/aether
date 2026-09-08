@@ -1,7 +1,7 @@
 # Aether provider projection contract
 
 Status: `aether.projection-interface/v1`  
-Interface version: `1.1.0`
+Interface version: `1.2.0`
 Owner: `egohygiene/aether`  
 Registry: [`provider-registry.v1.json`](provider-registry.v1.json)
 
@@ -43,6 +43,18 @@ The source owns:
 
 Provider adapters may transform syntax and paths, but they do not rewrite canonical intent.
 
+Canonical repository-continuity instruction source is:
+
+```text
+library/organization/instructions/repository-continuity/INSTRUCTION.md
+```
+
+Its complete skill and agent disposition inventory is:
+
+```text
+library/organization/instructions/repository-continuity/continuity-dispositions.v1.json
+```
+
 Every projected agent also receives the shared, canonical decision-impact
 module from
 [`templates/decision-impact.AGENTS.md`](templates/decision-impact.AGENTS.md).
@@ -52,6 +64,11 @@ each role source. It currently pins the proposed Hygiene ADR policy at version
 immutable Hygiene revision `5e0602265b6ac5e5165b89f418e55a3fd12f8a64`.
 Its draft projection does not promote either upstream proposal or grant
 implementation authority.
+
+Every projected agent also receives the repository-continuity module through
+its own managed marker pair. The module points to the consumer repository's
+root `CONTINUITY.md`, composes `maintain-repository-continuity`, and preserves
+the reviewed role disposition. It does not copy the full continuity procedure.
 
 ## Projection states
 
@@ -74,6 +91,9 @@ Every generated Markdown agent includes an `aether-projection` HTML comment imme
 - normalized SHA-256 source digest;
 - the decision-impact module version, upstream pins, source, and normalized
   digest;
+- the repository-continuity module version, contract, source, and normalized
+  digest;
+- the canonical agent's reviewed continuity disposition;
 - generator path.
 
 JSON/manual outputs carry equivalent provenance fields, and `dist/projections/manifest.v1.json` records hashes for every generated output.
@@ -112,6 +132,12 @@ Repository agents:
 dist/github/repository/.github/agents/<agent-id>.agent.md
 ```
 
+Repository instruction surface:
+
+```text
+dist/github/repository/.github/copilot-instructions.md
+```
+
 Organization agents:
 
 ```text
@@ -126,7 +152,23 @@ VS Code consumes the repository-level `.github/agents` contract, so it is regist
 dist/claude/repository/.claude/agents/<agent-id>.md
 ```
 
+Repository instruction surface:
+
+```text
+dist/claude/repository/CLAUDE.md
+```
+
 Canonical tools are translated into Claude Code built-in tool names. Repository-local skill/spec references remain ordinary repository paths rather than provider-owned copies.
+
+### Codex-compatible runtimes
+
+```text
+dist/codex/repository/AGENTS.md
+```
+
+The fixture models repository-root `AGENTS.md` precedence. It preserves local
+repository prose around the managed block and does not imply that every
+compatible runtime can run a pre-pull-request hook.
 
 ### OpenCode
 
@@ -144,7 +186,7 @@ dist/zencoder/manual-import/agents.json
 
 As of the registry's `last_verified` date, Aether has not verified a repository-native custom-agent file format for Zencoder. The generated JSON is therefore deliberately labeled `manual-import` and is input to the provider UI/catalog rather than a file that claims automatic discovery.
 
-### Repository-instruction fixture
+### Legacy repository-instruction fixture
 
 ```text
 dist/fixtures/repository-instructions/AGENTS.md
@@ -155,6 +197,19 @@ not a consumer-owned instruction file to overwrite wholesale. Holon or another
 authorized installer must preserve repository commands, boundaries, and nested
 instruction precedence while reconciling the marked module. Reapplying the
 module replaces the existing marked block and never adds a second copy.
+
+All four repository instruction fixtures exercise the same lifecycle:
+
+- install into local prose with exactly one marked block;
+- upgrade by replacing that block in place;
+- remove only that block while preserving surrounding prose;
+- reject malformed, nested, or duplicate marker sets; and
+- report unsupported automatic-hook behavior honestly.
+
+The generated files are not instructions for Aether itself and are not
+consumer installations. Holon owns materialization into downstream
+repositories; Relay, Hygiene, EgoLint, and Pace retain their respective
+execution, policy, validation, and rollout boundaries.
 
 ## GitHub MCP template
 
@@ -185,6 +240,12 @@ Consumers own:
 - credentials and local secrets;
 - organization deployment policy;
 - repository-specific overrides.
+
+The organization-level fallback tracked by
+[`egohygiene/.github#1`](https://github.com/egohygiene/.github/issues/1) may
+remind compatible agents to look for repository continuity. It is not a
+substitute for repository-local instructions, cannot supply repository state,
+and must yield to the repository's normal instruction precedence.
 
 The dependency direction is:
 

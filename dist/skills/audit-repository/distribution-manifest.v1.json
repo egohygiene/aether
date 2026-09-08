@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/audit-repository",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -17,6 +17,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "197da818e259a8f0377cf6eb6579cae053243c8e2a419bcdfe5951d0d5759ee5"
+    "value": "7d11ce81ef38546d40163ce0c69da8054df58bc9b099426525278123b329231a"
   }
 }

@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/skill-authoring",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -16,6 +16,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "013535792af23e1e0148b54e7bec43d46393ea7557f38e79d6f4b89b61ba35ab"
+    "value": "7ff7d0275c698099ec90a199146357739965c8d3ff186e914bd8abe5489245e9"
   }
 }

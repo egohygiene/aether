@@ -1,7 +1,7 @@
 {
   "schema": "aether.skill-evaluations/v2",
   "skill": "architecture-authoring",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "cases": [
     {
       "id": "minimal-document-set",

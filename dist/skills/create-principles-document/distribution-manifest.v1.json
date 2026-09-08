@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/create-principles-document",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -17,6 +17,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "38074819b3bd9eb9cd6efda6e2cc7f962864373cd8200b809c53cd793019b80e"
+    "value": "39497e22891b856e87b652f67e749088672021199c8de7425b683251c1eda234"
   }
 }

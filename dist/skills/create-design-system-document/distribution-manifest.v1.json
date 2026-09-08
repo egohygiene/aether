@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/create-design-system-document",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -17,6 +17,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "c96a1e7bf6e72b8442791a23c76841ec936c9b7f58210fd02ddea1539b361c5d"
+    "value": "ae357d71e0de9ffc934073aec45d47b10964c846e78d2cd065bd0ecabf72af9e"
   }
 }

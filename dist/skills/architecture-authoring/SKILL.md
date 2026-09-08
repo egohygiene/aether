@@ -3,17 +3,31 @@ name: architecture-authoring
 description: Guides selection, sequencing, authoring, updating, and validation of architecture documents for a repository, product, platform, or organization. Use when establishing, repairing, or planning a set of architecture documents.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "architecture-document"
   aether-scope: "organization"
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-08-01"
-  aether-updated: "2026-08-01"
+  aether-updated: "2026-09-08"
 ---
 
 # Architecture Authoring
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Selected architecture contracts, cross-document effects, validation, and unresolved decisions
+- **Never claim:** That proposed architecture is accepted or implemented without evidence
 
 ## Purpose
 
