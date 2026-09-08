@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/egohygiene/aether/catalog/schemas/aether.diagnosis-record.v1.schema.json",
+  "title": "Aether Diagnosis Record v1 Frontmatter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "id",
+    "title",
+    "status",
+    "created",
+    "updated",
+    "authors",
+    "scope",
+    "context",
+    "symptom_summary",
+    "reproduction",
+    "root_cause",
+    "remediation",
+    "validation",
+    "sensitivity",
+    "redactions",
+    "related",
+    "supersedes",
+    "superseded_by"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aether.diagnosis-record/v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^diag-[0-9]{8}-[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": ["open", "monitoring", "resolved", "closed", "superseded"]
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "authors": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "scope": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "environment", "component", "artifact_version", "correlation_ids"],
+      "properties": {
+        "repository": {"type": "string", "minLength": 1},
+        "environment": {"type": "string", "minLength": 1},
+        "component": {"type": "string", "minLength": 1},
+        "artifact_version": {"type": "string", "minLength": 1},
+        "correlation_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "symptom_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reproduction": {
+      "$ref": "#/$defs/reproductionState"
+    },
+    "root_cause": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "hypothesis_id"],
+      "properties": {
+        "status": {"enum": ["unknown", "suspected", "confirmed"]},
+        "hypothesis_id": {
+          "type": ["string", "null"],
+          "pattern": "^H-[0-9]{3,}$"
+        }
+      }
+    },
+    "remediation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "enum": ["not-authorized", "not-planned", "planned", "in-progress", "implemented", "reverted", "not-applicable"]
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["not-run", "partial", "passed", "failed", "blocked"]}
+      }
+    },
+    "sensitivity": {
+      "enum": ["public", "internal", "restricted"]
+    },
+    "redactions": {
+      "enum": ["none", "present"]
+    },
+    "related": {"$ref": "#/$defs/stringList"},
+    "supersedes": {"$ref": "#/$defs/stringList"},
+    "superseded_by": {"$ref": "#/$defs/stringList"}
+  },
+  "$defs": {
+    "reproductionState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "enum": ["not-attempted", "blocked", "not-reproduced", "reproduced", "intermittent"]
+        }
+      }
+    },
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "root_cause": {
+            "properties": {"status": {"const": "confirmed"}},
+            "required": ["status"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "root_cause": {
+            "properties": {
+              "hypothesis_id": {"type": "string", "pattern": "^H-[0-9]{3,}$"}
+            }
+          }
+        }
+      }
+    }
+  ]
+}
