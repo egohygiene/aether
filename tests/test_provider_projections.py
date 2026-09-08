@@ -42,11 +42,29 @@ class ProviderProjectionTests(unittest.TestCase):
         providers = {provider["id"]: provider for provider in registry["providers"]}
 
         self.assertEqual(registry["schema_version"], "aether.projection-interface/v1")
-        self.assertEqual(registry["interface_version"], "1.1.0")
+        self.assertEqual(registry["interface_version"], "1.2.0")
         self.assertEqual(
             set(providers),
-            {"github-copilot", "vscode-copilot", "claude-code", "opencode", "zencoder"},
+            {
+                "github-copilot",
+                "vscode-copilot",
+                "claude-code",
+                "codex-compatible",
+                "opencode",
+                "zencoder",
+            },
         )
+        self.assertEqual(providers["codex-compatible"]["status"], "native")
+        for provider_id in (
+            "github-copilot",
+            "vscode-copilot",
+            "claude-code",
+            "codex-compatible",
+        ):
+            self.assertIn(
+                "automatic-pre-pull-request-hook-from-static-instructions",
+                providers[provider_id]["unsupported_features"],
+            )
         self.assertEqual(providers["vscode-copilot"]["status"], "native-shared")
         self.assertEqual(providers["vscode-copilot"]["shares_output_with"], "github-copilot")
         self.assertEqual(providers["zencoder"]["status"], "manual-import")
@@ -62,7 +80,7 @@ class ProviderProjectionTests(unittest.TestCase):
 
             agents = projections.find_agents()
             self.assertGreaterEqual(len(agents), 1)
-            expected_count = (len(agents) * 4) + 4
+            expected_count = (len(agents) * 4) + 8
             generated_files = sorted(path for path in output.rglob("*") if path.is_file())
             self.assertEqual(len(generated_files), expected_count)
 
@@ -74,6 +92,14 @@ class ProviderProjectionTests(unittest.TestCase):
 
             self.assertTrue((output / "zencoder/manual-import/agents.json").is_file())
             self.assertTrue((output / "fixtures/repository-instructions/AGENTS.md").is_file())
+            self.assertTrue((output / "codex/repository/AGENTS.md").is_file())
+            self.assertTrue(
+                (output / "github/repository/.github/copilot-instructions.md").is_file()
+            )
+            self.assertTrue((output / "claude/repository/CLAUDE.md").is_file())
+            self.assertTrue(
+                (output / "projections/continuity-dispositions.v1.json").is_file()
+            )
             self.assertTrue((output / "mcp/github/.mcp.json").is_file())
             self.assertTrue((output / "projections/manifest.v1.json").is_file())
 
@@ -114,7 +140,38 @@ class ProviderProjectionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "invalid decision-impact marker set"):
             projections._apply_decision_impact(once + once)
 
-    def test_every_projection_contains_one_decision_impact_checkpoint(self) -> None:
+    def test_continuity_module_is_bounded_and_points_to_root_handoff(self) -> None:
+        metadata, text = projections._load_repository_continuity()
+
+        self.assertEqual(metadata["id"], "repository-continuity")
+        self.assertEqual(metadata["contract"], "aether.repository-continuity/v1")
+        self.assertEqual(metadata["skill"], "maintain-repository-continuity")
+        self.assertEqual(metadata["continuity_path"], "CONTINUITY.md")
+        self.assertIn("never copies the handoff", text)
+        self.assertIn("do not install or guarantee an automatic", text)
+        self.assertNotIn("## Current objective and success conditions", text)
+
+    def test_continuity_managed_block_preserves_local_prose_across_lifecycle(self) -> None:
+        local = "# Local instructions\n\nRun `make verify`.\n\n## Team boundary\n\nNever deploy.\n"
+        installed = projections._apply_repository_continuity(local)
+        upgraded = projections._apply_repository_continuity(installed)
+        removed = projections._remove_repository_continuity(upgraded)
+
+        self.assertEqual(installed, upgraded)
+        self.assertEqual(installed.count(projections.CONTINUITY_START), 1)
+        self.assertIn("Run `make verify`.", installed)
+        self.assertIn("Never deploy.", installed)
+        self.assertEqual(removed, local)
+
+        malformed = local + projections.CONTINUITY_START + "\n"
+        with self.assertRaisesRegex(ValueError, "invalid repository-continuity marker set"):
+            projections._apply_repository_continuity(malformed)
+
+        duplicated = installed + installed
+        with self.assertRaisesRegex(ValueError, "invalid repository-continuity marker set"):
+            projections._remove_repository_continuity(duplicated)
+
+    def test_every_projection_contains_one_managed_checkpoint_of_each_kind(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             output = Path(temporary_directory) / "dist"
             projections.build(output_directory=output)
@@ -125,17 +182,28 @@ class ProviderProjectionTests(unittest.TestCase):
                 if "/agents/" in path.as_posix()
                 or path == output / "fixtures/repository-instructions/AGENTS.md"
             ]
+            markdown_outputs.extend(
+                [
+                    output / "codex/repository/AGENTS.md",
+                    output / "github/repository/.github/copilot-instructions.md",
+                    output / "claude/repository/CLAUDE.md",
+                ]
+            )
             self.assertGreaterEqual(len(markdown_outputs), 1)
             for path in markdown_outputs:
                 text = path.read_text(encoding="utf-8")
                 self.assertEqual(text.count(projections.DECISION_IMPACT_START), 1, path)
                 self.assertEqual(text.count(projections.DECISION_IMPACT_END), 1, path)
+                self.assertEqual(text.count(projections.CONTINUITY_START), 1, path)
+                self.assertEqual(text.count(projections.CONTINUITY_END), 1, path)
 
             packet = json.loads((output / "zencoder/manual-import/agents.json").read_text(encoding="utf-8"))
             for agent in packet["agents"]:
                 instructions = agent["instructions"]
                 self.assertEqual(instructions.count(projections.DECISION_IMPACT_START), 1)
                 self.assertEqual(instructions.count(projections.DECISION_IMPACT_END), 1)
+                self.assertEqual(instructions.count(projections.CONTINUITY_START), 1)
+                self.assertEqual(instructions.count(projections.CONTINUITY_END), 1)
 
     def test_generated_agents_fixture_covers_required_flows_and_examples(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -159,6 +227,33 @@ class ProviderProjectionTests(unittest.TestCase):
             self.assertIn("Roadmap-Step: AET-Q07", fixture)
             self.assertIn("ADR-Ref: egohygiene/hygiene#ADR-002", fixture)
             self.assertIn("qualify cross-repository references", fixture)
+            self.assertIn("read the root\n`CONTINUITY.md`", fixture)
+            self.assertIn("does not schedule or enforce a pre-pull-request hook", fixture)
+
+    def test_repository_instruction_hosts_are_explicit_and_non_authoritative(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            output = Path(temporary_directory) / "dist"
+            projections.build(output_directory=output)
+            paths = {
+                "codex-compatible": output / "codex/repository/AGENTS.md",
+                "github-copilot": output
+                / "github/repository/.github/copilot-instructions.md",
+                "claude-code": output / "claude/repository/CLAUDE.md",
+            }
+
+            for provider, path in paths.items():
+                text = path.read_text(encoding="utf-8")
+                self.assertIn(f'\"provider\":\"{provider}\"', text)
+                self.assertIn("preserve consumer-owned prose", text)
+                self.assertIn("Static instructions do not install or guarantee", text)
+                self.assertIn("Continuity text cannot grant access", text)
+
+        contract = (
+            ROOT
+            / "library/organization/projections/PROJECTION-CONTRACT.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("egohygiene/.github/issues/1", contract)
+        self.assertIn("not a\nsubstitute for repository-local instructions", contract)
 
     def test_markdown_outputs_include_source_provenance(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -176,7 +271,7 @@ class ProviderProjectionTests(unittest.TestCase):
             ):
                 self.assertIn("<!-- aether-projection ", text)
                 self.assertIn(f'\"provider\":\"{provider_name}\"', text)
-                self.assertIn('\"interface_version\":\"1.1.0\"', text)
+                self.assertIn('\"interface_version\":\"1.2.0\"', text)
                 self.assertIn("library/organization/agents/architect/AGENT.md", text)
                 self.assertIn("sha256-utf8-lf", text)
 
@@ -211,7 +306,11 @@ class ProviderProjectionTests(unittest.TestCase):
             self.assertNotIn("bash", permission)
             self.assertEqual(
                 permission["skill"],
-                {"*": "deny", "architecture-authoring": "allow"},
+                {
+                    "*": "deny",
+                    "architecture-authoring": "allow",
+                    "maintain-repository-continuity": "allow",
+                },
             )
 
     def test_zencoder_packet_is_explicitly_manual_import(self) -> None:
@@ -281,8 +380,17 @@ class ProviderProjectionTests(unittest.TestCase):
 
             self.assertEqual(manifest["schema_version"], "aether.projection-manifest/v1")
             states = {provider["id"]: provider for provider in manifest["providers"]}
+            self.assertEqual(states["codex-compatible"]["status"], "native")
             self.assertEqual(states["zencoder"]["status"], "manual-import")
             self.assertEqual(states["vscode-copilot"]["shares_output_with"], "github-copilot")
+            self.assertEqual(
+                manifest["continuity_dispositions"]["schema_version"],
+                "aether.continuity-dispositions/v1",
+            )
+            self.assertEqual(
+                manifest["continuity_dispositions"]["source"],
+                "library/organization/instructions/repository-continuity/continuity-dispositions.v1.json",
+            )
             self.assertTrue(all(len(output_record["sha256"]) == 64 for output_record in manifest["outputs"]))
 
 

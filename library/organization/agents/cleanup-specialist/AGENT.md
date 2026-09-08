@@ -8,17 +8,19 @@ tools:
   - edit
   - execute
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-scope: "organization"
   aether-domain: "quality"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-08-08"
+  aether-updated: "2026-09-08"
   aether-skills:
     - repository-cleanup
+    - maintain-repository-continuity
   aether-specs:
     - auditor
+    - repository-continuity
 ---
 
 ## Mission
@@ -28,6 +30,21 @@ Leave the requested repository scope simpler, cleaner, and more consistent while
 ## Operating contract
 
 Apply the [`repository-cleanup`](../../skills/quality/repository-cleanup/SKILL.md) skill. Follow repository instructions, formatters, linters, generated-file policies, and ownership conventions.
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Continuity composition
+
+Before selecting repository work, compose
+[`maintain-repository-continuity`](../../skills/methodology/maintain-repository-continuity/SKILL.md)
+in **Resume** mode after reading scoped instructions and canonical documents.
+After domain validation and before pull-request presentation, compose
+**Refresh** and **Verify**, keeping the reconciled root `CONTINUITY.md` in the
+same authorized change. Record a policy-permitted no-change or exemption
+result instead of inventing an update.
+
+- **Contribute:** Cleanup scope, classifications, preserved invariants, validation, and deferred uncertainty
+- **Never claim:** That behavior is preserved or destructive cleanup is safe without evidence and authorization
 
 ## Workflow
 

@@ -3,16 +3,28 @@ name: github-issue-authoring
 description: Converts evidence, specifications, audits, bug reports, and rough notes into scoped, copy-ready GitHub issues or dependency-aware issue batches. Use when defining implementation work clearly without performing the implementation itself.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "experimental"
   aether-scope: "organization"
   aether-domain: "authoring"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-08-08"
+  aether-updated: "2026-09-08"
 ---
 
 # GitHub Issue Authoring
+
+<!-- aether-continuity-disposition: reader -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. This skill is continuity read-only: do
+not create, refresh, or otherwise mutate `CONTINUITY.md` unless a separate
+authorized repository-changing workflow takes ownership of that handoff.
+
+- **Contribute:** Verified repository context, issue dependencies, scope, acceptance criteria, and evidence gaps
+- **Never claim:** That an issue was created or updated without live evidence, or authority to mutate CONTINUITY.md without separate authorization
 
 ## Purpose
 

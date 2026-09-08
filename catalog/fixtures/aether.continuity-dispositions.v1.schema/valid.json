@@ -1,0 +1,38 @@
+{
+  "$schema": "https://egohygiene.io/schemas/aether/continuity-dispositions/v1.json",
+  "schema_version": "aether.continuity-dispositions/v1",
+  "contract": "aether.repository-continuity/v1",
+  "composition_skill": "maintain-repository-continuity",
+  "reviewed_at": "2026-09-08",
+  "scope": {
+    "canonical_skills": "library/organization/skills/**/SKILL.md",
+    "canonical_agents": "library/organization/agents/*/AGENT.md",
+    "staged_content": "evidence-only; never bulk-edit"
+  },
+  "verified_repository_classes": ["application", "library", "publication"],
+  "verified_hosts": ["codex-compatible", "github-copilot"],
+  "skills": [
+    {
+      "id": "example-skill",
+      "source": "library/organization/skills/example/example-skill/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Exact validation outcome"],
+      "never_claim": ["An unverified merge"],
+      "rationale": "The skill changes repository files."
+    }
+  ],
+  "agents": [
+    {
+      "id": "example-agent",
+      "source": "library/organization/agents/example-agent/AGENT.md",
+      "disposition": "read-only",
+      "startup_read": true,
+      "pre_pr_write": false,
+      "domain_evidence": ["Observed repository state"],
+      "never_claim": ["Permission to mutate the handoff"],
+      "rationale": "The agent may read continuity but cannot update it."
+    }
+  ]
+}

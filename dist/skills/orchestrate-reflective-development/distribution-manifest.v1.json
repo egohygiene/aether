@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/orchestrate-reflective-development",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -17,6 +17,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "a0f93d539faaa147ec86a8f9415c387d684ebbed11923b1f49db37f34285cf07"
+    "value": "e08e8e6b1b0a270264bd34bf82e3f664275fb4a331c735106f13b6e6da06160c"
   }
 }

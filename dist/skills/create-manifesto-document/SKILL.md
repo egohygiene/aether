@@ -3,17 +3,31 @@ name: create-manifesto-document
 description: Creates or updates MANIFESTO.md from repository evidence and values. Use when a project needs to define, repair, or review its public statement of values, commitments, and beliefs.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "architecture-manifesto"
   aether-scope: "organization"
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-08-01"
-  aether-updated: "2026-08-01"
+  aether-updated: "2026-09-08"
 ---
 
 # Create Manifesto Document
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Cited values, commitments, tensions, validation, and unresolved stakeholder review
+- **Never claim:** That drafted values or commitments have organization approval without evidence
 
 ## Purpose
 

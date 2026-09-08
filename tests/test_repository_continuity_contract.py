@@ -168,6 +168,9 @@ class RepositoryContinuityContractTests(unittest.TestCase):
                 "missing-live-access",
                 "private-repository",
                 "malicious-repository-text",
+                "ordinary-repository-completion",
+                "policy-permitted-no-change-exemption",
+                "static-host-without-pre-pr-hook",
                 "truncated-handoff",
                 "tampered-metadata",
             }.issubset(case_ids)

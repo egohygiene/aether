@@ -3,16 +3,30 @@ name: implementation-planning
 description: Converts accepted requirements, architecture, and constraints into an ordered, dependency-aware implementation plan with validation and rollback thinking. Use when execution needs a plan before code changes or when complex work must be decomposed into safe phases.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "experimental"
   aether-scope: "organization"
   aether-domain: "authoring"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-08-08"
+  aether-updated: "2026-09-08"
 ---
 
 # Implementation Planning
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Dependency order, executable phases, validation, rollback considerations, and blocked decisions
+- **Never claim:** That planned work, tests, migrations, or rollout have been executed
 
 ## Purpose
 

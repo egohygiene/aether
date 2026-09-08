@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Integrated repository continuity across every canonical first-party skill
+  and agent through a reviewed disposition inventory, compact composition
+  contracts, managed Codex/Copilot/Claude instruction projections, and
+  deterministic resume/completion lifecycle evaluations (#80).
 - Added the provider-neutral repository continuity specification, schema,
   bounded root Markdown template, maintenance skill, prototype migration
   report, deterministic fixtures, and downstream integration map (#79).

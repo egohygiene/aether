@@ -3,17 +3,31 @@ name: create-specification-file
 description: Creates a new Aether specification file conforming to the specfile standard. Use when a project needs to define, structure, or validate an implementation contract and its acceptance criteria.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "specfile"
   aether-scope: "organization"
   aether-domain: "authoring"
   aether-owners: "egohygiene"
   aether-created: "2026-08-02"
-  aether-updated: "2026-08-02"
+  aether-updated: "2026-09-08"
 ---
 
 # Create Specification File
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Requirements, boundaries, acceptance criteria, validation, and unresolved decisions
+- **Never claim:** That specified work is implemented or open decisions are resolved without evidence
 
 ## Purpose
 

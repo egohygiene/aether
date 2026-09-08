@@ -1,7 +1,7 @@
 {
   "schema": "aether.skill-evaluations/v2",
   "skill": "create-meta-architecture-document",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "cases": [
     {
       "id": "meta-architecture-valid",

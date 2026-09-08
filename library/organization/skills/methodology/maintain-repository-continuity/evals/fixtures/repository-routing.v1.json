@@ -1,0 +1,72 @@
+{
+  "schema_version": "aether.continuity-routing-fixture/v1",
+  "prior_conversation_provided": false,
+  "repositories": [
+    {
+      "id": "application-stale-parallel",
+      "repository_class": "application",
+      "host": "github-copilot",
+      "instructions_available": true,
+      "canonical_documents_available": true,
+      "continuity": {
+        "status": "current",
+        "base_revision": "1111111111111111111111111111111111111111",
+        "next_work": "example/application#31"
+      },
+      "live": {
+        "status": "verified",
+        "default_branch_revision": "2222222222222222222222222222222222222222",
+        "next_work_state": "open",
+        "parallel_pull_requests": ["example/application#44"]
+      },
+      "expected": {
+        "action": "reconcile-before-selection",
+        "next_work": null
+      }
+    },
+    {
+      "id": "library-fresh-resume",
+      "repository_class": "library",
+      "host": "codex-compatible",
+      "instructions_available": true,
+      "canonical_documents_available": true,
+      "continuity": {
+        "status": "current",
+        "base_revision": "3333333333333333333333333333333333333333",
+        "next_work": "example/library#142"
+      },
+      "live": {
+        "status": "verified",
+        "default_branch_revision": "3333333333333333333333333333333333333333",
+        "next_work_state": "open",
+        "parallel_pull_requests": []
+      },
+      "expected": {
+        "action": "continue",
+        "next_work": "example/library#142"
+      }
+    },
+    {
+      "id": "publication-missing-live-access",
+      "repository_class": "publication",
+      "host": "claude-code",
+      "instructions_available": true,
+      "canonical_documents_available": true,
+      "continuity": {
+        "status": "current",
+        "base_revision": "4444444444444444444444444444444444444444",
+        "next_work": "example/publication#9"
+      },
+      "live": {
+        "status": "unavailable",
+        "default_branch_revision": null,
+        "next_work_state": "unknown",
+        "parallel_pull_requests": []
+      },
+      "expected": {
+        "action": "partial-blocked",
+        "next_work": null
+      }
+    }
+  ]
+}

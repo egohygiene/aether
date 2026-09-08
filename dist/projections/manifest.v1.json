@@ -1,6 +1,7 @@
 {
   "canonical_sources": {
     "architect": {
+      "continuity_disposition": "reader-writer",
       "generator": "library/organization/projections/build-projections.py",
       "instruction_modules": [
         {
@@ -28,18 +29,32 @@
           },
           "status": "draft",
           "version": "0.1.0"
+        },
+        {
+          "continuity_path": "CONTINUITY.md",
+          "contract": "aether.repository-continuity/v1",
+          "id": "repository-continuity",
+          "skill": "maintain-repository-continuity",
+          "source": "library/organization/instructions/repository-continuity/INSTRUCTION.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
+          },
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
-      "interface_version": "1.1.0",
+      "interface_version": "1.2.0",
       "provider": "canonical",
       "source": "library/organization/agents/architect/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "1b3dbca129e8505379ea747b084cb460a6165dfbace21e7e1e52bbe4fe6d5c51"
+        "value": "c1e5519fed5a85f675e8e86ab0c79bc446aeca667aa227ee2993980b696fa744"
       }
     },
     "arxiv-publisher": {
+      "continuity_disposition": "reader-writer",
       "generator": "library/organization/projections/build-projections.py",
       "instruction_modules": [
         {
@@ -67,18 +82,32 @@
           },
           "status": "draft",
           "version": "0.1.0"
+        },
+        {
+          "continuity_path": "CONTINUITY.md",
+          "contract": "aether.repository-continuity/v1",
+          "id": "repository-continuity",
+          "skill": "maintain-repository-continuity",
+          "source": "library/organization/instructions/repository-continuity/INSTRUCTION.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
+          },
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
-      "interface_version": "1.1.0",
+      "interface_version": "1.2.0",
       "provider": "canonical",
       "source": "library/organization/agents/arxiv-publisher/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "331dbbae27abfdc75fac579ee30a7d900b1f20d6f7d7033f295b70fb9045986a"
+        "value": "937ab661d08fbd9813240a1d02749b64781dd4bbf266c57cfc39e1153e7f3161"
       }
     },
     "auditor": {
+      "continuity_disposition": "read-only",
       "generator": "library/organization/projections/build-projections.py",
       "instruction_modules": [
         {
@@ -106,18 +135,32 @@
           },
           "status": "draft",
           "version": "0.1.0"
+        },
+        {
+          "continuity_path": "CONTINUITY.md",
+          "contract": "aether.repository-continuity/v1",
+          "id": "repository-continuity",
+          "skill": "maintain-repository-continuity",
+          "source": "library/organization/instructions/repository-continuity/INSTRUCTION.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
+          },
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
-      "interface_version": "1.1.0",
+      "interface_version": "1.2.0",
       "provider": "canonical",
       "source": "library/organization/agents/auditor/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "1aeb762d0868b22dd3cce228cdd63fb74d7c587f89419cb0c4067fb25ee3859b"
+        "value": "a9aa784a8746a8af943367c5d8b19eff447a48d19d28acfbbea368904d0cdfe2"
       }
     },
     "bug-fix-teammate": {
+      "continuity_disposition": "reader-writer",
       "generator": "library/organization/projections/build-projections.py",
       "instruction_modules": [
         {
@@ -145,18 +188,32 @@
           },
           "status": "draft",
           "version": "0.1.0"
+        },
+        {
+          "continuity_path": "CONTINUITY.md",
+          "contract": "aether.repository-continuity/v1",
+          "id": "repository-continuity",
+          "skill": "maintain-repository-continuity",
+          "source": "library/organization/instructions/repository-continuity/INSTRUCTION.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
+          },
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
-      "interface_version": "1.1.0",
+      "interface_version": "1.2.0",
       "provider": "canonical",
       "source": "library/organization/agents/bug-fix-teammate/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "be187ce5957780e1753acf78476d56625144a9e9fbb39578375c3980df50a0c9"
+        "value": "fd4fe3434d2ebfd872e24d542de7776e91d48b146af196bda0361dab0d66b32e"
       }
     },
     "cleanup-specialist": {
+      "continuity_disposition": "reader-writer",
       "generator": "library/organization/projections/build-projections.py",
       "instruction_modules": [
         {
@@ -184,18 +241,32 @@
           },
           "status": "draft",
           "version": "0.1.0"
+        },
+        {
+          "continuity_path": "CONTINUITY.md",
+          "contract": "aether.repository-continuity/v1",
+          "id": "repository-continuity",
+          "skill": "maintain-repository-continuity",
+          "source": "library/organization/instructions/repository-continuity/INSTRUCTION.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
+          },
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
-      "interface_version": "1.1.0",
+      "interface_version": "1.2.0",
       "provider": "canonical",
       "source": "library/organization/agents/cleanup-specialist/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "27b51e74aa5d8cca8bd37822d86dc9ddb1672c9ff4c82a8eaebd8b1387fc44a7"
+        "value": "530c05d101cb4bc7ac6303ea8a136116c5188196a6039010890f671a6b62b5b4"
       }
     },
     "github-issue-creator": {
+      "continuity_disposition": "reader",
       "generator": "library/organization/projections/build-projections.py",
       "instruction_modules": [
         {
@@ -223,18 +294,32 @@
           },
           "status": "draft",
           "version": "0.1.0"
+        },
+        {
+          "continuity_path": "CONTINUITY.md",
+          "contract": "aether.repository-continuity/v1",
+          "id": "repository-continuity",
+          "skill": "maintain-repository-continuity",
+          "source": "library/organization/instructions/repository-continuity/INSTRUCTION.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
+          },
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
-      "interface_version": "1.1.0",
+      "interface_version": "1.2.0",
       "provider": "canonical",
       "source": "library/organization/agents/github-issue-creator/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "a9bf4fac21f0f476b454b4c078149f5a58b6d1725af7f2cfc4c62508f0dd8abd"
+        "value": "df647f3a6243773ec612a9c167156b177e40d730309887c9a452ada0322b530b"
       }
     },
     "implementation-planner": {
+      "continuity_disposition": "reader-writer",
       "generator": "library/organization/projections/build-projections.py",
       "instruction_modules": [
         {
@@ -262,18 +347,32 @@
           },
           "status": "draft",
           "version": "0.1.0"
+        },
+        {
+          "continuity_path": "CONTINUITY.md",
+          "contract": "aether.repository-continuity/v1",
+          "id": "repository-continuity",
+          "skill": "maintain-repository-continuity",
+          "source": "library/organization/instructions/repository-continuity/INSTRUCTION.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
+          },
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
-      "interface_version": "1.1.0",
+      "interface_version": "1.2.0",
       "provider": "canonical",
       "source": "library/organization/agents/implementation-planner/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "613208905cf478e86cf81ba932e792788678f1e2b162cc844d8c20bd76ba9c58"
+        "value": "44ef29912b15ef793c82184e0c8a369041990a25b68661bc16edb4998bfcdd91"
       }
     },
     "specfile-creator": {
+      "continuity_disposition": "reader-writer",
       "generator": "library/organization/projections/build-projections.py",
       "instruction_modules": [
         {
@@ -301,18 +400,32 @@
           },
           "status": "draft",
           "version": "0.1.0"
+        },
+        {
+          "continuity_path": "CONTINUITY.md",
+          "contract": "aether.repository-continuity/v1",
+          "id": "repository-continuity",
+          "skill": "maintain-repository-continuity",
+          "source": "library/organization/instructions/repository-continuity/INSTRUCTION.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
+          },
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
-      "interface_version": "1.1.0",
+      "interface_version": "1.2.0",
       "provider": "canonical",
       "source": "library/organization/agents/specfile-creator/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "6dd644e3ae5681230a610608c2b5106211d7fa92907b4160fc146d41bf8ee00b"
+        "value": "cf43d7106fdde8b75566900643b189e985428010c5b81c65dbaf95d782de2c7e"
       }
     },
     "test-specialist": {
+      "continuity_disposition": "reader-writer",
       "generator": "library/organization/projections/build-projections.py",
       "instruction_modules": [
         {
@@ -340,132 +453,165 @@
           },
           "status": "draft",
           "version": "0.1.0"
+        },
+        {
+          "continuity_path": "CONTINUITY.md",
+          "contract": "aether.repository-continuity/v1",
+          "id": "repository-continuity",
+          "skill": "maintain-repository-continuity",
+          "source": "library/organization/instructions/repository-continuity/INSTRUCTION.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
+          },
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
-      "interface_version": "1.1.0",
+      "interface_version": "1.2.0",
       "provider": "canonical",
       "source": "library/organization/agents/test-specialist/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "63e8b745fe5a22a84e0dfd1ef345f5a1c4c9b3c287692830ce4f543f795bce7a"
+        "value": "808a428a4b4aa707ef92104426d59f33eab34fdaa4a018a9fe63cfd5aa0e60ef"
       }
     }
   },
+  "continuity_dispositions": {
+    "schema_version": "aether.continuity-dispositions/v1",
+    "source": "library/organization/instructions/repository-continuity/continuity-dispositions.v1.json",
+    "source_digest": {
+      "algorithm": "sha256-utf8-lf",
+      "value": "73577902d9bdd2ae5634820c49385ab630c266770f0d5b90c9b1295820e24946"
+    }
+  },
   "generator": "library/organization/projections/build-projections.py",
-  "interface_version": "1.1.0",
+  "interface_version": "1.2.0",
   "outputs": [
     {
       "path": "dist/claude/repository/.claude/agents/architect.md",
-      "sha256": "5d835546e7e8b44ea24951eb7721bf85aa71601dc8be8512c6f71fb80104000e"
+      "sha256": "1f4a1bde8e745d672ed64717b15c6f883743e298acac5d6fc624edd195a72fdb"
     },
     {
       "path": "dist/claude/repository/.claude/agents/arxiv-publisher.md",
-      "sha256": "71c12cc093ebda9159816a355a41ba1be95718b80c53b7a0ba39021aaf41212b"
+      "sha256": "83eedbd8d05cf8b12804d314d9be6379613d1883dae36b64219344f09737e258"
     },
     {
       "path": "dist/claude/repository/.claude/agents/auditor.md",
-      "sha256": "4a1b99a1665ec3e65614477775635761d0d1dd69dbb6594da840fa1760aed90a"
+      "sha256": "14c8dbd9e5e30cc2ff21579848a286f098cd115eca0299c07eef76393f95c3ce"
     },
     {
       "path": "dist/claude/repository/.claude/agents/bug-fix-teammate.md",
-      "sha256": "70773b70148a45a79de1315a641abed8c539d983db8c1c7ff1dc430c31d17d04"
+      "sha256": "5ce3a4ecc347ac6ad21217fc214b34b8becc39ac0c645137080f4c1de6409051"
     },
     {
       "path": "dist/claude/repository/.claude/agents/cleanup-specialist.md",
-      "sha256": "eb2b2c4411bb26d3de9d42ddaf2a6bb3937bf1df26e76c8cbbdb92b6122abe66"
+      "sha256": "7b3878f5a4b3bda5b9b61dc0a6e76e9a9585c71d0cc8e3a977384ad271b21dae"
     },
     {
       "path": "dist/claude/repository/.claude/agents/github-issue-creator.md",
-      "sha256": "67bce328bd65e2e4f731dbffc09f94dc5134368798653cc5b8bd5c3dcfe9697c"
+      "sha256": "18ef843ec7709811d48f383dc744e965c59362f1512d6c0434614d665384948f"
     },
     {
       "path": "dist/claude/repository/.claude/agents/implementation-planner.md",
-      "sha256": "83b536f60fa3526a52300fbfbf838ead6da5dd09e240ac940b24c02ca20c0afc"
+      "sha256": "8704bf0c968e9ce2ecae10cccbfd24e611f96589d1953e5c9c87fa86b8261279"
     },
     {
       "path": "dist/claude/repository/.claude/agents/specfile-creator.md",
-      "sha256": "6b6379f56d2c9b1eb84b071e49df5ac2e4781c655d488463163da25cc1a03cb4"
+      "sha256": "93e2407d1efb1a8a1a9f5a0a023adb144d4aa82fe4e23d5b6f8babb1472512df"
     },
     {
       "path": "dist/claude/repository/.claude/agents/test-specialist.md",
-      "sha256": "72703f5a3ca8c724498139dae9ae08ca1df97c03cd3ec7097fd203261292c05b"
+      "sha256": "499fb343150d19c4f4ed866655719b5ba7fd65802ad07b3c0cf2ba6e91e6269f"
+    },
+    {
+      "path": "dist/claude/repository/CLAUDE.md",
+      "sha256": "3d7d433db8d3c8cf6d790ff3bcb23e9640493242a20bdabf14d2ad330db079f2"
+    },
+    {
+      "path": "dist/codex/repository/AGENTS.md",
+      "sha256": "370ad8291f7601459e12390b48942deffaf82b0acc3557029986035f3081c506"
     },
     {
       "path": "dist/fixtures/repository-instructions/AGENTS.md",
-      "sha256": "0d256384e08a3ab3bf4048352224740fc78b1914f37f82850f8f6e2d3a03a426"
+      "sha256": "370ad8291f7601459e12390b48942deffaf82b0acc3557029986035f3081c506"
     },
     {
       "path": "dist/github/organization/agents/architect.agent.md",
-      "sha256": "32e93c07b9eabe68fa645832fd7c5df63d5215a02ae6d63d331390a8eaff5ada"
+      "sha256": "31c9082b0126ce15c43740d71c036446967b9d2ffd4093ebbaa08f7adf3dfcbc"
     },
     {
       "path": "dist/github/organization/agents/arxiv-publisher.agent.md",
-      "sha256": "44ae02c0776c69c0f6090e905161026491a67b5ef4934079ffc4ad74b6d79a3c"
+      "sha256": "8bbe44670f5f56ddee61b6e4f3a4f1c4edd206c8b4f6abc9bddc52629aecd179"
     },
     {
       "path": "dist/github/organization/agents/auditor.agent.md",
-      "sha256": "d7a122679b37ed081de021cfec0a536c443118c78107fee308299488c4120af5"
+      "sha256": "60ff5176651eb632d646dbdf68a04b553c470f184e8d5ad34d2954ddf8801e8e"
     },
     {
       "path": "dist/github/organization/agents/bug-fix-teammate.agent.md",
-      "sha256": "a4a2bf045f5b118d87614123756ed28fb32d8252ade462ba503555da6bbe0cf4"
+      "sha256": "ebbda4271cfb85ab08419635cec5ad2b54c70326c4d48df974f32f50387fbed3"
     },
     {
       "path": "dist/github/organization/agents/cleanup-specialist.agent.md",
-      "sha256": "5a34a67926856591a435d18bca93254d539774686a00ae00b3ad4ef9c169eb6c"
+      "sha256": "09373d31865cf7002e59877b3271a9747699023416d02009c2c53c04636df643"
     },
     {
       "path": "dist/github/organization/agents/github-issue-creator.agent.md",
-      "sha256": "87d5da4370d32128851eb6ccc50e52d63418af3aa30bbb4277d8f09ef363b205"
+      "sha256": "ca19f9a713da2a3bb645c09c3e52768c16a3929500b9329d9c475fee64c1ab14"
     },
     {
       "path": "dist/github/organization/agents/implementation-planner.agent.md",
-      "sha256": "66d86feb101220e4b668e3717aa8a9aa76eb7dd9617b5f2b055472a389e76ed0"
+      "sha256": "2d2076c5f1ed679669e0071f1f07676203de30af6f7cec693ff9b662c70de5c4"
     },
     {
       "path": "dist/github/organization/agents/specfile-creator.agent.md",
-      "sha256": "77ad0b06fea69004843e0761c2718b2f3cfb185a54b5f1c6b8e79a13a4e04c3f"
+      "sha256": "5012350629fde8f178e14bba712b536ccf0105870c3dca604d0473fc1573beaa"
     },
     {
       "path": "dist/github/organization/agents/test-specialist.agent.md",
-      "sha256": "a4b3b902dca5ab3809e0403f05c87fa79c1eacc1fc6647130e96c52bb20817a7"
+      "sha256": "5949bcc0c38c7c5935330e41a1dd4098baa5d1231de5e4dbd080f78f2216ef6d"
     },
     {
       "path": "dist/github/repository/.github/agents/architect.agent.md",
-      "sha256": "5971054d3a2d3f0d0d8a1b73fc0ff3cea7c878ac78a0abade6942587f72f4d90"
+      "sha256": "fab7ed5717729f1ba86a0a20e86d761baa51c950a92f3318741dace9d837acd8"
     },
     {
       "path": "dist/github/repository/.github/agents/arxiv-publisher.agent.md",
-      "sha256": "0a4aa130022a0d014f09f9e78200ddb12130adc881c2d43a92f6a6223c12fd82"
+      "sha256": "b7aa83e3685d8d0f17cb7a7a493c8e72d69f6a30509d83b17ee938150fd3a9cd"
     },
     {
       "path": "dist/github/repository/.github/agents/auditor.agent.md",
-      "sha256": "dd93661179610dbe9251756a16392316e49a99d0fa283f6307e23e850105d968"
+      "sha256": "f6ce4c24bb28ed9ab09868d4311b36e7603aaa3d8ef57a2146128151671eea88"
     },
     {
       "path": "dist/github/repository/.github/agents/bug-fix-teammate.agent.md",
-      "sha256": "a4a2bf045f5b118d87614123756ed28fb32d8252ade462ba503555da6bbe0cf4"
+      "sha256": "ebbda4271cfb85ab08419635cec5ad2b54c70326c4d48df974f32f50387fbed3"
     },
     {
       "path": "dist/github/repository/.github/agents/cleanup-specialist.agent.md",
-      "sha256": "5a34a67926856591a435d18bca93254d539774686a00ae00b3ad4ef9c169eb6c"
+      "sha256": "09373d31865cf7002e59877b3271a9747699023416d02009c2c53c04636df643"
     },
     {
       "path": "dist/github/repository/.github/agents/github-issue-creator.agent.md",
-      "sha256": "25e2a92a3e03e9a8e543bdadaba82f646ed8e3230e914d0dcf53270a23e9f0e8"
+      "sha256": "d079b656d89f17b324ff1a858c533c4e54457498cc09f83a875dff3d81023b48"
     },
     {
       "path": "dist/github/repository/.github/agents/implementation-planner.agent.md",
-      "sha256": "66d86feb101220e4b668e3717aa8a9aa76eb7dd9617b5f2b055472a389e76ed0"
+      "sha256": "2d2076c5f1ed679669e0071f1f07676203de30af6f7cec693ff9b662c70de5c4"
     },
     {
       "path": "dist/github/repository/.github/agents/specfile-creator.agent.md",
-      "sha256": "7a72763aa6f6fd17558e0a934fae99211450a95368edc2c4576e15f54c78bd08"
+      "sha256": "326514a152618ae11b6e5a99e4f1a3855e44da900e2455c6f34246ffb09f31cf"
     },
     {
       "path": "dist/github/repository/.github/agents/test-specialist.agent.md",
-      "sha256": "a4b3b902dca5ab3809e0403f05c87fa79c1eacc1fc6647130e96c52bb20817a7"
+      "sha256": "5949bcc0c38c7c5935330e41a1dd4098baa5d1231de5e4dbd080f78f2216ef6d"
+    },
+    {
+      "path": "dist/github/repository/.github/copilot-instructions.md",
+      "sha256": "ff5155ea4a05a4ba46a768103648be3d01d294745c755fa88148287221307ed1"
     },
     {
       "path": "dist/mcp/github/.mcp.json",
@@ -473,68 +619,87 @@
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/architect.md",
-      "sha256": "19f9ff6c8fe1e6a5007a17b4b7659c525c9342e650635e4bbaa0d35270f9c767"
+      "sha256": "9a52f15b4da8f540167a78200c4ac21a347952b1ebccd796f45edf282a2b43d8"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/arxiv-publisher.md",
-      "sha256": "d56281dee5cb88f0d30ef560d23ce6f444a6e40176a39ad4ff59ae59c9b72f60"
+      "sha256": "d06abf870d12241afaa3364a721a41d557b9c12bbcea8ade0161820020bd7d78"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/auditor.md",
-      "sha256": "7571042c79d9dcb03fe54a4366814abb9b0f0dc08b72106679d650cf17168368"
+      "sha256": "2cdff52956e6c317886567cacc42f8e03ec1fb99109f242f05fdd089db2caec0"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/bug-fix-teammate.md",
-      "sha256": "b48f327c15fe444d5757c7f717c3609c8436b6a88294106ac54c4e18422d32b7"
+      "sha256": "a8a9b7b68481c92db3b92aad08c7a2232a93b00cb31185cb40bebfd7473fc402"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/cleanup-specialist.md",
-      "sha256": "701bbb0b844949c746fd480ddc9f9f6dcf23a90332a0ac320858bf0f9e55463c"
+      "sha256": "dacfd2382274f849929432c05cc6b0c7ac6f7e1c20430797d381ebca67d1a621"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/github-issue-creator.md",
-      "sha256": "f6045bdd88804e5d6fd17dd784a7861f4deec6b8abf16e3afddc31931d052ffa"
+      "sha256": "a49b93a706f97a59e835f018232cdebc8fb8085ccd809633a0d629aae6c89160"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/implementation-planner.md",
-      "sha256": "27e0c22f85d9fea35c9ea0bd9355d543e03a460cb88bcca15946e4d3f65423d6"
+      "sha256": "b49ab898a31f4543f4f0ca804a11a90811bde7109168aefd954577f71c264523"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/specfile-creator.md",
-      "sha256": "c7d52c26325203af83d9792133494bac3b87ba9e2a3d04a52feb90e1728a2b1b"
+      "sha256": "748756467b4503f42c697de12cc5ca31aaa8af0033f7949cd41d226f801206e9"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/test-specialist.md",
-      "sha256": "9dc97a7fe94b4c912a1cadf5a03f2dc95c6f4a9f30043b88cc5967b18985017d"
+      "sha256": "99524eb0e640a7671507628a11ed52cc8590686c88137d46f7ed234260658f95"
+    },
+    {
+      "path": "dist/projections/continuity-dispositions.v1.json",
+      "sha256": "73577902d9bdd2ae5634820c49385ab630c266770f0d5b90c9b1295820e24946"
     },
     {
       "path": "dist/zencoder/manual-import/agents.json",
-      "sha256": "e5470d61ad1054e2e972126b29e8946909d01928999edc8494dd035770f26292"
+      "sha256": "faf6e813b5e79aea7cd8d2c2fc639ff27fdada2f236af5ed320650fc33abcc0a"
     }
   ],
   "provider_registry": "library/organization/projections/provider-registry.v1.json",
-  "provider_registry_sha256": "a91e96bf6e50371e638fbae9670723d49cb9bf25dd446d238b748ec0dfa4ba69",
+  "provider_registry_sha256": "c230eb9783d5b97253edc6287d3afa74515f612fb4d5f2a3335df2100125dacd",
   "providers": [
     {
       "adapter": "github-agent-markdown",
       "id": "github-copilot",
       "shares_output_with": null,
       "status": "native",
-      "unsupported_features": []
+      "unsupported_features": [
+        "automatic-pre-pull-request-hook-from-static-instructions"
+      ]
     },
     {
       "adapter": "github-agent-markdown",
       "id": "vscode-copilot",
       "shares_output_with": "github-copilot",
       "status": "native-shared",
-      "unsupported_features": []
+      "unsupported_features": [
+        "automatic-pre-pull-request-hook-from-static-instructions"
+      ]
     },
     {
       "adapter": "claude-subagent-markdown",
       "id": "claude-code",
       "shares_output_with": null,
       "status": "native",
-      "unsupported_features": []
+      "unsupported_features": [
+        "automatic-pre-pull-request-hook-from-static-instructions"
+      ]
+    },
+    {
+      "adapter": "agents-markdown",
+      "id": "codex-compatible",
+      "shares_output_with": null,
+      "status": "native",
+      "unsupported_features": [
+        "automatic-pre-pull-request-hook-from-static-instructions"
+      ]
     },
     {
       "adapter": "opencode-agent-markdown",

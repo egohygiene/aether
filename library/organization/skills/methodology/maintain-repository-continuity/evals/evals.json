@@ -1,13 +1,14 @@
 {
   "schema": "aether.skill-evaluations/v2",
   "skill": "maintain-repository-continuity",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "cases": [
     {
       "id": "fresh-session-resume",
       "description": "A fresh coding-agent session is asked to continue repository work and a conforming root CONTINUITY.md exists.",
       "category": "positive",
       "trigger": "should-trigger",
+      "fixture": "fixtures/repository-routing.v1.json",
       "expected": [
         "Inspects repository instructions, Git state, canonical sources, and the handoff in precedence order",
         "Verifies mutable issue and pull-request state before selecting work",
@@ -147,6 +148,48 @@
         "Rejects the invalid precedence and revision metadata",
         "Uses Git and canonical sources to identify the discrepancy",
         "Leaves the handoff stale or blocked until safely repaired"
+      ]
+    },
+    {
+      "id": "ordinary-repository-completion",
+      "description": "An authorized repository change has passed its exact domain and repository validation and is ready for pull-request review.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Refreshes the checkpoint after validation and immediately before pull-request presentation",
+        "Includes exact checks, limitations, blockers, and next dependency-ready work",
+        "Includes CONTINUITY.md in the same bounded change using transition-safe candidate language"
+      ],
+      "prohibited": [
+        "Calling the open pull request merged"
+      ]
+    },
+    {
+      "id": "policy-permitted-no-change-exemption",
+      "description": "Repository policy explicitly exempts a bounded change from modifying the continuity checkpoint because the current handoff remains exact.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Verifies that the existing checkpoint remains reconciled after validation",
+        "Records the policy source and no-change or exemption result",
+        "Does not create meaningless churn solely to claim a refresh"
+      ],
+      "prohibited": [
+        "Fabricating an update timestamp or validation result"
+      ]
+    },
+    {
+      "id": "static-host-without-pre-pr-hook",
+      "description": "A provider loads repository instructions but cannot guarantee an automatic pre-pull-request hook from static Markdown.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Uses the static instruction as a workflow checkpoint",
+        "Reports automatic hook enforcement as unavailable",
+        "Still performs the authorized manual Refresh and Verify handoff when capabilities permit"
+      ],
+      "prohibited": [
+        "Claiming static instructions enforce hook execution"
       ]
     },
     {

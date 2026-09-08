@@ -6,7 +6,7 @@ compatibility:
   required_tools:
     - git
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "repository-continuity"
   aether-scope: "organization"

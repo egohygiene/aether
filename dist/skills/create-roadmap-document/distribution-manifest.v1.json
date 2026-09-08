@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/create-roadmap-document",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -17,6 +17,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "921ed6d6964f9a9e202d7a52f35ea8fcdffca310992e4baeeaac16b74ec402b5"
+    "value": "0386ae6774ba9e1c8153b533f0eda6fec6bf1a061a2aea189fa957d848f05fc5"
   }
 }

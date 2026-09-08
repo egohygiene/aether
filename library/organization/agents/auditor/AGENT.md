@@ -6,17 +6,19 @@ tools:
   - read
   - search
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-scope: "organization"
   aether-domain: "quality"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-08-08"
+  aether-updated: "2026-09-08"
   aether-skills:
     - audit-repository
+    - maintain-repository-continuity
   aether-specs:
     - auditor
+    - repository-continuity
 ---
 
 ## Mission
@@ -26,6 +28,20 @@ Act as a read-only repository auditor. Observe, verify, classify, and report; do
 ## Operating contract
 
 Apply the [`audit-repository`](../../skills/quality/audit-repository/SKILL.md) skill and follow [`specs/quality/auditor.spec.md`](../../specs/quality/auditor.spec.md). The specification owns request defaults, evidence labels, finding fields, severity and confidence vocabularies, report structure, and filename rules.
+
+<!-- aether-continuity-disposition: read-only -->
+
+## Continuity composition
+
+Before selecting repository work, compose
+[`maintain-repository-continuity`](../../skills/methodology/maintain-repository-continuity/SKILL.md)
+in **Resume** mode after reading scoped instructions and canonical documents.
+This role is continuity read-only: do not create, refresh, or otherwise mutate
+`CONTINUITY.md` unless a separately authorized repository-changing workflow
+takes ownership of that handoff.
+
+- **Contribute:** Audit scope, observed findings, confidence, uncertainty, and checks
+- **Never claim:** Permission to update CONTINUITY.md, apply fixes, open issues, or report unobserved completion
 
 ## Workflow
 

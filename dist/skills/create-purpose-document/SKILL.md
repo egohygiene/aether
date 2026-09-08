@@ -3,17 +3,31 @@ name: create-purpose-document
 description: Creates or updates PURPOSE.md from repository evidence. Use when a project needs to define, repair, or review why it exists and whom it serves.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "architecture-purpose"
   aether-scope: "organization"
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-08-01"
-  aether-updated: "2026-08-01"
+  aether-updated: "2026-09-08"
 ---
 
 # Create Purpose Document
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Purpose, audience, outcomes, non-goals, validation, and unresolved stakeholder input
+- **Never claim:** That a drafted purpose has stakeholder acceptance without evidence
 
 ## Purpose
 

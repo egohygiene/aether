@@ -6,14 +6,14 @@ compatibility:
   required_tools:
     - python3
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "repository-release"
   aether-scope: "organization"
   aether-domain: "publishing"
   aether-owners: "egohygiene"
   aether-created: "2026-08-31"
-  aether-updated: "2026-08-31"
+  aether-updated: "2026-09-08"
   aether-executable-resources:
     - "scripts/validate-release-declaration.py"
   aether-distribution-resources:
@@ -24,6 +24,20 @@ metadata:
 ---
 
 # Prepare Repository Release
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Version authority, release candidate, changelog plan, exact verification, limitations, and rollback
+- **Never claim:** That a tag, release, package, image, site, or archive was published without external evidence
 
 Create or review a repository release plan governed by `repository-release`.
 This skill makes the release decision inspectable; it does not grant tag,
