@@ -3,17 +3,31 @@ name: create-principles-document
 description: Creates or updates PRINCIPLES.md from repository evidence and values. Use when a project needs to define, repair, or review the guiding principles that govern its decisions and behavior.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "architecture-principles"
   aether-scope: "organization"
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-08-01"
-  aether-updated: "2026-08-01"
+  aether-updated: "2026-09-08"
 ---
 
 # Create Principles Document
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Principles, tradeoffs, cited decisions, validation, and unresolved approval
+- **Never claim:** That drafted principles are accepted policy without evidence
 
 ## Purpose
 

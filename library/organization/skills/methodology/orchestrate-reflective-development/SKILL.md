@@ -3,17 +3,31 @@ name: orchestrate-reflective-development
 description: Orchestrates a bounded reflective development cycle by planning, executing, and auditing one unit of work. Use when a development cycle needs to proceed, pause, synchronize, or complete with human alignment.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "reflector"
   aether-scope: "organization"
   aether-domain: "methodology"
   aether-owners: "egohygiene"
   aether-created: "2026-08-02"
-  aether-updated: "2026-08-02"
+  aether-updated: "2026-09-08"
 ---
 
 # Orchestrate Reflective Development
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Cycle objective, phase results, validation, human decisions, blockers, and next bounded action
+- **Never claim:** An autonomous loop, human approval, or completed phase without evidence
 
 ## Purpose
 

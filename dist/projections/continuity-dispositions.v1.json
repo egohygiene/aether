@@ -1,0 +1,456 @@
+{
+  "$schema": "https://egohygiene.io/schemas/aether/continuity-dispositions/v1.json",
+  "schema_version": "aether.continuity-dispositions/v1",
+  "contract": "aether.repository-continuity/v1",
+  "composition_skill": "maintain-repository-continuity",
+  "reviewed_at": "2026-09-08",
+  "scope": {
+    "canonical_skills": "library/organization/skills/**/SKILL.md",
+    "canonical_agents": "library/organization/agents/*/AGENT.md",
+    "staged_content": "evidence-only; never bulk-edit"
+  },
+  "verified_repository_classes": [
+    "application",
+    "library",
+    "publication"
+  ],
+  "verified_hosts": [
+    "claude-code",
+    "codex-compatible",
+    "github-copilot"
+  ],
+  "skills": [
+    {
+      "id": "architecture-authoring",
+      "source": "library/organization/skills/architecture/architecture-authoring/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Selected architecture contracts, cross-document effects, validation, and unresolved decisions"],
+      "never_claim": ["That proposed architecture is accepted or implemented without evidence"],
+      "rationale": "Architecture authoring changes canonical repository documents and informs the next implementation work."
+    },
+    {
+      "id": "audit-repository",
+      "source": "library/organization/skills/quality/audit-repository/SKILL.md",
+      "disposition": "read-only",
+      "startup_read": true,
+      "pre_pr_write": false,
+      "domain_evidence": ["Audit scope, observed findings, confidence, evidence gaps, and executed checks"],
+      "never_claim": ["Permission to modify CONTINUITY.md, apply fixes, or convert recommendations into completed work"],
+      "rationale": "Audits need current handoff context but the normal workflow is deliberately non-mutating."
+    },
+    {
+      "id": "bug-fixing",
+      "source": "library/organization/skills/quality/bug-fixing/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Reproduction signal, root cause, bounded fix, regression protection, validation, and residual risk"],
+      "never_claim": ["That a defect is fixed, reviewed, or merged without the corresponding evidence"],
+      "rationale": "Authorized bug fixes mutate repository code and tests."
+    },
+    {
+      "id": "create-ai-constitution-document",
+      "source": "library/organization/skills/architecture/create-ai-constitution-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["AI participation rules, oversight boundaries, cited policy, validation, and unresolved approvals"],
+      "never_claim": ["That a proposed policy is approved or grants new agent authority"],
+      "rationale": "The skill authors a canonical repository governance document."
+    },
+    {
+      "id": "create-architecture-document",
+      "source": "library/organization/skills/architecture/create-architecture-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Observed structural boundaries, dependencies, decisions, validation, and open questions"],
+      "never_claim": ["That unverified current architecture or proposed decisions are established fact"],
+      "rationale": "The skill creates or updates canonical architecture state."
+    },
+    {
+      "id": "create-decisions-document",
+      "source": "library/organization/skills/architecture/create-decisions-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Decision identifiers, lifecycle state, alternatives, rationale, consequences, and validation"],
+      "never_claim": ["That an automated agent accepted, superseded, or implemented a decision without evidence"],
+      "rationale": "The skill mutates the repository's durable decision record."
+    },
+    {
+      "id": "create-design-document",
+      "source": "library/organization/skills/architecture/create-design-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Experience flows, constraints, research evidence, validation, and unresolved design choices"],
+      "never_claim": ["That user evidence, accessibility validation, or design approval exists when it was not observed"],
+      "rationale": "The skill creates or updates a canonical repository design document."
+    },
+    {
+      "id": "create-design-system-document",
+      "source": "library/organization/skills/architecture/create-design-system-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Design tokens, components, accessibility constraints, adoption state, and validation"],
+      "never_claim": ["That a documented design-system rule is implemented or adopted without evidence"],
+      "rationale": "The skill mutates canonical design-system documentation."
+    },
+    {
+      "id": "create-epistemology-document",
+      "source": "library/organization/skills/architecture/create-epistemology-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Knowledge sources, evidence labels, validation methods, uncertainty, and open questions"],
+      "never_claim": ["That unknown, inferred, or unavailable evidence is verified knowledge"],
+      "rationale": "The skill creates or updates canonical epistemology documentation."
+    },
+    {
+      "id": "create-foundations-document",
+      "source": "library/organization/skills/architecture/create-foundations-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Enduring assumptions, invariants, constraints, validation, and unresolved foundations"],
+      "never_claim": ["That a proposed invariant or assumption has been accepted without evidence"],
+      "rationale": "The skill creates or updates a canonical foundations document."
+    },
+    {
+      "id": "create-manifesto-document",
+      "source": "library/organization/skills/architecture/create-manifesto-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Cited values, commitments, tensions, validation, and unresolved stakeholder review"],
+      "never_claim": ["That drafted values or commitments have organization approval without evidence"],
+      "rationale": "The skill creates or updates a canonical repository manifesto."
+    },
+    {
+      "id": "create-meta-architecture-document",
+      "source": "library/organization/skills/architecture/create-meta-architecture-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Architecture-document ownership, relationships, precedence, validation, and governance gaps"],
+      "never_claim": ["That proposed documentation governance or ownership is approved without evidence"],
+      "rationale": "The skill mutates the architecture system's canonical meta-document."
+    },
+    {
+      "id": "create-methodology-document",
+      "source": "library/organization/skills/architecture/create-methodology-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Repeatable workflow, gates, roles, validation evidence, and unresolved operating choices"],
+      "never_claim": ["That a documented methodology is adopted or executed without evidence"],
+      "rationale": "The skill creates or updates a canonical methodology document."
+    },
+    {
+      "id": "create-ontology-document",
+      "source": "library/organization/skills/architecture/create-ontology-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Canonical terms, relationships, collisions, validation, and unresolved vocabulary"],
+      "never_claim": ["That a disputed or unsupported term is canonical"],
+      "rationale": "The skill creates or updates the repository's canonical vocabulary."
+    },
+    {
+      "id": "create-personal-model-document",
+      "source": "library/organization/skills/architecture/create-personal-model-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Conceptual assumptions, boundaries, cited evidence, validation, and privacy-safe unknowns"],
+      "never_claim": ["That private context is publishable or an inferred personal model is approved fact"],
+      "rationale": "The skill creates or updates a canonical repository model document."
+    },
+    {
+      "id": "create-pillars-document",
+      "source": "library/organization/skills/architecture/create-pillars-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Pillars, supporting evidence, tensions, validation, and unresolved stakeholder review"],
+      "never_claim": ["That drafted pillars have stakeholder adoption without evidence"],
+      "rationale": "The skill creates or updates canonical repository identity documentation."
+    },
+    {
+      "id": "create-principles-document",
+      "source": "library/organization/skills/architecture/create-principles-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Principles, tradeoffs, cited decisions, validation, and unresolved approval"],
+      "never_claim": ["That drafted principles are accepted policy without evidence"],
+      "rationale": "The skill creates or updates canonical repository principles."
+    },
+    {
+      "id": "create-purpose-document",
+      "source": "library/organization/skills/architecture/create-purpose-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Purpose, audience, outcomes, non-goals, validation, and unresolved stakeholder input"],
+      "never_claim": ["That a drafted purpose has stakeholder acceptance without evidence"],
+      "rationale": "The skill creates or updates canonical repository purpose."
+    },
+    {
+      "id": "create-repository-journal",
+      "source": "library/organization/skills/quality/create-repository-journal/SKILL.md",
+      "disposition": "not-applicable",
+      "startup_read": false,
+      "pre_pr_write": false,
+      "domain_evidence": [],
+      "never_claim": ["That supplied reporting input proves current live repository state"],
+      "rationale": "This bounded renderer accepts a supplied input document and is prohibited from collecting or mutating repository state."
+    },
+    {
+      "id": "create-roadmap-document",
+      "source": "library/organization/skills/architecture/create-roadmap-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Roadmap item state, dependencies, evidence, validation, and next dependency-ready work"],
+      "never_claim": ["That planned work is complete or mutable tracker state is current without verification"],
+      "rationale": "The skill changes canonical sequencing state that directly informs continuity."
+    },
+    {
+      "id": "create-specification-file",
+      "source": "library/organization/skills/authoring/create-specification-file/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Requirements, boundaries, acceptance criteria, validation, and unresolved decisions"],
+      "never_claim": ["That specified work is implemented or open decisions are resolved without evidence"],
+      "rationale": "The skill creates or updates an implementation contract in the repository."
+    },
+    {
+      "id": "create-system-document",
+      "source": "library/organization/skills/architecture/create-system-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Components, interfaces, ownership, data flow, validation, and unresolved system boundaries"],
+      "never_claim": ["That documented system structure matches implementation without evidence"],
+      "rationale": "The skill creates or updates canonical system documentation."
+    },
+    {
+      "id": "create-vision-document",
+      "source": "library/organization/skills/architecture/create-vision-document/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Target state, horizons, supporting evidence, validation, and unresolved stakeholder review"],
+      "never_claim": ["That an aspirational target is current state or approved commitment without evidence"],
+      "rationale": "The skill creates or updates canonical repository vision."
+    },
+    {
+      "id": "github-issue-authoring",
+      "source": "library/organization/skills/authoring/github-issue-authoring/SKILL.md",
+      "disposition": "reader",
+      "startup_read": true,
+      "pre_pr_write": false,
+      "domain_evidence": ["Verified repository context, issue dependencies, scope, acceptance criteria, and evidence gaps"],
+      "never_claim": ["That an issue was created or updated without live evidence, or authority to mutate CONTINUITY.md without separate authorization"],
+      "rationale": "Issue authoring consumes current repository state but does not itself change repository files."
+    },
+    {
+      "id": "implementation-planning",
+      "source": "library/organization/skills/authoring/implementation-planning/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Dependency order, executable phases, validation, rollback considerations, and blocked decisions"],
+      "never_claim": ["That planned work, tests, migrations, or rollout have been executed"],
+      "rationale": "The skill may create a durable repository plan and controls the next executable work selection."
+    },
+    {
+      "id": "maintain-repository-continuity",
+      "source": "library/organization/skills/methodology/maintain-repository-continuity/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Reconciled base, candidate and live state, exact checks, limitations, blockers, parallel work, and next action"],
+      "never_claim": ["Live truth, authorization, review, merge, publication, or completion not established by evidence"],
+      "rationale": "This is the canonical composition skill that owns continuity reads, refreshes, and verification."
+    },
+    {
+      "id": "orchestrate-reflective-development",
+      "source": "library/organization/skills/methodology/orchestrate-reflective-development/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Cycle objective, phase results, validation, human decisions, blockers, and next bounded action"],
+      "never_claim": ["An autonomous loop, human approval, or completed phase without evidence"],
+      "rationale": "The orchestrator selects, executes, and hands off bounded repository-changing work."
+    },
+    {
+      "id": "prepare-arxiv-release",
+      "source": "library/organization/skills/publishing/prepare-arxiv-release/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Source revision, build environment, artifact inventory, exact checks, warnings, and manual submission steps"],
+      "never_claim": ["That an artifact was submitted, endorsed, accepted, or published without external evidence"],
+      "rationale": "Publication preparation creates repository release artifacts but stops before external submission."
+    },
+    {
+      "id": "prepare-repository-release",
+      "source": "library/organization/skills/publishing/prepare-repository-release/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Version authority, release candidate, changelog plan, exact verification, limitations, and rollback"],
+      "never_claim": ["That a tag, release, package, image, site, or archive was published without external evidence"],
+      "rationale": "Release preparation changes reviewed repository metadata and artifacts."
+    },
+    {
+      "id": "prepare-social-campaign-handoff",
+      "source": "library/organization/skills/marketing/prepare-social-campaign-handoff/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Input locks, packet digest, review state, exact validation, freshness limitations, and export boundary"],
+      "never_claim": ["That candidate content is approved, exported, posted, scheduled, or published without evidence"],
+      "rationale": "The skill may create a reviewable repository artifact while preserving an external publication boundary."
+    },
+    {
+      "id": "repository-cleanup",
+      "source": "library/organization/skills/quality/repository-cleanup/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Cleanup classification, preserved invariants, changed files, exact checks, and deferred uncertain candidates"],
+      "never_claim": ["That behavior is preserved or a deletion is safe without validation and authorization"],
+      "rationale": "Authorized cleanup mutates repository files and must leave a reviewable handoff."
+    },
+    {
+      "id": "skill-authoring",
+      "source": "library/organization/skills/authoring/skill-authoring/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Skill identity, package changes, version, provenance, evaluations, validation, and compatibility"],
+      "never_claim": ["That a skill was installed, released, adopted, or made authoritative without evidence"],
+      "rationale": "The skill mutates canonical reusable instruction packages and generated distributions."
+    },
+    {
+      "id": "social-surface-specs",
+      "source": "library/organization/skills/marketing/social-surface-specs/SKILL.md",
+      "disposition": "not-applicable",
+      "startup_read": false,
+      "pre_pr_write": false,
+      "domain_evidence": [],
+      "never_claim": ["That a pinned offline catalog record is current platform policy"],
+      "rationale": "This standalone offline lookup neither orients repository work nor changes repository state."
+    },
+    {
+      "id": "test-engineering",
+      "source": "library/organization/skills/quality/test-engineering/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Behavior under test, deterministic coverage, exact commands and outcomes, remaining gaps, and residual risk"],
+      "never_claim": ["That tests prove behavior, environments, or integrations they did not exercise"],
+      "rationale": "Authorized test engineering mutates repository tests and sometimes bounded testability seams."
+    }
+  ],
+  "agents": [
+    {
+      "id": "architect",
+      "source": "library/organization/agents/architect/AGENT.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Architecture artifacts, decisions, validation, open questions, and implementation boundary"],
+      "never_claim": ["That proposed architecture is accepted, implemented, or production-validated"],
+      "rationale": "The agent may edit canonical architecture documents and present them for review."
+    },
+    {
+      "id": "arxiv-publisher",
+      "source": "library/organization/agents/arxiv-publisher/AGENT.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Publication artifacts, source revision, exact checks, warnings, and manual submission boundary"],
+      "never_claim": ["That arXiv submission, acceptance, endorsement, or publication occurred without evidence"],
+      "rationale": "The agent creates repository publication artifacts before external submission."
+    },
+    {
+      "id": "auditor",
+      "source": "library/organization/agents/auditor/AGENT.md",
+      "disposition": "read-only",
+      "startup_read": true,
+      "pre_pr_write": false,
+      "domain_evidence": ["Audit scope, observed findings, confidence, uncertainty, and checks"],
+      "never_claim": ["Permission to update CONTINUITY.md, apply fixes, open issues, or report unobserved completion"],
+      "rationale": "The role consumes continuity as evidence but intentionally lacks edit and execute authority."
+    },
+    {
+      "id": "bug-fix-teammate",
+      "source": "library/organization/agents/bug-fix-teammate/AGENT.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Reproduction, root cause, fix, regression protection, validation, and residual risk"],
+      "never_claim": ["That a defect is fixed, reviewed, or merged without evidence"],
+      "rationale": "The role performs bounded repository implementation."
+    },
+    {
+      "id": "cleanup-specialist",
+      "source": "library/organization/agents/cleanup-specialist/AGENT.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Cleanup scope, classifications, preserved invariants, validation, and deferred uncertainty"],
+      "never_claim": ["That behavior is preserved or destructive cleanup is safe without evidence and authorization"],
+      "rationale": "The role performs authorized repository cleanup."
+    },
+    {
+      "id": "github-issue-creator",
+      "source": "library/organization/agents/github-issue-creator/AGENT.md",
+      "disposition": "reader",
+      "startup_read": true,
+      "pre_pr_write": false,
+      "domain_evidence": ["Verified repository context, dependency state, issue scope, acceptance criteria, and evidence gaps"],
+      "never_claim": ["That an issue was created or updated without live evidence, or authority to mutate CONTINUITY.md without separate authorization"],
+      "rationale": "The role uses current context to author issues but intentionally lacks repository edit authority."
+    },
+    {
+      "id": "implementation-planner",
+      "source": "library/organization/agents/implementation-planner/AGENT.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Dependency order, phases, validation, rollback, risks, assumptions, and blocked decisions"],
+      "never_claim": ["That planned production work, tests, migrations, or rollout have been executed"],
+      "rationale": "The role may write a repository plan and hand it off for implementation."
+    },
+    {
+      "id": "specfile-creator",
+      "source": "library/organization/agents/specfile-creator/AGENT.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Specification scope, requirements, acceptance criteria, validation, and unresolved decisions"],
+      "never_claim": ["That specified work is implemented or an unresolved decision is accepted"],
+      "rationale": "The role edits implementation specifications in the repository."
+    },
+    {
+      "id": "test-specialist",
+      "source": "library/organization/agents/test-specialist/AGENT.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Covered behavior, test layers, exact commands and outcomes, remaining gaps, and blocked seams"],
+      "never_claim": ["That tests prove behavior, platforms, or integrations they did not exercise"],
+      "rationale": "The role performs authorized repository test changes."
+    }
+  ]
+}

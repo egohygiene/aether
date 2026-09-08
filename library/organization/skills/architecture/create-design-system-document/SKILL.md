@@ -3,17 +3,31 @@ name: create-design-system-document
 description: Creates or refines DESIGN_SYSTEM.md using the corresponding Aether architecture specification. Use when a project needs to establish or update its canonical design system documentation.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "architecture-design-system"
   aether-scope: "organization"
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-08-02"
-  aether-updated: "2026-08-02"
+  aether-updated: "2026-09-08"
 ---
 
 # Create Design System Document
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Design tokens, components, accessibility constraints, adoption state, and validation
+- **Never claim:** That a documented design-system rule is implemented or adopted without evidence
 
 ## Purpose
 

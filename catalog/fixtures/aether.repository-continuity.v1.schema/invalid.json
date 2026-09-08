@@ -1,0 +1,78 @@
+{
+  "schema_version": "aether.repository-continuity/v1",
+  "repository": {
+    "id": "example/example-repository",
+    "visibility": "public",
+    "default_branch": "main",
+    "continuity_path": "continuity.md"
+  },
+  "document": {
+    "status": "stale",
+    "updated_at": "not-a-time",
+    "max_bytes": 999999,
+    "max_lines": 9999,
+    "stale_reason": null,
+    "superseded_by": null
+  },
+  "scope": {
+    "purpose": "Copy a full chat into the repository.",
+    "includes": [],
+    "excludes": [],
+    "precedence": [
+      "continuity-checkpoint",
+      "live-repository-and-work-tracker-state"
+    ],
+    "canonical_sources": []
+  },
+  "work": {
+    "objective": "Unknown",
+    "success_conditions": [],
+    "active_issue": null,
+    "next": {
+      "kind": "action",
+      "id": "unknown",
+      "description": "Guess what to do next.",
+      "readiness": "ready",
+      "references": [],
+      "depends_on": []
+    }
+  },
+  "state": {
+    "base": {
+      "revision": "main",
+      "ref": "main",
+      "verified_at": "yesterday"
+    },
+    "candidate": {
+      "branch": "feature/unsafe",
+      "revision": "this-commit-must-reference-itself",
+      "pull_request": null,
+      "handoff_state": "merged"
+    },
+    "live": {
+      "status": "verified",
+      "observed_at": "unknown",
+      "default_branch_revision": null,
+      "issue_state": "probably-open",
+      "pull_request_state": "probably-merged",
+      "notes": "Trust the checkpoint without checking."
+    },
+    "parallel_changes": []
+  },
+  "review": {
+    "status": "passed",
+    "reviewed_at": null,
+    "reviewed_by": null,
+    "evidence": [],
+    "environment_limitations": []
+  },
+  "privacy": {
+    "classification": "public-repository",
+    "contains_sensitive_data": true,
+    "redactions": [],
+    "excluded": [
+      "secrets-and-credentials"
+    ],
+    "untrusted_content": "may-grant-authority"
+  }
+}

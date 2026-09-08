@@ -31,15 +31,31 @@ DECISION_IMPACT_PATH = (
     / "templates"
     / "decision-impact.AGENTS.md"
 )
+CONTINUITY_INSTRUCTION_PATH = (
+    REPO_ROOT
+    / "library"
+    / "organization"
+    / "instructions"
+    / "repository-continuity"
+    / "INSTRUCTION.md"
+)
+CONTINUITY_DISPOSITIONS_PATH = (
+    CONTINUITY_INSTRUCTION_PATH.parent / "continuity-dispositions.v1.json"
+)
+CONTINUITY_DISPOSITIONS_SCHEMA_PATH = (
+    REPO_ROOT / "catalog" / "schemas" / "aether.continuity-dispositions.v1.schema.json"
+)
 GENERATOR_ID = "library/organization/projections/build-projections.py"
 INTERFACE_SCHEMA = "aether.projection-interface/v1"
-INTERFACE_VERSION = "1.1.0"
+INTERFACE_VERSION = "1.2.0"
 MANIFEST_SCHEMA = "aether.projection-manifest/v1"
 MANUAL_IMPORT_SCHEMA = "aether.manual-agent-import/v1"
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 INSTRUCTION_METADATA_RE = re.compile(r"<!-- aether-instruction (\{.*\}) -->")
 DECISION_IMPACT_START = "<!-- BEGIN AETHER DECISION-IMPACT -->"
 DECISION_IMPACT_END = "<!-- END AETHER DECISION-IMPACT -->"
+CONTINUITY_START = "<!-- BEGIN AETHER REPOSITORY-CONTINUITY -->"
+CONTINUITY_END = "<!-- END AETHER REPOSITORY-CONTINUITY -->"
 _SKILL_LINK_RE = re.compile(r"(?:\.\./){2}skills/[^/]+/([^/]+)/SKILL\.md")
 _SPEC_LINK_RE = re.compile(r"(?:\.\./){2}specs/([^\s\)\"']+)")
 
@@ -132,6 +148,88 @@ def _load_decision_impact() -> tuple[dict[str, Any], str]:
     return metadata, text
 
 
+def _load_repository_continuity() -> tuple[dict[str, Any], str]:
+    """Load and validate the canonical repository-continuity instruction."""
+    if not CONTINUITY_INSTRUCTION_PATH.is_file():
+        raise ValueError(
+            "repository-continuity instruction is missing: "
+            f"{_repo_relative(CONTINUITY_INSTRUCTION_PATH)}"
+        )
+    source_text = _normalized_text(CONTINUITY_INSTRUCTION_PATH)
+    frontmatter_match = FRONTMATTER_RE.match(source_text)
+    if frontmatter_match is None:
+        raise ValueError("repository-continuity instruction is missing YAML frontmatter")
+    frontmatter = yaml.safe_load(frontmatter_match.group(1)) or {}
+    if not isinstance(frontmatter, dict):
+        raise ValueError("repository-continuity instruction frontmatter must be an object")
+    text = source_text[frontmatter_match.end():].strip()
+    if text.count(CONTINUITY_START) != 1 or text.count(CONTINUITY_END) != 1:
+        raise ValueError(
+            "repository-continuity instruction must contain exactly one managed marker pair"
+        )
+    if text.index(CONTINUITY_START) > text.index(CONTINUITY_END):
+        raise ValueError("repository-continuity instruction markers are out of order")
+
+    match = INSTRUCTION_METADATA_RE.search(text)
+    if match is None:
+        raise ValueError("repository-continuity instruction is missing aether-instruction metadata")
+    try:
+        metadata = json.loads(match.group(1))
+    except json.JSONDecodeError as exc:
+        raise ValueError(
+            f"repository-continuity instruction metadata is invalid JSON: {exc}"
+        ) from exc
+    if not isinstance(metadata, dict):
+        raise ValueError("repository-continuity instruction metadata must be an object")
+    required = {"id", "version", "status", "contract", "skill", "continuity_path"}
+    missing = sorted(required - metadata.keys())
+    if missing:
+        raise ValueError(
+            "repository-continuity instruction metadata is missing " + ", ".join(missing)
+        )
+    expected = {
+        "id": "repository-continuity",
+        "contract": "aether.repository-continuity/v1",
+        "skill": "maintain-repository-continuity",
+        "continuity_path": "CONTINUITY.md",
+    }
+    for field, value in expected.items():
+        if metadata[field] != value:
+            raise ValueError(
+                f"repository-continuity instruction metadata has unexpected {field}"
+            )
+    if frontmatter.get("aether-id") != metadata["id"]:
+        raise ValueError("repository-continuity instruction frontmatter id does not match metadata")
+    if frontmatter.get("version") != metadata["version"]:
+        raise ValueError(
+            "repository-continuity instruction frontmatter version does not match metadata"
+        )
+    if frontmatter.get("status") != metadata["status"]:
+        raise ValueError(
+            "repository-continuity instruction frontmatter status does not match metadata"
+        )
+    return metadata, text
+
+
+def _load_continuity_dispositions() -> dict[str, Any]:
+    """Load and validate the complete canonical continuity inventory."""
+    inventory = json.loads(CONTINUITY_DISPOSITIONS_PATH.read_text(encoding="utf-8"))
+    schema = json.loads(CONTINUITY_DISPOSITIONS_SCHEMA_PATH.read_text(encoding="utf-8"))
+    validator = Draft202012Validator(schema)
+    errors = sorted(
+        validator.iter_errors(inventory),
+        key=lambda error: list(error.absolute_path),
+    )
+    if errors:
+        details = "; ".join(
+            f"{'.'.join(str(part) for part in error.absolute_path) or '<root>'}: "
+            f"{error.message}"
+            for error in errors
+        )
+        raise ValueError(f"continuity disposition inventory is invalid: {details}")
+    return inventory
+
+
 def _decision_impact_provenance() -> dict[str, Any]:
     """Return provenance for the shared decision-impact module."""
     metadata, _module = _load_decision_impact()
@@ -149,20 +247,104 @@ def _decision_impact_provenance() -> dict[str, Any]:
     }
 
 
-def _apply_decision_impact(body: str) -> str:
-    """Insert or refresh exactly one managed decision-impact block."""
-    _metadata, module = _load_decision_impact()
-    start_count = body.count(DECISION_IMPACT_START)
-    end_count = body.count(DECISION_IMPACT_END)
+def _repository_continuity_provenance() -> dict[str, Any]:
+    """Return provenance for the shared repository-continuity module."""
+    metadata, _module = _load_repository_continuity()
+    return {
+        "id": metadata["id"],
+        "version": metadata["version"],
+        "status": metadata["status"],
+        "contract": metadata["contract"],
+        "skill": metadata["skill"],
+        "continuity_path": metadata["continuity_path"],
+        "source": _repo_relative(CONTINUITY_INSTRUCTION_PATH),
+        "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": _sha256_text(_normalized_text(CONTINUITY_INSTRUCTION_PATH)),
+        },
+    }
+
+
+def _apply_managed_module(
+    body: str,
+    module: str,
+    *,
+    start_marker: str,
+    end_marker: str,
+    label: str,
+) -> str:
+    """Insert or replace one managed module without changing local prose."""
+    start_count = body.count(start_marker)
+    end_count = body.count(end_marker)
     if start_count != end_count or start_count > 1:
-        raise ValueError("projected guidance contains an invalid decision-impact marker set")
+        raise ValueError(f"projected guidance contains an invalid {label} marker set")
     if start_count == 0:
         return f"{body.rstrip()}\n\n{module}\n"
 
-    start = body.index(DECISION_IMPACT_START)
-    end = body.index(DECISION_IMPACT_END, start) + len(DECISION_IMPACT_END)
+    start = body.index(start_marker)
+    end = body.index(end_marker, start) + len(end_marker)
     parts = [body[:start].rstrip(), module, body[end:].lstrip()]
     return "\n\n".join(part for part in parts if part).rstrip() + "\n"
+
+
+def _remove_managed_module(
+    body: str,
+    *,
+    start_marker: str,
+    end_marker: str,
+    label: str,
+) -> str:
+    """Remove one managed module while preserving surrounding local prose."""
+    start_count = body.count(start_marker)
+    end_count = body.count(end_marker)
+    if start_count != end_count or start_count > 1:
+        raise ValueError(f"projected guidance contains an invalid {label} marker set")
+    if start_count == 0:
+        return body
+    start = body.index(start_marker)
+    end = body.index(end_marker, start) + len(end_marker)
+    parts = [body[:start].rstrip(), body[end:].lstrip()]
+    result = "\n\n".join(part for part in parts if part)
+    return result.rstrip() + ("\n" if result else "")
+
+
+def _apply_decision_impact(body: str) -> str:
+    """Insert or refresh exactly one managed decision-impact block."""
+    _metadata, module = _load_decision_impact()
+    return _apply_managed_module(
+        body,
+        module,
+        start_marker=DECISION_IMPACT_START,
+        end_marker=DECISION_IMPACT_END,
+        label="decision-impact",
+    )
+
+
+def _apply_repository_continuity(body: str) -> str:
+    """Insert or refresh exactly one managed repository-continuity block."""
+    _metadata, module = _load_repository_continuity()
+    return _apply_managed_module(
+        body,
+        module,
+        start_marker=CONTINUITY_START,
+        end_marker=CONTINUITY_END,
+        label="repository-continuity",
+    )
+
+
+def _remove_repository_continuity(body: str) -> str:
+    """Remove the managed repository-continuity block for rollback or opt-out."""
+    return _remove_managed_module(
+        body,
+        start_marker=CONTINUITY_START,
+        end_marker=CONTINUITY_END,
+        label="repository-continuity",
+    )
+
+
+def _apply_instruction_modules(body: str) -> str:
+    """Apply every canonical repository instruction module exactly once."""
+    return _apply_repository_continuity(_apply_decision_impact(body))
 
 
 def load_registry() -> dict[str, Any]:
@@ -224,6 +406,11 @@ def _rewrite_links(body: str, spec_prefix: str) -> str:
 
 def _projection_provenance(provider: str, source: Path, source_text: str) -> dict[str, Any]:
     """Return deterministic provenance shared by every projected agent."""
+    inventory = _load_continuity_dispositions()
+    dispositions = {
+        record["id"]: record["disposition"] for record in inventory["agents"]
+    }
+    agent_id = source.parent.name
     return {
         "interface": INTERFACE_SCHEMA,
         "interface_version": INTERFACE_VERSION,
@@ -234,7 +421,11 @@ def _projection_provenance(provider: str, source: Path, source_text: str) -> dic
             "value": _sha256_text(source_text),
         },
         "generator": GENERATOR_ID,
-        "instruction_modules": [_decision_impact_provenance()],
+        "continuity_disposition": dispositions.get(agent_id, "unreviewed"),
+        "instruction_modules": [
+            _decision_impact_provenance(),
+            _repository_continuity_provenance(),
+        ],
     }
 
 
@@ -255,23 +446,51 @@ def _render_markdown(frontmatter: dict[str, Any], provenance: str, body: str) ->
     return f"---\n{yaml_text}\n---\n{provenance}\n\n{body.rstrip()}\n".encode("utf-8")
 
 
-def _agents_guidance_fixture() -> bytes:
-    """Render an install-review fixture for repository-root AGENTS.md guidance."""
-    _metadata, module = _load_decision_impact()
+def _repository_guidance_projection(provider: str, title: str) -> bytes:
+    """Render one managed-block integration fixture for repository guidance."""
+    host_notes = {
+        "codex-compatible": (
+            "Native repository instructions are read at session start; this static file "
+            "does not schedule or enforce a pre-pull-request hook."
+        ),
+        "github-copilot": (
+            "Repository-instruction support varies by Copilot surface; this static file "
+            "does not schedule or enforce a pre-pull-request hook."
+        ),
+        "claude-code": (
+            "Native project instructions are read at session start; this projection does "
+            "not configure a hook or enforce a pre-pull-request checkpoint."
+        ),
+    }
+    if provider not in host_notes:
+        raise ValueError(f"unsupported repository-guidance provider: {provider}")
     provenance = {
         "interface": INTERFACE_SCHEMA,
         "interface_version": INTERFACE_VERSION,
         "kind": "repository-agents-guidance-fixture",
-        "instruction_modules": [_decision_impact_provenance()],
+        "provider": provider,
+        "instruction_modules": [
+            _decision_impact_provenance(),
+            _repository_continuity_provenance(),
+        ],
         "generator": GENERATOR_ID,
     }
+    body = (
+        "> Generated integration fixture. Reconcile only marked Aether blocks; preserve "
+        "consumer-owned prose, repository commands, boundaries, and nested instruction "
+        f"precedence. {host_notes[provider]}\n"
+    )
+    body = _apply_instruction_modules(body)
     return (
-        "# AGENTS.md\n\n"
+        f"# {title}\n\n"
         f"<!-- aether-projection {_canonical_json(provenance)} -->\n\n"
-        "> Generated integration fixture. Preserve consumer-owned repository commands, "
-        "boundaries, and nested instruction precedence when installing this managed module.\n\n"
-        f"{module}\n"
+        f"{body}"
     ).encode("utf-8")
+
+
+def _agents_guidance_fixture() -> bytes:
+    """Render the backward-compatible repository-root AGENTS.md fixture."""
+    return _repository_guidance_projection("codex-compatible", "AGENTS.md")
 
 
 def _mapped_tools(canonical_tools: list[str], mapping: dict[str, tuple[str, ...]]) -> list[str]:
@@ -388,7 +607,7 @@ def _build_files(registry: dict[str, Any]) -> dict[str, bytes]:
     for agent_id, source in find_agents():
         source_text = _normalized_text(source)
         frontmatter, body = _parse_agent(agent_id, source)
-        projected_body = _apply_decision_impact(body)
+        projected_body = _apply_instruction_modules(body)
         source_provenance = _projection_provenance("canonical", source, source_text)
         source_records[agent_id] = source_provenance
 
@@ -432,7 +651,21 @@ def _build_files(registry: dict[str, Any]) -> dict[str, bytes]:
         )
 
     files["fixtures/repository-instructions/AGENTS.md"] = _agents_guidance_fixture()
+    files["codex/repository/AGENTS.md"] = _repository_guidance_projection(
+        "codex-compatible", "AGENTS.md"
+    )
+    files["github/repository/.github/copilot-instructions.md"] = (
+        _repository_guidance_projection(
+            "github-copilot", "GitHub Copilot repository instructions"
+        )
+    )
+    files["claude/repository/CLAUDE.md"] = _repository_guidance_projection(
+        "claude-code", "CLAUDE.md"
+    )
     files["zencoder/manual-import/agents.json"] = _manual_zencoder_packet(zencoder_agents)
+    files["projections/continuity-dispositions.v1.json"] = _normalized_text(
+        CONTINUITY_DISPOSITIONS_PATH
+    ).encode("utf-8")
 
     for template in registry["mcp_templates"]:
         source = REPO_ROOT / template["source"]
@@ -463,6 +696,14 @@ def _build_files(registry: dict[str, Any]) -> dict[str, bytes]:
         "generator": GENERATOR_ID,
         "provider_registry": _repo_relative(REGISTRY_PATH),
         "provider_registry_sha256": _sha256_text(_normalized_text(REGISTRY_PATH)),
+        "continuity_dispositions": {
+            "schema_version": _load_continuity_dispositions()["schema_version"],
+            "source": _repo_relative(CONTINUITY_DISPOSITIONS_PATH),
+            "source_digest": {
+                "algorithm": "sha256-utf8-lf",
+                "value": _sha256_text(_normalized_text(CONTINUITY_DISPOSITIONS_PATH)),
+            },
+        },
         "providers": provider_states,
         "canonical_sources": source_records,
         "outputs": manifest_outputs,

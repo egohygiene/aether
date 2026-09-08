@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/create-ontology-document",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -17,6 +17,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "b191a01e4e4409fa8e9d3b309a547159fe791954a97e7e5fe156843603e82872"
+    "value": "53790a0eda66167397f560d563a8f9409d85eb65bca8d418b393184a00bf6888"
   }
 }

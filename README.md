@@ -1,6 +1,8 @@
 # Aether
 
-Aether is Ego Hygiene’s canonical first-party library of reusable AI specifications, skills, and agent source with deterministic validation and build tooling.
+Aether is Ego Hygiene’s canonical first-party library of reusable AI
+specifications, skills, agent source, and instruction modules with
+deterministic validation and build tooling.
 
 Architecture navigation: [META.md](META.md) inventories Aether's complete
 18-document architecture graph. The reusable materialization contract, schema,
@@ -18,7 +20,8 @@ and consumer validator live under
 ## 2) What Aether owns (and does not own)
 
 Aether owns:
-- First-party canonical specs, skills, and agents.
+- First-party canonical specs, skills, agents, and reusable instruction
+  modules.
 - Catalog/provenance schemas and deterministic validators.
 - Distribution/projection build scripts.
 
@@ -33,20 +36,24 @@ Canonical source:
 - `library/organization/specs/`
 - `library/organization/skills/`
 - `library/organization/agents/`
+- `library/organization/instructions/`
 
 Generated artifacts:
 - `catalog/first-party/catalog.v1.json`
 - `dist/skills/`
 - `dist/github/`
+- `dist/codex/`
+- `dist/claude/`
 
 `.staging/` is non-canonical migration/provenance holding space and cannot be emptied without ADR-005 deletion-gate requirements (`DECISIONS.md#adr-005`).
 
 ## 4) First-party catalog summary
 
 Current canonical inventory snapshot (recompute with the commands shown):
-- 28 specifications (`find library/organization/specs -name "*.spec.md"`)
+- 29 specifications (`find library/organization/specs -name "*.spec.md"`)
 - 34 skills (`find library/organization/skills -name "SKILL.md"`)
 - 9 canonical agent profiles (`find library/organization/agents -name "AGENT.md"`)
+- 1 canonical instruction module (`find library/organization/instructions -name "INSTRUCTION.md"`)
 
 Machine-readable catalog and provenance:
 - `catalog/first-party/catalog.v1.json`
@@ -151,6 +158,7 @@ Inspect generated output:
 ```sh
 find dist/skills -maxdepth 2 -type f | sort
 find dist/github -maxdepth 4 -type f | sort
+find dist/codex dist/claude -maxdepth 4 -type f | sort
 ```
 
 Validate publishability (no release write):

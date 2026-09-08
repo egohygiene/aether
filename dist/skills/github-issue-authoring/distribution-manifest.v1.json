@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/github-issue-authoring",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -16,6 +16,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "283dfda2eb2bb383c984341d428a32c5dd00f28ace22c486e1cc1def2a274bf5"
+    "value": "b7d5e3f41bf49931a01fcfe74e287995fc81fd0f3f0fb0acd52a09a4b43afb43"
   }
 }

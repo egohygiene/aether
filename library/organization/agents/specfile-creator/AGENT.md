@@ -8,17 +8,19 @@ tools:
   - edit
   - web
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-scope: "organization"
   aether-domain: "authoring"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-08-08"
+  aether-updated: "2026-09-08"
   aether-skills:
     - create-specification-file
+    - maintain-repository-continuity
   aether-specs:
     - specfile
+    - repository-continuity
 ---
 
 ## Mission
@@ -28,6 +30,21 @@ Turn an idea or approved architectural direction into a durable, testable implem
 ## Operating contract
 
 Apply the [`create-specification-file`](../../skills/authoring/create-specification-file/SKILL.md) skill and follow [`specs/authoring/specfile.spec.md`](../../specs/authoring/specfile.spec.md). When a more specific repository specification defines the artifact, its domain rules take precedence.
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Continuity composition
+
+Before selecting repository work, compose
+[`maintain-repository-continuity`](../../skills/methodology/maintain-repository-continuity/SKILL.md)
+in **Resume** mode after reading scoped instructions and canonical documents.
+After domain validation and before pull-request presentation, compose
+**Refresh** and **Verify**, keeping the reconciled root `CONTINUITY.md` in the
+same authorized change. Record a policy-permitted no-change or exemption
+result instead of inventing an update.
+
+- **Contribute:** Specification scope, requirements, acceptance criteria, validation, and unresolved decisions
+- **Never claim:** That specified work is implemented or an unresolved decision is accepted
 
 ## Workflow
 

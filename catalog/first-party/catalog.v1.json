@@ -2,7 +2,7 @@
   "schema_version": "aether.artifact-catalog/v1",
   "artifacts": [
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -38,7 +38,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "25ff85d5b9bd560546e7be12a17b5bca8e05285bba3b97c1925eabb8f3eb3417"
+        "value": "eeb8e5c9be4e7950250d44af26e5e5e2623cd82e575409b3919a4f2424b47666"
       },
       "source_path": "library/organization/skills/architecture/architecture-authoring/SKILL.md",
       "supersedes_ids": [],
@@ -49,7 +49,7 @@
       "title": "Architecture Authoring"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -85,7 +85,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "197da818e259a8f0377cf6eb6579cae053243c8e2a419bcdfe5951d0d5759ee5"
+        "value": "7d11ce81ef38546d40163ce0c69da8054df58bc9b099426525278123b329231a"
       },
       "source_path": "library/organization/skills/quality/audit-repository/SKILL.md",
       "supersedes_ids": [],
@@ -96,7 +96,7 @@
       "title": "Audit Repository"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -130,7 +130,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "96894e0ad81cc6330ce8904ba9103e8de120363cc523e2c621074889fcc04374"
+        "value": "a11e8835be757419521ba75891bd1b52036d133adf6b7ec9102af62feabb5d47"
       },
       "source_path": "library/organization/skills/quality/bug-fixing/SKILL.md",
       "supersedes_ids": [],
@@ -141,7 +141,7 @@
       "title": "Bug Fixing"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -177,7 +177,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "51e71e0798e9088e7071c2a979d0b8f8a3765dfcc76135f05327f9ffca6efcc6"
+        "value": "2d9adf0c90ff7c96c62a23527053ec856262698b30473a296d4ab9578ece6ec7"
       },
       "source_path": "library/organization/skills/architecture/create-ai-constitution-document/SKILL.md",
       "supersedes_ids": [],
@@ -188,7 +188,7 @@
       "title": "Create AI Constitution Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -224,7 +224,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "e9cef372280af44826617ad06b0a276758ce2678ef7b1e68917fecd24b059a2a"
+        "value": "81b647f97f7a6f1f6f76f57b921e380e745dcc5d0446ccbe050978dbc0d0b1c2"
       },
       "source_path": "library/organization/skills/architecture/create-architecture-document/SKILL.md",
       "supersedes_ids": [],
@@ -235,7 +235,7 @@
       "title": "Create Architecture Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -271,7 +271,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "9a55c26c08e0f6ef5310b7e519c2619d303db362579f1061b4a6f3782eabb1d7"
+        "value": "1a7ed59ffb67bd7873e3489fbfd8c3da3c14e6e3c9a745613b08092d8a5ebd36"
       },
       "source_path": "library/organization/skills/architecture/create-decisions-document/SKILL.md",
       "supersedes_ids": [],
@@ -282,7 +282,7 @@
       "title": "Create Decisions Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -318,7 +318,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "8042711b74658f5c24e7aa4cf45c732a29d55de79b132cdfb885e2aed7024e35"
+        "value": "7cadb873d0e6b295b1fc9ce666c0a642fec0c7635d6ca2eb4ecf560edf655377"
       },
       "source_path": "library/organization/skills/architecture/create-design-document/SKILL.md",
       "supersedes_ids": [],
@@ -329,7 +329,7 @@
       "title": "Create Design Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -365,7 +365,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "c96a1e7bf6e72b8442791a23c76841ec936c9b7f58210fd02ddea1539b361c5d"
+        "value": "ae357d71e0de9ffc934073aec45d47b10964c846e78d2cd065bd0ecabf72af9e"
       },
       "source_path": "library/organization/skills/architecture/create-design-system-document/SKILL.md",
       "supersedes_ids": [],
@@ -376,7 +376,7 @@
       "title": "Create Design System Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -459,7 +459,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "0d7ed01478d17e550759c356ec01767e7691e49eb7ac9d8d61d7dbbe9e0fc586"
+        "value": "8282375af843e4805a58fc4ed46fef2239d700936596e6ef33da99d12dfe55f9"
       },
       "source_path": "library/organization/skills/architecture/create-epistemology-document/SKILL.md",
       "supersedes_ids": [],
@@ -470,7 +470,7 @@
       "title": "Create Epistemology Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -506,7 +506,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "42c91db1a6d4ba652a15c451d3491222b7246b37b9307da486c029d234c1d0e6"
+        "value": "f85426189722e72d54d38f0180a89aab3ea6874750c862e9437eb5f5dd9c2fd1"
       },
       "source_path": "library/organization/skills/architecture/create-foundations-document/SKILL.md",
       "supersedes_ids": [],
@@ -517,7 +517,7 @@
       "title": "Create Foundations Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -553,7 +553,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "af2a6ee0b3f27a95bd79fa21d92506bfda59a1146f24fc16d580f2b6be31f8c4"
+        "value": "1823c50d2f91b2763b5ed70446b8a5a3c31d58f3066d1fe9ffe46c09a465531f"
       },
       "source_path": "library/organization/skills/architecture/create-manifesto-document/SKILL.md",
       "supersedes_ids": [],
@@ -564,7 +564,7 @@
       "title": "Create Manifesto Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -600,7 +600,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "f8e86465d0690a8c3c1efd5e188e991d212943cceb7c1f9be2f021bbbf91b531"
+        "value": "94f72f5afb02868c40cfb7141615887858c7019f554552ad402020256a3e56ae"
       },
       "source_path": "library/organization/skills/architecture/create-meta-architecture-document/SKILL.md",
       "supersedes_ids": [],
@@ -611,7 +611,7 @@
       "title": "Create Meta Architecture Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -647,7 +647,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "bf7aa7d96771b8cb69120c8c68b4ae085d2f3ebb0a2caa183786461782da143b"
+        "value": "d95ff100387e59ddc9e105d699ee6feaf4242bba5ba5d2026345e1c5accec13b"
       },
       "source_path": "library/organization/skills/architecture/create-methodology-document/SKILL.md",
       "supersedes_ids": [],
@@ -658,7 +658,7 @@
       "title": "Create Methodology Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -694,7 +694,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "b191a01e4e4409fa8e9d3b309a547159fe791954a97e7e5fe156843603e82872"
+        "value": "53790a0eda66167397f560d563a8f9409d85eb65bca8d418b393184a00bf6888"
       },
       "source_path": "library/organization/skills/architecture/create-ontology-document/SKILL.md",
       "supersedes_ids": [],
@@ -705,7 +705,7 @@
       "title": "Create Ontology Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -741,7 +741,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "8396ab9c4a654ffe6bf35d4736c37811af0d76902f90d55075c2a683e9e21a0e"
+        "value": "07092ba1d697d46ee50a0c8657dd26e22980bcff60501138daa5554861a343e9"
       },
       "source_path": "library/organization/skills/architecture/create-personal-model-document/SKILL.md",
       "supersedes_ids": [],
@@ -752,7 +752,7 @@
       "title": "Create Personal Model Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -788,7 +788,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "2111512718e6861a5c66f47e14aab14121a492200d83886950f56569dbdc1469"
+        "value": "105bf40e7279590dac53c202cf948665a26f49c530af6585b8a1477de67cbeab"
       },
       "source_path": "library/organization/skills/architecture/create-pillars-document/SKILL.md",
       "supersedes_ids": [],
@@ -799,7 +799,7 @@
       "title": "Create Pillars Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -835,7 +835,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "38074819b3bd9eb9cd6efda6e2cc7f962864373cd8200b809c53cd793019b80e"
+        "value": "39497e22891b856e87b652f67e749088672021199c8de7425b683251c1eda234"
       },
       "source_path": "library/organization/skills/architecture/create-principles-document/SKILL.md",
       "supersedes_ids": [],
@@ -846,7 +846,7 @@
       "title": "Create Principles Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -882,7 +882,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "0b2b945fb5bfeae3c02066a04973432bc76848cb3f728dd4bc49292b8499c509"
+        "value": "d86430bc2912eb91e42bf37f7327a00cca9d30572f2066e7515f35c4341aabe8"
       },
       "source_path": "library/organization/skills/architecture/create-purpose-document/SKILL.md",
       "supersedes_ids": [],
@@ -940,7 +940,7 @@
       "title": "Create Repository Journal"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -976,7 +976,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "921ed6d6964f9a9e202d7a52f35ea8fcdffca310992e4baeeaac16b74ec402b5"
+        "value": "0386ae6774ba9e1c8153b533f0eda6fec6bf1a061a2aea189fa957d848f05fc5"
       },
       "source_path": "library/organization/skills/architecture/create-roadmap-document/SKILL.md",
       "supersedes_ids": [],
@@ -987,7 +987,7 @@
       "title": "Create Roadmap Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1023,7 +1023,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "2173169a2ad5c417554bea595e50e13b8d53ddb563740625e49633be9a4b9dfe"
+        "value": "b9b709c2a722ae8c6ab590ee59d7a89e3b3c1d420751175d04585ce37f4b6692"
       },
       "source_path": "library/organization/skills/authoring/create-specification-file/SKILL.md",
       "supersedes_ids": [],
@@ -1034,7 +1034,7 @@
       "title": "Create Specification File"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1070,7 +1070,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "2c91a59487bc02c2132ec9344b50e1a60c76a7702c071af3ee6435daa37791ae"
+        "value": "9916c1bf9f98fed8fae3431d7922200daeaa007f33a4588bf10430cef6b8c92f"
       },
       "source_path": "library/organization/skills/architecture/create-system-document/SKILL.md",
       "supersedes_ids": [],
@@ -1081,7 +1081,7 @@
       "title": "Create System Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1117,7 +1117,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "88316f29159a60a611f23935d2bd6c1489d20b9eb4efe4207a4d4d59c002c916"
+        "value": "bd35dcf32191971960fea8bc2164c6d7335829974e54989add6ac9a5de9815ba"
       },
       "source_path": "library/organization/skills/architecture/create-vision-document/SKILL.md",
       "supersedes_ids": [],
@@ -1128,7 +1128,7 @@
       "title": "Create Vision Document"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1162,7 +1162,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "283dfda2eb2bb383c984341d428a32c5dd00f28ace22c486e1cc1def2a274bf5"
+        "value": "b7d5e3f41bf49931a01fcfe74e287995fc81fd0f3f0fb0acd52a09a4b43afb43"
       },
       "source_path": "library/organization/skills/authoring/github-issue-authoring/SKILL.md",
       "supersedes_ids": [],
@@ -1173,7 +1173,7 @@
       "title": "GitHub Issue Authoring"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1207,7 +1207,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "2c87f62f2703f8f40035b562fb5b5d0561dc0948500c8d81b3f30b25448922d6"
+        "value": "ca1d5ce91248d32eb2063aeaf13260c82f478eb7bd3286ecfe339d7fb778c9fb"
       },
       "source_path": "library/organization/skills/authoring/implementation-planning/SKILL.md",
       "supersedes_ids": [],
@@ -1218,7 +1218,54 @@
       "title": "Implementation Planning"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/repository-continuity"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates, reads, reconciles, compacts, and verifies a repository-root CONTINUITY.md operational handoff. Use when resuming repository work in a fresh session, repairing stale task state, or preparing an authorized repository change for pull-request review; do not use for conversation archiving, roadmap authoring, automatic merges, publication, or unrelated read-only questions.",
+      "domain": "methodology",
+      "generated_distribution_paths": [
+        "dist/skills/maintain-repository-continuity/SKILL.md"
+      ],
+      "id": "skill/maintain-repository-continuity",
+      "implements_specification_id": "specification/repository-continuity",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "1746b29afa62d7a523d87675430730553079e82cf42e46a6ebe7cf8c82d29e8b"
+      },
+      "source_path": "library/organization/skills/methodology/maintain-repository-continuity/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "methodology",
+        "skill"
+      ],
+      "title": "Maintain Repository Continuity"
+    },
+    {
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1254,7 +1301,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "a0f93d539faaa147ec86a8f9415c387d684ebbed11923b1f49db37f34285cf07"
+        "value": "e08e8e6b1b0a270264bd34bf82e3f664275fb4a331c735106f13b6e6da06160c"
       },
       "source_path": "library/organization/skills/methodology/orchestrate-reflective-development/SKILL.md",
       "supersedes_ids": [],
@@ -1265,7 +1312,7 @@
       "title": "Orchestrate Reflective Development"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1301,7 +1348,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "558143c3e95fd0a3f937c5e34e55d8575a2c3d50ed0c69e837b4c8b7fd061354"
+        "value": "391cb3fb61ce53c5a92708258e035a5c1f5c6c7f18a5f48acfed28f315076fca"
       },
       "source_path": "library/organization/skills/publishing/prepare-arxiv-release/SKILL.md",
       "supersedes_ids": [],
@@ -1312,7 +1359,7 @@
       "title": "Prepare arXiv Release"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1348,7 +1395,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "e6c2142e5f90f17bc30377baf37e97375da1c92921a8cd8ad4e498e17237e54d"
+        "value": "e3bc75cb295e137b7106c70ee6ee664b0cdeaa88aa8b19a28e0b50f2117af00c"
       },
       "source_path": "library/organization/skills/publishing/prepare-repository-release/SKILL.md",
       "supersedes_ids": [],
@@ -1359,7 +1406,7 @@
       "title": "Prepare Repository Release"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1395,7 +1442,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "2b378cca19082091378ebf22a442baa703bfc1a079b073a8a368fb25a9dc4439"
+        "value": "9c7d1e0c84dfebe09d694eaddcbf1f255300a85ee046b2bd7256af7f7b71e555"
       },
       "source_path": "library/organization/skills/marketing/prepare-social-campaign-handoff/SKILL.md",
       "supersedes_ids": [],
@@ -1406,7 +1453,7 @@
       "title": "Prepare Social Campaign Handoff"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1440,7 +1487,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "5c5a84c1f92313a65053e4a76961ee9c17a2763393a6a66b318a5526a54ed405"
+        "value": "93c67edb91f3936a388f6c14d18061df7997a77920b85a6464bb49b0cb5754f5"
       },
       "source_path": "library/organization/skills/quality/repository-cleanup/SKILL.md",
       "supersedes_ids": [],
@@ -1451,7 +1498,7 @@
       "title": "Repository Cleanup"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1485,7 +1532,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "013535792af23e1e0148b54e7bec43d46393ea7557f38e79d6f4b89b61ba35ab"
+        "value": "7ff7d0275c698099ec90a199146357739965c8d3ff186e914bd8abe5489245e9"
       },
       "source_path": "library/organization/skills/authoring/skill-authoring/SKILL.md",
       "supersedes_ids": [],
@@ -1541,7 +1588,7 @@
       "title": "Social Surface Specs"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1575,7 +1622,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "f3f46e30cf05932420e70ba9cc54af5dc0f7b3a344ec123ee0d6079431e98771"
+        "value": "c4392a8e9d93efdf9d06c4645d42ca870b97fe3fc36d83273dc9f7bc788a8d3e"
       },
       "source_path": "library/organization/skills/quality/test-engineering/SKILL.md",
       "supersedes_ids": [],
@@ -2995,6 +3042,57 @@
         "drift-containment"
       ],
       "title": "Reflective Development System Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "A repository continuity document is a concise, repository-owned checkpoint",
+      "domain": "methodology",
+      "generated_distribution_paths": [
+        "dist/specs/repository-continuity.spec.md"
+      ],
+      "id": "specification/repository-continuity",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/maintain-repository-continuity",
+        "specification/repository-journal"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "362b7040a0c3dba3477d37edd641d3bf8fab9a447808d262c9576346eae93dae"
+      },
+      "source_path": "library/organization/specs/methodology/repository-continuity.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "repository",
+        "continuity",
+        "handoff",
+        "provenance",
+        "privacy"
+      ],
+      "title": "Repository Continuity Specification"
     },
     {
       "artifact_version": "1.0.0",

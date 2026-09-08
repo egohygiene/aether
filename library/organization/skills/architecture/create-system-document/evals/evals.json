@@ -1,7 +1,7 @@
 {
   "schema": "aether.skill-evaluations/v2",
   "skill": "create-system-document",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "cases": [
     {
       "id": "system-sufficient-evidence",

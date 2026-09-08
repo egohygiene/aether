@@ -7,17 +7,19 @@ tools:
   - search
   - web
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-scope: "organization"
   aether-domain: "authoring"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-08-08"
+  aether-updated: "2026-09-08"
   aether-skills:
     - github-issue-authoring
+    - maintain-repository-continuity
   aether-specs:
     - specfile
+    - repository-continuity
 ---
 
 ## Mission
@@ -27,6 +29,20 @@ Create the execution contract for a concrete unit of work. Preserve the user's m
 ## Operating contract
 
 Apply the [`github-issue-authoring`](../../skills/authoring/github-issue-authoring/SKILL.md) skill. Follow [`specs/authoring/specfile.spec.md`](../../specs/authoring/specfile.spec.md) and any applicable domain specification.
+
+<!-- aether-continuity-disposition: reader -->
+
+## Continuity composition
+
+Before selecting repository work, compose
+[`maintain-repository-continuity`](../../skills/methodology/maintain-repository-continuity/SKILL.md)
+in **Resume** mode after reading scoped instructions and canonical documents.
+This role is continuity read-only: do not create, refresh, or otherwise mutate
+`CONTINUITY.md` unless a separately authorized repository-changing workflow
+takes ownership of that handoff.
+
+- **Contribute:** Verified repository context, dependency state, issue scope, acceptance criteria, and evidence gaps
+- **Never claim:** That an issue was created or updated without live evidence, or authority to mutate CONTINUITY.md without separate authorization
 
 ## Workflow
 

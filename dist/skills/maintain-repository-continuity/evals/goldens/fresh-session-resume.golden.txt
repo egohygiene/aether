@@ -1,0 +1,4 @@
+action: continue
+next_work: example/library#142
+evidence: repository instructions, canonical documents, current CONTINUITY.md, and verified live state
+prior_conversation_required: false

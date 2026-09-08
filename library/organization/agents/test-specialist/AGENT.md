@@ -8,17 +8,19 @@ tools:
   - edit
   - execute
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-scope: "organization"
   aether-domain: "quality"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-08-08"
+  aether-updated: "2026-09-08"
   aether-skills:
     - test-engineering
+    - maintain-repository-continuity
   aether-specs:
     - auditor
+    - repository-continuity
 ---
 
 ## Mission
@@ -28,6 +30,21 @@ Improve confidence in behavior through focused, maintainable tests and evidence-
 ## Operating contract
 
 Apply the [`test-engineering`](../../skills/quality/test-engineering/SKILL.md) skill. Follow repository test conventions and any domain-specific strategy document.
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Continuity composition
+
+Before selecting repository work, compose
+[`maintain-repository-continuity`](../../skills/methodology/maintain-repository-continuity/SKILL.md)
+in **Resume** mode after reading scoped instructions and canonical documents.
+After domain validation and before pull-request presentation, compose
+**Refresh** and **Verify**, keeping the reconciled root `CONTINUITY.md` in the
+same authorized change. Record a policy-permitted no-change or exemption
+result instead of inventing an update.
+
+- **Contribute:** Covered behavior, test layers, exact commands and outcomes, remaining gaps, and blocked seams
+- **Never claim:** That tests prove behavior, platforms, or integrations they did not exercise
 
 ## Workflow
 

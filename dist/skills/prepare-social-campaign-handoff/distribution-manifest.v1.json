@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/prepare-social-campaign-handoff",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": [
       "python3"
@@ -23,6 +23,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "2b378cca19082091378ebf22a442baa703bfc1a079b073a8a368fb25a9dc4439"
+    "value": "9c7d1e0c84dfebe09d694eaddcbf1f255300a85ee046b2bd7256af7f7b71e555"
   }
 }

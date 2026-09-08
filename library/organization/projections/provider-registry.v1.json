@@ -1,8 +1,8 @@
 {
   "$schema": "../../../catalog/schemas/aether.projection-interface.v1.schema.json",
   "schema_version": "aether.projection-interface/v1",
-  "interface_version": "1.1.0",
-  "last_verified": "2026-08-23",
+  "interface_version": "1.2.0",
+  "last_verified": "2026-09-08",
   "canonical_source": {
     "owner": "egohygiene/aether",
     "kind": "agent",
@@ -17,11 +17,12 @@
       "scopes": ["repository", "organization"],
       "output_patterns": [
         "dist/github/repository/.github/agents/{agent_id}.agent.md",
-        "dist/github/organization/agents/{agent_id}.agent.md"
+        "dist/github/organization/agents/{agent_id}.agent.md",
+        "dist/github/repository/.github/copilot-instructions.md"
       ],
       "shares_output_with": null,
-      "supported_features": ["description", "prompt", "tools"],
-      "unsupported_features": [],
+      "supported_features": ["description", "prompt", "tools", "repository-instructions"],
+      "unsupported_features": ["automatic-pre-pull-request-hook-from-static-instructions"],
       "documentation": "https://docs.github.com/en/copilot/reference/custom-agents-configuration"
     },
     {
@@ -31,11 +32,12 @@
       "adapter": "github-agent-markdown",
       "scopes": ["repository"],
       "output_patterns": [
-        "dist/github/repository/.github/agents/{agent_id}.agent.md"
+        "dist/github/repository/.github/agents/{agent_id}.agent.md",
+        "dist/github/repository/.github/copilot-instructions.md"
       ],
       "shares_output_with": "github-copilot",
-      "supported_features": ["description", "prompt", "tools"],
-      "unsupported_features": [],
+      "supported_features": ["description", "prompt", "tools", "repository-instructions"],
+      "unsupported_features": ["automatic-pre-pull-request-hook-from-static-instructions"],
       "documentation": "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/create-custom-agents-in-your-ide"
     },
     {
@@ -45,12 +47,27 @@
       "adapter": "claude-subagent-markdown",
       "scopes": ["repository"],
       "output_patterns": [
-        "dist/claude/repository/.claude/agents/{agent_id}.md"
+        "dist/claude/repository/.claude/agents/{agent_id}.md",
+        "dist/claude/repository/CLAUDE.md"
       ],
       "shares_output_with": null,
-      "supported_features": ["description", "prompt", "tools"],
-      "unsupported_features": [],
-      "documentation": "https://code.claude.com/docs/en/sub-agents"
+      "supported_features": ["description", "prompt", "tools", "repository-instructions"],
+      "unsupported_features": ["automatic-pre-pull-request-hook-from-static-instructions"],
+      "documentation": "https://docs.anthropic.com/en/docs/claude-code/memory"
+    },
+    {
+      "id": "codex-compatible",
+      "display_name": "Codex-compatible host",
+      "status": "native",
+      "adapter": "agents-markdown",
+      "scopes": ["repository"],
+      "output_patterns": [
+        "dist/codex/repository/AGENTS.md"
+      ],
+      "shares_output_with": null,
+      "supported_features": ["prompt", "repository-instructions", "instruction-precedence"],
+      "unsupported_features": ["automatic-pre-pull-request-hook-from-static-instructions"],
+      "documentation": "https://developers.openai.com/codex/agent-configuration/agents-md"
     },
     {
       "id": "opencode",

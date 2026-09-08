@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/architecture-authoring",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -18,6 +18,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "25ff85d5b9bd560546e7be12a17b5bca8e05285bba3b97c1925eabb8f3eb3417"
+    "value": "eeb8e5c9be4e7950250d44af26e5e5e2623cd82e575409b3919a4f2424b47666"
   }
 }

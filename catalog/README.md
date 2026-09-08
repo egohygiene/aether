@@ -19,6 +19,12 @@ provenance, lifecycle, and distribution.
   software fixtures with adversarial mutation cases
 - `schemas/aether.repository-release.v1.schema.json` — repository profile,
   semantic-version, changelog, delivery, evidence, and manual-handoff contract
+- `schemas/aether.repository-continuity.v1.schema.json` — root operational
+  handoff metadata, base/candidate/live state, review evidence, size, privacy,
+  and stale/superseded lifecycle contract
+- `schemas/aether.continuity-dispositions.v1.schema.json` — complete canonical
+  skill/agent reader-writer, reader, read-only, and not-applicable composition
+  inventory
 - `first-party/catalog.v1.json` — canonical compatibility catalog for the current specification and skill corpus
 - `external/approved-skills.v1.json` — governed external skill catalog entries reconstructed from staged provenance
 - `external/source-candidates.v1.json` — non-publishable external source candidates, including their rights-review state
@@ -37,6 +43,8 @@ Current source-specific catalogs have different responsibilities:
 
 - specification and skill frontmatter is authoritative for `first-party/catalog.v1.json`;
 - canonical agent source and `library/organization/agents/catalog.json` own agent-specific capability metadata;
+- `library/organization/instructions/repository-continuity/` owns the reusable
+  continuity pointer and reviewed per-skill/per-agent dispositions;
 - reviewed external source records own their upstream provenance and redistribution evidence.
 
 The normalized provenance model is a **derived policy view**, not a second hand-edited source of truth. It gives these artifact kinds one common vocabulary for source, revision, digest, license, trust, lifecycle, compatibility, maintainer ownership, and publication readiness.
@@ -68,7 +76,10 @@ The normalized provenance contract supports:
 - prompts;
 - instructions.
 
-The current repository has canonical specs, skills, and agents. Prompt/instruction source can be added later without inventing a separate provenance lifecycle. Rich agent catalog/cost-control work remains separate from the generic provenance contract.
+The current repository has canonical specs, skills, agents, and a repository
+continuity instruction module. Future prompt/instruction sources can use the
+same provenance lifecycle. Rich agent catalog/cost-control work remains
+separate from the generic provenance contract.
 
 ## First-party and external separation
 

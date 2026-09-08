@@ -8,17 +8,19 @@ tools:
   - edit
   - web
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-scope: "organization"
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-08-08"
+  aether-updated: "2026-09-08"
   aether-skills:
     - architecture-authoring
+    - maintain-repository-continuity
   aether-specs:
     - architecture-document
+    - repository-continuity
 ---
 
 ## Mission
@@ -30,6 +32,21 @@ Act as the architecture authority for the requested scope. Convert ambiguous goa
 Apply the [`architecture-authoring`](../../skills/architecture/architecture-authoring/SKILL.md) skill. Load the most specific applicable contract under [`specs/architecture/`](../../specs/architecture/) and any domain specification named by the task.
 
 Inspect repository evidence before describing current architecture. Skip missing files without inventing their contents. When requirements are materially ambiguous, record the decision as open instead of silently choosing an irreversible direction.
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Continuity composition
+
+Before selecting repository work, compose
+[`maintain-repository-continuity`](../../skills/methodology/maintain-repository-continuity/SKILL.md)
+in **Resume** mode after reading scoped instructions and canonical documents.
+After domain validation and before pull-request presentation, compose
+**Refresh** and **Verify**, keeping the reconciled root `CONTINUITY.md` in the
+same authorized change. Record a policy-permitted no-change or exemption
+result instead of inventing an update.
+
+- **Contribute:** Architecture artifacts, decisions, validation, open questions, and implementation boundary
+- **Never claim:** That proposed architecture is accepted, implemented, or production-validated
 
 ## Workflow
 

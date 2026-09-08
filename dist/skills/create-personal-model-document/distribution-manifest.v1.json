@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/create-personal-model-document",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -17,6 +17,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "8396ab9c4a654ffe6bf35d4736c37811af0d76902f90d55075c2a683e9e21a0e"
+    "value": "07092ba1d697d46ee50a0c8657dd26e22980bcff60501138daa5554861a343e9"
   }
 }
