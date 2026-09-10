@@ -3,7 +3,7 @@
   "schema_version": "aether.continuity-dispositions/v1",
   "contract": "aether.repository-continuity/v1",
   "composition_skill": "maintain-repository-continuity",
-  "reviewed_at": "2026-09-08",
+  "reviewed_at": "2026-09-10",
   "scope": {
     "canonical_skills": "library/organization/skills/**/SKILL.md",
     "canonical_agents": "library/organization/agents/*/AGENT.md",
@@ -99,6 +99,16 @@
       "domain_evidence": ["Design tokens, components, accessibility constraints, adoption state, and validation"],
       "never_claim": ["That a documented design-system rule is implemented or adopted without evidence"],
       "rationale": "The skill mutates canonical design-system documentation."
+    },
+    {
+      "id": "create-diagnosis-record",
+      "source": "library/organization/skills/quality/create-diagnosis-record/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Investigation scope, evidence and hypothesis state, remediation authority, exact validation, and residual unknowns"],
+      "never_claim": ["That an unverified root cause, unauthorized remediation, or unrun validation is established"],
+      "rationale": "The skill creates or updates a durable repository diagnosis record and must preserve resumable investigative state."
     },
     {
       "id": "create-epistemology-document",
@@ -359,6 +369,16 @@
       "domain_evidence": ["Behavior under test, deterministic coverage, exact commands and outcomes, remaining gaps, and residual risk"],
       "never_claim": ["That tests prove behavior, environments, or integrations they did not exercise"],
       "rationale": "Authorized test engineering mutates repository tests and sometimes bounded testability seams."
+    },
+    {
+      "id": "validate-repository-locally",
+      "source": "library/organization/skills/quality/validate-repository-locally/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": ["Represented revision, capability observations, exact sanitized commands and outcomes, remote CI state, limitations, and residual risk"],
+      "never_claim": ["That an unavailable, skipped, blocked, deferred, stale, or unobserved check passed"],
+      "rationale": "The skill validates repository changes and may write a durable local evidence handoff."
     }
   ],
   "agents": [

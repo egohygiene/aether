@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/create-diagnosis-record",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.1.0",
   "compatibility": {
     "required_tools": []
   },
@@ -17,6 +17,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "68923d96542858b36c38e2a2166addb1ae2ddcfb22bfc29696fb4fd65afb29b8"
+    "value": "264bb7efd5021619afd62d650595c5ee180684f371b976fbefad5c24fc4a2b54"
   }
 }

@@ -483,7 +483,7 @@
     "source": "library/organization/instructions/repository-continuity/continuity-dispositions.v1.json",
     "source_digest": {
       "algorithm": "sha256-utf8-lf",
-      "value": "73577902d9bdd2ae5634820c49385ab630c266770f0d5b90c9b1295820e24946"
+      "value": "b95a7ddcfd0ea27b1f0439620260ca1f97f8488405303603e7f9446097482919"
     }
   },
   "generator": "library/organization/projections/build-projections.py",
@@ -655,7 +655,7 @@
     },
     {
       "path": "dist/projections/continuity-dispositions.v1.json",
-      "sha256": "73577902d9bdd2ae5634820c49385ab630c266770f0d5b90c9b1295820e24946"
+      "sha256": "b95a7ddcfd0ea27b1f0439620260ca1f97f8488405303603e7f9446097482919"
     },
     {
       "path": "dist/zencoder/manual-import/agents.json",

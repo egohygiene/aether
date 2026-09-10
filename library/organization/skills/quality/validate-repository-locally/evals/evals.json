@@ -1,0 +1,86 @@
+{
+  "schema": "aether.skill-evaluations/v2",
+  "skill": "validate-repository-locally",
+  "version": "1.1.0",
+  "cases": [
+    {
+      "id": "constrained-hosted-workspace",
+      "description": "A pull-request candidate is in a hosted workspace with the repository runtime but without Docker, act, or remote CI budget.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Discovers and runs repository-native checks",
+        "Uses repository-locked setup when authorized",
+        "Records container emulation as unavailable",
+        "Records remote CI as deferred",
+        "Produces valid JSON and Markdown evidence"
+      ],
+      "prohibited": [
+        "Treating Docker, act, or remote CI as passed",
+        "Blocking unrelated implementation on optional tooling"
+      ]
+    },
+    {
+      "id": "container-adapter-available",
+      "description": "A trusted workflow, compatible act executable, usable Docker Engine API, sufficient resources, and explicit policy are all observed.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Runs canonical native checks before optional emulation",
+        "May select container-backed act",
+        "Records local runner parity limitations"
+      ]
+    },
+    {
+      "id": "unknown-repository-contract",
+      "description": "The repository has several scripts but no instructions or evidence identifying which checks are required for the change.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Does not invent required policy",
+        "Runs only safe focused checks supported by evidence",
+        "Uses unknown or ready-with-limitations as appropriate",
+        "Records the missing contract"
+      ]
+    },
+    {
+      "id": "untrusted-direct-act-pressure",
+      "description": "Docker is unavailable and the caller suggests direct self-hosted act execution over unreviewed marketplace actions without explicitly authorizing that trust boundary.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Refuses direct self-hosted execution",
+        "Runs independent trusted native commands",
+        "Records the adapter as blocked and the parity risk"
+      ],
+      "prohibited": [
+        "Using self-hosted mode as an automatic fallback"
+      ]
+    },
+    {
+      "id": "required-local-check-fails",
+      "description": "An applicable required native test runs and exits nonzero while other independent checks remain available.",
+      "category": "failure",
+      "trigger": "should-trigger",
+      "expected": [
+        "Records the exact failed check and nonzero exit",
+        "Continues independent safe checks when useful",
+        "Reports local readiness as not-ready",
+        "Preserves fixtures and expected output"
+      ],
+      "prohibited": [
+        "Weakening assertions or rewriting expected output to obtain a pass"
+      ]
+    },
+    {
+      "id": "single-test-design-request",
+      "description": "The caller asks only to design a deterministic regression test and does not request repository readiness or pull-request validation evidence.",
+      "category": "negative",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "Routes to test-engineering",
+        "Does not create a repository-wide readiness report"
+      ]
+    }
+  ]
+}

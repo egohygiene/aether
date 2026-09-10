@@ -3,20 +3,34 @@ name: create-diagnosis-record
 description: Creates or updates an evidence-labelled technical diagnosis record from supplied logs, code, commands, and debugging context. Use when an investigation needs a durable, resumable trace without implying that a root cause is confirmed or a fix is authorized.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.1.0"
   aether-status: "draft"
   aether-spec-id: "diagnosis-record"
   aether-scope: "organization"
   aether-domain: "quality"
   aether-owners: "egohygiene"
   aether-created: "2026-09-04"
-  aether-updated: "2026-09-04"
+  aether-updated: "2026-09-10"
   aether-distribution-resources:
     - source: "catalog/schemas/aether.diagnosis-record.v1.schema.json"
       destination: "references/aether.diagnosis-record.v1.schema.json"
 ---
 
 # Create Diagnosis Record
+
+<!-- aether-continuity-disposition: reader-writer -->
+
+## Repository continuity composition
+
+For repository-scoped work, compose `maintain-repository-continuity` in
+**Resume** mode before selecting work. After an authorized repository change
+passes domain validation, compose **Refresh** and **Verify** immediately before
+presenting the pull request, and include the reconciled root `CONTINUITY.md` in
+the same change. A policy-permitted no-change or exemption result must be
+documented instead of fabricating an edit.
+
+- **Contribute:** Investigation scope, evidence and hypothesis state, remediation authority, exact validation, and residual unknowns
+- **Never claim:** That an unverified root cause, unauthorized remediation, or unrun validation is established
 
 Create or append to a durable diagnosis record governed by
 `diagnosis-record`. Preserve the difference between evidence and interpretation

@@ -31,6 +31,7 @@ SCHEMA_FILES = [
     "aether.release-manifest.v1.schema.json",
     "aether.repository-release.v1.schema.json",
     "aether.repository-continuity.v1.schema.json",
+    "aether.local-validation-evidence.v1.schema.json",
     "aether.continuity-dispositions.v1.schema.json",
     "aether.staging-disposition-record.v1.schema.json",
     "aether.evaluation-definition.v1.schema.json",

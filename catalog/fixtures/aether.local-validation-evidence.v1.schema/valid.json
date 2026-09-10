@@ -1,0 +1,132 @@
+{
+  "schema_version": "aether.local-validation-evidence/v1",
+  "report_id": "local-validation-20260910-example-change",
+  "generated_at": "2026-09-10T12:04:00Z",
+  "repository": {
+    "id": "example/repository",
+    "base_revision": "0123456789abcdef0123456789abcdef01234567",
+    "candidate_revision": null,
+    "worktree": "modified",
+    "change_fingerprint": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+  },
+  "policy": {
+    "installation": "repository-locked",
+    "remote_ci": "deferred",
+    "unsafe_direct_action_execution": "disallowed",
+    "commit_evidence": true
+  },
+  "execution": {
+    "profile": "best-effort",
+    "started_at": "2026-09-10T12:00:00Z",
+    "completed_at": "2026-09-10T12:04:00Z",
+    "environment": {
+      "kind": "hosted-workspace",
+      "operating_system": "linux",
+      "architecture": "x86_64",
+      "containerized": true,
+      "capabilities": [
+        {
+          "id": "python",
+          "state": "available",
+          "version": "3.12.14",
+          "evidence": "python3 --version exited 0",
+          "limitations": []
+        },
+        {
+          "id": "docker-engine-api",
+          "state": "unavailable",
+          "version": null,
+          "evidence": "No usable Docker Engine endpoint was observed",
+          "limitations": [
+            "Container-backed workflow emulation cannot run"
+          ]
+        }
+      ]
+    }
+  },
+  "checks": [
+    {
+      "id": "locked-setup",
+      "title": "Install locked development dependencies",
+      "kind": "setup",
+      "command": "python3 -m pip install --requirement requirements-dev.lock",
+      "requirement": "required",
+      "applicability": "applicable",
+      "availability": "available",
+      "selection": "selected",
+      "outcome": "passed",
+      "exit_code": 0,
+      "duration_ms": 1240,
+      "reason": null,
+      "evidence": [
+        "Repository-local virtual environment contains locked dependencies"
+      ]
+    },
+    {
+      "id": "repository-tests",
+      "title": "Run repository test suite",
+      "kind": "test",
+      "command": "./project test",
+      "requirement": "required",
+      "applicability": "applicable",
+      "availability": "available",
+      "selection": "selected",
+      "outcome": "passed",
+      "exit_code": 0,
+      "duration_ms": 2410,
+      "reason": null,
+      "evidence": [
+        "148 deterministic tests passed"
+      ]
+    },
+    {
+      "id": "act-workflow-emulation",
+      "title": "Emulate pull-request workflow with act",
+      "kind": "workflow-emulation",
+      "command": null,
+      "requirement": "optional",
+      "applicability": "applicable",
+      "availability": "unavailable",
+      "selection": "not-selected",
+      "outcome": "deferred",
+      "exit_code": null,
+      "duration_ms": null,
+      "reason": "A usable Docker Engine API was not available",
+      "evidence": []
+    }
+  ],
+  "remote_ci": {
+    "state": "deferred",
+    "reason": "Remote execution is outside the current delivery budget",
+    "workflow_refs": [
+      ".github/workflows/validate.yml"
+    ],
+    "run_url": null,
+    "observed_at": null
+  },
+  "summary": {
+    "local_readiness": "ready-with-limitations",
+    "counts": {
+      "total": 3,
+      "passed": 2,
+      "failed": 0,
+      "blocked": 0,
+      "deferred": 1,
+      "skipped": 0,
+      "not_run": 0
+    },
+    "residual_risks": [
+      "GitHub-hosted runner behavior remains unverified",
+      "Container-backed workflow emulation did not run"
+    ]
+  },
+  "privacy": {
+    "sensitivity": "public",
+    "redactions": [],
+    "excluded": [
+      "Environment-variable values",
+      "Proxy and credential material"
+    ]
+  },
+  "extensions": {}
+}
