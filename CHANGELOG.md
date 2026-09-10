@@ -10,6 +10,11 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Added the capability-aware local validation evidence specification, schema,
+  constrained-workspace fixtures, and portable skill for maximizing trustworthy
+  local checks while keeping optional emulation and remote CI explicitly deferred
+  when unavailable; also reconciled the post-rollout diagnosis skill with the
+  repository continuity contract (#83).
 - Integrated repository continuity across every canonical first-party skill
   and agent through a reviewed disposition inventory, compact composition
   contracts, managed Codex/Copilot/Claude instruction projections, and

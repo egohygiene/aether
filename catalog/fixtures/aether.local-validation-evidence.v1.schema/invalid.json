@@ -1,0 +1,73 @@
+{
+  "schema_version": "aether.local-validation-evidence/v1",
+  "report_id": "local-validation-20260910-invalid-pass",
+  "generated_at": "2026-09-10T12:04:00Z",
+  "repository": {
+    "id": "example/repository",
+    "base_revision": "0123456789abcdef0123456789abcdef01234567",
+    "candidate_revision": null,
+    "worktree": "modified",
+    "change_fingerprint": null
+  },
+  "policy": {
+    "installation": "disallowed",
+    "remote_ci": "deferred",
+    "unsafe_direct_action_execution": "disallowed",
+    "commit_evidence": false
+  },
+  "execution": {
+    "profile": "best-effort",
+    "started_at": "2026-09-10T12:00:00Z",
+    "completed_at": "2026-09-10T12:04:00Z",
+    "environment": {
+      "kind": "hosted-workspace",
+      "operating_system": "linux",
+      "architecture": "x86_64",
+      "containerized": true,
+      "capabilities": []
+    }
+  },
+  "checks": [
+    {
+      "id": "unavailable-test",
+      "title": "Unavailable check misreported as passing",
+      "kind": "test",
+      "command": null,
+      "requirement": "required",
+      "applicability": "applicable",
+      "availability": "unavailable",
+      "selection": "not-selected",
+      "outcome": "passed",
+      "exit_code": 0,
+      "duration_ms": null,
+      "reason": "Required runtime is absent",
+      "evidence": []
+    }
+  ],
+  "remote_ci": {
+    "state": "deferred",
+    "reason": "Remote execution is deferred",
+    "workflow_refs": [],
+    "run_url": null,
+    "observed_at": null
+  },
+  "summary": {
+    "local_readiness": "ready",
+    "counts": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "blocked": 0,
+      "deferred": 0,
+      "skipped": 0,
+      "not_run": 0
+    },
+    "residual_risks": []
+  },
+  "privacy": {
+    "sensitivity": "public",
+    "redactions": [],
+    "excluded": []
+  },
+  "extensions": {}
+}

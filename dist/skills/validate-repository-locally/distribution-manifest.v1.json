@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/validate-repository-locally",
+  "artifact_version": "1.1.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/validate-repository-locally",
+  "generated_paths": [
+    "dist/skills/validate-repository-locally/SKILL.md",
+    "dist/skills/validate-repository-locally/evals/evals.json",
+    "dist/skills/validate-repository-locally/references/execution-adapters.md",
+    "dist/skills/validate-repository-locally/templates/LOCAL_VALIDATION_REPORT.template.md",
+    "dist/skills/validate-repository-locally/references/aether.local-validation-evidence.v1.schema.json",
+    "dist/skills/validate-repository-locally/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "aaa79f32f4fefba82c83ecb6c96c771d3997ddd70ee16cb4fbb65814bc9f9682"
+  }
+}

@@ -412,7 +412,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "68923d96542858b36c38e2a2166addb1ae2ddcfb22bfc29696fb4fd65afb29b8"
+        "value": "264bb7efd5021619afd62d650595c5ee180684f371b976fbefad5c24fc4a2b54"
       },
       "source_path": "library/organization/skills/quality/create-diagnosis-record/SKILL.md",
       "supersedes_ids": [],
@@ -1631,6 +1631,53 @@
         "skill"
       ],
       "title": "Test Engineering"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/local-validation-evidence"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Plans and executes best-effort local repository validation, adapts to observed runtime capabilities, and writes truthful evidence when remote CI is unavailable or deferred. Use when preparing a change or pull request with as much local confidence as the current environment permits; do not use for a single narrow test-design request.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/skills/validate-repository-locally/SKILL.md"
+      ],
+      "id": "skill/validate-repository-locally",
+      "implements_specification_id": "specification/local-validation-evidence",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "aaa79f32f4fefba82c83ecb6c96c771d3997ddd70ee16cb4fbb65814bc9f9682"
+      },
+      "source_path": "library/organization/skills/quality/validate-repository-locally/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "quality",
+        "skill"
+      ],
+      "title": "Validate Repository Locally"
     },
     {
       "artifact_version": "2.0.0",
@@ -2989,6 +3036,61 @@
         "traceability"
       ],
       "title": "Diagnosis Record Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/specfile"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This specification defines a portable, capability-aware contract for running",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/specs/local-validation-evidence.spec.md"
+      ],
+      "id": "specification/local-validation-evidence",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/maintain-repository-continuity",
+        "skill/test-engineering",
+        "skill/validate-repository-locally",
+        "specification/diagnosis-record"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "93030c557d264fd5ec6cf802bfdcd5ecc5965e62c1935cb1a82990af31745be5"
+      },
+      "source_path": "library/organization/specs/quality/local-validation-evidence.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "validation",
+        "evidence",
+        "capability-detection",
+        "local-first",
+        "developer-experience"
+      ],
+      "title": "Local Validation Evidence Specification"
     },
     {
       "artifact_version": "2.0.0",

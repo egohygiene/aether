@@ -1,0 +1,380 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/egohygiene/aether/catalog/schemas/aether.local-validation-evidence.v1.schema.json",
+  "title": "Aether Local Validation Evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "report_id",
+    "generated_at",
+    "repository",
+    "policy",
+    "execution",
+    "checks",
+    "remote_ci",
+    "summary",
+    "privacy",
+    "extensions"
+  ],
+  "properties": {
+    "schema_version": {"const": "aether.local-validation-evidence/v1"},
+    "report_id": {
+      "type": "string",
+      "pattern": "^local-validation-[0-9]{8}-[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "generated_at": {"type": "string", "format": "date-time"},
+    "repository": {"$ref": "#/$defs/repository"},
+    "policy": {"$ref": "#/$defs/policy"},
+    "execution": {"$ref": "#/$defs/execution"},
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/check"}
+    },
+    "remote_ci": {"$ref": "#/$defs/remoteCi"},
+    "summary": {"$ref": "#/$defs/summary"},
+    "privacy": {"$ref": "#/$defs/privacy"},
+    "extensions": {"type": "object", "additionalProperties": true}
+  },
+  "$defs": {
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "nullableString": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "base_revision",
+        "candidate_revision",
+        "worktree",
+        "change_fingerprint"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "base_revision": {"type": "string", "minLength": 1},
+        "candidate_revision": {"$ref": "#/$defs/nullableString"},
+        "worktree": {"enum": ["clean", "modified", "unknown"]},
+        "change_fingerprint": {
+          "type": ["string", "null"],
+          "pattern": "^(sha256:[0-9a-f]{64}|unknown)$"
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "installation",
+        "remote_ci",
+        "unsafe_direct_action_execution",
+        "commit_evidence"
+      ],
+      "properties": {
+        "installation": {
+          "enum": ["disallowed", "repository-locked", "allowed"]
+        },
+        "remote_ci": {
+          "enum": ["disallowed", "deferred", "allowed", "required"]
+        },
+        "unsafe_direct_action_execution": {
+          "enum": ["disallowed", "explicitly-authorized"]
+        },
+        "commit_evidence": {"type": "boolean"}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile", "started_at", "completed_at", "environment"],
+      "properties": {
+        "profile": {
+          "enum": ["focused", "best-effort", "exhaustive-local"]
+        },
+        "started_at": {"type": "string", "format": "date-time"},
+        "completed_at": {"type": "string", "format": "date-time"},
+        "environment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "operating_system",
+            "architecture",
+            "containerized",
+            "capabilities"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "operating_system": {"type": "string", "minLength": 1},
+            "architecture": {"type": "string", "minLength": 1},
+            "containerized": {"type": ["boolean", "null"]},
+            "capabilities": {
+              "type": "array",
+              "items": {"$ref": "#/$defs/capability"}
+            }
+          }
+        }
+      }
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "state", "version", "evidence", "limitations"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+        },
+        "state": {
+          "enum": ["available", "unavailable", "blocked", "unknown"]
+        },
+        "version": {"$ref": "#/$defs/nullableString"},
+        "evidence": {"type": "string", "minLength": 1},
+        "limitations": {"$ref": "#/$defs/stringList"}
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "kind",
+        "command",
+        "requirement",
+        "applicability",
+        "availability",
+        "selection",
+        "outcome",
+        "exit_code",
+        "duration_ms",
+        "reason",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+        },
+        "title": {"type": "string", "minLength": 1},
+        "kind": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "command": {"$ref": "#/$defs/nullableString"},
+        "requirement": {"enum": ["required", "recommended", "optional"]},
+        "applicability": {
+          "enum": ["applicable", "not-applicable", "unknown"]
+        },
+        "availability": {
+          "enum": ["available", "unavailable", "blocked", "unknown"]
+        },
+        "selection": {"enum": ["selected", "not-selected"]},
+        "outcome": {
+          "enum": ["not-run", "passed", "failed", "skipped", "blocked", "deferred"]
+        },
+        "exit_code": {"type": ["integer", "null"]},
+        "duration_ms": {"type": ["integer", "null"], "minimum": 0},
+        "reason": {"$ref": "#/$defs/nullableString"},
+        "evidence": {"$ref": "#/$defs/stringList"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"outcome": {"const": "passed"}},
+            "required": ["outcome"]
+          },
+          "then": {
+            "properties": {
+              "applicability": {"const": "applicable"},
+              "availability": {"const": "available"},
+              "selection": {"const": "selected"},
+              "exit_code": {"const": 0}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"outcome": {"const": "failed"}},
+            "required": ["outcome"]
+          },
+          "then": {
+            "properties": {
+              "applicability": {"const": "applicable"},
+              "availability": {"const": "available"},
+              "selection": {"const": "selected"},
+              "exit_code": {
+                "type": "integer",
+                "not": {"const": 0}
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"availability": {"const": "unavailable"}},
+            "required": ["availability"]
+          },
+          "then": {
+            "properties": {
+              "outcome": {
+                "enum": ["not-run", "skipped", "blocked", "deferred"]
+              },
+              "exit_code": {"const": null}
+            }
+          }
+        }
+      ]
+    },
+    "remoteCi": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "reason", "workflow_refs", "run_url", "observed_at"],
+      "properties": {
+        "state": {
+          "enum": ["not-requested", "deferred", "pending", "passed", "failed", "blocked", "unknown"]
+        },
+        "reason": {"$ref": "#/$defs/nullableString"},
+        "workflow_refs": {"$ref": "#/$defs/stringList"},
+        "run_url": {"type": ["string", "null"], "format": "uri"},
+        "observed_at": {"type": ["string", "null"], "format": "date-time"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"state": {"const": "passed"}},
+            "required": ["state"]
+          },
+          "then": {
+            "properties": {
+              "run_url": {"type": "string", "format": "uri"},
+              "observed_at": {"type": "string", "format": "date-time"}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"state": {"enum": ["deferred", "blocked"]}},
+            "required": ["state"]
+          },
+          "then": {
+            "properties": {"reason": {"type": "string", "minLength": 1}}
+          }
+        }
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["local_readiness", "counts", "residual_risks"],
+      "properties": {
+        "local_readiness": {
+          "enum": ["ready", "ready-with-limitations", "not-ready", "unknown"]
+        },
+        "counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "total",
+            "passed",
+            "failed",
+            "blocked",
+            "deferred",
+            "skipped",
+            "not_run"
+          ],
+          "properties": {
+            "total": {"type": "integer", "minimum": 0},
+            "passed": {"type": "integer", "minimum": 0},
+            "failed": {"type": "integer", "minimum": 0},
+            "blocked": {"type": "integer", "minimum": 0},
+            "deferred": {"type": "integer", "minimum": 0},
+            "skipped": {"type": "integer", "minimum": 0},
+            "not_run": {"type": "integer", "minimum": 0}
+          }
+        },
+        "residual_risks": {"$ref": "#/$defs/stringList"}
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sensitivity", "redactions", "excluded"],
+      "properties": {
+        "sensitivity": {"enum": ["public", "internal", "restricted"]},
+        "redactions": {"$ref": "#/$defs/stringList"},
+        "excluded": {"$ref": "#/$defs/stringList"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "summary": {
+            "properties": {"local_readiness": {"const": "ready"}},
+            "required": ["local_readiness"]
+          }
+        },
+        "required": ["summary"]
+      },
+      "then": {
+        "properties": {
+          "checks": {
+            "items": {
+              "if": {
+                "properties": {
+                  "requirement": {"const": "required"},
+                  "applicability": {"const": "applicable"}
+                },
+                "required": ["requirement", "applicability"]
+              },
+              "then": {
+                "properties": {
+                  "availability": {"const": "available"},
+                  "selection": {"const": "selected"},
+                  "outcome": {"const": "passed"},
+                  "exit_code": {"const": 0}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "checks": {
+            "contains": {
+              "properties": {
+                "requirement": {"const": "required"},
+                "applicability": {"const": "applicable"},
+                "outcome": {"const": "failed"}
+              },
+              "required": ["requirement", "applicability", "outcome"]
+            }
+          }
+        },
+        "required": ["checks"]
+      },
+      "then": {
+        "properties": {
+          "summary": {
+            "properties": {"local_readiness": {"const": "not-ready"}}
+          }
+        }
+      }
+    }
+  ]
+}
