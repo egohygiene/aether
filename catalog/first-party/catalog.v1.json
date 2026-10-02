@@ -3395,6 +3395,62 @@
         "validation"
       ],
       "title": "Specification File Standard"
+    },
+    {
+      "artifact_version": "0.1.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/specfile",
+        "specification/repository-continuity",
+        "specification/local-validation-evidence"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Run one small, resumable engineering checkpoint per worker session and preserve unfinished quality work explicitly.",
+      "domain": "methodology",
+      "generated_distribution_paths": [
+        "dist/specs/worker-strategy.spec.md"
+      ],
+      "id": "specification/worker-strategy",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/repository-cleanup",
+        "skill/test-engineering",
+        "specification/auditor"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "e44a537ab06825bac6f6802a094b6edd5353e1aa750045bc21456c48513062bb"
+      },
+      "source_path": "library/organization/specs/methodology/worker-strategy.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "workers",
+        "checkpoints",
+        "roadmap",
+        "handoff",
+        "local-validation"
+      ],
+      "title": "Bounded Worker Strategy"
     }
   ],
   "authority": {
