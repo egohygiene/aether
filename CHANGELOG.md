@@ -10,6 +10,9 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Added the draft bounded worker strategy and Flow suite bootstrap guide for
+  small implementation checkpoints, durable handoffs, explicit deferred quality
+  work, local validation, and finite audit/refactoring passes.
 - Added the capability-aware local validation evidence specification, schema,
   constrained-workspace fixtures, and portable skill for maximizing trustworthy
   local checks while keeping optional emulation and remote CI explicitly deferred

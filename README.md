@@ -50,7 +50,7 @@ Generated artifacts:
 ## 4) First-party catalog summary
 
 Current canonical inventory snapshot (recompute with the commands shown):
-- 31 specifications (`find library/organization/specs -name "*.spec.md"`)
+- 32 specifications (`find library/organization/specs -name "*.spec.md"`)
 - 36 skills (`find library/organization/skills -name "SKILL.md"`)
 - 9 canonical agent profiles (`find library/organization/agents -name "AGENT.md"`)
 - 1 canonical instruction module (`find library/organization/instructions -name "INSTRUCTION.md"`)
@@ -254,6 +254,10 @@ Policy and review workflow: `docs/external-source-review-guide.md`.
 See `SECURITY.md` and `docs/agent-and-hook-safety-guide.md`.
 
 ## 15) Contribution workflow
+
+For short implementation sessions with explicit deferred quality work, use the
+draft [bounded worker strategy](library/organization/specs/methodology/worker-strategy.spec.md)
+and its [Flow suite bootstrap guide](docs/worker-strategy-guide.md).
 
 1. Edit canonical source only (`library/organization/`, `catalog/` schemas/contracts).
 2. Run deterministic validation/build checks.
