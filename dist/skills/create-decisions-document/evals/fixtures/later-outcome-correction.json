@@ -1,0 +1,5 @@
+{
+  "synthetic": true,
+  "request": "A new benchmark contradicts expected performance but does not change the accepted design.",
+  "purpose": "Reviewed authoring contract case; not a recorded model or provider execution."
+}

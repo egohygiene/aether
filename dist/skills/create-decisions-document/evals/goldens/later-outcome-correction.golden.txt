@@ -1,0 +1,4 @@
+Operation: update
+Original rationale, status and approval preserved.
+Dated observed-outcome note links new evidence; no retroactive historical rewrite.
+ADR-Ref: egohygiene/example#ADR-004

@@ -23,58 +23,10 @@ supersedes: []
 
 # Decisions
 
-## Purpose
+Canonical index: `docs/decisions/README.md`. Render this consumer-relative path as
+an Architecture decisions link after verifying the target.
 
-## Decision Governance
-
-## Storage Mode
-
-- [ ] Inline log
-- [ ] Indexed ADR records
-
-## Status Definitions
-
-## Decision Index
-
-| ID | Title | Status | Accepted | Supersedes | Superseded By |
-| --- | --- | --- | --- | --- | --- |
-
-## Active Decisions
-
-### Decision ID — Replace With Title
-
-#### Metadata
-
-- Status:
-- Accepted:
-- Owners:
-- Scope:
-- Supersedes:
-- Superseded by:
-- Review triggers:
-
-#### Context
-
-#### Decision
-
-#### Rationale
-
-#### Evidence and Assumptions
-
-#### Alternatives Considered
-
-#### Trade-offs
-
-#### Expected Consequences
-
-#### Observed Outcomes
-
-#### Related Artifacts
-
-#### Validation
-
-## Deprecated and Superseded Decisions
-
-## Historical Decisions
-
-## Evidence Gaps and Open Questions
+This entrypoint preserves navigation. Detailed rationale lives in the linked
+repository-owned ADRs. Do not replace an existing inline log with this pointer
+until its records, identities, evidence and inbound links have been preserved in
+a reviewed migration; retain the mapping and rollback reference.

@@ -1,0 +1,5 @@
+{
+  "synthetic": true,
+  "request": "A consumer has the instruction block but cannot load the skill or pinned native validator.",
+  "purpose": "Reviewed authoring contract case; not a recorded model or provider execution."
+}

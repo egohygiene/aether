@@ -32,6 +32,10 @@ DECISION_IMPACT_PATH = (
     / "templates"
     / "decision-impact.AGENTS.md"
 )
+DECISION_POLICY_SELECTION = (
+    REPO_ROOT / "library/organization/skills/architecture/create-decisions-document"
+    / "references/policy-selection.json"
+)
 CONTINUITY_INSTRUCTION_PATH = (
     REPO_ROOT
     / "library"
@@ -155,6 +159,15 @@ def _load_decision_impact() -> tuple[dict[str, Any], str]:
             raise ValueError(
                 "decision-impact inherited contracts require contract, revision, source_url, and status"
             )
+    selection = json.loads(DECISION_POLICY_SELECTION.read_text(encoding="utf-8"))
+    policy = selection["policy"]
+    inherited_policy = [
+        item for item in metadata["inherits"] if item["contract"] == policy["contract"]
+    ]
+    if inherited_policy != [policy]:
+        raise ValueError("decision-impact policy differs from the ADR authoring selection")
+    if metadata.get("skill") != "create-decisions-document":
+        raise ValueError("decision-impact must route to the ADR authoring skill")
     return metadata, text
 
 

@@ -191,7 +191,7 @@ issues: []
 id: AET-Q07
 status: ready
 depends_on: [AET-Q01]
-issues: [49]
+issues: [49, 91]
 -->
 #### AET-Q07 — Add the decision-impact instruction hook
 
@@ -204,7 +204,7 @@ routine implementation and preserves human decision authority.
 
 **Exit criteria:**
 
-- [ ] The shared module pins, rather than copies, the proposed Hygiene ADR and Repository Intelligence contracts.
+- [ ] The shared module pins the accepted Hygiene ADR policy while retaining the independent proposed Repository Intelligence contract.
 - [ ] Create, update, supersede, reference, and `ADR not required` flows cover consequential and routine examples.
 - [ ] Provider projections and a generated repository `AGENTS.md` fixture contain exactly one managed hook.
 - [ ] Deterministic tests reject malformed or duplicate managed blocks.
@@ -212,7 +212,8 @@ routine implementation and preserves human decision authority.
 **Current evidence:**
 
 - Issue #49 defines the decision-impact scope and acceptance criteria.
-- The pinned Hygiene contracts remain proposed; this step must not claim their acceptance.
+- Follow-up #91 aligns authoring, templates and the managed hook with ratified ADR policy v1.1.0; Aether artifacts and the independent Intelligence contract retain their own draft/proposed lifecycle.
+- Existing hook delivery under #49 is complete. Ratified-policy authoring adoption and the Identity canary remain separate evidence gates.
 
 ### Roadmap-to-issue handoff
 

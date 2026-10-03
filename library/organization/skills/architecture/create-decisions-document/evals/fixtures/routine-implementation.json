@@ -1,0 +1,5 @@
+{
+  "synthetic": true,
+  "request": "Rename a private helper while preserving the accepted parser contract.",
+  "purpose": "Reviewed authoring contract case; not a recorded model or provider execution."
+}

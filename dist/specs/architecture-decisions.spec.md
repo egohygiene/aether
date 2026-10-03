@@ -3,12 +3,12 @@ schema: aether.specification/v1
 id: architecture-decisions
 title: Decisions Architecture Document Specification
 kind: specification
-version: 2.0.0
+version: 3.0.0
 status: draft
 owners:
   - egohygiene
 created: 2026-07-18
-updated: 2026-08-02
+updated: 2026-10-03
 domain: architecture
 tags:
   - architecture
@@ -39,533 +39,187 @@ supersedes: []
 
 ## Introduction
 
-This specification defines how `DECISIONS.md` shall be authored,
-maintained, and validated.
+This draft Aether specification defines an authoring workflow for repository-owned
+ADRs. It consumes accepted Hygiene policy v1.1.0 at
+`c589587395750cd1c79c6fa0bef010189c547249`; it does not redefine policy, schemas or
+human authority. The exact selection and approval evidence are in the portable
+[authoring package](../../../skills/architecture/create-decisions-document/references/policy-selection.json).
 
-`DECISIONS.md` preserves the significant architectural, engineering,
-product, and governance choices that explain why a repository, product,
-platform, or organization is the way it is.
-
-It records accepted decisions together with the context, evidence,
-rationale, alternatives, trade-offs, consequences, and historical
-lineage needed to understand them later.
-
-Where `PRINCIPLES.md` defines how decisions should be evaluated,
-`EPISTEMOLOGY.md` defines how supporting claims should be justified, and
-proposal artifacts describe choices under consideration,
-`DECISIONS.md` records which significant choices were actually accepted.
-
-The document is architectural memory, not a backlog or meeting archive.
+Version 3 changes the earlier accepted-only, inline-log output contract to proposed
+record authoring under Hygiene's canonical index and record layout. Existing logs
+are migration inputs and remain preserved until an authorized migration. Aether's
+specification and skill retain draft lifecycle; independent proposed contracts do
+not inherit the ADR policy's acceptance.
 
 ## 1. Purpose and Scope
 
-`DECISIONS.md` answers:
-
-> Why is the project the way it is, and which significant accepted
-> choices created the current state?
-
-This specification covers:
-
-- accepted architectural decisions
-- significant engineering decisions
-- significant product and governance decisions
-- decision context
-- rationale
-- evidence and assumptions
-- alternatives considered
-- trade-offs
-- consequences
-- status and lifecycle
-- supersession
-- review triggers
-- related architecture and implementation impact
-
-It does not cover:
-
-- brainstorming
-- unaccepted proposals
-- meeting minutes
-- GitHub issues
-- implementation task lists
-- sprint planning
-- routine low-impact choices
-- temporary experiments
-- release notes
-- undocumented reconstruction of historical reasoning
+Support historical reconstruction, new proposals, corrections/later outcomes,
+references to governing decisions, proposed supersession and justified no-ADR
+results. Record consequential choices and evidence needed to understand them.
+Brainstorming, meeting archives, issue backlogs, routine edits and automatic
+historical rationale generation are outside scope.
 
 ## 2. Conceptual Model
 
-A complete decision record connects:
-
-    Context
-        What situation required a decision?
-
-    Decision
-        What was accepted?
-
-    Rationale
-        Why was it accepted based on information available then?
-
-    Alternatives
-        What meaningful options were considered?
-
-    Trade-offs
-        What benefits and costs were consciously accepted?
-
-    Consequences
-        What becomes easier, harder, required, or prohibited?
-
-    Lineage
-        What does this decision supersede, and what later supersedes it?
-
-A decision record describes the reasoning available at the time of
-acceptance. Later knowledge may be appended as an outcome or review note,
-but must not rewrite history.
+A record links context, a proposed or human-disposed choice, rationale,
+alternatives, consequences, implementation/verification evidence and lineage.
+Disposition, implementation and verification are independent. A merge, release
+or passing test cannot supply rationale or human acceptance.
 
 ## 3. Decision Significance
 
-A choice should normally be recorded when one or more of the following is
-true:
-
-- it changes a major architectural boundary
-- it establishes or changes a durable dependency direction
-- it selects a significant platform, protocol, format, or operating model
-- it introduces a consequential trade-off
-- it affects multiple systems, products, or repositories
-- it creates a migration or compatibility obligation
-- it constrains future implementation choices
-- it changes governance, ownership, security, privacy, or AI authority
-- it is likely to be questioned again without preserved rationale
-- reversing it would be costly or disruptive
-
-Routine, local, and easily reversible choices should generally remain in
-implementation artifacts rather than the architectural decision log.
+Apply the pinned Hygiene policy's significance test before implementation and
+again before issue completion/PR handoff. Reuse an existing governing record
+when the actual diff implements its design. Routine work needs no duplicate ADR.
 
 ## 4. Responsibilities
 
-`DECISIONS.md` owns:
-
-- canonical decision index
-- significant accepted decisions
-- decision identifiers
-- decision status
-- decision context
-- accepted choice
-- rationale
-- alternatives
-- trade-offs
-- expected consequences
-- known outcomes
-- supersession lineage
-- review triggers
-- links to affected architecture and implementation work
+Aether owns the reusable authoring procedure, templates, evaluations and concise
+managed skill-routing guidance. Each repository owns its ADRs, index, evidence
+and approved local extensions. `docs/decisions/README.md` is the canonical index;
+`DECISIONS.md` is compatibility navigation after reviewed migration.
 
 ## 5. Non-Responsibilities
 
-`DECISIONS.md` does not own:
-
-- decision-making principles
-- epistemology
-- unaccepted proposals
-- implementation tasks
-- project management
-- meeting history
-- source-code commentary
-- complete architecture descriptions
-- product roadmaps
-- policy text
-- operational runbooks
-
-Decision records may reference these artifacts but shall not replace
-them.
+Hygiene owns policy and schemas; EgoLint validation semantics; Holon scaffolding
+and generated ownership; Relay execution/collection; Pace fleet adoption;
+Observatory normalized projections. This specification does not accept decisions,
+implement a validator, publish pages, overwrite consumer instructions or move any
+of those responsibilities into Aether.
 
 ## 6. Definitions
 
-### Decision
-
-A deliberate and accepted choice with meaningful architectural,
-engineering, product, or governance impact.
-
-### Decision Record
-
-The durable artifact preserving a decision and its reasoning.
-
-### Context
-
-The situation, constraints, evidence, and forces that made a choice
-necessary.
-
-### Rationale
-
-The reasoning connecting the available context to the accepted choice.
-
-### Alternative
-
-A meaningful option considered but not selected.
-
-### Trade-off
-
-A cost, limitation, or risk consciously accepted in exchange for a
-benefit.
-
-### Consequence
-
-An expected or observed effect of the decision.
-
-### Review Trigger
-
-A condition that should cause the decision to be reconsidered.
-
-### Superseded Decision
-
-A decision intentionally replaced by a later decision.
-
-### Decision Lineage
-
-The traceable relationship among original, amended, and superseding
-decisions.
+- **Record:** source-owned ADR with identity, evidence and lifecycle metadata.
+- **Disposition:** decision state under the owner contract; non-proposed states
+  require human authority. Agents author new records only as proposed.
+- **Implementation:** separately evidenced delivery, including unknown migration
+  history where permitted by policy.
+- **Reconstruction:** a later evidence inventory and draft, not recovered certainty.
+- **Correction/outcome:** a dated sourced addition that preserves original meaning.
 
 ## 7. Decision Status Model
 
-Decision records shall use an explicit status.
-
-Recommended statuses:
-
-- `accepted`: currently authoritative
-- `deprecated`: still present but discouraged pending replacement or
-  removal
-- `superseded`: replaced by another decision
-- `rejected`: preserved only when the rejected choice itself has durable
-  architectural importance
-- `withdrawn`: removed from consideration before acceptance
-- `historical`: no longer operational but retained for institutional
-  memory
-
-Proposals should normally use a separate proposal artifact rather than
-appearing as accepted decision records.
+Consume the policy's `proposed`, `accepted`, `rejected`, `deprecated` and
+`superseded` states and separate implementation vocabulary. Do not invent
+`historical`, `withdrawn` or `unresolved` decision statuses. Unresolved claims
+belong in the migration map or notes. Preserve existing human disposition;
+automated authors never assign non-proposed status. Missing approval permits a
+proposed draft but blocks promotion.
 
 ## 8. Requirements
 
-- **REQ-001**: Every significant accepted decision shall have a stable
-  identifier.
-- **REQ-002**: Every decision shall record its status and acceptance date.
-- **REQ-003**: Every decision shall state the accepted choice clearly.
-- **REQ-004**: Every decision shall preserve the context available at the
-  time.
-- **REQ-005**: Every decision shall include rationale.
-- **REQ-006**: Meaningful alternatives shall be recorded when known.
-- **REQ-007**: Trade-offs shall be documented honestly.
-- **REQ-008**: Expected consequences shall be documented.
-- **REQ-009**: Evidence, assumptions, and uncertainty shall remain
-  distinguishable.
-- **REQ-010**: Related principles, foundations, systems, architecture,
-  proposals, issues, and implementation artifacts shall be linked when
-  relevant.
-- **REQ-011**: Superseded decisions shall remain discoverable.
-- **REQ-012**: A superseded decision shall identify its replacement.
-- **REQ-013**: A superseding decision shall identify what it replaces.
-- **REQ-014**: Historical reasoning shall not be silently rewritten.
-- **REQ-015**: Corrections shall be distinguishable from later outcome
-  notes.
-- **REQ-016**: Decision ownership or responsible maintainers shall be
-  identifiable.
-- **REQ-017**: Review triggers shall be documented when the decision
-  depends on changeable assumptions.
-- **REQ-018**: Consequential security, privacy, safety, accessibility, or
-  AI-authority impact shall be made explicit.
-- **REQ-019**: The canonical record location shall be unambiguous.
-- **REQ-020**: The decision log shall remain understandable without
-  inspecting source code.
+- **REQ-001:** Inspect scoped instructions, pinned ecosystem context, local policy,
+  existing records and relevant organization decisions before writing.
+- **REQ-002:** Classify create/update/supersede/reference/ADR not required before
+  implementation and repeat against the final diff at handoff.
+- **REQ-003:** Use `egohygiene.architecture-decision/v1` and the exact selected policy;
+  new records have unused `ADR-NNN` IDs, proposed status and null approval.
+- **REQ-004:** Separate rationale, disposition, implementation and verification.
+- **REQ-005:** Reconstruct from reachable Git/tags, merged PRs, issues, releases,
+  architecture docs and existing records; group by consequential choice.
+- **REQ-006:** Preserve contemporaneous reasoning, source links, original IDs,
+  files, provenance/blame references and uncertainty.
+- **REQ-007:** Distinguish reconstruction date from any proven historical date;
+  never backdate a new preference or invent unsupported metadata fields.
+- **REQ-008:** Preserve legacy index/body/history through a previewed migration map;
+  collisions and uncertain canonical identities require human resolution.
+- **REQ-009:** Keep the seven owner-required sections and all required metadata;
+  only policy-supported extensions may add metadata.
+- **REQ-010:** New superseding proposals preserve the predecessor; effective status
+  and reciprocal lineage change only with human disposition under the policy.
+- **REQ-011:** Validate with supported pinned owner tools; preserve incomplete,
+  unavailable and differing validator results.
+- **REQ-012:** PR handoff cites a governing/new/updated ADR, or says `ADR not required`
+  with a concise reason; missing acceptance is never hidden by delivery evidence.
+- **REQ-013:** Generated guidance preserves consumer prose, role permissions and
+  other modules; adding instructions does not establish universal enforcement.
 
 ## 9. Constraints
 
-- **CON-001**: GitHub issues shall not replace decision records.
-- **CON-002**: Meeting notes shall not be copied into the canonical log.
-- **CON-003**: Speculation about undocumented motives shall not be
-  presented as historical fact.
-- **CON-004**: A current preference shall not be backdated as an original
-  rationale.
-- **CON-005**: Superseded records shall not be deleted merely because
-  they are no longer authoritative.
-- **CON-006**: Decision records shall not duplicate complete architecture
-  documents.
-- **CON-007**: Routine local choices shall not overwhelm the log.
-- **CON-008**: Alternatives shall not be fabricated for completeness.
-- **CON-009**: Outcome bias shall not rewrite the quality of the original
-  reasoning.
-- **CON-010**: A decision shall not be marked accepted when authority or
-  approval is unresolved.
-- **CON-011**: Sensitive information shall not be exposed merely to make
-  the record exhaustive.
-- **CON-012**: A linked ADR and its index entry shall not become
-  conflicting canonical copies.
+Do not invent rationale, alternatives, dates, approvals or source links. Do not
+renumber or delete historical records, overwrite an accepted choice through an
+edit, or treat generated views as canonical evidence. Private sources and links
+stay within authorized boundaries. Skill instructions never expand tool, merge,
+publication or human lifecycle authority.
 
 ## 10. Authoring Contract
 
-### Inputs
+Inputs: immutable source/evidence inventory, scoped instructions and role,
+policy reference, known record IDs/index, governing ADRs, intended change and
+available owner-validator versions.
 
-Use:
-
-- `PRINCIPLES.md`
-- `EPISTEMOLOGY.md`
-- `FOUNDATIONS.md`
-- `SYSTEM.md`
-- `ARCHITECTURE.md`
-- `METHODOLOGY.md`
-- accepted proposals
-- issue and pull-request history
-- implementation evidence
-- relevant discussions
-- migration records
-- security, privacy, accessibility, or AI-governance reviews
-
-Discussions and implementation history are evidence sources, not
-automatically canonical decision records.
-
-### Outputs
-
-Produce:
-
-- stable decision identifier
-- concise title
-- status
-- acceptance date
-- owner or responsible maintainers
-- scope
-- context
-- accepted decision
-- rationale
-- evidence and assumptions
-- alternatives considered
-- trade-offs
-- expected consequences
-- observed outcomes when available
-- review triggers
-- related artifacts
-- supersession lineage
-- validation result
-
-### Authoring Process
-
-1. Determine whether the choice is significant enough to record.
-2. gather contemporaneous evidence and source material.
-3. identify the accepted decision and authoritative approval.
-4. write context without importing later knowledge.
-5. record rationale, alternatives, and trade-offs.
-6. distinguish facts, assumptions, and uncertainty.
-7. document consequences and review triggers.
-8. link affected architecture and implementation artifacts.
-9. assign a stable identifier and status.
-10. validate lineage and canonical ownership.
-11. append later outcomes without rewriting the original record.
-
-### Update Conditions
-
-Update a decision record when:
-
-- its status changes
-- a correction is required
-- an observed outcome becomes known
-- a review trigger occurs
-- a superseding decision is accepted
-- affected-artifact links change
-
-Do not rewrite the original context and rationale to match later
-understanding.
+Outputs depend on the operation: a proposed ADR and index entry, a dated
+correction/outcome, a proposed replacement, a governing reference, a justified
+no-ADR result, or an unresolved migration/evidence report. Include the selected
+pins, validation results, source gaps and human-owned next action. A valid draft
+need not be accepted to complete authoring.
 
 ## 11. Storage and Organization
 
-Repositories may use one of two modes.
+New records use `docs/decisions/ADR-NNN-short-slug.md`; one canonical index row per
+record contains ID, title, status, date and relative link. Keep terminal records.
+The local `policy-reference.json` inherits by exact version/full Hygiene commit;
+Hygiene itself publishes policy rather than inheriting itself.
 
-### Inline Log Mode
-
-All complete records are stored directly in `DECISIONS.md`.
-
-This mode is suitable for smaller repositories with a limited number of
-significant decisions.
-
-### Indexed ADR Mode
-
-`DECISIONS.md` contains:
-
-- purpose and governance
-- decision index
-- status summary
-- navigation
-- lineage overview
-
-Detailed records are stored separately, for example:
-
-    docs/decisions/
-        0001-use-specification-first-development.md
-        0002-adopt-local-first-storage.md
-
-In this mode, each decision shall have one canonical detailed record.
-The index shall summarize and link rather than duplicate complete
-rationale.
+Preserve inline logs until reviewed extraction preserves records and inbound
+links; then `DECISIONS.md` points to the canonical index without duplicate
+rationale. Historical prefixes/widths require the policy's exception process.
 
 ## 12. AI Authoring Strategy
 
-AI systems shall:
-
-1. read current architecture and governance artifacts
-2. identify candidate significant decisions
-3. verify that a choice was actually accepted
-4. gather contemporaneous evidence
-5. avoid inventing rationale or alternatives
-6. distinguish historical context from later interpretation
-7. preserve trade-offs and uncertainty
-8. detect supersession and lineage
-9. identify missing links and review triggers
-10. report insufficient evidence rather than fabricating a record
-
-AI systems may summarize evidence, but shall not claim undocumented
-reasoning as fact.
+Use `create-decisions-document` v2.0.0. Start with evidence and an explicit mode,
+preview affected identity/lineage, then author only within the current role's
+permissions. Missing skill/validator/history produces explicit unavailable or
+evidence-gap results. Static instructions cannot guarantee every agent performs
+the checkpoint. Model/host execution evidence remains separate from deterministic
+evaluation of checked-in cases and templates.
 
 ## 13. Dependency Model
 
-Upstream:
+The accepted Hygiene policy is upstream authority. Existing architecture documents
+supply local context. Aether's skill/guidance consume the policy, owner validators
+check authored records, and downstream systems consume source-owned decisions.
+Holon and validator compatibility must be verified before materialization; do not
+silently replace generated policy references or promote unrelated proposed pins.
 
-- `PRINCIPLES.md`
-- `EPISTEMOLOGY.md`
-- `FOUNDATIONS.md`
-- `SYSTEM.md`
-- `ARCHITECTURE.md`
+## 14. Validation and Quality Criteria
 
-Related governance:
-
-- `AI_CONSTITUTION.md`
-- policies
-- contracts
-- approval mechanisms
-
-Downstream:
-
-- architecture reviews
-- implementation planning
-- roadmap changes
-- migrations
-- onboarding
-- AI engineering agents
-- repository synchronization and validation
-- organizational observability
-
-## 14. Validation
-
-Validate:
-
-- significance
-- stable identity
-- accepted authority
-- status and date
-- contemporaneous context
-- explicit rationale
-- evidence and assumptions
-- alternatives and trade-offs
-- consequences
-- related-artifact traceability
-- lineage integrity
-- historical accuracy
-- absence of invented reasoning
-- canonical record ownership
+Validate package metadata/links/evals, canonical/generated parity, managed-block
+preservation, template compatibility with pinned owner schemas and native
+consumer behavior when available. Validate IDs, indexes, lifecycle and lineage
+through owner tools. Report historical versus reconstruction dates, source gaps,
+missing authority, incompatible materializers and unavailable host evidence.
 
 ## 15. Acceptance Criteria
 
-- [ ] The decision is significant enough to preserve.
-- [ ] A stable identifier is present.
-- [ ] Status and acceptance date are present.
-- [ ] The accepted choice is explicit.
-- [ ] Context and rationale are understandable.
-- [ ] Evidence, assumptions, and uncertainty are distinguishable.
-- [ ] Alternatives are documented when known.
-- [ ] Trade-offs and consequences are explicit.
-- [ ] Relevant architecture and implementation artifacts are linked.
-- [ ] Security, privacy, accessibility, safety, and AI-authority impacts
-  are addressed when relevant.
-- [ ] Review triggers are present when useful.
-- [ ] Supersession lineage is complete.
-- [ ] Historical reasoning has not been rewritten.
-- [ ] No undocumented rationale has been invented.
-- [ ] The canonical record location is unambiguous.
-- [ ] Future contributors can understand why the decision was made.
+- [ ] Skill/spec/templates/hooks agree on canonical location and proposed authoring.
+- [ ] Exact policy and authority evidence are referenced; draft artifacts stay draft.
+- [ ] History, uncertainty, identity and lineage survive reconstruction/migration.
+- [ ] Cases cover supported history, missing rationale/authority, proposal,
+  supersession, routine implementation, correction and legacy migration.
+- [ ] Guidance runs at both checkpoints and preserves consumer instructions.
+- [ ] Handoffs cite an ADR or justified no-ADR; adoption/upgrade/rollback are explicit.
+- [ ] Repository checks and deterministic evals pass with limitations labeled.
 
-## 16. Examples and Edge Cases
+## 16. Examples
 
-### Valid Decision
-
-    Decision ID:
-    adr-0001
-
-    Title:
-    Adopt specification-first development
-
-    Status:
-    accepted
-
-    Context:
-    AI-assisted implementation required more stable and explicit
-    contracts than issue descriptions alone provided.
-
-    Decision:
-    Significant features begin with an approved specification before
-    implementation.
-
-    Rationale:
-    This improves traceability, enables deterministic validation, and
-    gives humans and AI a shared implementation contract.
-
-    Trade-off:
-    Additional up-front design effort is accepted in exchange for
-    reduced implementation ambiguity.
-
-### Inferred Rationale
-
-A repository uses a particular database, but no decision evidence exists.
-
-Do not create a confident decision record claiming why it was selected.
-Record the evidence gap or reconstruct the record explicitly as
-provisional historical research.
-
-### Superseded Decision
-
-Retain the original record, mark it `superseded`, and link both
-directions:
-
-    superseded_by:
-      - adr-0018
-
-The replacement record should contain:
-
-    supersedes:
-      - adr-0004
-
-### Routine Choice
-
-Renaming a private helper function does not normally require an
-architectural decision record.
+- A new persistent format choice produces a proposed ADR without invented approval.
+- A merged storage migration can prove implementation while its rationale and
+  human disposition remain unknown in a newly reconstructed proposed record.
+- A replacement proposal names its predecessor but preserves the accepted record
+  while human review is pending.
+- A local parser fix implementing the accepted input contract yields a reference
+  or `ADR not required`, with no duplicate record.
 
 ## 17. Rationale and Context
 
-Architecture is shaped as much by accepted trade-offs as by current
-structure.
-
-Without durable decision records, contributors repeatedly revisit old
-questions, lose historical constraints, and accidentally reverse choices
-whose rationale is no longer visible.
-
-`DECISIONS.md` preserves institutional memory while allowing decisions
-to evolve through explicit, traceable supersession.
+Using the approved owner contract resolves disagreement between the old
+accepted-only skill and the proposed-record hook. Canonical records preserve
+why choices were made; generated views and issue execution remain downstream.
 
 ## 18. Related Artifacts
 
-- `architecture-document`
-- `architecture-principles`
-- `architecture-epistemology`
-- `architecture-foundations`
-- `architecture-system`
-- `architecture-architecture`
-- `architecture-ai-constitution`
-- `architecture-methodology`
-- `architecture-roadmap`
-- `architecture-authoring`
-- `create-decisions-document`
+- `architecture-document`, `architecture-principles`, `architecture-epistemology`
+- `architecture-foundations`, `architecture-system`, `architecture-architecture`
+- `architecture-ai-constitution`, `architecture-methodology`, `architecture-roadmap`
+- `architecture-authoring`, `create-decisions-document`

@@ -1,0 +1,35 @@
+{
+  "schema": "aether.adr-authoring-selection/v1",
+  "version": "1.0.0",
+  "policy": {
+    "contract": "egohygiene.architecture-decision/v1",
+    "policy_version": "1.1.0",
+    "revision": "c589587395750cd1c79c6fa0bef010189c547249",
+    "source_url": "https://github.com/egohygiene/hygiene/blob/c589587395750cd1c79c6fa0bef010189c547249/docs/decisions/POLICY.md",
+    "status": "accepted",
+    "approval_url": "https://github.com/egohygiene/hygiene/issues/15#issuecomment-5647398908"
+  },
+  "policy_reference_contract": "egohygiene.architecture-decision-policy-reference/v1",
+  "source_digests": {
+    "docs/decisions/POLICY.md": "e8b1f3c379a56d389d7689d187b2932ff3cfdf5e80acc829d244fb2527fcd361",
+    "docs/decisions/RATIFICATION.md": "0d3569c85955ae0412b4cd6778c1d6cdc899f4fc9b93e89795343ea82af043d1",
+    "docs/decisions/MIGRATION.md": "6e89f99ccd2855a827bcbcb2bc17b38958a19ec4e010d88ecdd46fcdf76a4ea2",
+    "schemas/architecture-decision.v1.schema.json": "491eae26e498ee311bb37d5eff23a51d682eb687196c80a3df10ac1ce98e04d4",
+    "schemas/architecture-decision-policy-reference.v1.schema.json": "fdf451cfa38ba666ec579aa75d2acbd52a56b95e73c7437565b79dfcfb689216",
+    "tools/decisions.py": "391ade35a468c50a9e8442e98691be6d2020c3b2ced72980ce232b4866cd5df6"
+  },
+  "materialization": {
+    "repository": "egohygiene/holon",
+    "revision": "660b941f99618806fcadd589bcdae61c519f96e4",
+    "blueprint_version": "1.0.0",
+    "emitted_policy_revision": "f598ed659a43dd759d4ede41c27f9e5daf991aa7",
+    "compatibility": "validate-first; emitted policy reference requires a reviewed owner upgrade before using the ratified validator"
+  },
+  "validation": {
+    "egolint_revision": "933472b6322d2060c487e5a8a6f0bc5197696af0",
+    "relay_revision": "33e1fc78727269bd3821dea53f6541f769cf4319",
+    "relay_profile": "1.0.0-alpha.2",
+    "mode": "advisory",
+    "hosted_acceptance": "deferred"
+  }
+}

@@ -1,0 +1,2 @@
+ADR not required: localized refactor implementing the existing parser contract.
+No new ADR or policy change.
