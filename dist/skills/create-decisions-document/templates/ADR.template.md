@@ -1,41 +1,63 @@
 ---
-schema: aether.architecture-decision/v1
-id: adr-0000
-title: Replace With Decision Title
-kind: architecture-decision
-status: accepted
-accepted: YYYY-MM-DD
-owners:
-  - replace-with-owner
-scope:
-  - replace-with-scope
-governed_by:
-  - architecture-decisions
+schema: egohygiene.architecture-decision/v1
+id: ADR-000
+title: Replace with a concise proposed choice
+status: proposed
+date: "YYYY-MM-DD"
+decision_scope: repository
+visibility: public
+owners: [egohygiene/REPOSITORY]
+issue: null
+pull_request: null
+related: []
 supersedes: []
 superseded_by: []
-related: []
+affected_repositories: [egohygiene/REPOSITORY]
+affected_contracts: []
+implementation_status: not_started
+evidence: []
+exceptions: []
+approval: null
+extensions: {}
 ---
 
-# adr-0000 — Replace With Decision Title
+# ADR-000: Replace with a concise proposed choice
 
 ## Context
 
+Describe constraints, source evidence and the consequential boundary. Distinguish
+contemporary rationale from assumptions and unknowns.
+
 ## Decision
 
-## Rationale
+State one proposed choice and its scope. A proposal grants no new authority.
 
-## Evidence and Assumptions
+## Alternatives considered and rejected
 
-## Alternatives Considered
+Include only alternatives evidenced as considered; state gaps instead of
+inventing completeness.
 
-## Trade-offs
+## Consequences and tradeoffs
 
-## Expected Consequences
+Record benefits, costs, risks and compatibility obligations.
 
-## Observed Outcomes
+## Implementation and evidence links
 
-## Review Triggers
+Link only existing evidence. Keep implementation and verification separate from
+decision disposition; retain unknown historical implementation as unknown.
 
-## Related Artifacts
+## Replacement or exit strategy
 
-## Validation
+Describe migration, compatibility and the cost of reversal.
+
+## Follow-up work
+
+Link known work or state that none is known.
+
+## Reconstruction and correction notes
+
+For a historical record, record the reconstruction date, proven historical
+choice date (or unknown), source revisions/links, and evidence gaps separately.
+If no historical date is proven, the front-matter date is the new record's date;
+label it as such here. Remove this section when it is inapplicable. Add dated
+corrections and observed outcomes without rewriting the original reasoning.

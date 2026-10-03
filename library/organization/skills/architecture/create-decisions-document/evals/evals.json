@@ -1,77 +1,272 @@
 {
   "schema": "aether.skill-evaluations/v2",
   "skill": "create-decisions-document",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "cases": [
     {
-      "id": "new-accepted-decision",
-      "description": "Document a newly accepted significant architecture decision with sufficient evidence.",
+      "id": "supported-historical-record",
+      "description": "Reconstruct a durable format choice with contemporary rationale and explicit human disposition evidence in an existing record.",
       "category": "positive",
       "trigger": "should-trigger",
       "expected": [
-        "Creates a stable decision identity",
-        "Records acceptance status and date",
-        "Preserves context, rationale, alternatives, and trade-offs",
-        "Links affected architecture and implementation artifacts"
+        "Operation: update",
+        "Existing ID, accepted status, approval evidence and rationale preserved.",
+        "Historical date: 2025-04-12",
+        "Reconstruction date: 2026-10-03",
+        "ADR-Ref: egohygiene/example#ADR-004",
+        "New historical records would remain proposed."
+      ],
+      "prohibited": [
+        "Invented rationale, authority, dates or claims of hosted execution"
+      ],
+      "fixture": "fixtures/supported-historical-record.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Existing ID"
+        },
+        {
+          "type": "contains",
+          "value": "Reconstruction date: 2026-10-03"
+        },
+        {
+          "type": "contains",
+          "value": "ADR-Ref:"
+        }
       ]
     },
     {
       "id": "historical-reconstruction-with-gaps",
-      "description": "Reconstruct an important historical decision from incomplete repository evidence.",
+      "description": "A merged PR proves a durable dependency change, but its rationale, historical choice date and authority are missing.",
       "category": "insufficient-evidence",
       "trigger": "should-trigger",
       "expected": [
-        "Does not invent undocumented rationale",
-        "Labels inference and evidence gaps",
-        "Uses provisional language where necessary",
-        "Requests or records follow-up evidence"
+        "Operation: create",
+        "status: proposed",
+        "approval: null",
+        "implementation_status: implemented; synthetic merged-source evidence supports only delivery.",
+        "Historical date: unknown",
+        "Record and reconstruction date: 2026-10-03",
+        "Rationale and authority: unknown; source gaps recorded.",
+        "ADR-Ref: egohygiene/example#ADR-012"
+      ],
+      "prohibited": [
+        "Invented rationale, authority, dates or claims of hosted execution"
+      ],
+      "fixture": "fixtures/historical-reconstruction-with-gaps.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "status: proposed"
+        },
+        {
+          "type": "contains",
+          "value": "Historical date: unknown"
+        },
+        {
+          "type": "contains",
+          "value": "Rationale and authority: unknown"
+        }
       ]
     },
     {
-      "id": "superseded-decision",
-      "description": "Record a replacement decision that supersedes an earlier accepted decision.",
+      "id": "new-proposal",
+      "description": "Propose a new persistent format without prior human approval.",
       "category": "positive",
       "trigger": "should-trigger",
       "expected": [
-        "Preserves the original record",
-        "Updates status correctly",
-        "Links supersession in both directions",
-        "Records migration and consequence impact"
+        "Operation: create",
+        "docs/decisions/ADR-012-format.md",
+        "docs/decisions/README.md",
+        "status: proposed",
+        "approval: null",
+        "implementation_status: not_started",
+        "ADR-Ref: egohygiene/example#ADR-012"
+      ],
+      "prohibited": [
+        "Invented rationale, authority, dates or claims of hosted execution"
+      ],
+      "fixture": "fixtures/new-proposal.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "status: proposed"
+        },
+        {
+          "type": "contains",
+          "value": "approval: null"
+        },
+        {
+          "type": "contains",
+          "value": "docs/decisions/README.md"
+        }
       ]
     },
     {
-      "id": "proposal-not-yet-accepted",
-      "description": "Input describes a significant proposal without confirmed approval.",
-      "category": "insufficient-evidence",
-      "trigger": "should-trigger",
-      "expected": [
-        "Does not mark the proposal accepted",
-        "Keeps proposal and decision concerns separate",
-        "Identifies missing authority",
-        "Reports blocked decision-record completion"
-      ]
-    },
-    {
-      "id": "routine-implementation-choice",
-      "description": "Input describes a local, reversible, low-impact coding choice.",
-      "category": "negative",
-      "trigger": "should-not-trigger",
-      "expected": [
-        "Rejects architectural decision-log promotion",
-        "Explains the significance boundary",
-        "Routes the choice to an implementation artifact when appropriate"
-      ]
-    },
-    {
-      "id": "later-outcome-conflicts-with-rationale",
-      "description": "A decision produced worse outcomes than expected.",
+      "id": "proposed-supersession",
+      "description": "Propose replacing accepted ADR-004 while human disposition is pending.",
       "category": "boundary",
       "trigger": "should-trigger",
       "expected": [
-        "Preserves the original rationale",
-        "Records the later outcome separately",
-        "Identifies review triggers",
-        "Does not rewrite history using outcome bias"
+        "Operation: supersede",
+        "Replacement ADR-013: proposed; supersedes: [ADR-004]",
+        "ADR-004 unchanged; no effective superseded_by backlink.",
+        "Selected EgoLint validates pending lineage; older Hygiene helper discrepancy remains explicit.",
+        "ADR-Ref: egohygiene/example#ADR-013"
+      ],
+      "prohibited": [
+        "Invented rationale, authority, dates or claims of hosted execution"
+      ],
+      "fixture": "fixtures/proposed-supersession.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "ADR-004 unchanged"
+        },
+        {
+          "type": "contains",
+          "value": "proposed"
+        },
+        {
+          "type": "contains",
+          "value": "older Hygiene helper discrepancy"
+        }
+      ]
+    },
+    {
+      "id": "routine-implementation",
+      "description": "Rename a private helper while preserving the accepted parser contract.",
+      "category": "negative",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "ADR not required: localized refactor implementing the existing parser contract.",
+        "No new ADR or policy change."
+      ],
+      "prohibited": [
+        "Invented rationale, authority, dates or claims of hosted execution"
+      ],
+      "fixture": "fixtures/routine-implementation.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "ADR not required:"
+        },
+        {
+          "type": "contains",
+          "value": "No new ADR"
+        }
+      ]
+    },
+    {
+      "id": "legacy-index-migration",
+      "description": "An inline root log and detailed records share one ID; preview canonical index migration.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Operation: update",
+        "Migration map preserves inline body, detailed source, IDs, links and blame references.",
+        "Collision unresolved: freeze both records for human canonical selection.",
+        "Do not replace DECISIONS.md or create duplicate truth.",
+        "Target docs/decisions/README.md remains a preview until reviewed extraction."
+      ],
+      "prohibited": [
+        "Invented rationale, authority, dates or claims of hosted execution"
+      ],
+      "fixture": "fixtures/legacy-index-migration.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Collision unresolved"
+        },
+        {
+          "type": "contains",
+          "value": "freeze both records"
+        },
+        {
+          "type": "contains",
+          "value": "docs/decisions/README.md"
+        }
+      ]
+    },
+    {
+      "id": "later-outcome-correction",
+      "description": "A new benchmark contradicts expected performance but does not change the accepted design.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Operation: update",
+        "Original rationale, status and approval preserved.",
+        "Dated observed-outcome note links new evidence; no retroactive historical rewrite.",
+        "ADR-Ref: egohygiene/example#ADR-004"
+      ],
+      "prohibited": [
+        "Invented rationale, authority, dates or claims of hosted execution"
+      ],
+      "fixture": "fixtures/later-outcome-correction.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Original rationale"
+        },
+        {
+          "type": "contains",
+          "value": "Dated observed-outcome"
+        },
+        {
+          "type": "contains",
+          "value": "ADR-Ref:"
+        }
+      ]
+    },
+    {
+      "id": "existing-decision-reference",
+      "description": "Implement the already accepted source-boundary decision without changing its architecture.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Operation: reference",
+        "ADR-Ref: egohygiene/example#ADR-004",
+        "No duplicate ADR. Repeat classification before PR handoff."
+      ],
+      "prohibited": [
+        "Invented rationale, authority, dates or claims of hosted execution"
+      ],
+      "fixture": "fixtures/existing-decision-reference.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Operation: reference"
+        },
+        {
+          "type": "contains",
+          "value": "No duplicate ADR"
+        }
+      ]
+    },
+    {
+      "id": "missing-skill-and-validator",
+      "description": "A consumer has the instruction block but cannot load the skill or pinned native validator.",
+      "category": "failure",
+      "trigger": "should-trigger",
+      "expected": [
+        "Execution: unavailable",
+        "Authorized evidence inventory and proposed draft only.",
+        "No claim of completed skill execution, conformance, acceptance or publication.",
+        "Next: restore the pinned skill and owner validator before consequential completion."
+      ],
+      "prohibited": [
+        "Invented rationale, authority, dates or claims of hosted execution"
+      ],
+      "fixture": "fixtures/missing-skill-and-validator.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Execution: unavailable"
+        },
+        {
+          "type": "contains",
+          "value": "No claim of completed skill execution"
+        }
       ]
     }
   ]

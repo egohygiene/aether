@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/create-decisions-document",
-  "artifact_version": "1.1.0",
+  "artifact_version": "2.0.0",
   "compatibility": {
     "required_tools": []
   },
@@ -8,16 +8,39 @@
   "generated_paths": [
     "dist/skills/create-decisions-document/SKILL.md",
     "dist/skills/create-decisions-document/evals/evals.json",
+    "dist/skills/create-decisions-document/evals/fixtures/existing-decision-reference.json",
+    "dist/skills/create-decisions-document/evals/fixtures/historical-reconstruction-with-gaps.json",
+    "dist/skills/create-decisions-document/evals/fixtures/later-outcome-correction.json",
+    "dist/skills/create-decisions-document/evals/fixtures/legacy-index-migration.json",
+    "dist/skills/create-decisions-document/evals/fixtures/missing-skill-and-validator.json",
+    "dist/skills/create-decisions-document/evals/fixtures/new-proposal.json",
+    "dist/skills/create-decisions-document/evals/fixtures/proposed-supersession.json",
+    "dist/skills/create-decisions-document/evals/fixtures/routine-implementation.json",
+    "dist/skills/create-decisions-document/evals/fixtures/supported-historical-record.json",
+    "dist/skills/create-decisions-document/evals/goldens/existing-decision-reference.golden.txt",
+    "dist/skills/create-decisions-document/evals/goldens/historical-reconstruction-with-gaps.golden.txt",
+    "dist/skills/create-decisions-document/evals/goldens/later-outcome-correction.golden.txt",
+    "dist/skills/create-decisions-document/evals/goldens/legacy-index-migration.golden.txt",
+    "dist/skills/create-decisions-document/evals/goldens/missing-skill-and-validator.golden.txt",
+    "dist/skills/create-decisions-document/evals/goldens/new-proposal.golden.txt",
+    "dist/skills/create-decisions-document/evals/goldens/proposed-supersession.golden.txt",
+    "dist/skills/create-decisions-document/evals/goldens/routine-implementation.golden.txt",
+    "dist/skills/create-decisions-document/evals/goldens/supported-historical-record.golden.txt",
+    "dist/skills/create-decisions-document/references/adoption.md",
     "dist/skills/create-decisions-document/references/decision-record-guide.md",
+    "dist/skills/create-decisions-document/references/policy-selection.json",
     "dist/skills/create-decisions-document/references/validation-checklist.md",
     "dist/skills/create-decisions-document/templates/ADR.template.md",
     "dist/skills/create-decisions-document/templates/DECISIONS.template.md",
+    "dist/skills/create-decisions-document/templates/INDEX.template.md",
+    "dist/skills/create-decisions-document/templates/MIGRATION.template.md",
+    "dist/skills/create-decisions-document/templates/policy-reference.template.json",
     "dist/skills/create-decisions-document/distribution-manifest.v1.json"
   ],
   "generator": "library/organization/skills/build-distributions.py",
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "1a7ed59ffb67bd7873e3489fbfd8c3da3c14e6e3c9a745613b08092d8a5ebd36"
+    "value": "c3b62fddd020d973103536f4859433878c8bda59e50a8e899cf14da7e1990a5a"
   }
 }

@@ -1,0 +1,5 @@
+Operation: supersede
+Replacement ADR-013: proposed; supersedes: [ADR-004]
+ADR-004 unchanged; no effective superseded_by backlink.
+Selected EgoLint validates pending lineage; older Hygiene helper discrepancy remains explicit.
+ADR-Ref: egohygiene/example#ADR-013

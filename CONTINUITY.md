@@ -7,15 +7,15 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-03T02:00:47Z'
+  updated_at: '2026-10-03T17:45:57Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Bounded handoff for the issue-title authoring checkpoint (#98).
+  purpose: Bounded handoff for ratified-policy ADR authoring (#91).
   includes:
-  - 'Aether #98 candidate implementation, local checks, and dependency state'
+  - 'Aether #91 authoring candidate, native checks, and canary compatibility'
   excludes:
   - conversation transcripts
   - duplicated architecture, roadmap, and changelog content
@@ -27,91 +27,89 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - docs/issue-title-authoring-pilot.md
-  - library/organization/skills/authoring/github-issue-authoring/SKILL.md
-  - library/organization/skills/authoring/github-issue-authoring/references/issue-title-contract/selection.v1.json
+  - docs/adr-authoring-adoption.md
+  - library/organization/specs/architecture/governance/decisions.spec.md
+  - library/organization/skills/architecture/create-decisions-document/SKILL.md
+  - library/organization/skills/architecture/create-decisions-document/references/policy-selection.json
 work:
-  objective: Make the existing issue authoring skill discover and consume the pinned title contract.
+  objective: Align the existing ADR skill and decision-impact guidance with ratified Hygiene policy.
   success_conditions:
-  - One immutable selection shared by skill and managed projections
-  - Real Egolint synthetic title evidence with preserved subject and IDs
-  - Explicit unavailable evidence and unchanged read-only agent permissions
+  - Consistent proposed authoring, historical evidence, lineage, and two decision-impact checkpoints
+  - Exact policy authority with draft Aether artifacts and independent proposed contracts preserved
+  - Passing native owner validation and explicit canary compatibility limits
   active_issue:
     provider: github
-    id: egohygiene/aether#98
-    url: https://github.com/egohygiene/aether/issues/98
+    id: egohygiene/aether#91
+    url: https://github.com/egohygiene/aether/issues/91
   next:
     kind: action
-    id: review-issue-title-authoring-candidate
-    description: Review this bounded candidate and resolve the dependency reviews before selecting accepted
-      pins; prepare the Relay pilot as a separate checkpoint.
+    id: review-adr-authoring-candidate
+    description: 'Review the #91 candidate; resolve the documented Holon policy-reference upgrade before
+      canary materialization.'
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/98
-    - https://github.com/egohygiene/.github/issues/24
+    - https://github.com/egohygiene/aether/issues/91
+    - https://github.com/egohygiene/identity/issues/69
     depends_on: []
 state:
   base:
-    revision: 1072a0fafe145f919b3f83bbbc6daee2cb946030
+    revision: 087bceccd936922371155e69dc92ff802aa8a029
     ref: refs/heads/main
-    verified_at: '2026-10-03T02:00:47Z'
+    verified_at: '2026-10-03T17:45:57Z'
   candidate:
-    branch: codex/issue-title-authoring-98
+    branch: codex/adr-authoring-91
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: partial
-    observed_at: '2026-10-03T02:00:47Z'
-    default_branch_revision: 1072a0fafe145f919b3f83bbbc6daee2cb946030
+    observed_at: '2026-10-03T17:45:57Z'
+    default_branch_revision: 087bceccd936922371155e69dc92ff802aa8a029
     issue_state: open
     pull_request_state: not-applicable
-    notes: 'Main and issue #98 were checked through GitHub. Could not verify provider label availability
-      or remote CI. Candidate PR has not yet been created; find its live head through issue #98. Dependency
-      PRs were observed open/unmerged during this session.'
+    notes: 'Main and issue #91 were checked through GitHub; no open Aether PRs were observed before publication.
+      Candidate PR and its CI do not yet exist in this snapshot; discover them through #91. Host-specific
+      adoption remains unverified.'
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-10-03T02:00:47Z'
+  reviewed_at: '2026-10-03T17:45:57Z'
   reviewed_by: Codex
   evidence:
-  - command: python3 -m unittest discover -s tests -p test_issue_title_authoring.py -v
-    outcome: passed
-    observed_at: '2026-10-03T02:00:47Z'
-    notes: 11 tests passed with AETHER_EGOLINT_BINARY set to the declared consumer build; includes 18
-      upstream cases and two reviewed migrations in the final full run.
   - command: python3 aether test
-    outcome: limited
-    observed_at: '2026-10-03T02:00:47Z'
-    notes: 'Final run: 188 tests, 187 passed, one error. Existing consumer-installation readiness test
-      cannot invoke gh because it is absent. No title integration tests skipped; AETHER_EGOLINT_BINARY
-      was set.'
+    outcome: passed
+    observed_at: '2026-10-03T17:45:57Z'
+    notes: 199 tests passed, zero skips. ADR owner/runtime variables and AETHER_EGOLINT_BINARY were configured;
+      all 11 ADR tests and existing native title tests ran.
+  - command: python3 aether eval run --mode deterministic --format text
+    outcome: passed
+    observed_at: '2026-10-03T17:45:57Z'
+    notes: 205 cases passed across 36 skills, including nine ADR cases. Checks authored examples; does
+      not execute a model.
   - command: python3 aether validate --format text
     outcome: passed
-    observed_at: '2026-10-03T02:00:47Z'
-    notes: No errors; existing preserved staging-hash provenance warning remains.
-  - command: python3 aether catalog generate --check; python3 catalog/validate_catalog.py
+    observed_at: '2026-10-03T17:45:57Z'
+    notes: No errors. Existing preserved staging-hash provenance warning remains. Shell and strict staging
+      checks also passed.
+  - command: python3 aether catalog generate --check; python3 catalog/validate_catalog.py; python3 catalog/provenance_model.py
+      check --scope all
     outcome: passed
-    observed_at: '2026-10-03T02:00:47Z'
-    notes: Catalog is current; schema, fixtures, coverage, relationships, and digest checks passed.
+    observed_at: '2026-10-03T17:45:57Z'
+    notes: Catalog, schemas, fixtures, coverage, relationships and provenance checks passed.
   - command: python3 aether distribution build --output-directory dist --check
     outcome: passed
-    observed_at: '2026-10-03T02:00:47Z'
-    notes: Generated skill/spec/provider outputs are current. Python bytecode caches no longer affect
-      generated packages.
-  - command: Fresh-context synthetic GitHub Issue Creator exercise
+    observed_at: '2026-10-03T17:45:57Z'
+    notes: Generated skill, spec and provider artifacts are current.
+  - command: Two clean distribution builds; gh skill publish dist --dry-run
     outcome: passed
-    observed_at: '2026-10-03T02:00:47Z'
-    notes: Discovered the portable skill through local AGENTS.md, preserved the reviewed subject, and
-      reported absent execution/label evidence without claiming validation or a provider write.
-  - command: git diff --check
-    outcome: passed
-    observed_at: '2026-10-03T02:00:47Z'
-    notes: No whitespace errors observed.
+    observed_at: '2026-10-03T17:45:57Z'
+    notes: Distribution byte equality and publish-payload validation passed; no publication occurred.
   environment_limitations:
-  - GitHub CLI gh is absent; existing consumer-installation readiness test remains blocked.
-  - Python jsonschema 4.25.1 was supplied through a temporary PYTHONPATH.
-  - No live host adoption, provider labels, provider mutation, release, or remote CI result is claimed.
+  - Relay native execution requires its separately pinned Python environment; Aether dependencies alone
+    are insufficient.
+  - No host-specific skill loading, hosted architecture acceptance, publication or fleet adoption evidence
+    is claimed.
+  - No released continuity conformer was run; structural schema and semantic review are recorded separately.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -130,85 +128,82 @@ privacy:
 
 ## Purpose and precedence
 
-Resume the bounded #98 change using the front-matter precedence. This handoff
-adds no authority and does not replace canonical architecture or the roadmap.
-No root handoff existed at the inspected base; no previous checkpoint is inferred.
+Resume #91 using the front-matter precedence. This replaces the stale #98
+checkpoint after PR #99 merged; Git preserves that earlier handoff. The current
+change grants no new policy, lifecycle, merge or publication authority.
 
 ## Resume protocol
 
-1. Read local AGENTS.md, canonical sources above, branch status, and recent history.
-2. Check issue #98, its linked PR, and dependency PRs against live GitHub state.
-3. Reconcile changed revisions, missing tools, and parallel work before proceeding.
-4. Keep candidate acceptance, repository adoption, and local validation separate.
+1. Read scoped instructions, canonical sources above, branch status and history.
+2. Recheck issue #91, the resulting PR and exact main/head revisions on GitHub.
+3. Reconcile parallel changes and owner compatibility before applying anything.
+4. Keep authoring readiness, human disposition, validation and adoption separate.
 
 ## Current objective and success conditions
 
-Connect existing authoring guidance to one pinned issue-title contract. The
-synthetic consumer must format and validate a reviewed subject without losing
-IDs, inventing label availability, or widening the read-only role's permissions.
+Make historical reconstruction, proposal, correction, reference and proposed
+replacement consistent across the skill, specification, templates and managed
+guidance. Preserve human authority, source history and read-only role permissions.
 
 ## State snapshot
 
-Base and candidate branch are recorded above. Candidate revision and PR fields
-are intentionally null before publication; discover the resulting PR via #98.
-Dependency contract PR .github#45 and Egolint PR #79 were observed open/unmerged.
-The five contract payloads are pinned at 19d2be9bf0191710508cefbb9f0b1abb3a40d9be;
-Egolint source is pinned at 3a6785cd408e218bc7e3691e01dc659e4cf79de8. Both selections
-remain candidate. A dependency merge does not silently promote the embedded pin.
+The base and branch are recorded above; pre-publication candidate SHA and PR are
+intentionally null. Hygiene policy v1.1.0 is already ratified at the selected
+commit. Relay PR #121 is merged at 33e1fc78727269bd3821dea53f6541f769cf4319;
+this candidate selects its advisory architecture profile 1.0.0-alpha.2.
+The authoring skill/spec/module remain draft; Intelligence remains proposed.
 
 ## Completed and material changes
 
-- Extended the existing skill, checklist, template, evals, and issue-creator agent.
-- Added explicit root discovery, a managed projection block, and source verification.
-- Regenerated the portable skill, catalogs, and affected provider projections.
-- Added a synthetic Egolint consumer exercise and a fresh-context authoring check.
-- Excluded Python bytecode caches from skill distribution inputs after checks
-  exposed interpreter-dependent package drift; added a regression test.
-- Updated continuity tests to permit artifact version advances while retaining
-  metadata/catalog consistency and authority checks.
+- Aligned existing authoring sources and generated packages with Hygiene policy.
+- Added evidence-preserving history, migration, correction and lineage guidance.
+- Routed both decision-impact checkpoints to the shared skill; retained permissions.
+- Added owner-backed template/native tests and nine deterministic example cases.
+- Documented pinned adoption, compatibility, upgrade, rollback and canary limits.
 
 ## Validation and review evidence
 
-Exact commands, results, and limitations are recorded in front matter. All 11
-issue-title tests passed with the real Egolint candidate, including upstream
-examples and reviewed migrations. The full suite has one environment error from
-missing gh; do not describe the entire suite as passing. Generated-output checks
-and catalog validation passed. The fresh-context check returned an unvalidated
-draft with correct provenance and explicitly unavailable provider/tool evidence.
+The full 199-test suite passed without skips, including all native integrations.
+All 205 deterministic cases passed. Required catalog/distribution/validation
+checks passed; generated outputs reproduce byte-for-byte. The earlier #98 gh
+environment error is resolved. Native tests preserve source bytes and prove that
+implementation without approval and the old materializer policy pin are rejected.
+See front matter and the adoption checkpoint for commands and evidence limits.
 
 ## Blockers, risks, unknowns, and deferred work
 
-- Blocker to complete full-suite evidence: install the required gh tooling and
-  rerun the existing consumer-installation readiness test in a suitable environment.
-- Candidate dependency acceptance remains external to this checkpoint.
-- Live provider labels, remote CI, and actual host loading are unknown.
-- Relay execution, label provisioning, fleet adoption/migration, and future-title
-  enforcement remain under .github#24; the broader Aether #67 bundle is incomplete.
+Holon's selected blueprint still emits the older policy pin. A reviewed owner
+upgrade is required before materializing a ratified-policy canary. Hygiene's old
+decision-set helper also disagrees on pending reciprocal lineage; the selected
+EgoLint/Relay consumer supports proposed replacements without changing the old
+accepted record. Do not fake approval or edit generated hashes to bypass either.
+Hosted architecture acceptance remains deferred under Relay #99. Aether's own
+backfill (#85), the default bundle (#67), releases and fleet adoption remain open.
 
 ## Next dependency-ready work
 
-Review the #98 candidate and its dependency PRs. Once accepted source revisions
-are verified, deliberately update pins/authority. Then scope the Relay pilot:
-preview/apply, current-state checks, receipts, rollback, and a no-op repeat before
-any fleet sweep. This checkpoint authorizes none of those provider operations.
+Review the #91 candidate and its CI. Identity #69 under Pace #5 remains the first
+validate-first canary, subject to its scheduling gate and owner compatibility.
+Use its existing corpus to preview a bounded adoption; do not begin bulk backfill
+or deployment from this handoff.
 
 ## Parallel changes and reconciliation
 
-No other open Aether PR was observed at initial inspection. Recheck before merge;
-other repositories' dependency PRs do not establish acceptance of this candidate.
+No open Aether PR was observed in the pre-publication check. Recheck at review
+time; a dependency merge does not silently upgrade this candidate's pinned inputs.
 
 ## Privacy and redaction
 
-Public repository handoff. No credentials, personal conversation text, private
-paths, or unrelated personal context is included. Synthetic examples only.
+Public repository handoff with synthetic test examples. No private paths,
+credentials, personal conversations or protected source content are included.
 
 ## Handoff update protocol
 
-Refresh after relevant validation and before the next PR update. Recheck live
-state instead of interpreting this pre-publication snapshot as current proof.
-Include changes to this handoff with the bounded repository change.
+Refresh after domain validation and before the next PR update. Reconcile live
+head, issue and CI state rather than treating this snapshot as current proof.
+Keep the handoff in the same bounded change; do not accumulate a transcript.
 
 ## Compaction and supersession
 
-Keep below 16,384 UTF-8 bytes and 240 lines. Replace stale state instead of
-accumulating a transcript; Git and issue/PR history own chronology.
+Remain below 16,384 UTF-8 bytes and 240 lines. Replace stale operational state;
+canonical documents, Git and issue/PR history retain durable facts and chronology.

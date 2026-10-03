@@ -108,17 +108,19 @@ class ProviderProjectionTests(unittest.TestCase):
         inherited = {contract["contract"]: contract for contract in metadata["inherits"]}
 
         self.assertEqual(metadata["id"], "decision-impact")
-        self.assertEqual(metadata["version"], "0.1.0")
+        self.assertEqual(metadata["version"], "0.2.0")
         self.assertEqual(metadata["status"], "draft")
         self.assertEqual(
             inherited["egohygiene.architecture-decision/v1"]["policy_version"],
-            "1.0.0",
+            "1.1.0",
         )
         self.assertEqual(
             inherited["egohygiene.repository-intelligence/v1"]["contract_version"],
             "1.0.0-alpha.1",
         )
-        self.assertTrue(all(contract["status"] == "proposed" for contract in inherited.values()))
+        self.assertEqual(inherited["egohygiene.architecture-decision/v1"]["status"], "accepted")
+        self.assertEqual(inherited["egohygiene.repository-intelligence/v1"]["status"], "proposed")
+        self.assertEqual(metadata["skill"], "create-decisions-document")
         self.assertTrue(all(len(contract["revision"]) == 40 for contract in inherited.values()))
         self.assertTrue(all("/blob/" in contract["source_url"] for contract in inherited.values()))
         self.assertIn("Automated agents never mark an ADR accepted", text)
@@ -215,15 +217,10 @@ class ProviderProjectionTests(unittest.TestCase):
 
             for flow in ("Create", "Update", "Supersede", "Reference", "ADR not required"):
                 self.assertIn(flow, fixture)
-            for area in (
-                "Dependencies",
-                "Public contracts",
-                "Security",
-                "Data models",
-                "Deployment",
-                "Reversible details",
-            ):
-                self.assertIn(area, fixture)
+            self.assertIn("Load `create-decisions-document`", fixture)
+            self.assertIn("Apply its significance test", fixture)
+            self.assertIn("Before implementation", fixture)
+            self.assertIn("Before issue completion or PR handoff", fixture)
             self.assertIn("Roadmap-Step: AET-Q07", fixture)
             self.assertIn("ADR-Ref: egohygiene/hygiene#ADR-002", fixture)
             self.assertIn("qualify cross-repository references", fixture)

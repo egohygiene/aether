@@ -1,62 +1,34 @@
-# DECISIONS.md Validation Checklist
+# ADR authoring validation checklist
 
-## Specification
+## Scope and source authority
 
-- [ ] `architecture-decisions` is identified.
-- [ ] The governing specification version is known.
-- [ ] Required architecture documents have been read.
+- [ ] Read scoped instructions, ecosystem context, local policy and governing ADRs.
+- [ ] Resolve `architecture-decisions` v3.0.0 and the exact policy selection.
+- [ ] Hygiene policy v1.1.0 is accepted at the selected revision; Aether remains draft.
+- [ ] Keep the independent Repository Intelligence contract proposed at its own pin.
+- [ ] Existing records/IDs and write authority were inspected before changing files.
 
-## Significance and Authority
+## Authoring and history
 
-- [ ] The decision is significant enough to preserve.
-- [ ] Acceptance authority is identifiable.
-- [ ] The record does not describe an unresolved proposal as accepted.
+- [ ] Choose create, update, supersede, reference or justified ADR not required.
+- [ ] New records use Hygiene metadata/anatomy, proposed status and null approval.
+- [ ] Preserve existing human disposition; agents assign no non-proposed status.
+- [ ] Separate rationale, disposition, implementation and verification evidence.
+- [ ] Separate proven historical dates from reconstruction/new-record dates.
+- [ ] Unknown rationale, authority, alternatives and history boundaries stay explicit.
+- [ ] Preserve original reasoning and append dated corrections/outcomes.
+- [ ] Proposed supersession preserves the old record pending human disposition.
+- [ ] Native lineage validation and any older-helper incompatibility are reported.
 
-## Identity and Lifecycle
+## Migration and delivery
 
-- [ ] A stable identifier is present.
-- [ ] Status is valid.
-- [ ] Acceptance date is present when applicable.
-- [ ] Owners or responsible maintainers are present.
-- [ ] Supersession links are complete in both directions.
-
-## Historical Accuracy
-
-- [ ] Context reflects evidence available at the time.
-- [ ] Later outcomes are separated from original rationale.
-- [ ] Undocumented motives are not presented as facts.
-- [ ] Corrections are distinguishable from historical rewriting.
-
-## Decision Quality
-
-- [ ] The accepted choice is explicit.
-- [ ] Rationale is explicit.
-- [ ] Alternatives are included when known.
-- [ ] Trade-offs are honest.
-- [ ] Consequences are described.
-- [ ] Review triggers are present when useful.
-
-## Epistemic Integrity
-
-- [ ] Evidence, assumption, and inference are distinguishable.
-- [ ] Uncertainty and evidence gaps remain visible.
-- [ ] Alternatives or rationale have not been fabricated.
-
-## Traceability
-
-- [ ] Related principles and architecture are linked.
-- [ ] Relevant proposals, issues, pull requests, and migrations are linked.
-- [ ] Security, privacy, accessibility, safety, and AI-authority impacts are
-  addressed when relevant.
-
-## Canonical Ownership
-
-- [ ] The storage mode is clear.
-- [ ] Each decision has one canonical detailed record.
-- [ ] The index and linked ADR do not conflict.
-
-## Completion
-
-- [ ] Acceptance criteria from `architecture-decisions` pass.
-- [ ] Metadata and Markdown pass repository checks.
-- [ ] A future contributor can understand why the decision was made.
+- [ ] Canonical `docs/decisions/README.md` has one linked row per canonical record.
+- [ ] Legacy bodies, IDs, aliases and provenance survive reviewed extraction.
+- [ ] Collisions stay unresolved until human selection; no automatic renumbering.
+- [ ] Policy-reference upgrades and generated ownership are explicitly reviewed.
+- [ ] Missing skill, source, validator or host capability is reported as unavailable.
+- [ ] Owner validation uses exact pins; local checks do not claim hosted acceptance.
+- [ ] Deterministic skill evals are distinguished from model/host behavior evidence.
+- [ ] Handoff repeats the decision-impact check and cites an ADR or justified no-ADR.
+- [ ] Refresh/verify continuity after domain validation; preserve consumer instructions.
+- [ ] Preview, upgrade, ongoing capture and rollback are documented for the canary.

@@ -114,8 +114,10 @@ Projection is performed by `build-projections.py`. For each source `AGENT.md`:
 
 The decision-impact module is the concise, always-on checkpoint for code-change
 tasks. It pins the versioned Hygiene ADR and Repository Intelligence contracts,
-preserves their proposal status, and defines create, update, supersede,
-reference, and `ADR not required` flows without redefining organization policy.
+preserves their independent authority (accepted ADR policy, proposed Intelligence),
+and routes create, update, supersede, reference, and `ADR not required` flows to
+`create-decisions-document` before implementation and at completion/handoff.
+The module stays draft; read-only roles and consumer-authored text are preserved.
 
 Provider builders must replace the marked block in place when it already
 exists and reject malformed or duplicate marker sets. This keeps generated

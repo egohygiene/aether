@@ -271,7 +271,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "1a7ed59ffb67bd7873e3489fbfd8c3da3c14e6e3c9a745613b08092d8a5ebd36"
+        "value": "c3b62fddd020d973103536f4859433878c8bda59e50a8e899cf14da7e1990a5a"
       },
       "source_path": "library/organization/skills/architecture/create-decisions-document/SKILL.md",
       "supersedes_ids": [],
@@ -1839,7 +1839,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "86b930db1a209248ebc832d2a8889d9b768348d43989b87f6f32f6db1966f0ed"
+        "value": "fa712aca0feb5d13e2b0bb61bf51eb6ce63553c2f15a4487619b7e94ba056315"
       },
       "source_path": "library/organization/specs/architecture/governance/decisions.spec.md",
       "supersedes_ids": [],

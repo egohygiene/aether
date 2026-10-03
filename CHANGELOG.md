@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Aligned ADR authoring and decision-impact guidance with ratified Hygiene policy
+  v1.1.0, including proposed records, evidence-preserving historical reconstruction,
+  legacy index migration, completion handoffs and explicit canary compatibility (#91).
+
 - Connected issue authoring to the pinned candidate title contract and Egolint
   through explicit local discovery, source verification, and managed instruction
   projections; preserved read-only agent permissions and added a synthetic

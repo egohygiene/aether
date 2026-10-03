@@ -1,0 +1,5 @@
+{
+  "synthetic": true,
+  "request": "A merged PR proves a durable dependency change, but its rationale, historical choice date and authority are missing.",
+  "purpose": "Reviewed authoring contract case; not a recorded model or provider execution."
+}

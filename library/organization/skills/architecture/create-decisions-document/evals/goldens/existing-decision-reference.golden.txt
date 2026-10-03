@@ -1,0 +1,3 @@
+Operation: reference
+ADR-Ref: egohygiene/example#ADR-004
+No duplicate ADR. Repeat classification before PR handoff.

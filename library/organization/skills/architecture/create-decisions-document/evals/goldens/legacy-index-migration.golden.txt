@@ -1,0 +1,5 @@
+Operation: update
+Migration map preserves inline body, detailed source, IDs, links and blame references.
+Collision unresolved: freeze both records for human canonical selection.
+Do not replace DECISIONS.md or create duplicate truth.
+Target docs/decisions/README.md remains a preview until reviewed extraction.

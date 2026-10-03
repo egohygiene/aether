@@ -1,0 +1,6 @@
+Operation: update
+Existing ID, accepted status, approval evidence and rationale preserved.
+Historical date: 2025-04-12
+Reconstruction date: 2026-10-03
+ADR-Ref: egohygiene/example#ADR-004
+New historical records would remain proposed.

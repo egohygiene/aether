@@ -7,7 +7,7 @@ organizational choices are preserved over time.
 
 | Document | Primary question | Canonical responsibility |
 | --- | --- | --- |
-| `DECISIONS.md` | Why is the project the way it is? | Significant accepted decisions, rationale, alternatives, consequences, and historical lineage |
+| `DECISIONS.md` → `docs/decisions/README.md` | Why is the project the way it is? | Proposed and human-disposed decisions, rationale, evidence, and lineage under the pinned Hygiene policy |
 
 ## Boundary Rules
 
