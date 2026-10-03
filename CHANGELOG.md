@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Connected issue authoring to the pinned candidate title contract and Egolint
+  through explicit local discovery, source verification, and managed instruction
+  projections; preserved read-only agent permissions and added a synthetic
+  consumer check (#98).
 - Added the draft bounded worker strategy and Flow suite bootstrap guide for
   small implementation checkpoints, durable handoffs, explicit deferred quality
   work, local validation, and finite audit/refactoring passes.

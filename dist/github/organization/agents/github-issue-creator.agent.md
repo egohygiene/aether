@@ -7,7 +7,7 @@ tools:
 - search
 - web
 ---
-<!-- aether-projection {"continuity_disposition":"reader","generator":"library/organization/projections/build-projections.py","instruction_modules":[{"id":"decision-impact","inherits":[{"contract":"egohygiene.architecture-decision/v1","policy_version":"1.0.0","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/decisions/POLICY.md","status":"proposed"},{"contract":"egohygiene.repository-intelligence/v1","contract_version":"1.0.0-alpha.1","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md","status":"proposed"}],"source":"library/organization/projections/templates/decision-impact.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"6359706b207cc15bffa7fdbdcf093d528142b0c7675bc24dfc27534f7b015280"},"status":"draft","version":"0.1.0"},{"continuity_path":"CONTINUITY.md","contract":"aether.repository-continuity/v1","id":"repository-continuity","skill":"maintain-repository-continuity","source":"library/organization/instructions/repository-continuity/INSTRUCTION.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"},"status":"draft","version":"1.0.0"}],"interface":"aether.projection-interface/v1","interface_version":"1.2.0","provider":"github-copilot","source":"library/organization/agents/github-issue-creator/AGENT.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"df647f3a6243773ec612a9c167156b177e40d730309887c9a452ada0322b530b"}} -->
+<!-- aether-projection {"continuity_disposition":"reader","generator":"library/organization/projections/build-projections.py","instruction_modules":[{"id":"decision-impact","inherits":[{"contract":"egohygiene.architecture-decision/v1","policy_version":"1.0.0","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/decisions/POLICY.md","status":"proposed"},{"contract":"egohygiene.repository-intelligence/v1","contract_version":"1.0.0-alpha.1","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md","status":"proposed"}],"source":"library/organization/projections/templates/decision-impact.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"6359706b207cc15bffa7fdbdcf093d528142b0c7675bc24dfc27534f7b015280"},"status":"draft","version":"0.1.0"},{"continuity_path":"CONTINUITY.md","contract":"aether.repository-continuity/v1","id":"repository-continuity","skill":"maintain-repository-continuity","source":"library/organization/instructions/repository-continuity/INSTRUCTION.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"},"status":"draft","version":"1.0.0"},{"id":"issue-authoring","selection":"library/organization/skills/authoring/github-issue-authoring/references/issue-title-contract/selection.v1.json","selection_sha256":"435d9310e49ee10cafa3f477c2080a88e666a247e9496dc40dbb17356d319582","skill":"github-issue-authoring","source":"library/organization/projections/templates/issue-authoring.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"9320e46a9947a5f98752398f9630c1539e6b16fa55ca4ca050aae7f0205b6a14"},"status":"draft","version":"0.1.0"}],"interface":"aether.projection-interface/v1","interface_version":"1.2.0","provider":"github-copilot","source":"library/organization/agents/github-issue-creator/AGENT.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"d58a76d32a46f0bb22f1b776e037681c9cbfbf69dfb7fa04d6a1110fe87f9e6f"}} -->
 
 ## Mission
 
@@ -36,6 +36,9 @@ takes ownership of that handoff.
 1. Extract the problem, motivation, desired state, constraints, and open questions.
 2. Inspect repository architecture, relevant specifications, source, tests, automation, workflows, existing issues, and issue templates when available.
 3. Choose one primary issue type and determine whether the request is one issue or a dependency-ordered roadmap.
+   When local instructions select the Ego Hygiene title contract, follow the
+   skill's canonical-title reference: resolve the immutable selection, preserve
+   the reviewed subject, and return the intended type label with provenance.
 4. Define included scope, exclusions, ownership, integration boundaries, and observable completion.
 5. Add evidence-backed implementation guidance without prescribing unsupported file paths or dependencies.
 6. Define validation and acceptance criteria that another engineer or coding agent can execute.
@@ -49,6 +52,9 @@ takes ownership of that handoff.
 - Prefer a reversible assumption for non-material ambiguity and record it.
 - Generate issues one at a time when the user requests staged authoring.
 - `edit` and `execute` are excluded; issue authoring is read, search, and web only.
+- Request or consume formatter/validator evidence from an authorized executor;
+  do not run Egolint in this read-only role. Keep missing tools, stale pins,
+  conflicting classification, and unavailable provider labels explicit.
 
 ## Completion
 
@@ -131,3 +137,26 @@ Static instructions do not install or guarantee an automatic pre-pull-request
 hook. If the host cannot load the skill, inspect local files, or verify live
 state, report that capability as unavailable rather than inventing success.
 <!-- END AETHER REPOSITORY-CONTINUITY -->
+
+<!-- BEGIN AETHER ISSUE-AUTHORING -->
+<!-- aether-instruction {"id":"issue-authoring","selection":"library/organization/skills/authoring/github-issue-authoring/references/issue-title-contract/selection.v1.json","selection_sha256":"435d9310e49ee10cafa3f477c2080a88e666a247e9496dc40dbb17356d319582","skill":"github-issue-authoring","status":"draft","version":"0.1.0"} -->
+## Issue authoring discovery
+
+When scoped repository instructions explicitly select the Ego Hygiene issue-title
+policy, read `.agents/skills/github-issue-authoring/SKILL.md` from the consumer
+root and its `references/canonical-issue-titles.md`. If installed elsewhere,
+resolve the declared local skill path. If absent, report discovery unavailable;
+this block alone does not install the skill or adopt the policy.
+
+Follow `references/issue-title-contract/selection.v1.json` inside that skill for
+the immutable contract, source digests, and candidate authority. Preserve the
+reviewed subject and IDs; obtain title and intended label from that selection.
+An already authorized executor may use Egolint and the skill's source verifier.
+Read-only roles prepare drafts or consume executor evidence without gaining
+execution permission. Missing sources/tools, stale pins, ambiguous type labels,
+and unavailable current provider labels remain explicit gaps.
+
+This is static discovery guidance, not a hook or fleet migration. Organization
+instructions do not automatically inherit into consumer repositories. Preserve
+consumer-owned prose, nested instruction precedence, and role permissions.
+<!-- END AETHER ISSUE-AUTHORING -->

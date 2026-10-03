@@ -307,6 +307,19 @@
           },
           "status": "draft",
           "version": "1.0.0"
+        },
+        {
+          "id": "issue-authoring",
+          "selection": "library/organization/skills/authoring/github-issue-authoring/references/issue-title-contract/selection.v1.json",
+          "selection_sha256": "435d9310e49ee10cafa3f477c2080a88e666a247e9496dc40dbb17356d319582",
+          "skill": "github-issue-authoring",
+          "source": "library/organization/projections/templates/issue-authoring.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "9320e46a9947a5f98752398f9630c1539e6b16fa55ca4ca050aae7f0205b6a14"
+          },
+          "status": "draft",
+          "version": "0.1.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
@@ -315,7 +328,7 @@
       "source": "library/organization/agents/github-issue-creator/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "df647f3a6243773ec612a9c167156b177e40d730309887c9a452ada0322b530b"
+        "value": "d58a76d32a46f0bb22f1b776e037681c9cbfbf69dfb7fa04d6a1110fe87f9e6f"
       }
     },
     "implementation-planner": {
@@ -511,7 +524,7 @@
     },
     {
       "path": "dist/claude/repository/.claude/agents/github-issue-creator.md",
-      "sha256": "18ef843ec7709811d48f383dc744e965c59362f1512d6c0434614d665384948f"
+      "sha256": "9720a1a463e1e584c9585e46de7b6bf49ead4402b94d863aade09d488cf38803"
     },
     {
       "path": "dist/claude/repository/.claude/agents/implementation-planner.md",
@@ -527,15 +540,15 @@
     },
     {
       "path": "dist/claude/repository/CLAUDE.md",
-      "sha256": "3d7d433db8d3c8cf6d790ff3bcb23e9640493242a20bdabf14d2ad330db079f2"
+      "sha256": "0dc2f56ef7eee41b855ad8c27284784d877373366c83e17447ba852612d0c585"
     },
     {
       "path": "dist/codex/repository/AGENTS.md",
-      "sha256": "370ad8291f7601459e12390b48942deffaf82b0acc3557029986035f3081c506"
+      "sha256": "32c52f70bc782b0c90c977dd4efea441b7fcaef47058c8455b5a41c91ecb4e79"
     },
     {
       "path": "dist/fixtures/repository-instructions/AGENTS.md",
-      "sha256": "370ad8291f7601459e12390b48942deffaf82b0acc3557029986035f3081c506"
+      "sha256": "32c52f70bc782b0c90c977dd4efea441b7fcaef47058c8455b5a41c91ecb4e79"
     },
     {
       "path": "dist/github/organization/agents/architect.agent.md",
@@ -559,7 +572,7 @@
     },
     {
       "path": "dist/github/organization/agents/github-issue-creator.agent.md",
-      "sha256": "ca19f9a713da2a3bb645c09c3e52768c16a3929500b9329d9c475fee64c1ab14"
+      "sha256": "e0f3860cc483632f456c0646378c6f1c88748d4a0c68de10a341c4f864dc0f6d"
     },
     {
       "path": "dist/github/organization/agents/implementation-planner.agent.md",
@@ -595,7 +608,7 @@
     },
     {
       "path": "dist/github/repository/.github/agents/github-issue-creator.agent.md",
-      "sha256": "d079b656d89f17b324ff1a858c533c4e54457498cc09f83a875dff3d81023b48"
+      "sha256": "3910d661da893b26183efcd678f637170c8bb10fecd39117ce3dcf03f7f3171c"
     },
     {
       "path": "dist/github/repository/.github/agents/implementation-planner.agent.md",
@@ -611,7 +624,7 @@
     },
     {
       "path": "dist/github/repository/.github/copilot-instructions.md",
-      "sha256": "ff5155ea4a05a4ba46a768103648be3d01d294745c755fa88148287221307ed1"
+      "sha256": "b9be2c95bceecced9ebde9383aa534cfdef706a00bcfb7c097d1e5dff8b47175"
     },
     {
       "path": "dist/mcp/github/.mcp.json",
@@ -639,7 +652,7 @@
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/github-issue-creator.md",
-      "sha256": "a49b93a706f97a59e835f018232cdebc8fb8085ccd809633a0d629aae6c89160"
+      "sha256": "d7e0fc0d52d62239fc2d5f3cdaec0051ba00ffafc7b7c134b10d3efec027fe8e"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/implementation-planner.md",
@@ -659,7 +672,7 @@
     },
     {
       "path": "dist/zencoder/manual-import/agents.json",
-      "sha256": "faf6e813b5e79aea7cd8d2c2fc639ff27fdada2f236af5ed320650fc33abcc0a"
+      "sha256": "0d48843c6501003958433ce23ad8193b281a144fa9131c8b869adce72396b2fd"
     }
   ],
   "provider_registry": "library/organization/projections/provider-registry.v1.json",

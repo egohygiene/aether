@@ -115,7 +115,11 @@ class ContinuityIntegrationTests(unittest.TestCase):
                 continue
 
             self.assertEqual(metadata["aether-version"], evals["version"], record["id"])
-            self.assertEqual(metadata["aether-version"], "1.1.0", record["id"])
+            self.assertRegex(metadata["aether-version"], r"^\d+\.\d+\.\d+$", record["id"])
+            self.assertGreaterEqual(
+                tuple(map(int, metadata["aether-version"].split("."))),
+                (1, 1, 0), record["id"],
+            )
 
             if record["id"] == "maintain-repository-continuity":
                 self.assertIn("## Perform the pre-PR handoff", text)
@@ -153,8 +157,11 @@ class ContinuityIntegrationTests(unittest.TestCase):
             self.assertIn("repository-continuity", metadata["aether-specs"])
             self.assertIn(f"- **Contribute:** {record['domain_evidence'][0]}", text)
             self.assertIn(f"- **Never claim:** {record['never_claim'][0]}", text)
-            self.assertEqual(metadata["aether-version"], "1.1.0")
-            self.assertEqual(catalog[record["id"]]["version"], "1.1.0")
+            self.assertEqual(catalog[record["id"]]["version"], metadata["aether-version"])
+            self.assertRegex(metadata["aether-version"], r"^\d+\.\d+\.\d+$")
+            self.assertGreaterEqual(
+                tuple(map(int, metadata["aether-version"].split("."))), (1, 1, 0)
+            )
             self.assertIn(
                 "maintain-repository-continuity",
                 catalog[record["id"]]["skills"],

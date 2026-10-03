@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "contract": {
+    "contract_id": "egohygiene.issue-title/v1",
+    "contract_version": "1.0.0",
+    "repository": "egohygiene/.github",
+    "revision": "19d2be9bf0191710508cefbb9f0b1abb3a40d9be",
+    "authority": "candidate",
+    "source_digests": {
+      ".github/issues/title-contract.v1.json": "205202bda3c3b069a105924499ba7213a6a99645658e500cc910dfa085eeb30e",
+      ".github/issues/schema/title-contract.v1.schema.json": "9df220330ad07758122567620f557aa11aad85522914fe3f4cdc7de6a5ca7295",
+      ".github/labels/catalog.v1.json": "7063a61608a66454310e5a7746b1514d1d11018da08427bfb49f4612326ff6ff",
+      "docs/issue-titles.md": "243b5fdfec3fff82623fdcb43fa490829af9380d5f0b1d568f9f32b277de0660",
+      "fixtures/issue-titles/cases.v1.json": "c21989c506e363c7b7845e0f63bdaf14f2e0de78f9d6c421d04e0f5a444edab2"
+    }
+  },
+  "adoption": "explicit-repository-selection-observe",
+  "consumer": {
+    "repository": "egohygiene/egolint",
+    "revision": "3a6785cd408e218bc7e3691e01dc659e4cf79de8",
+    "authority": "candidate"
+  },
+  "files": {
+    ".github/issues/title-contract.v1.json": "title-contract.v1.json",
+    ".github/issues/schema/title-contract.v1.schema.json": "title-contract.v1.schema.json",
+    ".github/labels/catalog.v1.json": "label-catalog.v1.json",
+    "docs/issue-titles.md": "semantics.txt",
+    "fixtures/issue-titles/cases.v1.json": "cases.v1.json"
+  }
+}

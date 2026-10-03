@@ -31,5 +31,16 @@ policy; Egolint owns conformance validation; Pace observes adoption before it
 proposes remediation. Keep provider credentials and delivery adapters in their
 consumer repository.
 
+## Issue authoring
+
+For Aether issue authoring, explicitly read the
+[`github-issue-authoring` skill](library/organization/skills/authoring/github-issue-authoring/SKILL.md)
+and its [canonical-title guide](library/organization/skills/authoring/github-issue-authoring/references/canonical-issue-titles.md).
+This repository selects that guide's pinned candidate contract in observe mode
+for this pilot. Local proposals are not proof of provider label availability or
+enforcement. The organization repository's instructions do not inherit here
+automatically; this local pointer makes discovery explicit. Preserve scoped
+instructions and existing role permissions.
+
 Run the relevant deterministic validation and regenerate `dist/` and the
 first-party catalog after changing canonical source.

@@ -1,7 +1,7 @@
 {
   "schema": "aether.skill-evaluations/v2",
   "skill": "github-issue-authoring",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "cases": [
     {
       "id": "spec-to-issue",
@@ -63,6 +63,61 @@
       ],
       "prohibited": [
         "Replacing an explicit implementation request with issue text only"
+      ]
+    },
+    {
+      "id": "local-title-discovery",
+      "description": "A fresh session receives local AGENTS guidance selecting the policy and a reviewed checkpoint subject.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Follows the local skill pointer to the immutable selection and selected source artifacts",
+        "Preserves the reviewed subject and checkpoint identifiers",
+        "Composes Egolint only through an already authorized executor",
+        "Reports proposed validation and provider label availability separately"
+      ]
+    },
+    {
+      "id": "unavailable-title-evidence",
+      "description": "The installed skill, source artifact, tool, execution permission, or complete provider label evidence is unavailable.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Returns a useful draft with the exact unavailable evidence stated",
+        "Does not invent a passing validator result or silently fall back to a moving source",
+        "Does not treat unknown provider labels as an empty complete set"
+      ]
+    },
+    {
+      "id": "conflicting-title-labels",
+      "description": "An existing issue has absent, multiple, or unsupported type labels.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Reports needs-classification, conflict, or unsupported-type using the selected semantics",
+        "Does not infer classification from the current emoji or silently change labels"
+      ]
+    },
+    {
+      "id": "stale-title-evidence",
+      "description": "The available Egolint report uses a different source pin or the provider title/labels changed after inspection.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Rejects mismatched report provenance",
+        "Refreshes provider evidence and revalidates before proposing a current write",
+        "Does not equate source acceptance, repository adoption, and validation"
+      ]
+    },
+    {
+      "id": "reviewed-title-migration",
+      "description": "An existing title contains an unfamiliar prefix and an accepted checkpoint identifier.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserves wording and identifiers until an explicit reviewed subject is available",
+        "Uses the same reviewed subject for repeat formatting without duplicating the prefix",
+        "Does not reconstruct parent/child relationships by parsing the title"
       ]
     }
   ]

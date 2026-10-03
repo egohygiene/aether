@@ -213,6 +213,17 @@ class TestBuildSkillDist(unittest.TestCase):
         self.assertIn("dist/skills/my-skill/references/guide.md", file_map)
         self.assertIn("dist/skills/my-skill/templates/output.template.md", file_map)
 
+    def test_python_execution_caches_do_not_change_distribution(self):
+        skill_dir = _make_skill(self._tmp, "my-skill")
+        scripts = skill_dir / "scripts"
+        scripts.mkdir()
+        (scripts / "check.py").write_text("print('check')\n")
+        before = bd._build_skill_dist("my-skill", skill_dir)
+        (scripts / "__pycache__").mkdir()
+        (scripts / "__pycache__/check.cpython-312.pyc").write_bytes(b"generated cache")
+        (scripts / "check.pyc").write_bytes(b"legacy cache")
+        self.assertEqual(before, bd._build_skill_dist("my-skill", skill_dir))
+
     def test_outputs_manifest(self):
         skill_dir = _make_skill(self._tmp, "my-skill")
         file_map = bd._build_skill_dist("my-skill", skill_dir)

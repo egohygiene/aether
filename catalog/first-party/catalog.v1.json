@@ -1162,7 +1162,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "b7d5e3f41bf49931a01fcfe74e287995fc81fd0f3f0fb0acd52a09a4b43afb43"
+        "value": "25b8b9d4340db138f142a8d1670a178749332bb93fd03ac903c0bdd442123a63"
       },
       "source_path": "library/organization/skills/authoring/github-issue-authoring/SKILL.md",
       "supersedes_ids": [],
