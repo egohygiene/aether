@@ -7,13 +7,13 @@ tools:
   - search
   - web
 metadata:
-  aether-version: "1.1.0"
+  aether-version: "1.2.0"
   aether-status: "draft"
   aether-scope: "organization"
   aether-domain: "authoring"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-09-08"
+  aether-updated: "2026-10-03"
   aether-skills:
     - github-issue-authoring
     - maintain-repository-continuity
@@ -49,6 +49,9 @@ takes ownership of that handoff.
 1. Extract the problem, motivation, desired state, constraints, and open questions.
 2. Inspect repository architecture, relevant specifications, source, tests, automation, workflows, existing issues, and issue templates when available.
 3. Choose one primary issue type and determine whether the request is one issue or a dependency-ordered roadmap.
+   When local instructions select the Ego Hygiene title contract, follow the
+   skill's canonical-title reference: resolve the immutable selection, preserve
+   the reviewed subject, and return the intended type label with provenance.
 4. Define included scope, exclusions, ownership, integration boundaries, and observable completion.
 5. Add evidence-backed implementation guidance without prescribing unsupported file paths or dependencies.
 6. Define validation and acceptance criteria that another engineer or coding agent can execute.
@@ -62,6 +65,9 @@ takes ownership of that handoff.
 - Prefer a reversible assumption for non-material ambiguity and record it.
 - Generate issues one at a time when the user requests staged authoring.
 - `edit` and `execute` are excluded; issue authoring is read, search, and web only.
+- Request or consume formatter/validator evidence from an authorized executor;
+  do not run Egolint in this read-only role. Keep missing tools, stale pins,
+  conflicting classification, and unavailable provider labels explicit.
 
 ## Completion
 

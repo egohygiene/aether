@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/github-issue-authoring",
-  "artifact_version": "1.1.0",
+  "artifact_version": "1.2.0",
   "compatibility": {
     "required_tools": []
   },
@@ -8,14 +8,22 @@
   "generated_paths": [
     "dist/skills/github-issue-authoring/SKILL.md",
     "dist/skills/github-issue-authoring/evals/evals.json",
+    "dist/skills/github-issue-authoring/references/canonical-issue-titles.md",
     "dist/skills/github-issue-authoring/references/copy-ready-checklist.md",
+    "dist/skills/github-issue-authoring/references/issue-title-contract/cases.v1.json",
+    "dist/skills/github-issue-authoring/references/issue-title-contract/label-catalog.v1.json",
+    "dist/skills/github-issue-authoring/references/issue-title-contract/selection.v1.json",
+    "dist/skills/github-issue-authoring/references/issue-title-contract/semantics.txt",
+    "dist/skills/github-issue-authoring/references/issue-title-contract/title-contract.v1.json",
+    "dist/skills/github-issue-authoring/references/issue-title-contract/title-contract.v1.schema.json",
     "dist/skills/github-issue-authoring/templates/GITHUB_ISSUE.template.md",
+    "dist/skills/github-issue-authoring/scripts/verify_title_contract.py",
     "dist/skills/github-issue-authoring/distribution-manifest.v1.json"
   ],
   "generator": "library/organization/skills/build-distributions.py",
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "b7d5e3f41bf49931a01fcfe74e287995fc81fd0f3f0fb0acd52a09a4b43afb43"
+    "value": "25b8b9d4340db138f142a8d1670a178749332bb93fd03ac903c0bdd442123a63"
   }
 }

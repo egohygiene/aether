@@ -3,13 +3,15 @@ name: github-issue-authoring
 description: Converts evidence, specifications, audits, bug reports, and rough notes into scoped, copy-ready GitHub issues or dependency-aware issue batches. Use when defining implementation work clearly without performing the implementation itself.
 license: MIT
 metadata:
-  aether-version: "1.1.0"
+  aether-version: "1.2.0"
   aether-status: "experimental"
   aether-scope: "organization"
   aether-domain: "authoring"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-09-08"
+  aether-updated: "2026-10-03"
+  aether-executable-resources:
+    - "scripts/verify_title_contract.py"
 ---
 
 # GitHub Issue Authoring
@@ -47,7 +49,10 @@ When repository evidence is incomplete, label assumptions explicitly.
 
 1. extract the durable problem, goal, boundaries, and observable outcome
 2. inspect repository evidence before prescribing paths, commands, or ownership
-3. choose whether the result should be one issue or an ordered batch of issues
+3. choose whether the result should be one issue or an ordered batch of issues;
+   if scoped instructions select the Ego Hygiene issue-title policy, follow
+   [canonical issue titles](references/canonical-issue-titles.md) before drafting
+   the title or proposing labels
 4. write copy-ready issue content using the focused resources:
 
     - `./references/copy-ready-checklist.md`
@@ -55,7 +60,9 @@ When repository evidence is incomplete, label assumptions explicitly.
 
 5. make acceptance criteria observable and keep non-goals explicit
 6. preserve the user's copy-and-paste formatting preference; when fenced blocks would break copying or rendering, use four-space-indented inner code examples instead
-7. validate title clarity, internal consistency, dependency order, and execution readiness
+7. validate title clarity, internal consistency, dependency order, and execution readiness;
+   report contract provenance, proposed versus actual validation, and provider
+   label availability separately when the title policy applies
 
 ## Constraints
 
@@ -64,6 +71,8 @@ When repository evidence is incomplete, label assumptions explicitly.
 - Do not mix multiple independently shippable outcomes into one issue without stating why.
 - Do not hide unresolved decisions or missing evidence.
 - Do not embed provider-specific tooling instructions into the core workflow.
+- Do not expand a read-only role's tools to run a formatter or validator. Use an
+  already authorized executor or mark local validation unavailable.
 
 ## Completion Criteria
 
@@ -72,6 +81,8 @@ When repository evidence is incomplete, label assumptions explicitly.
 - [ ] Validation steps are observable and repository-aware.
 - [ ] Copy-ready formatting is preserved.
 - [ ] Missing evidence and open questions remain visible.
+- [ ] Selected title policy is discovered explicitly; missing sources, tools,
+  classification, or live label evidence are not reported as conformance.
 
 ## Provenance
 

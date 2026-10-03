@@ -29,7 +29,8 @@ Rules
 1. Canonical source is never modified.
 2. Generated files are never hand-edited; the manifest header makes this explicit.
 3. The source digest covers only the canonical SKILL.md file (UTF-8, LF-normalised).
-4. Companion directories (evals/, references/, templates/, scripts/) are copied verbatim.
+4. Companion directories (evals/, references/, templates/, scripts/) are copied
+   verbatim, excluding generated Python bytecode caches.
 5. Frontmatter may declare narrowly scoped repository resources for a portable
    package in ``metadata.aether-distribution-resources``. Each resource must
    name a repository-relative source file and a package-relative destination.
@@ -197,13 +198,23 @@ def _collect_generated_paths(skill_name: str, source_dir: Path, frontmatter: dic
         src = source_dir / companion
         if src.is_dir():
             for f in sorted(src.rglob("*")):
-                if f.is_file():
+                if _is_companion_source(f, source_dir):
                     rel = f.relative_to(source_dir)
                     paths.append(f"dist/skills/{skill_name}/{rel.as_posix()}")
     for _source, destination in _distribution_resources(frontmatter):
         paths.append(f"dist/skills/{skill_name}/{destination.as_posix()}")
     paths.append(f"dist/skills/{skill_name}/distribution-manifest.v1.json")
     return paths
+
+
+def _is_companion_source(path: Path, source_dir: Path) -> bool:
+    """Exclude interpreter output so running a skill cannot change its package."""
+    relative = path.relative_to(source_dir)
+    return (
+        path.is_file()
+        and "__pycache__" not in relative.parts
+        and path.suffix not in {".pyc", ".pyo"}
+    )
 
 
 def _build_skill_dist(skill_name: str, source_dir: Path) -> dict[str, bytes]:
@@ -222,7 +233,7 @@ def _build_skill_dist(skill_name: str, source_dir: Path) -> dict[str, bytes]:
         src = source_dir / companion
         if src.is_dir():
             for f in sorted(src.rglob("*")):
-                if f.is_file():
+                if _is_companion_source(f, source_dir):
                     rel = f.relative_to(source_dir)
                     out[f"dist/skills/{skill_name}/{rel.as_posix()}"] = f.read_bytes()
 

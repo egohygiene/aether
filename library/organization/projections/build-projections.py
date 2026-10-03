@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import re
 import sys
@@ -56,6 +57,15 @@ DECISION_IMPACT_START = "<!-- BEGIN AETHER DECISION-IMPACT -->"
 DECISION_IMPACT_END = "<!-- END AETHER DECISION-IMPACT -->"
 CONTINUITY_START = "<!-- BEGIN AETHER REPOSITORY-CONTINUITY -->"
 CONTINUITY_END = "<!-- END AETHER REPOSITORY-CONTINUITY -->"
+ISSUE_AUTHORING_START = "<!-- BEGIN AETHER ISSUE-AUTHORING -->"
+ISSUE_AUTHORING_END = "<!-- END AETHER ISSUE-AUTHORING -->"
+ISSUE_AUTHORING_PATH = DECISION_IMPACT_PATH.with_name("issue-authoring.AGENTS.md")
+ISSUE_AUTHORING_SKILL = (
+    REPO_ROOT / "library/organization/skills/authoring/github-issue-authoring"
+)
+ISSUE_TITLE_SELECTION = (
+    ISSUE_AUTHORING_SKILL / "references/issue-title-contract/selection.v1.json"
+)
 _SKILL_LINK_RE = re.compile(r"(?:\.\./){2}skills/[^/]+/([^/]+)/SKILL\.md")
 _SPEC_LINK_RE = re.compile(r"(?:\.\./){2}specs/([^\s\)\"']+)")
 
@@ -230,6 +240,51 @@ def _load_continuity_dispositions() -> dict[str, Any]:
     return inventory
 
 
+def _load_issue_authoring() -> tuple[dict[str, Any], str]:
+    """Load the managed discovery module and verify its selected source bundle."""
+    text = _normalized_text(ISSUE_AUTHORING_PATH).strip()
+    if text.count(ISSUE_AUTHORING_START) != 1 or text.count(ISSUE_AUTHORING_END) != 1:
+        raise ValueError("issue-authoring instruction requires exactly one managed marker pair")
+    if text.index(ISSUE_AUTHORING_START) > text.index(ISSUE_AUTHORING_END):
+        raise ValueError("issue-authoring instruction markers are out of order")
+    match = INSTRUCTION_METADATA_RE.search(text)
+    if match is None:
+        raise ValueError("issue-authoring instruction metadata is missing")
+    metadata = json.loads(match.group(1))
+    expected = {
+        "id": "issue-authoring",
+        "version": "0.1.0",
+        "status": "draft",
+        "skill": "github-issue-authoring",
+        "selection": _repo_relative(ISSUE_TITLE_SELECTION),
+        "selection_sha256": _sha256_bytes(ISSUE_TITLE_SELECTION.read_bytes()),
+    }
+    if metadata != expected:
+        raise ValueError("issue-authoring instruction metadata does not match its selection")
+    spec = importlib.util.spec_from_file_location(
+        "aether_issue_title_sources",
+        ISSUE_AUTHORING_SKILL / "scripts/verify_title_contract.py",
+    )
+    assert spec is not None and spec.loader is not None
+    verifier = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(verifier)
+    verifier.load_selection(ISSUE_TITLE_SELECTION)
+    return metadata, text
+
+
+def _issue_authoring_provenance() -> dict[str, Any]:
+    """Bind the projected instructions to the same selection as the skill."""
+    metadata, _module = _load_issue_authoring()
+    return {
+        **metadata,
+        "source": _repo_relative(ISSUE_AUTHORING_PATH),
+        "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": _sha256_text(_normalized_text(ISSUE_AUTHORING_PATH)),
+        },
+    }
+
+
 def _decision_impact_provenance() -> dict[str, Any]:
     """Return provenance for the shared decision-impact module."""
     metadata, _module = _load_decision_impact()
@@ -342,9 +397,27 @@ def _remove_repository_continuity(body: str) -> str:
     )
 
 
-def _apply_instruction_modules(body: str) -> str:
-    """Apply every canonical repository instruction module exactly once."""
-    return _apply_repository_continuity(_apply_decision_impact(body))
+def _apply_issue_authoring(body: str) -> str:
+    """Reconcile only the managed issue-authoring discovery block."""
+    _metadata, module = _load_issue_authoring()
+    return _apply_managed_module(
+        body, module, start_marker=ISSUE_AUTHORING_START,
+        end_marker=ISSUE_AUTHORING_END, label="issue-authoring",
+    )
+
+
+def _remove_issue_authoring(body: str) -> str:
+    """Remove the managed discovery block without removing consumer guidance."""
+    return _remove_managed_module(
+        body, start_marker=ISSUE_AUTHORING_START,
+        end_marker=ISSUE_AUTHORING_END, label="issue-authoring",
+    )
+
+
+def _apply_instruction_modules(body: str, *, issue_authoring: bool = False) -> str:
+    """Apply shared modules and opt-in issue discovery exactly once."""
+    result = _apply_repository_continuity(_apply_decision_impact(body))
+    return _apply_issue_authoring(result) if issue_authoring else result
 
 
 def load_registry() -> dict[str, Any]:
@@ -425,7 +498,7 @@ def _projection_provenance(provider: str, source: Path, source_text: str) -> dic
         "instruction_modules": [
             _decision_impact_provenance(),
             _repository_continuity_provenance(),
-        ],
+        ] + ([_issue_authoring_provenance()] if agent_id == "github-issue-creator" else []),
     }
 
 
@@ -472,6 +545,7 @@ def _repository_guidance_projection(provider: str, title: str) -> bytes:
         "instruction_modules": [
             _decision_impact_provenance(),
             _repository_continuity_provenance(),
+            _issue_authoring_provenance(),
         ],
         "generator": GENERATOR_ID,
     }
@@ -480,7 +554,7 @@ def _repository_guidance_projection(provider: str, title: str) -> bytes:
         "consumer-owned prose, repository commands, boundaries, and nested instruction "
         f"precedence. {host_notes[provider]}\n"
     )
-    body = _apply_instruction_modules(body)
+    body = _apply_instruction_modules(body, issue_authoring=True)
     return (
         f"# {title}\n\n"
         f"<!-- aether-projection {_canonical_json(provenance)} -->\n\n"
@@ -607,7 +681,9 @@ def _build_files(registry: dict[str, Any]) -> dict[str, bytes]:
     for agent_id, source in find_agents():
         source_text = _normalized_text(source)
         frontmatter, body = _parse_agent(agent_id, source)
-        projected_body = _apply_instruction_modules(body)
+        projected_body = _apply_instruction_modules(
+            body, issue_authoring=(agent_id == "github-issue-creator")
+        )
         source_provenance = _projection_provenance("canonical", source, source_text)
         source_records[agent_id] = source_provenance
 
