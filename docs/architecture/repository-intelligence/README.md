@@ -1,49 +1,91 @@
-# Repository Intelligence architecture
+# Repository Intelligence: architecture and rollout
 
-A shareable target-architecture snapshot, captured **October 3, 2026**. The bottom
-strip records implementation progress on that date; destination cards describe
-the intended system and do not establish that every page is deployed.
+A shareable explanation of the target architecture and the capability-by-capability
+rollout, refreshed **October 5, 2026**. This is a program map, not evidence that
+every illustrated route is live.
 
-[Open or download the full-size PNG](architecture-2026-10-03.png).
+[Open or download the full-size infographic](architecture-and-rollout-2026-10-05.png).
 
-![Repository sources flow through Relay collection, EgoLint validation, Observatory snapshots, and Relay site composition into repository experiences and an organization overview. Hygiene, Aether, and Holon supply shared foundations; Pace coordinates adoption.](architecture-2026-10-03.png)
+![Repository sources pass through Relay collection and EgoLint validation into Observatory snapshots. Relay builds repository pages; egohygiene.io builds organization views. Hygiene, Aether and Holon provide shared foundations. Pace coordinates a pilot, reviewed consumer PRs, publication verification and continuing refresh. Decisions comes first, then Roadmap, then other capabilities.](architecture-and-rollout-2026-10-05.png)
 
-## Flow and ownership
+## What each repository does
 
-| Owner | Responsibility |
+These are ownership boundaries and shared build tools. The diagram does not
+require each box to be an always-running service.
+
+| Owner | Plain-language responsibility |
 | --- | --- |
-| Each repository | Canonical ADRs, roadmaps and source evidence; humans retain decision authority |
-| Hygiene | Policy, contracts and projection semantics |
-| Aether | Authoring skills and decision-impact guidance |
-| Holon | Scaffolds and migration that preserves repository-owned records |
-| Relay | Collection, orchestration, shared views and site composition |
-| EgoLint | Conformance validation |
-| Observatory | Deterministic repository and fleet read models |
-| Pace | Canaries, adoption tracking and fleet rollout |
+| Each repository | Owns canonical ADRs, roadmap and source evidence; humans approve decisions |
+| Hygiene | Defines rules, schemas, applicability, routes and state meanings |
+| Aether | Supplies authoring skills and review guidance, including continuous ADR capture |
+| EgoLint | Validates source conformance and reports evidence |
+| Relay | Collects evidence, invokes validation and normalization, and builds reusable repository pages |
+| Observatory | Produces consistent, read-only repository and fleet snapshots with provenance, freshness and explicit missing data |
+| Holon | Supplies templates and visual building blocks, preserving repository-owned records |
+| Pace | Coordinates pilots, reviewed consumer upgrades, adoption tracking, drift and rollback |
+| `.github` | Tracks the program and organization feature specifications |
+| `egohygiene.io` | Composes and hosts the organization portal using safe normalized evidence |
 
-Approved publication workflows deliver the generated artifacts to composed
-repository sites or central hosting, and to the organization overview. Insights
-feed reviewed issues and source updates. Status has its own delivery track.
-Source ownership, provenance and unknown coverage remain explicit throughout.
+Relay provides reusable execution; the consumer or declared host owns site
+composition, credentials and deployment. Delivery can use an existing site,
+central hosting, an artifact-only profile, or an intentionally disabled route.
+Applicability determines the correct choice. A missing page does not automatically
+mean another deployment is needed.
 
-## Implementation checkpoint
+The diagrams are derived views of canonical sources. Observatory does not rewrite
+ADRs, and Pace is the adoption coordinator rather than the renderer. Unknown,
+stale and partial coverage stays explicit; private evidence and topology stay
+out of public output.
 
-- [Relay PR #121](https://github.com/egohygiene/relay/pull/121) merged at
-  `33e1fc78727269bd3821dea53f6541f769cf4319`.
-- [Aether PR #100](https://github.com/egohygiene/aether/pull/100) merged at
-  `8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2`; #91 is closed. See the
-  [ADR authoring adoption guide](../../adr-authoring-adoption.md).
-- Next: [Observatory #25](https://github.com/egohygiene/observatory/issues/25)
-  distinguishes uncollected domains from observations with no records.
-- Then: [Relay #115](https://github.com/egohygiene/relay/issues/115) collects
-  existing canonical ADRs and integrates them with the Decisions build.
-- First planned ADR canary: [Identity #69](https://github.com/egohygiene/identity/issues/69)
-  under [Pace #5](https://github.com/egohygiene/pace/issues/5), subject to its shared
-  foundation and publication gates. Holon's selected scaffold needs a reviewed
-  policy-pin upgrade before canary materialization.
-- Fleet pages and the org portal follow; exhaustive historical ADR catch-up is
-  scheduled last in the reviewed execution sequence.
+## How a capability reaches the fleet
 
-The [organization Intelligence epic](https://github.com/egohygiene/.github/issues/30)
-and owning issues retain detailed scope, compatibility and publication gates.
-This illustration creates no new contract or policy authority.
+1. Finish and validate its shared source-to-page support.
+2. Prove one real consumer: populated sources, successful build, declared
+   publication, working URL and repeat refresh. Identity is the planned Decisions
+   pilot under [Identity #69](https://github.com/egohygiene/identity/issues/69).
+3. Adopt the shared capability across applicable repositories with bounded,
+   reviewed consumer PRs. Reuse the implementation and update each consumer's
+   sources, configuration and immutable tool pins.
+4. Verify each delivery profile and ongoing refresh; track adoption and drift in
+   Pace. Close an issue only when its own acceptance criteria are complete.
+5. Repeat for the next capability.
+
+The selected order is **Decisions → Roadmap → other capabilities**, with each lane
+subject to its prerequisites:
+
+- [Pace #5](https://github.com/egohygiene/pace/issues/5): ADR / Decisions adoption.
+- [Pace #31](https://github.com/egohygiene/pace/issues/31): populated Roadmap adoption
+  as capability 2, after ADR.
+- [Pace #15](https://github.com/egohygiene/pace/issues/15): Status adoption after its
+  Hygiene policy, Observatory read model and Relay presentation prerequisites.
+
+**A live Decisions page and completed historical ADR backfill are separate
+milestones.** Repository ADR issues also require their own history review,
+truthful decision states, index/lineage and continuous-capture acceptance.
+Publishing a page alone does not close them. Exhaustive history catch-up can
+remain a later pass while unfinished acceptance stays open and visible.
+
+## Current checkpoint and source notes
+
+Observed October 5: [Relay PR #135](https://github.com/egohygiene/relay/pull/135),
+which integrates ADR collection into the Decisions build, remains open.
+Identity #69 also remains open. Merging the shared builder alone will not deploy
+Identity's page: the consumer must adopt it, supply conforming sources, publish
+through its declared host and verify the result.
+
+The [organization epic, .github #30](https://github.com/egohygiene/.github/issues/30),
+is the program tracker. Its top priority update selects ADR/Decisions first;
+older sections still describe Roadmap first. Pace #31 explicitly records Roadmap
+as capability 2. Those older passages and historical inventory counts should not
+be treated as current execution or deployment evidence. Some Pace #5 dependency
+notes also predate the completed shared-foundation work; verify owning issues
+before acting on that checklist. This document does not edit those trackers.
+
+The diagram summarizes existing ownership and rollout intent; it creates no new
+contract or policy authority. Detailed acceptance remains in the owning issues.
+
+## Previous illustration
+
+[October 3 architecture snapshot](architecture-2026-10-03.png), preserved unchanged.
+Its implementation-progress strip is historical; use the current checkpoint and
+live issues above when resuming work.
