@@ -7,15 +7,17 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-03T17:45:57Z'
+  updated_at: '2026-10-05T08:46:11+00:00'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Bounded handoff for ratified-policy ADR authoring (#91).
+  purpose: Share the Repository Intelligence architecture and capability rollout through the existing
+    draft documentation PR.
   includes:
-  - 'Aether #91 authoring candidate, native checks, and canary compatibility'
+  - Current infographic and readable source notes
+  - Preserved historical illustration and bounded documentation handoff
   excludes:
   - conversation transcripts
   - duplicated architecture, roadmap, and changelog content
@@ -27,89 +29,81 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
+  - docs/architecture/repository-intelligence/README.md
   - docs/adr-authoring-adoption.md
-  - library/organization/specs/architecture/governance/decisions.spec.md
-  - library/organization/skills/architecture/create-decisions-document/SKILL.md
-  - library/organization/skills/architecture/create-decisions-document/references/policy-selection.json
 work:
-  objective: Align the existing ADR skill and decision-impact guidance with ratified Hygiene policy.
+  objective: 'Provide a readable and downloadable architecture-and-rollout refresher in draft PR #101.'
   success_conditions:
-  - Consistent proposed authoring, historical evidence, lineage, and two decision-impact checkpoints
-  - Exact policy authority with draft Aether artifacts and independent proposed contracts preserved
-  - Passing native owner validation and explicit canary compatibility limits
-  active_issue:
-    provider: github
-    id: egohygiene/aether#91
-    url: https://github.com/egohygiene/aether/issues/91
+  - New infographic with accurate source, build, hosting and adoption ownership
+  - GitHub image and readable README on the existing draft branch
+  - Preserved October 3 image and clearly dated program observations
+  active_issue: null
   next:
     kind: action
-    id: review-adr-authoring-candidate
-    description: 'Review the #91 candidate; resolve the documented Holon policy-reference upgrade before
-      canary materialization.'
+    id: review-architecture-and-rollout-infographic
+    description: 'Review the refreshed illustration and source notes in draft PR #101.'
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/91
-    - https://github.com/egohygiene/identity/issues/69
+    - https://github.com/egohygiene/aether/pull/101
     depends_on: []
 state:
   base:
-    revision: 087bceccd936922371155e69dc92ff802aa8a029
+    revision: 8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2
     ref: refs/heads/main
-    verified_at: '2026-10-03T17:45:57Z'
+    verified_at: '2026-10-05T08:46:11+00:00'
   candidate:
-    branch: codex/adr-authoring-91
+    branch: codex/repository-intelligence-infographic
     revision: null
-    pull_request: null
+    pull_request:
+      provider: github
+      id: egohygiene/aether#101
+      url: https://github.com/egohygiene/aether/pull/101
     handoff_state: ready-for-review
   live:
-    status: partial
-    observed_at: '2026-10-03T17:45:57Z'
-    default_branch_revision: 087bceccd936922371155e69dc92ff802aa8a029
-    issue_state: open
-    pull_request_state: not-applicable
-    notes: 'Main and issue #91 were checked through GitHub; no open Aether PRs were observed before publication.
-      Candidate PR and its CI do not yet exist in this snapshot; discover them through #91. Host-specific
-      adoption remains unverified.'
-  parallel_changes: []
+    status: verified
+    observed_at: '2026-10-05T08:46:11+00:00'
+    default_branch_revision: 8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2
+    issue_state: not-applicable
+    pull_request_state: draft
+    notes: 'GitHub main and the existing draft branch were verified. PR #101 was open and draft at c3cc6caa730bcf92903535ef26e1238e9cdb6061
+      before this refresh. Relay PR #135 and Identity #69 were open; no live consumer deployment was established.'
+  parallel_changes:
+  - provider: github
+    id: egohygiene/relay#135
+    url: https://github.com/egohygiene/relay/pull/135
 review:
   status: partial
-  reviewed_at: '2026-10-03T17:45:57Z'
+  reviewed_at: '2026-10-05T08:46:11+00:00'
   reviewed_by: Codex
   evidence:
-  - command: python3 aether test
+  - command: PNG signature, dimensions and every chunk CRC; historical PNG byte comparison against HEAD
     outcome: passed
-    observed_at: '2026-10-03T17:45:57Z'
-    notes: 199 tests passed, zero skips. ADR owner/runtime variables and AETHER_EGOLINT_BINARY were configured;
-      all 11 ADR tests and existing native title tests ran.
-  - command: python3 aether eval run --mode deterministic --format text
+    observed_at: '2026-10-05T08:46:11+00:00'
+    notes: New illustration is 1536 by 1024, 1490755 bytes. Historical October 3 image is unchanged.
+  - command: README relative-link resolution and git diff --check
     outcome: passed
-    observed_at: '2026-10-03T17:45:57Z'
-    notes: 205 cases passed across 36 skills, including nine ADR cases. Checks authored examples; does
-      not execute a model.
-  - command: python3 aether validate --format text
+    observed_at: '2026-10-05T08:46:11+00:00'
+    notes: Every local image link resolves and the documentation diff has no whitespace errors.
+  - command: 'Visual inspection and independent ownership/rollout review against .github #30 and Pace
+      owning issues'
     outcome: passed
-    observed_at: '2026-10-03T17:45:57Z'
-    notes: No errors. Existing preserved staging-hash provenance warning remains. Shell and strict staging
-      checks also passed.
-  - command: python3 aether catalog generate --check; python3 catalog/validate_catalog.py; python3 catalog/provenance_model.py
-      check --scope all
+    observed_at: '2026-10-05T08:46:11+00:00'
+    notes: Collection, normalization, consumer hosting, adoption and backfill closure are distinguished;
+      private evidence remains excluded from public output.
+  - command: Draft 2020-12 front-matter schema with format checking; ordered template headings and byte/line
+      bounds
     outcome: passed
-    observed_at: '2026-10-03T17:45:57Z'
-    notes: Catalog, schemas, fixtures, coverage, relationships and provenance checks passed.
-  - command: python3 aether distribution build --output-directory dist --check
-    outcome: passed
-    observed_at: '2026-10-03T17:45:57Z'
-    notes: Generated skill, spec and provider artifacts are current.
-  - command: Two clean distribution builds; gh skill publish dist --dry-run
-    outcome: passed
-    observed_at: '2026-10-03T17:45:57Z'
-    notes: Distribution byte equality and publish-payload validation passed; no publication occurred.
+    observed_at: '2026-10-05T08:46:11+00:00'
+    notes: Local continuity structure passes with all 12 required headings and within 16384 bytes / 240
+      lines. This does not claim released-conformer or live-state validation.
+  - command: Full Aether runtime, catalog and distribution suites
+    outcome: not-run
+    observed_at: '2026-10-05T08:46:11+00:00'
+    notes: This refresh changes documentation and a PNG only. Earlier suite results remain historical
+      evidence in Git, not validation of this refresh.
   environment_limitations:
-  - Relay native execution requires its separately pinned Python environment; Aether dependencies alone
-    are insufficient.
-  - No host-specific skill loading, hosted architecture acceptance, publication or fleet adoption evidence
-    is claimed.
-  - No released continuity conformer was run; structural schema and semantic review are recorded separately.
+  - Fresh GitHub CI and image delivery must be checked after pushing this candidate.
+  - No released continuity conformer was run; local schema, headings, size and semantic review are used.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -128,82 +122,48 @@ privacy:
 
 ## Purpose and precedence
 
-Resume #91 using the front-matter precedence. This replaces the stale #98
-checkpoint after PR #99 merged; Git preserves that earlier handoff. The current
-change grants no new policy, lifecycle, merge or publication authority.
+This documentation handoff follows the front-matter precedence. The owning issues retain program acceptance and authority; this file is a bounded candidate checkpoint.
 
 ## Resume protocol
 
-1. Read scoped instructions, canonical sources above, branch status and history.
-2. Recheck issue #91, the resulting PR and exact main/head revisions on GitHub.
-3. Reconcile parallel changes and owner compatibility before applying anything.
-4. Keep authoring readiness, human disposition, validation and adoption separate.
+Read scoped instructions and the linked README, inspect branch status, then verify PR #101 and main on GitHub. The infographic explains the target architecture and rollout, not current fleet deployment.
 
 ## Current objective and success conditions
 
-Make historical reconstruction, proposal, correction, reference and proposed
-replacement consistent across the skill, specification, templates and managed
-guidance. Preserve human authority, source history and read-only role permissions.
+Refresh the shareable architecture illustration with the source-to-page flow and Pace adoption loop. Provide a GitHub PNG and readable explanation while preserving the earlier image unchanged.
 
 ## State snapshot
 
-The base and branch are recorded above; pre-publication candidate SHA and PR are
-intentionally null. Hygiene policy v1.1.0 is already ratified at the selected
-commit. Relay PR #121 is merged at 33e1fc78727269bd3821dea53f6541f769cf4319;
-this candidate selects its advisory architecture profile 1.0.0-alpha.2.
-The authoring skill/spec/module remain draft; Intelligence remains proposed.
+Main remains at the verified base revision. PR #101 was open and draft before this candidate update. The candidate revision is null because this file cannot contain its own eventual commit ID. No merge is included in this handoff.
 
 ## Completed and material changes
 
-- Aligned existing authoring sources and generated packages with Hygiene policy.
-- Added evidence-preserving history, migration, correction and lineage guidance.
-- Routed both decision-impact checkpoints to the shared skill; retained permissions.
-- Added owner-backed template/native tests and nine deterministic example cases.
-- Documented pinned adoption, compatibility, upgrade, rollback and canary limits.
+Added architecture-and-rollout-2026-10-05.png and refreshed docs/architecture/repository-intelligence/README.md. The README explains ownership, capability ordering, declared delivery profiles, historical backfill acceptance and dated tracker inconsistencies. Canonical library, schemas and generated distributions are unchanged.
 
 ## Validation and review evidence
 
-The full 199-test suite passed without skips, including all native integrations.
-All 205 deterministic cases passed. Required catalog/distribution/validation
-checks passed; generated outputs reproduce byte-for-byte. The earlier #98 gh
-environment error is resolved. Native tests preserve source bytes and prove that
-implementation without approval and the old materializer policy pin are rejected.
-See front matter and the adoption checkpoint for commands and evidence limits.
+PNG structure, dimensions, historical-image preservation, local README links and diff whitespace passed. Visual and independent source review confirmed the diagram's ownership and rollout explanation. Full runtime suites were not rerun for this documentation refresh; prior results are historical. Local continuity schema, ordered headings and size checks passed.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Holon's selected blueprint still emits the older policy pin. A reviewed owner
-upgrade is required before materializing a ratified-policy canary. Hygiene's old
-decision-set helper also disagrees on pending reciprocal lineage; the selected
-EgoLint/Relay consumer supports proposed replacements without changing the old
-accepted record. Do not fake approval or edit generated hashes to bypass either.
-Hosted architecture acceptance remains deferred under Relay #99. Aether's own
-backfill (#85), the default bundle (#67), releases and fleet adoption remain open.
+No documentation blocker was observed. The illustration does not establish a live Identity page or fleet rollout. Relay #135 and Identity #69 remained open when inspected. Older tracker ordering and dependency passages require reconciliation before using them as execution instructions; this change does not edit those trackers.
 
 ## Next dependency-ready work
 
-Review the #91 candidate and its CI. Identity #69 under Pace #5 remains the first
-validate-first canary, subject to its scheduling gate and owner compatibility.
-Use its existing corpus to preview a bounded adoption; do not begin bulk backfill
-or deployment from this handoff.
+Review the refreshed documentation in draft PR #101. Program implementation and any merge remain separate actions under the owning issues and user authorization.
 
 ## Parallel changes and reconciliation
 
-No open Aether PR was observed in the pre-publication check. Recheck at review
-time; a dependency merge does not silently upgrade this candidate's pinned inputs.
+Main and this draft branch were checked before the update; the target base is unchanged. Relay PR #135 is relevant parallel implementation work and is only referenced here. Recheck mutable state before a future merge.
 
 ## Privacy and redaction
 
-Public repository handoff with synthetic test examples. No private paths,
-credentials, personal conversations or protected source content are included.
+Only public repository responsibilities and public issue references are retained. Private evidence and topology, credentials, conversation excerpts and local filesystem paths are excluded.
 
 ## Handoff update protocol
 
-Refresh after domain validation and before the next PR update. Reconcile live
-head, issue and CI state rather than treating this snapshot as current proof.
-Keep the handoff in the same bounded change; do not accumulate a transcript.
+Refresh after relevant project validation and before a later PR update. Verify provider state and reconcile the target branch; do not treat this dated observation as permanent proof.
 
 ## Compaction and supersession
 
-Remain below 16,384 UTF-8 bytes and 240 lines. Replace stale operational state;
-canonical documents, Git and issue/PR history retain durable facts and chronology.
+Keep this checkpoint within 16384 bytes and 240 lines. Git retains prior handoffs; the README and owning issues retain the architecture explanation and detailed program acceptance.
