@@ -59,10 +59,10 @@ Every projected agent also receives the shared, canonical decision-impact
 module from
 [`templates/decision-impact.AGENTS.md`](templates/decision-impact.AGENTS.md).
 The module is injected through managed markers instead of being copied into
-each role source. Module `0.2.0` routes to `create-decisions-document` before
+each role source. Module `0.3.0` routes to `create-decisions-document` before
 implementation and again before issue completion/PR handoff. Its ADR policy
 selection matches the skill's `references/policy-selection.json`: accepted
-Hygiene v1.1.0 at `c589587395750cd1c79c6fa0bef010189c547249`, with durable human
+Hygiene v1.2.0 at `a05b14f8b9e2772124f879f818e09a911e996ad8`, with durable human
 ratification evidence. The module and skill remain draft. The independent
 Repository Intelligence `1.0.0-alpha.1` pin remains proposed at
 `5e0602265b6ac5e5165b89f418e55a3fd12f8a64`. The builder rejects a module/skill policy

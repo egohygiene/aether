@@ -40,7 +40,7 @@ python3 catalog/validate_catalog.py
 
 ## Governance constraints
 
-- Do not remove staged content until ADR-005 deletion-gate conditions are met.
+- Do not remove staged content until ADR-0005 deletion-gate conditions are met.
 - Do not promote `draft` to `stable` without human review.
 - Reuse the local release workflows in `.github/workflows/` for Aether-specific validation/publication needs; only extract generic pieces to Relay later.
 

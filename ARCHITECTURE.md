@@ -77,7 +77,7 @@ aether/
 
 ```
 aether/
-├── dist/                      # Generated distribution artifacts (see ADR-001)
+├── dist/                      # Generated distribution artifacts (see ADR-0001)
 ├── docs/
 │   └── adr/                   # Architecture Decision Records
 └── schemas/                   # JSON/YAML schemas for catalog entries
@@ -92,7 +92,7 @@ first-party artifacts.  Any file outside this tree is either:
 
 - **Staged material** (`.staging/`) — unreviewed and non-authoritative.
 - **Generated distribution** (`dist/`) — assembled from canonical source; not
-  hand-edited after generation (see [ADR-001](DECISIONS.md#adr-001)).
+  hand-edited after generation (see [ADR-0001](DECISIONS.md#adr-0001)).
 - **Repository governance documents** (`*.md` at root, `.github/`) —
   authoritative for repository behavior but not for skill or specification
   content.
@@ -166,13 +166,13 @@ it is promoted into `library/organization/`.
 
 ## 6. Canonical Source vs. Generated Distribution
 
-See [ADR-001](DECISIONS.md#adr-001) for the full decision record.
+See [ADR-0001](DECISIONS.md#adr-0001) for the full decision record.
 
 **Summary rule:** Canonical source lives in `library/organization/`.  Generated
 distributions are assembled by a future build process and placed in `dist/`.
 Generated files are never edited by hand.  Until the build process exists,
 `dist/` does not exist and distributions are release-only (see
-[ADR-006](DECISIONS.md#adr-006)).
+[ADR-0006](DECISIONS.md#adr-0006)).
 
 ---
 
@@ -184,7 +184,7 @@ Generated files are never edited by hand.  Until the build process exists,
 | External | Imported from outside the organization; stored in a dedicated external subtree (not yet created) |
 | Staged | In `.staging/`; ownership and provenance not yet confirmed |
 
-See [ADR-003](DECISIONS.md#adr-003) for the ownership rule.
+See [ADR-0003](DECISIONS.md#adr-0003) for the ownership rule.
 
 ---
 
@@ -198,7 +198,7 @@ GitHub Release artifact, installing only the artifacts they need.  The
 installation mechanism is not specified in this document; it will be defined
 when the distribution build process is designed.
 
-See [ADR-004](DECISIONS.md#adr-004) for the versioning decision.
+See [ADR-0004](DECISIONS.md#adr-0004) for the versioning decision.
 
 ---
 
@@ -212,9 +212,9 @@ contributed before a canonical review process existed.
 1. Its content has been reviewed against the relevant specification.
 2. It has been either promoted to `library/organization/` or explicitly
    rejected with a recorded reason.
-3. The [`DECISIONS.md` ADR-005](DECISIONS.md#adr-005) deletion-gate rule is satisfied.
+3. The [`DECISIONS.md` ADR-0005](DECISIONS.md#adr-0005) deletion-gate rule is satisfied.
 
-See [ADR-005](DECISIONS.md#adr-005) for the full rule.
+See [ADR-0005](DECISIONS.md#adr-0005) for the full rule.
 
 ---
 

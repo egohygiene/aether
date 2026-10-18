@@ -2,7 +2,7 @@
 
 > **Status:** Adopted — 2026-08-09
 > **Scope:** All Aether hook packages (current and future)
-> **Related:** [`DECISIONS.md ADR-007`](../DECISIONS.md#adr-007) · [`agent-and-hook-safety-guide.md`](agent-and-hook-safety-guide.md)
+> **Related:** [`DECISIONS.md ADR-0007`](../DECISIONS.md#adr-0007) · [`agent-and-hook-safety-guide.md`](agent-and-hook-safety-guide.md)
 
 ---
 

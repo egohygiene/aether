@@ -44,17 +44,17 @@ request; do not edit past decisions in place—append a superseding ADR instead.
 
 | ID | Question | Status |
 |---|---|---|
-| [ADR-001](#adr-001) | Canonical source vs. generated distribution | Accepted |
-| [ADR-002](#adr-002) | Aether vs. neighboring repositories | Accepted |
-| [ADR-003](#adr-003) | First-party vs. external artifact ownership | Accepted |
-| [ADR-004](#adr-004) | Repository-release vs. per-artifact versioning | Accepted |
-| [ADR-005](#adr-005) | Staged-material lifecycle and deletion gate | Accepted |
-| [ADR-006](#adr-006) | Whether generated `dist/` content is committed or release-only | Accepted |
-| [ADR-007](#adr-007) | Staged hook prototype disposition for first release | Accepted |
+| [ADR-0001](#adr-0001) | Canonical source vs. generated distribution | Accepted |
+| [ADR-0002](#adr-0002) | Aether vs. neighboring repositories | Accepted |
+| [ADR-0003](#adr-0003) | First-party vs. external artifact ownership | Accepted |
+| [ADR-0004](#adr-0004) | Repository-release vs. per-artifact versioning | Accepted |
+| [ADR-0005](#adr-0005) | Staged-material lifecycle and deletion gate | Accepted |
+| [ADR-0006](#adr-0006) | Whether generated `dist/` content is committed or release-only | Accepted |
+| [ADR-0007](#adr-0007) | Staged hook prototype disposition for first release | Accepted |
 
 ---
 
-## ADR-001
+## ADR-0001
 
 **Question:** Where does canonical source live, and how is it distinguished from generated distribution?
 
@@ -80,7 +80,7 @@ filename convention indicating it is generated.
 - **Single-directory model:** Merge canonical and generated content in one
   location.  Rejected because it makes it impossible to distinguish
   authoritative files from assembled ones.
-- **Generated content only in releases:** Consistent with ADR-006; not mutually
+- **Generated content only in releases:** Consistent with ADR-0006; not mutually
   exclusive with this decision.
 
 ### Consequences
@@ -92,7 +92,7 @@ filename convention indicating it is generated.
 
 ---
 
-## ADR-002
+## ADR-0002
 
 **Question:** Which responsibilities belong to Aether and which to neighboring repositories?
 
@@ -139,7 +139,7 @@ and distributions**.  The following table is binding:
 
 ---
 
-## ADR-003
+## ADR-0003
 
 **Question:** How are first-party and external artifacts distinguished?
 
@@ -174,7 +174,7 @@ into `library/organization/`.
 
 ---
 
-## ADR-004
+## ADR-0004
 
 **Question:** Should Aether use repository-level releases or per-artifact versioning?
 
@@ -217,7 +217,7 @@ demonstrated consumer need at this scale.
 
 ---
 
-## ADR-005
+## ADR-0005
 
 **Question:** What must happen before `.staging/` may be emptied?
 
@@ -251,7 +251,7 @@ Mass deletion without individual review is not permitted.
 
 ---
 
-## ADR-006
+## ADR-0006
 
 **Question:** Should generated `dist/` content be committed to version control or published as release-only artifacts?
 
@@ -278,7 +278,7 @@ GitHub Releases.
 
 - Committed generated content creates stale-diff noise and tempts hand-edits.
 - Excluding `dist/` from version control enforces the canonical source boundary
-  established in ADR-001.
+  established in ADR-0001.
 - GitHub Releases provide an appropriate versioned distribution channel.
 
 ### Alternatives Considered
@@ -294,7 +294,7 @@ GitHub Releases.
 
 ---
 
-## ADR-007
+## ADR-0007
 
 **Question:** What disposition applies to each staged hook prototype for the first Aether release?
 
@@ -349,7 +349,7 @@ Each prototype receives the following disposition:
 - Rejecting or deferring all prototypes is preferable to releasing unsafe hooks
   under time pressure.
 - Move-out dispositions correctly attribute ownership without deleting staging
-  evidence prematurely (ADR-005 deletion gate).
+  evidence prematurely (ADR-0005 deletion gate).
 - `tool-guardian` is the only prototype with a plausible Aether-first-party
   justification, but it requires human review before adoption can be accepted.
 
@@ -378,7 +378,7 @@ all of the following before merging:
 ### Consequences
 
 - No hook artifacts are released in the first Aether release.
-- `.staging/hooks/` files are **not removed** (ADR-005 deletion gate; human
+- `.staging/hooks/` files are **not removed** (ADR-0005 deletion gate; human
   review not yet complete).
 - Move-out items remain in `.staging/` until Alan reviews and transfers them.
 - `tool-guardian` is deferred to a subsequent issue for human review.
@@ -394,6 +394,20 @@ all of the following before merging:
 | ID | Question | Linked ADR |
 |---|---|---|
 | OQ-D1 | Whether ArXiv is a first-class distribution channel | Deferred; see [`PURPOSE.md §7`](PURPOSE.md#7-open-questions) |
-| OQ-D2 | Whether per-artifact versioning will be needed at larger scale | Deferred; may supersede ADR-004 |
+| OQ-D2 | Whether per-artifact versioning will be needed at larger scale | Deferred; may supersede ADR-0004 |
 | OQ-D3 | Whether hooks belong in Mantle or Relay | Deferred; see [`SYSTEM.md §10`](SYSTEM.md#10-open-questions) |
-| OQ-D4 | Whether `tool-guardian` qualifies as an Aether provider adapter | Deferred; see ADR-007; requires human review |
+| OQ-D4 | Whether `tool-guardian` qualifies as an Aether provider adapter | Deferred; see ADR-0007; requires human review |
+
+## Identifier format migration (2026-10-18)
+
+The maintainer selected four-digit numbering in [Hygiene #73](https://github.com/egohygiene/hygiene/issues/73). This padding-only migration changes current labels and anchors; logical numbers, decision content, dates and disposition remain unchanged. Git retains prior versions. New canonical records use `ADR-NNNN` under Hygiene policy v1.2.0.
+
+| Previous ID | Current ID | Record |
+| --- | --- | --- |
+| `ADR-001` | `ADR-0001` | [DECISIONS.md](DECISIONS.md#adr-0001) |
+| `ADR-002` | `ADR-0002` | [DECISIONS.md](DECISIONS.md#adr-0002) |
+| `ADR-003` | `ADR-0003` | [DECISIONS.md](DECISIONS.md#adr-0003) |
+| `ADR-004` | `ADR-0004` | [DECISIONS.md](DECISIONS.md#adr-0004) |
+| `ADR-005` | `ADR-0005` | [DECISIONS.md](DECISIONS.md#adr-0005) |
+| `ADR-006` | `ADR-0006` | [DECISIONS.md](DECISIONS.md#adr-0006) |
+| `ADR-007` | `ADR-0007` | [DECISIONS.md](DECISIONS.md#adr-0007) |

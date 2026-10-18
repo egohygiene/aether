@@ -32,7 +32,7 @@ Do **not** treat `.staging/`, `dist/`, or any other path as canonical source.
 ## Key Rules
 
 1. **Do not move or delete `.staging/` content** without satisfying the
-   deletion gate in [`DECISIONS.md ADR-005`](../DECISIONS.md#adr-005).
+   deletion gate in [`DECISIONS.md ADR-0005`](../DECISIONS.md#adr-0005).
 2. **Do not add CI workflows, toolchain setup, or release automation** to this
    repository — those belong to Relay, Realm, and egohygiene/.github.
 3. **Do not promote an artifact from `draft` to `stable`** without human

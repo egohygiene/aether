@@ -112,7 +112,7 @@ For first-party source today, the artifact's semantic `artifact_version` / `aeth
 
 For external source, use the upstream commit digest whenever available. A tag alone is acceptable only when it is the immutable evidence available and the surrounding source record preserves that limitation.
 
-The repository-release and artifact-revision concepts remain distinct per Aether ADR-004.
+The repository-release and artifact-revision concepts remain distinct per Aether ADR-0004.
 
 ## Determinism
 
@@ -151,7 +151,7 @@ The normalized provenance view does not replace source ownership:
 - generated provider projections remain generated;
 - future publication tooling consumes normalized policy rather than copying source records into a provider-specific format.
 
-This preserves Aether ADR-001 and ADR-003 while giving all artifact kinds one lifecycle/provenance vocabulary.
+This preserves Aether ADR-0001 and ADR-0003 while giving all artifact kinds one lifecycle/provenance vocabulary.
 
 ## External source selection
 

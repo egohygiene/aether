@@ -272,7 +272,7 @@ when individual issues are opened that reference the ADRs in
 - [x] `ARCHITECTURE.md`
 - [x] `SYSTEM.md`
 - [x] `AI_CONSTITUTION.md`
-- [x] `DECISIONS.md` with ADR-001 through ADR-006
+- [x] `DECISIONS.md` with ADR-0001 through ADR-0006
 - [x] `ROADMAP.md`
 - [x] `.github/copilot-instructions.md`
 
@@ -316,7 +316,7 @@ front-matter, catalog entries, and manifest files.
 ## 6. Phase 3 — Staging Review
 
 **Goal:** Process `.staging/` according to the deletion gate in
-[ADR-005](DECISIONS.md#adr-005).
+[ADR-0005](DECISIONS.md#adr-0005).
 
 **Planned work:**
 - Triage each `.staging/` file: promote, reject, or defer.

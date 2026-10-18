@@ -45,7 +45,7 @@ covers 192 entries (186 current + 6 historically removed).
 All 56 entries are cataloged in `catalog/external/approved-skills.v1.json` with
 upstream repository, skill path, pin example, and provenance evidence.  Their
 `.staging/skills/` copies are preserved until Alan acknowledges removal is safe
-(ADR-005 deletion gate, condition 2: external catalog entry exists).
+(ADR-0005 deletion gate, condition 2: external catalog entry exists).
 
 ### First-party candidates (6)
 
@@ -55,7 +55,7 @@ under named issues.  They remain in staging until the adopting issues are merged
 ### Unknown provenance — 130 skills
 
 130 skills have no upstream source in the lock file and no individual disposition
-record.  **ADR-005 deletion gate is not satisfied** for these files.
+record.  **ADR-0005 deletion gate is not satisfied** for these files.
 Human review is required before any removal.
 
 ---
@@ -80,7 +80,7 @@ Covered in `/.staging/manifests/agents-ledger.json`:
 | knowledge-extractor | Move-out (Mindgarden) — awaiting Alan's acknowledgment |
 | synapse-creator | Move-out (Mindgarden) — awaiting Alan's acknowledgment |
 
-The staged copies of all 13 agents **remain in `.staging/agents/`** per ADR-005
+The staged copies of all 13 agents **remain in `.staging/agents/`** per ADR-0005
 until:
 - 9 adopted agents: canonical content confirmed complete
 - 4 move-out agents: Alan acknowledges receipt in the destination repository
@@ -94,7 +94,7 @@ Eight hook prototypes are in `.staging/hooks/`:
 `secrets-scanner`, `session-auto-commit`, `session-logger`, `tool-guardian`,
 plus corresponding `integrations/github-copilot/` material.
 
-Per **ADR-007** (Staged hook prototype disposition for first release), hooks
+Per **ADR-0007** (Staged hook prototype disposition for first release), hooks
 are **not removed** from `.staging/` at this milestone.  All are pending:
 
 1. Ownership classification (Aether provider adapter vs. Egolint/Relay)
@@ -111,7 +111,7 @@ are **not removed** from `.staging/` at this milestone.  All are pending:
 |---|---|
 | `claude/` | Cross-repo (Claude); move-out pending Alan |
 | `continue/` | Cross-repo (Continue); move-out pending Alan |
-| `github-copilot/` | Copilot hook scripts; under ADR-007 review |
+| `github-copilot/` | Copilot hook scripts; under ADR-0007 review |
 | `opencode/` | Cross-repo (OpenCode); move-out pending Alan |
 | `specify/` | Cross-repo (Specify); move-out pending Alan |
 
@@ -174,7 +174,7 @@ reopened:
 1. **130 unknown-provenance skills**: Require human review for each; batch or
    individual disposition records needed.
 2. **4 move-out agents**: Remove after Alan confirms receipt.
-3. **Hooks**: Remove after ADR-007 threat-model review and ownership decision.
+3. **Hooks**: Remove after ADR-0007 threat-model review and ownership decision.
 4. **Cross-repo integrations**: Remove after Alan confirms receipt.
 5. **Instructions / Scripts / Specs**: Individual human review required.
 6. **tasks.txt ideas**: Confirm all durable decisions are in DECISIONS.md or backlog.

@@ -1,6 +1,6 @@
 ---
 schema: egohygiene.architecture-decision/v1
-id: ADR-000
+id: ADR-0000
 title: Replace with a concise proposed choice
 status: proposed
 date: "YYYY-MM-DD"
@@ -21,7 +21,7 @@ approval: null
 extensions: {}
 ---
 
-# ADR-000: Replace with a concise proposed choice
+# ADR-0000: Replace with a concise proposed choice
 
 ## Context
 

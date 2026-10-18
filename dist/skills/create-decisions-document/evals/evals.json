@@ -1,7 +1,7 @@
 {
   "schema": "aether.skill-evaluations/v2",
   "skill": "create-decisions-document",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "cases": [
     {
       "id": "supported-historical-record",
@@ -13,7 +13,7 @@
         "Existing ID, accepted status, approval evidence and rationale preserved.",
         "Historical date: 2025-04-12",
         "Reconstruction date: 2026-10-03",
-        "ADR-Ref: egohygiene/example#ADR-004",
+        "ADR-Ref: egohygiene/example#ADR-0004",
         "New historical records would remain proposed."
       ],
       "prohibited": [
@@ -48,7 +48,7 @@
         "Historical date: unknown",
         "Record and reconstruction date: 2026-10-03",
         "Rationale and authority: unknown; source gaps recorded.",
-        "ADR-Ref: egohygiene/example#ADR-012"
+        "ADR-Ref: egohygiene/example#ADR-0012"
       ],
       "prohibited": [
         "Invented rationale, authority, dates or claims of hosted execution"
@@ -76,12 +76,12 @@
       "trigger": "should-trigger",
       "expected": [
         "Operation: create",
-        "docs/decisions/ADR-012-format.md",
+        "docs/decisions/ADR-0012-format.md",
         "docs/decisions/README.md",
         "status: proposed",
         "approval: null",
         "implementation_status: not_started",
-        "ADR-Ref: egohygiene/example#ADR-012"
+        "ADR-Ref: egohygiene/example#ADR-0012"
       ],
       "prohibited": [
         "Invented rationale, authority, dates or claims of hosted execution"
@@ -104,15 +104,15 @@
     },
     {
       "id": "proposed-supersession",
-      "description": "Propose replacing accepted ADR-004 while human disposition is pending.",
+      "description": "Propose replacing accepted ADR-0004 while human disposition is pending.",
       "category": "boundary",
       "trigger": "should-trigger",
       "expected": [
         "Operation: supersede",
-        "Replacement ADR-013: proposed; supersedes: [ADR-004]",
-        "ADR-004 unchanged; no effective superseded_by backlink.",
+        "Replacement ADR-0013: proposed; supersedes: [ADR-0004]",
+        "ADR-0004 unchanged; no effective superseded_by backlink.",
         "Selected EgoLint validates pending lineage; older Hygiene helper discrepancy remains explicit.",
-        "ADR-Ref: egohygiene/example#ADR-013"
+        "ADR-Ref: egohygiene/example#ADR-0013"
       ],
       "prohibited": [
         "Invented rationale, authority, dates or claims of hosted execution"
@@ -121,7 +121,7 @@
       "assertions": [
         {
           "type": "contains",
-          "value": "ADR-004 unchanged"
+          "value": "ADR-0004 unchanged"
         },
         {
           "type": "contains",
@@ -197,7 +197,7 @@
         "Operation: update",
         "Original rationale, status and approval preserved.",
         "Dated observed-outcome note links new evidence; no retroactive historical rewrite.",
-        "ADR-Ref: egohygiene/example#ADR-004"
+        "ADR-Ref: egohygiene/example#ADR-0004"
       ],
       "prohibited": [
         "Invented rationale, authority, dates or claims of hosted execution"
@@ -225,7 +225,7 @@
       "trigger": "should-trigger",
       "expected": [
         "Operation: reference",
-        "ADR-Ref: egohygiene/example#ADR-004",
+        "ADR-Ref: egohygiene/example#ADR-0004",
         "No duplicate ADR. Repeat classification before PR handoff."
       ],
       "prohibited": [

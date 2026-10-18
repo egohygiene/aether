@@ -76,7 +76,7 @@ Catalog (generated)
 Distribution Package (generated)
   │
   ├─► assembled from canonical Skills, Agents, Schemas, and Catalogs
-  ├─► versioned by repository release (see ADR-004)
+  ├─► versioned by repository release (see ADR-0004)
   └─► published as a GitHub Release artifact
 
 Hook (planned)

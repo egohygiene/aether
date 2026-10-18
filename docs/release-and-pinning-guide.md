@@ -143,7 +143,7 @@ must not be represented as a published policy snapshot.
 - **Deprecate** when a skill should remain discoverable/installable long enough to
   guide consumers to a replacement artifact ID.
 - **Retire** only after the replacement/deprecation window is complete.
-- **Delete nothing from `.staging/`** unless ADR-005 conditions are satisfied.
+- **Delete nothing from `.staging/`** unless ADR-0005 conditions are satisfied.
 
 ## Relay extraction boundary
 

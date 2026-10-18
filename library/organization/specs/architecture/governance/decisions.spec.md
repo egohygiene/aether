@@ -3,12 +3,12 @@ schema: aether.specification/v1
 id: architecture-decisions
 title: Decisions Architecture Document Specification
 kind: specification
-version: 3.0.0
+version: 3.1.0
 status: draft
 owners:
   - egohygiene
 created: 2026-07-18
-updated: 2026-10-03
+updated: 2026-10-18
 domain: architecture
 tags:
   - architecture
@@ -40,8 +40,8 @@ supersedes: []
 ## Introduction
 
 This draft Aether specification defines an authoring workflow for repository-owned
-ADRs. It consumes accepted Hygiene policy v1.1.0 at
-`c589587395750cd1c79c6fa0bef010189c547249`; it does not redefine policy, schemas or
+ADRs. It consumes accepted Hygiene policy v1.2.0 at
+`a05b14f8b9e2772124f879f818e09a911e996ad8`; it does not redefine policy, schemas or
 human authority. The exact selection and approval evidence are in the portable
 [authoring package](../../../skills/architecture/create-decisions-document/references/policy-selection.json).
 
@@ -113,16 +113,16 @@ proposed draft but blocks promotion.
 - **REQ-002:** Classify create/update/supersede/reference/ADR not required before
   implementation and repeat against the final diff at handoff.
 - **REQ-003:** Use `egohygiene.architecture-decision/v1` and the exact selected policy;
-  new records have unused `ADR-NNN` IDs, proposed status and null approval.
+  new records have unused `ADR-NNNN` IDs, proposed status and null approval.
 - **REQ-004:** Separate rationale, disposition, implementation and verification.
 - **REQ-005:** Reconstruct from reachable Git/tags, merged PRs, issues, releases,
   architecture docs and existing records; group by consequential choice.
-- **REQ-006:** Preserve contemporaneous reasoning, source links, original IDs,
-  files, provenance/blame references and uncertainty.
+- **REQ-006:** Preserve contemporaneous reasoning, source links, logical decision numbers,
+  provenance/blame references and uncertainty; record authorized padding changes in an explicit map.
 - **REQ-007:** Distinguish reconstruction date from any proven historical date;
   never backdate a new preference or invent unsupported metadata fields.
 - **REQ-008:** Preserve legacy index/body/history through a previewed migration map;
-  collisions and uncertain canonical identities require human resolution.
+  collisions and uncertain canonical identities require human resolution. An explicitly authorized padding-only migration records every old/new ID and path, updates current references, and preserves rationale, dates, lifecycle and approval.
 - **REQ-009:** Keep the seven owner-required sections and all required metadata;
   only policy-supported extensions may add metadata.
 - **REQ-010:** New superseding proposals preserve the predecessor; effective status
@@ -156,7 +156,7 @@ need not be accepted to complete authoring.
 
 ## 11. Storage and Organization
 
-New records use `docs/decisions/ADR-NNN-short-slug.md`; one canonical index row per
+New records use `docs/decisions/ADR-NNNN-short-slug.md`; one canonical index row per
 record contains ID, title, status, date and relative link. Keep terminal records.
 The local `policy-reference.json` inherits by exact version/full Hygiene commit;
 Hygiene itself publishes policy rather than inheriting itself.
@@ -167,7 +167,7 @@ rationale. Historical prefixes/widths require the policy's exception process.
 
 ## 12. AI Authoring Strategy
 
-Use `create-decisions-document` v2.0.0. Start with evidence and an explicit mode,
+Use `create-decisions-document` v2.1.0. Start with evidence and an explicit mode,
 preview affected identity/lineage, then author only within the current role's
 permissions. Missing skill/validator/history produces explicit unavailable or
 evidence-gap results. Static instructions cannot guarantee every agent performs

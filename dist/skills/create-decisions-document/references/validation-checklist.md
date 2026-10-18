@@ -3,8 +3,8 @@
 ## Scope and source authority
 
 - [ ] Read scoped instructions, ecosystem context, local policy and governing ADRs.
-- [ ] Resolve `architecture-decisions` v3.0.0 and the exact policy selection.
-- [ ] Hygiene policy v1.1.0 is accepted at the selected revision; Aether remains draft.
+- [ ] Resolve `architecture-decisions` v3.1.0 and the exact policy selection.
+- [ ] Hygiene policy v1.2.0 is accepted at the selected revision; Aether remains draft.
 - [ ] Keep the independent Repository Intelligence contract proposed at its own pin.
 - [ ] Existing records/IDs and write authority were inspected before changing files.
 
