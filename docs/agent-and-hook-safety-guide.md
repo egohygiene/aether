@@ -4,7 +4,7 @@
 
 Aether includes canonical agent source in `library/organization/agents/` and staged hook material in `.staging/hooks/`.
 
-Hooks execute code at an agent trust boundary and are held to **stricter** requirements than passive skill instructions.  No staged hook prototype has been promoted to a first-party Aether release artifact; see [`DECISIONS.md ADR-007`](../DECISIONS.md#adr-007) for the disposition of each staged prototype.
+Hooks execute code at an agent trust boundary and are held to **stricter** requirements than passive skill instructions.  No staged hook prototype has been promoted to a first-party Aether release artifact; see [`DECISIONS.md ADR-0007`](../DECISIONS.md#adr-0007) for the disposition of each staged prototype.
 
 ## Staged hook dispositions (first release)
 
@@ -62,7 +62,7 @@ No released hook may log any of the following by default:
 - Use least-privilege tool declarations in agent frontmatter.
 - Never add secrets, tokens, or private endpoints to agent or hook artifacts.
 - Input received from the agent runtime must be parsed as data, never evaluated as shell code.
-- Keep `.staging/` as non-canonical evidence unless promoted through governed review (ADR-005).
+- Keep `.staging/` as non-canonical evidence unless promoted through governed review (ADR-0005).
 
 ## Validation checks
 

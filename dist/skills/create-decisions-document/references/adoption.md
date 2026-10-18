@@ -50,22 +50,12 @@ issue completion/PR handoff; a static block cannot enforce every agent or PR.
 
 ## Holon materialization compatibility
 
-Holon blueprint 1.0.0 at the selected commit preserves records and provides the
-existing plan → render → verify → rollback mechanism. Its emitted policy reference
-still selects `f598ed659a43dd759d4ede41c27f9e5daf991aa7`. The selected ratified
-EgoLint/Relay profile requires `c589587395750cd1c79c6fa0bef010189c547249` for both ADR
-contract pins and the consumer policy reference. These revisions are not interchangeable.
+Holon blueprint 1.1.0 at the selected immutable commit emits the same Hygiene v1.2.0 policy selection as EgoLint and Relay. It preserves authored records and supplies the existing plan → render → verify → rollback mechanism.
 
-Use **validate-first** for Identity and other existing decision corpora. Inventory
-ownership/provenance and propose the consumer-owned policy upgrade against the
-selected policy-reference template. If Holon owns that file, an updated reviewed
-Holon artifact/pack and state reconciliation are required before materialization;
-do not hand-edit generated policy or falsify its recorded hash. The old blueprint
-is not a ready-to-apply ratified-policy baseline. Report this owner compatibility
-gap without silently upgrading unrelated source pins.
+Use **validate-first** for existing corpora. Inventory ownership/provenance and preview the per-record padding map before writing. If Holon owns a generated policy reference, re-render the reviewed upgraded pack and reconcile materializer state; do not hand-edit generated policy or falsify its recorded digest. Repository-owned records, human authority and immutable history remain outside generated ownership.
 
 For a compatible reviewed Holon pack, follow its pinned
-[materialization guide](https://github.com/egohygiene/holon/blob/660b941f99618806fcadd589bcdae61c519f96e4/docs/materialization-engine.md):
+[materialization guide](https://github.com/egohygiene/holon/blob/a7734dba83305276b12932fcd4ce348044d9a2e9/docs/materialization-engine.md):
 `plan` previews the current target and source digests; `render` applies only the
 reviewed matching plan; `verify` checks ownership; `rollback` refuses to erase
 post-render edits. ADR bodies remain repository-owned throughout.
@@ -73,11 +63,11 @@ post-render edits. ADR bodies remain repository-owned throughout.
 ## Validation boundary
 
 The selection records EgoLint's reviewed ratified-policy validator and Relay
-profile 1.0.0-alpha.2. Explicitly prepare/acquire dependencies, then validate offline
+profile 1.0.0-alpha.4. Explicitly prepare/acquire dependencies, then validate offline
 through the pinned owner tools. Both ADR contract tuples in the consumer EgoLint
 policy and `docs/decisions/policy-reference.json` must agree. Do not update the
 independent proposed roadmap/projection contracts merely because ADR policy is
-accepted. Old pins fail; legacy adoption can remain partial despite valid syntax.
+accepted. Unsupported or mismatched pins fail. Explicit supported historical policy selections retain their own semantics; legacy adoption can remain partial despite valid syntax.
 
 The native Relay replay demonstrates approved-policy proposals, missing approval,
 old-pin rejection and legacy coverage. Hosted architecture
@@ -89,7 +79,7 @@ source revisions; a generated page or passing syntax check is not adoption.
 
 [Identity#69](https://github.com/egohygiene/identity/issues/69), coordinated by
 [Pace#5](https://github.com/egohygiene/pace/issues/5), is the first validate-first
-canary. Its scheduling gate still applies. Preview existing IDs, inline/detailed
+canary. Its scheduling gate still applies. Preview existing numerical IDs across widths, inline/detailed
 records, policy/index ownership and human evidence; then propose one bounded
 adoption/migration PR. Preserve the accepted publication topology. Authoring
 readiness does not complete historical backfill, deployment or fleet adoption.

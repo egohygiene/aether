@@ -3,14 +3,14 @@ name: create-decisions-document
 description: Authors proposed ADRs, reconstructs consequential historical decisions, and updates or references existing records under pinned Hygiene policy. Use when checking decision impact, correcting evidence, proposing supersession, or migrating legacy decision logs.
 license: MIT
 metadata:
-  aether-version: "2.0.0"
+  aether-version: "2.1.0"
   aether-status: "draft"
   aether-spec-id: "architecture-decisions"
   aether-scope: "organization"
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-08-02"
-  aether-updated: "2026-10-03"
+  aether-updated: "2026-10-18"
 ---
 
 # Create Decisions Document
@@ -38,7 +38,7 @@ workflow; Hygiene owns decision semantics, EgoLint validation, and Holon scaffol
 materialization. This skill and `architecture-decisions` remain **draft**.
 
 Use `docs/decisions/README.md` as the canonical index and
-`docs/decisions/ADR-NNN-short-slug.md` for new records. Existing `DECISIONS.md`
+`docs/decisions/ADR-NNNN-short-slug.md` for new records. Existing `DECISIONS.md`
 remains a compatibility entrypoint; preserve its history through a reviewed
 migration. Read [the record guide](references/decision-record-guide.md) for
 history and lineage, and [adoption](references/adoption.md) before installing,
@@ -76,7 +76,7 @@ upgrading or rolling back this package.
 | Operation | Required result |
 | --- | --- |
 | Historical reconstruction (`create` or `update`) | Inspect reachable Git, tags, merged PRs, issues, releases, architecture docs and existing records; group by consequential choice. Preserve IDs, source links, contemporary rationale and uncertainty. Record historical and reconstruction dates separately. |
-| New proposal (`create`) | One new unused `ADR-NNN`, proposed status, null approval, truthful implementation state, canonical index entry and evidence links. Use [ADR template](templates/ADR.template.md). |
+| New proposal (`create`) | One new unused `ADR-NNNN`, proposed status, null approval, truthful implementation state, canonical index entry and evidence links. Use [ADR template](templates/ADR.template.md). |
 | Correction or later outcome (`update`) | A dated, sourced correction/outcome note; preserve original rationale, disposition and lineage. Do not replace an accepted choice through an edit. |
 | Existing governing choice (`reference`) | Cite its stable local or fully qualified ID in the PR; no new record unless a new consequential choice is uncovered. |
 | Proposed replacement (`supersede`) | New proposed ADR naming its predecessor; preserve the old record while human disposition is pending. See the guide's validator compatibility limitation. |
@@ -92,7 +92,7 @@ upgrading or rolling back this package.
   use only after preserving/extracting existing inline records in the same review.
 - [Migration map](templates/MIGRATION.template.md): old locations/IDs, canonical
   choices, evidence gaps and rollback. It does not grant exceptions or approval.
-- PR handoff, with governing specification `architecture-decisions` v3.0.0,
+- PR handoff, with governing specification `architecture-decisions` v3.1.0,
   pinned policy, ADR disposition, validation, and unresolved dependencies.
 
 Do not generate dashboards, mine rationale automatically, change consumer
@@ -108,3 +108,9 @@ outcomes. Missing approval blocks lifecycle promotion, not drafting a proposal.
 If this skill or a supported owner validator is unavailable, report that fact;
 prepare an evidence inventory and draft where authorized, without claiming the
 skill ran or consequential decision review/validation was completed.
+
+## Four-digit identifiers and mapped upgrades
+
+Use exactly four digits for new canonical records (`ADR-0001` through `ADR-9999`). Compare numerical identities across all existing widths before allocating the next unused number; never reuse a retired number or silently widen beyond 9999. Use the same ID in the filename, front matter, heading, index, lineage and current references.
+
+For an explicitly authorized padding-only migration, follow [the migration procedure](references/four-digit-migration.md) and record every changed ID and path in the [migration map](templates/MIGRATION.template.md). Approval of naming does not accept the architectural choices recorded in the ADRs.

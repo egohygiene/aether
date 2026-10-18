@@ -71,8 +71,7 @@ consumer replay, and retain any differing owner-validator results explicitly.
 per canonical record: ID, title, decision status, date and relative link.
 `DECISIONS.md` becomes compatibility navigation only after a reviewed extraction
 preserves its inline records and inbound links. Do not install an empty index or
-pointer over existing history. Preserve historical ID widths/prefixes through
-the policy's exception process; new records use unused `ADR-NNN` identifiers.
+pointer over existing history. New records use unused four-digit `ADR-NNNN` identifiers. Preserve logical numbers and established prefixes during historical reconstruction. An explicitly authorized padding-only upgrade follows the [migration procedure](four-digit-migration.md), records every old/new ID and path, and updates current references without changing rationale or authority.
 No exception or migration map grants missing human authority.
 
 The policy reference is a version/full-commit reference, not copied policy prose.
@@ -82,19 +81,19 @@ pin in Git. Repository-owned ADRs and rationale are never managed output.
 ## PR handoff examples
 
 ```text
-ADR-Ref: egohygiene/example#ADR-012
+ADR-Ref: egohygiene/example#ADR-0012
 Operation: create; proposed; approval pending.
 Evidence: source revisions and authoring validation linked in the PR.
 ```
 
 ```text
-ADR-Ref: egohygiene/example#ADR-004
+ADR-Ref: egohygiene/example#ADR-0004
 Operation: reference; implements the existing accepted boundary without a new choice.
 ```
 
 ```text
-ADR-Ref: egohygiene/example#ADR-013
-Operation: supersede; proposed replacement of ADR-004; old record preserved.
+ADR-Ref: egohygiene/example#ADR-0013
+Operation: supersede; proposed replacement of ADR-0004; old record preserved.
 Human disposition and effective reciprocal lineage remain pending.
 ```
 

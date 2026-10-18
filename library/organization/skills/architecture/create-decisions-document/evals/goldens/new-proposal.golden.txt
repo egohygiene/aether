@@ -1,7 +1,7 @@
 Operation: create
-docs/decisions/ADR-012-format.md
+docs/decisions/ADR-0012-format.md
 docs/decisions/README.md
 status: proposed
 approval: null
 implementation_status: not_started
-ADR-Ref: egohygiene/example#ADR-012
+ADR-Ref: egohygiene/example#ADR-0012

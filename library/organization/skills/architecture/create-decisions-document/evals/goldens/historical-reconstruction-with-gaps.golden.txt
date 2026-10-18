@@ -5,4 +5,4 @@ implementation_status: implemented; synthetic merged-source evidence supports on
 Historical date: unknown
 Record and reconstruction date: 2026-10-03
 Rationale and authority: unknown; source gaps recorded.
-ADR-Ref: egohygiene/example#ADR-012
+ADR-Ref: egohygiene/example#ADR-0012

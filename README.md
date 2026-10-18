@@ -45,7 +45,7 @@ Generated artifacts:
 - `dist/codex/`
 - `dist/claude/`
 
-`.staging/` is non-canonical migration/provenance holding space and cannot be emptied without ADR-005 deletion-gate requirements (`DECISIONS.md#adr-005`).
+`.staging/` is non-canonical migration/provenance holding space and cannot be emptied without ADR-0005 deletion-gate requirements (`DECISIONS.md#adr-0005`).
 
 ## 4) First-party catalog summary
 

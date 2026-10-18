@@ -3,12 +3,12 @@
 Record the inspected source revision and reconstruction date. Keep historical
 choice dates separately, using unknown when they cannot be established.
 
-| Existing ID/location | Canonical target or unresolved conflict | Evidence/revision | Historical date | Reconstruction date | Rationale/authority gaps | Exception/owner |
-| --- | --- | --- | --- | --- | --- | --- |
+| Previous ID | Current ID | Previous path/anchor | Current path/anchor | Evidence/revision | Historical date | Migration date | Authority or unresolved gap |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 ## Preview and preservation
 
-Inventory existing IDs, prefixes, status claims, bodies, aliases and lineage.
+Record the explicit authorization and every changed record, including inline records. Inventory existing IDs, prefixes, status claims, bodies, aliases and lineage. Compare numerical identities across widths before any rename.
 Freeze collisions for human resolution. Preserve source history and blame links;
 never invent rationale or grant an exception through this map.
 

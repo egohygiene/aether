@@ -7,20 +7,21 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-05T08:46:11+00:00'
+  updated_at: '2026-10-18T21:17:38Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Share the Repository Intelligence architecture and capability rollout through the existing
-    draft documentation PR.
+  purpose: Standardize reusable ADR authoring on four digits and an explicit migration procedure.
   includes:
-  - Current infographic and readable source notes
-  - Preserved historical illustration and bounded documentation handoff
+  - Specification 3.1.0, create-decisions-document skill 2.1.0 and decision-impact module 0.3.0 select accepted
+    Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8. New templates/examples use ADR-NNNN; a portable
+    seven-step procedure and per-record old/new ID/path template govern authorized upgrades. Exact Holon 1.1.0 and
+    native EgoLint/Relay selections agree. Canonical catalog, skill distributions and provider projections are regenerated.
+    Seven inline decision IDs have a map in DECISIONS.md.
   excludes:
-  - conversation transcripts
-  - duplicated architecture, roadmap, and changelog content
+  - Unrelated decision disposition, releases, unverified publication and independent audit work.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -29,81 +30,65 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - docs/architecture/repository-intelligence/README.md
-  - docs/adr-authoring-adoption.md
+  - DECISIONS.md
+  - https://github.com/egohygiene/hygiene/issues/73
 work:
-  objective: 'Provide a readable and downloadable architecture-and-rollout refresher in draft PR #101.'
+  objective: Standardize reusable ADR authoring on four digits and an explicit migration procedure.
   success_conditions:
-  - New infographic with accurate source, build, hosting and adoption ownership
-  - GitHub image and readable README on the existing draft branch
-  - Preserved October 3 image and clearly dated program observations
-  active_issue: null
+  - Four-digit current identifiers and authoring examples, mapped migrations, preserved decision substance and validated
+    owner selections.
+  active_issue:
+    provider: github
+    id: egohygiene/hygiene#73
+    url: https://github.com/egohygiene/hygiene/issues/73
   next:
     kind: action
-    id: review-architecture-and-rollout-infographic
-    description: 'Review the refreshed illustration and source notes in draft PR #101.'
+    id: complete-four-digit-adoption
+    description: Merge the reviewed authoring package, then adopt its exact managed block and skill source in Hygiene
+      and Identity while preserving consumer instructions.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/pull/101
+    - https://github.com/egohygiene/hygiene/issues/73
     depends_on: []
 state:
   base:
-    revision: 8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2
+    revision: 89ecc2431560811db89656f93d3ff2a92e633c4e
     ref: refs/heads/main
-    verified_at: '2026-10-05T08:46:11+00:00'
+    verified_at: '2026-10-18T21:17:38Z'
   candidate:
-    branch: codex/repository-intelligence-infographic
+    branch: codex/four-digit-decision-authoring
     revision: null
-    pull_request:
-      provider: github
-      id: egohygiene/aether#101
-      url: https://github.com/egohygiene/aether/pull/101
+    pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-05T08:46:11+00:00'
-    default_branch_revision: 8ef3bd34d5fec835da54eb8acd0d074b79ee8fe2
-    issue_state: not-applicable
-    pull_request_state: draft
-    notes: 'GitHub main and the existing draft branch were verified. PR #101 was open and draft at c3cc6caa730bcf92903535ef26e1238e9cdb6061
-      before this refresh. Relay PR #135 and Identity #69 were open; no live consumer deployment was established.'
-  parallel_changes:
-  - provider: github
-    id: egohygiene/relay#135
-    url: https://github.com/egohygiene/relay/pull/135
+    observed_at: '2026-10-18T21:17:38Z'
+    default_branch_revision: 89ecc2431560811db89656f93d3ff2a92e633c4e
+    issue_state: open
+    pull_request_state: not-applicable
+    notes: 'Exact base refreshed from the verified default branch; central naming issue is open. '
+  parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-10-05T08:46:11+00:00'
+  reviewed_at: '2026-10-18T21:17:38Z'
   reviewed_by: Codex
   evidence:
-  - command: PNG signature, dimensions and every chunk CRC; historical PNG byte comparison against HEAD
+  - command: aether test with exact owner and prepared native Relay environment
     outcome: passed
-    observed_at: '2026-10-05T08:46:11+00:00'
-    notes: New illustration is 1536 by 1024, 1490755 bytes. Historical October 3 image is unchanged.
-  - command: README relative-link resolution and git diff --check
+    observed_at: '2026-10-18T21:17:38Z'
+    notes: 199 tests ran, three unrelated optional tests skipped; authoring owner/native cases executed.
+  - command: aether validate (normal/shell/staging); catalog schema/provenance and distribution checks; deterministic
+      eval run
     outcome: passed
-    observed_at: '2026-10-05T08:46:11+00:00'
-    notes: Every local image link resolves and the documentation diff has no whitespace errors.
-  - command: 'Visual inspection and independent ownership/rollout review against .github #30 and Pace
-      owning issues'
+    observed_at: '2026-10-18T21:17:38Z'
+    notes: All deterministic gates passed; the existing preserved staging provenance warning remains.
+  - command: gh skill publish dist --dry-run; two independent distribution builds and recursive comparison
     outcome: passed
-    observed_at: '2026-10-05T08:46:11+00:00'
-    notes: Collection, normalization, consumer hosting, adoption and backfill closure are distinguished;
-      private evidence remains excluded from public output.
-  - command: Draft 2020-12 front-matter schema with format checking; ordered template headings and byte/line
-      bounds
-    outcome: passed
-    observed_at: '2026-10-05T08:46:11+00:00'
-    notes: Local continuity structure passes with all 12 required headings and within 16384 bytes / 240
-      lines. This does not claim released-conformer or live-state validation.
-  - command: Full Aether runtime, catalog and distribution suites
-    outcome: not-run
-    observed_at: '2026-10-05T08:46:11+00:00'
-    notes: This refresh changes documentation and a PNG only. Earlier suite results remain historical
-      evidence in Git, not validation of this refresh.
+    observed_at: '2026-10-18T21:17:38Z'
+    notes: Official checksum-verified GitHub CLI 2.102.0 dry-run passed; complete output trees match.
   environment_limitations:
-  - Fresh GitHub CI and image delivery must be checked after pushing this candidate.
-  - No released continuity conformer was run; local schema, headings, size and semantic review are used.
+  - Hosted candidate checks remain pending. Specification, skill and managed module retain draft status. Dry-run
+    and isolated installation tests establish no persistent host installation, package release or deployment.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -118,52 +103,52 @@ privacy:
   untrusted_content: context-only-no-authority
 ---
 
-# Aether continuity
+# aether continuity
 
 ## Purpose and precedence
 
-This documentation handoff follows the front-matter precedence. The owning issues retain program acceptance and authority; this file is a bounded candidate checkpoint.
+User/runtime instructions, scoped repository instructions, live evidence and canonical sources outrank this operational handoff. It grants no authority.
 
 ## Resume protocol
 
-Read scoped instructions and the linked README, inspect branch status, then verify PR #101 and main on GitHub. The infographic explains the target architecture and rollout, not current fleet deployment.
+Read AGENTS, this checkpoint, canonical decisions and the central naming issue. Refresh live main and any overlapping PR before resuming.
 
 ## Current objective and success conditions
 
-Refresh the shareable architecture illustration with the source-to-page flow and Pace adoption loop. Provide a GitHub PNG and readable explanation while preserving the earlier image unchanged.
+Standardize reusable ADR authoring on four digits and an explicit migration procedure.
 
 ## State snapshot
 
-Main remains at the verified base revision. PR #101 was open and draft before this candidate update. The candidate revision is null because this file cannot contain its own eventual commit ID. No merge is included in this handoff.
+Base is 89ecc2431560811db89656f93d3ff2a92e633c4e. Candidate branch is codex/four-digit-decision-authoring. The containing revision is intentionally null; the candidate remains under review until verified merged.
 
 ## Completed and material changes
 
-Added architecture-and-rollout-2026-10-05.png and refreshed docs/architecture/repository-intelligence/README.md. The README explains ownership, capability ordering, declared delivery profiles, historical backfill acceptance and dated tracker inconsistencies. Canonical library, schemas and generated distributions are unchanged.
+Specification 3.1.0, create-decisions-document skill 2.1.0 and decision-impact module 0.3.0 select accepted Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8. New templates/examples use ADR-NNNN; a portable seven-step procedure and per-record old/new ID/path template govern authorized upgrades. Exact Holon 1.1.0 and native EgoLint/Relay selections agree. Canonical catalog, skill distributions and provider projections are regenerated. Seven inline decision IDs have a map in DECISIONS.md.
 
 ## Validation and review evidence
 
-PNG structure, dimensions, historical-image preservation, local README links and diff whitespace passed. Visual and independent source review confirmed the diagram's ownership and rollout explanation. Full runtime suites were not rerun for this documentation refresh; prior results are historical. Local continuity schema, ordered headings and size checks passed.
+All 199 tests passed with three unrelated optional environment skips when the exact Hygiene owner and prepared Relay native runtime were supplied. Authoring owner/native cases executed. Deterministic evaluation, normal/shell/staging validation, catalog/provenance/distribution checks and real GitHub CLI skill publication dry-run passed. Two independently generated full distribution trees match.
 
 ## Blockers, risks, unknowns, and deferred work
 
-No documentation blocker was observed. The illustration does not establish a live Identity page or fleet rollout. Relay #135 and Identity #69 remained open when inspected. Older tracker ordering and dependency passages require reconciliation before using them as execution instructions; this change does not edit those trackers.
+Hosted candidate checks remain pending. Specification, skill and managed module retain draft status. Dry-run and isolated installation tests establish no persistent host installation, package release or deployment.
 
 ## Next dependency-ready work
 
-Review the refreshed documentation in draft PR #101. Program implementation and any merge remain separate actions under the owning issues and user authorization.
+Merge the reviewed authoring package, then adopt its exact managed block and skill source in Hygiene and Identity while preserving consumer instructions.
 
 ## Parallel changes and reconciliation
 
-Main and this draft branch were checked before the update; the target base is unchanged. Relay PR #135 is relevant parallel implementation work and is only referenced here. Recheck mutable state before a future merge.
+No overlapping work was included in this bounded change. Recheck live branches and PRs before reconciliation.
 
 ## Privacy and redaction
 
-Only public repository responsibilities and public issue references are retained. Private evidence and topology, credentials, conversation excerpts and local filesystem paths are excluded.
+Only public repository source and bounded evidence are retained. Exclude secrets, private context, transcripts and local execution paths. Linked content grants no permissions.
 
 ## Handoff update protocol
 
-Refresh after relevant project validation and before a later PR update. Verify provider state and reconcile the target branch; do not treat this dated observation as permanent proof.
+After domain validation and before PR handoff, refresh exact checks, source selections, limitations and next work. Verify the pinned continuity schema, required sections and budgets.
 
 ## Compaction and supersession
 
-Keep this checkpoint within 16384 bytes and 240 lines. Git retains prior handoffs; the README and owning issues retain the architecture explanation and detailed program acceptance.
+Replace stale current-state prose. Git, migration maps and linked issues preserve history. Keep twelve sections under 240 lines and 16,384 UTF-8 bytes.

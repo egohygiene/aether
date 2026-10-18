@@ -108,11 +108,11 @@ class ProviderProjectionTests(unittest.TestCase):
         inherited = {contract["contract"]: contract for contract in metadata["inherits"]}
 
         self.assertEqual(metadata["id"], "decision-impact")
-        self.assertEqual(metadata["version"], "0.2.0")
+        self.assertEqual(metadata["version"], "0.3.0")
         self.assertEqual(metadata["status"], "draft")
         self.assertEqual(
             inherited["egohygiene.architecture-decision/v1"]["policy_version"],
-            "1.1.0",
+            "1.2.0",
         )
         self.assertEqual(
             inherited["egohygiene.repository-intelligence/v1"]["contract_version"],
@@ -222,7 +222,7 @@ class ProviderProjectionTests(unittest.TestCase):
             self.assertIn("Before implementation", fixture)
             self.assertIn("Before issue completion or PR handoff", fixture)
             self.assertIn("Roadmap-Step: AET-Q07", fixture)
-            self.assertIn("ADR-Ref: egohygiene/hygiene#ADR-002", fixture)
+            self.assertIn("ADR-Ref: egohygiene/hygiene#ADR-0002", fixture)
             self.assertIn("qualify cross-repository references", fixture)
             self.assertIn("read the root\n`CONTINUITY.md`", fixture)
             self.assertIn("does not schedule or enforce a pre-pull-request hook", fixture)

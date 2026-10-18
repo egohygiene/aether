@@ -2,7 +2,7 @@
 
 > **Status:** Adopted — 2026-08-09
 > **Scope:** Requirements for future Aether hook releases
-> **Related:** [`hook-threat-model.md`](hook-threat-model.md) · [`DECISIONS.md ADR-007`](../DECISIONS.md#adr-007)
+> **Related:** [`hook-threat-model.md`](hook-threat-model.md) · [`DECISIONS.md ADR-0007`](../DECISIONS.md#adr-0007)
 
 ---
 
@@ -12,7 +12,7 @@
 
 All staged hook prototypes were reviewed in issue 015 and received reject,
 move-out, or needs-human-review dispositions.  See
-[`DECISIONS.md ADR-007`](../DECISIONS.md#adr-007) and the disposition records
+[`DECISIONS.md ADR-0007`](../DECISIONS.md#adr-0007) and the disposition records
 in `catalog/first-party/staging-dispositions/hooks-*.json`.
 
 The requirements below apply to any future hook release.

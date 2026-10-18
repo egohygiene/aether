@@ -37,9 +37,9 @@ def module(name: str, path: Path):
 projections = module("adr_projections", ROOT / "library/organization/projections/build-projections.py")
 
 
-def rendered_record(identifier="ADR-012") -> str:
+def rendered_record(identifier="ADR-0012") -> str:
     return (SKILL / "templates/ADR.template.md").read_text().replace(
-        "ADR-000", identifier
+        "ADR-0000", identifier
     ).replace("YYYY-MM-DD", "2026-10-03").replace(
         "egohygiene/REPOSITORY", "egohygiene/example"
     ).replace("Replace with a concise proposed choice", "Keep a durable format")
@@ -153,7 +153,7 @@ class DecisionNativeConsumerTests(unittest.TestCase):
             (directory / "README.md").write_text(index)
             reference = (SKILL / "templates/policy-reference.template.json").read_text().replace("egohygiene/REPOSITORY", "egohygiene/example")
             if old_policy:
-                reference = reference.replace(SELECTION["policy"]["revision"], SELECTION["materialization"]["emitted_policy_revision"])
+                reference = reference.replace(SELECTION["policy"]["revision"], "f598ed659a43dd759d4ede41c27f9e5daf991aa7")
             (directory / "policy-reference.json").write_text(reference)
             config = 'schema-version = 1\nid = "egolint.repository-intelligence-validation/v1"\nrepository = "egohygiene/example"\n[profile]\nid = "authoring-fixture"\nenforcement = "advisory"\nenabled-rules = ' + json.dumps([rule["id"] for rule in self.catalog["rules"]]) + "\n"
             for pin in self.catalog["upstream-contracts"]:
@@ -198,13 +198,13 @@ class DecisionNativeConsumerTests(unittest.TestCase):
         self.assertIn("EGO-INTEL-CONTRACT-001", [f["id"] for f in result["findings"]])
 
     def test_proposed_supersession_preserves_human_disposed_predecessor(self):
-        old = rendered_record("ADR-004")
+        old = rendered_record("ADR-0004")
         info = metadata(old)
         info.update(status="accepted", approval={"date": "2026-09-01", "by": "Synthetic fixture maintainer", "evidence": "https://github.com/egohygiene/example/issues/4"})
         old = with_metadata(old, info)
-        new = rendered_record("ADR-013")
+        new = rendered_record("ADR-0013")
         info = metadata(new)
-        info["supersedes"] = ["ADR-004"]
+        info["supersedes"] = ["ADR-0004"]
         result = self.run_consumer([old, with_metadata(new, info)])
         self.assertEqual(result["semantic_status"], "conformant")
 

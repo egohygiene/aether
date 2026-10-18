@@ -68,7 +68,7 @@ they do not execute a model or demonstrate provider/host loading.
 
 ## Decision-impact handoff
 
-ADR not required: this change applies the ratified Hygiene ADR-002 contract within
+ADR not required: this change applies the ratified Hygiene ADR-0002 contract within
 Aether's existing source/distribution and sibling ownership boundaries (Aether
-ADR-001, ADR-002 and ADR-004). It adds authoring guidance and compatibility tests;
+ADR-0001, ADR-0002 and ADR-0004). It adds authoring guidance and compatibility tests;
 it introduces no new policy authority, artifact kind or distribution channel.

@@ -8,7 +8,7 @@ tools:
 - edit
 - execute
 ---
-<!-- aether-projection {"continuity_disposition":"reader-writer","generator":"library/organization/projections/build-projections.py","instruction_modules":[{"id":"decision-impact","inherits":[{"approval_url":"https://github.com/egohygiene/hygiene/issues/15#issuecomment-5647398908","contract":"egohygiene.architecture-decision/v1","policy_version":"1.1.0","revision":"c589587395750cd1c79c6fa0bef010189c547249","source_url":"https://github.com/egohygiene/hygiene/blob/c589587395750cd1c79c6fa0bef010189c547249/docs/decisions/POLICY.md","status":"accepted"},{"contract":"egohygiene.repository-intelligence/v1","contract_version":"1.0.0-alpha.1","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md","status":"proposed"}],"source":"library/organization/projections/templates/decision-impact.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"8934faf3948cea3ccaf683d90de7f1d132cb10d68ef1ce702297b31562b6638b"},"status":"draft","version":"0.2.0"},{"continuity_path":"CONTINUITY.md","contract":"aether.repository-continuity/v1","id":"repository-continuity","skill":"maintain-repository-continuity","source":"library/organization/instructions/repository-continuity/INSTRUCTION.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"},"status":"draft","version":"1.0.0"}],"interface":"aether.projection-interface/v1","interface_version":"1.2.0","provider":"github-copilot","source":"library/organization/agents/cleanup-specialist/AGENT.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"530c05d101cb4bc7ac6303ea8a136116c5188196a6039010890f671a6b62b5b4"}} -->
+<!-- aether-projection {"continuity_disposition":"reader-writer","generator":"library/organization/projections/build-projections.py","instruction_modules":[{"id":"decision-impact","inherits":[{"approval_url":"https://github.com/egohygiene/hygiene/pull/72","contract":"egohygiene.architecture-decision/v1","policy_version":"1.2.0","revision":"a05b14f8b9e2772124f879f818e09a911e996ad8","source_url":"https://github.com/egohygiene/hygiene/blob/a05b14f8b9e2772124f879f818e09a911e996ad8/docs/decisions/POLICY.md","status":"accepted"},{"contract":"egohygiene.repository-intelligence/v1","contract_version":"1.0.0-alpha.1","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md","status":"proposed"}],"source":"library/organization/projections/templates/decision-impact.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"7d3c1524fe643794df4b953b50d6a194a1268a0890785981fe465346398fb346"},"status":"draft","version":"0.3.0"},{"continuity_path":"CONTINUITY.md","contract":"aether.repository-continuity/v1","id":"repository-continuity","skill":"maintain-repository-continuity","source":"library/organization/instructions/repository-continuity/INSTRUCTION.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"},"status":"draft","version":"1.0.0"}],"interface":"aether.projection-interface/v1","interface_version":"1.2.0","provider":"github-copilot","source":"library/organization/agents/cleanup-specialist/AGENT.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"530c05d101cb4bc7ac6303ea8a136116c5188196a6039010890f671a6b62b5b4"}} -->
 
 ## Mission
 
@@ -55,7 +55,7 @@ result instead of inventing an update.
 Summarize what was cleaned, why behavior is preserved, validation performed, and any candidates intentionally left untouched.
 
 <!-- BEGIN AETHER DECISION-IMPACT -->
-<!-- aether-instruction {"id":"decision-impact","inherits":[{"contract":"egohygiene.architecture-decision/v1","policy_version":"1.1.0","revision":"c589587395750cd1c79c6fa0bef010189c547249","source_url":"https://github.com/egohygiene/hygiene/blob/c589587395750cd1c79c6fa0bef010189c547249/docs/decisions/POLICY.md","status":"accepted","approval_url":"https://github.com/egohygiene/hygiene/issues/15#issuecomment-5647398908"},{"contract":"egohygiene.repository-intelligence/v1","contract_version":"1.0.0-alpha.1","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md","status":"proposed"}],"status":"draft","version":"0.2.0","skill":"create-decisions-document"} -->
+<!-- aether-instruction {"id":"decision-impact","inherits":[{"contract":"egohygiene.architecture-decision/v1","policy_version":"1.2.0","revision":"a05b14f8b9e2772124f879f818e09a911e996ad8","source_url":"https://github.com/egohygiene/hygiene/blob/a05b14f8b9e2772124f879f818e09a911e996ad8/docs/decisions/POLICY.md","status":"accepted","approval_url":"https://github.com/egohygiene/hygiene/pull/72"},{"contract":"egohygiene.repository-intelligence/v1","contract_version":"1.0.0-alpha.1","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md","status":"proposed"}],"status":"draft","version":"0.3.0","skill":"create-decisions-document"} -->
 ## Decision-impact checkpoint
 
 Before implementation, inspect scoped instructions, pinned ecosystem context,
@@ -78,10 +78,10 @@ known roadmap references; use real stable IDs and qualify cross-repository refer
 
 ```text
 Roadmap-Step: AET-Q07
-ADR-Ref: egohygiene/hygiene#ADR-002
+ADR-Ref: egohygiene/hygiene#ADR-0002
 ```
 
-New records stay proposed. Automated agents never mark an ADR accepted or assign
+New records use four-digit `ADR-NNNN` IDs and stay proposed. Authorized padding migrations record each old/new ID and path while preserving the decision number and human disposition. Automated agents never mark an ADR accepted or assign
 another non-proposed lifecycle state. Preserve human-authored dispositions;
 implementation, merge and verification do not supply approval or rationale.
 Use `docs/decisions/README.md` and the repository policy reference; preserve legacy
@@ -93,8 +93,8 @@ This block preserves consumer-authored instructions and does not install or
 guarantee enforcement on every PR. The skill owns detailed authoring procedures.
 
 The module remains draft. It inherits the accepted
-[Hygiene ADR policy v1.1.0](https://github.com/egohygiene/hygiene/blob/c589587395750cd1c79c6fa0bef010189c547249/docs/decisions/POLICY.md)
-with [recorded ratification](https://github.com/egohygiene/hygiene/issues/15#issuecomment-5647398908).
+[Hygiene ADR policy v1.2.0](https://github.com/egohygiene/hygiene/blob/a05b14f8b9e2772124f879f818e09a911e996ad8/docs/decisions/POLICY.md)
+with [recorded ratification](https://github.com/egohygiene/hygiene/pull/72).
 The independent
 [Repository Intelligence v1.0.0-alpha.1](https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md)
 retains its proposed authority and existing immutable pin.
