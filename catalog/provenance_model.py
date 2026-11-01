@@ -124,7 +124,8 @@ def _first_party_record(artifact: dict[str, Any]) -> dict[str, Any]:
     kind = str(artifact.get("kind", "other"))
     if kind not in {"specification", "skill", "agent", "prompt", "instruction"}:
         raise ValueError(f"unsupported first-party artifact kind: {kind}")
-    lifecycle = normalize_lifecycle((artifact.get("lifecycle") or {}).get("state"))
+    source_lifecycle = artifact.get("lifecycle") or {}
+    lifecycle = normalize_lifecycle(source_lifecycle.get("state"), source_state=source_lifecycle.get("source_state"))
     record = {
         "id": str(artifact.get("id", "")),
         "kind": kind,

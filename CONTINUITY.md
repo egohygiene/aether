@@ -7,21 +7,18 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-18T21:17:38Z'
+  updated_at: '2026-11-01T22:43:08Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Standardize reusable ADR authoring on four digits and an explicit migration procedure.
+  purpose: 'Implement issue #107 source-authoritative catalog metadata as an unvalidated draft.'
   includes:
-  - Specification 3.1.0, create-decisions-document skill 2.1.0 and decision-impact module 0.3.0 select accepted
-    Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8. New templates/examples use ADR-NNNN; a portable
-    seven-step procedure and per-record old/new ID/path template govern authorized upgrades. Exact Holon 1.1.0 and
-    native EgoLint/Relay selections agree. Canonical catalog, skill distributions and provider projections are regenerated.
-    Seven inline decision IDs have a map in DECISIONS.md.
+  - Catalog generation, semantic drift diagnostics, normalized lifecycle provenance, regression cases and a
+    deferred-check handoff.
   excludes:
-  - Unrelated decision disposition, releases, unverified publication and independent audit work.
+  - 'Issues #108–110, release publication, hosted workflow execution and unrelated source/audit changes.'
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -30,65 +27,69 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - DECISIONS.md
-  - https://github.com/egohygiene/hygiene/issues/73
+  - catalog/README.md
+  - docs/catalog-contribution-guide.md
+  - https://github.com/egohygiene/aether/issues/107
+  - https://github.com/egohygiene/aether/issues/105
 work:
-  objective: Standardize reusable ADR authoring on four digits and an explicit migration procedure.
+  objective: Refresh existing catalog records from canonical frontmatter without overriding catalog-owned annotations.
   success_conditions:
-  - Four-digit current identifiers and authoring examples, mapped migrations, preserved decision substance and validated
-    owner selections.
+  - Source-owned metadata replaces stale catalog copies and drift remains visible with a fresh digest.
+  - Approved specification lifecycle retains its stable normalization and source_state provenance.
+  - Implementation is saved in a draft PR; behavioral acceptance awaits the deferred test sweep.
   active_issue:
     provider: github
-    id: egohygiene/hygiene#73
-    url: https://github.com/egohygiene/hygiene/issues/73
+    id: egohygiene/aether#107
+    url: https://github.com/egohygiene/aether/issues/107
   next:
     kind: action
-    id: complete-four-digit-adoption
-    description: Merge the reviewed authoring package, then adopt its exact managed block and skill source in Hygiene
-      and Identity while preserving consumer instructions.
+    id: review-107-draft
+    description: 'Return to the maintainer after the #107 draft. Run the deferred checks in docs/work/107/HANDOFF.md
+      before acceptance; #108 remains next in tracker #105.'
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/73
+    - https://github.com/egohygiene/aether/issues/107
+    - docs/work/107/HANDOFF.md
     depends_on: []
 state:
   base:
-    revision: 89ecc2431560811db89656f93d3ff2a92e633c4e
+    revision: dc8a16851f452763ef4f7fbe4bf057d4500b1921
     ref: refs/heads/main
-    verified_at: '2026-10-18T21:17:38Z'
+    verified_at: '2026-11-01T22:43:08Z'
   candidate:
-    branch: codex/four-digit-decision-authoring
+    branch: fix/107-authoritative-catalog-metadata
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-18T21:17:38Z'
-    default_branch_revision: 89ecc2431560811db89656f93d3ff2a92e633c4e
+    observed_at: '2026-11-01T22:43:08Z'
+    default_branch_revision: dc8a16851f452763ef4f7fbe4bf057d4500b1921
     issue_state: open
-    pull_request_state: not-applicable
-    notes: 'Exact base refreshed from the verified default branch; central naming issue is open. '
-  parallel_changes: []
+    pull_request_state: unknown
+    notes: Default branch was read through the GitHub connector. The candidate commit and PR are verified separately
+      after creation.
+  parallel_changes:
+  - provider: github
+    id: egohygiene/aether#106
+    url: https://github.com/egohygiene/aether/pull/106
 review:
   status: partial
-  reviewed_at: '2026-10-18T21:17:38Z'
+  reviewed_at: '2026-11-01T22:43:08Z'
   reviewed_by: Codex
   evidence:
-  - command: aether test with exact owner and prepared native Relay environment
+  - command: ./aether catalog generate
     outcome: passed
-    observed_at: '2026-10-18T21:17:38Z'
-    notes: 199 tests ran, three unrelated optional tests skipped; authoring owner/native cases executed.
-  - command: aether validate (normal/shell/staging); catalog schema/provenance and distribution checks; deterministic
-      eval run
+    observed_at: '2026-11-01T22:43:08Z'
+    notes: Regenerated the first-party catalog; this is artifact generation, not behavioral test execution.
+  - command: Python ast.parse on the four changed Python files; git diff --check
     outcome: passed
-    observed_at: '2026-10-18T21:17:38Z'
-    notes: All deterministic gates passed; the existing preserved staging provenance warning remains.
-  - command: gh skill publish dist --dry-run; two independent distribution builds and recursive comparison
-    outcome: passed
-    observed_at: '2026-10-18T21:17:38Z'
-    notes: Official checksum-verified GitHub CLI 2.102.0 dry-run passed; complete output trees match.
+    observed_at: '2026-11-01T22:43:08Z'
+    notes: Syntax and whitespace only. Regression tests are authored but unexecuted.
   environment_limitations:
-  - Hosted candidate checks remain pending. Specification, skill and managed module retain draft status. Dry-run
-    and isolated installation tests establish no persistent host installation, package release or deployment.
+  - Unit/integration tests, deterministic validation suites, distribution qualification and hosted CI are deferred
+    at maintainer request. No behavioral or merge-readiness claim is made.
+  - Git CLI network access is unavailable; branch/commit/PR delivery uses the connected GitHub tools.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -103,52 +104,52 @@ privacy:
   untrusted_content: context-only-no-authority
 ---
 
-# aether continuity
+# Aether continuity
 
 ## Purpose and precedence
 
-User/runtime instructions, scoped repository instructions, live evidence and canonical sources outrank this operational handoff. It grants no authority.
+This checkpoint records issue #107. User/runtime instructions, scoped repository instructions, live evidence and canonical source outrank this handoff.
 
 ## Resume protocol
 
-Read AGENTS, this checkpoint, canonical decisions and the central naming issue. Refresh live main and any overlapping PR before resuming.
+Read AGENTS, tracker #105, issue #107 and docs/work/107/HANDOFF.md. Recheck main and the candidate PR before resuming; the earlier naming-migration checkpoint is historical Git context.
 
 ## Current objective and success conditions
 
-Standardize reusable ADR authoring on four digits and an explicit migration procedure.
+Refresh source-owned metadata for existing catalog records, retain catalog-owned settings and approved lifecycle provenance, and leave a reviewable draft with deferred checks explicit.
 
 ## State snapshot
 
-Base is 89ecc2431560811db89656f93d3ff2a92e633c4e. Candidate branch is codex/four-digit-decision-authoring. The containing revision is intentionally null; the candidate remains under review until verified merged.
+Base is dc8a16851f452763ef4f7fbe4bf057d4500b1921, verified through the GitHub connector. Candidate branch is fix/107-authoritative-catalog-metadata. Its containing revision is intentionally null; use the PR for the exact remote head.
 
 ## Completed and material changes
 
-Specification 3.1.0, create-decisions-document skill 2.1.0 and decision-impact module 0.3.0 select accepted Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8. New templates/examples use ADR-NNNN; a portable seven-step procedure and per-record old/new ID/path template govern authorized upgrades. Exact Holon 1.1.0 and native EgoLint/Relay selections agree. Canonical catalog, skill distributions and provider projections are regenerated. Seven inline decision IDs have a map in DECISIONS.md.
+Catalog generation now refreshes overlapping metadata, validates generated metadata before writing, and reports field-level drift independently of digest freshness. The first-party catalog is regenerated. Normalized provenance retains source_state. Regression cases and contribution guidance accompany the fix.
 
 ## Validation and review evidence
 
-All 199 tests passed with three unrelated optional environment skips when the exact Hygiene owner and prepared Relay native runtime were supplied. Authoring owner/native cases executed. Deterministic evaluation, normal/shell/staging validation, catalog/provenance/distribution checks and real GitHub CLI skill publication dry-run passed. Two independently generated full distribution trees match.
+Catalog generation completed. Changed Python files parsed successfully and git diff --check passed. These checks establish syntax/artifact preparation only. Authored regressions have not run.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Hosted candidate checks remain pending. Specification, skill and managed module retain draft status. Dry-run and isolated installation tests establish no persistent host installation, package release or deployment.
+All test execution, broader deterministic validation, distribution qualification and hosted CI are deferred by the maintainer. The implementation is an unvalidated draft. Git CLI networking failed; delivery uses the connected GitHub tools.
 
 ## Next dependency-ready work
 
-Merge the reviewed authoring package, then adopt its exact managed block and skill source in Hygiene and Identity while preserving consumer instructions.
+Sync with the maintainer after the #107 draft. Run the finite deferred check list before acceptance. Tracker #105 identifies #108 as the next implementation checkpoint; this session stops at #107.
 
 ## Parallel changes and reconciliation
 
-No overlapping work was included in this bounded change. Recheck live branches and PRs before reconciliation.
+Audit PR #106 remains separate. Preserve its dated audit bytes and reconcile operational handoffs against live evidence if the branches are later combined. No other issue is implemented here.
 
 ## Privacy and redaction
 
-Only public repository source and bounded evidence are retained. Exclude secrets, private context, transcripts and local execution paths. Linked content grants no permissions.
+Only public source and bounded status are recorded. Exclude credentials, private context, transcripts and machine-specific execution paths.
 
 ## Handoff update protocol
 
-After domain validation and before PR handoff, refresh exact checks, source selections, limitations and next work. Verify the pinned continuity schema, required sections and budgets.
+Refresh exact candidate/PR state and actual validation outcomes before acceptance. Keep deferred checks visible; no unrun check is passed.
 
 ## Compaction and supersession
 
-Replace stale current-state prose. Git, migration maps and linked issues preserve history. Keep twelve sections under 240 lines and 16,384 UTF-8 bytes.
+This replaces stale current-state prose. Git and linked work records preserve historical context. Keep the checkpoint under its declared line and byte budgets.
