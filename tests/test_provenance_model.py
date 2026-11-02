@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "catalog"))
 
 from provenance_model import (  # noqa: E402
+    _first_party_record,
     build_external,
     build_first_party,
     canonical_bytes,
@@ -69,6 +70,13 @@ class ProvenanceModelTests(unittest.TestCase):
         first = build_first_party()
         second = build_first_party()
         self.assertEqual(canonical_bytes(first), canonical_bytes(second))
+
+    def test_first_party_normalization_retains_approved_source_state(self) -> None:
+        catalog = json.loads((ROOT / "catalog/first-party/catalog.v1.json").read_text(encoding="utf-8"))
+        artifact = copy.deepcopy(next(item for item in catalog["artifacts"] if item["id"] == "specification/auditor"))
+        artifact["lifecycle"] = {"state": "stable", "source_state": "approved"}
+        record = _first_party_record(artifact)
+        self.assertEqual(record["lifecycle"], {"state": "stable", "source_state": "approved"})
 
 
 if __name__ == "__main__":

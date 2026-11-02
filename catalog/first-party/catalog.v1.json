@@ -235,7 +235,7 @@
       "title": "Create Architecture Document"
     },
     {
-      "artifact_version": "1.1.0",
+      "artifact_version": "2.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -245,7 +245,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "Creates or updates DECISIONS.md with architectural decision records (ADRs) from repository evidence. Use when a project needs to capture, repair, or review architectural decisions and their rationale.",
+      "description": "Authors proposed ADRs, reconstructs consequential historical decisions, and updates or references existing records under pinned Hygiene policy. Use when checking decision impact, correcting evidence, proposing supersession, or migrating legacy decision logs.",
       "domain": "architecture",
       "generated_distribution_paths": [
         "dist/skills/create-decisions-document/SKILL.md"
@@ -423,7 +423,7 @@
       "title": "Create Diagnosis Record"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1128,7 +1128,7 @@
       "title": "Create Vision Document"
     },
     {
-      "artifact_version": "1.1.0",
+      "artifact_version": "1.2.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1543,7 +1543,7 @@
       "title": "Skill Authoring"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.0.1",
       "compatibility": {
         "required_tools": []
       },
@@ -1633,7 +1633,7 @@
       "title": "Test Engineering"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1793,7 +1793,7 @@
       "title": "Architecture Document Specification"
     },
     {
-      "artifact_version": "2.0.0",
+      "artifact_version": "3.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1976,7 +1976,7 @@
       "title": "Design System Architecture Document Specification"
     },
     {
-      "artifact_version": "2.0.0",
+      "artifact_version": "2.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -2019,7 +2019,8 @@
         "specification/architecture-roadmap",
         "specification/architecture-design",
         "specification/architecture-design-system",
-        "specification/architecture-decisions"
+        "specification/architecture-decisions",
+        "specification/architecture-set"
       ],
       "release": {
         "included": false,
@@ -2696,8 +2697,8 @@
         "primary": "egohygiene"
       },
       "related_ids": [
-        "skill/architecture-authoring",
-        "specification/architecture-meta"
+        "specification/architecture-meta",
+        "skill/architecture-authoring"
       ],
       "release": {
         "included": false,
@@ -3012,10 +3013,10 @@
         "primary": "egohygiene"
       },
       "related_ids": [
-        "skill/bug-fixing",
-        "skill/create-diagnosis-record",
         "specification/auditor",
-        "specification/repository-journal"
+        "specification/repository-journal",
+        "skill/bug-fixing",
+        "skill/create-diagnosis-record"
       ],
       "release": {
         "included": false,
@@ -3067,10 +3068,10 @@
         "primary": "egohygiene"
       },
       "related_ids": [
+        "specification/diagnosis-record",
         "skill/maintain-repository-continuity",
         "skill/test-engineering",
-        "skill/validate-repository-locally",
-        "specification/diagnosis-record"
+        "skill/validate-repository-locally"
       ],
       "release": {
         "included": false,
@@ -3173,8 +3174,8 @@
         "primary": "egohygiene"
       },
       "related_ids": [
-        "skill/maintain-repository-continuity",
-        "specification/repository-journal"
+        "specification/repository-journal",
+        "skill/maintain-repository-continuity"
       ],
       "release": {
         "included": false,
@@ -3320,10 +3321,7 @@
         ],
         "primary": "egohygiene"
       },
-      "related_ids": [
-        "skill/prepare-social-campaign-handoff",
-        "skill/social-surface-specs"
-      ],
+      "related_ids": [],
       "release": {
         "included": false,
         "reason": "Only stable artifacts are releasable under catalog policy."
@@ -3428,9 +3426,9 @@
         "primary": "egohygiene"
       },
       "related_ids": [
-        "skill/repository-cleanup",
+        "specification/auditor",
         "skill/test-engineering",
-        "specification/auditor"
+        "skill/repository-cleanup"
       ],
       "release": {
         "included": false,
