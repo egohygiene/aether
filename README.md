@@ -135,6 +135,9 @@ Test suite:
 ./aether test
 ```
 
+See [deterministic evaluation evidence](docs/deterministic-evaluations.md) for
+shared preflight, assertion requirements, execution scope and honest counts.
+
 ## 8) Build and inspect distributions
 
 Build deterministic first-party skill distributions:

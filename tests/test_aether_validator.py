@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import json
+import contextlib
+import copy
+import io
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
-from aether_validator import AetherValidator, validate_portable_skill_package
+from aether_validator import AetherValidator, _format_eval_text, command_eval_run, validate_portable_skill_package
 
 
 def write(path: Path, content: str) -> None:
@@ -509,7 +513,99 @@ class TestEvalHarness(unittest.TestCase):
         fx = self._fx_with_evals(data)
         results = fx.validator().run_evals(skill_filter="example-skill")
         self.assertEqual(results["status"], "fail")
-        self.assertGreater(results["total_failed"], 0)
+        self.assertEqual(results["total_suite_errors"], 1)
+        self.assertEqual(results["total_cases"], 0)
+        self.assertEqual(results["total_failed"], 0)
+
+    def test_runner_and_validator_share_invalid_suite_preflight(self):
+        cases = []
+        empty = copy.deepcopy(_VALID_EVALS_V2)
+        empty["cases"] = []
+        cases.append((empty, "AETHER_EVAL_001"))
+        duplicate = copy.deepcopy(_VALID_EVALS_V2)
+        duplicate["cases"][1]["id"] = duplicate["cases"][0]["id"]
+        cases.append((duplicate, "AETHER_EVAL_002"))
+        unknown = copy.deepcopy(_VALID_EVALS_V2)
+        unknown["schema"] = "unknown/v1"
+        cases.append((unknown, "AETHER_EVAL_007"))
+        identity = copy.deepcopy(_VALID_EVALS_V2)
+        identity["skill"] = "another-skill"
+        cases.append((identity, "AETHER_EVAL_009"))
+        for suite, code in cases:
+            with self.subTest(code=code):
+                validator = self._fx_with_evals(suite).validator()
+                self.assertIn(code, {d.rule_id for d in validator.validate_evals()})
+                result = validator.run_evals()
+                self.assertEqual("fail", result["status"])
+                self.assertEqual(0, result["total_cases"])
+                self.assertEqual(1, result["total_suite_errors"])
+                self.assertIn(code, {d["rule_id"] for d in result["results"][0]["diagnostics"]})
+
+    def test_unknown_selection_and_unsupported_mode_do_not_fabricate_a_pass(self):
+        validator = self._fx_with_evals(_VALID_EVALS_V2).validator()
+        for kwargs, code in [({"skill_filter": "missing-skill"}, "AETHER_EVAL_010"), ({"mode": "model-assisted"}, "AETHER_EVAL_011")]:
+            with self.subTest(kwargs=kwargs):
+                result = validator.run_evals(**kwargs)
+                self.assertEqual("fail", result["status"])
+                self.assertEqual(0, result["total_cases"])
+                self.assertEqual([], result["results"])
+                self.assertIn(code, {error["rule_id"] for error in result["errors"]})
+
+    def test_text_assertions_require_goldens_but_filesystem_assertions_execute_without_them(self):
+        data = copy.deepcopy(_VALID_EVALS_V2)
+        data["cases"][0]["assertions"] = [{"type": "contains", "value": "required-text"}]
+        data["cases"][1]["assertions"] = [{"type": "file-exists", "value": "SKILL.md"}]
+        data["cases"][2]["assertions"] = [{"type": "file-not-exists", "value": "not-present.txt"}]
+        result = self._fx_with_evals(data).validator().run_evals()
+        self.assertEqual((4, 3, 1), (result["total_cases"], result["total_passed"], result["total_failed"]))
+        self.assertEqual("fail", result["status"])
+        cases = result["results"][0]["cases"]
+        self.assertIn("assertion not executed", cases[0]["checks"][-1]["detail"])
+        self.assertEqual("fail", cases[0]["checks"][-1]["status"])
+        self.assertEqual("pass", cases[1]["checks"][-1]["status"])
+        self.assertEqual("assertion/file-exists", cases[1]["checks"][-1]["check"])
+        self.assertIn("1 failed case(s)", _format_eval_text(result))
+
+    def test_regex_execution_errors_and_failed_file_checks_have_attributable_counts(self):
+        data = copy.deepcopy(_VALID_EVALS_V2)
+        data["cases"][0]["assertions"] = [{"type": "matches-pattern", "value": "["}]
+        data["cases"][1]["assertions"] = [{"type": "file-exists", "value": "missing.txt"}]
+        fx = self._fx_with_evals(data)
+        write(fx.root / "library/organization/skills/domain/example-skill/evals/goldens/example-positive.golden.txt", "evidence\n")
+        result = fx.validator().run_evals()
+        self.assertEqual((4, 2, 2), (result["total_cases"], result["total_passed"], result["total_failed"]))
+        self.assertIn("Assertion execution failed", result["results"][0]["cases"][0]["checks"][-1]["detail"])
+
+    def test_legacy_only_execution_is_explicitly_skipped_and_not_a_success(self):
+        data = copy.deepcopy(_VALID_EVALS_V2)
+        data["schema"] = "aether.skill-evaluations/v1"
+        result = self._fx_with_evals(data).validator().run_evals()
+        self.assertEqual(("fail", 0, 1), (result["status"], result["total_cases"], result["total_skipped"]))
+        self.assertEqual("skip", result["results"][0]["status"])
+        self.assertIn("AETHER_EVAL_012", {error["rule_id"] for error in result["errors"]})
+
+    def test_malformed_root_and_duplicate_json_keys_fail_without_crashing(self):
+        for payload in ["[]", "{", '{"schema":"ignored","schema":"aether.skill-evaluations/v2"}']:
+            with self.subTest(payload=payload):
+                fx = self._fx_with_evals(_VALID_EVALS_V2)
+                write(fx.root / "library/organization/skills/domain/example-skill/evals/evals.json", payload)
+                result = fx.validator().run_evals()
+                self.assertEqual("fail", result["status"])
+                self.assertEqual(0, result["total_cases"])
+                self.assertEqual(1, result["total_suite_errors"])
+
+    def test_public_eval_command_returns_nonzero_and_prints_selection_error_in_both_formats(self):
+        fx = self._fx_with_evals(_VALID_EVALS_V2)
+        for output_format in ["json", "text"]:
+            with self.subTest(format=output_format):
+                args = type("Args", (), {"repo_root": str(fx.root), "skill": "missing-skill", "mode": "deterministic", "format": output_format})()
+                output = io.StringIO()
+                with mock.patch("aether_validator.find_repo_root", return_value=fx.root), contextlib.redirect_stdout(output):
+                    status = command_eval_run(args)
+                self.assertNotEqual(0, status)
+                self.assertIn("AETHER_EVAL_010", output.getvalue())
+                if output_format == "json":
+                    self.assertEqual(0, json.loads(output.getvalue())["total_cases"])
 
     def test_run_evals_applies_deterministic_assertion_against_golden(self):
         fx = self._fx_with_evals({
