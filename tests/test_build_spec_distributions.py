@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import contextlib
 import importlib.util
+import io
 import tempfile
 import unittest
 from pathlib import Path
@@ -70,6 +72,68 @@ class TestBuildSpecDistributions(unittest.TestCase):
         (self._tmp / "dist" / "specs" / "architecture-example.spec.md").write_text("stale\n", encoding="utf-8")
         rc = bd.build(check=True)
         self.assertNotEqual(rc, 0)
+
+    def test_malformed_required_spec_fails_both_modes_with_partial_output(self):
+        self._write_spec("alpha")
+        broken = self._write_spec("broken")
+        broken.write_text("# Missing frontmatter\n", encoding="utf-8")
+        for check in (False, True):
+            with self.subTest(check=check):
+                error = io.StringIO()
+                with contextlib.redirect_stderr(error):
+                    self.assertNotEqual(0, bd.build(check=check))
+                self.assertIn("broken.spec.md generation", error.getvalue())
+                self.assertIn("1/2 artifact(s) generated", error.getvalue())
+                self.assertTrue((self._tmp / "dist/specs/architecture-alpha.spec.md").is_file())
+
+    def test_obsolete_files_and_empty_directories_are_reported_without_deletion(self):
+        self._write_spec("example")
+        output = self._tmp / "custom-dist"
+        self.assertEqual(0, bd.build(output_directory=output))
+        obsolete = output / "specs/obsolete.spec.md"
+        obsolete.write_text("obsolete\n", encoding="utf-8")
+        (output / "specs/empty").mkdir()
+        note = output / "user.txt"
+        note.write_text("outside generator ownership\n", encoding="utf-8")
+        before = {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+        for check in (True, False):
+            with self.subTest(check=check):
+                self.assertNotEqual(0, bd.build(check=check, output_directory=output))
+                after = {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+                self.assertEqual(before, after)
+                self.assertTrue((output / "specs/empty").is_dir())
+
+    def test_removing_last_spec_does_not_bypass_inventory_check(self):
+        source = self._write_spec("example")
+        self.assertEqual(0, bd.build())
+        source.unlink()
+        self.assertNotEqual(0, bd.build(check=True))
+        self.assertTrue((self._tmp / "dist/specs/architecture-example.spec.md").is_file())
+
+    def test_missing_source_directory_and_output_io_failures_are_nonzero(self):
+        self.assertNotEqual(0, bd.build())
+        self.assertNotEqual(0, bd.build(check=True))
+        self._write_spec("example")
+        (self._tmp / "dist/specs/architecture-example.spec.md").mkdir(parents=True)
+        self.assertNotEqual(0, bd.build())
+        self.assertNotEqual(0, bd.build(check=True))
+
+    def test_custom_clean_build_check_and_rebuild_have_identical_inventory(self):
+        self._write_spec("example")
+        output = self._tmp / "custom-dist"
+        self.assertEqual(0, bd.build(output_directory=output))
+        before = {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+        self.assertEqual(0, bd.build(check=True, output_directory=output))
+        self.assertEqual(0, bd.build(output_directory=output))
+        after = {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+        self.assertEqual(before, after)
+
+    def test_colliding_spec_outputs_fail_instead_of_silently_overwriting(self):
+        first = self._write_spec("alpha")
+        second = self._write_spec("beta")
+        second.write_text(first.read_text(), encoding="utf-8")
+        self.assertNotEqual(0, bd.build())
+        self.assertNotEqual(0, bd.build(check=True))
 
 
 if __name__ == "__main__":

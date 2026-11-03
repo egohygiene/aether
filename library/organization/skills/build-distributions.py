@@ -36,11 +36,14 @@ Rules
    name a repository-relative source file and a package-relative destination.
 6. If ``--check`` is passed the script prints OK/DRIFT lines and exits non-zero
    on any drift without writing anything.
+7. Generation/I/O failures and unexpected entries in the owned subtree fail
+   both modes. Unknown output is reported and retained, never deleted.
 """
 
 from __future__ import annotations
 
 import argparse
+import os
 import hashlib
 import json
 import re
@@ -252,54 +255,103 @@ def _build_skill_dist(skill_name: str, source_dir: Path) -> dict[str, bytes]:
 # Build / check
 # ---------------------------------------------------------------------------
 
-def build(check: bool = False, output_directory: Path | None = None) -> int:
-    dist_dir = (output_directory or (REPO_ROOT / "dist")) / "skills"
-    skills = find_skills()
-    if not skills:
-        print("WARNING: no SKILL.md files found under library/organization/skills/", file=sys.stderr)
+def _report_unexpected(dist_dir: Path, expected_files: set[Path]) -> int:
+    """Compare the complete owned subtree, including empty directories.
+
+    Unknown files are evidence to review, never implicit deletion candidates.
+    Other generators' subtrees and files beside this subtree are not inspected.
+    """
+    expected_entries = set(expected_files)
+    for path in expected_files:
+        expected_entries.update(
+            parent for parent in path.parents
+            if parent != dist_dir and dist_dir in parent.parents
+        )
+    if not dist_dir.exists():
         return 0
 
-    drift = 0
-    written = 0
+    def fail_scan(error: OSError) -> None:
+        raise error
 
+    unexpected = 0
+    for parent, directories, files in os.walk(dist_dir, onerror=fail_scan, followlinks=False):
+        directories.sort()
+        for name in sorted(directories + files):
+            path = Path(parent) / name
+            if path not in expected_entries:
+                print(f"DRIFT  unexpected (retained): {_normalized_display_path(path)}")
+                unexpected += 1
+    return unexpected
+
+
+def build(check: bool = False, output_directory: Path | None = None) -> int:
+    dist_dir = (output_directory or (REPO_ROOT / "dist")) / "skills"
+    try:
+        skills = find_skills()
+    except OSError as exc:
+        print(f"ERROR  skills discovery: {exc}", file=sys.stderr)
+        return 1
+    if not skills:
+        print("WARNING: no SKILL.md files found under library/organization/skills/", file=sys.stderr)
+
+    drift = errors = written = generated = 0
+    expected_files: set[Path] = set()
     for skill_name, source_dir in skills:
         try:
             file_map = _build_skill_dist(skill_name, source_dir)
+            output_map = {
+                dist_dir / Path(path).relative_to("dist/skills"): content
+                for path, content in file_map.items()
+            }
+            if expected_files.intersection(output_map):
+                raise ValueError("output inventory collides with another skill")
         except Exception as exc:  # noqa: BLE001
-            print(f"ERROR  {skill_name}: {exc}", file=sys.stderr)
-            drift += 1
+            print(f"ERROR  skill {skill_name} generation: {exc}", file=sys.stderr)
+            errors += 1
             continue
 
-        for rel_path, content in file_map.items():
-            out_path = dist_dir / Path(rel_path).relative_to("dist/skills")
+        generated += 1
+        expected_files.update(output_map)
+        for out_path, content in output_map.items():
             display_path = _normalized_display_path(out_path)
-            if check:
-                if not out_path.exists():
-                    print(f"DRIFT  missing: {display_path}")
-                    drift += 1
-                elif out_path.read_bytes() != content:
-                    print(f"DRIFT  stale:   {display_path}")
-                    drift += 1
+            try:
+                if check:
+                    if not out_path.exists():
+                        print(f"DRIFT  missing: {display_path}")
+                        drift += 1
+                    elif out_path.read_bytes() != content:
+                        print(f"DRIFT  stale:   {display_path}")
+                        drift += 1
+                    else:
+                        print(f"OK     {display_path}")
                 else:
-                    print(f"OK     {display_path}")
-            else:
-                out_path.parent.mkdir(parents=True, exist_ok=True)
-                out_path.write_bytes(content)
-                print(f"wrote  {display_path}")
-                written += 1
+                    out_path.parent.mkdir(parents=True, exist_ok=True)
+                    out_path.write_bytes(content)
+                    print(f"wrote  {display_path}")
+                    written += 1
+            except OSError as exc:
+                print(f"ERROR  skill {skill_name} output {display_path}: {exc}", file=sys.stderr)
+                errors += 1
 
+    try:
+        unexpected = _report_unexpected(dist_dir, expected_files)
+    except OSError as exc:
+        print(f"ERROR  skills inventory: {exc}", file=sys.stderr)
+        errors += 1
+        unexpected = 0
+
+    if errors or drift or unexpected:
+        print(
+            f"\nSkill distributions incomplete: {generated}/{len(skills)} artifact(s) generated, "
+            f"{written} file(s) written, {errors} error(s), {drift} missing/stale file(s), "
+            f"{unexpected} unexpected path(s) retained. Review errors and inventory before reuse.",
+            file=sys.stderr,
+        )
+        return 1
     if check:
-        if drift:
-            print(
-                f"\n{drift} file(s) out of date. "
-                "Run build-distributions.py to regenerate.",
-                file=sys.stderr,
-            )
-            return 1
         print(f"\nAll {len(skills)} skill distribution(s) are up to date.")
-        return 0
-
-    print(f"\n{written} file(s) written for {len(skills)} skill(s).")
+    else:
+        print(f"\n{written} file(s) written for {generated} skill(s).")
     return 0
 
 

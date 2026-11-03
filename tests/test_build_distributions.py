@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+import contextlib
 import hashlib
 import importlib.util
+import io
 import json
+import shutil
 import sys
 import tempfile
 import unittest
@@ -348,10 +351,13 @@ class TestBuildIntegration(unittest.TestCase):
         for f in (self._tmp / "dist" / "skills").rglob("*"):
             if f.is_file():
                 contents_before[str(f)] = f.read_bytes()
-        bd.build(check=False)
+        self.assertEqual(0, bd.build(check=False))
+        contents_after = {}
         for f in (self._tmp / "dist" / "skills").rglob("*"):
             if f.is_file():
-                self.assertEqual(contents_before.get(str(f)), f.read_bytes())
+                contents_after[str(f)] = f.read_bytes()
+        self.assertEqual(contents_before, contents_after)
+        self.assertEqual(0, bd.build(check=True))
 
     def test_build_honors_custom_output_directory(self):
         _make_skill(self._tmp, "alpha-skill")
@@ -359,6 +365,55 @@ class TestBuildIntegration(unittest.TestCase):
         rc = bd.build(check=False, output_directory=custom_output)
         self.assertEqual(rc, 0)
         self.assertTrue((custom_output / "skills" / "alpha-skill" / "SKILL.md").exists())
+
+    def test_required_resource_failure_is_nonzero_even_with_partial_success(self):
+        _make_skill(self._tmp, "alpha-skill")
+        broken = _make_skill(self._tmp, "broken-skill") / "SKILL.md"
+        broken.write_text(broken.read_text().replace(
+            "metadata:\n",
+            "metadata:\n  aether-distribution-resources:\n"
+            "    - source: missing-resource.json\n"
+            "      destination: references/resource.json\n",
+        ))
+        for check in (False, True):
+            with self.subTest(check=check):
+                output = io.StringIO()
+                with contextlib.redirect_stderr(output):
+                    self.assertNotEqual(0, bd.build(check=check))
+                self.assertIn("broken-skill generation", output.getvalue())
+                self.assertIn("1/2 artifact(s) generated", output.getvalue())
+                self.assertTrue((self._tmp / "dist/skills/alpha-skill/SKILL.md").is_file())
+
+    def test_unknown_inventory_is_detected_and_retained_in_custom_output(self):
+        _make_skill(self._tmp, "alpha-skill")
+        output = self._tmp / "custom-dist"
+        self.assertEqual(0, bd.build(output_directory=output))
+        _write(output / "skills/removed-skill/SKILL.md", "obsolete\n")
+        _write(output / "skills/alpha-skill/references/user-note.md", "keep me\n")
+        (output / "skills/empty-package").mkdir()
+        _write(output / "personal-note.txt", "outside generator ownership\n")
+        before = {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+        for check in (True, False):
+            with self.subTest(check=check):
+                self.assertNotEqual(0, bd.build(check=check, output_directory=output))
+                after = {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+                self.assertEqual(before, after)
+                self.assertTrue((output / "skills/empty-package").is_dir())
+
+    def test_removing_last_skill_does_not_bypass_inventory_check(self):
+        skill = _make_skill(self._tmp, "alpha-skill")
+        self.assertEqual(0, bd.build())
+        shutil.rmtree(skill)
+        self.assertNotEqual(0, bd.build(check=True))
+        self.assertTrue((self._tmp / "dist/skills/alpha-skill/SKILL.md").is_file())
+
+    def test_missing_source_directory_and_output_io_failures_are_nonzero(self):
+        self.assertNotEqual(0, bd.build())
+        self.assertNotEqual(0, bd.build(check=True))
+        _make_skill(self._tmp, "alpha-skill")
+        (self._tmp / "dist/skills/alpha-skill/SKILL.md").mkdir(parents=True)
+        self.assertNotEqual(0, bd.build())
+        self.assertNotEqual(0, bd.build(check=True))
 
 
 if __name__ == "__main__":
