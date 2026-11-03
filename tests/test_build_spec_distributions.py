@@ -5,6 +5,7 @@ from __future__ import annotations
 import contextlib
 import importlib.util
 import io
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -134,6 +135,46 @@ class TestBuildSpecDistributions(unittest.TestCase):
         second.write_text(first.read_text(), encoding="utf-8")
         self.assertNotEqual(0, bd.build())
         self.assertNotEqual(0, bd.build(check=True))
+
+    def test_quoted_identifier_is_parsed_semantically_from_one_source_snapshot(self):
+        source = self._write_spec("quoted")
+        source.write_text(source.read_text().replace("id: architecture-quoted", 'id: "architecture-quoted" # supported comment'))
+        self.assertEqual(0, bd.build())
+        output = self._tmp / "dist/specs/architecture-quoted.spec.md"
+        self.assertEqual(source.read_bytes(), output.read_bytes())
+        self.assertEqual(0, bd.build(check=True))
+
+    def test_unsafe_identifiers_fail_before_writing_an_escaping_path(self):
+        source = self._write_spec("invalid")
+        template = source.read_text()
+        output = self._tmp / "custom-dist"
+        for value in ["../../escaped", "/absolute", "C:\\escaped", "drive:name", "bad/id", "bad space", ".", "tail-", 7, None]:
+            with self.subTest(value=value):
+                source.write_text(template.replace("id: architecture-invalid", "id: " + json.dumps(value)))
+                self.assertNotEqual(0, bd.build(output_directory=output))
+                self.assertNotEqual(0, bd.build(check=True, output_directory=output))
+                self.assertFalse(output.exists())
+                self.assertFalse((self._tmp / "escaped.spec.md").exists())
+
+    def test_source_and_output_symlinks_fail_without_mutating_external_sentinels(self):
+        source = self._write_spec("example")
+        with tempfile.TemporaryDirectory() as foreign:
+            sentinel = Path(foreign) / "sentinel.spec.md"
+            sentinel.write_text(source.read_text(), encoding="utf-8")
+            source.unlink()
+            source.symlink_to(sentinel)
+            for check in (False, True):
+                self.assertNotEqual(0, bd.build(check=check))
+            source.unlink()
+            self._write_spec("example")
+            output = self._tmp / "custom-dist"
+            output.mkdir()
+            (output / "specs").symlink_to(Path(foreign), target_is_directory=True)
+            before = sentinel.read_bytes()
+            for check in (False, True):
+                self.assertNotEqual(0, bd.build(check=check, output_directory=output))
+                self.assertEqual(before, sentinel.read_bytes())
+            self.assertEqual([sentinel], list(Path(foreign).iterdir()))
 
 
 if __name__ == "__main__":

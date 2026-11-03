@@ -11,6 +11,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 
@@ -414,6 +415,59 @@ class TestBuildIntegration(unittest.TestCase):
         (self._tmp / "dist/skills/alpha-skill/SKILL.md").mkdir(parents=True)
         self.assertNotEqual(0, bd.build())
         self.assertNotEqual(0, bd.build(check=True))
+
+    def test_companion_file_and_directory_symlinks_do_not_read_external_bytes(self):
+        for directory_link in (False, True):
+            with self.subTest(directory_link=directory_link), tempfile.TemporaryDirectory() as foreign:
+                skill = _make_skill(self._tmp, "linked-skill")
+                sentinel = Path(foreign) / "sentinel.txt"
+                sentinel.write_text("harmless outside-source sentinel\n", encoding="utf-8")
+                link = skill / "references" / "linked"
+                link.symlink_to(Path(foreign) if directory_link else sentinel, target_is_directory=directory_link)
+                original = Path.read_bytes
+                outside_reads = []
+                def guarded_read(path):
+                    if path.resolve() == sentinel.resolve():
+                        outside_reads.append(path)
+                        raise AssertionError("outside-source bytes must not be read")
+                    return original(path)
+                try:
+                    with mock.patch.object(Path, "read_bytes", guarded_read):
+                        for check in (False, True):
+                            self.assertNotEqual(0, bd.build(check=check))
+                    self.assertEqual([], outside_reads)
+                    self.assertEqual("harmless outside-source sentinel\n", sentinel.read_text())
+                finally:
+                    link.unlink()
+
+    def test_output_symlinks_are_rejected_without_reading_or_replacing_their_targets(self):
+        _make_skill(self._tmp, "linked-skill")
+        with tempfile.TemporaryDirectory() as foreign:
+            sentinel = Path(foreign) / "sentinel.txt"
+            sentinel.write_text("keep outside output unchanged\n", encoding="utf-8")
+            output = self._tmp / "custom-dist"
+            link = output / "skills/linked-skill/SKILL.md"
+            link.parent.mkdir(parents=True)
+            link.symlink_to(sentinel)
+            for check in (False, True):
+                self.assertNotEqual(0, bd.build(check=check, output_directory=output))
+                self.assertEqual("keep outside output unchanged\n", sentinel.read_text())
+            link.unlink()
+            shutil.rmtree(output / "skills")
+            (output / "skills").symlink_to(Path(foreign), target_is_directory=True)
+            for check in (False, True):
+                self.assertNotEqual(0, bd.build(check=check, output_directory=output))
+            self.assertEqual([sentinel], list(Path(foreign).iterdir()))
+
+    def test_symlinked_skill_source_is_rejected_before_reading(self):
+        skill = _make_skill(self._tmp, "linked-skill")
+        with tempfile.TemporaryDirectory() as foreign:
+            target = Path(foreign) / "SKILL.md"
+            target.write_text((skill / "SKILL.md").read_text(), encoding="utf-8")
+            (skill / "SKILL.md").unlink()
+            (skill / "SKILL.md").symlink_to(target)
+            for check in (False, True):
+                self.assertNotEqual(0, bd.build(check=check))
 
 
 if __name__ == "__main__":

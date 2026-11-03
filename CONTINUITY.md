@@ -7,24 +7,25 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-03T04:38:01Z'
+  updated_at: '2026-11-03T05:48:35Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Make skill/spec distribution generation fail honestly and compare the complete owned output
-    inventory without deleting unknown files.
+  purpose: Confine current skill/spec distribution inputs and outputs to declared trees before payload
+    reads or writes.
   includes: &id001
-  - Generation/discovery/output-I/O errors return nonzero in build and check modes; partial generation/write
-    counts remain explicit.
-  - Detect obsolete packages, extra companion files and empty directories under each owned skills/specs
-    subtree, including when no artifacts remain.
-  - Preserve custom-output behavior, deterministic valid output bytes, unknown files and top-level failure
-    propagation.
+  - Parse semantic YAML identifiers from one normalized spec snapshot and reject unsafe IDs before output
+    paths are constructed.
+  - Reject implicit canonical/companion source symlinks; preserve explicitly declared contained resources
+    and deterministic valid bytes.
+  - 'Anchor output reads/writes to the selected resolved base, reject redirects within owned subtrees
+    and preserve #108 failure/inventory behavior.'
   excludes:
-  - Tests/hosted CI, publishing/tagging, issue closure, release-engine redesign and automatic cleanup.
-  - 'Symlink/path confinement under #110 and catalog metadata work in draft115.'
+  - Filesystem sandboxing against concurrent adversarial writers, host installation, source cleanup and
+    publication.
+  - Regression suites, hosted CI, issue closure and independent evaluator/catalog implementation.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -35,49 +36,50 @@ scope:
   - AGENTS.md
   - library/organization/skills/build-distributions.py
   - library/organization/specs/build-distributions.py
+  - aether_validator.py
   - tests/test_build_distributions.py
   - tests/test_build_spec_distributions.py
-  - tests/test_release_artifacts.py
+  - tests/test_aether_validator.py
+  - docs/distribution-paths.md
   - README.md
-  - DECISIONS.md
-  - https://github.com/egohygiene/aether/issues/108
+  - https://github.com/egohygiene/aether/issues/110
 work:
-  objective: Make skill/spec distribution generation fail honestly and compare the complete owned output
-    inventory without deleting unknown files.
+  objective: Confine current skill/spec distribution inputs and outputs to declared trees before payload
+    reads or writes.
   success_conditions: *id001
   active_issue:
     provider: github
-    id: egohygiene/aether#108
-    url: https://github.com/egohygiene/aether/issues/108
+    id: egohygiene/aether#110
+    url: https://github.com/egohygiene/aether/issues/110
   next:
     kind: action
     id: review-draft-and-qualify
-    description: Review the builder inventory/failure draft and run issue108 negative/partial/CLI regressions
-      during qualification; reconcile CONTINUITY with parallel catalog draft115 before a later merge.
+    description: Review source/output containment and qualify the harmless sentinel, identifier, resource
+      and symlink cases in the deferred checks pass; reconcile with evaluator117 and catalog115 before
+      later integration.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/108
+    - https://github.com/egohygiene/aether/issues/110
     depends_on: []
 state:
   base:
-    revision: dc8a16851f452763ef4f7fbe4bf057d4500b1921
+    revision: 87e0277d1c99187464516899e57e2285b8f7a015
     ref: refs/heads/main
-    verified_at: '2026-11-03T04:38:01Z'
+    verified_at: '2026-11-03T05:48:35Z'
   candidate:
-    branch: codex/108-honest-distribution-builds
+    branch: codex/110-confined-distribution-paths
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-03T04:38:01Z'
-    default_branch_revision: dc8a16851f452763ef4f7fbe4bf057d4500b1921
+    observed_at: '2026-11-03T05:48:35Z'
+    default_branch_revision: 87e0277d1c99187464516899e57e2285b8f7a015
     issue_state: open
     pull_request_state: not-applicable
-    notes: Main dc8a168 and open issue108 were freshly verified. Four-digit source work already merged
-      in PR104; old handoff next-step prose is superseded. Draft115 (catalog metadata) and audit106 remain
-      open/untouched. This candidate is independent of the dirty catalog worktree and performs no merge
-      or release.
+    notes: Main87e0277 contains merged distribution PR116. Issue110 is open; evaluator draft117, catalog115
+      and audit106 are separately open. The original dirty catalog source is untouched. This candidate
+      is not merged, installed or published.
   parallel_changes:
   - provider: github
     id: egohygiene/aether#106
@@ -85,49 +87,43 @@ state:
   - provider: github
     id: egohygiene/aether#115
     url: https://github.com/egohygiene/aether/pull/115
+  - provider: github
+    id: egohygiene/aether#117
+    url: https://github.com/egohygiene/aether/pull/117
 review:
   status: partial
-  reviewed_at: '2026-11-03T04:38:01Z'
+  reviewed_at: '2026-11-03T05:48:35Z'
   reviewed_by: Codex
   evidence:
-  - command: ./aether distribution build --output-directory dist
+  - command: AST parse six changed Python sources and git diff --check
     outcome: passed
-    observed_at: '2026-11-03T04:38:01Z'
-    notes: Current canonical valid inputs generated successfully through all four existing top-level generators.
-      Final edited builders returned0. No suite ran.
-  - command: ./aether distribution build --output-directory dist --check
+    observed_at: '2026-11-03T05:48:35Z'
+    notes: Both builders, validator and three regression files parse. Seven new regression methods are
+      authored but unexecuted.
+  - command: ./aether distribution build --output-directory dist; ./aether distribution build --output-directory
+      dist --check; ./aether catalog generate
     outcome: passed
-    observed_at: '2026-11-03T04:38:01Z'
-    notes: Complete current skill/spec owned inventory and existing other-generator checks pass; output/catalog
-      regeneration leaves tracked derived bytes unchanged.
-  - command: ./aether catalog generate
+    observed_at: '2026-11-03T05:48:35Z'
+    notes: All commands exit0 against current valid canonical source. Tracked dist/catalog bytes remain
+      unchanged, including manifest path ordering. No regression or sentinel case executes.
+  - command: Pinned continuity schema/formats, twelve headings, size and privacy inspection
     outcome: passed
-    observed_at: '2026-11-03T04:38:01Z'
-    notes: Required canonical-source regeneration succeeds; first-party catalog bytes are unchanged. No
-      dirty draft115 source was used.
-  - command: AST parsing of both builders and three regression sources; git diff --check
-    outcome: passed
-    observed_at: '2026-11-03T04:38:01Z'
-    notes: Five Python sources parse and whitespace is clean. Eleven new regression methods plus a stronger
-      full-inventory rebuild assertion are authored but unexecuted.
-  - command: Pinned Aether continuity metadata/schema, twelve-section/budget/privacy inspection
-    outcome: passed
-    observed_at: '2026-11-03T04:38:01Z'
-    notes: Checkpoint meets structural schema and size limits; official released EgoLint conformance is
-      not executed.
-  - command: Builder negative/partial/custom-output fixtures, command propagation regression suites and
-      hosted CI
+    observed_at: '2026-11-03T05:48:35Z'
+    notes: One bounded source handoff meets metadata/size/privacy checks; official EgoLint conformance
+      is unexecuted.
+  - command: Identifier/symlink/sentinel/resource/portable regressions and hosted CI
     outcome: not-run
-    observed_at: '2026-11-03T04:38:01Z'
-    notes: Normal valid-source generation/check is bounded product evidence; newly authored failure-case
-      regressions remain unexecuted.
+    observed_at: '2026-11-03T05:48:35Z'
+    notes: All newly authored negative-path cases remain unexecuted. Positive generation does not establish
+      their behavior.
   environment_limitations:
-  - Negative, partial-failure, collision and custom-output regressions are authored but have not run;
-    issue108 stays open.
-  - Existing top-level propagation already preserves generator errors; only regression coverage was added
-    there, avoiding catalog draft115 source overlap.
-  - 'Inventory checks do not establish symlink/path confinement; #110 remains separate.'
-  - Official released EgoLint continuity conformance and broader suites are unexecuted.
+  - Seven new negative/positive regression methods and existing suites remain unexecuted; issue110 stays
+    open.
+  - Guards assume a quiescent local filesystem; they do not claim race-free sandboxing against concurrent
+    directory substitution.
+  - Explicit resources retain their governed contained-source mechanism; implicit companion/source redirects
+    are rejected.
+  - Official EgoLint conformance and broader owner/host/release qualification remain deferred.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -146,48 +142,48 @@ privacy:
 
 ## Purpose and precedence
 
-Record the bounded issue108 draft only. User/runtime and scoped instructions, live evidence and canonical sources outrank this operational checkpoint.
+Record the bounded issue110 source/output guard draft below user/runtime, scoped instructions, live evidence and canonical source. It grants no installation/publication authority.
 
 ## Resume protocol
 
-Read AGENTS, the builders, README distribution behavior and issue108. Verify main/PR state and preserve parallel catalog draft115; PR104 has already merged.
+Read AGENTS, both builders, the path-boundary guide and issue110. Main already contains merged116; preserve evaluator117 and the original catalog115 work.
 
 ## Current objective and success conditions
 
-Return nonzero for required generation/I/O failures in both modes and reject unexpected owned inventory while retaining unknown bytes for review. Keep deterministic outputs and custom roots compatible.
+Reject unsafe semantic identifiers and implicit source/output redirects before payload I/O while preserving valid deterministic packages, explicit resources and #108 inventory/failure semantics.
 
 ## State snapshot
 
-Base main is dc8a16851f452763ef4f7fbe4bf057d4500b1921. Issue108 is open; candidate branch codex/108-honest-distribution-builds has null self-revision/PR before creation. Existing drafts106/115 remain open.
+Base main87e0277d1c99187464516899e57e2285b8f7a015 includes merged116. Issue110 and peer drafts106/115/117 are open. Candidate codex/110-confined-distribution-paths has null self-revision/PR before creation.
 
 ## Completed and material changes
 
-Both canonical builders separate missing/stale drift from generation/I/O failures, report partial counts and compare all owned files/directories, even after the last source artifact is removed. Output collisions fail. Unknown entries are diagnosed and retained. Top-level propagation code is unchanged; its regression is added.
+Spec frontmatter is parsed once with existing PyYAML from the same normalized bytes copied. Stable-ID admission is added to the validator. Builders reject implicit canonical/companion symlinks, verify contained sources, capture one skill source snapshot and reject redirected output reads/writes. Valid manifest order is preserved. Seven new regressions use synthetic IDs and harmless temporary sentinels.
 
 ## Validation and review evidence
 
-Valid-source top-level distribution build and --check both returned0 after the final source edit. Catalog regeneration returned0; no tracked dist/catalog bytes changed. Five Python sources parse; git diff --check and continuity schema/structure/budget checks pass.
+Six Python sources parse and whitespace checks pass. Actual distribution build, --check and catalog regeneration exit0 with unchanged tracked derived bytes. Continuity metadata/schema/formats/heading/privacy/budget checks pass. No regression or sentinel case executes.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Eleven new regression methods and the improved rebuild comparison are unexecuted, as are hosted CI and broader suites. #110 retains confinement; #38/#94/#95 retain separate release/publication work. No contract/ADR lifecycle is promoted.
+Negative-path, custom-output and resource regressions remain unexecuted. Quiescent guards do not establish sandbox/race guarantees. Official EgoLint and wider CI/host/release checks remain deferred. No install, release or publication occurs.
 
 ## Next dependency-ready work
 
-Review and execute issue108 acceptance regressions in the qualification phase. Keep the issue open until failure/custom-output/CLI paths have actual proof, and reconcile the operational handoff with catalog draft115 before merging.
+Review and qualify issue110 during the deferred checks pass, preserving evaluator117 and catalog115. Keep the issue open until required negative/portable acceptance has actual proof.
 
 ## Parallel changes and reconciliation
 
-Draft106 is audit work; draft115 changes catalog metadata independently. Their source changes are preserved. Root CONTINUITY will need semantic reconciliation at merge rather than concatenating working snapshots.
+Audit106, catalog115 and evaluator117 remain separate. Validator/test and checkpoint edits may overlap; reconcile their source scopes and one current handoff during later integration without replacing the dirty original worktree.
 
 ## Privacy and redaction
 
-Only public scoped project facts and source paths are retained. No private context, credentials, local workspace paths or unrelated source are included.
+Only scoped public source facts and synthetic harmless sentinel tests are retained. No private host files, secrets, personal context, workbook contents or machine-local paths are included.
 
 ## Handoff update protocol
 
-Refresh after review and actual negative-case checks. ADR not required: routine implementation repair of the existing canonical-to-derived contract, without new publication authority or format. Pinned Aether continuity guidance is applied; no merge, issue closure, tag or publication occurs.
+Refresh after review and actual qualification. ADR not required: enforce the existing canonical-to-derived containment contract and reuse the existing PyYAML dependency; no new owner, format, installation or publication authority.
 
 ## Compaction and supersession
 
-Keep twelve required sections and existing byte/line budgets. Canonical builders, Git and issue108 retain detailed implementation/history; this file records only the current handoff.
+Keep twelve required sections and existing budgets. Canonical builders, path guide, Git and issue110 retain detailed contract/history.
