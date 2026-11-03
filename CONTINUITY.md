@@ -7,24 +7,25 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-03T05:37:45Z'
+  updated_at: '2026-11-03T16:15:19Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Make deterministic evaluation share structural preflight and fail honestly on invalid suites,
-    selections and unexecuted assertion requirements.
+  purpose: Integrate distribution containment PR118 with the merged evaluator repair while preserving
+    both source scopes and their qualification limits.
   includes: &id001
-  - Reject invalid schema/empty cases/duplicate IDs and mismatched identities through the same admission
-    path in validator and runner.
-  - Record missing assertion evidence, run-level errors, rejected suites and actual case counts separately;
-    keep filesystem assertions independent of goldens.
-  - Preserve explicit skipped/unsupported scope and execute no model or paid provider.
+  - Preserve the exact evaluator plus stable-ID admission, both guarded builders and all prior regression
+    cases.
+  - Reconcile one current checkpoint against verified main and retain deterministic valid distribution/catalog
+    bytes.
+  - Complete only the authorized source integration; retain remaining tests, ADR/policy disposition and
+    publication boundaries.
   excludes:
-  - Model/routing/subjective evaluation, source catalog work in draft115, release/publication and issue
-    closure.
-  - Evaluation execution, regression suites and hosted CI.
+  - New functionality beyond the existing evaluator/distribution scopes, catalog115 work, issue closure
+    and publication.
+  - Evaluation execution, regression suites, official EgoLint conformance and hosted CI.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -33,50 +34,54 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
+  - library/organization/skills/build-distributions.py
+  - library/organization/specs/build-distributions.py
   - aether_validator.py
+  - tests/test_build_distributions.py
+  - tests/test_build_spec_distributions.py
   - tests/test_aether_validator.py
-  - docs/deterministic-evaluations.md
-  - catalog/schemas/aether.skill-evaluations.v2.schema.json
+  - docs/distribution-paths.md
   - README.md
-  - DECISIONS.md
-  - https://github.com/egohygiene/aether/issues/109
+  - https://github.com/egohygiene/aether/issues/110
 work:
-  objective: Make deterministic evaluation share structural preflight and fail honestly on invalid suites,
-    selections and unexecuted assertion requirements.
+  objective: Integrate distribution containment PR118 with the merged evaluator repair while preserving
+    both source scopes and their qualification limits.
   success_conditions: *id001
   active_issue:
     provider: github
-    id: egohygiene/aether#109
-    url: https://github.com/egohygiene/aether/issues/109
+    id: egohygiene/aether#110
+    url: https://github.com/egohygiene/aether/issues/110
   next:
     kind: action
     id: review-draft-and-qualify
-    description: Review the fail-closed evaluator draft; qualify its selection/schema/evidence/counting
-      regressions in the deferred pass, and preserve parallel catalog115/distribution110 source and checkpoint
-      work.
+    description: Sync on tracker105 and select the next genuine source work, including staging-control111
+      or external-review112; preserve catalog115 and all evaluator/distribution qualification gaps.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/109
+    - https://github.com/egohygiene/aether/issues/110
     depends_on: []
 state:
   base:
-    revision: 87e0277d1c99187464516899e57e2285b8f7a015
+    revision: b09cd9d8bb1edc2bc1a44e91125a8a772b55d593
     ref: refs/heads/main
-    verified_at: '2026-11-03T05:37:45Z'
+    verified_at: '2026-11-03T16:15:19Z'
   candidate:
-    branch: codex/109-fail-closed-evaluation
+    branch: codex/110-confined-distribution-paths
     revision: null
-    pull_request: null
-    handoff_state: ready-for-review
+    pull_request:
+      provider: github
+      id: egohygiene/aether#118
+      url: https://github.com/egohygiene/aether/pull/118
+    handoff_state: review-reference-recorded
   live:
     status: verified
-    observed_at: '2026-11-03T05:37:45Z'
-    default_branch_revision: 87e0277d1c99187464516899e57e2285b8f7a015
+    observed_at: '2026-11-03T16:15:19Z'
+    default_branch_revision: b09cd9d8bb1edc2bc1a44e91125a8a772b55d593
     issue_state: open
-    pull_request_state: not-applicable
-    notes: Main87e0277 contains merged distribution PR116. Issue109 is open; catalog draft115 and audit106
-      remain open and untouched. This independent candidate has no merge/publication or passing evaluation
-      claim.
+    pull_request_state: draft
+    notes: Verified mainb09cd9d contains merged evaluator117 and earlier distribution116. PR118 is draft
+      before its authorized ready/merge transition and integrates that exact base. Catalog115 and audit106
+      remain separately open. No regression pass or publication is inferred.
   parallel_changes:
   - provider: github
     id: egohygiene/aether#106
@@ -84,39 +89,43 @@ state:
   - provider: github
     id: egohygiene/aether#115
     url: https://github.com/egohygiene/aether/pull/115
-  - provider: github
-    id: egohygiene/aether#110
-    url: https://github.com/egohygiene/aether/issues/110
 review:
   status: partial
-  reviewed_at: '2026-11-03T05:37:45Z'
+  reviewed_at: '2026-11-03T16:15:19Z'
   reviewed_by: Codex
   evidence:
-  - command: AST parse aether_validator.py and tests/test_aether_validator.py; git diff --check
+  - command: Exact runtime/source comparisons and qualified regression-name inventory union
     outcome: passed
-    observed_at: '2026-11-03T05:37:45Z'
-    notes: Both sources parse; seven new regression methods are authored but unexecuted. The existing
-      missing-fixture expectation now distinguishes a rejected suite from executed case failures.
-  - command: ./aether distribution build --output-directory dist; ./aether catalog generate
+    observed_at: '2026-11-03T16:15:19Z'
+    notes: Evaluator main plus the exact stable-ID guard matches the merged validator; builders/path guide
+      equal118, evaluation guide equals117, and all 50 validator regression names remain once.
+  - command: AST parse six combined Python sources and git diff --check
     outcome: passed
-    observed_at: '2026-11-03T05:37:45Z'
-    notes: Both commands exit0 and leave tracked derived/catalog bytes unchanged. These commands do not
-      execute evaluations or tests.
-  - command: Pinned continuity metadata/schema/formats, twelve headings, privacy and size inspection
+    observed_at: '2026-11-03T16:15:19Z'
+    notes: Runtime and regression sources parse; no test or evaluation case executes.
+  - command: ./aether distribution build --output-directory dist; ./aether distribution build --output-directory
+      dist --check; ./aether catalog generate
     outcome: passed
-    observed_at: '2026-11-03T05:37:45Z'
-    notes: One bounded source handoff within the existing budgets; official EgoLint conformance is unexecuted.
-  - command: Evaluation commands, regression suites, model/provider checks and hosted CI
+    observed_at: '2026-11-03T16:15:19Z'
+    notes: All combined-source commands exit0. Tracked dist/catalog bytes remain unchanged.
+  - command: Pinned continuity metadata/schema/formats, headings, size and privacy inspection
+    outcome: passed
+    observed_at: '2026-11-03T16:15:19Z'
+    notes: One coherent bounded checkpoint resolves the parallel snapshots.
+  - command: Evaluation/regression/portable/native checks, official EgoLint conformance and hosted CI
     outcome: not-run
-    observed_at: '2026-11-03T05:37:45Z'
-    notes: No evaluator or regression case was executed. Static and generation evidence does not establish
-      correct runtime evaluation behavior.
+    observed_at: '2026-11-03T16:15:19Z'
+    notes: All prior scope limits remain; generation does not establish negative-path or assertion-execution
+      qualification.
   environment_limitations:
-  - All new and existing evaluation regressions remain unexecuted; issue109 stays open.
-  - Deterministic case success qualifies structure and declared assertions only; prose, routing and model
-    behavior remain unexecuted.
-  - Catalog draft115 shares the validator/test files; preserve its existing changes during eventual integration.
-  - Official released EgoLint conformance, hosted CI and broader qualification remain deferred.
+  - Both scopes and earlier108 retain their authored-but-unexecuted regressions; issues108/109/110 remain
+    open for remaining acceptance.
+  - Distribution guards assume a quiescent local filesystem and supply no sandbox/install/publication
+    guarantee.
+  - Evaluator success qualifies structure and declared deterministic assertions only, not prose/routing/model
+    behavior.
+  - Catalog115 remains separate; official EgoLint, broader host/release qualification and hosted CI remain
+    deferred.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -135,48 +144,48 @@ privacy:
 
 ## Purpose and precedence
 
-Keep this issue109 source handoff below user/runtime instructions, scoped policy, live evidence and canonical sources. It grants no merge/publication authority.
+Record the authorized source integration below user/runtime, scoped instructions, live evidence and canonical sources. This checkpoint grants no publication authority.
 
 ## Resume protocol
 
-Read AGENTS, the evaluator evidence guide, validator/runner and issue109. Verify main and peers; PR116 is already merged, and original catalog draft115 remains separate.
+Read AGENTS, PR116/117/118, evaluator/path guides and tracker105. Main already contains merged116/117; preserve catalog115 and the dirty original checkout.
 
 ## Current objective and success conditions
 
-Share structural admission, reject empty/invalid requested work, execute filesystem assertions independently of goldens and report evidence/counts honestly without running a model.
+Retain honest evaluator admission/evidence/counts and guarded deterministic distribution source/output I/O while resolving their single operational-checkpoint conflict.
 
 ## State snapshot
 
-Base main87e0277d1c99187464516899e57e2285b8f7a015 includes merged116. Issue109 is open. Candidate codex/109-fail-closed-evaluation has null self-revision/PR before creation.
+Base mainb09cd9d8bb1edc2bc1a44e91125a8a772b55d593 contains merged117 and116. PR118 is draft before its authorized ready/merge transition. Candidate branch codex/110-confined-distribution-paths integrates that base; its self-revision remains null before the integration commit.
 
 ## Completed and material changes
 
-aether_validator.py now shares suite preflight, rejects duplicate JSON keys/invalid schema and identity, reports unmatched selection/unsupported mode/no executable cases, requires golden evidence for text assertions and counts suite errors separately. The guide defines deterministic scope and seven regression methods cover the new boundaries.
+The validator contains the exact evaluator repair plus the stable-ID admission guard. Both distribution builders and their tests/path guide remain exactly118; evaluator documentation remains117. All qualified regression names are retained once. Only CONTINUITY required conflict resolution.
 
 ## Validation and review evidence
 
-Both Python sources parse and whitespace checks pass. Actual distribution build and catalog regeneration exit0 with unchanged derived bytes. Continuity metadata/schema/formats, headings and size/privacy checks pass. No evaluation or test runs.
+Six combined Python sources parse. Exact source/test-inventory comparisons, whitespace and continuity schema/formats/heading/budget/privacy checks pass. Actual distribution build/check and catalog regeneration exit0 with unchanged derived bytes. No regression or evaluation executes.
 
 ## Blockers, risks, unknowns, and deferred work
 
-The new cases and existing suites remain unexecuted, as do evaluator commands and official EgoLint/hosted CI. A source implementation and regenerated artifacts do not qualify assertion execution or a real task. Issue109 remains open.
+Issues108/109/110 retain remaining regression/portable/native acceptance. Official EgoLint and hosted CI remain deferred. Local guards are quiescent checks, not a concurrent-adversary sandbox. No model, installation, release or publication is performed.
 
 ## Next dependency-ready work
 
-Review and qualify the source draft during the deferred checks phase. Preserve independent distribution110 and catalog115 changes while selecting the next bounded source work.
+Sync on tracker105 and select the next genuine source work, including staging-control111 or external-review112; preserve catalog115 and all evaluator/distribution qualification gaps.
 
 ## Parallel changes and reconciliation
 
-Audit106 and catalog115 remain untouched. Issue110 is separate. Validator/test and root checkpoint overlaps must be reconciled semantically; do not replace the dirty original catalog worktree.
+Audit106 and catalog115 remain independent. Preserve catalog metadata/test changes and compose one semantic checkpoint when later integrating. Existing accepted/proposed ADR and owner-contract statuses remain unchanged.
 
 ## Privacy and redaction
 
-Only scoped public source facts and synthetic fixture inputs are retained. No private workbook data, credentials, personal context or machine-local paths enter this repository.
+Only scoped public project facts are retained. Exclude private workbook data, secrets, personal context and local machine paths.
 
 ## Handoff update protocol
 
-Refresh after actual qualification/review. ADR not required: routine correctness repair of the existing deterministic evaluator and evidence counts, with no model/provider/release authority. No new lifecycle disposition, merge or issue closure is claimed.
+After the authorized merge, verify its exact head/tree and sync on the next source scope. ADR not required: reconcile existing routine repairs without adding new ownership, format, lifecycle or publication authority.
 
 ## Compaction and supersession
 
-Keep twelve required sections and existing budgets. Canonical schema, evaluator guide, Git and issue109 retain detailed contract/history.
+Keep all twelve sections and existing size budgets. Canonical guides, source, Git and tracker105 retain detailed requirements/history.

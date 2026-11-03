@@ -164,6 +164,21 @@ See [Reference](./references/reference.md).
 
 
 class TestAetherValidatorRegressions(unittest.TestCase):
+    def test_specification_identifiers_reject_paths_and_preserve_valid_yaml_quoting(self):
+        fx = ValidatorFixture.create()
+        path = fx.root / "library/organization/specs/domain/example.spec.md"
+        template = path.read_text()
+        for value in ["../../escaped", "/absolute", "C:\\escaped", "bad/id", "bad space", None, 7]:
+            with self.subTest(value=value):
+                path.write_text(template.replace("id: example-spec", "id: " + json.dumps(value)))
+                diagnostics, by_id, _ = fx.validator().validate_specs()
+                self.assertIn("AETHER_SPEC_007", {d.rule_id for d in diagnostics})
+                self.assertNotIn(str(value), by_id)
+        path.write_text(template.replace("id: example-spec", 'id: "example-spec" # quoted semantic identifier'))
+        diagnostics, by_id, _ = fx.validator().validate_specs()
+        self.assertNotIn("AETHER_SPEC_007", {d.rule_id for d in diagnostics})
+        self.assertIn("example-spec", by_id)
+
     def test_missing_skill_name(self):
         fx = ValidatorFixture.create()
         skill = fx.root / "library/organization/skills/domain/example-skill/SKILL.md"

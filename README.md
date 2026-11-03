@@ -161,8 +161,7 @@ tree is reconciled. Nothing is deleted implicitly. Keep personal files outside
 those generated subtrees. `--check` writes nothing; its success means the whole
 owned inventory matches current canonical inputs. A fresh disposable output
 root is useful for a clean generation without altering an older tree. These
-checks do not establish symlink/path confinement;
-[#110](https://github.com/egohygiene/aether/issues/110) owns that separate work.
+checks compose with the [source/output path boundary](docs/distribution-paths.md).
 
 Underlying generators remain available when a narrower check is needed:
 

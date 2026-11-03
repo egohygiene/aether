@@ -608,7 +608,15 @@ class AetherValidator:
                 diagnostics.append(err)
                 continue
             assert fm is not None
-            spec_id = str(fm.get("id", ""))
+            raw_id = fm.get("id")
+            spec_id = raw_id if isinstance(raw_id, str) and SKILL_NAME_RE.fullmatch(raw_id) else ""
+            if not spec_id:
+                diagnostics.append(Diagnostic(
+                    rule_id="AETHER_SPEC_007", severity="error",
+                    message="Specification id must be a lowercase kebab-case stable identifier.",
+                    guidance="Use a semantic identifier without paths, drives, dots or whitespace.",
+                    file=rel, line=1,
+                ))
             artifact_id = f"specification/{spec_id}" if spec_id else None
 
             if fm.get("schema") != SPEC_SCHEMA:
