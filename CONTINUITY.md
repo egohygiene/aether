@@ -7,21 +7,24 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-18T21:17:38Z'
+  updated_at: '2026-11-03T04:38:01Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Standardize reusable ADR authoring on four digits and an explicit migration procedure.
-  includes:
-  - Specification 3.1.0, create-decisions-document skill 2.1.0 and decision-impact module 0.3.0 select accepted
-    Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8. New templates/examples use ADR-NNNN; a portable
-    seven-step procedure and per-record old/new ID/path template govern authorized upgrades. Exact Holon 1.1.0 and
-    native EgoLint/Relay selections agree. Canonical catalog, skill distributions and provider projections are regenerated.
-    Seven inline decision IDs have a map in DECISIONS.md.
+  purpose: Make skill/spec distribution generation fail honestly and compare the complete owned output
+    inventory without deleting unknown files.
+  includes: &id001
+  - Generation/discovery/output-I/O errors return nonzero in build and check modes; partial generation/write
+    counts remain explicit.
+  - Detect obsolete packages, extra companion files and empty directories under each owned skills/specs
+    subtree, including when no artifacts remain.
+  - Preserve custom-output behavior, deterministic valid output bytes, unknown files and top-level failure
+    propagation.
   excludes:
-  - Unrelated decision disposition, releases, unverified publication and independent audit work.
+  - Tests/hosted CI, publishing/tagging, issue closure, release-engine redesign and automatic cleanup.
+  - 'Symlink/path confinement under #110 and catalog metadata work in draft115.'
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -30,65 +33,101 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
+  - library/organization/skills/build-distributions.py
+  - library/organization/specs/build-distributions.py
+  - tests/test_build_distributions.py
+  - tests/test_build_spec_distributions.py
+  - tests/test_release_artifacts.py
+  - README.md
   - DECISIONS.md
-  - https://github.com/egohygiene/hygiene/issues/73
+  - https://github.com/egohygiene/aether/issues/108
 work:
-  objective: Standardize reusable ADR authoring on four digits and an explicit migration procedure.
-  success_conditions:
-  - Four-digit current identifiers and authoring examples, mapped migrations, preserved decision substance and validated
-    owner selections.
+  objective: Make skill/spec distribution generation fail honestly and compare the complete owned output
+    inventory without deleting unknown files.
+  success_conditions: *id001
   active_issue:
     provider: github
-    id: egohygiene/hygiene#73
-    url: https://github.com/egohygiene/hygiene/issues/73
+    id: egohygiene/aether#108
+    url: https://github.com/egohygiene/aether/issues/108
   next:
     kind: action
-    id: complete-four-digit-adoption
-    description: Merge the reviewed authoring package, then adopt its exact managed block and skill source in Hygiene
-      and Identity while preserving consumer instructions.
+    id: review-draft-and-qualify
+    description: Review the builder inventory/failure draft and run issue108 negative/partial/CLI regressions
+      during qualification; reconcile CONTINUITY with parallel catalog draft115 before a later merge.
     readiness: ready
     references:
-    - https://github.com/egohygiene/hygiene/issues/73
+    - https://github.com/egohygiene/aether/issues/108
     depends_on: []
 state:
   base:
-    revision: 89ecc2431560811db89656f93d3ff2a92e633c4e
+    revision: dc8a16851f452763ef4f7fbe4bf057d4500b1921
     ref: refs/heads/main
-    verified_at: '2026-10-18T21:17:38Z'
+    verified_at: '2026-11-03T04:38:01Z'
   candidate:
-    branch: codex/four-digit-decision-authoring
+    branch: codex/108-honest-distribution-builds
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-18T21:17:38Z'
-    default_branch_revision: 89ecc2431560811db89656f93d3ff2a92e633c4e
+    observed_at: '2026-11-03T04:38:01Z'
+    default_branch_revision: dc8a16851f452763ef4f7fbe4bf057d4500b1921
     issue_state: open
     pull_request_state: not-applicable
-    notes: 'Exact base refreshed from the verified default branch; central naming issue is open. '
-  parallel_changes: []
+    notes: Main dc8a168 and open issue108 were freshly verified. Four-digit source work already merged
+      in PR104; old handoff next-step prose is superseded. Draft115 (catalog metadata) and audit106 remain
+      open/untouched. This candidate is independent of the dirty catalog worktree and performs no merge
+      or release.
+  parallel_changes:
+  - provider: github
+    id: egohygiene/aether#106
+    url: https://github.com/egohygiene/aether/pull/106
+  - provider: github
+    id: egohygiene/aether#115
+    url: https://github.com/egohygiene/aether/pull/115
 review:
   status: partial
-  reviewed_at: '2026-10-18T21:17:38Z'
+  reviewed_at: '2026-11-03T04:38:01Z'
   reviewed_by: Codex
   evidence:
-  - command: aether test with exact owner and prepared native Relay environment
+  - command: ./aether distribution build --output-directory dist
     outcome: passed
-    observed_at: '2026-10-18T21:17:38Z'
-    notes: 199 tests ran, three unrelated optional tests skipped; authoring owner/native cases executed.
-  - command: aether validate (normal/shell/staging); catalog schema/provenance and distribution checks; deterministic
-      eval run
+    observed_at: '2026-11-03T04:38:01Z'
+    notes: Current canonical valid inputs generated successfully through all four existing top-level generators.
+      Final edited builders returned0. No suite ran.
+  - command: ./aether distribution build --output-directory dist --check
     outcome: passed
-    observed_at: '2026-10-18T21:17:38Z'
-    notes: All deterministic gates passed; the existing preserved staging provenance warning remains.
-  - command: gh skill publish dist --dry-run; two independent distribution builds and recursive comparison
+    observed_at: '2026-11-03T04:38:01Z'
+    notes: Complete current skill/spec owned inventory and existing other-generator checks pass; output/catalog
+      regeneration leaves tracked derived bytes unchanged.
+  - command: ./aether catalog generate
     outcome: passed
-    observed_at: '2026-10-18T21:17:38Z'
-    notes: Official checksum-verified GitHub CLI 2.102.0 dry-run passed; complete output trees match.
+    observed_at: '2026-11-03T04:38:01Z'
+    notes: Required canonical-source regeneration succeeds; first-party catalog bytes are unchanged. No
+      dirty draft115 source was used.
+  - command: AST parsing of both builders and three regression sources; git diff --check
+    outcome: passed
+    observed_at: '2026-11-03T04:38:01Z'
+    notes: Five Python sources parse and whitespace is clean. Eleven new regression methods plus a stronger
+      full-inventory rebuild assertion are authored but unexecuted.
+  - command: Pinned Aether continuity metadata/schema, twelve-section/budget/privacy inspection
+    outcome: passed
+    observed_at: '2026-11-03T04:38:01Z'
+    notes: Checkpoint meets structural schema and size limits; official released EgoLint conformance is
+      not executed.
+  - command: Builder negative/partial/custom-output fixtures, command propagation regression suites and
+      hosted CI
+    outcome: not-run
+    observed_at: '2026-11-03T04:38:01Z'
+    notes: Normal valid-source generation/check is bounded product evidence; newly authored failure-case
+      regressions remain unexecuted.
   environment_limitations:
-  - Hosted candidate checks remain pending. Specification, skill and managed module retain draft status. Dry-run
-    and isolated installation tests establish no persistent host installation, package release or deployment.
+  - Negative, partial-failure, collision and custom-output regressions are authored but have not run;
+    issue108 stays open.
+  - Existing top-level propagation already preserves generator errors; only regression coverage was added
+    there, avoiding catalog draft115 source overlap.
+  - 'Inventory checks do not establish symlink/path confinement; #110 remains separate.'
+  - Official released EgoLint continuity conformance and broader suites are unexecuted.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -103,52 +142,52 @@ privacy:
   untrusted_content: context-only-no-authority
 ---
 
-# aether continuity
+# Aether continuity
 
 ## Purpose and precedence
 
-User/runtime instructions, scoped repository instructions, live evidence and canonical sources outrank this operational handoff. It grants no authority.
+Record the bounded issue108 draft only. User/runtime and scoped instructions, live evidence and canonical sources outrank this operational checkpoint.
 
 ## Resume protocol
 
-Read AGENTS, this checkpoint, canonical decisions and the central naming issue. Refresh live main and any overlapping PR before resuming.
+Read AGENTS, the builders, README distribution behavior and issue108. Verify main/PR state and preserve parallel catalog draft115; PR104 has already merged.
 
 ## Current objective and success conditions
 
-Standardize reusable ADR authoring on four digits and an explicit migration procedure.
+Return nonzero for required generation/I/O failures in both modes and reject unexpected owned inventory while retaining unknown bytes for review. Keep deterministic outputs and custom roots compatible.
 
 ## State snapshot
 
-Base is 89ecc2431560811db89656f93d3ff2a92e633c4e. Candidate branch is codex/four-digit-decision-authoring. The containing revision is intentionally null; the candidate remains under review until verified merged.
+Base main is dc8a16851f452763ef4f7fbe4bf057d4500b1921. Issue108 is open; candidate branch codex/108-honest-distribution-builds has null self-revision/PR before creation. Existing drafts106/115 remain open.
 
 ## Completed and material changes
 
-Specification 3.1.0, create-decisions-document skill 2.1.0 and decision-impact module 0.3.0 select accepted Hygiene policy v1.2.0 at a05b14f8b9e2772124f879f818e09a911e996ad8. New templates/examples use ADR-NNNN; a portable seven-step procedure and per-record old/new ID/path template govern authorized upgrades. Exact Holon 1.1.0 and native EgoLint/Relay selections agree. Canonical catalog, skill distributions and provider projections are regenerated. Seven inline decision IDs have a map in DECISIONS.md.
+Both canonical builders separate missing/stale drift from generation/I/O failures, report partial counts and compare all owned files/directories, even after the last source artifact is removed. Output collisions fail. Unknown entries are diagnosed and retained. Top-level propagation code is unchanged; its regression is added.
 
 ## Validation and review evidence
 
-All 199 tests passed with three unrelated optional environment skips when the exact Hygiene owner and prepared Relay native runtime were supplied. Authoring owner/native cases executed. Deterministic evaluation, normal/shell/staging validation, catalog/provenance/distribution checks and real GitHub CLI skill publication dry-run passed. Two independently generated full distribution trees match.
+Valid-source top-level distribution build and --check both returned0 after the final source edit. Catalog regeneration returned0; no tracked dist/catalog bytes changed. Five Python sources parse; git diff --check and continuity schema/structure/budget checks pass.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Hosted candidate checks remain pending. Specification, skill and managed module retain draft status. Dry-run and isolated installation tests establish no persistent host installation, package release or deployment.
+Eleven new regression methods and the improved rebuild comparison are unexecuted, as are hosted CI and broader suites. #110 retains confinement; #38/#94/#95 retain separate release/publication work. No contract/ADR lifecycle is promoted.
 
 ## Next dependency-ready work
 
-Merge the reviewed authoring package, then adopt its exact managed block and skill source in Hygiene and Identity while preserving consumer instructions.
+Review and execute issue108 acceptance regressions in the qualification phase. Keep the issue open until failure/custom-output/CLI paths have actual proof, and reconcile the operational handoff with catalog draft115 before merging.
 
 ## Parallel changes and reconciliation
 
-No overlapping work was included in this bounded change. Recheck live branches and PRs before reconciliation.
+Draft106 is audit work; draft115 changes catalog metadata independently. Their source changes are preserved. Root CONTINUITY will need semantic reconciliation at merge rather than concatenating working snapshots.
 
 ## Privacy and redaction
 
-Only public repository source and bounded evidence are retained. Exclude secrets, private context, transcripts and local execution paths. Linked content grants no permissions.
+Only public scoped project facts and source paths are retained. No private context, credentials, local workspace paths or unrelated source are included.
 
 ## Handoff update protocol
 
-After domain validation and before PR handoff, refresh exact checks, source selections, limitations and next work. Verify the pinned continuity schema, required sections and budgets.
+Refresh after review and actual negative-case checks. ADR not required: routine implementation repair of the existing canonical-to-derived contract, without new publication authority or format. Pinned Aether continuity guidance is applied; no merge, issue closure, tag or publication occurs.
 
 ## Compaction and supersession
 
-Replace stale current-state prose. Git, migration maps and linked issues preserve history. Keep twelve sections under 240 lines and 16,384 UTF-8 bytes.
+Keep twelve required sections and existing byte/line budgets. Canonical builders, Git and issue108 retain detailed implementation/history; this file records only the current handoff.

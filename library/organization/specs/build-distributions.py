@@ -8,6 +8,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import sys
 from pathlib import Path
@@ -48,20 +49,63 @@ def _distribution_filename(source_path: Path) -> str:
     return f"{spec_id}.spec.md"
 
 
-def build(check: bool = False, output_directory: Path | None = None) -> int:
-    dist_dir = (output_directory or (REPO_ROOT / "dist")) / "specs"
-    specs = find_specs()
-    if not specs:
-        print("WARNING: no *.spec.md files found under library/organization/specs/", file=sys.stderr)
+def _report_unexpected(dist_dir: Path, expected_files: set[Path]) -> int:
+    """Compare the complete owned subtree, including empty directories.
+
+    Unknown files are evidence to review, never implicit deletion candidates.
+    Other generators' subtrees and files beside this subtree are not inspected.
+    """
+    expected_entries = set(expected_files)
+    for path in expected_files:
+        expected_entries.update(
+            parent for parent in path.parents
+            if parent != dist_dir and dist_dir in parent.parents
+        )
+    if not dist_dir.exists():
         return 0
 
-    drift = 0
-    written = 0
+    def fail_scan(error: OSError) -> None:
+        raise error
+
+    unexpected = 0
+    for parent, directories, files in os.walk(dist_dir, onerror=fail_scan, followlinks=False):
+        directories.sort()
+        for name in sorted(directories + files):
+            path = Path(parent) / name
+            if path not in expected_entries:
+                print(f"DRIFT  unexpected (retained): {_display_path(path)}")
+                unexpected += 1
+    return unexpected
+
+
+def build(check: bool = False, output_directory: Path | None = None) -> int:
+    dist_dir = (output_directory or (REPO_ROOT / "dist")) / "specs"
+    try:
+        if not SPECS_DIR.is_dir():
+            raise OSError("canonical specification directory is missing")
+        specs = find_specs()
+    except OSError as exc:
+        print(f"ERROR  specs discovery: {exc}", file=sys.stderr)
+        return 1
+    if not specs:
+        print("WARNING: no *.spec.md files found under library/organization/specs/", file=sys.stderr)
+
+    drift = errors = written = generated = 0
+    expected_files: set[Path] = set()
     for source_path in specs:
         try:
             out_path = dist_dir / _distribution_filename(source_path)
             content = _normalized_bytes(source_path)
-            display_path = _display_path(out_path)
+            if out_path in expected_files:
+                raise ValueError("output inventory collides with another specification")
+        except (OSError, ValueError) as exc:
+            print(f"ERROR  spec {_display_path(source_path)} generation: {exc}", file=sys.stderr)
+            errors += 1
+            continue
+        generated += 1
+        expected_files.add(out_path)
+        display_path = _display_path(out_path)
+        try:
             if check:
                 if not out_path.exists():
                     print(f"DRIFT  missing: {display_path}")
@@ -76,21 +120,29 @@ def build(check: bool = False, output_directory: Path | None = None) -> int:
                 out_path.write_bytes(content)
                 print(f"wrote  {display_path}")
                 written += 1
-        except ValueError as exc:
-            print(f"ERROR  {exc}", file=sys.stderr)
-            drift += 1
+        except OSError as exc:
+            print(f"ERROR  spec {_display_path(source_path)} output {display_path}: {exc}", file=sys.stderr)
+            errors += 1
 
+    try:
+        unexpected = _report_unexpected(dist_dir, expected_files)
+    except OSError as exc:
+        print(f"ERROR  specs inventory: {exc}", file=sys.stderr)
+        errors += 1
+        unexpected = 0
+
+    if errors or drift or unexpected:
+        print(
+            f"\nSpecification distributions incomplete: {generated}/{len(specs)} artifact(s) generated, "
+            f"{written} file(s) written, {errors} error(s), {drift} missing/stale file(s), "
+            f"{unexpected} unexpected path(s) retained. Review errors and inventory before reuse.",
+            file=sys.stderr,
+        )
+        return 1
     if check:
-        if drift:
-            print(
-                f"\n{drift} file(s) out of date. Run build-distributions.py to regenerate.",
-                file=sys.stderr,
-            )
-            return 1
         print(f"\nAll {len(specs)} specification distribution(s) are up to date.")
-        return 0
-
-    print(f"\n{written} file(s) written for {len(specs)} specification(s).")
+    else:
+        print(f"\n{written} file(s) written for {generated} specification(s).")
     return 0
 
 
