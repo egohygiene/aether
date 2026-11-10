@@ -175,6 +175,8 @@ def validate_registry(value):
             or (item["kind"] == "composite" and bool(item["includes"]) and not item["finding_natures"]))
         if item["stability"] == "experimental" and item["kind"] == "leaf":
             require(item["finding_natures"] == ["experimental-opportunity"])
+        elif item["kind"] == "leaf":
+            require("experimental-opportunity" not in item["finding_natures"])
         profiles[item["id"]] = item
     require([item["id"] for item in value["profiles"]] == sorted(profiles))
     visited = set()
@@ -379,6 +381,13 @@ def validate_report(value, registry):
         if finding["nature"] in {"opportunity", "experimental-opportunity"}:
             require(finding["classification"] in {"optimization-opportunity", "future-enhancement", "needs-human-clarification"}
                 and finding["status"] in {"probable", "needs-validation", "needs-clarification"})
+        if finding["classification"] in {"optimization-opportunity", "future-enhancement"}:
+            require(finding["nature"] in {"opportunity", "experimental-opportunity"})
+        if finding["classification"] == "probable-issue":
+            require(finding["nature"] in {"defect", "risk", "policy-conformance"}
+                and finding["status"] in {"probable", "needs-validation"})
+        if finding["classification"] == "intentional-trade-off":
+            require(finding["nature"] == "risk" and finding["status"] == "intentional-trade-off")
         require((finding["nature"] == "experimental-opportunity") == (definition["stability"] == "experimental"))
         if finding["nature"] == "experimental-opportunity":
             require(finding["severity"] == "informational" and finding["evidence_classification"] in {"recommended", "unverified"})
