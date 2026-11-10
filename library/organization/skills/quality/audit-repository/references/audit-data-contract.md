@@ -69,6 +69,9 @@ requires an observed prior relationship, observed prior-audit evidence bound to
 that selected prior artifact's hash and URI/local path, plus distinct observed
 current-revision comparison evidence. These are structural bindings, not proof
 that remediation actually succeeded.
+Successful and failed command claims also require observed command/artifact/
+provider/manual evidence. A recommended or unverified reference cannot become
+execution metadata merely by supplying an exit code.
 
 The pure helper is an authoring/reference contract. Its presence does not
 establish deterministic scenario qualification, consumer installation, a host

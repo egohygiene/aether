@@ -508,6 +508,10 @@ def validate_report(value, registry):
         _refs(command["evidence_refs"], evidence)
         require(command["exit_code"] is None or type(command["exit_code"]) is int and -255 <= command["exit_code"] <= 255)
         text(command["reason"], 2048, nullable=command["state"] == "success")
+        if command["state"] in {"success", "failure"}:
+            require(any(evidence[name]["classification"] == "observed"
+                and evidence[name]["kind"] in {"command", "artifact", "provider", "manual"}
+                for name in command["evidence_refs"]))
         if command["state"] == "success":
             require(command["exit_code"] == 0 and bool(command["evidence_refs"]))
         elif command["state"] in {"not_run", "unavailable", "unsupported"}:
