@@ -517,7 +517,7 @@ def validate_report(value, registry):
         elif command["state"] in {"not_run", "unavailable", "unsupported"}:
             require(command["exit_code"] is None)
         else:
-            require(command["exit_code"] != 0)
+            require(type(command["exit_code"]) is int and command["exit_code"] != 0)
     report = closed(value["canonical_report"], ("path", "uri", "sha256"))
     relative(report["path"]); require(re.fullmatch(r"audits/[A-Za-z0-9][A-Za-z0-9._-]*-[0-9]{8}T[0-9]{6}Z\.md", report["path"]))
     try:

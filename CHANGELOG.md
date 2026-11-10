@@ -10,6 +10,15 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Added draft composable audit profiles and typed checkpoint reports, with
+  evidence-bound classifications, immutable report handoffs, and a read-only
+  auditor procedure; preserved the approved auditor 2.0.0 specification (#86,
+  #68).
+- Added a draft architecture coherence review skill, draft portable
+  assessment contract, and exact Hygiene governance binding with separately
+  trusted human evidence. AI recommendations, human claims, applicability and
+  material freshness remain distinct; no architecture is ratified (#87).
+
 - Aligned ADR authoring and decision-impact guidance with ratified Hygiene policy
   v1.1.0, including proposed records, evidence-preserving historical reconstruction,
   legacy index migration, completion handoffs and explicit canary compatibility (#91).

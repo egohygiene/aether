@@ -3,7 +3,7 @@ schema: aether.specification/v1
 id: architecture-coherence-review
 title: Architecture Coherence Review Contract
 kind: specification
-version: 1.0.0-alpha.1
+version: 1.0.0
 status: draft
 owners:
   - egohygiene
@@ -188,6 +188,9 @@ human disposition is still visible without claiming current ratification.
    historical decision and assessment.
 
 ## Implementation and validation plan
+
+The specification artifact is version 1.0.0 with draft lifecycle; the independent
+machine record retains contract version `1.0.0-alpha.1`.
 
 This slice supplies the draft specification, closed schema, portable helper,
 review skill and human-readable template. Hygiene owns proposed applicability

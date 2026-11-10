@@ -3,8 +3,8 @@ name: review-architecture-coherence
 description: Reconstructs a repository, subsystem, or organization architecture from exact source revisions and prepares a portable evidence-based explanation and coherence assessment for its human alignment authority. Use for architecture drift, ownership or dependency concerns, consequential design review, or an explicit sanity review; never use it to imply AI ratification or authorize implementation.
 license: MIT
 metadata:
-  aether-version: "1.0.0-alpha.1"
-  aether-status: "experimental"
+  aether-version: "1.0.0"
+  aether-status: "draft"
   aether-spec-id: "architecture-coherence-review"
   aether-scope: "organization"
   aether-domain: "architecture"
@@ -97,6 +97,6 @@ changes are separate observations, not edits that rewrite an old approval.
 Do not change architecture, canonical policy or enforcement as part of review.
 
 This is first-party Aether source authored for #87, licensed MIT. Its status is
-experimental; artifact implementation is not owner policy selection, skill
+draft; artifact implementation is not owner policy selection, skill
 adoption or real human ratification. Behavioral evaluations remain separate
 qualification work when execution is authorized.
