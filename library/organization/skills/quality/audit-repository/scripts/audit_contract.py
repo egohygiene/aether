@@ -139,7 +139,8 @@ def uri(value, *, nullable=False):
         parsed = urlsplit(value)
         require(parsed.scheme == "https" and bool(parsed.hostname) and parsed.username is None
             and parsed.password is None and parsed.port in {None, 443} and not parsed.query
-            and not any(char.isspace() for char in value) and "\\" not in value
+            and not any(char.isspace() for char in value) and "\\" not in value and "%" not in value
+            and (not parsed.fragment or re.fullmatch(r"[A-Za-z0-9._:-]+", parsed.fragment))
             and not any(part in {".", ".."} for part in parsed.path.split("/")))
     except ValueError:
         raise AuditContractError("Audit evidence URI is incompatible") from None
@@ -272,6 +273,59 @@ def _privacy(value, public):
             _privacy(item, public)
 
 
+def referenced_repositories(report):
+    """Extract declared public structured owners before any report ID/hash use.
+
+    This performs no roster lookup or provider authentication. A consumer must
+    admit every returned identity through its actual public owner roster before
+    invoking report_summary or hashing report bytes. Narrative text remains
+    untrusted and requires the consumer's independent namespace/privacy policy.
+    """
+    require(isinstance(report, dict) and report.get("visibility") == "public")
+    scope = report.get("scope")
+    require(isinstance(scope, dict) and isinstance(scope.get("repositories"), list)
+        and len(scope["repositories"]) <= 128)
+    owners = set()
+    for item in scope["repositories"]:
+        require(isinstance(item, dict) and item.get("visibility") == "public")
+        owners.add(repository(item.get("full_name")))
+    findings, evidence = report.get("findings"), report.get("evidence")
+    require(isinstance(findings, list) and len(findings) <= MAX_FINDINGS
+        and isinstance(evidence, list) and len(evidence) <= MAX_EVIDENCE)
+    for item in findings:
+        require(isinstance(item, dict) and item.get("visibility") == "public")
+        owners.add(repository(item.get("repository")))
+    urls = []
+    for item in evidence:
+        require(isinstance(item, dict))
+        if item.get("repository") is not None:
+            owners.add(repository(item["repository"]))
+        urls.append(item.get("uri"))
+    prior = report.get("prior_audits")
+    require(isinstance(prior, list) and len(prior) <= 128)
+    for item in prior:
+        require(isinstance(item, dict)); urls.append(item.get("uri"))
+    canonical = report.get("canonical_report")
+    provenance = report.get("provenance")
+    require(isinstance(canonical, dict) and isinstance(provenance, dict)
+        and isinstance(provenance.get("producer"), dict))
+    urls.extend((canonical.get("uri"), provenance["producer"].get("uri")))
+    for value in urls:
+        if value is None:
+            continue
+        uri(value)
+        parsed = urlsplit(value)
+        if parsed.hostname not in {"github.com", "api.github.com", "raw.githubusercontent.com"}:
+            continue
+        parts = parsed.path.strip("/").split("/")
+        if parsed.hostname == "api.github.com":
+            require(len(parts) >= 3 and parts[0] == "repos")
+            parts = parts[1:]
+        require(len(parts) >= 2)
+        owners.add(repository("/".join(parts[:2])))
+    return sorted(owners)
+
+
 def validate_report(value, registry):
     """Validate a self-contained authored sidecar, not the truth of its claims."""
     closed(value, ("schema", "contract_version", "audit_id", "visibility", "scope", "profiles", "started_at", "completed_at",
@@ -312,6 +366,7 @@ def validate_report(value, registry):
         text(item["reason"], 2048, nullable=item["state"] == "complete")
         profile_ids.append(item["profile"]["id"])
     require(profile_ids == sorted(selected) and completion["state"] == completion_state(completion["profiles"]))
+    profile_states = {item["profile"]["id"]: item["state"] for item in completion["profiles"]}
     text(completion["reason"], 4096, nullable=completion["state"] == "complete")
     strings(completion["continuation"], 64, item_maximum=1024)
     require(completion["state"] == "unknown" or value["completed_at"] is not None)
@@ -360,7 +415,8 @@ def validate_report(value, registry):
         identifier(finding["id"], FINDING_ID); require(finding["id"] not in findings)
         repository(finding["repository"]); require(finding["repository"] in targets)
         profile_ref(finding["source_profile"])
-        require(finding["source_profile"] == selected.get(finding["source_profile"]["id"]))
+        require(finding["source_profile"] == selected.get(finding["source_profile"]["id"])
+            and profile_states[finding["source_profile"]["id"]] != "not_applicable")
         definition = definitions[finding["source_profile"]["id"]]
         require(finding["classification"] in CLASSIFICATIONS and finding["nature"] in definition["finding_natures"]
             and finding["severity"] in SEVERITIES and finding["confidence"] in {"high", "medium", "low"}
@@ -406,7 +462,16 @@ def validate_report(value, registry):
         if history["delta"] in {"unchanged", "improved", "regressed", "resolved"}:
             require(history["prior_audit_id"] is not None and history["prior_finding_id"] is not None and bool(history["evidence_refs"]))
         if history["delta"] == "resolved":
-            require(history["evidence_classification"] == "observed" and any(evidence[name]["classification"] == "observed" for name in history["evidence_refs"]))
+            selected_prior = prior[history["prior_audit_id"]]
+            proof = [evidence[name] for name in history["evidence_refs"] if evidence[name]["classification"] == "observed"]
+            require(history["evidence_classification"] == "observed"
+                and selected_prior["evidence_classification"] == "observed"
+                and any(item["kind"] == "prior-audit" and item["sha256"] == selected_prior["sha256"]
+                    and (item["uri"] == selected_prior["uri"] if selected_prior["uri"] is not None else item["path"] is not None)
+                    for item in proof)
+                and any(item["kind"] in {"source", "command", "artifact", "provider", "manual"}
+                    and item["repository"] == finding["repository"] and item["revision"] == targets[finding["repository"]]
+                    for item in proof))
         if history["delta"] == "not-compared":
             require(history["prior_audit_id"] is None and history["prior_finding_id"] is None
                 and history["evidence_classification"] == "unverified" and not history["evidence_refs"])

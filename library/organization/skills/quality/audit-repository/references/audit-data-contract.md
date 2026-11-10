@@ -26,6 +26,12 @@ The standard-library API is:
   conformance, deployment or human acceptance.
 - `validate_report(report, registry)` returns the structurally admitted report
   or raises a closed `AuditContractError`; it performs no collection.
+- `referenced_repositories(report)` extracts declared public scope/finding/
+  evidence owners and structured GitHub URL owners without reading audit IDs,
+  publishing counts or computing report hashes. A consumer must authenticate
+  **every** returned owner through its exact public roster before summary or
+  digest use; this extraction is not admission. Narrative namespace/privacy
+  checks remain a separate consumer gate.
 - `canonical_bytes(value)` and `digest(value)` provide deterministic semantic
   JSON bytes/digest, distinct from actual original file or upload ZIP hashes.
 - `report_summary(report, registry)` returns typed metadata for a campaign index:
@@ -54,6 +60,15 @@ Use `not-compared` and unverified history when prior evidence is absent. An
 explicit reported delta is not automatic lifecycle promotion. Keep experiments
 informational and opt-in; issue candidates remain suggestions. Record unrun
 validation and missing evidence rather than inventing passing fixtures.
+
+Evidence URIs use a deliberately bounded canonical HTTPS profile: no credentials,
+query, percent escapes, traversal, machine paths or ambiguous fragments. A local
+canonical path can preserve a source that has no supported public URI. A leaf
+marked not-applicable cannot originate a finding. Reported resolved history
+requires an observed prior relationship, observed prior-audit evidence bound to
+that selected prior artifact's hash and URI/local path, plus distinct observed
+current-revision comparison evidence. These are structural bindings, not proof
+that remediation actually succeeded.
 
 The pure helper is an authoring/reference contract. Its presence does not
 establish deterministic scenario qualification, consumer installation, a host

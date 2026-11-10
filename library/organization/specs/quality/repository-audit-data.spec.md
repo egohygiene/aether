@@ -99,6 +99,9 @@ inspected and uninspected scope are distinct. Missing or private repositories
 are not inferred from a public count. Consumers authenticate target membership
 and visibility before reading identities, counts, findings, hashes or links;
 Aether's declared visibility alone cannot establish provider identity.
+Structured evidence and URI owners also require admission before any full
+report digest. The helper's `referenced_repositories` extraction does not
+authenticate membership or make arbitrary narrative text public.
 
 Profile completion states are `complete`, `partial`, `blocked`, `failed`,
 `unsupported`, `not_applicable` and `unknown`. Every resolved leaf has a state
@@ -109,6 +112,7 @@ and mixed states are partial. Complete means the declared applicable scope was
 inspected, with no uninspected scope; it never means passed, conformant,
 ratified, free of findings, deployed or installed. Unknown completion can omit
 its completion timestamp; other completed sidecars retain an actual timestamp.
+A not-applicable leaf cannot be the originating profile of a finding.
 
 ## Findings and evidence
 
@@ -154,7 +158,9 @@ related relationship. Finding history explicitly labels new, unchanged,
 improved, regressed, resolved, unverified or not-compared state, prior audit and
 finding identity when known, evidence classification and supporting references.
 No disappearance, missing capture, changed title or later timestamp implies
-resolution. Reported resolution requires explicit observed comparison evidence;
+resolution. Reported resolution requires an observed prior relationship and
+prior-audit evidence bound to its selected hash and URI/local path, together
+with distinct observed comparison evidence at the current represented revision;
 structural validation cannot verify the resolution claim. Historical source
 reports remain untouched.
 
