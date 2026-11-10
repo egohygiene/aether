@@ -159,7 +159,7 @@
       "source": "library/organization/agents/auditor/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "a9aa784a8746a8af943367c5d8b19eff447a48d19d28acfbbea368904d0cdfe2"
+        "value": "16cd56acc47c44973004b522cf25c1dfbf972ec1d6cdc6cd66e66b50b0fb5f0e"
       }
     },
     "bug-fix-teammate": {
@@ -505,7 +505,7 @@
     "source": "library/organization/instructions/repository-continuity/continuity-dispositions.v1.json",
     "source_digest": {
       "algorithm": "sha256-utf8-lf",
-      "value": "b95a7ddcfd0ea27b1f0439620260ca1f97f8488405303603e7f9446097482919"
+      "value": "5a37a7e105b1561f0993abd2a41df076e9740fbd87fbee85e6c7a8e502e5233d"
     }
   },
   "generator": "library/organization/projections/build-projections.py",
@@ -521,7 +521,7 @@
     },
     {
       "path": "dist/claude/repository/.claude/agents/auditor.md",
-      "sha256": "962d991993b997976a80adb52619a53568fdc56951efff85e768df454b7d0163"
+      "sha256": "9e6c0a16514b957dccb369dbb63e4406afe9780ef1d7940a056ed6ffda51cb70"
     },
     {
       "path": "dist/claude/repository/.claude/agents/bug-fix-teammate.md",
@@ -569,7 +569,7 @@
     },
     {
       "path": "dist/github/organization/agents/auditor.agent.md",
-      "sha256": "7a2a9c49867a0b1ac3b4ceeb0b95d85b2824e89bcad6fe89f24f4e1da56cd98c"
+      "sha256": "055402c7dff2cee6ebafbbe57bd698a0d47656d6622b7bae34466680fb4c6ad5"
     },
     {
       "path": "dist/github/organization/agents/bug-fix-teammate.agent.md",
@@ -605,7 +605,7 @@
     },
     {
       "path": "dist/github/repository/.github/agents/auditor.agent.md",
-      "sha256": "c72f3e0f6d3f8fd4bbc4b0ac4c6fbd052d9f322869243db76f0ab5823b23df44"
+      "sha256": "75685fabc95967a09dab615d5220fabd3a8e86c5c5959aa8598a5eeabeab2c22"
     },
     {
       "path": "dist/github/repository/.github/agents/bug-fix-teammate.agent.md",
@@ -649,7 +649,7 @@
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/auditor.md",
-      "sha256": "aa4a2bf7064719e358135b62e17ab7e288c04fc4fe94820556e81c5c354df5b8"
+      "sha256": "a5b1f871b8c79b2a32059305339e24694113d1415ee51352e7353361e1897512"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/bug-fix-teammate.md",
@@ -677,11 +677,11 @@
     },
     {
       "path": "dist/projections/continuity-dispositions.v1.json",
-      "sha256": "b95a7ddcfd0ea27b1f0439620260ca1f97f8488405303603e7f9446097482919"
+      "sha256": "5a37a7e105b1561f0993abd2a41df076e9740fbd87fbee85e6c7a8e502e5233d"
     },
     {
       "path": "dist/zencoder/manual-import/agents.json",
-      "sha256": "fc0e1a17f1768346389141f304eda5cf80cd3bde65449522a4691eefab83edf8"
+      "sha256": "8c493cd4fcc1fb66c567630b18255446dd52030cf7805d5101913d41b51f68ea"
     }
   ],
   "provider_registry": "library/organization/projections/provider-registry.v1.json",

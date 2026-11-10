@@ -3,7 +3,7 @@
   "schema_version": "aether.continuity-dispositions/v1",
   "contract": "aether.repository-continuity/v1",
   "composition_skill": "maintain-repository-continuity",
-  "reviewed_at": "2026-09-10",
+  "reviewed_at": "2026-11-10",
   "scope": {
     "canonical_skills": "library/organization/skills/**/SKILL.md",
     "canonical_agents": "library/organization/agents/*/AGENT.md",
@@ -339,6 +339,16 @@
       "domain_evidence": ["Cleanup classification, preserved invariants, changed files, exact checks, and deferred uncertain candidates"],
       "never_claim": ["That behavior is preserved or a deletion is safe without validation and authorization"],
       "rationale": "Authorized cleanup mutates repository files and must leave a reviewable handoff."
+    },
+    {
+      "id": "review-architecture-coherence",
+      "source": "library/organization/skills/architecture/review-architecture-coherence/SKILL.md",
+      "disposition": "reader",
+      "startup_read": true,
+      "pre_pr_write": false,
+      "domain_evidence": ["Exact architecture review scope, source revisions, assessment, uncertainty, human boundary, and validation gaps"],
+      "never_claim": ["Human ratification, policy applicability, implementation authority, or permission to mutate continuity without separately trusted evidence and authorization"],
+      "rationale": "The default review consumes repository state and returns candidates; separately authorized artifact writing does not grant continuity or architecture mutation authority."
     },
     {
       "id": "skill-authoring",

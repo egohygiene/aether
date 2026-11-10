@@ -8,7 +8,7 @@ status: draft
 owners:
   - egohygiene
 created: 2026-08-08
-updated: 2026-08-19
+updated: 2026-11-10
 governed_by:
   - architecture-decisions
 depends_on:
@@ -51,6 +51,12 @@ request; do not edit past decisions in place—append a superseding ADR instead.
 | [ADR-0005](#adr-0005) | Staged-material lifecycle and deletion gate | Accepted |
 | [ADR-0006](#adr-0006) | Whether generated `dist/` content is committed or release-only | Accepted |
 | [ADR-0007](#adr-0007) | Staged hook prototype disposition for first release | Accepted |
+| [ADR-0008](docs/decisions/ADR-0008-portable-review-evidence-and-human-authority.md) | Separate portable review evidence from policy and human authority | Proposed |
+
+New records and links to preserved historical records are indexed in
+[docs/decisions/README.md](docs/decisions/README.md). The inline records below
+retain their historical text and dispositions; this navigation addition does
+not migrate or re-ratify them.
 
 ---
 

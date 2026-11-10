@@ -49,23 +49,23 @@
       "title": "Architecture Authoring"
     },
     {
-      "artifact_version": "1.1.0",
+      "artifact_version": "1.2.0",
       "compatibility": {
         "required_tools": []
       },
       "dependencies": [
-        "specification/auditor"
+        "specification/repository-audit-data"
       ],
       "deprecation": {
         "replacement_id": null
       },
-      "description": "Audits a repository for quality, alignment, risk, and strengths using observable evidence. Use when a project needs an impartial assessment of its current state and actionable findings.",
+      "description": "Audits an explicitly scoped repository or public organization roster through composable profiles, preserving evidence, uncertainty, strengths and suggestion-only follow-up in immutable reports and typed sidecars.",
       "domain": "quality",
       "generated_distribution_paths": [
         "dist/skills/audit-repository/SKILL.md"
       ],
       "id": "skill/audit-repository",
-      "implements_specification_id": "specification/auditor",
+      "implements_specification_id": "specification/repository-audit-data",
       "kind": "skill",
       "license": "MIT",
       "lifecycle": {
@@ -85,7 +85,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "7d11ce81ef38546d40163ce0c69da8054df58bc9b099426525278123b329231a"
+        "value": "e5e47f5f28403d361eb30b44cfe5fce6b6b8d2f9b53c48ce321f83affe7e2a07"
       },
       "source_path": "library/organization/skills/quality/audit-repository/SKILL.md",
       "supersedes_ids": [],
@@ -1498,6 +1498,53 @@
       "title": "Repository Cleanup"
     },
     {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-coherence-review"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Reconstructs a repository, subsystem, or organization architecture from exact source revisions and prepares a portable evidence-based explanation and coherence assessment for its human alignment authority. Use for architecture drift, ownership or dependency concerns, consequential design review, or an explicit sanity review; never use it to imply AI ratification or authorize implementation.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/review-architecture-coherence/SKILL.md"
+      ],
+      "id": "skill/review-architecture-coherence",
+      "implements_specification_id": "specification/architecture-coherence-review",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "4b09afad0fbb95c83025363a551ec10cdb975631badc17b16a3adcc080c3c484"
+      },
+      "source_path": "library/organization/skills/architecture/review-architecture-coherence/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Review Architecture Coherence"
+    },
+    {
       "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
@@ -1791,6 +1838,58 @@
         "engineering"
       ],
       "title": "Architecture Document Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/specfile",
+        "specification/reflector"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Reconstruct an architecture from actual sources, explain it to its human",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-coherence-review.spec.md"
+      ],
+      "id": "specification/architecture-coherence-review",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/auditor",
+        "skill/review-architecture-coherence"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6676d05ac90be62a2128e5cc4d1d5479afc743dece5718ef71ab5f3e279b3a9a"
+      },
+      "source_path": "library/organization/specs/architecture/architecture-coherence-review.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture-coherence",
+        "human-alignment",
+        "evidence"
+      ],
+      "title": "Architecture Coherence Review Contract"
     },
     {
       "artifact_version": "3.1.0",
@@ -3145,6 +3244,60 @@
         "drift-containment"
       ],
       "title": "Reflective Development System Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/specfile",
+        "specification/auditor"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This draft extends the approved `auditor` specification 2.0.0 with a portable",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/specs/repository-audit-data.spec.md"
+      ],
+      "id": "specification/repository-audit-data",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/audit-repository",
+        "specification/reflector"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "b361d567e08dddcae6bf160bcaff61e3fa27d6138fa4da9867725d5186936464"
+      },
+      "source_path": "library/organization/specs/quality/repository-audit-data.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "audit",
+        "profiles",
+        "evidence",
+        "provenance",
+        "read-only"
+      ],
+      "title": "Composable Audit Profiles and Checkpoint Data"
     },
     {
       "artifact_version": "1.0.0",

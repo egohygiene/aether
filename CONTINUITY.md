@@ -7,24 +7,24 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-10T01:19:21Z'
+  updated_at: '2026-11-10T01:31:49Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Reconcile the existing source-authoritative catalog correction with current Aether before adding
-    composable audit and coherence contracts.
+  purpose: Deliver portable draft audit profiles and architecture review artifacts with explicit evidence and
+    human authority boundaries.
   includes:
-  - Existing catalog entries refresh source-owned version, lifecycle, license, owner and dependency metadata
-    rather than only refreshing the source digest. Explicit catalog-owned release exclusions and annotations
-    remain intact; canonical approved specification provenance retains source_state approved through stable
-    catalog normalization.
-  - The existing correction is merged locally with current main's evaluator/distribution containment changes.
-    Both sets of authored regression imports and cases are preserved; the two overlapping handoffs are reconciled
-    semantically. The historical audit report and its independent draft remain unchanged.
-  - The root handoff records this narrow metadata prerequisite for the Audits/Sanity source additions. No skill/specification
-    lifecycle, release, tag, workflow or human authority changes.
+  - Composable stable/experimental audit profiles, a closed authored report sidecar and pure validator preserve
+    findings, strengths, source profiles, completion, explicit history and uncertainty. The approved auditor
+    2.0.0 remains byte-identical; draft skill/agent reconcile staged functionality without promotion.
+  - A new draft architecture review spec and read-only skill separate assessment and recommendation from exact-pinned
+    Hygiene governance. Claimed human decisions require independently trusted typed context; assessment subjects
+    exclude governance to avoid circular digests.
+  - Proposed ADR-0008, index, changelog, catalog and distribution projections record the interfaces and owner
+    boundaries. New packages remain draft and excluded from release. Catalog/distribution generation is packaging
+    evidence, not executed review or acceptance.
   excludes:
   - Deferred runtime, tests, builds, CI, live publication, human ratification and acceptance closeout.
   precedence:
@@ -35,79 +35,79 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - ARCHITECTURE.md
-  - SYSTEM.md
   - DECISIONS.md
-  - catalog/README.md
-  - docs/catalog-contribution-guide.md
-  - docs/work/107/HANDOFF.md
-  - https://github.com/egohygiene/aether/issues/107
+  - docs/decisions/ADR-0008-portable-review-evidence-and-human-authority.md
+  - library/organization/specs/quality/auditor.spec.md
+  - library/organization/specs/quality/repository-audit-data.spec.md
+  - library/organization/specs/architecture/architecture-coherence-review.spec.md
+  - library/organization/skills/quality/audit-repository/SKILL.md
+  - library/organization/skills/architecture/review-architecture-coherence/SKILL.md
+  - catalog/first-party/catalog.v1.json
+  - https://github.com/egohygiene/aether/issues/86
 work:
-  objective: Reconcile the existing source-authoritative catalog correction with current Aether before adding
-    composable audit and coherence contracts.
+  objective: Deliver portable draft audit profiles and architecture review artifacts with explicit evidence
+    and human authority boundaries.
   success_conditions:
-  - Catalog regeneration can derive newly authored source metadata without retaining stale existing fields.
-  - Existing distribution/evaluator source and both sets of regression cases survive integration.
-  - Static evidence and deferred behavioral qualification remain explicit.
+  - Consumers can pin exact reusable audit and coherence contracts without copying policy or prose parsing.
+  - Human claims and verified authority remain distinct; incomplete evidence remains explicit.
+  - Existing approved source bytes and historical staged evidence are preserved.
   active_issue:
     provider: github
-    id: egohygiene/aether#107
-    url: https://github.com/egohygiene/aether/issues/107
+    id: egohygiene/aether#86
+    url: https://github.com/egohygiene/aether/issues/86
   next:
     kind: action
-    id: author-audit-and-coherence-contracts
-    description: Integrate the separately prepared Aether 86 audit-profile/report and Aether 87 architecture-coherence
-      source contracts, then regenerate canonical catalog and derived distribution metadata without promoting
-      draft lifecycle. Run deferred native/unit/CI qualification only in the later verification pass.
+    id: consume-exact-review-contracts
+    description: Integrate Observatory queries, Relay views and Reflector orchestration using immutable source
+      pins, then perform the separately deferred behavior/provider/publication qualification and organization
+      review.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/107
+    - https://github.com/egohygiene/aether/issues/86
     depends_on: []
 state:
   base:
-    revision: 5077797448d32a59b06eabe4b38f091137d58052
+    revision: 0071f7d751c4916e6b16460451751aa00fb1d365
     ref: refs/heads/main
-    verified_at: '2026-11-10T01:19:21Z'
+    verified_at: '2026-11-10T01:31:49Z'
   candidate:
-    branch: fix/107-authoritative-catalog-metadata
+    branch: codex/architecture-review-integration
     revision: null
-    pull_request:
-      provider: github
-      id: egohygiene/aether#115
-      url: https://github.com/egohygiene/aether/pull/115
-    handoff_state: review-reference-recorded
+    pull_request: null
+    handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-10T01:19:21Z'
-    default_branch_revision: 5077797448d32a59b06eabe4b38f091137d58052
+    observed_at: '2026-11-10T01:31:49Z'
+    default_branch_revision: 0071f7d751c4916e6b16460451751aa00fb1d365
     issue_state: open
-    pull_request_state: open
-    notes: Aether main 5077797448d32a59b06eabe4b38f091137d58052 and open issue 107/PR 115 were verified. Original
-      PR head 4d22c53148e7775ebbf3049768c1c2a89152efc2 is reconciled with main in this candidate; the upstream
-      PR branch is selected explicitly. Aether 86/87 remain separate in-progress source slices.
+    pull_request_state: not-applicable
+    notes: Aether main 0071f7d751c4916e6b16460451751aa00fb1d365 includes the merged catalog metadata prerequisite.
+      Functional review package source 74490907bf3979ac45594d97fb1bb5fa7071346d is prepared for immutable consumption.
+      Hygiene governance source d11580e9a9c5d78b9a5d21474deaa612712a0fb9 is reachable through merged Hygiene
+      PR 100.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-10T01:19:21Z'
+  reviewed_at: '2026-11-10T01:31:49Z'
   reviewed_by: Codex
   evidence:
-  - command: Independent source/diff review, Git merge conflict reconciliation, Python AST for changed source
-      and authored regression files, catalog JSON parse, continuity schema/formats/size/links and whitespace
+  - command: Independent static trust, URL ownership, profile/completion and evidence-binding review; Python
+      AST, schema definitions/local references, immutable mirror hashes, catalog metadata and proposed ADR
+      schema; authorized deterministic catalog/distribution generation and drift checks; unchanged approved
+      auditor and legacy ADR bodies; continuity schema/size/links and whitespace
     outcome: limited
-    observed_at: '2026-11-10T01:19:21Z'
+    observed_at: '2026-11-10T01:31:49Z'
     notes: Static source and metadata inspection only; no application execution.
   - command: Native/runtime execution, tests, builds, CI investigation, browser/provider/consumer/publication
       qualification
     outcome: not-run
-    observed_at: '2026-11-10T01:19:21Z'
+    observed_at: '2026-11-10T01:31:49Z'
     notes: Deferred at maintainer request; source merges do not establish acceptance.
   environment_limitations:
-  - Authored unit/integration regressions, full deterministic validation, distribution/runtime qualification,
-    hosted CI and publication were not executed in this reconciliation.
-  - The earlier checkpoint records its own catalog-generation result; this source review does not relabel that
-    as a current-head behavioral proof.
-  - Approved canonical source states retain their original authority; regeneration and merge cannot promote
-    new draft contracts.
+  - Behavioral tests, evals, native/helper/provider execution, application builds beyond artifact generation,
+    CI, browsers and live publication remain deferred.
+  - ADR-0008 remains proposed with null approval; new specs, skills and agent remain draft. No human ratification,
+    completed organization sweep or issue acceptance is claimed.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -134,35 +134,35 @@ Read scoped instructions, canonical sources above and this checkpoint. Verify mu
 
 ## Current objective and success conditions
 
-Reconcile the existing source-authoritative catalog correction with current Aether before adding composable audit and coherence contracts. Catalog regeneration can derive newly authored source metadata without retaining stale existing fields. Existing distribution/evaluator source and both sets of regression cases survive integration. Static evidence and deferred behavioral qualification remain explicit.
+Deliver portable draft audit profiles and architecture review artifacts with explicit evidence and human authority boundaries. Consumers can pin exact reusable audit and coherence contracts without copying policy or prose parsing. Human claims and verified authority remain distinct; incomplete evidence remains explicit. Existing approved source bytes and historical staged evidence are preserved.
 
 ## State snapshot
 
-Candidate `fix/107-authoritative-catalog-metadata` is based on observed main `5077797448d32a59b06eabe4b38f091137d58052`. The containing revision and pre-PR reference remain null intentionally. Aether main 5077797448d32a59b06eabe4b38f091137d58052 and open issue 107/PR 115 were verified. Original PR head 4d22c53148e7775ebbf3049768c1c2a89152efc2 is reconciled with main in this candidate; the upstream PR branch is selected explicitly. Aether 86/87 remain separate in-progress source slices.
+Candidate `codex/architecture-review-integration` is based on observed main `0071f7d751c4916e6b16460451751aa00fb1d365`. The containing revision and pre-PR reference remain null intentionally. Aether main 0071f7d751c4916e6b16460451751aa00fb1d365 includes the merged catalog metadata prerequisite. Functional review package source 74490907bf3979ac45594d97fb1bb5fa7071346d is prepared for immutable consumption. Hygiene governance source d11580e9a9c5d78b9a5d21474deaa612712a0fb9 is reachable through merged Hygiene PR 100.
 
 ## Completed and material changes
 
-Existing catalog entries refresh source-owned version, lifecycle, license, owner and dependency metadata rather than only refreshing the source digest. Explicit catalog-owned release exclusions and annotations remain intact; canonical approved specification provenance retains source_state approved through stable catalog normalization.
+Composable stable/experimental audit profiles, a closed authored report sidecar and pure validator preserve findings, strengths, source profiles, completion, explicit history and uncertainty. The approved auditor 2.0.0 remains byte-identical; draft skill/agent reconcile staged functionality without promotion.
 
-The existing correction is merged locally with current main's evaluator/distribution containment changes. Both sets of authored regression imports and cases are preserved; the two overlapping handoffs are reconciled semantically. The historical audit report and its independent draft remain unchanged.
+A new draft architecture review spec and read-only skill separate assessment and recommendation from exact-pinned Hygiene governance. Claimed human decisions require independently trusted typed context; assessment subjects exclude governance to avoid circular digests.
 
-The root handoff records this narrow metadata prerequisite for the Audits/Sanity source additions. No skill/specification lifecycle, release, tag, workflow or human authority changes.
+Proposed ADR-0008, index, changelog, catalog and distribution projections record the interfaces and owner boundaries. New packages remain draft and excluded from release. Catalog/distribution generation is packaging evidence, not executed review or acceptance.
 
 ## Validation and review evidence
 
-Independent source/diff review, Git merge conflict reconciliation, Python AST for changed source and authored regression files, catalog JSON parse, continuity schema/formats/size/links and whitespace. Static inspection only. Native/runtime execution, tests, builds, CI investigation, browsers, provider reads and publication qualification were not run.
+Independent static trust, URL ownership, profile/completion and evidence-binding review; Python AST, schema definitions/local references, immutable mirror hashes, catalog metadata and proposed ADR schema; authorized deterministic catalog/distribution generation and drift checks; unchanged approved auditor and legacy ADR bodies; continuity schema/size/links and whitespace. Static inspection only. Native/runtime execution, tests, builds, CI investigation, browsers, provider reads and publication qualification were not run.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Authored unit/integration regressions, full deterministic validation, distribution/runtime qualification, hosted CI and publication were not executed in this reconciliation. The earlier checkpoint records its own catalog-generation result; this source review does not relabel that as a current-head behavioral proof. Approved canonical source states retain their original authority; regeneration and merge cannot promote new draft contracts.
+Behavioral tests, evals, native/helper/provider execution, application builds beyond artifact generation, CI, browsers and live publication remain deferred. ADR-0008 remains proposed with null approval; new specs, skills and agent remain draft. No human ratification, completed organization sweep or issue acceptance is claimed.
 
 ## Next dependency-ready work
 
-Integrate the separately prepared Aether 86 audit-profile/report and Aether 87 architecture-coherence source contracts, then regenerate canonical catalog and derived distribution metadata without promoting draft lifecycle. Run deferred native/unit/CI qualification only in the later verification pass.
+Integrate Observatory queries, Relay views and Reflector orchestration using immutable source pins, then perform the separately deferred behavior/provider/publication qualification and organization review.
 
 ## Parallel changes and reconciliation
 
-The user authorized continued implementation and merging of the Intelligence program. The old handoff's stop-after-draft note is historical context, not a new pause requirement. Current task scope permits this necessary metadata prerequisite. Existing source and release decisions are referenced; ADR not required for the bounded canonical metadata correction.
+Reconciled latest main 0071 and preserved the metadata fix. Hygiene remains governance owner, Aether methodology/data owner, Observatory normalized query owner, Relay renderer and Reflector orchestrator. The continuity update does not change the functional owner pin.
 
 ## Privacy and redaction
 
