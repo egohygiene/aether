@@ -1,0 +1,9 @@
+{
+  "staging_path": ".staging/agents/auditor.agent.md",
+  "disposition": "preserve-migration-evidence",
+  "reason": "The existing canonical read/search-only auditor remains the sole reusable agent. Staged monolith paths and edit/execute tools are not imported; profile resolution, typed sidecars and authorized output-writer handoff are composed through canonical spec/skill inputs. Historical staged bytes and their exact source disposition remain intact.",
+  "lock_reference": "library/organization/skills/quality/audit-repository/references/staged-reconciliation.md",
+  "hash_status": "reconstructed",
+  "hash_algorithm": "sha256-utf8-lf",
+  "trust_classification": "restricted"
+}
