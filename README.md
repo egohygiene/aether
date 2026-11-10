@@ -135,6 +135,9 @@ Test suite:
 ./aether test
 ```
 
+See [deterministic evaluation evidence](docs/deterministic-evaluations.md) for
+shared preflight, assertion requirements, execution scope and honest counts.
+
 ## 8) Build and inspect distributions
 
 Build deterministic first-party skill distributions:
@@ -143,6 +146,22 @@ Build deterministic first-party skill distributions:
 ./aether distribution build --output-directory "dist"
 ./aether distribution build --output-directory "dist" --check
 ```
+
+The skill and specification builders return nonzero on required generation or
+output I/O failures in either mode. Successful partial writes may remain; an
+incomplete summary names the counts and does not qualify those files for reuse.
+The top-level command preserves any generator failure while running the other
+generators for their diagnostics.
+
+Each builder compares its complete owned subtree (`skills/` or `specs/` beneath
+the selected output directory), including obsolete packages, extra companion
+files and empty directories. Unexpected entries are reported and retained;
+either mode returns nonzero until their ownership is reviewed and the selected
+tree is reconciled. Nothing is deleted implicitly. Keep personal files outside
+those generated subtrees. `--check` writes nothing; its success means the whole
+owned inventory matches current canonical inputs. A fresh disposable output
+root is useful for a clean generation without altering an older tree. These
+checks compose with the [source/output path boundary](docs/distribution-paths.md).
 
 Underlying generators remain available when a narrower check is needed:
 

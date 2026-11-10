@@ -7,18 +7,25 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-01T22:43:08Z'
+  updated_at: '2026-11-03T16:15:19Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: 'Implement issue #107 source-authoritative catalog metadata as an unvalidated draft.'
-  includes:
-  - Catalog generation, semantic drift diagnostics, normalized lifecycle provenance, regression cases and a
-    deferred-check handoff.
+  purpose: Integrate distribution containment PR118 with the merged evaluator repair while preserving
+    both source scopes and their qualification limits.
+  includes: &id001
+  - Preserve the exact evaluator plus stable-ID admission, both guarded builders and all prior regression
+    cases.
+  - Reconcile one current checkpoint against verified main and retain deterministic valid distribution/catalog
+    bytes.
+  - Complete only the authorized source integration; retain remaining tests, ADR/policy disposition and
+    publication boundaries.
   excludes:
-  - 'Issues #108–110, release publication, hosted workflow execution and unrelated source/audit changes.'
+  - New functionality beyond the existing evaluator/distribution scopes, catalog115 work, issue closure
+    and publication.
+  - Evaluation execution, regression suites, official EgoLint conformance and hosted CI.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -27,69 +34,98 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - catalog/README.md
-  - docs/catalog-contribution-guide.md
-  - https://github.com/egohygiene/aether/issues/107
-  - https://github.com/egohygiene/aether/issues/105
+  - library/organization/skills/build-distributions.py
+  - library/organization/specs/build-distributions.py
+  - aether_validator.py
+  - tests/test_build_distributions.py
+  - tests/test_build_spec_distributions.py
+  - tests/test_aether_validator.py
+  - docs/distribution-paths.md
+  - README.md
+  - https://github.com/egohygiene/aether/issues/110
 work:
-  objective: Refresh existing catalog records from canonical frontmatter without overriding catalog-owned annotations.
-  success_conditions:
-  - Source-owned metadata replaces stale catalog copies and drift remains visible with a fresh digest.
-  - Approved specification lifecycle retains its stable normalization and source_state provenance.
-  - Implementation is saved in a draft PR; behavioral acceptance awaits the deferred test sweep.
+  objective: Integrate distribution containment PR118 with the merged evaluator repair while preserving
+    both source scopes and their qualification limits.
+  success_conditions: *id001
   active_issue:
     provider: github
-    id: egohygiene/aether#107
-    url: https://github.com/egohygiene/aether/issues/107
+    id: egohygiene/aether#110
+    url: https://github.com/egohygiene/aether/issues/110
   next:
     kind: action
-    id: review-107-draft
-    description: 'Return to the maintainer after the #107 draft. Run the deferred checks in docs/work/107/HANDOFF.md
-      before acceptance; #108 remains next in tracker #105.'
+    id: review-draft-and-qualify
+    description: Sync on tracker105 and select the next genuine source work, including staging-control111
+      or external-review112; preserve catalog115 and all evaluator/distribution qualification gaps.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/107
-    - docs/work/107/HANDOFF.md
+    - https://github.com/egohygiene/aether/issues/110
     depends_on: []
 state:
   base:
-    revision: dc8a16851f452763ef4f7fbe4bf057d4500b1921
+    revision: b09cd9d8bb1edc2bc1a44e91125a8a772b55d593
     ref: refs/heads/main
-    verified_at: '2026-11-01T22:43:08Z'
+    verified_at: '2026-11-03T16:15:19Z'
   candidate:
-    branch: fix/107-authoritative-catalog-metadata
+    branch: codex/110-confined-distribution-paths
     revision: null
-    pull_request: null
-    handoff_state: ready-for-review
+    pull_request:
+      provider: github
+      id: egohygiene/aether#118
+      url: https://github.com/egohygiene/aether/pull/118
+    handoff_state: review-reference-recorded
   live:
     status: verified
-    observed_at: '2026-11-01T22:43:08Z'
-    default_branch_revision: dc8a16851f452763ef4f7fbe4bf057d4500b1921
+    observed_at: '2026-11-03T16:15:19Z'
+    default_branch_revision: b09cd9d8bb1edc2bc1a44e91125a8a772b55d593
     issue_state: open
-    pull_request_state: unknown
-    notes: Default branch was read through the GitHub connector. The candidate commit and PR are verified separately
-      after creation.
+    pull_request_state: draft
+    notes: Verified mainb09cd9d contains merged evaluator117 and earlier distribution116. PR118 is draft
+      before its authorized ready/merge transition and integrates that exact base. Catalog115 and audit106
+      remain separately open. No regression pass or publication is inferred.
   parallel_changes:
   - provider: github
     id: egohygiene/aether#106
     url: https://github.com/egohygiene/aether/pull/106
+  - provider: github
+    id: egohygiene/aether#115
+    url: https://github.com/egohygiene/aether/pull/115
 review:
   status: partial
-  reviewed_at: '2026-11-01T22:43:08Z'
+  reviewed_at: '2026-11-03T16:15:19Z'
   reviewed_by: Codex
   evidence:
-  - command: ./aether catalog generate
+  - command: Exact runtime/source comparisons and qualified regression-name inventory union
     outcome: passed
-    observed_at: '2026-11-01T22:43:08Z'
-    notes: Regenerated the first-party catalog; this is artifact generation, not behavioral test execution.
-  - command: Python ast.parse on the four changed Python files; git diff --check
+    observed_at: '2026-11-03T16:15:19Z'
+    notes: Evaluator main plus the exact stable-ID guard matches the merged validator; builders/path guide
+      equal118, evaluation guide equals117, and all 50 validator regression names remain once.
+  - command: AST parse six combined Python sources and git diff --check
     outcome: passed
-    observed_at: '2026-11-01T22:43:08Z'
-    notes: Syntax and whitespace only. Regression tests are authored but unexecuted.
+    observed_at: '2026-11-03T16:15:19Z'
+    notes: Runtime and regression sources parse; no test or evaluation case executes.
+  - command: ./aether distribution build --output-directory dist; ./aether distribution build --output-directory
+      dist --check; ./aether catalog generate
+    outcome: passed
+    observed_at: '2026-11-03T16:15:19Z'
+    notes: All combined-source commands exit0. Tracked dist/catalog bytes remain unchanged.
+  - command: Pinned continuity metadata/schema/formats, headings, size and privacy inspection
+    outcome: passed
+    observed_at: '2026-11-03T16:15:19Z'
+    notes: One coherent bounded checkpoint resolves the parallel snapshots.
+  - command: Evaluation/regression/portable/native checks, official EgoLint conformance and hosted CI
+    outcome: not-run
+    observed_at: '2026-11-03T16:15:19Z'
+    notes: All prior scope limits remain; generation does not establish negative-path or assertion-execution
+      qualification.
   environment_limitations:
-  - Unit/integration tests, deterministic validation suites, distribution qualification and hosted CI are deferred
-    at maintainer request. No behavioral or merge-readiness claim is made.
-  - Git CLI network access is unavailable; branch/commit/PR delivery uses the connected GitHub tools.
+  - Both scopes and earlier108 retain their authored-but-unexecuted regressions; issues108/109/110 remain
+    open for remaining acceptance.
+  - Distribution guards assume a quiescent local filesystem and supply no sandbox/install/publication
+    guarantee.
+  - Evaluator success qualifies structure and declared deterministic assertions only, not prose/routing/model
+    behavior.
+  - Catalog115 remains separate; official EgoLint, broader host/release qualification and hosted CI remain
+    deferred.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -108,48 +144,48 @@ privacy:
 
 ## Purpose and precedence
 
-This checkpoint records issue #107. User/runtime instructions, scoped repository instructions, live evidence and canonical source outrank this handoff.
+Record the authorized source integration below user/runtime, scoped instructions, live evidence and canonical sources. This checkpoint grants no publication authority.
 
 ## Resume protocol
 
-Read AGENTS, tracker #105, issue #107 and docs/work/107/HANDOFF.md. Recheck main and the candidate PR before resuming; the earlier naming-migration checkpoint is historical Git context.
+Read AGENTS, PR116/117/118, evaluator/path guides and tracker105. Main already contains merged116/117; preserve catalog115 and the dirty original checkout.
 
 ## Current objective and success conditions
 
-Refresh source-owned metadata for existing catalog records, retain catalog-owned settings and approved lifecycle provenance, and leave a reviewable draft with deferred checks explicit.
+Retain honest evaluator admission/evidence/counts and guarded deterministic distribution source/output I/O while resolving their single operational-checkpoint conflict.
 
 ## State snapshot
 
-Base is dc8a16851f452763ef4f7fbe4bf057d4500b1921, verified through the GitHub connector. Candidate branch is fix/107-authoritative-catalog-metadata. Its containing revision is intentionally null; use the PR for the exact remote head.
+Base mainb09cd9d8bb1edc2bc1a44e91125a8a772b55d593 contains merged117 and116. PR118 is draft before its authorized ready/merge transition. Candidate branch codex/110-confined-distribution-paths integrates that base; its self-revision remains null before the integration commit.
 
 ## Completed and material changes
 
-Catalog generation now refreshes overlapping metadata, validates generated metadata before writing, and reports field-level drift independently of digest freshness. The first-party catalog is regenerated. Normalized provenance retains source_state. Regression cases and contribution guidance accompany the fix.
+The validator contains the exact evaluator repair plus the stable-ID admission guard. Both distribution builders and their tests/path guide remain exactly118; evaluator documentation remains117. All qualified regression names are retained once. Only CONTINUITY required conflict resolution.
 
 ## Validation and review evidence
 
-Catalog generation completed. Changed Python files parsed successfully and git diff --check passed. These checks establish syntax/artifact preparation only. Authored regressions have not run.
+Six combined Python sources parse. Exact source/test-inventory comparisons, whitespace and continuity schema/formats/heading/budget/privacy checks pass. Actual distribution build/check and catalog regeneration exit0 with unchanged derived bytes. No regression or evaluation executes.
 
 ## Blockers, risks, unknowns, and deferred work
 
-All test execution, broader deterministic validation, distribution qualification and hosted CI are deferred by the maintainer. The implementation is an unvalidated draft. Git CLI networking failed; delivery uses the connected GitHub tools.
+Issues108/109/110 retain remaining regression/portable/native acceptance. Official EgoLint and hosted CI remain deferred. Local guards are quiescent checks, not a concurrent-adversary sandbox. No model, installation, release or publication is performed.
 
 ## Next dependency-ready work
 
-Sync with the maintainer after the #107 draft. Run the finite deferred check list before acceptance. Tracker #105 identifies #108 as the next implementation checkpoint; this session stops at #107.
+Sync on tracker105 and select the next genuine source work, including staging-control111 or external-review112; preserve catalog115 and all evaluator/distribution qualification gaps.
 
 ## Parallel changes and reconciliation
 
-Audit PR #106 remains separate. Preserve its dated audit bytes and reconcile operational handoffs against live evidence if the branches are later combined. No other issue is implemented here.
+Audit106 and catalog115 remain independent. Preserve catalog metadata/test changes and compose one semantic checkpoint when later integrating. Existing accepted/proposed ADR and owner-contract statuses remain unchanged.
 
 ## Privacy and redaction
 
-Only public source and bounded status are recorded. Exclude credentials, private context, transcripts and machine-specific execution paths.
+Only scoped public project facts are retained. Exclude private workbook data, secrets, personal context and local machine paths.
 
 ## Handoff update protocol
 
-Refresh exact candidate/PR state and actual validation outcomes before acceptance. Keep deferred checks visible; no unrun check is passed.
+After the authorized merge, verify its exact head/tree and sync on the next source scope. ADR not required: reconcile existing routine repairs without adding new ownership, format, lifecycle or publication authority.
 
 ## Compaction and supersession
 
-This replaces stale current-state prose. Git and linked work records preserve historical context. Keep the checkpoint under its declared line and byte budgets.
+Keep all twelve sections and existing size budgets. Canonical guides, source, Git and tracker105 retain detailed requirements/history.

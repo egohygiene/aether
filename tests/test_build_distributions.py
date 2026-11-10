@@ -2,12 +2,16 @@
 
 from __future__ import annotations
 
+import contextlib
 import hashlib
 import importlib.util
+import io
 import json
+import shutil
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 
@@ -348,10 +352,13 @@ class TestBuildIntegration(unittest.TestCase):
         for f in (self._tmp / "dist" / "skills").rglob("*"):
             if f.is_file():
                 contents_before[str(f)] = f.read_bytes()
-        bd.build(check=False)
+        self.assertEqual(0, bd.build(check=False))
+        contents_after = {}
         for f in (self._tmp / "dist" / "skills").rglob("*"):
             if f.is_file():
-                self.assertEqual(contents_before.get(str(f)), f.read_bytes())
+                contents_after[str(f)] = f.read_bytes()
+        self.assertEqual(contents_before, contents_after)
+        self.assertEqual(0, bd.build(check=True))
 
     def test_build_honors_custom_output_directory(self):
         _make_skill(self._tmp, "alpha-skill")
@@ -359,6 +366,108 @@ class TestBuildIntegration(unittest.TestCase):
         rc = bd.build(check=False, output_directory=custom_output)
         self.assertEqual(rc, 0)
         self.assertTrue((custom_output / "skills" / "alpha-skill" / "SKILL.md").exists())
+
+    def test_required_resource_failure_is_nonzero_even_with_partial_success(self):
+        _make_skill(self._tmp, "alpha-skill")
+        broken = _make_skill(self._tmp, "broken-skill") / "SKILL.md"
+        broken.write_text(broken.read_text().replace(
+            "metadata:\n",
+            "metadata:\n  aether-distribution-resources:\n"
+            "    - source: missing-resource.json\n"
+            "      destination: references/resource.json\n",
+        ))
+        for check in (False, True):
+            with self.subTest(check=check):
+                output = io.StringIO()
+                with contextlib.redirect_stderr(output):
+                    self.assertNotEqual(0, bd.build(check=check))
+                self.assertIn("broken-skill generation", output.getvalue())
+                self.assertIn("1/2 artifact(s) generated", output.getvalue())
+                self.assertTrue((self._tmp / "dist/skills/alpha-skill/SKILL.md").is_file())
+
+    def test_unknown_inventory_is_detected_and_retained_in_custom_output(self):
+        _make_skill(self._tmp, "alpha-skill")
+        output = self._tmp / "custom-dist"
+        self.assertEqual(0, bd.build(output_directory=output))
+        _write(output / "skills/removed-skill/SKILL.md", "obsolete\n")
+        _write(output / "skills/alpha-skill/references/user-note.md", "keep me\n")
+        (output / "skills/empty-package").mkdir()
+        _write(output / "personal-note.txt", "outside generator ownership\n")
+        before = {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+        for check in (True, False):
+            with self.subTest(check=check):
+                self.assertNotEqual(0, bd.build(check=check, output_directory=output))
+                after = {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+                self.assertEqual(before, after)
+                self.assertTrue((output / "skills/empty-package").is_dir())
+
+    def test_removing_last_skill_does_not_bypass_inventory_check(self):
+        skill = _make_skill(self._tmp, "alpha-skill")
+        self.assertEqual(0, bd.build())
+        shutil.rmtree(skill)
+        self.assertNotEqual(0, bd.build(check=True))
+        self.assertTrue((self._tmp / "dist/skills/alpha-skill/SKILL.md").is_file())
+
+    def test_missing_source_directory_and_output_io_failures_are_nonzero(self):
+        self.assertNotEqual(0, bd.build())
+        self.assertNotEqual(0, bd.build(check=True))
+        _make_skill(self._tmp, "alpha-skill")
+        (self._tmp / "dist/skills/alpha-skill/SKILL.md").mkdir(parents=True)
+        self.assertNotEqual(0, bd.build())
+        self.assertNotEqual(0, bd.build(check=True))
+
+    def test_companion_file_and_directory_symlinks_do_not_read_external_bytes(self):
+        for directory_link in (False, True):
+            with self.subTest(directory_link=directory_link), tempfile.TemporaryDirectory() as foreign:
+                skill = _make_skill(self._tmp, "linked-skill")
+                sentinel = Path(foreign) / "sentinel.txt"
+                sentinel.write_text("harmless outside-source sentinel\n", encoding="utf-8")
+                link = skill / "references" / "linked"
+                link.symlink_to(Path(foreign) if directory_link else sentinel, target_is_directory=directory_link)
+                original = Path.read_bytes
+                outside_reads = []
+                def guarded_read(path):
+                    if path.resolve() == sentinel.resolve():
+                        outside_reads.append(path)
+                        raise AssertionError("outside-source bytes must not be read")
+                    return original(path)
+                try:
+                    with mock.patch.object(Path, "read_bytes", guarded_read):
+                        for check in (False, True):
+                            self.assertNotEqual(0, bd.build(check=check))
+                    self.assertEqual([], outside_reads)
+                    self.assertEqual("harmless outside-source sentinel\n", sentinel.read_text())
+                finally:
+                    link.unlink()
+
+    def test_output_symlinks_are_rejected_without_reading_or_replacing_their_targets(self):
+        _make_skill(self._tmp, "linked-skill")
+        with tempfile.TemporaryDirectory() as foreign:
+            sentinel = Path(foreign) / "sentinel.txt"
+            sentinel.write_text("keep outside output unchanged\n", encoding="utf-8")
+            output = self._tmp / "custom-dist"
+            link = output / "skills/linked-skill/SKILL.md"
+            link.parent.mkdir(parents=True)
+            link.symlink_to(sentinel)
+            for check in (False, True):
+                self.assertNotEqual(0, bd.build(check=check, output_directory=output))
+                self.assertEqual("keep outside output unchanged\n", sentinel.read_text())
+            link.unlink()
+            shutil.rmtree(output / "skills")
+            (output / "skills").symlink_to(Path(foreign), target_is_directory=True)
+            for check in (False, True):
+                self.assertNotEqual(0, bd.build(check=check, output_directory=output))
+            self.assertEqual([sentinel], list(Path(foreign).iterdir()))
+
+    def test_symlinked_skill_source_is_rejected_before_reading(self):
+        skill = _make_skill(self._tmp, "linked-skill")
+        with tempfile.TemporaryDirectory() as foreign:
+            target = Path(foreign) / "SKILL.md"
+            target.write_text((skill / "SKILL.md").read_text(), encoding="utf-8")
+            (skill / "SKILL.md").unlink()
+            (skill / "SKILL.md").symlink_to(target)
+            for check in (False, True):
+                self.assertNotEqual(0, bd.build(check=check))
 
 
 if __name__ == "__main__":

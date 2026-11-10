@@ -8,12 +8,16 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import sys
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
+
+import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 SPECS_DIR = REPO_ROOT / "library" / "organization" / "specs"
+STABLE_ID_RE = re.compile(r"^[a-z](?:[a-z0-9-]*[a-z0-9])?$")
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 
 
@@ -29,39 +33,142 @@ def _display_path(path: Path) -> str:
         return path.as_posix()
 
 
+def _canonical_source(path: Path, source_root: Path, *, directory: bool = False) -> Path:
+    """Reject implicit redirects before listing or reading canonical inputs."""
+    repository = REPO_ROOT.absolute()
+    try:
+        relative = path.absolute().relative_to(repository)
+        source_root.resolve(strict=True).relative_to(repository.resolve())
+    except ValueError as exc:
+        raise ValueError("canonical source escapes its repository") from exc
+    cursor = repository
+    for part in relative.parts:
+        cursor = cursor / part
+        if cursor.is_symlink():
+            raise ValueError(f"canonical source symlink is not supported: {path}")
+    resolved = path.resolve(strict=True)
+    try:
+        resolved.relative_to(source_root.resolve(strict=True))
+    except ValueError as exc:
+        raise ValueError("canonical source escapes its declared tree") from exc
+    if not (resolved.is_dir() if directory else resolved.is_file()):
+        raise ValueError("canonical source must be a regular file or declared directory")
+    return resolved
+
+
+def _confined_output(base: Path, relative: Path) -> Path:
+    """Anchor every read/write to the explicitly selected output root."""
+    if relative.is_absolute() or ".." in relative.parts or "\\" in str(relative) or PureWindowsPath(str(relative)).drive:
+        raise ValueError("unsafe generated-output path")
+    root = base.resolve()
+    cursor = root
+    for part in relative.parts:
+        cursor = cursor / part
+        if cursor.is_symlink():
+            raise ValueError(f"generated-output symlink is not supported: {relative}")
+    try:
+        cursor.resolve().relative_to(root)
+    except ValueError as exc:
+        raise ValueError("generated output escapes the selected root") from exc
+    return cursor
+
+
 def find_specs() -> list[Path]:
-    return sorted(SPECS_DIR.rglob("*.spec.md"))
+    _canonical_source(SPECS_DIR, SPECS_DIR, directory=True)
+    found: list[Path] = []
+
+    def fail_scan(error: OSError) -> None:
+        raise error
+
+    for parent, directories, files in os.walk(SPECS_DIR, onerror=fail_scan, followlinks=False):
+        directories.sort()
+        for name in directories + sorted(files):
+            path = Path(parent) / name
+            if path.is_symlink():
+                raise ValueError(f"canonical specification symlink is not supported: {path}")
+        found.extend(Path(parent) / name for name in sorted(files) if name.endswith(".spec.md"))
+    return sorted(found)
+
+
+def _spec_distribution(source_path: Path) -> tuple[str, bytes]:
+    source = _canonical_source(source_path, SPECS_DIR)
+    content = _normalized_bytes(source)
+    match = FRONTMATTER_RE.match(content.decode("utf-8"))
+    if not match:
+        raise ValueError(f"missing YAML frontmatter in {source_path}")
+    try:
+        frontmatter = yaml.safe_load(match.group(1))
+    except yaml.YAMLError as exc:
+        raise ValueError(f"invalid YAML frontmatter in {source_path}") from exc
+    spec_id = frontmatter.get("id") if isinstance(frontmatter, dict) else None
+    if not isinstance(spec_id, str) or STABLE_ID_RE.fullmatch(spec_id) is None:
+        raise ValueError("specification id must be a lowercase kebab-case stable identifier")
+    return f"{spec_id}.spec.md", content
 
 
 def _distribution_filename(source_path: Path) -> str:
-    text = source_path.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n")
-    match = FRONTMATTER_RE.match(text)
-    if not match:
-        raise ValueError(f"missing YAML frontmatter in {source_path}")
-    spec_id = None
-    for line in match.group(1).splitlines():
-        if line.startswith("id:"):
-            spec_id = line.split(":", 1)[1].strip()
-            break
-    if not spec_id:
-        raise ValueError(f"missing frontmatter id in {source_path}")
-    return f"{spec_id}.spec.md"
+    return _spec_distribution(source_path)[0]
+
+
+def _report_unexpected(dist_dir: Path, expected_files: set[Path]) -> int:
+    """Compare the complete owned subtree, including empty directories.
+
+    Unknown files are evidence to review, never implicit deletion candidates.
+    Other generators' subtrees and files beside this subtree are not inspected.
+    """
+    expected_entries = set(expected_files)
+    for path in expected_files:
+        expected_entries.update(
+            parent for parent in path.parents
+            if parent != dist_dir and dist_dir in parent.parents
+        )
+    if not dist_dir.exists():
+        return 0
+
+    def fail_scan(error: OSError) -> None:
+        raise error
+
+    unexpected = 0
+    for parent, directories, files in os.walk(dist_dir, onerror=fail_scan, followlinks=False):
+        directories.sort()
+        for name in sorted(directories + files):
+            path = Path(parent) / name
+            if path not in expected_entries:
+                print(f"DRIFT  unexpected (retained): {_display_path(path)}")
+                unexpected += 1
+    return unexpected
 
 
 def build(check: bool = False, output_directory: Path | None = None) -> int:
-    dist_dir = (output_directory or (REPO_ROOT / "dist")) / "specs"
-    specs = find_specs()
+    try:
+        output_base = (output_directory or (REPO_ROOT / "dist")).resolve()
+        dist_dir = _confined_output(output_base, Path("specs"))
+        if not SPECS_DIR.is_dir():
+            raise OSError("canonical specification directory is missing")
+        specs = find_specs()
+    except (OSError, ValueError, RuntimeError) as exc:
+        print(f"ERROR  specs discovery: {exc}", file=sys.stderr)
+        return 1
     if not specs:
         print("WARNING: no *.spec.md files found under library/organization/specs/", file=sys.stderr)
-        return 0
 
-    drift = 0
-    written = 0
+    drift = errors = written = generated = 0
+    expected_files: set[Path] = set()
     for source_path in specs:
         try:
-            out_path = dist_dir / _distribution_filename(source_path)
-            content = _normalized_bytes(source_path)
-            display_path = _display_path(out_path)
+            filename, content = _spec_distribution(source_path)
+            out_path = _confined_output(output_base, Path("specs") / filename)
+            if out_path in expected_files:
+                raise ValueError("output inventory collides with another specification")
+        except (OSError, ValueError, RuntimeError) as exc:
+            print(f"ERROR  spec {_display_path(source_path)} generation: {exc}", file=sys.stderr)
+            errors += 1
+            continue
+        generated += 1
+        expected_files.add(out_path)
+        display_path = _display_path(out_path)
+        try:
+            out_path = _confined_output(output_base, out_path.relative_to(output_base))
             if check:
                 if not out_path.exists():
                     print(f"DRIFT  missing: {display_path}")
@@ -76,21 +183,29 @@ def build(check: bool = False, output_directory: Path | None = None) -> int:
                 out_path.write_bytes(content)
                 print(f"wrote  {display_path}")
                 written += 1
-        except ValueError as exc:
-            print(f"ERROR  {exc}", file=sys.stderr)
-            drift += 1
+        except (OSError, ValueError, RuntimeError) as exc:
+            print(f"ERROR  spec {_display_path(source_path)} output {display_path}: {exc}", file=sys.stderr)
+            errors += 1
 
+    try:
+        unexpected = _report_unexpected(dist_dir, expected_files)
+    except OSError as exc:
+        print(f"ERROR  specs inventory: {exc}", file=sys.stderr)
+        errors += 1
+        unexpected = 0
+
+    if errors or drift or unexpected:
+        print(
+            f"\nSpecification distributions incomplete: {generated}/{len(specs)} artifact(s) generated, "
+            f"{written} file(s) written, {errors} error(s), {drift} missing/stale file(s), "
+            f"{unexpected} unexpected path(s) retained. Review errors and inventory before reuse.",
+            file=sys.stderr,
+        )
+        return 1
     if check:
-        if drift:
-            print(
-                f"\n{drift} file(s) out of date. Run build-distributions.py to regenerate.",
-                file=sys.stderr,
-            )
-            return 1
         print(f"\nAll {len(specs)} specification distribution(s) are up to date.")
-        return 0
-
-    print(f"\n{written} file(s) written for {len(specs)} specification(s).")
+    else:
+        print(f"\n{written} file(s) written for {generated} specification(s).")
     return 0
 
 
