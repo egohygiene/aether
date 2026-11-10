@@ -656,7 +656,7 @@ class AetherValidator:
                 ))
 
             status = fm.get("status")
-            if status not in SPEC_STATUS:
+            if not isinstance(status, str) or status not in SPEC_STATUS:
                 diagnostics.append(Diagnostic(
                     rule_id="AETHER_SPEC_004",
                     severity="error",
@@ -793,7 +793,33 @@ class AetherValidator:
     def generate_catalog(self) -> dict[str, Any]:
         specs_diags, specs_by_id, _ = self._collect_specs()
         if any(d.severity == "error" for d in specs_diags):
-            raise ValidationError("Cannot generate catalog while specification frontmatter is invalid.")
+            errors = "; ".join(f"{d.file}: {d.message}" for d in specs_diags if d.severity == "error")
+            raise ValidationError(f"Cannot generate catalog from invalid specification frontmatter: {errors}")
+
+        def string_list(value: Any, source_path: str, field: str, *, nonempty: bool = False) -> list[str]:
+            if (not isinstance(value, list) or (nonempty and not value)
+                    or any(not isinstance(item, str) or not item.strip() for item in value)):
+                raise ValidationError(f"{source_path}: {field} must be a {'non-empty ' if nonempty else ''}list of non-empty strings.")
+            return value
+
+        def lifecycle(value: Any, source_path: str, *, specification: bool = False) -> dict[str, str]:
+            allowed = {"draft", "experimental", "stable", "deprecated", "retired"}
+            if specification:
+                allowed.add("approved")
+            if not isinstance(value, str) or value not in allowed:
+                raise ValidationError(f"{source_path}: invalid source lifecycle {value!r}.")
+            return {"source_state": "approved", "state": "stable"} if value == "approved" else {"state": value}
+
+        def release_policy(state: str, previous: dict[str, Any]) -> dict[str, Any]:
+            # Preserve explicit catalog exclusions. Source regeneration is not a
+            # release approval, and a non-stable source can never stay included.
+            release = dict(previous.get("release") or {
+                "included": state == "stable",
+                "reason": "Only stable artifacts are releasable under catalog policy.",
+            })
+            if state != "stable" and release.get("included"):
+                release = {"included": False, "reason": "Only stable artifacts are releasable under catalog policy."}
+            return release
 
         bare_skill, _prefixed, _skill_paths = self._skill_identity_maps()
         known_spec_ids = {f"specification/{x}" for x in specs_by_id}
@@ -816,15 +842,15 @@ class AetherValidator:
                 continue
             spec_id = str(fm["id"])
             source_path = _rel(spec_path, self.repo_root)
+            if fm["kind"] != "specification":
+                raise ValidationError(f"{source_path}: specification kind must be 'specification'.")
             source_digest = _sha256_utf8_lf(spec_path)
-            if source_path in existing_by_path:
-                record = existing_by_path[source_path]
-                record["source_digest"] = {"algorithm": "sha256-utf8-lf", "value": source_digest}
-                artifacts.append(record)
-                continue
+            previous = existing_by_path.get(source_path, {})
+            source_lifecycle = lifecycle(fm["status"], source_path, specification=True)
+            owners = string_list(fm["owners"], source_path, "owners", nonempty=True)
 
             related_ids = []
-            for ref in fm.get("related") or []:
+            for ref in string_list(fm.get("related", []), source_path, "related"):
                 if ref in specs_by_id:
                     related_ids.append(f"specification/{ref}")
                 elif ref.startswith("specification/") and ref in known_spec_ids:
@@ -836,11 +862,11 @@ class AetherValidator:
 
             dependencies = [
                 f"specification/{x}" if not str(x).startswith("specification/") else str(x)
-                for x in (fm.get("depends_on") or [])
+                for x in string_list(fm.get("depends_on", []), source_path, "depends_on")
             ]
             supersedes_ids = [
                 f"specification/{x}" if not str(x).startswith("specification/") else str(x)
-                for x in (fm.get("supersedes") or [])
+                for x in string_list(fm.get("supersedes", []), source_path, "supersedes")
             ]
             description = ""
             body = _normalized_text(spec_path)
@@ -853,81 +879,83 @@ class AetherValidator:
 
             artifacts.append({
                 "artifact_version": str(fm.get("version", "1.0.0")),
-                "compatibility": {"required_tools": []},
+                "compatibility": previous.get("compatibility", {"required_tools": []}),
                 "dependencies": dependencies,
-                "deprecation": {"replacement_id": None},
-                "description": description,
-                "domain": str(fm.get("domain", "unknown")),
+                "deprecation": previous.get("deprecation", {"replacement_id": None}),
+                "description": fm.get("description", previous.get("description", description)),
+                "domain": fm["domain"],
                 "generated_distribution_paths": [f"dist/specs/{spec_id}.spec.md"],
                 "id": f"specification/{spec_id}",
                 "implements_specification_id": None,
                 "kind": "specification",
-                "license": "MIT",
-                "lifecycle": {"state": str(fm.get("status", "draft"))},
+                "license": fm.get("license", previous.get("license", "MIT")),
+                "lifecycle": source_lifecycle,
                 "owner": {
-                    "maintainers": [str(x) for x in (fm.get("owners") or ["egohygiene"])],
-                    "primary": str((fm.get("owners") or ["egohygiene"])[0]),
+                    "maintainers": owners,
+                    "primary": owners[0],
                 },
-                "related_ids": sorted(set(related_ids)),
-                "release": {
-                    "included": str(fm.get("status", "draft")) == "stable",
-                    "reason": "Only stable artifacts are releasable under catalog policy." if str(fm.get("status", "draft")) != "stable" else "Stable artifact is eligible for release manifests.",
-                },
-                "scope": "organization",
+                "related_ids": list(dict.fromkeys(related_ids)),
+                "release": release_policy(source_lifecycle["state"], previous),
+                "scope": previous.get("scope", "organization"),
                 "source_digest": {"algorithm": "sha256-utf8-lf", "value": source_digest},
                 "source_path": source_path,
                 "supersedes_ids": supersedes_ids,
-                "tags": [str(x) for x in (fm.get("tags") or [])],
-                "title": str(fm.get("title", spec_id)),
+                "tags": string_list(fm["tags"], source_path, "tags"),
+                "title": fm["title"],
             })
 
         for skill_dir in self._skill_dirs():
             skill_path = skill_dir / "SKILL.md"
-            fm, _ = _parse_frontmatter(skill_path)
-            if fm is None:
-                continue
-            name = str(fm.get("name", skill_dir.name))
             source_path = _rel(skill_path, self.repo_root)
+            fm, err = _parse_frontmatter(skill_path)
+            if err or fm is None:
+                raise ValidationError(f"{source_path}: {err.message if err else 'Missing skill frontmatter.'}")
+            name = fm.get("name")
+            if not isinstance(name, str) or not SKILL_NAME_RE.fullmatch(name) or name != skill_dir.name:
+                raise ValidationError(f"{source_path}: skill name must be a lowercase kebab-case directory name.")
             source_digest = _sha256_utf8_lf(skill_path)
-            if source_path in existing_by_path:
-                record = existing_by_path[source_path]
-                record["source_digest"] = {"algorithm": "sha256-utf8-lf", "value": source_digest}
-                artifacts.append(record)
-                continue
+            previous = existing_by_path.get(source_path, {})
 
-            metadata = fm.get("metadata") if isinstance(fm.get("metadata"), dict) else {}
-            spec_ref = str(metadata.get("aether-spec-id", "")).strip()
-            implements = f"specification/{spec_ref}" if spec_ref else None
+            metadata = fm.get("metadata", {})
+            if not isinstance(metadata, dict):
+                raise ValidationError(f"{source_path}: skill metadata must be a mapping.")
+            spec_ref = metadata.get("aether-spec-id", "")
+            if not isinstance(spec_ref, str):
+                raise ValidationError(f"{source_path}: metadata.aether-spec-id must be a string.")
+            spec_ref = spec_ref.strip()
+            implements = (spec_ref if spec_ref.startswith("specification/") else f"specification/{spec_ref}") if spec_ref else None
             dependencies = [implements] if implements else []
+            source_lifecycle = lifecycle(metadata.get("aether-status", "draft"), source_path)
+            owners = metadata.get("aether-owners", "egohygiene")
+            owners = string_list([owners] if isinstance(owners, str) else owners, source_path, "metadata.aether-owners", nonempty=True)
+            compatibility = dict(previous.get("compatibility") or {})
+            compatibility["required_tools"] = string_list(fm.get("allowed-tools", []), source_path, "allowed-tools")
 
             artifacts.append({
-                "artifact_version": str(metadata.get("aether-version", "1.0.0")),
-                "compatibility": {"required_tools": [str(x) for x in (fm.get("allowed-tools") or []) if isinstance(x, str)]},
+                "artifact_version": metadata.get("aether-version", "1.0.0"),
+                "compatibility": compatibility,
                 "dependencies": dependencies,
-                "deprecation": {"replacement_id": None},
-                "description": str(fm.get("description", "")),
-                "domain": str(metadata.get("aether-domain", "unknown")),
+                "deprecation": previous.get("deprecation", {"replacement_id": None}),
+                "description": fm.get("description", ""),
+                "domain": metadata.get("aether-domain", "unknown"),
                 "generated_distribution_paths": [f"dist/skills/{name}/SKILL.md"],
                 "id": f"skill/{name}",
                 "implements_specification_id": implements,
                 "kind": "skill",
-                "license": str(fm.get("license", "MIT")),
-                "lifecycle": {"state": str(metadata.get("aether-status", "draft"))},
+                "license": fm.get("license", "MIT"),
+                "lifecycle": source_lifecycle,
                 "owner": {
-                    "maintainers": [str(metadata.get("aether-owners", "egohygiene"))],
-                    "primary": str(metadata.get("aether-owners", "egohygiene")),
+                    "maintainers": owners,
+                    "primary": owners[0],
                 },
-                "related_ids": [],
-                "release": {
-                    "included": str(metadata.get("aether-status", "draft")) == "stable",
-                    "reason": "Only stable artifacts are releasable under catalog policy." if str(metadata.get("aether-status", "draft")) != "stable" else "Stable artifact is eligible for release manifests.",
-                },
-                "scope": str(metadata.get("aether-scope", "organization")),
+                "related_ids": previous.get("related_ids", []),
+                "release": release_policy(source_lifecycle["state"], previous),
+                "scope": metadata.get("aether-scope", "organization"),
                 "source_digest": {"algorithm": "sha256-utf8-lf", "value": source_digest},
                 "source_path": source_path,
-                "supersedes_ids": [],
-                "tags": [str(metadata.get("aether-domain", "skill")), "skill"],
-                "title": " ".join(piece.capitalize() for piece in name.split("-")),
+                "supersedes_ids": previous.get("supersedes_ids", []),
+                "tags": previous.get("tags", [metadata.get("aether-domain", "skill"), "skill"]),
+                "title": previous.get("title", " ".join(piece.capitalize() for piece in name.split("-"))),
             })
 
         authority = existing_catalog.get("authority") if existing_catalog else None
@@ -957,11 +985,28 @@ class AetherValidator:
                 "allowed_states": ["draft", "experimental", "stable", "deprecated", "retired"],
             },
         }
+        if self.catalog_schema_path.exists():
+            schema = json.loads(self.catalog_schema_path.read_text(encoding="utf-8"))
+            for err in Draft202012Validator(schema).iter_errors(catalog):
+                location = list(err.path)
+                source = "catalog metadata"
+                if len(location) > 1 and location[0] == "artifacts" and isinstance(location[1], int):
+                    source = catalog["artifacts"][location[1]]["source_path"]
+                raise ValidationError(f"{source}: invalid catalog metadata at {'/'.join(map(str, location))}: {err.message}")
         return catalog
 
     def validate_catalog(self, check_only: bool = True) -> list[Diagnostic]:
         diagnostics: list[Diagnostic] = []
-        generated = self.generate_catalog()
+        try:
+            generated = self.generate_catalog()
+        except ValidationError as exc:
+            return [Diagnostic(
+                rule_id="AETHER_CATALOG_004",
+                severity="error",
+                message=str(exc),
+                guidance="Fix the named canonical source metadata before regenerating the catalog.",
+                file=_rel(self.catalog_path, self.repo_root),
+            )]
 
         if self.catalog_schema_path.exists():
             schema = json.loads(self.catalog_schema_path.read_text(encoding="utf-8"))
@@ -979,6 +1024,20 @@ class AetherValidator:
         if self.catalog_path.exists():
             current = json.loads(self.catalog_path.read_text(encoding="utf-8"))
             if current != generated:
+                current_by_path = {item.get("source_path"): item for item in current.get("artifacts", [])}
+                for expected in generated["artifacts"]:
+                    actual = current_by_path.get(expected["source_path"], {})
+                    fields = sorted(key for key in expected if key != "source_digest" and actual.get(key) != expected[key])
+                    if fields:
+                        diagnostics.append(Diagnostic(
+                            rule_id="AETHER_CATALOG_005",
+                            severity="error",
+                            message=f"Catalog metadata disagrees with canonical source: {', '.join(fields)}.",
+                            guidance="Regenerate the catalog from canonical frontmatter; refreshing only the source digest is insufficient.",
+                            artifact_id=expected["id"],
+                            file=expected["source_path"],
+                            context={"fields": fields},
+                        ))
                 diagnostics.append(Diagnostic(
                     rule_id="AETHER_CATALOG_002",
                     severity="error",

@@ -7,25 +7,26 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-03T16:15:19Z'
+  updated_at: '2026-11-10T01:19:21Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Integrate distribution containment PR118 with the merged evaluator repair while preserving
-    both source scopes and their qualification limits.
-  includes: &id001
-  - Preserve the exact evaluator plus stable-ID admission, both guarded builders and all prior regression
-    cases.
-  - Reconcile one current checkpoint against verified main and retain deterministic valid distribution/catalog
-    bytes.
-  - Complete only the authorized source integration; retain remaining tests, ADR/policy disposition and
-    publication boundaries.
+  purpose: Reconcile the existing source-authoritative catalog correction with current Aether before adding
+    composable audit and coherence contracts.
+  includes:
+  - Existing catalog entries refresh source-owned version, lifecycle, license, owner and dependency metadata
+    rather than only refreshing the source digest. Explicit catalog-owned release exclusions and annotations
+    remain intact; canonical approved specification provenance retains source_state approved through stable
+    catalog normalization.
+  - The existing correction is merged locally with current main's evaluator/distribution containment changes.
+    Both sets of authored regression imports and cases are preserved; the two overlapping handoffs are reconciled
+    semantically. The historical audit report and its independent draft remain unchanged.
+  - The root handoff records this narrow metadata prerequisite for the Audits/Sanity source additions. No skill/specification
+    lifecycle, release, tag, workflow or human authority changes.
   excludes:
-  - New functionality beyond the existing evaluator/distribution scopes, catalog115 work, issue closure
-    and publication.
-  - Evaluation execution, regression suites, official EgoLint conformance and hosted CI.
+  - Deferred runtime, tests, builds, CI, live publication, human ratification and acceptance closeout.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -34,98 +35,79 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - library/organization/skills/build-distributions.py
-  - library/organization/specs/build-distributions.py
-  - aether_validator.py
-  - tests/test_build_distributions.py
-  - tests/test_build_spec_distributions.py
-  - tests/test_aether_validator.py
-  - docs/distribution-paths.md
-  - README.md
-  - https://github.com/egohygiene/aether/issues/110
+  - ARCHITECTURE.md
+  - SYSTEM.md
+  - DECISIONS.md
+  - catalog/README.md
+  - docs/catalog-contribution-guide.md
+  - docs/work/107/HANDOFF.md
+  - https://github.com/egohygiene/aether/issues/107
 work:
-  objective: Integrate distribution containment PR118 with the merged evaluator repair while preserving
-    both source scopes and their qualification limits.
-  success_conditions: *id001
+  objective: Reconcile the existing source-authoritative catalog correction with current Aether before adding
+    composable audit and coherence contracts.
+  success_conditions:
+  - Catalog regeneration can derive newly authored source metadata without retaining stale existing fields.
+  - Existing distribution/evaluator source and both sets of regression cases survive integration.
+  - Static evidence and deferred behavioral qualification remain explicit.
   active_issue:
     provider: github
-    id: egohygiene/aether#110
-    url: https://github.com/egohygiene/aether/issues/110
+    id: egohygiene/aether#107
+    url: https://github.com/egohygiene/aether/issues/107
   next:
     kind: action
-    id: review-draft-and-qualify
-    description: Sync on tracker105 and select the next genuine source work, including staging-control111
-      or external-review112; preserve catalog115 and all evaluator/distribution qualification gaps.
+    id: author-audit-and-coherence-contracts
+    description: Integrate the separately prepared Aether 86 audit-profile/report and Aether 87 architecture-coherence
+      source contracts, then regenerate canonical catalog and derived distribution metadata without promoting
+      draft lifecycle. Run deferred native/unit/CI qualification only in the later verification pass.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/110
+    - https://github.com/egohygiene/aether/issues/107
     depends_on: []
 state:
   base:
-    revision: b09cd9d8bb1edc2bc1a44e91125a8a772b55d593
+    revision: 5077797448d32a59b06eabe4b38f091137d58052
     ref: refs/heads/main
-    verified_at: '2026-11-03T16:15:19Z'
+    verified_at: '2026-11-10T01:19:21Z'
   candidate:
-    branch: codex/110-confined-distribution-paths
+    branch: fix/107-authoritative-catalog-metadata
     revision: null
     pull_request:
       provider: github
-      id: egohygiene/aether#118
-      url: https://github.com/egohygiene/aether/pull/118
+      id: egohygiene/aether#115
+      url: https://github.com/egohygiene/aether/pull/115
     handoff_state: review-reference-recorded
   live:
     status: verified
-    observed_at: '2026-11-03T16:15:19Z'
-    default_branch_revision: b09cd9d8bb1edc2bc1a44e91125a8a772b55d593
+    observed_at: '2026-11-10T01:19:21Z'
+    default_branch_revision: 5077797448d32a59b06eabe4b38f091137d58052
     issue_state: open
-    pull_request_state: draft
-    notes: Verified mainb09cd9d contains merged evaluator117 and earlier distribution116. PR118 is draft
-      before its authorized ready/merge transition and integrates that exact base. Catalog115 and audit106
-      remain separately open. No regression pass or publication is inferred.
-  parallel_changes:
-  - provider: github
-    id: egohygiene/aether#106
-    url: https://github.com/egohygiene/aether/pull/106
-  - provider: github
-    id: egohygiene/aether#115
-    url: https://github.com/egohygiene/aether/pull/115
+    pull_request_state: open
+    notes: Aether main 5077797448d32a59b06eabe4b38f091137d58052 and open issue 107/PR 115 were verified. Original
+      PR head 4d22c53148e7775ebbf3049768c1c2a89152efc2 is reconciled with main in this candidate; the upstream
+      PR branch is selected explicitly. Aether 86/87 remain separate in-progress source slices.
+  parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-03T16:15:19Z'
+  reviewed_at: '2026-11-10T01:19:21Z'
   reviewed_by: Codex
   evidence:
-  - command: Exact runtime/source comparisons and qualified regression-name inventory union
-    outcome: passed
-    observed_at: '2026-11-03T16:15:19Z'
-    notes: Evaluator main plus the exact stable-ID guard matches the merged validator; builders/path guide
-      equal118, evaluation guide equals117, and all 50 validator regression names remain once.
-  - command: AST parse six combined Python sources and git diff --check
-    outcome: passed
-    observed_at: '2026-11-03T16:15:19Z'
-    notes: Runtime and regression sources parse; no test or evaluation case executes.
-  - command: ./aether distribution build --output-directory dist; ./aether distribution build --output-directory
-      dist --check; ./aether catalog generate
-    outcome: passed
-    observed_at: '2026-11-03T16:15:19Z'
-    notes: All combined-source commands exit0. Tracked dist/catalog bytes remain unchanged.
-  - command: Pinned continuity metadata/schema/formats, headings, size and privacy inspection
-    outcome: passed
-    observed_at: '2026-11-03T16:15:19Z'
-    notes: One coherent bounded checkpoint resolves the parallel snapshots.
-  - command: Evaluation/regression/portable/native checks, official EgoLint conformance and hosted CI
+  - command: Independent source/diff review, Git merge conflict reconciliation, Python AST for changed source
+      and authored regression files, catalog JSON parse, continuity schema/formats/size/links and whitespace
+    outcome: limited
+    observed_at: '2026-11-10T01:19:21Z'
+    notes: Static source and metadata inspection only; no application execution.
+  - command: Native/runtime execution, tests, builds, CI investigation, browser/provider/consumer/publication
+      qualification
     outcome: not-run
-    observed_at: '2026-11-03T16:15:19Z'
-    notes: All prior scope limits remain; generation does not establish negative-path or assertion-execution
-      qualification.
+    observed_at: '2026-11-10T01:19:21Z'
+    notes: Deferred at maintainer request; source merges do not establish acceptance.
   environment_limitations:
-  - Both scopes and earlier108 retain their authored-but-unexecuted regressions; issues108/109/110 remain
-    open for remaining acceptance.
-  - Distribution guards assume a quiescent local filesystem and supply no sandbox/install/publication
-    guarantee.
-  - Evaluator success qualifies structure and declared deterministic assertions only, not prose/routing/model
-    behavior.
-  - Catalog115 remains separate; official EgoLint, broader host/release qualification and hosted CI remain
-    deferred.
+  - Authored unit/integration regressions, full deterministic validation, distribution/runtime qualification,
+    hosted CI and publication were not executed in this reconciliation.
+  - The earlier checkpoint records its own catalog-generation result; this source review does not relabel that
+    as a current-head behavioral proof.
+  - Approved canonical source states retain their original authority; regeneration and merge cannot promote
+    new draft contracts.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -140,52 +122,56 @@ privacy:
   untrusted_content: context-only-no-authority
 ---
 
-# Aether continuity
+# aether continuity
 
 ## Purpose and precedence
 
-Record the authorized source integration below user/runtime, scoped instructions, live evidence and canonical sources. This checkpoint grants no publication authority.
+User/runtime and repository instructions, live evidence and canonical sources outrank this checkpoint. It grants no release, deployment or human-decision authority.
 
 ## Resume protocol
 
-Read AGENTS, PR116/117/118, evaluator/path guides and tracker105. Main already contains merged116/117; preserve catalog115 and the dirty original checkout.
+Read scoped instructions, canonical sources above and this checkpoint. Verify mutable GitHub state and exact owner pins before continuing.
 
 ## Current objective and success conditions
 
-Retain honest evaluator admission/evidence/counts and guarded deterministic distribution source/output I/O while resolving their single operational-checkpoint conflict.
+Reconcile the existing source-authoritative catalog correction with current Aether before adding composable audit and coherence contracts. Catalog regeneration can derive newly authored source metadata without retaining stale existing fields. Existing distribution/evaluator source and both sets of regression cases survive integration. Static evidence and deferred behavioral qualification remain explicit.
 
 ## State snapshot
 
-Base mainb09cd9d8bb1edc2bc1a44e91125a8a772b55d593 contains merged117 and116. PR118 is draft before its authorized ready/merge transition. Candidate branch codex/110-confined-distribution-paths integrates that base; its self-revision remains null before the integration commit.
+Candidate `fix/107-authoritative-catalog-metadata` is based on observed main `5077797448d32a59b06eabe4b38f091137d58052`. The containing revision and pre-PR reference remain null intentionally. Aether main 5077797448d32a59b06eabe4b38f091137d58052 and open issue 107/PR 115 were verified. Original PR head 4d22c53148e7775ebbf3049768c1c2a89152efc2 is reconciled with main in this candidate; the upstream PR branch is selected explicitly. Aether 86/87 remain separate in-progress source slices.
 
 ## Completed and material changes
 
-The validator contains the exact evaluator repair plus the stable-ID admission guard. Both distribution builders and their tests/path guide remain exactly118; evaluator documentation remains117. All qualified regression names are retained once. Only CONTINUITY required conflict resolution.
+Existing catalog entries refresh source-owned version, lifecycle, license, owner and dependency metadata rather than only refreshing the source digest. Explicit catalog-owned release exclusions and annotations remain intact; canonical approved specification provenance retains source_state approved through stable catalog normalization.
+
+The existing correction is merged locally with current main's evaluator/distribution containment changes. Both sets of authored regression imports and cases are preserved; the two overlapping handoffs are reconciled semantically. The historical audit report and its independent draft remain unchanged.
+
+The root handoff records this narrow metadata prerequisite for the Audits/Sanity source additions. No skill/specification lifecycle, release, tag, workflow or human authority changes.
 
 ## Validation and review evidence
 
-Six combined Python sources parse. Exact source/test-inventory comparisons, whitespace and continuity schema/formats/heading/budget/privacy checks pass. Actual distribution build/check and catalog regeneration exit0 with unchanged derived bytes. No regression or evaluation executes.
+Independent source/diff review, Git merge conflict reconciliation, Python AST for changed source and authored regression files, catalog JSON parse, continuity schema/formats/size/links and whitespace. Static inspection only. Native/runtime execution, tests, builds, CI investigation, browsers, provider reads and publication qualification were not run.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Issues108/109/110 retain remaining regression/portable/native acceptance. Official EgoLint and hosted CI remain deferred. Local guards are quiescent checks, not a concurrent-adversary sandbox. No model, installation, release or publication is performed.
+Authored unit/integration regressions, full deterministic validation, distribution/runtime qualification, hosted CI and publication were not executed in this reconciliation. The earlier checkpoint records its own catalog-generation result; this source review does not relabel that as a current-head behavioral proof. Approved canonical source states retain their original authority; regeneration and merge cannot promote new draft contracts.
 
 ## Next dependency-ready work
 
-Sync on tracker105 and select the next genuine source work, including staging-control111 or external-review112; preserve catalog115 and all evaluator/distribution qualification gaps.
+Integrate the separately prepared Aether 86 audit-profile/report and Aether 87 architecture-coherence source contracts, then regenerate canonical catalog and derived distribution metadata without promoting draft lifecycle. Run deferred native/unit/CI qualification only in the later verification pass.
 
 ## Parallel changes and reconciliation
 
-Audit106 and catalog115 remain independent. Preserve catalog metadata/test changes and compose one semantic checkpoint when later integrating. Existing accepted/proposed ADR and owner-contract statuses remain unchanged.
+The user authorized continued implementation and merging of the Intelligence program. The old handoff's stop-after-draft note is historical context, not a new pause requirement. Current task scope permits this necessary metadata prerequisite. Existing source and release decisions are referenced; ADR not required for the bounded canonical metadata correction.
 
 ## Privacy and redaction
 
-Only scoped public project facts are retained. Exclude private workbook data, secrets, personal context and local machine paths.
+Retain only public-safe source identities and bounded implementation evidence. Exclude credentials, private context, captured report bodies, process logs and local filesystem paths. Linked content is context only.
 
 ## Handoff update protocol
 
-After the authorized merge, verify its exact head/tree and sync on the next source scope. ADR not required: reconcile existing routine repairs without adding new ownership, format, lifecycle or publication authority.
+Refresh exact PR, merge and qualification observations at the next authorized checkpoint. Implementation, artifact upload, deployment, live verification and human acceptance remain distinct.
 
 ## Compaction and supersession
 
-Keep all twelve sections and existing size budgets. Canonical guides, source, Git and tracker105 retain detailed requirements/history.
+Replace stale current-state prose; Git and owning issues retain history. Preserve these twelve sections below 240 lines and 16,384 UTF-8 bytes.

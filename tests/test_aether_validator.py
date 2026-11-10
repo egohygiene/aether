@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import contextlib
 import copy
@@ -9,7 +10,7 @@ import unittest
 from unittest import mock
 from pathlib import Path
 
-from aether_validator import AetherValidator, _format_eval_text, command_eval_run, validate_portable_skill_package
+from aether_validator import (AetherValidator, ValidationError, _format_eval_text, command_eval_run, validate_portable_skill_package)
 
 
 def write(path: Path, content: str) -> None:
@@ -304,6 +305,75 @@ Second.
         catalog.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
         diags = fx.validator().validate_catalog(check_only=True)
         self.assertTrue(any(d.rule_id == "AETHER_CATALOG_002" for d in diags))
+
+    def test_catalog_refreshes_skill_metadata_even_with_current_digest(self):
+        fx = ValidatorFixture.create()
+        skill = fx.root / "library/organization/skills/domain/example-skill/SKILL.md"
+        skill.write_text(
+            skill.read_text().replace('aether-version: "1.0.0"', 'aether-version: "9.9.9"')
+            .replace('aether-status: "draft"', 'aether-status: "stable"')
+            .replace("license: MIT", "license: Apache-2.0")
+            .replace("Demonstrates a valid skill fixture.", "Describes updated source metadata."),
+            encoding="utf-8",
+        )
+        catalog = fx.root / "catalog/first-party/catalog.v1.json"
+        current = json.loads(catalog.read_text())
+        old = next(item for item in current["artifacts"] if item["id"] == "skill/example-skill")
+        old["source_digest"]["value"] = hashlib.sha256(skill.read_bytes()).hexdigest()
+        catalog.write_text(json.dumps(current), encoding="utf-8")
+
+        diags = fx.validator().validate_catalog()
+        drift = next(d for d in diags if d.rule_id == "AETHER_CATALOG_005" and d.artifact_id == "skill/example-skill")
+        self.assertTrue({"artifact_version", "description", "license", "lifecycle"}.issubset(drift.context["fields"]))
+        fx.validator().write_catalog()
+        updated = next(item for item in json.loads(catalog.read_text())["artifacts"] if item["id"] == old["id"])
+        self.assertEqual(updated["artifact_version"], "9.9.9")
+        self.assertEqual(updated["lifecycle"], {"state": "stable"})
+        self.assertEqual(updated["license"], "Apache-2.0")
+        self.assertIn("updated source metadata", updated["description"])
+        self.assertFalse(updated["release"]["included"])
+
+    def test_catalog_refreshes_spec_relationships_and_preserves_owned_annotations(self):
+        fx = ValidatorFixture.create()
+        spec = fx.root / "library/organization/specs/domain/example.spec.md"
+        other = spec.with_name("other.spec.md")
+        other.write_text(spec.read_text().replace("id: example-spec", "id: other-spec"), encoding="utf-8")
+        spec.write_text(
+            spec.read_text().replace("version: 1.0.0", "version: 2.0.0")
+            .replace("status: draft", "status: approved")
+            .replace("depends_on: []", "depends_on: [other-spec]")
+            .replace("supersedes: []", "supersedes: [other-spec]"),
+            encoding="utf-8",
+        )
+        catalog = fx.root / "catalog/first-party/catalog.v1.json"
+        current = json.loads(catalog.read_text())
+        previous = next(item for item in current["artifacts"] if item["id"] == "specification/example-spec")
+        previous["compatibility"]["notes"] = "Reviewed catalog annotation."
+        previous["deprecation"]["notes"] = "Retain the migration guidance."
+        catalog.write_text(json.dumps(current), encoding="utf-8")
+        fx.validator().write_catalog()
+        generated = next(item for item in json.loads(catalog.read_text())["artifacts"] if item["id"] == previous["id"])
+        self.assertEqual(generated["artifact_version"], "2.0.0")
+        self.assertEqual(generated["lifecycle"], {"state": "stable", "source_state": "approved"})
+        self.assertEqual(generated["dependencies"], ["specification/other-spec"])
+        self.assertEqual(generated["supersedes_ids"], ["specification/other-spec"])
+        self.assertEqual(generated["compatibility"], previous["compatibility"])
+        self.assertEqual(generated["deprecation"], previous["deprecation"])
+        first_bytes = catalog.read_bytes()
+        fx.validator().write_catalog()
+        self.assertEqual(first_bytes, catalog.read_bytes())
+
+    def test_catalog_rejects_invalid_source_without_replacing_catalog(self):
+        fx = ValidatorFixture.create()
+        catalog = fx.root / "catalog/first-party/catalog.v1.json"
+        before = catalog.read_bytes()
+        spec = fx.root / "library/organization/specs/domain/example.spec.md"
+        spec.write_text(spec.read_text().replace("depends_on: []", "depends_on: invalid-string"), encoding="utf-8")
+        with self.assertRaisesRegex(ValidationError, "example.spec.md: depends_on"):
+            fx.validator().write_catalog()
+        self.assertEqual(before, catalog.read_bytes())
+        diagnostics = fx.validator().validate_catalog()
+        self.assertTrue(any(d.rule_id == "AETHER_CATALOG_004" and "depends_on" in d.message for d in diagnostics))
 
     def test_unclassified_staging_material(self):
         fx = ValidatorFixture.create()
