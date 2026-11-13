@@ -391,6 +391,60 @@
         "value": "44ef29912b15ef793c82184e0c8a369041990a25b68661bc16edb4998bfcdd91"
       }
     },
+    "local-ci-triager": {
+      "continuity_disposition": "reader",
+      "generator": "library/organization/projections/build-projections.py",
+      "instruction_modules": [
+        {
+          "id": "decision-impact",
+          "inherits": [
+            {
+              "approval_url": "https://github.com/egohygiene/hygiene/pull/72",
+              "contract": "egohygiene.architecture-decision/v1",
+              "policy_version": "1.2.0",
+              "revision": "a05b14f8b9e2772124f879f818e09a911e996ad8",
+              "source_url": "https://github.com/egohygiene/hygiene/blob/a05b14f8b9e2772124f879f818e09a911e996ad8/docs/decisions/POLICY.md",
+              "status": "accepted"
+            },
+            {
+              "contract": "egohygiene.repository-intelligence/v1",
+              "contract_version": "1.0.0-alpha.1",
+              "revision": "5e0602265b6ac5e5165b89f418e55a3fd12f8a64",
+              "source_url": "https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md",
+              "status": "proposed"
+            }
+          ],
+          "source": "library/organization/projections/templates/decision-impact.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "7d3c1524fe643794df4b953b50d6a194a1268a0890785981fe465346398fb346"
+          },
+          "status": "draft",
+          "version": "0.3.0"
+        },
+        {
+          "continuity_path": "CONTINUITY.md",
+          "contract": "aether.repository-continuity/v1",
+          "id": "repository-continuity",
+          "skill": "maintain-repository-continuity",
+          "source": "library/organization/instructions/repository-continuity/INSTRUCTION.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
+          },
+          "status": "draft",
+          "version": "1.0.0"
+        }
+      ],
+      "interface": "aether.projection-interface/v1",
+      "interface_version": "1.2.0",
+      "provider": "canonical",
+      "source": "library/organization/agents/local-ci-triager/AGENT.md",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "5b7f9cfe49270d94c8f96cedb4be4268c55b96389182894cd9d7800c8872485c"
+      }
+    },
     "specfile-creator": {
       "continuity_disposition": "reader-writer",
       "generator": "library/organization/projections/build-projections.py",
@@ -505,7 +559,7 @@
     "source": "library/organization/instructions/repository-continuity/continuity-dispositions.v1.json",
     "source_digest": {
       "algorithm": "sha256-utf8-lf",
-      "value": "5a37a7e105b1561f0993abd2a41df076e9740fbd87fbee85e6c7a8e502e5233d"
+      "value": "770c34d097713ec1f3da7302b6772d0ef0f86c9c9849d8edabac057255000389"
     }
   },
   "generator": "library/organization/projections/build-projections.py",
@@ -538,6 +592,10 @@
     {
       "path": "dist/claude/repository/.claude/agents/implementation-planner.md",
       "sha256": "c5d86f626115e42f54e034746079030845735005879432a2ab09bf373fa56efe"
+    },
+    {
+      "path": "dist/claude/repository/.claude/agents/local-ci-triager.md",
+      "sha256": "d5d29a75375279c1d36746cafcb63f699fc55aec88b92f2ab15835c70aa550cb"
     },
     {
       "path": "dist/claude/repository/.claude/agents/specfile-creator.md",
@@ -588,6 +646,10 @@
       "sha256": "4760096cf11dd175fee239ddb76db3c05fb88c5830412c5afa02ff0686da2d69"
     },
     {
+      "path": "dist/github/organization/agents/local-ci-triager.agent.md",
+      "sha256": "381dbf934ce83ab6392b3460cc7da306e38005f9bc3a30ca442a11fc21729364"
+    },
+    {
       "path": "dist/github/organization/agents/specfile-creator.agent.md",
       "sha256": "662382ea9c92b2f335ad2c3c77a03d81b07cba6fc4c229b074b78ae3813b7114"
     },
@@ -622,6 +684,10 @@
     {
       "path": "dist/github/repository/.github/agents/implementation-planner.agent.md",
       "sha256": "4760096cf11dd175fee239ddb76db3c05fb88c5830412c5afa02ff0686da2d69"
+    },
+    {
+      "path": "dist/github/repository/.github/agents/local-ci-triager.agent.md",
+      "sha256": "31de4223b634e79243229af629a3340d94ff5b5325fc0ee250934d72e844b036"
     },
     {
       "path": "dist/github/repository/.github/agents/specfile-creator.agent.md",
@@ -668,6 +734,10 @@
       "sha256": "b78ca8660cefd768fc5bfd47c00891ab6ed78089bf191f17200bf1829beb2a22"
     },
     {
+      "path": "dist/opencode/repository/.opencode/agents/local-ci-triager.md",
+      "sha256": "93cac1ddba2dfa670dbcdf091b8420e0840ff561c10c81ea31463e51de97890f"
+    },
+    {
       "path": "dist/opencode/repository/.opencode/agents/specfile-creator.md",
       "sha256": "6b17c971e138be76240782269bbf69f77c6c2987708c915fb970019c2dd45731"
     },
@@ -677,11 +747,11 @@
     },
     {
       "path": "dist/projections/continuity-dispositions.v1.json",
-      "sha256": "5a37a7e105b1561f0993abd2a41df076e9740fbd87fbee85e6c7a8e502e5233d"
+      "sha256": "770c34d097713ec1f3da7302b6772d0ef0f86c9c9849d8edabac057255000389"
     },
     {
       "path": "dist/zencoder/manual-import/agents.json",
-      "sha256": "8c493cd4fcc1fb66c567630b18255446dd52030cf7805d5101913d41b51f68ea"
+      "sha256": "cc9e10dfd1bbb49ff0e58c996ab22420b4a69734c3c9eb7d9eb303582665fc21"
     }
   ],
   "provider_registry": "library/organization/projections/provider-registry.v1.json",

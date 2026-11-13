@@ -93,6 +93,32 @@
         "github-organization": "dist/github/organization/agents/implementation-planner.agent.md"
       }
     },
+    "local-ci-triager": {
+      "name": "Local CI Triager",
+      "domain": "quality",
+      "status": "draft",
+      "version": "1.0.0",
+      "skills": [
+        "validate-repository-locally",
+        "triage-local-ci-reports",
+        "github-issue-authoring",
+        "maintain-repository-continuity"
+      ],
+      "specs": [
+        "local-validation-evidence",
+        "local-ci-triage",
+        "repository-continuity"
+      ],
+      "tools": [
+        "read",
+        "search",
+        "execute"
+      ],
+      "projections": {
+        "github-repository": "dist/github/repository/.github/agents/local-ci-triager.agent.md",
+        "github-organization": "dist/github/organization/agents/local-ci-triager.agent.md"
+      }
+    },
     "specfile-creator": {
       "name": "Specfile Creator",
       "domain": "authoring",
