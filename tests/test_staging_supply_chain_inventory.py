@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import json
 import copy
+import json
 import subprocess
 import tempfile
 import unittest
@@ -42,7 +42,6 @@ class TestExternalCatalogAndStagingInventory(unittest.TestCase):
 
     def test_inventory_covers_current_and_historical_staged_skill_copies(self):
         inventory = self._load_json(INVENTORY_REPORT)
-        entries = inventory["entries"]
 
         current_paths = self._tracked_skill_paths(ROOT)
         self.assertTrue(all((ROOT / path).is_file() for path in current_paths))
