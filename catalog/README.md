@@ -62,6 +62,17 @@ catalog-owned. Regeneration preserves the approved-to-stable specification
 mapping with `source_state: approved`; it does not approve a source artifact or
 override release exclusions.
 
+The staged skill inventory distinguishes Git-tracked current roots from
+historical removed copies. A first-party disposition may preserve evidence for
+a source that is still present; its existence or disposition name does not
+establish removal. The retained `repository-audit` source therefore stays among
+the 186 current roots, separately from six removed copies (192 identities).
+The inventory test checks unique/exact membership and present/removed state
+against Git and disposition records, ignoring untracked local files. This
+classification checkpoint under #113 changes no staged bytes, ownership, trust
+classification or dated inventory totals; the complete 734-file ledger remains
+open in that issue.
+
 ## Lifecycle and versioning rules
 
 Canonical lifecycle vocabulary:

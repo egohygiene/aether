@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Corrected staged skill inventory checks to distinguish retained current
+  evidence from removed copies, with Git membership and negative controls;
+  preserved staged source and the broader ledger follow-up (#113).
+
 - Completed source-authoritative agent catalog regeneration and semantic drift
   checks, preserving catalog annotations and source lifecycle while correcting
   local CI continuity metadata consistency (#107).
