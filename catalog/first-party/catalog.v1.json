@@ -1716,7 +1716,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "6e8556bc53f3d189f7ca108b2921586868f92597ea178c077e12b9bff2b7a151"
+        "value": "dcaa805653be596600e23afaf2515eb44662404dc54c01b12a74a5e363362920"
       },
       "source_path": "library/organization/skills/quality/triage-local-ci-reports/SKILL.md",
       "supersedes_ids": [],

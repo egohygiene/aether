@@ -19,7 +19,7 @@ metadata:
 
 <!-- aether-continuity-disposition: reader -->
 
-## Continuity composition
+## Repository continuity composition
 
 Compose `maintain-repository-continuity` in Resume mode before selecting work.
 This skill is continuity read-only; a separate authorized source-changing workflow owns

@@ -95,7 +95,7 @@ review:
   - command: python3 -m unittest tests.test_aether_validator tests.test_provenance_model tests.test_continuity_integration.ContinuityIntegrationTests.test_agents_compose_the_skill_without_gaining_authority
     outcome: passed
     observed_at: '2026-11-13T23:39:40Z'
-    notes: 68 focused checks pass, including seven new behavioral tests and source/catalog dependency
+    notes: 69 focused checks pass, including eight new behavioral tests and source/catalog dependency
       and authority identity. Independent review negative control prevents missing source metadata inheriting
       stale catalog maturity.
   - command: ./aether catalog generate --check; ./aether distribution build --check; ./aether validate
@@ -154,11 +154,11 @@ Catalog generation/check now refreshes agent source identity, description, domai
 
 Specification optional descriptions derive from the first source paragraph and missing licenses from repository MIT; removing an optional source value cannot retain stale catalog text. Existing approved-to-stable normalization retains approved source-state provenance and release exclusions remain intact.
 
-The earlier triage composition introduced mismatched disposition handoff text. This defect was previously masked by the first auditor catalog assertion; it is corrected here, not classified as baseline debt. Its read-only role wording is explicit. The integration test retains semantic-version and source/catalog identity checks while removing the historical blanket 1.1.0 floor, since independently versioned new artifacts may validly begin at 1.0.0. No artifact version or maturity was raised.
+The earlier triage composition introduced mismatched disposition handoff text. This defect was previously masked by the first auditor catalog assertion; it is corrected here, not classified as baseline debt. Its read-only role wording and skill continuity heading are explicit; an isolated triage-skill integration canary prevents unrelated package failures from masking this contract again. The integration test retains semantic-version and source/catalog identity checks while removing the historical blanket 1.1.0 floor, since independently versioned new artifacts may validly begin at 1.0.0. No artifact version or maturity was raised.
 
 ## Validation and review evidence
 
-Sixty-eight focused checks pass, including source mutations, stale semantic metadata, malformed source, dependency changes, catalog annotation retention, repeat generation, approved source-state preservation and direct provenance authority controls. Independent read-only review found and verified the missing-source-maturity control.
+Sixty-nine focused checks pass, including source mutations, stale semantic metadata, malformed source, dependency changes, catalog annotation retention, repeat generation, approved source-state preservation and direct provenance authority controls. Independent read-only review found and verified the missing-source-maturity control.
 
 Catalog and distribution checks pass after canonical regeneration. Catalog/provenance validation has zero errors; its legacy lock-hash warning remains. Full-suite evidence retains three known failures: unavailable consumer adapter, audit source/eval mismatch and staging classification. Five audit/coherence package validator errors remain; no canonical-green claim is made.
 
