@@ -1680,6 +1680,53 @@
       "title": "Test Engineering"
     },
     {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/local-ci-triage"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Converts executed local CI reports into diagnosed, deduplicated issue proposals and an authorized provider handoff. Use when triaging a scoped local validation run; compose validate-repository-locally when execution is requested.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/skills/triage-local-ci-reports/SKILL.md"
+      ],
+      "id": "skill/triage-local-ci-reports",
+      "implements_specification_id": "specification/local-ci-triage",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6bbe5804743d60f1af439a48fa800b7756f35ad7ec731d2dcb6f9bdb24f64dde"
+      },
+      "source_path": "library/organization/skills/quality/triage-local-ci-reports/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "quality",
+        "skill"
+      ],
+      "title": "Triage Local Ci Reports"
+    },
+    {
       "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
@@ -3136,6 +3183,60 @@
         "traceability"
       ],
       "title": "Diagnosis Record Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/local-validation-evidence"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Compose existing local validation, diagnosis and issue authoring into a reusable",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/specs/local-ci-triage.spec.md"
+      ],
+      "id": "specification/local-ci-triage",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/diagnosis-record",
+        "skill/validate-repository-locally",
+        "skill/github-issue-authoring",
+        "specification/repository-continuity"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "930298c1783571452fd7960938a193953bbfc3fedc2a0d02cd4a7bb03b32b11e"
+      },
+      "source_path": "library/organization/specs/quality/local-ci-triage.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "local-ci",
+        "triage",
+        "evidence",
+        "issue-authoring"
+      ],
+      "title": "Local CI Report Triage and Issue Handoff"
     },
     {
       "artifact_version": "1.0.0",

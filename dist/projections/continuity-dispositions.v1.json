@@ -381,6 +381,20 @@
       "rationale": "Authorized test engineering mutates repository tests and sometimes bounded testability seams."
     },
     {
+      "id": "triage-local-ci-reports",
+      "source": "library/organization/skills/quality/triage-local-ci-reports/SKILL.md",
+      "disposition": "reader",
+      "startup_read": true,
+      "pre_pr_write": false,
+      "domain_evidence": [
+        "Executed local checks, normalized evidence, root-cause groups, issue matches and provider receipts"
+      ],
+      "never_claim": [
+        "That unrun checks passed or local issue plans were published"
+      ],
+      "rationale": "Local CI triage executes authorized validation and creates local evidence; source/handoff edits belong to a separately selected workflow."
+    },
+    {
       "id": "validate-repository-locally",
       "source": "library/organization/skills/quality/validate-repository-locally/SKILL.md",
       "disposition": "reader-writer",
@@ -461,6 +475,20 @@
       "domain_evidence": ["Dependency order, phases, validation, rollback, risks, assumptions, and blocked decisions"],
       "never_claim": ["That planned production work, tests, migrations, or rollout have been executed"],
       "rationale": "The role may write a repository plan and hand it off for implementation."
+    },
+    {
+      "id": "local-ci-triager",
+      "source": "library/organization/agents/local-ci-triager/AGENT.md",
+      "disposition": "reader",
+      "startup_read": true,
+      "pre_pr_write": false,
+      "domain_evidence": [
+        "Executed local checks, normalized evidence, root-cause groups, issue matches and provider receipts"
+      ],
+      "never_claim": [
+        "That unrun checks passed or local issue plans were published"
+      ],
+      "rationale": "Local CI triage executes authorized validation and creates local evidence; source/handoff edits belong to a separately selected workflow."
     },
     {
       "id": "specfile-creator",

@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "example-check": {
+      "category": "unknown",
+      "confirmed": false,
+      "root_cause": "replace-after-diagnosis",
+      "subject": "Replace with the inspected problem",
+      "summary": "Replace with observed cause, scope and uncertainty."
+    }
+  }
+}

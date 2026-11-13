@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Added a draft local CI triage spec, portable skill and bounded agent, with a
+  Realm report adapter, diagnosed root-cause grouping, stable duplicate markers,
+  sanitized issue proposals and explicit provider handoffs.
+
 - Added draft composable audit profiles and typed checkpoint reports, with
   evidence-bound classifications, immutable report handoffs, and a read-only
   auditor procedure; preserved the approved auditor 2.0.0 specification (#86,

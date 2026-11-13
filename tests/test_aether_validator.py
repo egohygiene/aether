@@ -798,7 +798,7 @@ class TestAgentValidator(unittest.TestCase):
     # ------------------------------------------------------------------
 
     def test_canonical_agents_all_valid(self) -> None:
-        """All nine canonical agent source files must pass validation."""
+        """Every canonical agent source file must pass validation."""
         agents_dir = (
             Path(__file__).resolve().parents[1]
             / "library"
@@ -807,7 +807,7 @@ class TestAgentValidator(unittest.TestCase):
         )
         rc, output = self._run_validator(agents_dir)
         self.assertEqual(rc, 0, msg=f"validate-agents.py exited non-zero:\n{output}")
-        self.assertIn("9 agent(s) validated successfully", output)
+        self.assertIn(f"{len(list(agents_dir.glob('*/AGENT.md')))} agent(s) validated successfully", output)
 
     # ------------------------------------------------------------------
     # Unit tests for projection builder

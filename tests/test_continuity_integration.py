@@ -94,8 +94,6 @@ class ContinuityIntegrationTests(unittest.TestCase):
 
         self.assertEqual(actual_skills, expected_skills)
         self.assertEqual(actual_agents, expected_agents)
-        self.assertEqual(len(actual_skills), 36)
-        self.assertEqual(len(actual_agents), 9)
 
         for record in self.inventory["skills"] + self.inventory["agents"]:
             source = ROOT / record["source"]
