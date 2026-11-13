@@ -156,10 +156,9 @@ class ContinuityIntegrationTests(unittest.TestCase):
             self.assertIn(f"- **Contribute:** {record['domain_evidence'][0]}", text)
             self.assertIn(f"- **Never claim:** {record['never_claim'][0]}", text)
             self.assertEqual(catalog[record["id"]]["version"], metadata["aether-version"])
+            # Agents version independently: a new 1.0.0 artifact need not meet
+            # the historical continuity migration's 1.1.0 version floor.
             self.assertRegex(metadata["aether-version"], r"^\d+\.\d+\.\d+$")
-            self.assertGreaterEqual(
-                tuple(map(int, metadata["aether-version"].split("."))), (1, 1, 0)
-            )
             self.assertIn(
                 "maintain-repository-continuity",
                 catalog[record["id"]]["skills"],

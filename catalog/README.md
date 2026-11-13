@@ -42,12 +42,25 @@ Canonical first-party source lives under `library/organization/`.
 Current source-specific catalogs have different responsibilities:
 
 - specification and skill frontmatter is authoritative for `first-party/catalog.v1.json`;
-- canonical agent source and `library/organization/agents/catalog.json` own agent-specific capability metadata;
+- canonical agent frontmatter owns name, description, domain, lifecycle, version,
+  skills, specifications and tools in `library/organization/agents/catalog.json`;
+  the catalog retains projection paths and other reviewed annotations;
 - `library/organization/instructions/repository-continuity/` owns the reusable
   continuity pointer and reviewed per-skill/per-agent dispositions;
 - reviewed external source records own their upstream provenance and redistribution evidence.
 
 The normalized provenance model is a **derived policy view**, not a second hand-edited source of truth. It gives these artifact kinds one common vocabulary for source, revision, digest, license, trust, lifecycle, compatibility, maintainer ownership, and publication readiness.
+
+`aether catalog generate` refreshes both first-party and agent catalogs;
+`--check` and `aether validate --catalog` detect semantic source-field drift even
+when source digests match. Specification descriptions use explicit frontmatter
+or the first body paragraph when absent, and an absent specification license uses the
+repository MIT license. Removing an optional source field cannot keep its stale
+previous value. Compatibility notes, deprecation guidance, explicit release
+exclusions, skill display annotations and agent projection paths remain
+catalog-owned. Regeneration preserves the approved-to-stable specification
+mapping with `source_state: approved`; it does not approve a source artifact or
+override release exclusions.
 
 ## Lifecycle and versioning rules
 

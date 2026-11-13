@@ -42,7 +42,7 @@ and [`local-ci-triage`](../../specs/quality/local-ci-triage.spec.md).
 ## Continuity composition
 
 Read scoped instructions and compose `maintain-repository-continuity` in Resume
-mode. This role reads continuity; it does not edit source or handoffs unless a
+mode. This role is continuity read-only; it does not edit source or handoffs unless a
 separate source-changing workflow takes ownership.
 
 - **Contribute:** Tested revision, coverage, findings, issue matching and actual provider receipts

@@ -166,7 +166,15 @@ def _agent_records() -> list[dict[str, Any]]:
         if not path.exists():
             raise ValueError(f"agent {agent_id} is missing {path.relative_to(ROOT)}")
         frontmatter = parse_frontmatter(path)
-        metadata = frontmatter.get("metadata") if isinstance(frontmatter.get("metadata"), dict) else {}
+        metadata = frontmatter.get("metadata")
+        if not isinstance(metadata, dict):
+            raise ValueError(f"agent {agent_id} source must declare metadata")
+        version = metadata.get("aether-version")
+        status = metadata.get("aether-status")
+        if not isinstance(version, str) or not re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?", version):
+            raise ValueError(f"agent {agent_id} source must declare a semantic aether-version")
+        if not isinstance(status, str) or status not in {"draft", "stable", "deprecated", "retired"}:
+            raise ValueError(f"agent {agent_id} source must declare a valid aether-status")
         declared_id = str(frontmatter.get("aether-id", ""))
         if declared_id != agent_id:
             raise ValueError(f"agent {agent_id} frontmatter id is {declared_id!r}")
@@ -177,8 +185,10 @@ def _agent_records() -> list[dict[str, Any]]:
         else:
             maintainers = [str(owners_value)] if str(owners_value) else ["egohygiene"]
 
-        tools = catalog_entry.get("tools") if isinstance(catalog_entry.get("tools"), list) else []
-        lifecycle = normalize_lifecycle(metadata.get("aether-status", catalog_entry.get("status", "draft")))
+        tools = frontmatter.get("tools")
+        if not isinstance(tools, list) or not tools or any(not isinstance(tool, str) or tool not in {"read", "search", "edit", "execute", "web"} for tool in tools):
+            raise ValueError(f"agent {agent_id} source must declare explicit valid tools")
+        lifecycle = normalize_lifecycle(status)
         record = {
             "id": f"agent/{agent_id}",
             "kind": "agent",
@@ -186,7 +196,7 @@ def _agent_records() -> list[dict[str, Any]]:
             "source": {
                 "repository": "egohygiene/aether",
                 "path": str(path.relative_to(ROOT)).replace("\\", "/"),
-                "revision": str(metadata.get("aether-version", catalog_entry.get("version", "unknown"))),
+                "revision": version,
                 "digest": {
                     "algorithm": "sha256-utf8-lf",
                     "value": source_digest(path),

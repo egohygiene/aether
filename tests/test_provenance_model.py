@@ -7,12 +7,14 @@ import json
 from pathlib import Path
 import sys
 import unittest
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "catalog"))
 
 from provenance_model import (  # noqa: E402
+    _agent_records,
     _first_party_record,
     build_external,
     build_first_party,
@@ -23,6 +25,23 @@ from provenance_model import (  # noqa: E402
 
 
 class ProvenanceModelTests(unittest.TestCase):
+    def test_agent_source_overrides_stale_catalog_capability_and_maturity(self) -> None:
+        catalog = {"agents": {"auditor": {"tools": ["read", "execute"], "version": "9.9.9", "status": "stable"}}}
+        source = {"aether-id": "auditor", "tools": ["read"], "metadata": {"aether-version": "1.2.0", "aether-status": "draft", "aether-owners": "egohygiene"}}
+        with mock.patch("provenance_model.load_json", return_value=catalog), mock.patch("provenance_model.parse_frontmatter", return_value=source):
+            record = _agent_records()[0]
+        self.assertEqual(record["source"]["revision"], "1.2.0")
+        self.assertEqual(record["lifecycle"], {"state": "draft"})
+        self.assertEqual(record["compatibility"]["required_tools"], ["read"])
+        self.assertFalse(record["publishable"])
+
+    def test_missing_agent_source_metadata_cannot_inherit_catalog_maturity(self) -> None:
+        catalog = {"agents": {"auditor": {"tools": ["read", "execute"], "version": "9.9.9", "status": "stable"}}}
+        for metadata in ({}, {"aether-version": "1.0.0"}, {"aether-version": "invalid", "aether-status": "stable"}):
+            with self.subTest(metadata=metadata), mock.patch("provenance_model.load_json", return_value=catalog), mock.patch("provenance_model.parse_frontmatter", return_value={"aether-id": "auditor", "tools": ["read"], "metadata": metadata}):
+                with self.assertRaisesRegex(ValueError, "agent auditor source must declare"):
+                    _agent_records()
+
     def test_repository_provenance_model_is_valid(self) -> None:
         self.assertEqual(check("all"), [])
 

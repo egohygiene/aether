@@ -442,7 +442,7 @@
       "source": "library/organization/agents/local-ci-triager/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "5b7f9cfe49270d94c8f96cedb4be4268c55b96389182894cd9d7800c8872485c"
+        "value": "2912aabfaddae5b4ca854f772cf14a3bdde3c58ded6f4ceb7ed7f132e73ae98d"
       }
     },
     "specfile-creator": {
@@ -559,7 +559,7 @@
     "source": "library/organization/instructions/repository-continuity/continuity-dispositions.v1.json",
     "source_digest": {
       "algorithm": "sha256-utf8-lf",
-      "value": "770c34d097713ec1f3da7302b6772d0ef0f86c9c9849d8edabac057255000389"
+      "value": "015cd4819d070d725bc4ed31da3246af7a40bdbc7fe4c6ff241b258ac6445802"
     }
   },
   "generator": "library/organization/projections/build-projections.py",
@@ -595,7 +595,7 @@
     },
     {
       "path": "dist/claude/repository/.claude/agents/local-ci-triager.md",
-      "sha256": "d5d29a75375279c1d36746cafcb63f699fc55aec88b92f2ab15835c70aa550cb"
+      "sha256": "c7464ec3be19983d958de71cd3b941ecf255d7ea43f8071b25a2c90d9970495f"
     },
     {
       "path": "dist/claude/repository/.claude/agents/specfile-creator.md",
@@ -647,7 +647,7 @@
     },
     {
       "path": "dist/github/organization/agents/local-ci-triager.agent.md",
-      "sha256": "381dbf934ce83ab6392b3460cc7da306e38005f9bc3a30ca442a11fc21729364"
+      "sha256": "156a1299270923d9e96a459344ad5fc385bdb4873d0d5b6489547b7a907688d5"
     },
     {
       "path": "dist/github/organization/agents/specfile-creator.agent.md",
@@ -687,7 +687,7 @@
     },
     {
       "path": "dist/github/repository/.github/agents/local-ci-triager.agent.md",
-      "sha256": "31de4223b634e79243229af629a3340d94ff5b5325fc0ee250934d72e844b036"
+      "sha256": "70d8580a81d6b7d75b228b4e632d93ea581d2f483559b5cbad6403f210b1921a"
     },
     {
       "path": "dist/github/repository/.github/agents/specfile-creator.agent.md",
@@ -735,7 +735,7 @@
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/local-ci-triager.md",
-      "sha256": "93cac1ddba2dfa670dbcdf091b8420e0840ff561c10c81ea31463e51de97890f"
+      "sha256": "533795f1838f69dd8fff51b2059d632fe643c234429a53046d88596adae1128a"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/specfile-creator.md",
@@ -747,11 +747,11 @@
     },
     {
       "path": "dist/projections/continuity-dispositions.v1.json",
-      "sha256": "770c34d097713ec1f3da7302b6772d0ef0f86c9c9849d8edabac057255000389"
+      "sha256": "015cd4819d070d725bc4ed31da3246af7a40bdbc7fe4c6ff241b258ac6445802"
     },
     {
       "path": "dist/zencoder/manual-import/agents.json",
-      "sha256": "cc9e10dfd1bbb49ff0e58c996ab22420b4a69734c3c9eb7d9eb303582665fc21"
+      "sha256": "78cce1825dc1c80d23757f2e25a33561f8b867749b70a6b01da39476268dcb00"
     }
   ],
   "provider_registry": "library/organization/projections/provider-registry.v1.json",

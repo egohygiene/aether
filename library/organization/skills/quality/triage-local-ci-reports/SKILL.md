@@ -22,7 +22,7 @@ metadata:
 ## Continuity composition
 
 Compose `maintain-repository-continuity` in Resume mode before selecting work.
-This skill reads continuity; a separate authorized source-changing workflow owns
+This skill is continuity read-only; a separate authorized source-changing workflow owns
 any refresh. Local report output does not grant authority to edit source.
 
 - **Contribute:** Source identity, actual checks, classified failures, issue matches and provider receipts
