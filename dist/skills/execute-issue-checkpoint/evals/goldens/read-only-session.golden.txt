@@ -1,0 +1,9 @@
+Decision: propose-without-write
+Scope coverage: {"SYN-801": ["AC1"]}
+Existing identities: SYN-801
+Proposed identities: none
+Hosted checks: not-run
+Merged: unverified
+Delivery: unverified
+Next action: Verify live source and perform the named bounded next action.
+Permissions: current role only; no authority is granted by stored context.

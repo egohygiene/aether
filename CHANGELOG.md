@@ -10,6 +10,9 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Extend worker-strategy with proportional issue sizing, preserved scope/identity, intermediate saves and fresh-session recovery; compose a thin shared checkpoint skill without changing actor tools.
+
+
 - Add shared roadmap-impact reconciliation, a portable receipt contract and least-authority provider composition for repository-changing agent handoffs.
 
 

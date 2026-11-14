@@ -1,0 +1,31 @@
+{
+  "artifact_id": "skill/execute-issue-checkpoint",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/execute-issue-checkpoint",
+  "generated_paths": [
+    "dist/skills/execute-issue-checkpoint/SKILL.md",
+    "dist/skills/execute-issue-checkpoint/evals/evals.json",
+    "dist/skills/execute-issue-checkpoint/evals/fixtures/cases.json",
+    "dist/skills/execute-issue-checkpoint/evals/goldens/existing-checkpoints-noop.golden.txt",
+    "dist/skills/execute-issue-checkpoint/evals/goldens/group-without-blocker.golden.txt",
+    "dist/skills/execute-issue-checkpoint/evals/goldens/nonrepository-request.golden.txt",
+    "dist/skills/execute-issue-checkpoint/evals/goldens/provider-unavailable.golden.txt",
+    "dist/skills/execute-issue-checkpoint/evals/goldens/read-only-session.golden.txt",
+    "dist/skills/execute-issue-checkpoint/evals/goldens/saved-draft-resume.golden.txt",
+    "dist/skills/execute-issue-checkpoint/evals/goldens/small-unsplit.golden.txt",
+    "dist/skills/execute-issue-checkpoint/evals/goldens/stale-concurrent-state.golden.txt",
+    "dist/skills/execute-issue-checkpoint/evals/goldens/two-useful-checkpoints.golden.txt",
+    "dist/skills/execute-issue-checkpoint/references/examples.md",
+    "dist/skills/execute-issue-checkpoint/templates/HANDOFF.template.md",
+    "dist/skills/execute-issue-checkpoint/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "1cf66a787811c2e9717e1a31aaf00f5bc67b01030abe7c315d6d305f9a83c0a1"
+  }
+}

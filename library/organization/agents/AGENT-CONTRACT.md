@@ -128,6 +128,20 @@ neither module nor receipt adds tools or authority. Inferred typed organization
 signals refer to Hygiene-owned strategy rather than mutating it from a local
 repository. The module is draft static guidance, not an installed automatic hook.
 
+### Bounded issue execution
+
+The shared worker-strategy module composes `execute-issue-checkpoint` and the
+existing `worker-strategy` specification for authorized repository issue work.
+Every agent retains its tools and role. Small issues remain unsplit, existing
+checkpoint/PR identities are reused, and real prerequisites remain distinct from
+parent grouping. Progress saves, truthful validation/delivery state and exact
+fresh-session resume follow existing continuity and evidence contracts.
+
+This draft source integration is a default entry point in generated guidance;
+consumer selection, automatic host loading, runtime recovery and fleet adoption
+remain unqualified. It neither schedules agents nor requires another approval
+between checkpoints already authorized by the caller.
+
 ### Decision-impact inheritance
 
 The decision-impact module is the concise, always-on checkpoint for code-change

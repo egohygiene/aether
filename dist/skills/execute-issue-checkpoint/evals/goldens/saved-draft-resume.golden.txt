@@ -1,0 +1,10 @@
+Decision: resume-validation
+Scope coverage: {"SYN-501": ["AC1"]}
+Existing identities: SYN-501
+Proposed identities: none
+Hosted checks: not-run
+Merged: unverified
+Delivery: unverified
+Next action: Verify live source and perform the named bounded next action.
+Permissions: current role only; no authority is granted by stored context.
+Resume: read shared/local guidance, selected contracts, continuity and work record; verify current Git head and actual draft state before validation.

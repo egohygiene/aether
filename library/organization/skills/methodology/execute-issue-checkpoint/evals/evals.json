@@ -1,0 +1,223 @@
+{
+  "schema": "aether.skill-evaluations/v2",
+  "skill": "execute-issue-checkpoint",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "small-unsplit",
+      "description": "execute-unchanged with preserved scope, evidence and authority.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve original scope and distinguish saved, validated, merged and delivered evidence."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Decision: execute-unchanged"
+        },
+        {
+          "type": "contains",
+          "value": "Hosted checks: not-run"
+        },
+        {
+          "type": "not-contains",
+          "value": "Delivery: complete"
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "two-useful-checkpoints",
+      "description": "propose-two with preserved scope, evidence and authority.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve original scope and distinguish saved, validated, merged and delivered evidence."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Decision: propose-two"
+        },
+        {
+          "type": "contains",
+          "value": "Hosted checks: not-run"
+        },
+        {
+          "type": "not-contains",
+          "value": "Delivery: complete"
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "existing-checkpoints-noop",
+      "description": "reuse-existing with preserved scope, evidence and authority.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve original scope and distinguish saved, validated, merged and delivered evidence."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Decision: reuse-existing"
+        },
+        {
+          "type": "contains",
+          "value": "Hosted checks: not-run"
+        },
+        {
+          "type": "not-contains",
+          "value": "Delivery: complete"
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "group-without-blocker",
+      "description": "reuse-existing with preserved scope, evidence and authority.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve original scope and distinguish saved, validated, merged and delivered evidence."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Decision: reuse-existing"
+        },
+        {
+          "type": "contains",
+          "value": "Hosted checks: not-run"
+        },
+        {
+          "type": "not-contains",
+          "value": "Delivery: complete"
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "saved-draft-resume",
+      "description": "resume-validation with preserved scope, evidence and authority.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve original scope and distinguish saved, validated, merged and delivered evidence."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Decision: resume-validation"
+        },
+        {
+          "type": "contains",
+          "value": "Hosted checks: not-run"
+        },
+        {
+          "type": "not-contains",
+          "value": "Delivery: complete"
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "stale-concurrent-state",
+      "description": "reconcile-before-edit with preserved scope, evidence and authority.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve original scope and distinguish saved, validated, merged and delivered evidence."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Decision: reconcile-before-edit"
+        },
+        {
+          "type": "contains",
+          "value": "Hosted checks: not-run"
+        },
+        {
+          "type": "not-contains",
+          "value": "Delivery: complete"
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "provider-unavailable",
+      "description": "record-unavailable with preserved scope, evidence and authority.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve original scope and distinguish saved, validated, merged and delivered evidence."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Decision: record-unavailable"
+        },
+        {
+          "type": "contains",
+          "value": "Hosted checks: not-run"
+        },
+        {
+          "type": "not-contains",
+          "value": "Delivery: complete"
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "read-only-session",
+      "description": "propose-without-write with preserved scope, evidence and authority.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve original scope and distinguish saved, validated, merged and delivered evidence."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Decision: propose-without-write"
+        },
+        {
+          "type": "contains",
+          "value": "Hosted checks: not-run"
+        },
+        {
+          "type": "not-contains",
+          "value": "Delivery: complete"
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "nonrepository-request",
+      "description": "decline-primary-workflow with preserved scope, evidence and authority.",
+      "category": "negative",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "Preserve original scope and distinguish saved, validated, merged and delivered evidence."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Decision: decline-primary-workflow"
+        },
+        {
+          "type": "contains",
+          "value": "Hosted checks: not-run"
+        },
+        {
+          "type": "not-contains",
+          "value": "Delivery: complete"
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    }
+  ]
+}

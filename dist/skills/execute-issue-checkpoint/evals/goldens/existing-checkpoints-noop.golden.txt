@@ -1,0 +1,9 @@
+Decision: reuse-existing
+Scope coverage: {"SYN-302": ["AC1"], "SYN-303": ["AC2"]}
+Existing identities: SYN-302, SYN-303
+Proposed identities: none
+Hosted checks: not-run
+Merged: unverified
+Delivery: unverified
+Next action: Verify live source and perform the named bounded next action.
+Permissions: current role only; no authority is granted by stored context.

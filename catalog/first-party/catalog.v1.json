@@ -1128,6 +1128,53 @@
       "title": "Create Vision Document"
     },
     {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/worker-strategy"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Runs one bounded recoverable issue checkpoint. Use when authorized repository work needs proportional sizing, preserved parent scope, progress saves and a fresh-session handoff.",
+      "domain": "methodology",
+      "generated_distribution_paths": [
+        "dist/skills/execute-issue-checkpoint/SKILL.md"
+      ],
+      "id": "skill/execute-issue-checkpoint",
+      "implements_specification_id": "specification/worker-strategy",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "1cf66a787811c2e9717e1a31aaf00f5bc67b01030abe7c315d6d305f9a83c0a1"
+      },
+      "source_path": "library/organization/skills/methodology/execute-issue-checkpoint/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "methodology",
+        "skill"
+      ],
+      "title": "Execute Issue Checkpoint"
+    },
+    {
       "artifact_version": "1.2.0",
       "compatibility": {
         "required_tools": []
@@ -3696,7 +3743,7 @@
       "title": "Specification File Standard"
     },
     {
-      "artifact_version": "0.1.0",
+      "artifact_version": "0.2.0",
       "compatibility": {
         "required_tools": []
       },
@@ -3738,7 +3785,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "e44a537ab06825bac6f6802a094b6edd5353e1aa750045bc21456c48513062bb"
+        "value": "62d17bc46a8446ea1fd78a54593b57b931ce12541977c9fd255e1048eb2b283a"
       },
       "source_path": "library/organization/specs/methodology/worker-strategy.spec.md",
       "supersedes_ids": [],

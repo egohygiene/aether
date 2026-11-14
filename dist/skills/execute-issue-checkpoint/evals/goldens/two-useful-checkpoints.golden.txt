@@ -1,0 +1,9 @@
+Decision: propose-two
+Scope coverage: {"SYN-202": ["AC1", "AC2"], "SYN-203": ["AC3"]}
+Existing identities: none
+Proposed identities: SYN-202, SYN-203
+Hosted checks: not-run
+Merged: unverified
+Delivery: unverified
+Next action: Verify live source and perform the named bounded next action.
+Permissions: current role only; no authority is granted by stored context.
