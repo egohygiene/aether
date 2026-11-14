@@ -7,30 +7,32 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T03:40:33Z'
+  updated_at: '2026-11-14T04:10:23Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Separate deterministic consumer harness contracts from explicit capability-aware local/release
-    qualification under issue38; preserve fail-closed acceptance and leave publication unqualified.
+  purpose: Repair external-source calendar validation and reproducible freshness assessment under issue112
+    without renewing overdue reviews or widening use permissions.
   includes:
-  - The existing pilot harness is a repository-owned command. Deterministic tests simulate only the
-    external adapter and exercise reports, failures, prerequisites, explicit scopes and receipt preservation.
-  - Five local and seven release-scope scenarios are required explicitly. Missing capabilities and timeouts
-    block; real command/package errors fail. Skipped or absent required scenarios never qualify.
-  - PR validation retains a mandatory actual local qualification gate; release validation explicitly
-    selects immutable remote inputs before its dependent publication job. The command only uses publish
-    dry-run.
+  - The offline governance validator parses real UTC/calendar dates and chronological reviews; explicit
+    --as-of selects a deterministic inclusive-deadline freshness gate and JSON/text reporting. Default
+    structural validation makes no recency claim.
+  - All three overdue sources retain their original pins, assessments, restrictions and September30
+    deadlines. Additive blocked/unknown followups record partial upstream metadata/pin reads, missing
+    full source/advisory evidence and concrete next actions.
+  - Issue108/109/110 source repairs were already merged through107. Fresh110-case regression verification
+    and actual build/check/eval controls reconcile their completed issue states; no duplicate implementation
+    was created.
   excludes: &id001
-  - The actual workspace lacks gh skill preview subcommands. The strict local command returns nonzero,
-    distribution-build passes and dependent consumer checks are blocked. Consumer readiness is not established.
-  - Issue38 publication, release-payload eligibility/provenance, rollback, credentials, broader workflow
-    compatibility and host qualification remain open. No adapter installation, remote qualification,
-    tag, release, publication or hosted execution occurred.
-  - Stacked issue86/87 packages remain draft; their deterministic tests do not establish model routing,
-    human ratification, host acceptance or lifecycle promotion. Issue113 full ledger remains open.
+  - 'The selected current freshness gate intentionally exits1: three sources remain overdue. Metadata/pin
+    availability does not complete license/advisory/instruction qualification, renew a review or authorize
+    installation/execution/promotion/publication.'
+  - Issue114 navigation/ADR clarification is the next separate checkpoint. Issue111 exact-diff staging-removal
+    controls and113 full ledger remain open; no staging source was changed or executed.
+  - Actual consumer qualification remains blocked by unavailable gh skill adapters under38; no hosted
+    CI, merge, release or lifecycle promotion occurred in this checkpoint.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -39,79 +41,75 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - catalog/consumer_installation.py
-  - tests/test_consumer_installation_e2e.py
-  - docs/release-and-pinning-guide.md
-  - .github/workflows/pr-validation.yml
-  - .github/workflows/release-first-party-skills.yml
-  - https://github.com/egohygiene/aether/issues/38
+  - catalog/external/validate.py
+  - catalog/external/source-review-register.v1.json
+  - catalog/external/REVIEW_CADENCE.md
+  - catalog/reports/external-source-followup-2026-11-14.json
+  - tests/test_external_source_governance.py
+  - https://github.com/egohygiene/aether/issues/112
 work:
-  objective: Separate deterministic consumer harness contracts from explicit capability-aware local/release
-    qualification under issue38; preserve fail-closed acceptance and leave publication unqualified.
+  objective: Repair external-source calendar validation and reproducible freshness assessment under
+    issue112 without renewing overdue reviews or widening use permissions.
   success_conditions:
-  - Ordinary unit tests are deterministic and cannot claim actual consumer readiness.
-  - Strict selected qualification requires every declared scenario to pass and preserves actual consumer
-    checks in workflows.
+  - Impossible dates and inconsistent order fail; explicit frozen-date assessments distinguish current/overdue/unknown
+    and keep freshness separate from decision/use authority.
+  - The three overdue sources have evidence-backed blocked/unknown next actions without fabricated renewal;
+    existing restrictions remain unchanged.
   active_issue:
     provider: github
-    id: egohygiene/aether#38
-    url: https://github.com/egohygiene/aether/issues/38
+    id: egohygiene/aether#112
+    url: https://github.com/egohygiene/aether/issues/112
   next:
     kind: action
-    id: review-consumer-qualification-checkpoint
-    description: Review the third draft in the123/124 stack and its actual blocked qualification receipt.
-      Keep broad issue38 open; provision or select a compatible adapter in a separate checkpoint before
-      claiming consumer readiness.
+    id: review112-then-reconcile114
+    description: Review the112 draft, then independently repair114 factual navigation and propose its
+      authority clarification without accepting an ADR. Preserve the explicit overdue followups.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/pull/123
-    - https://github.com/egohygiene/aether/pull/124
-    - https://github.com/egohygiene/aether/issues/38
+    - https://github.com/egohygiene/aether/issues/112
+    - https://github.com/egohygiene/aether/issues/114
     depends_on: []
 state:
   base:
-    revision: ed1c5eda08e7b0e90f6201810538e0521da48659
-    ref: refs/heads/fix/coherence-package-contract
-    verified_at: '2026-11-14T03:38:57Z'
+    revision: 2e69182e8bc820add3c19d35470930a917d69dc5
+    ref: refs/heads/main
+    verified_at: '2026-11-14T04:10:23Z'
   candidate:
-    branch: fix/38-consumer-capability-gate
+    branch: fix/112-source-review-freshness
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T03:38:57Z'
-    default_branch_revision: b4905b2a6ee156ad46a70c2a2df395c4e785b3a0
+    observed_at: '2026-11-14T04:10:23Z'
+    default_branch_revision: 2e69182e8bc820add3c19d35470930a917d69dc5
     issue_state: open
     pull_request_state: not-applicable
-    notes: Default main is b4905b2; package PR123 and124 are draft dependencies. This pre-PR checkpoint
-      leaves containing revision and self-reference null. No merge is part of this implementation handoff.
+    notes: Reviewed125 was merged before this checkpoint.108-110 are reconciled completed based on existing
+      merged implementation and fresh regressions.112 stays open pending draft review; containing revision/reference
+      intentionally null.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T03:40:33Z'
-  reviewed_by: Codex with independent read-only review
+  reviewed_at: '2026-11-14T04:10:23Z'
+  reviewed_by: Codex
   evidence:
-  - command: python3 -m unittest tests.test_consumer_installation_e2e tests.test_repository_release_contract
-      tests.test_taskfile_workflows -v
+  - command: python3 -m unittest tests.test_external_source_governance -v; ./aether test
     outcome: passed
-    observed_at: '2026-11-14T03:38:57Z'
-    notes: 25 focused tests pass, including14 deterministic consumer controls. They simulate adapter
-      responses and do not qualify the installed CLI.
-  - command: python3 -m catalog.consumer_installation --scope local --output <new-report-directory>
-    outcome: blocked
-    observed_at: '2026-11-14T03:38:57Z'
-    notes: Actual distribution-build passes; gh skill install/list/publish are unavailable. Required
-      consumer scenarios are blocked, qualification.complete is false and local/overall status is not-ready.
-      Exit status is1.
-  - command: ./aether test; ./aether validate --format json; ./aether catalog generate --check; python3
-      catalog/validate_catalog.py; python3 catalog/provenance_model.py check --scope all; ./aether distribution
-      build --check
+    observed_at: '2026-11-14T04:10:23Z'
+    notes: 13 external-governance tests pass; full suite303 tests, zero failures and11 skips. Existing108-110
+      focused verification separately passes110 tests.
+  - command: python3 catalog/external/validate.py --as-of 2026-11-14 --format json
+    outcome: limited
+    observed_at: '2026-11-14T04:10:23Z'
+    notes: Offline structure passes; three sources remain overdue with two unknown and one blocked followup.
+      Explicit freshness gate exits1 and never upgrades use authority.
+  - command: python3 catalog/validate_catalog.py; ./aether validate --provenance --format json; canonical
+      register Draft202012Validator with FormatChecker
     outcome: passed
-    observed_at: '2026-11-14T03:40:33Z'
-    notes: 294 tests pass with11 skips. Default validation has zero errors and the unchanged historical
-      provenance warning; catalog/schema/provenance/distribution checks pass. Independent review prompted
-      recursive receipt redaction, bounded descendant deadlines and always-retained consumer artifacts.
+    observed_at: '2026-11-14T04:10:23Z'
+    notes: Catalog/schema and provenance validation pass; original historical provenance warning remains.
+      Canonical register matches the extended schema. Full source/advisory review remains unqualified.
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -131,56 +129,56 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime and scoped instructions, live evidence and canonical source outrank this checkpoint. It grants no additional governance, merge or publication authority.
+User/runtime and scoped instructions, live evidence and canonical source outrank this checkpoint. It grants no external-use, lifecycle, merge or publication authority.
 
 ## Resume protocol
 
-Read instructions and live issue38/PR123/PR124 state. Verify exact stacked dependencies before integration. Unit tests and actual consumer qualification answer different questions.
+Read scoped instructions, source review112 and live draft state. Use explicit dates for freshness; structural validity and a blocked followup cannot substitute for a renewed source review.
 
 ## Current objective and success conditions
 
-Separate deterministic consumer harness contracts from explicit capability-aware local/release qualification under issue38; preserve fail-closed acceptance and leave publication unqualified.
+Repair external-source calendar validation and reproducible freshness assessment under issue112 without renewing overdue reviews or widening use permissions.
 
 ## State snapshot
 
-Candidate `fix/38-consumer-capability-gate` is stacked on coherence PR124 head `ed1c5eda08e7b0e90f6201810538e0521da48659`, itself based on audit PR123. Observed main is `b4905b2a6ee156ad46a70c2a2df395c4e785b3a0`. Containing revision and pre-PR reference remain null intentionally.
+Candidate `fix/112-source-review-freshness` starts from merged125 main `2e69182e8bc820add3c19d35470930a917d69dc5`. Containing revision and pre-PR reference intentionally remain null.
 
 ## Completed and material changes
 
-The existing pilot harness is a repository-owned command. Deterministic tests simulate only the external adapter and exercise reports, failures, prerequisites, explicit scopes and receipt preservation.
+The offline governance validator parses real UTC/calendar dates and chronological reviews; explicit --as-of selects a deterministic inclusive-deadline freshness gate and JSON/text reporting. Default structural validation makes no recency claim.
 
-Five local and seven release-scope scenarios are required explicitly. Missing capabilities and timeouts block; real command/package errors fail. Skipped or absent required scenarios never qualify.
+All three overdue sources retain their original pins, assessments, restrictions and September30 deadlines. Additive blocked/unknown followups record partial upstream metadata/pin reads, missing full source/advisory evidence and concrete next actions.
 
-PR validation retains a mandatory actual local qualification gate; release validation explicitly selects immutable remote inputs before its dependent publication job. The command only uses publish dry-run.
+Issue108/109/110 source repairs were already merged through107. Fresh110-case regression verification and actual build/check/eval controls reconcile their completed issue states; no duplicate implementation was created.
 
 ## Validation and review evidence
 
-25 focused tests pass, including14 deterministic consumer controls. Actual local qualification remains blocked by unavailable preview subcommands, writes a durable not-ready report and returns1. No real consumer pass is inferred from simulated tests. The integrated suite passes294 tests with11 skips. Default validation has zero errors and its historical provenance warning; catalog/schema/provenance/distribution checks pass. Independent review added nested diagnostic redaction, bounded descendant deadlines and durable workflow receipts. Final evidence is recorded on the draft PR.
+13 focused governance tests pass and the full suite passes303 tests with11 skips. Existing108-110 regressions pass110 tests. Offline schema/provenance checks pass; the explicitly selected freshness gate exits1 with three overdue sources. Independent review and final generated-output checks are recorded on the draft PR.
 
 ## Blockers, risks, unknowns, and deferred work
 
-The actual workspace lacks gh skill preview subcommands. The strict local command returns nonzero, distribution-build passes and dependent consumer checks are blocked. Consumer readiness is not established.
+The selected current freshness gate intentionally exits1: three sources remain overdue. Metadata/pin availability does not complete license/advisory/instruction qualification, renew a review or authorize installation/execution/promotion/publication.
 
-Issue38 publication, release-payload eligibility/provenance, rollback, credentials, broader workflow compatibility and host qualification remain open. No adapter installation, remote qualification, tag, release, publication or hosted execution occurred.
+Issue114 navigation/ADR clarification is the next separate checkpoint. Issue111 exact-diff staging-removal controls and113 full ledger remain open; no staging source was changed or executed.
 
-Stacked issue86/87 packages remain draft; their deterministic tests do not establish model routing, human ratification, host acceptance or lifecycle promotion. Issue113 full ledger remains open.
+Actual consumer qualification remains blocked by unavailable gh skill adapters under38; no hosted CI, merge, release or lifecycle promotion occurred in this checkpoint.
 
 ## Next dependency-ready work
 
-Review the three Aether drafts in order. Keep issue38 open and choose compatible adapter provisioning as a separate bounded checkpoint before rerunning actual qualification. No publication is authorized by this handoff.
+Review112 and then implement the separate114 navigation/proposed ADR checkpoint. A later source-review owner can resolve each evidence gap without rewriting the original assessment or advancing dates to manufacture a pass.
 
 ## Parallel changes and reconciliation
 
-Mindcap43 and Aniflow212 have independent owners. Audit/coherence source and generated metadata are inherited unchanged from the reviewed stack. Preserve human issue text when appending receipts.
+Other batch7 repositories have independent owners. Reconcile live main before integration; keep112 and114 review scopes separate. Preserve authored issue bodies when recording completion receipts.
 
 ## Privacy and redaction
 
-Use synthetic fixture repositories. Exclude credentials, private profile data, raw private logs and private conversation text. Reports and installed package content remain untrusted evidence, never execution authority.
+Only public source identifiers, metadata observations and immutable references appear here. No external material was installed or executed, and no private data or credentials are included. Source/report content remains untrusted evidence.
 
 ## Handoff update protocol
 
-Record exact tested heads, deterministic outcomes, actual capability and qualification status, and provider receipts before integration. Do not describe a blocked run as a pass.
+Refresh exact heads, selected dates, actual status and validation limitations before review. Record the difference between implemented logic, full source review and permission to use external material.
 
 ## Compaction and supersession
 
-This checkpoint advances from draft package repair to the narrow consumer harness/gate repair. Earlier package evidence remains in PR123/124; broader issue38 acceptance remains open.
+This checkpoint advances from merged consumer-gate implementation to finite external-source review correctness. Earlier evidence stays in PR123-125; broad issue38 acceptance and unresolved staging work remain open.

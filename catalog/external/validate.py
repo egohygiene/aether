@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter, defaultdict
+from datetime import date, datetime, timezone
 import json
 from pathlib import Path
 import re
@@ -20,6 +21,50 @@ REGISTER_PATH = EXTERNAL_DIR / "source-review-register.v1.json"
 ALLOWLIST_PATH = EXTERNAL_DIR / "initial-allowlist.v1.json"
 DATE_RE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}$")
 DATETIME_RE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$")
+
+
+def _date(value: Any) -> date | None:
+    if not isinstance(value, str) or not DATE_RE.fullmatch(value):
+        return None
+    try:
+        return date.fromisoformat(value)
+    except ValueError:
+        return None
+
+
+def _instant(value: Any) -> datetime | None:
+    if not isinstance(value, str) or not DATETIME_RE.fullmatch(value):
+        return None
+    try:
+        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return None
+
+
+def assess_freshness(register: dict[str, Any], as_of: date) -> list[dict[str, Any]]:
+    """Assess calendar deadlines only; never renew a review or authorize use."""
+    if type(as_of) is not date:
+        raise ValueError("as_of must be an explicit calendar date")
+    reviewed = _instant(register.get("reviewed_at"))
+    result = []
+    for source in register.get("sources", []):
+        if not isinstance(source, dict):
+            continue
+        next_review = source.get("next_review")
+        deadline = _date(next_review.get("not_after")) if isinstance(next_review, dict) else None
+        status = "unknown" if reviewed is None or deadline is None or as_of < reviewed.date() else (
+            "current" if as_of <= deadline else "overdue"
+        )
+        followups = [entry for entry in source.get("followups", [])
+                     if isinstance(entry, dict) and (at := _instant(entry.get("assessed_at")))
+                     and at.date() <= as_of]
+        result.append({"source_id": source.get("id"), "freshness": status,
+                       "reviewed_at": register.get("reviewed_at"),
+                       "deadline": deadline.isoformat() if deadline else None,
+                       "decision": source.get("decision"),
+                       "followup_state": followups[-1].get("state") if followups else None,
+                       "use_boundary": "agent-assisted-reference-only" if source.get("decision") == "allowlisted" else "deny"})
+    return result
 
 
 def _load(path: Path) -> dict[str, Any]:
@@ -63,10 +108,14 @@ def validate(
         errors.append("allowlist must name the canonical review register")
     if allowlist.get("default_disposition") != "deny":
         errors.append("allowlist default disposition must be deny")
-    if not DATETIME_RE.fullmatch(str(register.get("reviewed_at", ""))):
+    reviewed_at = _instant(register.get("reviewed_at"))
+    allowlisted_at = _instant(allowlist.get("reviewed_at"))
+    if reviewed_at is None:
         errors.append("review register reviewed_at must be a UTC RFC 3339 timestamp")
-    if not DATETIME_RE.fullmatch(str(allowlist.get("reviewed_at", ""))):
+    if allowlisted_at is None:
         errors.append("allowlist reviewed_at must be a UTC RFC 3339 timestamp")
+    if reviewed_at and allowlisted_at and allowlisted_at < reviewed_at:
+        errors.append("allowlist reviewed_at cannot precede its source review")
 
     records_by_repository: dict[str, list[dict[str, Any]]] = defaultdict(list)
     records_by_id: dict[str, dict[str, Any]] = {}
@@ -122,8 +171,32 @@ def validate(
         if not isinstance(review.get("constraints"), list) or not review["constraints"]:
             errors.append(f"{source_id}: at least one constraint is required")
         next_review = review.get("next_review")
-        if not isinstance(next_review, dict) or not DATE_RE.fullmatch(str(next_review.get("not_after", ""))):
-            errors.append(f"{source_id}: next_review.not_after must be an ISO date")
+        deadline = _date(next_review.get("not_after")) if isinstance(next_review, dict) else None
+        if deadline is None:
+            errors.append(f"{source_id}: next_review.not_after must be a real ISO calendar date")
+        elif reviewed_at and deadline < reviewed_at.date():
+            errors.append(f"{source_id}: next review cannot precede reviewed_at")
+        previous = reviewed_at
+        followups = review.get("followups", [])
+        if not isinstance(followups, list):
+            errors.append(f"{source_id}: followups must be an array")
+            followups = []
+        for followup in followups:
+            if not isinstance(followup, dict):
+                errors.append(f"{source_id}: followups must contain objects")
+                continue
+            at = _instant(followup.get("assessed_at"))
+            if at is None or (previous and at < previous):
+                errors.append(f"{source_id}: followup assessed_at must be valid and chronological")
+            if at:
+                previous = at
+            evidence = followup.get("evidence")
+            if (followup.get("state") not in {"blocked", "unknown"}
+                    or followup.get("renews_review") is not False
+                    or not str(followup.get("next_action", "")).strip()
+                    or not isinstance(evidence, list) or not evidence
+                    or any(not isinstance(item, str) or not item.strip() for item in evidence)):
+                errors.append(f"{source_id}: followup needs blocked/unknown evidence, next action and renews_review=false")
         assessments = review.get("assessment")
         if not isinstance(assessments, dict) or set(assessments) != required_assessments:
             errors.append(f"{source_id}: assessment must cover every required review dimension")
@@ -223,7 +296,13 @@ def main() -> int:
     parser.add_argument("--candidates", type=Path, default=CANDIDATES_PATH)
     parser.add_argument("--register", type=Path, default=REGISTER_PATH)
     parser.add_argument("--allowlist", type=Path, default=ALLOWLIST_PATH)
+    parser.add_argument("--as-of", help="Explicit YYYY-MM-DD freshness assessment; overdue/unknown exits 1")
+    parser.add_argument("--format", choices=("text", "json"), default="text")
     arguments = parser.parse_args()
+    assessment_date = _date(arguments.as_of) if arguments.as_of is not None else None
+    if arguments.as_of is not None and assessment_date is None:
+        parser.error("--as-of must be a real YYYY-MM-DD calendar date")
+    freshness = []
     try:
         errors = validate(
             approved_path=arguments.approved,
@@ -231,15 +310,30 @@ def main() -> int:
             register_path=arguments.register,
             allowlist_path=arguments.allowlist,
         )
+        if assessment_date is not None and not errors:
+            freshness = assess_freshness(_load(arguments.register), assessment_date)
     except (OSError, ValueError, json.JSONDecodeError) as error:
         errors = [str(error)]
+    complete = not errors and (assessment_date is None or bool(freshness) and all(
+        source["freshness"] == "current" for source in freshness
+    ))
+    if arguments.format == "json":
+        print(json.dumps({"schema_version": "aether.external-source-assessment/v1",
+                          "structural_status": "fail" if errors else "pass", "errors": errors,
+                          "assessment_date": assessment_date.isoformat() if assessment_date else None,
+                          "freshness": freshness, "complete": complete,
+                          "scope": "Offline structure and optional frozen-date freshness; no live source/advisory qualification"},
+                         indent=2, sort_keys=True))
+        return 0 if complete else 1
     if errors:
         print(f"EXTERNAL SOURCE GOVERNANCE VALIDATION FAILED -- {len(errors)} error(s):")
         for error in errors:
             print(f"  x  {error}")
         return 1
-    print("EXTERNAL SOURCE GOVERNANCE VALIDATION PASSED -- reviewed sources and bounded allowlist are consistent.")
-    return 0
+    print("EXTERNAL SOURCE GOVERNANCE STRUCTURE PASSED -- consistency only, not current source/advisory qualification.")
+    for source in freshness:
+        print(f"{source['source_id']}: {source['freshness']} at {assessment_date}; deadline={source['deadline']}; decision={source['decision']}; followup={source['followup_state']}")
+    return 0 if complete else 1
 
 
 if __name__ == "__main__":
