@@ -1,0 +1,22 @@
+{
+  "schema_version": "aether.staging-residual-ledger/v1",
+  "source": {
+    "revision": "mutable-main",
+    "staging_tree": "2222222222222222222222222222222222222222",
+    "hash_algorithm": "sha256-raw-git-blob",
+    "generator": "catalog.staging_ledger/v1"
+  },
+  "source_inputs": [],
+  "totals": {
+    "files": 0,
+    "bytes": 0,
+    "units": 0,
+    "current_skill_roots": 0,
+    "historical_removed_skill_roots": 0,
+    "by_bucket": {}
+  },
+  "files": [],
+  "units": [],
+  "historical_removed_skills": [],
+  "authority": "Synthetic empty schema fixture; no source or removal proof."
+}

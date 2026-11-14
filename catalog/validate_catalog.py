@@ -34,6 +34,7 @@ SCHEMA_FILES = [
     "aether.local-validation-evidence.v1.schema.json",
     "aether.continuity-dispositions.v1.schema.json",
     "aether.staging-disposition-record.v1.schema.json",
+    "aether.staging-residual-ledger.v1.schema.json",
     "aether.evaluation-definition.v1.schema.json",
     "aether.evaluation-result.v1.schema.json",
     "aether.social-surface-catalog.v1.schema.json",
@@ -230,6 +231,13 @@ def main() -> int:
     errors.extend(validate_external_source_candidates(validators))
     errors.extend(validate_external_source_governance())
     errors.extend(validate_social_surface_catalog())
+    ledger_result = subprocess.run(
+        [sys.executable, "-m", "catalog.staging_ledger", "check"],
+        cwd=ROOT, capture_output=True, text=True, timeout=30,
+    )
+    if ledger_result.returncode:
+        errors.append("Staging residual ledger validation failed: " +
+                      (ledger_result.stdout or ledger_result.stderr).strip())
 
     if errors:
         print(f"VALIDATION FAILED -- {len(errors)} error(s):")
