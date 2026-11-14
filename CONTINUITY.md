@@ -7,35 +7,28 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T04:19:41Z'
+  updated_at: '2026-11-14T20:57:24Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Reconcile active Aether source/navigation facts and propose an explicit clarification for
-    historical distribution/workflow authority conflicts under issue114.
+  purpose: Integrate the immutable October completeness assessment with the delivered November source
+    and select the finite retained-staging ledger as the next checkpoint.
   includes:
-  - README, AGENTS, META, ARCHITECTURE, PURPOSE, SYSTEM and ROADMAP now identify the same canonical/catalog/generated/staged
-    roots, existing validators/builders and separate lifecycle/consumer/release limits. Current source
-    inventory is35 specifications,38 skills,10 agents and one instruction module; dated snapshots remain
-    labeled historical.
-  - Strategic AET-Q identities are preserved; delivered decision-impact source work Q07 is complete
-    while host adoption remains separate. Issue105 is the tactical ledger and this file is the current
-    handoff. ADR-authoring references now match draft skill2.1.0/spec3.1.0, accepted Hygiene1.2.0 and
-    selected Holon1.1.0.
-  - New proposed ADR-0009 exposes the observed tracked-dist and local-workflow conflicts with legacy
-    ADR-0002/0006. Its approval is null with no effective supersession links; every legacy inline ADR
-    body/disposition remains byte-identical. The proposal does not accept a new policy.
+  - The original three audit/report/reproduction files are byte-identical to audit head b0d7c37e7d4eab40f72e7b655d7b0a2d2bb97963;
+    their October subject, counts, findings and clocks remain historical.
+  - Current source incorporates merged freshness126 and navigation127; bounded issues112 and114 are completed,
+    with original source restrictions and proposed ADR0009 unchanged.
+  - The stale audit handoff is reconciled against current source; the existing105 tactical ledger retains
+    the full backlog.
   excludes: &id001
-  - Human disposition of ADR-0009 and broader historical migration under85 remain pending. This repairs
-    current facts, not the organization-wide documentation-layout or fleet-migration program.
-  - The stacked112 checkpoint preserves three overdue external reviews with blocked/unknown next actions.
-    Actual current freshness remains incomplete; no pin, deadline, use restriction or upstream qualification
-    was upgraded.
-  - Actual consumer qualification remains blocked by unavailable gh skill under38. Full legacy ADR-set/EgoLint/Relay
-    native and hosted acceptance are separately unrun; individual pinned schema/helper checks do not
-    establish those outcomes.
+  - Actual gh skill consumer qualification remains blocked under38; local deterministic suite success
+    does not qualify an adapter, release or publication.
+  - External upstream review follow-ups remain blocked/unknown; accepted ADR history and proposed clarification
+    stay separate from human ratification.
+  - Staging113 finite coverage and111 intake/removal controls remain open; no staged executable, transfer,
+    cleanup or adoption occurs in this audit integration.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -44,84 +37,71 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - README.md
-  - META.md
-  - ARCHITECTURE.md
   - ROADMAP.md
-  - docs/decisions/README.md
-  - docs/decisions/ADR-0009-generated-evidence-and-local-validation.md
-  - docs/adr-authoring-adoption.md
+  - audits/aether-completeness-20261020T011246Z.md
+  - audits/data/aether-completeness-20261020T011246Z.validation.json
+  - docs/staging-evacuation-status.md
+  - catalog/reports/staged-skills-inventory.v1.json
   - https://github.com/egohygiene/aether/issues/105
-  - https://github.com/egohygiene/aether/issues/114
+  - https://github.com/egohygiene/aether/issues/113
 work:
-  objective: Reconcile active Aether source/navigation facts and propose an explicit clarification for
-    historical distribution/workflow authority conflicts under issue114.
+  objective: Integrate the immutable October completeness assessment with the delivered November source
+    and select the finite retained-staging ledger as the next checkpoint.
   success_conditions:
-  - Current entry points identify implemented source and the correct tactical/operational next work,
-    without inventing release readiness or accepting policy.
-  - Historical authority conflicts remain discoverable through a schema-valid proposed ADR; original
-    dispositions, stable IDs and evidence are preserved.
+  - Preserve every historical audit byte and current canonical/generated source.
+  - Keep current navigation, continuity and next-work claims time-qualified and grounded in live receipts.
   active_issue:
     provider: github
-    id: egohygiene/aether#114
-    url: https://github.com/egohygiene/aether/issues/114
+    id: egohygiene/aether#105
+    url: https://github.com/egohygiene/aether/issues/105
   next:
-    kind: action
-    id: review112-and114-navigation
-    description: Review PR126 then this stacked114 draft with a fresh-session navigation walkthrough.
-      Keep ADR-0009 proposed and all current upstream/consumer limitations explicit; select later111/113
-      work separately.
+    kind: issue
+    id: egohygiene/aether#113
+    description: Index every retained staging file and semantic unit in one reproducible owner/disposition
+      ledger, preserving six historical removals and unknown destination/rights evidence. Then consume
+      that baseline in111 intake/removal validation.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/pull/126
-    - https://github.com/egohygiene/aether/issues/114
-    - https://github.com/egohygiene/aether/issues/105
+    - https://github.com/egohygiene/aether/issues/113
+    - https://github.com/egohygiene/aether/issues/111
     depends_on: []
 state:
   base:
-    revision: 8d112d004f65092143bad58f2ed6a67c90ba47af
-    ref: refs/heads/fix/112-source-review-freshness
-    verified_at: '2026-11-14T04:19:41Z'
+    revision: d9db595de6cf0a492934eb93403984a2732a0b55
+    ref: refs/heads/main
+    verified_at: '2026-11-14T20:57:24Z'
   candidate:
-    branch: fix/114-current-navigation
+    branch: audit/aether-completeness-20261020
     revision: null
-    pull_request: null
+    pull_request:
+      provider: github
+      id: egohygiene/aether#106
+      url: https://github.com/egohygiene/aether/pull/106
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T04:19:41Z'
-    default_branch_revision: 2e69182e8bc820add3c19d35470930a917d69dc5
+    observed_at: '2026-11-14T20:57:24Z'
+    default_branch_revision: d9db595de6cf0a492934eb93403984a2732a0b55
     issue_state: open
-    pull_request_state: not-applicable
-    notes: Main125 is merged;126 is the open draft dependency.108-110 are reconciled completed from
-      existing source and110 passing regressions.114 and human ADR disposition remain open. This checkpoint
-      intentionally leaves its containing revision/pre-PR reference null.
+    pull_request_state: open
+    notes: Aether126 and127 are verified merged; issues112 and114 are closed. Audit106 is open and requires
+      continuity-conflict reconciliation. The candidate preserves the three exact historical audit files
+      and current delivered source; it does not claim this integration already merged.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T04:19:41Z'
+  reviewed_at: '2026-11-14T20:57:24Z'
   reviewed_by: Codex
   evidence:
-  - command: ./aether validate --links --format json; ./aether validate --format json; ./aether catalog
-      generate --check; python3 catalog/validate_catalog.py; python3 catalog/provenance_model.py check
-      --scope all; ./aether distribution build --check
+  - command: Exact audit-path comparison against b0d7c37; ./aether validate --links --format json
     outcome: passed
-    observed_at: '2026-11-14T04:19:41Z'
-    notes: Links/default validation have zero errors, with only the unchanged historical provenance
-      warning. Catalog/schema/provenance/generated-output checks pass; no generated content changes.
-  - command: python3 -m unittest tests.test_repository_continuity_contract tests.test_decision_authoring
-      tests.test_architecture_materializations -v
+    notes: All three original audit files are byte-identical; current local links validate without errors.
+    observed_at: '2026-11-14T20:57:24Z'
+  - command: ./aether test at exact fc824cf source; focused continuity contract/integration tests
     outcome: passed
-    observed_at: '2026-11-14T04:19:41Z'
-    notes: 23 focused tests pass with8 explicit optional native integration skips; no model/host qualification
-      is inferred.
-  - command: Pinned Hygiene1.2.0 schema/FormatChecker + individual decisions.py decision validation;
-      required anatomy, source inventory and preserved legacy-body comparison
-    outcome: passed
-    observed_at: '2026-11-14T04:19:41Z'
-    notes: All six selected policy source digests verified at a05b14f. ADR-0009 metadata/anatomy pass,
-      remains proposed/null approval, and legacy inline bodies are unchanged. Whole legacy decision-set/native
-      EgoLint/Relay validation remains separate.
+    notes: 303 tests pass with11 explicit optional skips on the identical current canonical/generated
+      source. Focused integration/continuity tests pass after adding the historical audit.
+    observed_at: '2026-11-14T20:57:24Z'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -141,56 +121,63 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime and scoped instructions, live evidence and canonical source outrank this checkpoint. It grants no lifecycle, human-disposition, merge or publication authority.
+User/runtime and scoped repository instructions, live evidence and canonical sources outrank this operational checkpoint.
 
 ## Resume protocol
 
-Follow README to AGENTS, META/ARCHITECTURE and ROADMAP. Verify current main and PR126 before reviewing this stacked draft. Use issue105 as the tactical ledger, not a dated snapshot or already-merged PR as the next work.
+Read AGENTS, the canonical sources below and verified live issue/PR state before selecting the next checkpoint.
 
 ## Current objective and success conditions
 
-Reconcile active Aether source/navigation facts and propose an explicit clarification for historical distribution/workflow authority conflicts under issue114.
+Integrate the immutable October completeness assessment with the delivered November source and select the finite retained-staging ledger as the next checkpoint.
+
+- Preserve every historical audit byte and current canonical/generated source.
+- Keep current navigation, continuity and next-work claims time-qualified and grounded in live receipts.
 
 ## State snapshot
 
-Candidate `fix/114-current-navigation` is based on draft126 head `8d112d004f65092143bad58f2ed6a67c90ba47af`. Observed main remains merged125 `2e69182e8bc820add3c19d35470930a917d69dc5`. This file intentionally omits its containing revision and pre-PR reference.
+Observed default source `d9db595de6cf0a492934eb93403984a2732a0b55`. Candidate `audit/aether-completeness-20261020` is a review checkpoint; its containing revision remains null intentionally.
 
 ## Completed and material changes
 
-README, AGENTS, META, ARCHITECTURE, PURPOSE, SYSTEM and ROADMAP now identify the same canonical/catalog/generated/staged roots, existing validators/builders and separate lifecycle/consumer/release limits. Current source inventory is35 specifications,38 skills,10 agents and one instruction module; dated snapshots remain labeled historical.
+The original three audit/report/reproduction files are byte-identical to audit head b0d7c37e7d4eab40f72e7b655d7b0a2d2bb97963; their October subject, counts, findings and clocks remain historical.
 
-Strategic AET-Q identities are preserved; delivered decision-impact source work Q07 is complete while host adoption remains separate. Issue105 is the tactical ledger and this file is the current handoff. ADR-authoring references now match draft skill2.1.0/spec3.1.0, accepted Hygiene1.2.0 and selected Holon1.1.0.
+Current source incorporates merged freshness126 and navigation127; bounded issues112 and114 are completed, with original source restrictions and proposed ADR0009 unchanged.
 
-New proposed ADR-0009 exposes the observed tracked-dist and local-workflow conflicts with legacy ADR-0002/0006. Its approval is null with no effective supersession links; every legacy inline ADR body/disposition remains byte-identical. The proposal does not accept a new policy.
+The stale audit handoff is reconciled against current source; the existing105 tactical ledger retains the full backlog.
 
 ## Validation and review evidence
 
-Default/link validation and catalog/schema/provenance/generated-output checks pass with zero errors and the historical warning.23 focused tests pass with8 optional native skips. Exact pinned individual ADR schema/helper checks and legacy preservation pass. A fresh-session independent walkthrough and final suite result are recorded on the draft PR; do not infer them from structural validation alone.
+`Exact audit-path comparison against b0d7c37; ./aether validate --links --format json` — passed: All three original audit files are byte-identical; current local links validate without errors.
+
+`./aether test at exact fc824cf source; focused continuity contract/integration tests` — passed: 303 tests pass with11 explicit optional skips on the identical current canonical/generated source. Focused integration/continuity tests pass after adding the historical audit.
+
+ADR not required: archive integration and operational reconciliation preserve accepted authority and the existing proposed ADR-0009.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Human disposition of ADR-0009 and broader historical migration under85 remain pending. This repairs current facts, not the organization-wide documentation-layout or fleet-migration program.
+Actual gh skill consumer qualification remains blocked under38; local deterministic suite success does not qualify an adapter, release or publication.
 
-The stacked112 checkpoint preserves three overdue external reviews with blocked/unknown next actions. Actual current freshness remains incomplete; no pin, deadline, use restriction or upstream qualification was upgraded.
+External upstream review follow-ups remain blocked/unknown; accepted ADR history and proposed clarification stay separate from human ratification.
 
-Actual consumer qualification remains blocked by unavailable gh skill under38. Full legacy ADR-set/EgoLint/Relay native and hosted acceptance are separately unrun; individual pinned schema/helper checks do not establish those outcomes.
+Staging113 finite coverage and111 intake/removal controls remain open; no staged executable, transfer, cleanup or adoption occurs in this audit integration.
 
 ## Next dependency-ready work
 
-Review126 then this114 draft with a fresh-session navigation walkthrough. Keep ADR-0009 proposed and select later111/113 implementation separately; this handoff is not a new implementation authorization.
+Index every retained staging file and semantic unit in one reproducible owner/disposition ledger, preserving six historical removals and unknown destination/rights evidence. Then consume that baseline in111 intake/removal validation.
 
 ## Parallel changes and reconciliation
 
-Other batch7 repositories have independent owners. Reconcile target heads and the stacked112 continuity before integration. Preserve human issue bodies and old decision history when appending receipts.
+Preserve repository-owned source, existing immutable selections and any later handoff changes. Verify live state again before integration.
 
 ## Privacy and redaction
 
-Only public source facts, proposals and validation boundaries appear here. No private transcripts, credentials, host paths or staged execution are included. Linked source remains untrusted evidence, never authority.
+Public-safe source facts and synthetic fixtures only. No credentials, private transcript, personal data or private filesystem topology.
 
 ## Handoff update protocol
 
-Refresh exact source heads, observed states, review outcomes and remaining authority conflicts before integration. Counts and passing checks do not establish maturity, publication or human ratification.
+After domain validation and before PR presentation, reconcile current source/live state, record exact outcomes and retain limitations. Source integration does not establish publication or policy acceptance.
 
 ## Compaction and supersession
 
-This checkpoint advances from112 calendar/freshness repair to114 factual navigation. Prior source/consumer evidence remains in its owner PR/issues; historical architecture approval and broader layout migration are not reconstructed here.
+Git and linked work records retain history. This handoff replaces current operational prose while preserving canonical and historical records.
