@@ -92,6 +92,11 @@ jobs:
           python3 catalog/validate_catalog.py | tee "${RUN_REPORT_DIR}/catalog-schema.txt"
           ./aether eval run --mode "deterministic" --format "text" | tee "${RUN_REPORT_DIR}/evals.txt"
           ./aether test | tee "${RUN_REPORT_DIR}/tests.txt"
+          python3 -m catalog.consumer_installation --scope release \
+            --remote-repository "${AETHER_E2E_REMOTE_REPOSITORY}" \
+            --remote-tag "${RELEASE_TAG}" \
+            --remote-commit "${AETHER_E2E_REMOTE_COMMIT}" \
+            --output "${AETHER_E2E_REPORT_DIR}" | tee "${RUN_REPORT_DIR}/consumer-qualification.txt"
           python3 library/organization/skills/build-release-artifacts.py \
             --release-tag "${RELEASE_TAG}" \
             --output-directory "dist" \
@@ -118,6 +123,14 @@ jobs:
           ./aether distribution build --output-directory "dist" | tee "${RUN_REPORT_DIR}/distribution-build-pass-2.txt"
           cp -R dist /tmp/aether-release-pass-2
           diff -ru /tmp/aether-release-pass-1 /tmp/aether-release-pass-2 | tee "${RUN_REPORT_DIR}/distribution-reproducibility.diff"
+
+      - name: Retain consumer qualification receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: release-consumer-qualification
+          path: .artifacts/release-validation/consumer-installation/
+          if-no-files-found: ignore
 
       - name: Upload validation diagnostics on failure
         if: failure()
