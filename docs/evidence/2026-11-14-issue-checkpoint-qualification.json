@@ -1,0 +1,52 @@
+{
+  "schema_version": "aether.issue-checkpoint-qualification/v1",
+  "observed_at": "2026-11-14T23:46:19.947087+00:00",
+  "represented_source_commit": "835561fb5e54d11538e869825a5457e68e3c6582",
+  "source_sha256": {
+    "library/organization/specs/methodology/worker-strategy.spec.md": "62d17bc46a8446ea1fd78a54593b57b931ce12541977c9fd255e1048eb2b283a",
+    "library/organization/projections/templates/worker-strategy.AGENTS.md": "e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8",
+    "library/organization/skills/methodology/execute-issue-checkpoint/SKILL.md": "1cf66a787811c2e9717e1a31aaf00f5bc67b01030abe7c315d6d305f9a83c0a1",
+    "library/organization/projections/build-projections.py": "4fca50f5d3dfc77d3768e8e5747f371676ba675926fda8facc8af28bbdc8df42"
+  },
+  "specification": {
+    "id": "worker-strategy",
+    "version": "0.2.0",
+    "status": "draft"
+  },
+  "skill": {
+    "id": "execute-issue-checkpoint",
+    "version": "1.0.0",
+    "status": "draft"
+  },
+  "full_tests": {
+    "run": 340,
+    "skipped": 11,
+    "failures": 0,
+    "errors": 0
+  },
+  "focused_tests": 31,
+  "deterministic_cases": 9,
+  "scope": [
+    "small unsplit and smallest useful split",
+    "stable existing checkpoint/PR recognition with no new structure",
+    "preserved acceptance coverage and grouping versus prerequisite edges",
+    "saved draft and distinct prepared/validated/merged/delivered evidence",
+    "fresh isolated process reads saved handoff and actual Git state without prior chat",
+    "stale/concurrent, unavailable provider and read-only limits",
+    "singular/idempotent shared module in actual generated provider outputs, unchanged actor tool ceilings"
+  ],
+  "limits": [
+    "Fresh-process qualification is mechanical file/Git recovery, not model judgment or host effectiveness.",
+    "Synthetic PR states and goldens do not establish real provider execution, automatic recovery or a zero-loss guarantee.",
+    "No actual tracker hierarchy is created or normalized; source/data fields grant no authority. Default-bundle/fleet adoption remains67 and organization23.",
+    "Existing38 consumer/release acceptance remains not-ready; no publication or policy disposition occurs."
+  ],
+  "retained_staging": {
+    "files": 734,
+    "units": 222,
+    "bytes": 6791350,
+    "unchanged": true,
+    "owner_comparisons_refreshed": 9,
+    "removal_authority": false
+  }
+}
