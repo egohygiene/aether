@@ -64,6 +64,9 @@ CONTINUITY_END = "<!-- END AETHER REPOSITORY-CONTINUITY -->"
 ISSUE_AUTHORING_START = "<!-- BEGIN AETHER ISSUE-AUTHORING -->"
 ISSUE_AUTHORING_END = "<!-- END AETHER ISSUE-AUTHORING -->"
 ISSUE_AUTHORING_PATH = DECISION_IMPACT_PATH.with_name("issue-authoring.AGENTS.md")
+ROADMAP_IMPACT_PATH = DECISION_IMPACT_PATH.with_name("roadmap-impact.AGENTS.md")
+ROADMAP_IMPACT_START = "<!-- BEGIN AETHER ROADMAP-IMPACT -->"
+ROADMAP_IMPACT_END = "<!-- END AETHER ROADMAP-IMPACT -->"
 ISSUE_AUTHORING_SKILL = (
     REPO_ROOT / "library/organization/skills/authoring/github-issue-authoring"
 )
@@ -333,6 +336,44 @@ def _repository_continuity_provenance() -> dict[str, Any]:
     }
 
 
+def _load_roadmap_impact() -> tuple[dict[str, Any], str]:
+    """Read one closed, source-owned module; never infer runtime installation."""
+    text = _normalized_text(ROADMAP_IMPACT_PATH).strip()
+    if (text.count(ROADMAP_IMPACT_START) != 1 or text.count(ROADMAP_IMPACT_END) != 1
+            or text.index(ROADMAP_IMPACT_START) > text.index(ROADMAP_IMPACT_END)):
+        raise ValueError("roadmap-impact instruction requires exactly one ordered marker pair")
+    matches = list(INSTRUCTION_METADATA_RE.finditer(text))
+    if len(matches) != 1:
+        raise ValueError("roadmap-impact instruction requires one metadata record")
+    metadata = json.loads(matches[0].group(1))
+    expected = {"id": "roadmap-impact", "version": "1.0.0", "status": "draft",
+                "skill": "reconcile-roadmap-impact", "contract": "aether.roadmap-impact/v1"}
+    if (not isinstance(metadata, dict) or set(metadata) != {*expected, "inherits"}
+            or any(metadata.get(key) != value for key, value in expected.items())):
+        raise ValueError("roadmap-impact instruction metadata is incompatible")
+    inherited = metadata["inherits"]
+    if (not isinstance(inherited, list) or len(inherited) != 1 or
+            inherited[0] != {"contract": "egohygiene.organization-roadmap/v1",
+                             "contract_version": "1.0.0-alpha.1", "status": "proposed",
+                             "revision": "d51043f1e4d2ddc22ef4534bd0d65c0053afcbda",
+                             "source_url": "https://github.com/egohygiene/hygiene/blob/d51043f1e4d2ddc22ef4534bd0d65c0053afcbda/docs/ecosystem/ORGANIZATION_ROADMAP.md"}):
+        raise ValueError("roadmap-impact inherited owner selection is incompatible")
+    return metadata, text
+
+
+def _roadmap_impact_provenance() -> dict[str, Any]:
+    metadata, _module = _load_roadmap_impact()
+    return {**metadata, "source": _repo_relative(ROADMAP_IMPACT_PATH),
+            "source_digest": {"algorithm": "sha256-utf8-lf",
+                              "value": _sha256_text(_normalized_text(ROADMAP_IMPACT_PATH))}}
+
+
+def _apply_roadmap_impact(body: str) -> str:
+    _metadata, module = _load_roadmap_impact()
+    return _apply_managed_module(body, module, start_marker=ROADMAP_IMPACT_START,
+                                 end_marker=ROADMAP_IMPACT_END, label="roadmap-impact")
+
+
 def _apply_managed_module(
     body: str,
     module: str,
@@ -429,7 +470,7 @@ def _remove_issue_authoring(body: str) -> str:
 
 def _apply_instruction_modules(body: str, *, issue_authoring: bool = False) -> str:
     """Apply shared modules and opt-in issue discovery exactly once."""
-    result = _apply_repository_continuity(_apply_decision_impact(body))
+    result = _apply_roadmap_impact(_apply_repository_continuity(_apply_decision_impact(body)))
     return _apply_issue_authoring(result) if issue_authoring else result
 
 
@@ -511,6 +552,7 @@ def _projection_provenance(provider: str, source: Path, source_text: str) -> dic
         "instruction_modules": [
             _decision_impact_provenance(),
             _repository_continuity_provenance(),
+            _roadmap_impact_provenance(),
         ] + ([_issue_authoring_provenance()] if agent_id == "github-issue-creator" else []),
     }
 
@@ -558,6 +600,7 @@ def _repository_guidance_projection(provider: str, title: str) -> bytes:
         "instruction_modules": [
             _decision_impact_provenance(),
             _repository_continuity_provenance(),
+            _roadmap_impact_provenance(),
             _issue_authoring_provenance(),
         ],
         "generator": GENERATOR_ID,

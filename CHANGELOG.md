@@ -10,6 +10,9 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Add shared roadmap-impact reconciliation, a portable receipt contract and least-authority provider composition for repository-changing agent handoffs.
+
+
 - Added exact recorded quarantine intake, legacy disposition adapters and a
   base-admitted per-file removal guard with provider account attestations,
   immutable source/destination binding and actual PR base/head wiring (#111).

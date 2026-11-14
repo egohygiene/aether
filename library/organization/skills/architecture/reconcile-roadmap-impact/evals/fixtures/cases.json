@@ -1,0 +1,342 @@
+{
+  "schema": "aether.synthetic-roadmap-impact-cases/v1",
+  "cases": [
+    {
+      "id": "complete-factual-step",
+      "category": "positive",
+      "description": "A capability completes with current evidence and an authorized minimum factual update.",
+      "receipt": {
+        "schema_version": "aether.roadmap-impact/v1",
+        "contract_version": "1.0.0",
+        "repository": "egohygiene/aether",
+        "visibility": "public",
+        "role": "reader-writer",
+        "disposition": "updated",
+        "reason": "A synthetic capability meets every source-owned exit criterion and its current validation is linked.",
+        "materiality": "material",
+        "intent_change": false,
+        "roadmap": {
+          "path": "ROADMAP.md",
+          "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "availability": "current"
+        },
+        "steps": [
+          "AET-Q07"
+        ],
+        "changed_paths": [
+          "ROADMAP.md"
+        ],
+        "proposed_changes": [],
+        "evidence": [
+          {
+            "kind": "source",
+            "reference": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ROADMAP.md"
+          },
+          {
+            "kind": "check",
+            "reference": "https://github.com/egohygiene/aether/actions/runs/999999"
+          }
+        ],
+        "organization_signals": []
+      }
+    },
+    {
+      "id": "partial-progress",
+      "category": "positive",
+      "description": "Partial delivery preserves accurate incomplete strategy.",
+      "receipt": {
+        "schema_version": "aether.roadmap-impact/v1",
+        "contract_version": "1.0.0",
+        "repository": "egohygiene/aether",
+        "visibility": "public",
+        "role": "reader-writer",
+        "disposition": "not-affected",
+        "reason": "Implementation advanced a capability, but its existing release/consumer exit criteria remain incomplete.",
+        "materiality": "non-material",
+        "intent_change": false,
+        "roadmap": {
+          "path": "ROADMAP.md",
+          "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "availability": "current"
+        },
+        "steps": [
+          "AET-Q07"
+        ],
+        "changed_paths": [],
+        "proposed_changes": [],
+        "evidence": [
+          {
+            "kind": "source",
+            "reference": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ROADMAP.md"
+          }
+        ],
+        "organization_signals": []
+      }
+    },
+    {
+      "id": "routine-maintenance",
+      "category": "positive",
+      "description": "A routine bug fix has no strategic effect.",
+      "receipt": {
+        "schema_version": "aether.roadmap-impact/v1",
+        "contract_version": "1.0.0",
+        "repository": "egohygiene/aether",
+        "visibility": "public",
+        "role": "reader-writer",
+        "disposition": "not-affected",
+        "reason": "Bounded maintenance remains within already accurate strategy.",
+        "materiality": "non-material",
+        "intent_change": false,
+        "roadmap": {
+          "path": "ROADMAP.md",
+          "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "availability": "current"
+        },
+        "steps": [
+          "AET-Q07"
+        ],
+        "changed_paths": [],
+        "proposed_changes": [],
+        "evidence": [
+          {
+            "kind": "source",
+            "reference": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ROADMAP.md"
+          }
+        ],
+        "organization_signals": []
+      }
+    },
+    {
+      "id": "missing-source",
+      "category": "insufficient-evidence",
+      "description": "Missing or stale context remains blocked, without invented IDs or edits.",
+      "receipt": {
+        "schema_version": "aether.roadmap-impact/v1",
+        "contract_version": "1.0.0",
+        "repository": "egohygiene/aether",
+        "visibility": "public",
+        "role": "reader-writer",
+        "disposition": "blocked",
+        "reason": "Canonical roadmap context cannot be verified; obtain the owner source before reconciliation.",
+        "materiality": "unknown",
+        "intent_change": false,
+        "roadmap": {
+          "path": "ROADMAP.md",
+          "revision": null,
+          "availability": "missing"
+        },
+        "steps": [],
+        "changed_paths": [],
+        "proposed_changes": [],
+        "evidence": [],
+        "organization_signals": []
+      }
+    },
+    {
+      "id": "stale-source",
+      "category": "insufficient-evidence",
+      "description": "Missing or stale context remains blocked, without invented IDs or edits.",
+      "receipt": {
+        "schema_version": "aether.roadmap-impact/v1",
+        "contract_version": "1.0.0",
+        "repository": "egohygiene/aether",
+        "visibility": "public",
+        "role": "reader-writer",
+        "disposition": "blocked",
+        "reason": "Canonical roadmap context cannot be verified; obtain the owner source before reconciliation.",
+        "materiality": "unknown",
+        "intent_change": false,
+        "roadmap": {
+          "path": "ROADMAP.md",
+          "revision": null,
+          "availability": "stale"
+        },
+        "steps": [],
+        "changed_paths": [],
+        "proposed_changes": [],
+        "evidence": [],
+        "organization_signals": []
+      }
+    },
+    {
+      "id": "human-priority-proposal",
+      "category": "boundary",
+      "description": "A recommendation cannot silently reprioritize strategy.",
+      "receipt": {
+        "schema_version": "aether.roadmap-impact/v1",
+        "contract_version": "1.0.0",
+        "repository": "egohygiene/aether",
+        "visibility": "public",
+        "role": "reader-writer",
+        "disposition": "proposed",
+        "reason": "A horizon change needs human review before strategy is edited.",
+        "materiality": "material",
+        "intent_change": true,
+        "roadmap": {
+          "path": "ROADMAP.md",
+          "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "availability": "current"
+        },
+        "steps": [
+          "AET-Q07"
+        ],
+        "changed_paths": [],
+        "proposed_changes": [
+          "Review whether the initiative belongs in the next horizon."
+        ],
+        "evidence": [
+          {
+            "kind": "source",
+            "reference": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ROADMAP.md"
+          }
+        ],
+        "organization_signals": []
+      }
+    },
+    {
+      "id": "organization-proposal",
+      "category": "boundary",
+      "description": "A local receipt signals an initiative without writing organization strategy.",
+      "receipt": {
+        "schema_version": "aether.roadmap-impact/v1",
+        "contract_version": "1.0.0",
+        "repository": "egohygiene/aether",
+        "visibility": "public",
+        "role": "reader-writer",
+        "disposition": "not-affected",
+        "reason": "Bounded maintenance remains within already accurate strategy.",
+        "materiality": "non-material",
+        "intent_change": false,
+        "roadmap": {
+          "path": "ROADMAP.md",
+          "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "availability": "current"
+        },
+        "steps": [
+          "AET-Q07"
+        ],
+        "changed_paths": [],
+        "proposed_changes": [],
+        "evidence": [
+          {
+            "kind": "source",
+            "reference": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ROADMAP.md"
+          }
+        ],
+        "organization_signals": [
+          {
+            "type": "organization-roadmap-impact",
+            "owner": "egohygiene/hygiene",
+            "canonical_source": "organization/roadmap.v1.json",
+            "initiative": "ORG-I001",
+            "relation": "evidences",
+            "source_reference": "https://github.com/egohygiene/hygiene/blob/d51043f1e4d2ddc22ef4534bd0d65c0053afcbda/organization/roadmap.v1.json",
+            "reason": "Partial first-party foundation evidence warrants owner review; no priority or completion is changed.",
+            "assertion": "inferred"
+          }
+        ]
+      }
+    },
+    {
+      "id": "read-only-discovery",
+      "category": "boundary",
+      "description": "A read-only role proposes and gains no write authority.",
+      "receipt": {
+        "schema_version": "aether.roadmap-impact/v1",
+        "contract_version": "1.0.0",
+        "repository": "egohygiene/aether",
+        "visibility": "public",
+        "role": "read-only",
+        "disposition": "proposed",
+        "reason": "A read-only audit found a roadmap discrepancy; an authorized owner must assess the proposed correction.",
+        "materiality": "material",
+        "intent_change": false,
+        "roadmap": {
+          "path": "ROADMAP.md",
+          "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "availability": "current"
+        },
+        "steps": [
+          "AET-Q07"
+        ],
+        "changed_paths": [],
+        "proposed_changes": [
+          "Review the stale local completion claim against current consumer evidence."
+        ],
+        "evidence": [
+          {
+            "kind": "source",
+            "reference": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ROADMAP.md"
+          }
+        ],
+        "organization_signals": []
+      }
+    },
+    {
+      "id": "private-source",
+      "category": "boundary",
+      "description": "Private context is not exported into public organization strategy.",
+      "receipt": {
+        "schema_version": "aether.roadmap-impact/v1",
+        "contract_version": "1.0.0",
+        "repository": "egohygiene/aether",
+        "visibility": "private",
+        "role": "reader-writer",
+        "disposition": "not-affected",
+        "reason": "Restricted source remains private; no public organization signal is emitted.",
+        "materiality": "non-material",
+        "intent_change": false,
+        "roadmap": {
+          "path": "ROADMAP.md",
+          "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "availability": "current"
+        },
+        "steps": [
+          "AET-Q07"
+        ],
+        "changed_paths": [],
+        "proposed_changes": [],
+        "evidence": [
+          {
+            "kind": "source",
+            "reference": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ROADMAP.md"
+          }
+        ],
+        "organization_signals": []
+      }
+    },
+    {
+      "id": "nonrepository-task",
+      "category": "negative",
+      "description": "A non-repository request does not trigger the repository-changing completion workflow.",
+      "receipt": {
+        "schema_version": "aether.roadmap-impact/v1",
+        "contract_version": "1.0.0",
+        "repository": "egohygiene/aether",
+        "visibility": "public",
+        "role": "reader-writer",
+        "disposition": "not-affected",
+        "reason": "No repository-changing task or PR handoff exists; do not use roadmap reconciliation as the primary workflow.",
+        "materiality": "non-material",
+        "intent_change": false,
+        "roadmap": {
+          "path": "ROADMAP.md",
+          "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "availability": "current"
+        },
+        "steps": [
+          "AET-Q07"
+        ],
+        "changed_paths": [],
+        "proposed_changes": [],
+        "evidence": [
+          {
+            "kind": "source",
+            "reference": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ROADMAP.md"
+          }
+        ],
+        "organization_signals": []
+      }
+    }
+  ]
+}

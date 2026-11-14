@@ -109,6 +109,24 @@ Projection is performed by `build-projections.py`. For each source `AGENT.md`:
    is inserted exactly once beside the decision-impact module. Projection
    provenance records both modules and the agent's reviewed continuity
    disposition.
+7. The shared roadmap-impact module at
+   [`../projections/templates/roadmap-impact.AGENTS.md`](../projections/templates/roadmap-impact.AGENTS.md)
+   is composed exactly once for every agent. It routes completion to
+   `reconcile-roadmap-impact`; canonical role bodies do not duplicate it.
+
+### Roadmap-impact inheritance
+
+After domain validation and before PR handoff, every repository-changing agent
+reports `updated`, `proposed`, `not-affected` or `blocked` with a concise reason.
+The shared skill composes `architecture-roadmap` and `create-roadmap-document`,
+preserves real step IDs and partial evidence, and makes only minimal authorized
+factual updates. Human-governed priority, horizon and optionality remain explicit
+review decisions. A no-change result needs no artificial edit.
+
+Reader/read-only roles may propose implications without changing the roadmap;
+neither module nor receipt adds tools or authority. Inferred typed organization
+signals refer to Hygiene-owned strategy rather than mutating it from a local
+repository. The module is draft static guidance, not an installed automatic hook.
 
 ### Decision-impact inheritance
 

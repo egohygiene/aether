@@ -1,0 +1,21 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "blocked",
+  "reason": "Canonical roadmap context cannot be verified; obtain the owner source before reconciliation.",
+  "materiality": "unknown",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": null,
+    "availability": "missing"
+  },
+  "steps": [],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [],
+  "organization_signals": []
+}

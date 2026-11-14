@@ -22,3 +22,4 @@ declaration and migration of the legacy inline records remain separate work.
 | ADR-0008 | Separate portable review evidence from policy and human authority | Proposed | 2026-11-10 | [Record](ADR-0008-portable-review-evidence-and-human-authority.md) |
 | ADR-0009 | Clarify tracked generated evidence and repository-local validation | Proposed | 2026-11-13 | [Record](ADR-0009-generated-evidence-and-local-validation.md) |
 | ADR-0010 | Bind staging changes to recorded intake and immutable review evidence | Proposed | 2026-11-14 | [Record](ADR-0010-immutable-staging-review-controls.md) |
+| ADR-0011 | Compose roadmap-impact reconciliation as one shared agent handoff module | Proposed | 2026-11-14 | [Record](ADR-0011-shared-roadmap-impact-handoff.md) |
