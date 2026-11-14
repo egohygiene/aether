@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T21:15:01Z'
+  updated_at: '2026-11-14T21:22:11Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -75,40 +75,51 @@ state:
   base:
     revision: 089d19ba556ec05cc761356dbae42046ca6515c4
     ref: refs/heads/main
-    verified_at: '2026-11-14T21:15:01Z'
+    verified_at: '2026-11-14T21:22:11Z'
   candidate:
     branch: codex/staging-residual-ledger
     revision: null
-    pull_request: null
+    pull_request:
+      provider: github
+      id: egohygiene/aether#128
+      url: https://github.com/egohygiene/aether/pull/128
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T21:15:01Z'
+    observed_at: '2026-11-14T21:22:11Z'
     default_branch_revision: 089d19ba556ec05cc761356dbae42046ca6515c4
     issue_state: open
-    pull_request_state: not-applicable
-    notes: Main089d19b includes merged audit106 plus freshness126/navigation127.113 is open; this unsubmitted
-      candidate adds a finite inventory and controls without changing staging or claiming future integration.
+    pull_request_state: open
+    notes: Main089d19b includes the prior merged repairs/audit. PR128 is open at6c7434e; its first hosted
+      run failed at source reconstruction because checkout depth1 omitted the ledger baseline. This candidate
+      adds fetch-depth0 and an actual shallow/unshallow regression; no hosted requalification or merge
+      is claimed yet.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T21:15:01Z'
+  reviewed_at: '2026-11-14T21:22:11Z'
   reviewed_by: Codex
   evidence:
   - command: python -m unittest tests.test_staging_residual_ledger tests.test_staging_supply_chain_inventory
       -q; ./aether test
     outcome: passed
-    notes: 13 focused tests and311 full-suite tests pass;11 existing optional/native skips. Controls cover
+    notes: 14 focused tests and312 full-suite tests pass;11 existing optional/native skips. Controls cover
       missing/duplicate/dangling/cross-unit membership, digest/totals tampering, nested supporting additions,
       symlink blobs, canonical tool/digest drift, historical retention and false removal authority.
-    observed_at: '2026-11-14T21:15:01Z'
+    observed_at: '2026-11-14T21:22:11Z'
   - command: python -m catalog.staging_ledger check; exact repeat generation/report comparisons; catalog/default/links/strict-staging/distribution
       checks
     outcome: passed
     notes: The734-file/222-unit ledger and human report replay byte-identically. Closed schemas/fixtures,
       registered catalog checks, current inputs and generated distribution pass. Historical provenance
       warning is preserved.
-    observed_at: '2026-11-14T21:15:01Z'
+    observed_at: '2026-11-14T21:22:11Z'
+  - command: First hosted PR128 validation; actual shallow-clone/unshallow regression
+    outcome: limited
+    notes: The initial hosted checkout lacked recorded source history and failed closed. Checkout now
+      requests complete history without persisted credentials; the new native shallow/unshallow regression
+      passes. Updated hosted execution is pending, not inferred from local success.
+    observed_at: '2026-11-14T21:22:11Z'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -156,9 +167,11 @@ A closed schema, exact immutable reconstruction, complete membership/digest chec
 
 ## Validation and review evidence
 
-`python -m unittest tests.test_staging_residual_ledger tests.test_staging_supply_chain_inventory -q; ./aether test` — passed: 13 focused tests and311 full-suite tests pass;11 existing optional/native skips. Controls cover missing/duplicate/dangling/cross-unit membership, digest/totals tampering, nested supporting additions, symlink blobs, canonical tool/digest drift, historical retention and false removal authority.
+`python -m unittest tests.test_staging_residual_ledger tests.test_staging_supply_chain_inventory -q; ./aether test` — passed: 14 focused tests and312 full-suite tests pass;11 existing optional/native skips. Controls cover missing/duplicate/dangling/cross-unit membership, digest/totals tampering, nested supporting additions, symlink blobs, canonical tool/digest drift, historical retention and false removal authority.
 
 `python -m catalog.staging_ledger check; exact repeat generation/report comparisons; catalog/default/links/strict-staging/distribution checks` — passed: The734-file/222-unit ledger and human report replay byte-identically. Closed schemas/fixtures, registered catalog checks, current inputs and generated distribution pass. Historical provenance warning is preserved.
+
+`First hosted PR128 validation; actual shallow-clone/unshallow regression` — limited: The initial hosted checkout lacked recorded source history and failed closed. Checkout now requests complete history without persisted credentials; the new native shallow/unshallow regression passes. Updated hosted execution is pending, not inferred from local success.
 
 ADR-Ref: existing ADR-0005 and recorded hook decisions remain governing history. ADR not required: finite evidence inventory implements existing retained-source accounting without changing ownership or granting removal.
 

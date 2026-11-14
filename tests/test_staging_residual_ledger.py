@@ -72,6 +72,21 @@ class StagingResidualLedgerTests(unittest.TestCase):
         self.assertEqual(current["totals"]["files"], 3)
         self.assertEqual(ledger.validate(current, self.root), [])
 
+    def test_shallow_checkout_cannot_invent_the_recorded_source_history(self):
+        data = ledger.build(self.root, "HEAD")
+        self.write("README.md", "Unrelated synthetic change.\n")
+        self.commit()
+        with tempfile.TemporaryDirectory() as temporary:
+            shallow = Path(temporary) / "consumer"
+            subprocess.run(["git", "clone", "--quiet", "--depth", "1", self.root.as_uri(), str(shallow)],
+                           check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            self.assertTrue(ledger.validate(data, shallow))
+            subprocess.run(["git", "-C", str(shallow), "fetch", "--quiet", "--unshallow"],
+                           check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            self.assertEqual(ledger.validate(data, shallow), [])
+        workflow = (ledger.ROOT / ".github/workflows/pr-validation.yml").read_text()
+        self.assertIn("fetch-depth: 0", workflow)
+
     def test_symlink_is_indexed_as_git_bytes_without_following_its_target(self):
         target = "../../synthetic-outside.txt"
         (self.root / ".staging/instructions/alias").symlink_to(target)
