@@ -138,8 +138,6 @@ Every first-party artifact (specification or skill) carries a `status` field.
 
 ```
 draft ──► experimental ──► stable ──► deprecated ──► retired
-           │
-           └──► (may be released)
 ```
 
 | State | Meaning | May Be Released? |
