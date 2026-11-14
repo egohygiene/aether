@@ -126,7 +126,10 @@ delivery/rendering; Reflector owns orchestrated campaign/continuation.
 The policy remains proposed until explicit owner selection. No default blocker,
 exception, architecture approval, or fictional ratification is introduced.
 
-For this implementation batch the user deferred behavioral tests, skill evals,
-native runs, builds and CI. Static syntax/schema/source review does not qualify
-those paths. Root integration owns generated catalog/dist metadata, continuity
+The original implementation batch deferred behavioral tests, skill evals,
+native runs, builds and CI; that dated source review did not qualify those
+paths. The subsequent package checkpoint adds deterministic helper controls and
+skill-suite structure/resource checks. These cover only their executed contract
+cases, not model routing, host adoption, authentic human evidence or policy
+ratification. Root integration owns generated catalog/dist metadata, continuity
 and the shared proposed decision record. Refs Aether #87, not issue closure.

@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Completed draft coherence package loading/resource metadata, evaluation and
+  continuity contracts with deterministic assessment and untrusted-claim controls;
+  preserved pinned governance and human ratification boundaries (#87).
+
 - Repaired draft audit package loading/resource metadata and evaluation identity,
   with deterministic profile/completion controls and unchanged read-only policy
   boundaries (#86).

@@ -7,28 +7,32 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T03:24:35Z'
+  updated_at: '2026-11-14T03:28:53Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Repair only draft audit package trigger/resource metadata and source/evaluation alignment under
-    issue86, preserving approved auditor policy and the read-only agent.
+  purpose: Repair only current draft coherence package trigger/resource/evaluation/continuity contracts
+    under issue87, preserving human ratification and pinned governance boundaries.
   includes:
-  - The existing audit skill now declares its load trigger and packaged audit_contract.py executable resource;
-    its evaluation suite matches existing source1.2.0 and contains audit-specific routing/boundary/history
-    scenarios. Source version1.2.0 and draft lifecycle remain unchanged.
-  - Ten new public-helper controls cover exact registry resolution, overlapping composition, opt-in experiments,
-    cycles/versions, truthful completion, bounded parsing and deterministic digests. An isolated audit
-    continuity canary prevents unrelated package failures from masking its metadata contract.
-  - Catalog/distribution outputs are regenerated. The approved auditor2.0.0 source, auditor read-only
-    tools and helper implementation remain byte-identical.
+  - The existing coherence skill now has an explicit load trigger, both packaged executable declarations,
+    a matching1.0.0 evaluation suite and the standard reader continuity handoff. Its version1.0.0 and
+    draft lifecycle remain unchanged.
+  - Thirteen public-helper controls exercise a schema-valid17-dimension synthetic assessment, required
+    evidence/alternatives, incomplete states, unsafe projection/JSON, digest binding and pin integrity.
+    Forged serialized human claims cannot import or establish ratification; no trusted human evidence
+    is constructed. An isolated continuity canary prevents masking by other packages.
+  - The reference guide preserves the original implementation deferral as history and records the narrower
+    executed package controls. Catalog and distributions are regenerated; existing assessment/governance
+    helpers, schemas, pin lock and draft specification remain byte-identical.
   excludes: &id001
-  - The audit skill and data extension remain draft. No human lifecycle promotion, approved auditor policy
-    change, host/model qualification, organization audit, provider execution or publication occurred.
-  - Issue87 coherence package repair is the next separately committed checkpoint. Issue38 consumer adapter
-    readiness is owned by root; no consumer acceptance or hosted CI parity is claimed.
+  - The skill/specification and Hygiene governance selection remain draft/proposed. No human ratification,
+    verified human evidence, lifecycle promotion, provider execution or publication occurred.
+  - The synthetic helper tests qualify only their contract cases. Model routing, authentic human provenance,
+    host/consumer qualification and organization adoption remain separately unrun.
+  - Issue38 consumer readiness is owned by root in parallel and integrates after this stacked checkpoint.
+    Issue113 full734-file ledger remains open.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -37,14 +41,14 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - library/organization/skills/quality/audit-repository/SKILL.md
-  - library/organization/skills/quality/audit-repository/evals/evals.json
-  - tests/test_audit_package_contract.py
+  - library/organization/skills/architecture/review-architecture-coherence/SKILL.md
+  - library/organization/skills/architecture/review-architecture-coherence/evals/evals.json
+  - tests/test_coherence_package_contract.py
   - tests/test_continuity_integration.py
-  - https://github.com/egohygiene/aether/issues/86
+  - https://github.com/egohygiene/aether/issues/87
 work:
-  objective: Repair only draft audit package trigger/resource metadata and source/evaluation alignment
-    under issue86, preserving approved auditor policy and the read-only agent.
+  objective: Repair only current draft coherence package trigger/resource/evaluation/continuity contracts
+    under issue87, preserving human ratification and pinned governance boundaries.
   success_conditions:
   - The draft package satisfies existing source, resource, evaluation and continuity contracts without
     granting additional authority.
@@ -52,30 +56,31 @@ work:
     distinct.
   active_issue:
     provider: github
-    id: egohygiene/aether#86
-    url: https://github.com/egohygiene/aether/issues/86
+    id: egohygiene/aether#87
+    url: https://github.com/egohygiene/aether/issues/87
   next:
     kind: action
     id: review-draft-package-checkpoint
-    description: Review the bounded issue86 draft, then prepare a separate stacked issue87 package repair.
-      Coordinating root owns independent review, merge and subsequent consumer-readiness integration.
+    description: Independently review the stacked87 draft after123, then let the coordinating root merge
+      the package checkpoints and rebase its issue38 consumer capability change on the final87 head. Preserve
+      remaining human, host and publication holds.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/86
+    - https://github.com/egohygiene/aether/issues/87
     depends_on: []
 state:
   base:
-    revision: b4905b2a6ee156ad46a70c2a2df395c4e785b3a0
-    ref: refs/heads/main
-    verified_at: '2026-11-14T03:24:35Z'
+    revision: e294730338d5d2496e6be816dcd0e57b0672a0f4
+    ref: refs/heads/fix/audit-package-contract
+    verified_at: '2026-11-14T03:28:53Z'
   candidate:
-    branch: fix/audit-package-contract
+    branch: fix/coherence-package-contract
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T03:24:35Z'
+    observed_at: '2026-11-14T03:28:53Z'
     default_branch_revision: b4905b2a6ee156ad46a70c2a2df395c4e785b3a0
     issue_state: open
     pull_request_state: not-applicable
@@ -85,31 +90,33 @@ state:
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T03:24:35Z'
+  reviewed_at: '2026-11-14T03:28:53Z'
   reviewed_by: Codex
   evidence:
-  - command: python3 -m unittest tests.test_audit_package_contract plus metadata/provenance and isolated
-      continuity cases
+  - command: python3 -m unittest tests.test_coherence_package_contract tests.test_audit_package_contract
+      tests.test_continuity_integration -v
     outcome: passed
-    observed_at: '2026-11-14T03:24:35Z'
-    notes: 80 targeted tests pass, including10 new executable helper controls and the audit handoff canary.
-  - command: ./aether eval run --skill audit-repository --format json
+    observed_at: '2026-11-14T03:28:53Z'
+    notes: 31 focused tests pass, including13 coherence helper controls,10 audit helper controls and the
+      full continuity suite.
+  - command: ./aether eval run --skill review-architecture-coherence --format json
     outcome: passed
-    observed_at: '2026-11-14T03:24:35Z'
-    notes: Seven evaluation cases pass structural/resource assertions only; model routing and prose expectations
-      were not executed.
-  - command: ./aether catalog generate --check; ./aether distribution build --check; ./aether validate
-      --catalog --provenance --format json
+    observed_at: '2026-11-14T03:28:53Z'
+    notes: Eight evaluation cases pass deterministic structure/resource checks only; model routing and
+      prose expectations were not executed.
+  - command: ./aether validate --format json; ./aether catalog generate --check; ./aether distribution
+      build --check; python3 catalog/provenance_model.py check --scope all
     outcome: passed
-    observed_at: '2026-11-14T03:24:35Z'
-    notes: Catalog/distribution drift checks and catalog/provenance checks pass; the unchanged historical
-      lock-hash warning remains.
-  - command: ./aether validate --skills --format json
+    observed_at: '2026-11-14T03:28:53Z'
+    notes: Default validation has zero errors and only the unchanged historical lock-hash warning. All
+      five prior audit/coherence skill diagnostics are repaired. Catalog/distribution/provenance checks
+      pass and pinned helper/schema/spec bytes remain unchanged.
+  - command: ./aether test
     outcome: limited
-    observed_at: '2026-11-14T03:24:35Z'
-    notes: The two audit package errors are repaired; only three known issue87 coherence package errors
-      remain. The full suite is reserved for the final stacked package checkpoint, where the missing coherence
-      suite would otherwise mask continuity checks.
+    observed_at: '2026-11-14T03:28:53Z'
+    notes: '281 full-suite tests: one remaining issue38 consumer-adapter failure and11 skips. The audit
+      source/eval failure is repaired. Missing gh skill remains an unavailable environment capability;
+      no consumer readiness or hosted parity is claimed.'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -137,39 +144,41 @@ Read scoped instructions, current package source and live issue/PR state. Reconc
 
 ## Current objective and success conditions
 
-Repair only draft audit package trigger/resource metadata and source/evaluation alignment under issue86, preserving approved auditor policy and the read-only agent.
+Repair only current draft coherence package trigger/resource/evaluation/continuity contracts under issue87, preserving human ratification and pinned governance boundaries.
 
 ## State snapshot
 
-Candidate `fix/audit-package-contract` is based on `b4905b2a6ee156ad46a70c2a2df395c4e785b3a0` at `refs/heads/main`. Current observed main is `b4905b2a6ee156ad46a70c2a2df395c4e785b3a0`. The containing revision and pre-PR reference intentionally remain null.
+Candidate `fix/coherence-package-contract` is based on `e294730338d5d2496e6be816dcd0e57b0672a0f4` at `refs/heads/fix/audit-package-contract`. Current observed main is `b4905b2a6ee156ad46a70c2a2df395c4e785b3a0`. The containing revision and pre-PR reference intentionally remain null.
 
 ## Completed and material changes
 
-The existing audit skill now declares its load trigger and packaged audit_contract.py executable resource; its evaluation suite matches existing source1.2.0 and contains audit-specific routing/boundary/history scenarios. Source version1.2.0 and draft lifecycle remain unchanged.
+The existing coherence skill now has an explicit load trigger, both packaged executable declarations, a matching1.0.0 evaluation suite and the standard reader continuity handoff. Its version1.0.0 and draft lifecycle remain unchanged.
 
-Ten new public-helper controls cover exact registry resolution, overlapping composition, opt-in experiments, cycles/versions, truthful completion, bounded parsing and deterministic digests. An isolated audit continuity canary prevents unrelated package failures from masking its metadata contract.
+Thirteen public-helper controls exercise a schema-valid17-dimension synthetic assessment, required evidence/alternatives, incomplete states, unsafe projection/JSON, digest binding and pin integrity. Forged serialized human claims cannot import or establish ratification; no trusted human evidence is constructed. An isolated continuity canary prevents masking by other packages.
 
-Catalog/distribution outputs are regenerated. The approved auditor2.0.0 source, auditor read-only tools and helper implementation remain byte-identical.
+The reference guide preserves the original implementation deferral as history and records the narrower executed package controls. Catalog and distributions are regenerated; existing assessment/governance helpers, schemas, pin lock and draft specification remain byte-identical.
 
 ## Validation and review evidence
 
-80 targeted tests pass, including10 new executable helper controls and the audit handoff canary.
+31 focused tests pass, including13 coherence helper controls,10 audit helper controls and the full continuity suite.
 
-Seven evaluation cases pass structural/resource assertions only; model routing and prose expectations were not executed.
+Eight evaluation cases pass deterministic structure/resource checks only; model routing and prose expectations were not executed.
 
-Catalog/distribution drift checks and catalog/provenance checks pass; the unchanged historical lock-hash warning remains.
+Default validation has zero errors and only the unchanged historical lock-hash warning. All five prior audit/coherence skill diagnostics are repaired. Catalog/distribution/provenance checks pass and pinned helper/schema/spec bytes remain unchanged.
 
-The two audit package errors are repaired; only three known issue87 coherence package errors remain. The full suite is reserved for the final stacked package checkpoint, where the missing coherence suite would otherwise mask continuity checks.
+281 full-suite tests: one remaining issue38 consumer-adapter failure and11 skips. The audit source/eval failure is repaired. Missing gh skill remains an unavailable environment capability; no consumer readiness or hosted parity is claimed.
 
 ## Blockers, risks, unknowns, and deferred work
 
-The audit skill and data extension remain draft. No human lifecycle promotion, approved auditor policy change, host/model qualification, organization audit, provider execution or publication occurred.
+The skill/specification and Hygiene governance selection remain draft/proposed. No human ratification, verified human evidence, lifecycle promotion, provider execution or publication occurred.
 
-Issue87 coherence package repair is the next separately committed checkpoint. Issue38 consumer adapter readiness is owned by root; no consumer acceptance or hosted CI parity is claimed.
+The synthetic helper tests qualify only their contract cases. Model routing, authentic human provenance, host/consumer qualification and organization adoption remain separately unrun.
+
+Issue38 consumer readiness is owned by root in parallel and integrates after this stacked checkpoint. Issue113 full734-file ledger remains open.
 
 ## Next dependency-ready work
 
-Review the bounded issue86 draft, then prepare a separate stacked issue87 package repair. Coordinating root owns independent review, merge and subsequent consumer-readiness integration.
+Independently review the stacked87 draft after123, then let the coordinating root merge the package checkpoints and rebase its issue38 consumer capability change on the final87 head. Preserve remaining human, host and publication holds.
 
 ## Parallel changes and reconciliation
 

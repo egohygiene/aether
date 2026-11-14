@@ -7,6 +7,7 @@
   "distribution_id": "distribution/review-architecture-coherence",
   "generated_paths": [
     "dist/skills/review-architecture-coherence/SKILL.md",
+    "dist/skills/review-architecture-coherence/evals/evals.json",
     "dist/skills/review-architecture-coherence/references/contract-and-human-boundary.md",
     "dist/skills/review-architecture-coherence/templates/REVIEW.template.md",
     "dist/skills/review-architecture-coherence/scripts/architecture-coherence-governance.v1.schema.json",
@@ -21,6 +22,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "4b09afad0fbb95c83025363a551ec10cdb975631badc17b16a3adcc080c3c484"
+    "value": "6a21ca69ddafa01edc46b5e812f72eb303e26412c639b121c686879c3aaf1fbe"
   }
 }

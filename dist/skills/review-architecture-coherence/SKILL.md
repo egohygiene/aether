@@ -1,6 +1,6 @@
 ---
 name: review-architecture-coherence
-description: Reconstructs a repository, subsystem, or organization architecture from exact source revisions and prepares a portable evidence-based explanation and coherence assessment for its human alignment authority. Use for architecture drift, ownership or dependency concerns, consequential design review, or an explicit sanity review; never use it to imply AI ratification or authorize implementation.
+description: Reconstructs a repository, subsystem, or organization architecture from exact source revisions and prepares a portable evidence-based explanation and coherence assessment for its human alignment authority. Use when reviewing architecture drift, ownership or dependency concerns, consequential design changes, or an explicit sanity review; never use it to imply AI ratification or authorize implementation.
 license: MIT
 metadata:
   aether-version: "1.0.0"
@@ -10,7 +10,10 @@ metadata:
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-11-10"
-  aether-updated: "2026-11-10"
+  aether-updated: "2026-11-14"
+  aether-executable-resources:
+    - "scripts/architecture_coherence.py"
+    - "scripts/architecture_coherence_governance.py"
   aether-distribution-resources:
     - source: "catalog/schemas/aether.architecture-coherence-review.v1.schema.json"
       destination: "references/aether.architecture-coherence-review.v1.schema.json"
@@ -20,12 +23,21 @@ metadata:
 
 <!-- aether-continuity-disposition: reader -->
 
+## Repository continuity composition
+
+Compose `maintain-repository-continuity` in **Resume** mode before selecting
+work. This skill is continuity read-only; separate authorization and a different
+source-changing workflow own any handoff refresh.
+
 Read local instructions and existing continuity in Resume mode. This procedure
 is read-only by default: inspect existing sources and return a review candidate.
 Write an artifact only to an authorized output path. Review permission does not
 authorize implementation, source execution, provider writes, issue creation,
 publication, or changing governance. A separately authorized writer can refresh
 continuity; do not manufacture a checkpoint edit during a read-only review.
+
+- **Contribute:** Exact architecture review scope, source revisions, assessment, uncertainty, human boundary, and validation gaps
+- **Never claim:** Human ratification, policy applicability, implementation authority, or permission to mutate continuity without separately trusted evidence and authorization
 
 ## Inputs
 
@@ -98,5 +110,6 @@ Do not change architecture, canonical policy or enforcement as part of review.
 
 This is first-party Aether source authored for #87, licensed MIT. Its status is
 draft; artifact implementation is not owner policy selection, skill
-adoption or real human ratification. Behavioral evaluations remain separate
-qualification work when execution is authorized.
+adoption or real human ratification. Deterministic helper checks cover only the
+tested contract cases; model routing, host adoption and real human ratification
+remain separate qualification work.
