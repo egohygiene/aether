@@ -7,91 +7,174 @@
       "domain": "architecture",
       "status": "draft",
       "version": "1.1.0",
-      "skills": ["architecture-authoring", "maintain-repository-continuity"],
-      "specs": ["architecture-document", "repository-continuity"],
-      "tools": ["read", "search", "edit", "web"],
+      "skills": [
+        "architecture-authoring",
+        "maintain-repository-continuity"
+      ],
+      "specs": [
+        "architecture-document",
+        "repository-continuity"
+      ],
+      "tools": [
+        "read",
+        "search",
+        "edit",
+        "web"
+      ],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/architect.agent.md",
         "github-organization": "dist/github/organization/agents/architect.agent.md"
-      }
+      },
+      "description": "Designs system boundaries, interfaces, decisions, and implementation-ready architecture without writing production code."
     },
     "arxiv-publisher": {
       "name": "arXiv Publisher",
       "domain": "publishing",
       "status": "draft",
       "version": "1.1.0",
-      "skills": ["prepare-arxiv-release", "maintain-repository-continuity"],
-      "specs": ["arxiv-publishing", "repository-continuity"],
-      "tools": ["read", "search", "edit", "execute", "web"],
+      "skills": [
+        "prepare-arxiv-release",
+        "maintain-repository-continuity"
+      ],
+      "specs": [
+        "arxiv-publishing",
+        "repository-continuity"
+      ],
+      "tools": [
+        "read",
+        "search",
+        "edit",
+        "execute",
+        "web"
+      ],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/arxiv-publisher.agent.md",
         "github-organization": "dist/github/organization/agents/arxiv-publisher.agent.md"
-      }
+      },
+      "description": "Prepares, validates, and documents deterministic arXiv publication artifacts from canonical scholarly sources."
     },
     "auditor": {
       "name": "Auditor",
       "domain": "quality",
       "status": "draft",
-      "version": "1.1.0",
-      "skills": ["audit-repository", "maintain-repository-continuity"],
-      "specs": ["auditor", "repository-continuity"],
-      "tools": ["read", "search"],
+      "version": "1.2.0",
+      "skills": [
+        "audit-repository",
+        "maintain-repository-continuity"
+      ],
+      "specs": [
+        "auditor",
+        "repository-audit-data",
+        "repository-continuity"
+      ],
+      "tools": [
+        "read",
+        "search"
+      ],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/auditor.agent.md",
         "github-organization": "dist/github/organization/agents/auditor.agent.md"
-      }
+      },
+      "description": "Performs explicitly scoped evidence-based audits through canonical profiles and returns immutable report candidates without source mutation."
     },
     "bug-fix-teammate": {
       "name": "Bug Fix Teammate",
       "domain": "quality",
       "status": "draft",
       "version": "1.1.0",
-      "skills": ["bug-fixing", "maintain-repository-continuity"],
-      "specs": ["auditor", "repository-continuity"],
-      "tools": ["read", "search", "edit", "execute"],
+      "skills": [
+        "bug-fixing",
+        "maintain-repository-continuity"
+      ],
+      "specs": [
+        "auditor",
+        "repository-continuity"
+      ],
+      "tools": [
+        "read",
+        "search",
+        "edit",
+        "execute"
+      ],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/bug-fix-teammate.agent.md",
         "github-organization": "dist/github/organization/agents/bug-fix-teammate.agent.md"
-      }
+      },
+      "description": "Reproduces reported defects, identifies root causes, implements minimal fixes, and adds regression protection."
     },
     "cleanup-specialist": {
       "name": "Cleanup Specialist",
       "domain": "quality",
       "status": "draft",
       "version": "1.1.0",
-      "skills": ["repository-cleanup", "maintain-repository-continuity"],
-      "specs": ["auditor", "repository-continuity"],
-      "tools": ["read", "search", "edit", "execute"],
+      "skills": [
+        "repository-cleanup",
+        "maintain-repository-continuity"
+      ],
+      "specs": [
+        "auditor",
+        "repository-continuity"
+      ],
+      "tools": [
+        "read",
+        "search",
+        "edit",
+        "execute"
+      ],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/cleanup-specialist.agent.md",
         "github-organization": "dist/github/organization/agents/cleanup-specialist.agent.md"
-      }
+      },
+      "description": "Improves repository hygiene, consistency, configuration, and documentation without changing intended behavior."
     },
     "github-issue-creator": {
       "name": "GitHub Issue Creator",
       "domain": "authoring",
       "status": "draft",
       "version": "1.2.0",
-      "skills": ["github-issue-authoring", "maintain-repository-continuity"],
-      "specs": ["specfile", "repository-continuity"],
-      "tools": ["read", "search", "web"],
+      "skills": [
+        "github-issue-authoring",
+        "maintain-repository-continuity"
+      ],
+      "specs": [
+        "specfile",
+        "repository-continuity"
+      ],
+      "tools": [
+        "read",
+        "search",
+        "web"
+      ],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/github-issue-creator.agent.md",
         "github-organization": "dist/github/organization/agents/github-issue-creator.agent.md"
-      }
+      },
+      "description": "Transforms ideas, specs, audits, bugs, research, and brain dumps into scoped, implementation-ready GitHub issues."
     },
     "implementation-planner": {
       "name": "Implementation Planner",
       "domain": "authoring",
       "status": "draft",
       "version": "1.1.0",
-      "skills": ["implementation-planning", "maintain-repository-continuity"],
-      "specs": ["specfile", "repository-continuity"],
-      "tools": ["read", "search", "edit", "web"],
+      "skills": [
+        "implementation-planning",
+        "maintain-repository-continuity"
+      ],
+      "specs": [
+        "specfile",
+        "repository-continuity"
+      ],
+      "tools": [
+        "read",
+        "search",
+        "edit",
+        "web"
+      ],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/implementation-planner.agent.md",
         "github-organization": "dist/github/organization/agents/implementation-planner.agent.md"
-      }
+      },
+      "description": "Turns approved requirements and architecture into an ordered, dependency-aware implementation plan without changing production code."
     },
     "local-ci-triager": {
       "name": "Local CI Triager",
@@ -117,33 +200,58 @@
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/local-ci-triager.agent.md",
         "github-organization": "dist/github/organization/agents/local-ci-triager.agent.md"
-      }
+      },
+      "description": "Runs explicitly selected local repository checks, diagnoses reports and prepares deduplicated issue handoffs with authorized provider publication."
     },
     "specfile-creator": {
       "name": "Specfile Creator",
       "domain": "authoring",
       "status": "draft",
       "version": "1.1.0",
-      "skills": ["create-specification-file", "maintain-repository-continuity"],
-      "specs": ["specfile", "repository-continuity"],
-      "tools": ["read", "search", "edit", "web"],
+      "skills": [
+        "create-specification-file",
+        "maintain-repository-continuity"
+      ],
+      "specs": [
+        "specfile",
+        "repository-continuity"
+      ],
+      "tools": [
+        "read",
+        "search",
+        "edit",
+        "web"
+      ],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/specfile-creator.agent.md",
         "github-organization": "dist/github/organization/agents/specfile-creator.agent.md"
-      }
+      },
+      "description": "Creates implementation-ready specification files from architecture notes, feature ideas, research, and product requirements."
     },
     "test-specialist": {
       "name": "Test Specialist",
       "domain": "quality",
       "status": "draft",
       "version": "1.1.0",
-      "skills": ["test-engineering", "maintain-repository-continuity"],
-      "specs": ["auditor", "repository-continuity"],
-      "tools": ["read", "search", "edit", "execute"],
+      "skills": [
+        "test-engineering",
+        "maintain-repository-continuity"
+      ],
+      "specs": [
+        "auditor",
+        "repository-continuity"
+      ],
+      "tools": [
+        "read",
+        "search",
+        "edit",
+        "execute"
+      ],
       "projections": {
         "github-repository": "dist/github/repository/.github/agents/test-specialist.agent.md",
         "github-organization": "dist/github/organization/agents/test-specialist.agent.md"
-      }
+      },
+      "description": "Designs and implements deterministic tests, closes meaningful coverage gaps, and validates behavior without weakening production guarantees."
     }
   },
   "staging-move-out": {

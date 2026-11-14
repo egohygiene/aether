@@ -7,6 +7,7 @@ import copy
 import io
 import tempfile
 import unittest
+import yaml
 from unittest import mock
 from pathlib import Path
 
@@ -375,11 +376,116 @@ Second.
         diagnostics = fx.validator().validate_catalog()
         self.assertTrue(any(d.rule_id == "AETHER_CATALOG_004" and "depends_on" in d.message for d in diagnostics))
 
+    def test_spec_optional_metadata_removal_uses_source_defaults(self):
+        fx = ValidatorFixture.create()
+        source = fx.root / "library/organization/specs/domain/example.spec.md"
+        original = source.read_text()
+        source.write_text(original.replace("title: Example Specification", "title: Example Specification\ndescription: Explicit source description\nlicense: Apache-2.0"))
+        fx.validator().write_catalog()
+        source.write_text(original.replace("A deterministic example specification body.", "Current source body description."))
+        current = json.loads(fx.validator().catalog_path.read_text())
+        item = next(x for x in current["artifacts"] if x["kind"] == "specification")
+        item["source_digest"]["value"] = hashlib.sha256(source.read_bytes()).hexdigest()
+        fx.validator().catalog_path.write_text(json.dumps(current))
+        drift = next(d for d in fx.validator().validate_catalog() if d.rule_id == "AETHER_CATALOG_005")
+        self.assertTrue({"description", "license"}.issubset(drift.context["fields"]))
+        fx.validator().write_catalog()
+        item = next(x for x in json.loads(fx.validator().catalog_path.read_text())["artifacts"] if x["kind"] == "specification")
+        self.assertEqual(item["description"], "Current source body description.")
+        self.assertEqual(item["license"], "MIT")
+
     def test_unclassified_staging_material(self):
         fx = ValidatorFixture.create()
         (fx.root / ".staging" / "unknown").mkdir(parents=True)
         diags = fx.validator().validate_staging(strict=False)
         self.assertTrue(any(d.rule_id == "AETHER_STAGING_001" for d in diags))
+
+
+class TestAgentCatalogAuthority(unittest.TestCase):
+    def setUp(self):
+        self.fixture = ValidatorFixture.create()
+        self.validator = self.fixture.validator()
+        self.source = self.fixture.root / "library/organization/agents/example-agent/AGENT.md"
+        self.frontmatter = {
+            "aether-id": "example-agent", "name": "Example Agent",
+            "description": "Inspect the selected repository.", "tools": ["read"],
+            "metadata": {"aether-version": "1.0.0", "aether-status": "draft",
+                         "aether-domain": "quality", "aether-skills": ["example-skill"],
+                         "aether-specs": ["example-spec"]},
+        }
+        self.write_source()
+        write(self.validator.agent_catalog_path, json.dumps({
+            "schema": "aether.agents/v1", "generated": "2026-08-01",
+            "agents": {"example-agent": {
+                "version": "0.1.0", "tools": ["read", "execute"],
+                "projections": {"reviewed-host": "dist/reviewed/example-agent.md"},
+                "notes": "Reviewed catalog-owned annotation.",
+            }},
+        }))
+        self.validator.write_catalog()
+
+    def write_source(self):
+        write(self.source, "---\n" + yaml.safe_dump(self.frontmatter, sort_keys=False) + "---\n\n# Example Agent\n")
+
+    def test_source_mutations_refresh_fields_and_preserve_catalog_annotations(self):
+        self.frontmatter.update(name="Revised Agent", description="Current source description.", tools=["read", "search"])
+        self.frontmatter["metadata"].update({"aether-version": "9.9.9", "aether-status": "stable", "aether-domain": "architecture", "aether-skills": [], "aether-specs": []})
+        self.write_source()
+        drift = next(d for d in self.validator.validate_catalog() if d.rule_id == "AETHER_CATALOG_007")
+        self.assertEqual(drift.artifact_id, "agent/example-agent")
+        self.assertEqual(set(drift.context["fields"]), {"name", "description", "tools", "version", "status", "domain", "skills", "specs"})
+        self.validator.write_catalog()
+        entry = json.loads(self.validator.agent_catalog_path.read_text())["agents"]["example-agent"]
+        self.assertEqual(entry["version"], "9.9.9")
+        self.assertEqual(entry["status"], "stable")
+        self.assertEqual(entry["tools"], ["read", "search"])
+        self.assertEqual(entry["skills"], [])
+        self.assertEqual(entry["projections"], {"reviewed-host": "dist/reviewed/example-agent.md"})
+        self.assertEqual(entry["notes"], "Reviewed catalog-owned annotation.")
+        self.assertEqual(self.validator.validate_catalog(), [])
+        before = self.validator.agent_catalog_path.read_bytes()
+        self.validator.write_catalog()
+        self.assertEqual(before, self.validator.agent_catalog_path.read_bytes())
+
+    def test_catalog_only_semantic_drift_is_detected_and_repaired(self):
+        current = json.loads(self.validator.agent_catalog_path.read_text())
+        current["agents"]["example-agent"].update(version="0.1.0", tools=["read", "execute"])
+        self.validator.agent_catalog_path.write_text(json.dumps(current))
+        drift = next(d for d in self.validator.validate_catalog() if d.rule_id == "AETHER_CATALOG_007")
+        self.assertEqual(set(drift.context["fields"]), {"tools", "version"})
+        self.validator.write_catalog()
+        self.assertEqual(json.loads(self.validator.agent_catalog_path.read_text())["agents"]["example-agent"]["tools"], ["read"])
+
+    def test_invalid_source_preserves_both_catalogs(self):
+        first_party = self.validator.catalog_path.read_bytes()
+        agents = self.validator.agent_catalog_path.read_bytes()
+        baseline = copy.deepcopy(self.frontmatter)
+        mutations = [
+            lambda d: d.update({"aether-id": "other-agent"}),
+            lambda d: d.update(tools=[]),
+            lambda d: d.update(tools=["read", "read"]),
+            lambda d: d.update(tools=["unknown"]),
+            lambda d: d["metadata"].update({"aether-version": 7}),
+            lambda d: d["metadata"].update({"aether-version": "invalid"}),
+            lambda d: d["metadata"].update({"aether-status": ["stable"]}),
+            lambda d: d["metadata"].update({"aether-skills": "example-skill"}),
+            lambda d: d["metadata"].update({"aether-specs": ["missing-spec"]}),
+        ]
+        for mutate in mutations:
+            with self.subTest(mutate=mutate):
+                self.frontmatter = copy.deepcopy(baseline)
+                mutate(self.frontmatter)
+                self.write_source()
+                with self.assertRaisesRegex(ValidationError, "example-agent/AGENT.md"):
+                    self.validator.write_catalog()
+                self.assertEqual(self.validator.catalog_path.read_bytes(), first_party)
+                self.assertEqual(self.validator.agent_catalog_path.read_bytes(), agents)
+                self.assertTrue(any(d.rule_id == "AETHER_CATALOG_006" for d in self.validator.validate_catalog()))
+
+    def test_catalog_cannot_retain_an_agent_without_canonical_source(self):
+        self.source.unlink()
+        with self.assertRaisesRegex(ValidationError, "missing canonical agent source"):
+            self.validator.write_catalog()
 
 
 _VALID_EVALS_V2 = {

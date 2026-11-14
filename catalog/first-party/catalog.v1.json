@@ -1716,7 +1716,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "6bbe5804743d60f1af439a48fa800b7756f35ad7ec731d2dcb6f9bdb24f64dde"
+        "value": "dcaa805653be596600e23afaf2515eb44662404dc54c01b12a74a5e363362920"
       },
       "source_path": "library/organization/skills/quality/triage-local-ci-reports/SKILL.md",
       "supersedes_ids": [],
@@ -1898,7 +1898,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "Reconstruct an architecture from actual sources, explain it to its human",
+      "description": "Reconstruct an architecture from actual sources, explain it to its human alignment authority, and preserve a portable assessment that can be ratified later. This draft implements the record/procedure requested by [Aether #87](https://github.com/egohygiene/aether/issues/87). Its existence, implementation, merge, and execution do not approve an architecture or activate the proposed Hygiene applicability policy.",
       "domain": "architecture",
       "generated_distribution_paths": [
         "dist/specs/architecture-coherence-review.spec.md"
@@ -1954,7 +1954,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines how `DECISIONS.md` shall be authored, maintained, and validated.",
+      "description": "This draft Aether specification defines an authoring workflow for repository-owned ADRs. It consumes accepted Hygiene policy v1.2.0 at `a05b14f8b9e2772124f879f818e09a911e996ad8`; it does not redefine policy, schemas or human authority. The exact selection and approval evidence are in the portable [authoring package](../../../skills/architecture/create-decisions-document/references/policy-selection.json).",
       "domain": "architecture",
       "generated_distribution_paths": [
         "dist/specs/architecture-decisions.spec.md"
@@ -2824,7 +2824,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines how a repository selects, materializes, inventories,",
+      "description": "This specification defines how a repository selects, materializes, inventories, and validates an applicable set of architecture documents from the Aether architecture-document system.",
       "domain": "architecture",
       "generated_distribution_paths": [
         "dist/specs/architecture-set.spec.md"
@@ -3090,7 +3090,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines a portable, inspectable packet for moving public",
+      "description": "This specification defines a portable, inspectable packet for moving public evidence and bounded findings between agents or execution zones. It provides a file contract, not a bidirectional channel, transport, capability grant, or authorization to act on a destination system.",
       "domain": "evidence",
       "generated_distribution_paths": [
         "dist/specs/cross-agent-evidence.spec.md"
@@ -3140,7 +3140,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "A diagnosis record is a durable, evidence-labelled account of a bounded",
+      "description": "A diagnosis record is a durable, evidence-labelled account of a bounded technical investigation. It preserves what failed, what was examined, which hypotheses remain viable, what was changed when change was authorized, and what validation actually ran.",
       "domain": "quality",
       "generated_distribution_paths": [
         "dist/specs/diagnosis-record.spec.md"
@@ -3195,7 +3195,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "Compose existing local validation, diagnosis and issue authoring into a reusable",
+      "description": "Compose existing local validation, diagnosis and issue authoring into a reusable workflow for an explicitly selected workspace. Aether owns this portable handoff and agent procedure. Realm owns its execution capability; repository commands and EgoLint retain validation semantics; an authorized provider adapter owns actual GitHub writes. This does not create another CI engine.",
       "domain": "quality",
       "generated_distribution_paths": [
         "dist/specs/local-ci-triage.spec.md"
@@ -3249,7 +3249,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines a portable, capability-aware contract for running",
+      "description": "This specification defines a portable, capability-aware contract for running as much trustworthy repository validation as the current local execution environment permits. It preserves useful forward progress when remote CI is unavailable, disabled, unaffordable, or intentionally deferred without representing unobserved checks as successful.",
       "domain": "quality",
       "generated_distribution_paths": [
         "dist/specs/local-validation-evidence.spec.md"
@@ -3358,7 +3358,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This draft extends the approved `auditor` specification 2.0.0 with a portable",
+      "description": "This draft extends the approved `auditor` specification 2.0.0 with a portable machine projection and intent profiles. The approved specification retains its exact source and human lifecycle; this draft neither amends its approval nor promotes the `audit-repository` skill or auditor agent. Normative machine contracts are `aether.audit-profile-registry/v1` and `aether.repository-audit-report/v1`, each contract version `1.0.0`.",
       "domain": "quality",
       "generated_distribution_paths": [
         "dist/specs/repository-audit-data.spec.md"
@@ -3409,7 +3409,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "A repository continuity document is a concise, repository-owned checkpoint",
+      "description": "A repository continuity document is a concise, repository-owned checkpoint that lets a fresh human or coding-agent session recover the current execution state without replaying a conversation. Its semantic identity is `aether.repository-continuity/v1`, and its canonical exact-case location is the regular file `CONTINUITY.md` at the repository root.",
       "domain": "methodology",
       "generated_distribution_paths": [
         "dist/specs/repository-continuity.spec.md"
@@ -3460,7 +3460,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "A repository journal is a bounded decision aid, not an automation authority.",
+      "description": "A repository journal is a bounded decision aid, not an automation authority. It summarizes caller-supplied repository evidence for a closed interval. It does not inspect new sources, alter a repository, create work, or deliver a report to an external destination.",
       "domain": "quality",
       "generated_distribution_paths": [
         "dist/specs/repository-journal.spec.md"
@@ -3508,7 +3508,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines the provider-neutral release convention for Ego",
+      "description": "This specification defines the provider-neutral release convention for Ego Hygiene repositories. It governs release intent, semantic versioning, changelogs, evidence, rollback information, and the boundary between a repository release and its delivery adapters.",
       "domain": "release",
       "generated_distribution_paths": [
         "dist/specs/repository-release.spec.md"
@@ -3557,7 +3557,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines a deterministic handoff between approved Identity",
+      "description": "This specification defines a deterministic handoff between approved Identity artifacts, pinned Aether platform facts, human campaign intent, and a separately authorized publishing adapter. It permits candidate drafting and reviewed export. It does not authorize account access, scheduling, posting, advertising spend, targeting, or analytics.",
       "domain": "marketing",
       "generated_distribution_paths": [
         "dist/specs/social-campaign-handoff.spec.md"

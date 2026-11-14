@@ -102,7 +102,15 @@ class ContinuityIntegrationTests(unittest.TestCase):
             self.assertNotIn(".staging", source.parts)
 
     def test_applicable_skills_declare_compact_domain_handoffs(self) -> None:
-        for record in self.inventory["skills"]:
+        self._assert_skill_handoffs(self.inventory["skills"])
+
+    def test_local_ci_skill_handoff_is_not_masked_by_other_packages(self) -> None:
+        selected = [record for record in self.inventory["skills"] if record["id"] == "triage-local-ci-reports"]
+        self.assertEqual(len(selected), 1)
+        self._assert_skill_handoffs(selected)
+
+    def _assert_skill_handoffs(self, records: list[dict]) -> None:
+        for record in records:
             source = ROOT / record["source"]
             text = source.read_text(encoding="utf-8")
             metadata = frontmatter(source).get("metadata", {})
@@ -114,10 +122,8 @@ class ContinuityIntegrationTests(unittest.TestCase):
 
             self.assertEqual(metadata["aether-version"], evals["version"], record["id"])
             self.assertRegex(metadata["aether-version"], r"^\d+\.\d+\.\d+$", record["id"])
-            self.assertGreaterEqual(
-                tuple(map(int, metadata["aether-version"].split("."))),
-                (1, 1, 0), record["id"],
-            )
+            # Source/eval identity and valid versions apply to each artifact;
+            # new skills need not share the historical migration's 1.1.0 floor.
 
             if record["id"] == "maintain-repository-continuity":
                 self.assertIn("## Perform the pre-PR handoff", text)
@@ -156,10 +162,9 @@ class ContinuityIntegrationTests(unittest.TestCase):
             self.assertIn(f"- **Contribute:** {record['domain_evidence'][0]}", text)
             self.assertIn(f"- **Never claim:** {record['never_claim'][0]}", text)
             self.assertEqual(catalog[record["id"]]["version"], metadata["aether-version"])
+            # Agents version independently: a new 1.0.0 artifact need not meet
+            # the historical continuity migration's 1.1.0 version floor.
             self.assertRegex(metadata["aether-version"], r"^\d+\.\d+\.\d+$")
-            self.assertGreaterEqual(
-                tuple(map(int, metadata["aether-version"].split("."))), (1, 1, 0)
-            )
             self.assertIn(
                 "maintain-repository-continuity",
                 catalog[record["id"]]["skills"],

@@ -415,6 +415,8 @@ class AetherValidator:
         self.specs_root = repo_root / "library" / "organization" / "specs"
         self.catalog_path = repo_root / "catalog" / "first-party" / "catalog.v1.json"
         self.catalog_schema_path = repo_root / "catalog" / "schemas" / "aether.artifact-catalog.v1.schema.json"
+        self.agents_root = repo_root / "library" / "organization" / "agents"
+        self.agent_catalog_path = self.agents_root / "catalog.json"
 
     def _skill_dirs(self) -> list[Path]:
         return sorted({p.parent for p in self.skills_root.rglob("SKILL.md")})
@@ -868,27 +870,30 @@ class AetherValidator:
                 f"specification/{x}" if not str(x).startswith("specification/") else str(x)
                 for x in string_list(fm.get("supersedes", []), source_path, "supersedes")
             ]
-            description = ""
+            description_lines = []
             body = _normalized_text(spec_path)
             after_frontmatter = body.split("---\n", 2)[-1]
             for line in after_frontmatter.splitlines():
                 stripped = line.strip()
-                if stripped and not stripped.startswith("#"):
-                    description = stripped
-                    break
+                if not stripped or stripped.startswith("#"):
+                    if description_lines:
+                        break
+                    continue
+                description_lines.append(stripped)
+            description = " ".join(description_lines)
 
             artifacts.append({
                 "artifact_version": str(fm.get("version", "1.0.0")),
                 "compatibility": previous.get("compatibility", {"required_tools": []}),
                 "dependencies": dependencies,
                 "deprecation": previous.get("deprecation", {"replacement_id": None}),
-                "description": fm.get("description", previous.get("description", description)),
+                "description": fm.get("description", description),
                 "domain": fm["domain"],
                 "generated_distribution_paths": [f"dist/specs/{spec_id}.spec.md"],
                 "id": f"specification/{spec_id}",
                 "implements_specification_id": None,
                 "kind": "specification",
-                "license": fm.get("license", previous.get("license", "MIT")),
+                "license": fm.get("license", "MIT"),
                 "lifecycle": source_lifecycle,
                 "owner": {
                     "maintainers": owners,
@@ -1059,12 +1064,74 @@ class AetherValidator:
                 file=_rel(self.catalog_path, self.repo_root),
             ))
 
-        return diagnostics
+        return diagnostics + self.validate_agent_catalog(check_only=check_only)
 
     def write_catalog(self) -> None:
         generated = self.generate_catalog()
+        agents = self.generate_agent_catalog()
         self.catalog_path.parent.mkdir(parents=True, exist_ok=True)
         self.catalog_path.write_text(json.dumps(generated, indent=2, sort_keys=False) + "\n", encoding="utf-8")
+        if agents is not None:
+            self.agent_catalog_path.write_text(json.dumps(agents, indent=2) + "\n", encoding="utf-8")
+
+    def generate_agent_catalog(self) -> dict[str, Any] | None:
+        """Refresh source-owned agent fields, retaining projection/annotation ownership."""
+        files = sorted(self.agents_root.glob("*/AGENT.md"))
+        if not files and not self.agent_catalog_path.exists():
+            return None
+        current = json.loads(self.agent_catalog_path.read_text(encoding="utf-8")) if self.agent_catalog_path.exists() else {"schema": "aether.agents/v1", "agents": {}}
+        if not isinstance(current, dict) or current.get("schema") != "aether.agents/v1" or not isinstance(current.get("agents"), dict):
+            raise ValidationError("library/organization/agents/catalog.json: expected an aether.agents/v1 agents mapping.")
+        previous = current["agents"]
+        identifiers = {path.parent.name for path in files}
+        if set(previous) - identifiers:
+            raise ValidationError(f"library/organization/agents/catalog.json: missing canonical agent source for {sorted(set(previous) - identifiers)}.")
+        skills, _, _ = self._skill_identity_maps()
+        _, specifications, _ = self._collect_specs()
+        agents = {}
+        for path in files:
+            source = _rel(path, self.repo_root)
+            fm, error = _parse_frontmatter(path)
+            if error or fm is None:
+                raise ValidationError(f"{source}: {error.message if error else 'missing frontmatter'}")
+            identity = path.parent.name
+            metadata = fm.get("metadata")
+            if fm.get("aether-id") != identity or not SKILL_NAME_RE.fullmatch(identity) or not isinstance(metadata, dict):
+                raise ValidationError(f"{source}: matching aether-id and a metadata mapping are required.")
+            for field, value in (("name", fm.get("name")), ("description", fm.get("description")), ("metadata.aether-domain", metadata.get("aether-domain")), ("metadata.aether-version", metadata.get("aether-version"))):
+                if not isinstance(value, str) or not value.strip():
+                    raise ValidationError(f"{source}: {field} must be a non-empty string.")
+            if not re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?", metadata["aether-version"]):
+                raise ValidationError(f"{source}: metadata.aether-version must be semantic version text.")
+            status = metadata.get("aether-status")
+            if not isinstance(status, str) or status not in {"draft", "stable", "deprecated", "retired"}:
+                raise ValidationError(f"{source}: invalid metadata.aether-status {status!r}.")
+            lists = {}
+            for field, value, allowed in (("tools", fm.get("tools"), {"read", "search", "edit", "execute", "web"}), ("skills", metadata.get("aether-skills", []), set(skills)), ("specs", metadata.get("aether-specs", []), set(specifications))):
+                if not isinstance(value, list) or (field == "tools" and not value) or any(not isinstance(item, str) or item not in allowed for item in value) or len(value) != len(set(value)):
+                    raise ValidationError(f"{source}: {field} must be an explicit list of unique known identifiers.")
+                lists[field] = value
+            entry = previous.get(identity, {})
+            if not isinstance(entry, dict):
+                raise ValidationError(f"library/organization/agents/catalog.json: agent {identity} must be a mapping.")
+            agents[identity] = {**entry, "name": fm["name"], "description": fm["description"], "domain": metadata["aether-domain"], "status": status, "version": metadata["aether-version"], **lists}
+        return {**current, "agents": agents}
+
+    def validate_agent_catalog(self, check_only: bool = True) -> list[Diagnostic]:
+        try:
+            generated = self.generate_agent_catalog()
+        except (ValidationError, ValueError, OSError) as error:
+            return [Diagnostic(rule_id="AETHER_CATALOG_006", severity="error", message=str(error), guidance="Fix the named agent source/catalog metadata before regeneration.", file=_rel(self.agent_catalog_path, self.repo_root))]
+        if generated is None:
+            return []
+        current = json.loads(self.agent_catalog_path.read_text(encoding="utf-8")) if self.agent_catalog_path.exists() else {"agents": {}}
+        diagnostics = []
+        for identity, expected in generated["agents"].items():
+            actual = current["agents"].get(identity, {})
+            fields = sorted(key for key in expected if actual.get(key) != expected[key])
+            if fields:
+                diagnostics.append(Diagnostic(rule_id="AETHER_CATALOG_007", severity="error", message=f"Agent catalog metadata differs from canonical source: {', '.join(fields)}.", guidance="Run `aether catalog generate`; retain source lifecycle and tool authority.", artifact_id=f"agent/{identity}", file=_rel(self.agent_catalog_path, self.repo_root), context={"fields": fields, "source": _rel(self.agents_root / identity / "AGENT.md", self.repo_root), "check_mode": check_only}))
+        return diagnostics
 
     def validate_json_files(self) -> list[Diagnostic]:
         diagnostics: list[Diagnostic] = []
@@ -1682,17 +1749,18 @@ def command_validate(args: argparse.Namespace) -> int:
 def command_catalog_generate(args: argparse.Namespace) -> int:
     root = find_repo_root(Path(args.repo_root).resolve() if args.repo_root else Path.cwd())
     validator = AetherValidator(root)
-    generated = validator.generate_catalog()
     if args.check:
-        existing = json.loads(validator.catalog_path.read_text(encoding="utf-8")) if validator.catalog_path.exists() else None
-        if existing != generated:
-            print("Catalog drift detected.")
+        diagnostics = validator.validate_catalog(check_only=True)
+        if any(item.severity == "error" for item in diagnostics):
+            print(format_text(diagnostics))
             return EXIT_VALIDATION_FAILED
         print("Catalog is up to date.")
         return EXIT_OK
 
     validator.write_catalog()
     print(f"Wrote {validator.catalog_path}")
+    if validator.agent_catalog_path.exists():
+        print(f"Wrote {validator.agent_catalog_path}")
     return EXIT_OK
 
 

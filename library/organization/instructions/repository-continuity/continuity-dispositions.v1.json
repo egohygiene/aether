@@ -387,10 +387,10 @@
       "startup_read": true,
       "pre_pr_write": false,
       "domain_evidence": [
-        "Executed local checks, normalized evidence, root-cause groups, issue matches and provider receipts"
+        "Source identity, actual checks, classified failures, issue matches and provider receipts"
       ],
       "never_claim": [
-        "That unrun checks passed or local issue plans were published"
+        "That unrun checks passed or proposed issue actions were published"
       ],
       "rationale": "Local CI triage executes authorized validation and creates local evidence; source/handoff edits belong to a separately selected workflow."
     },
@@ -483,10 +483,10 @@
       "startup_read": true,
       "pre_pr_write": false,
       "domain_evidence": [
-        "Executed local checks, normalized evidence, root-cause groups, issue matches and provider receipts"
+        "Tested revision, coverage, findings, issue matching and actual provider receipts"
       ],
       "never_claim": [
-        "That unrun checks passed or local issue plans were published"
+        "That proposed actions were published or local checks establish hosted parity"
       ],
       "rationale": "Local CI triage executes authorized validation and creates local evidence; source/handoff edits belong to a separately selected workflow."
     },

@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Completed source-authoritative agent catalog regeneration and semantic drift
+  checks, preserving catalog annotations and source lifecycle while correcting
+  local CI continuity metadata consistency (#107).
+
 - Added a draft local CI triage spec, portable skill and bounded agent, with a
   Realm report adapter, diagnosed root-cause grouping, stable duplicate markers,
   sanitized issue proposals and explicit provider handoffs.
