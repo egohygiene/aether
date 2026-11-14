@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Repaired draft audit package loading/resource metadata and evaluation identity,
+  with deterministic profile/completion controls and unchanged read-only policy
+  boundaries (#86).
+
 - Corrected staged skill inventory checks to distinguish retained current
   evidence from removed copies, with Git membership and negative controls;
   preserved staged source and the broader ledger follow-up (#113).
