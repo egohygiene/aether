@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Separated deterministic consumer harness controls from explicit local/release
+  qualification. Missing adapters report blocked, real validation errors fail,
+  and mandatory workflow gates retain the actual consumer checks (#38).
+
 - Completed draft coherence package loading/resource metadata, evaluation and
   continuity contracts with deterministic assessment and untrusted-claim controls;
   preserved pinned governance and human ratification boundaries (#87).

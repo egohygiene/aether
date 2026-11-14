@@ -7,8 +7,9 @@ import json
 import os
 from pathlib import Path
 import shutil
-import subprocess
+import sys
 import tempfile
+import time
 import unittest
 from unittest.mock import patch
 
@@ -172,11 +173,47 @@ class TestConsumerInstallationE2E(unittest.TestCase):
     def test_command_unavailability_and_timeout_are_blocked_and_redacted(self):
         h = ConsumerInstallationHarness(ROOT, report_root=self.base / "report")
         self.addCleanup(h.cleanup)
-        for error in (FileNotFoundError("missing adapter"), subprocess.TimeoutExpired(["gh"], 1)):
-            with self.subTest(error=type(error)), patch("catalog.consumer_installation.subprocess.run", side_effect=error):
-                self.assertEqual(h.run_command(ROOT, "gh", "--version")["status"], "blocked")
+        with patch("catalog.consumer_installation.subprocess.Popen", side_effect=FileNotFoundError("missing adapter")):
+            self.assertEqual(h.run_command(ROOT, "gh", "--version")["status"], "blocked")
         with patch.dict(os.environ, {"GH_TOKEN": "synthetic-credential-canary"}):
             self.assertNotIn("synthetic-credential-canary", h.sanitize("synthetic-credential-canary " + str(h.fixture_root)))
+
+    def test_nested_validator_details_are_redacted_in_report_and_bundle(self):
+        from aether_validator import Diagnostic
+        h = self.harness()
+        secret = "synthetic-diagnostic-secret"
+        private = str(h.fixture_root / "private-source")
+        external_private = "/home/synthetic-other-user/private-document.md"
+        diagnostic = Diagnostic(rule_id="SYNTHETIC", severity="error", message=private + secret,
+                                guidance="repair " + external_private, file=private,
+                                context={"nested": [secret, private, external_private]})
+        with patch.dict(os.environ, {"GH_TOKEN": secret}):
+            report = self.run_harness(h, [diagnostic])
+        for receipt in (h.report_path, *h.bundle_root.glob("*.json")):
+            text = receipt.read_text()
+            self.assertNotIn(secret, text, receipt.name)
+            self.assertNotIn(str(h.fixture_root), text, receipt.name)
+            self.assertNotIn(external_private, text, receipt.name)
+        self.assertEqual(json.loads(h.report_path.read_text()), report)
+
+    @unittest.skipUnless(os.name == "posix", "Qualification uses POSIX process groups")
+    def test_actual_deadline_stops_descendants_and_bounds_output(self):
+        h = ConsumerInstallationHarness(ROOT, report_root=self.base / "report", timeout=1)
+        self.addCleanup(h.cleanup)
+        marker = self.base / "escaped-child"
+        child = "import time; from pathlib import Path; time.sleep(1.5); Path(" + repr(str(marker)) + ").touch()"
+        parent = "import subprocess,sys,time; subprocess.Popen([sys.executable,'-c'," + repr(child) + "]); time.sleep(20)"
+        started = time.monotonic()
+        result = h.run_command(ROOT, sys.executable, "-c", parent)
+        self.assertEqual(result["status"], "blocked")
+        self.assertLess(time.monotonic() - started, 3)
+        time.sleep(0.7)
+        self.assertFalse(marker.exists(), "Descendant must be stopped before it can mutate the fixture")
+        output = h.run_command(ROOT, sys.executable, "-c", "import sys;sys.stdout.write('x'*200000);sys.stderr.write('y'*200000)")
+        self.assertEqual(output["status"], "pass")
+        self.assertTrue(output["output_truncated"])
+        self.assertEqual(len(output["stdout"]), 64000)
+        self.assertEqual(len(output["stderr"]), 64000)
 
     def test_existing_receipt_is_never_overwritten(self):
         h = self.harness()

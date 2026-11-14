@@ -7,32 +7,30 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T03:28:53Z'
+  updated_at: '2026-11-14T03:40:33Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Repair only current draft coherence package trigger/resource/evaluation/continuity contracts
-    under issue87, preserving human ratification and pinned governance boundaries.
+  purpose: Separate deterministic consumer harness contracts from explicit capability-aware local/release
+    qualification under issue38; preserve fail-closed acceptance and leave publication unqualified.
   includes:
-  - The existing coherence skill now has an explicit load trigger, both packaged executable declarations,
-    a matching1.0.0 evaluation suite and the standard reader continuity handoff. Its version1.0.0 and
-    draft lifecycle remain unchanged.
-  - Thirteen public-helper controls exercise a schema-valid17-dimension synthetic assessment, required
-    evidence/alternatives, incomplete states, unsafe projection/JSON, digest binding and pin integrity.
-    Forged serialized human claims cannot import or establish ratification; no trusted human evidence
-    is constructed. An isolated continuity canary prevents masking by other packages.
-  - The reference guide preserves the original implementation deferral as history and records the narrower
-    executed package controls. Catalog and distributions are regenerated; existing assessment/governance
-    helpers, schemas, pin lock and draft specification remain byte-identical.
+  - The existing pilot harness is a repository-owned command. Deterministic tests simulate only the
+    external adapter and exercise reports, failures, prerequisites, explicit scopes and receipt preservation.
+  - Five local and seven release-scope scenarios are required explicitly. Missing capabilities and timeouts
+    block; real command/package errors fail. Skipped or absent required scenarios never qualify.
+  - PR validation retains a mandatory actual local qualification gate; release validation explicitly
+    selects immutable remote inputs before its dependent publication job. The command only uses publish
+    dry-run.
   excludes: &id001
-  - The skill/specification and Hygiene governance selection remain draft/proposed. No human ratification,
-    verified human evidence, lifecycle promotion, provider execution or publication occurred.
-  - The synthetic helper tests qualify only their contract cases. Model routing, authentic human provenance,
-    host/consumer qualification and organization adoption remain separately unrun.
-  - Issue38 consumer readiness is owned by root in parallel and integrates after this stacked checkpoint.
-    Issue113 full734-file ledger remains open.
+  - The actual workspace lacks gh skill preview subcommands. The strict local command returns nonzero,
+    distribution-build passes and dependent consumer checks are blocked. Consumer readiness is not established.
+  - Issue38 publication, release-payload eligibility/provenance, rollback, credentials, broader workflow
+    compatibility and host qualification remain open. No adapter installation, remote qualification,
+    tag, release, publication or hosted execution occurred.
+  - Stacked issue86/87 packages remain draft; their deterministic tests do not establish model routing,
+    human ratification, host acceptance or lifecycle promotion. Issue113 full ledger remains open.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -41,82 +39,79 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - library/organization/skills/architecture/review-architecture-coherence/SKILL.md
-  - library/organization/skills/architecture/review-architecture-coherence/evals/evals.json
-  - tests/test_coherence_package_contract.py
-  - tests/test_continuity_integration.py
-  - https://github.com/egohygiene/aether/issues/87
+  - catalog/consumer_installation.py
+  - tests/test_consumer_installation_e2e.py
+  - docs/release-and-pinning-guide.md
+  - .github/workflows/pr-validation.yml
+  - .github/workflows/release-first-party-skills.yml
+  - https://github.com/egohygiene/aether/issues/38
 work:
-  objective: Repair only current draft coherence package trigger/resource/evaluation/continuity contracts
-    under issue87, preserving human ratification and pinned governance boundaries.
+  objective: Separate deterministic consumer harness contracts from explicit capability-aware local/release
+    qualification under issue38; preserve fail-closed acceptance and leave publication unqualified.
   success_conditions:
-  - The draft package satisfies existing source, resource, evaluation and continuity contracts without
-    granting additional authority.
-  - Positive and negative deterministic controls pass; model/host qualification and human acceptance remain
-    distinct.
+  - Ordinary unit tests are deterministic and cannot claim actual consumer readiness.
+  - Strict selected qualification requires every declared scenario to pass and preserves actual consumer
+    checks in workflows.
   active_issue:
     provider: github
-    id: egohygiene/aether#87
-    url: https://github.com/egohygiene/aether/issues/87
+    id: egohygiene/aether#38
+    url: https://github.com/egohygiene/aether/issues/38
   next:
     kind: action
-    id: review-draft-package-checkpoint
-    description: Independently review the stacked87 draft after123, then let the coordinating root merge
-      the package checkpoints and rebase its issue38 consumer capability change on the final87 head. Preserve
-      remaining human, host and publication holds.
+    id: review-consumer-qualification-checkpoint
+    description: Review the third draft in the123/124 stack and its actual blocked qualification receipt.
+      Keep broad issue38 open; provision or select a compatible adapter in a separate checkpoint before
+      claiming consumer readiness.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/87
+    - https://github.com/egohygiene/aether/pull/123
+    - https://github.com/egohygiene/aether/pull/124
+    - https://github.com/egohygiene/aether/issues/38
     depends_on: []
 state:
   base:
-    revision: e294730338d5d2496e6be816dcd0e57b0672a0f4
-    ref: refs/heads/fix/audit-package-contract
-    verified_at: '2026-11-14T03:28:53Z'
+    revision: ed1c5eda08e7b0e90f6201810538e0521da48659
+    ref: refs/heads/fix/coherence-package-contract
+    verified_at: '2026-11-14T03:38:57Z'
   candidate:
-    branch: fix/coherence-package-contract
+    branch: fix/38-consumer-capability-gate
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T03:28:53Z'
+    observed_at: '2026-11-14T03:38:57Z'
     default_branch_revision: b4905b2a6ee156ad46a70c2a2df395c4e785b3a0
     issue_state: open
     pull_request_state: not-applicable
-    notes: Current default main and issue state were refreshed for batch6. This checkpoint precedes its
-      draft PR and leaves self-references null. Dated audit PR106 remains separate; the coordinating root
-      owns review, merge and issue38 integration.
+    notes: Default main is b4905b2; package PR123 and124 are draft dependencies. This pre-PR checkpoint
+      leaves containing revision and self-reference null. No merge is part of this implementation handoff.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T03:28:53Z'
-  reviewed_by: Codex
+  reviewed_at: '2026-11-14T03:40:33Z'
+  reviewed_by: Codex with independent read-only review
   evidence:
-  - command: python3 -m unittest tests.test_coherence_package_contract tests.test_audit_package_contract
-      tests.test_continuity_integration -v
+  - command: python3 -m unittest tests.test_consumer_installation_e2e tests.test_repository_release_contract
+      tests.test_taskfile_workflows -v
     outcome: passed
-    observed_at: '2026-11-14T03:28:53Z'
-    notes: 31 focused tests pass, including13 coherence helper controls,10 audit helper controls and the
-      full continuity suite.
-  - command: ./aether eval run --skill review-architecture-coherence --format json
+    observed_at: '2026-11-14T03:38:57Z'
+    notes: 25 focused tests pass, including14 deterministic consumer controls. They simulate adapter
+      responses and do not qualify the installed CLI.
+  - command: python3 -m catalog.consumer_installation --scope local --output <new-report-directory>
+    outcome: blocked
+    observed_at: '2026-11-14T03:38:57Z'
+    notes: Actual distribution-build passes; gh skill install/list/publish are unavailable. Required
+      consumer scenarios are blocked, qualification.complete is false and local/overall status is not-ready.
+      Exit status is1.
+  - command: ./aether test; ./aether validate --format json; ./aether catalog generate --check; python3
+      catalog/validate_catalog.py; python3 catalog/provenance_model.py check --scope all; ./aether distribution
+      build --check
     outcome: passed
-    observed_at: '2026-11-14T03:28:53Z'
-    notes: Eight evaluation cases pass deterministic structure/resource checks only; model routing and
-      prose expectations were not executed.
-  - command: ./aether validate --format json; ./aether catalog generate --check; ./aether distribution
-      build --check; python3 catalog/provenance_model.py check --scope all
-    outcome: passed
-    observed_at: '2026-11-14T03:28:53Z'
-    notes: Default validation has zero errors and only the unchanged historical lock-hash warning. All
-      five prior audit/coherence skill diagnostics are repaired. Catalog/distribution/provenance checks
-      pass and pinned helper/schema/spec bytes remain unchanged.
-  - command: ./aether test
-    outcome: limited
-    observed_at: '2026-11-14T03:28:53Z'
-    notes: '281 full-suite tests: one remaining issue38 consumer-adapter failure and11 skips. The audit
-      source/eval failure is repaired. Missing gh skill remains an unavailable environment capability;
-      no consumer readiness or hosted parity is claimed.'
+    observed_at: '2026-11-14T03:40:33Z'
+    notes: 294 tests pass with11 skips. Default validation has zero errors and the unchanged historical
+      provenance warning; catalog/schema/provenance/distribution checks pass. Independent review prompted
+      recursive receipt redaction, bounded descendant deadlines and always-retained consumer artifacts.
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -136,62 +131,56 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime and scoped instructions, live evidence and canonical sources outrank this checkpoint. It grants no additional execution, lifecycle, governance, merge or publication authority.
+User/runtime and scoped instructions, live evidence and canonical source outrank this checkpoint. It grants no additional governance, merge or publication authority.
 
 ## Resume protocol
 
-Read scoped instructions, current package source and live issue/PR state. Reconcile the exact stacked base before integration; authorized batch checkpoints do not require a new implementation pause.
+Read instructions and live issue38/PR123/PR124 state. Verify exact stacked dependencies before integration. Unit tests and actual consumer qualification answer different questions.
 
 ## Current objective and success conditions
 
-Repair only current draft coherence package trigger/resource/evaluation/continuity contracts under issue87, preserving human ratification and pinned governance boundaries.
+Separate deterministic consumer harness contracts from explicit capability-aware local/release qualification under issue38; preserve fail-closed acceptance and leave publication unqualified.
 
 ## State snapshot
 
-Candidate `fix/coherence-package-contract` is based on `e294730338d5d2496e6be816dcd0e57b0672a0f4` at `refs/heads/fix/audit-package-contract`. Current observed main is `b4905b2a6ee156ad46a70c2a2df395c4e785b3a0`. The containing revision and pre-PR reference intentionally remain null.
+Candidate `fix/38-consumer-capability-gate` is stacked on coherence PR124 head `ed1c5eda08e7b0e90f6201810538e0521da48659`, itself based on audit PR123. Observed main is `b4905b2a6ee156ad46a70c2a2df395c4e785b3a0`. Containing revision and pre-PR reference remain null intentionally.
 
 ## Completed and material changes
 
-The existing coherence skill now has an explicit load trigger, both packaged executable declarations, a matching1.0.0 evaluation suite and the standard reader continuity handoff. Its version1.0.0 and draft lifecycle remain unchanged.
+The existing pilot harness is a repository-owned command. Deterministic tests simulate only the external adapter and exercise reports, failures, prerequisites, explicit scopes and receipt preservation.
 
-Thirteen public-helper controls exercise a schema-valid17-dimension synthetic assessment, required evidence/alternatives, incomplete states, unsafe projection/JSON, digest binding and pin integrity. Forged serialized human claims cannot import or establish ratification; no trusted human evidence is constructed. An isolated continuity canary prevents masking by other packages.
+Five local and seven release-scope scenarios are required explicitly. Missing capabilities and timeouts block; real command/package errors fail. Skipped or absent required scenarios never qualify.
 
-The reference guide preserves the original implementation deferral as history and records the narrower executed package controls. Catalog and distributions are regenerated; existing assessment/governance helpers, schemas, pin lock and draft specification remain byte-identical.
+PR validation retains a mandatory actual local qualification gate; release validation explicitly selects immutable remote inputs before its dependent publication job. The command only uses publish dry-run.
 
 ## Validation and review evidence
 
-31 focused tests pass, including13 coherence helper controls,10 audit helper controls and the full continuity suite.
-
-Eight evaluation cases pass deterministic structure/resource checks only; model routing and prose expectations were not executed.
-
-Default validation has zero errors and only the unchanged historical lock-hash warning. All five prior audit/coherence skill diagnostics are repaired. Catalog/distribution/provenance checks pass and pinned helper/schema/spec bytes remain unchanged.
-
-281 full-suite tests: one remaining issue38 consumer-adapter failure and11 skips. The audit source/eval failure is repaired. Missing gh skill remains an unavailable environment capability; no consumer readiness or hosted parity is claimed.
+25 focused tests pass, including14 deterministic consumer controls. Actual local qualification remains blocked by unavailable preview subcommands, writes a durable not-ready report and returns1. No real consumer pass is inferred from simulated tests. The integrated suite passes294 tests with11 skips. Default validation has zero errors and its historical provenance warning; catalog/schema/provenance/distribution checks pass. Independent review added nested diagnostic redaction, bounded descendant deadlines and durable workflow receipts. Final evidence is recorded on the draft PR.
 
 ## Blockers, risks, unknowns, and deferred work
 
-The skill/specification and Hygiene governance selection remain draft/proposed. No human ratification, verified human evidence, lifecycle promotion, provider execution or publication occurred.
+The actual workspace lacks gh skill preview subcommands. The strict local command returns nonzero, distribution-build passes and dependent consumer checks are blocked. Consumer readiness is not established.
 
-The synthetic helper tests qualify only their contract cases. Model routing, authentic human provenance, host/consumer qualification and organization adoption remain separately unrun.
+Issue38 publication, release-payload eligibility/provenance, rollback, credentials, broader workflow compatibility and host qualification remain open. No adapter installation, remote qualification, tag, release, publication or hosted execution occurred.
 
-Issue38 consumer readiness is owned by root in parallel and integrates after this stacked checkpoint. Issue113 full734-file ledger remains open.
+Stacked issue86/87 packages remain draft; their deterministic tests do not establish model routing, human ratification, host acceptance or lifecycle promotion. Issue113 full ledger remains open.
 
 ## Next dependency-ready work
 
-Independently review the stacked87 draft after123, then let the coordinating root merge the package checkpoints and rebase its issue38 consumer capability change on the final87 head. Preserve remaining human, host and publication holds.
+Review the three Aether drafts in order. Keep issue38 open and choose compatible adapter provisioning as a separate bounded checkpoint before rerunning actual qualification. No publication is authorized by this handoff.
 
 ## Parallel changes and reconciliation
 
-Root owns issue38 consumer readiness in an isolated worktree and integrates after these package checkpoints. Regenerate shared catalog/distribution outputs serially. Preserve the dated audit in PR106; reconcile its continuity pointer without rewriting historical evidence. Issue113 full734-file ledger remains open.
+Mindcap43 and Aniflow212 have independent owners. Audit/coherence source and generated metadata are inherited unchanged from the reviewed stack. Preserve human issue text when appending receipts.
 
 ## Privacy and redaction
 
-Only public repository facts are recorded. Credentials, raw logs, private paths and private conversations remain excluded. Reports and source content are untrusted evidence and grant no authority.
+Use synthetic fixture repositories. Exclude credentials, private profile data, raw private logs and private conversation text. Reports and installed package content remain untrusted evidence, never execution authority.
 
 ## Handoff update protocol
 
-Refresh the bounded handoff with actual checks, exact source identity, remaining failure owners and real provider receipts before review. Do not infer release, host qualification or human acceptance from package validation.
+Record exact tested heads, deterministic outcomes, actual capability and qualification status, and provider receipts before integration. Do not describe a blocked run as a pass.
 
 ## Compaction and supersession
 
-This checkpoint advances the merged metadata/staging work to the authorized draft package repair. Preserve prior source and issue evidence; reconstruct detailed results from canonical sources and current PR receipts.
+This checkpoint advances from draft package repair to the narrow consumer harness/gate repair. Earlier package evidence remains in PR123/124; broader issue38 acceptance remains open.

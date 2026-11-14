@@ -16,7 +16,7 @@
 
 | Workflow | Trigger | Permissions | Purpose |
 | --- | --- | --- | --- |
-| `.github/workflows/pr-validation.yml` | `pull_request` | `contents: read` | Deterministic PR validation only; no publish credentials |
+| `.github/workflows/pr-validation.yml` | `pull_request` | `contents: read` | Deterministic tests and explicit local consumer qualification; no publish credentials |
 | `.github/workflows/release-first-party-skills.yml` | Manual dispatch from the default branch with an existing `release_tag` | read-only validation job, `contents: write` only in gated publish job | Explicit immutable tagged publication |
 
 The publication job targets the `first-party-skill-release` environment. Configure
@@ -35,18 +35,65 @@ The pull-request workflow runs:
 python3 catalog/validate_catalog.py
 ./aether eval run --mode "deterministic" --format "text"
 ./aether test
-gh skill publish "dist" --dry-run
+python3 -m catalog.consumer_installation --scope local \
+  --output ".artifacts/pr-validation/consumer-installation"
 ```
 
 It also rebuilds `dist/` twice and diffs the results to enforce reproducibility.
 Failure uploads contain only command logs and diffs from `.artifacts/`.
+
+## Explicit consumer qualification
+
+`./aether test` uses a simulated external adapter to exercise harness status,
+reporting and failure controls deterministically. Passing those tests does not
+qualify a real consumer. Run the separate command above with an unused output
+directory to test the actual installed GitHub CLI. It builds a temporary
+distribution, installs three pilot packages into disposable Git repositories,
+validates those packages, runs `gh skill publish --dry-run`, and checks manual
+cleanup preserves an unrelated fixture skill. It never publishes.
+
+The report is `consumer-installation-readiness.v1.json` with a diagnostic bundle
+when overall readiness is incomplete. Both validation workflows retain the
+sanitized consumer receipt on success or failure. The command requires a POSIX
+workspace so its per-command deadline can stop the entire process group; stdout
+and stderr are drained with bounded buffers.
+Missing commands, unsupported preview subcommands or command timeouts are
+`blocked`; actual build/install/list/package-validation failures remain failures.
+Either prevents qualification. Exit codes are 0 for all required selected
+scenarios passing, 1 for incomplete qualification and 2 for invalid arguments or
+an unavailable output directory. Existing receipts are never overwritten.
+
+Local scope requires all five local scenarios. It leaves remote scenarios
+explicitly skipped and `overall_status: not-ready`, even if `local_status: ready`.
+Use `qualification.complete` together with its `scope` and required scenario list
+to assess the selected gate. No skipped or absent required scenario counts as a
+pass. Ambient `AETHER_E2E_REMOTE_*` variables cannot select remote work.
+
+For the additional remote install/update checks, explicitly select release scope
+and a reviewed existing immutable tag plus its full commit:
+
+```sh
+python3 -m catalog.consumer_installation --scope release \
+  --remote-repository "egohygiene/aether" --remote-tag "v1.2.3" \
+  --remote-commit "<full 40-character commit>" \
+  --output ".artifacts/release-consumer-qualification"
+```
+
+That scope installs by tag and commit and checks pinned updates preserve a local
+modification in disposable repositories. It requires every local and remote
+scenario; the release validation job runs this gate explicitly before its
+publication dependency. It only qualifies the named pilot scenarios. Release
+provenance, payload eligibility, rollback, credentials, host/model compatibility
+and actual publication remain separate acceptance work under issue38. This
+checkpoint does not provision a compatible `gh skill` adapter or establish that
+the broader release workflow can run successfully.
 
 ## Release validation and publication flow
 
 1. Create the exact immutable tag from reviewed default-branch history, then
    manually dispatch the workflow from the default branch with `release_tag`.
 2. Check out the tagged commit in a clean runner.
-3. Rebuild `dist/`, rerun deterministic validation/tests/evals, and verify two-build reproducibility.
+3. Rebuild `dist/`, rerun deterministic validation/tests/evals and the explicit release-scope consumer gate, and verify two-build reproducibility.
 4. Generate release metadata with:
 
    ```sh

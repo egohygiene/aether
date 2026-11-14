@@ -6,10 +6,13 @@ import argparse
 import json
 import os
 import re
+import selectors
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
+import time
 from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -95,27 +98,76 @@ class ConsumerInstallationHarness:
             secret = os.environ.get(key)
             if secret:
                 value = value.replace(secret, "<REDACTED>")
+        # Validator diagnostics may echo an unsafe link outside our fixture.
+        # Avoid retaining another user's absolute source path in public receipts.
+        value = re.sub(
+            r"(?<![\w:/])/(?:home|Users|private|tmp|var/tmp|workspace|workspaces|root|mnt|media|run/user)"
+            r"(?:/[^\s\"'<>`),;\]}]+)*", "<PRIVATE_PATH>", value,
+        )
+        value = re.sub(r"(?<![\w])[A-Za-z]:[\\/][^\s\"'<>`),;\]}]+", "<PRIVATE_PATH>", value)
         return value
 
     def run_command(self, cwd: Path, *args: str) -> dict[str, Any]:
+        result = {"command": self.sanitize(" ".join(args)), "cwd": self.sanitize(cwd.as_posix()),
+                  "exit_code": None, "stdout": "", "stderr": "", "status": "blocked"}
+        # Qualification targets the POSIX GitHub/cloud workspace. A private
+        # process group lets the deadline stop git/gh descendants as well.
+        if os.name != "posix":
+            result["stderr"] = "Qualification requires POSIX process-group support"
+            return result
+        process = None
+        finished = False
+        buffers = {"stdout": bytearray(), "stderr": bytearray()}
+        truncated = False
+        deadline = time.monotonic() + self.timeout
         try:
-            result = subprocess.run(
-                list(args), cwd=cwd, capture_output=True, text=True, timeout=self.timeout,
-            )
+            process = subprocess.Popen(list(args), cwd=cwd, stdout=subprocess.PIPE,
+                                       stderr=subprocess.PIPE, start_new_session=True)
+            with selectors.DefaultSelector() as selector:
+                selector.register(process.stdout, selectors.EVENT_READ, "stdout")
+                selector.register(process.stderr, selectors.EVENT_READ, "stderr")
+                while selector.get_map():
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        raise subprocess.TimeoutExpired(list(args), self.timeout)
+                    for key, _events in selector.select(min(remaining, 0.1)):
+                        chunk = os.read(key.fileobj.fileno(), 65536)
+                        if not chunk:
+                            selector.unregister(key.fileobj)
+                            continue
+                        target = buffers[key.data]
+                        available = max(0, 64000 - len(target))
+                        truncated |= len(chunk) > available
+                        target.extend(chunk[:available])
+                code = process.wait(timeout=max(0.001, deadline - time.monotonic()))
+                finished = True
+                result.update(exit_code=code, status="pass" if code == 0 else "fail")
         except (OSError, subprocess.TimeoutExpired) as error:
-            return {"command": self.sanitize(" ".join(args)),
-                    "cwd": self.sanitize(cwd.as_posix()), "exit_code": None,
-                    "stdout": "", "stderr": self.sanitize(str(error))[:64000],
-                    "status": "blocked"}
-        return {
-            "command": self.sanitize(" ".join(args)),
-            "cwd": self.sanitize(cwd.as_posix()),
-            "exit_code": result.returncode,
-            "stdout": self.sanitize(result.stdout)[:64000],
-            "stderr": self.sanitize(result.stderr)[:64000],
-            "output_truncated": len(result.stdout) > 64000 or len(result.stderr) > 64000,
-            "status": "pass" if result.returncode == 0 else "fail",
-        }
+            result["stderr"] = self.sanitize(str(error))[:64000]
+        finally:
+            if process is not None:
+                if not finished:
+                    try:
+                        os.killpg(process.pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+                process.stdout.close()
+                process.stderr.close()
+                process.wait(timeout=1)
+        for stream, data in buffers.items():
+            output = self.sanitize(data.decode("utf-8", errors="replace"))
+            result[stream] = output + ("\n" + result[stream] if result[stream] else "")
+        result["output_truncated"] = truncated
+        return result
+
+    def _sanitize_report(self, value: Any) -> Any:
+        if isinstance(value, str):
+            return self.sanitize(value)
+        if isinstance(value, dict):
+            return {self.sanitize(key): self._sanitize_report(item) for key, item in value.items()}
+        if isinstance(value, (list, tuple)):
+            return [self._sanitize_report(item) for item in value]
+        return value
 
     def _require(self, scenario: dict, *, tools: tuple = (), dependencies: tuple = ()) -> bool:
         missing = [name for name in tools if not self.capabilities.get(name, {}).get("available")]
@@ -208,6 +260,7 @@ class ConsumerInstallationHarness:
             required = LOCAL_REQUIRED if self.scope == "local" else RELEASE_REQUIRED
             report["qualification"] = {"scope": self.scope, "required_scenarios": list(required),
                                        "complete": complete(required)}
+            report = self._sanitize_report(report)
             try:
                 self._write_report(report)
                 if report["overall_status"] != "ready":
@@ -609,7 +662,7 @@ class ConsumerInstallationHarness:
             json.dumps(report["tool_versions"], indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
         )
-        for scenario_id, scenario in self.scenarios.items():
+        for scenario_id, scenario in report["scenarios"].items():
             (self.bundle_root / f"{scenario_id}.json").write_text(
                 json.dumps(scenario, indent=2, sort_keys=True) + "\n",
                 encoding="utf-8",
