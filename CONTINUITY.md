@@ -7,33 +7,35 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T22:15:09Z'
+  updated_at: '2026-11-14T23:13:35Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Reject unrecorded quarantine intake and bind real staging changes to immutable preimages, retained
-    disposition evidence and designated-account approval under ADR-0005.
+  purpose: Compose one roadmap-impact completion module and portable receipt through every canonical agent
+    without changing role tools or human strategic authority.
   includes:
-  - Strict local intake validation covers nested and untracked supporting files while grandfathering exact
-    bytes in the retained 734-file ledger. The 16 historical flat and hook disposition records retain
-    their separate meanings.
-  - The repository-local standalone diff guard verifies actual full base/head Git objects, base-admitted
-    approval payloads, exact modes/blobs, retained canonical/rejection bytes and provider account statements
-    bound to immutable review commits. Pending attestation completion cannot authorize removal in the
-    same diff.
-  - PR scheduling executes the controller extracted from the immutable base with read permissions and
-    no persisted Git credentials; initial controller admission accepts no staging changes. Proposed ADR-0010
-    records this mechanism without ratifying policy.
+  - A draft reconcile-roadmap-impact skill composes existing roadmap authoring/specification and continuity.
+    Every handoff emits updated, proposed, not-affected or blocked with a reason; organization impact
+    stays an inferred owner-directed signal.
+  - All10 canonical agents declare the shared skill/spec dependency. Generated GitHub, Claude, OpenCode,
+    Codex/repository and manual Zencoder projections contain one managed module; read-only and other tool
+    ceilings remain unchanged. Consumer prose and singular/idempotent replacement are tested.
+  - A versioned closed receipt schema and byte-identical portable projection, safe read-only validator,10
+    deterministic synthetic cases and nine adversarial test methods qualify structure/role/path/privacy
+    refusals. AET-Q06 gains factual partial-source evidence while remaining planned and incomplete.
+  - The retained734-file/222-unit ledger refreshes nine canonical-owner comparisons at immutable implementation0030c546498556b2a8febb4ef50958ae79977d50.
+    All staging blobs, historical removal records and removal authority remain unchanged.
   excludes: &id001
-  - No staged source was removed or executed, and no human approval comment was created. Synthetic provider
-    fixtures do not prove a real human operation or live removal authorization.
-  - External-planned removal stays blocked until its origin adapter is separately qualified; an external
-    catalog entry cannot override accepted ADR-0005. Branch protection remains organization issue22.
-  - Existing issue38 consumer-installation qualification was not-ready in the prior hosted run. The 11
-    existing optional/native skips remain explicit. New hosted controller bootstrap and integration evidence
-    must be inspected after push.
+  - The draft module is static guidance and does not install/enforce a host hook. Deterministic goldens
+    check declared structure/assertions, not model routing, strategic judgment or actual host discovery.
+  - Receipt validation authenticates no human review or evidence. ADR-0011 remains proposed/null approval;
+    priority, horizon and optionality need actual human governance. Private receipts cannot emit public
+    organization signals.
+  - Existing38 consumer installation remains not-ready and release scheduling remains failed in prior
+    hosted evidence. No release, deployment, policy ratification, source-rights clearance, staging execution/removal
+    or fleet adoption occurs.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -43,83 +45,91 @@ scope:
   canonical_sources:
   - AGENTS.md
   - ROADMAP.md
-  - DECISIONS.md
-  - catalog/staging_guard.py
-  - catalog/staging
-  - docs/staging-intake-and-removal.md
-  - docs/decisions/ADR-0010-immutable-staging-review-controls.md
-  - tests/test_staging_guard.py
-  - https://github.com/egohygiene/aether/issues/111
+  - library/organization/agents/AGENT-CONTRACT.md
+  - library/organization/projections/templates/roadmap-impact.AGENTS.md
+  - library/organization/skills/architecture/reconcile-roadmap-impact/SKILL.md
+  - catalog/schemas/aether.roadmap-impact.v1.schema.json
+  - docs/evidence/2026-11-14-roadmap-impact.json
+  - docs/evidence/2026-11-14-roadmap-impact-qualification.json
+  - docs/decisions/ADR-0011-shared-roadmap-impact-handoff.md
+  - https://github.com/egohygiene/aether/issues/88
 work:
-  objective: Reject unrecorded quarantine intake and bind real staging changes to immutable preimages,
-    retained disposition evidence and designated-account approval under ADR-0005.
+  objective: Compose one roadmap-impact completion module and portable receipt through every canonical
+    agent without changing role tools or human strategic authority.
   success_conditions:
-  - Recorded intake covers every new or changed nested file without requiring immediate legacy evacuation.
-  - Changed source, forged or stale approval, head-only approval, changed destinations and unsupported
-    dispositions fail closed; the separate synthetic plan/attestation/removal lifecycle passes.
-  - CI uses actual base/head event inputs and the base-admitted controller; source integration and human
-    ratification remain distinct.
+  - Every canonical agent/provider handoff composes the same module exactly once; a no-change reason creates
+    no artificial edit and read-only roles remain nonmutating.
+  - Updated receipts require current input and exact canonical path; missing review references, source
+    context, role ceilings and private public-export constraints fail closed without granting authority.
+  - Roadmap partial evidence, real stable IDs, owner-directed inferred signals and separate source/release/human
+    acceptance remain explicit.
   active_issue:
     provider: github
-    id: egohygiene/aether#111
-    url: https://github.com/egohygiene/aether/issues/111
+    id: egohygiene/aether#88
+    url: https://github.com/egohygiene/aether/issues/88
   next:
     kind: issue
-    id: egohygiene/aether#38
-    description: Inspect this PR hosted bootstrap and existing consumer qualification separately; retain
-      actual not-ready evidence, then select a bounded source checkpoint from issue105.
-    readiness: blocked
+    id: egohygiene/aether#92
+    description: After reviewing this source checkpoint, complete bounded issue sizing and interruption/resume
+      guidance using existing continuity/issue-authoring foundations; preserve actual host capability
+      and source/release limits.
+    readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/38
+    - https://github.com/egohygiene/aether/issues/92
     - https://github.com/egohygiene/aether/issues/105
     depends_on: []
 state:
   base:
-    revision: 23bbfe29fa4b1905fd4c44ec5b41a79cfe683033
+    revision: 28983e522dc358d82ba7ca0749c4a4c796aa142b
     ref: refs/heads/main
-    verified_at: '2026-11-14T22:15:09Z'
+    verified_at: '2026-11-14T23:13:35Z'
   candidate:
-    branch: codex/staging-intake-and-removal
+    branch: codex/roadmap-impact-reconciliation
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T22:15:09Z'
-    default_branch_revision: 23bbfe29fa4b1905fd4c44ec5b41a79cfe683033
+    observed_at: '2026-11-14T23:13:35Z'
+    default_branch_revision: 28983e522dc358d82ba7ca0749c4a4c796aa142b
     issue_state: open
     pull_request_state: not-applicable
-    notes: Observed main23bbfe2 includes merged residual ledger PR128. No PR yet exists for this local
-      candidate. Its containing revision remains null deliberately; recheck the actual PR and source before
-      integration.
+    notes: Observed main28983e5 includes merged129 and111 is closed.88 remains open; this local candidate
+      contains immutable source0030c54 plus later ledger/domain evidence and continuity. No PR yet exists
+      for this candidate. Hygiene60/59 and Holon109 source checkpoints have separately closed after actual
+      hosted qualification.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T22:15:09Z'
+  reviewed_at: '2026-11-14T23:13:35Z'
   reviewed_by: Codex
   evidence:
-  - command: python -m unittest tests.test_staging_guard -v
+  - command: ./aether test
     outcome: passed
-    notes: 13 synthetic Git/provider controls pass, including the complete separate plan/attestation/removal
-      lifecycle, same-diff refusal, account rename, forged/quoted statements, special files and poisoned
-      proposed controllers.
-    observed_at: '2026-11-14T22:15:09Z'
-  - command: python -m unittest discover -s tests -p test_*.py -v
+    notes: 334 full tests pass,11 existing optional/native skips. No new skip or gate suppression.
+    observed_at: '2026-11-14T23:13:35Z'
+  - command: python -m unittest tests.test_roadmap_impact tests.test_provider_projections tests.test_continuity_integration
+      -q
     outcome: passed
-    notes: 325 tests pass with 11 existing optional/native skips.
-    observed_at: '2026-11-14T22:15:09Z'
-  - command: ./aether validate --staging --strict-staging --format json; catalog, ledger, links, schema
-      and distribution checks
+    notes: 34 focused tests pass, including actual generated outputs, role tool ceilings, shared module
+      idempotency/duplicates, receipt branch/path/intent-reference/privacy controls and CLI refusal.
+    observed_at: '2026-11-14T23:13:35Z'
+  - command: ./aether eval run --skill reconcile-roadmap-impact --mode deterministic --format json
     outcome: passed
-    notes: Intake/strict-staging and links report no diagnostics. Default validation preserves one historical
-      provenance warning. Workflow shell syntax and diff whitespace checks pass.
-    observed_at: '2026-11-14T22:15:09Z'
-  - command: Selected Hygiene ADR policy v1.2.0 schema and owner decision reference check
+    notes: 10 cases run and pass with zero skips/suite errors; scope is deterministic structure and declared
+      assertions, not model/host behavior.
+    observed_at: '2026-11-14T23:13:35Z'
+  - command: Catalog, provenance, schema/fixture, distribution/check, source/default/links/strict-staging
+      and immutable ledger checks
     outcome: passed
-    notes: Exact six-file immutable owner sources and digests verified. Proposed ADR-0010 front matter
-      passes the selected schema, formats and reference validator; no full native source admission or
-      human disposition is implied.
-    observed_at: '2026-11-14T22:15:09Z'
+    notes: 39 skills/35 specs/10 agents; catalog/schema/portable mirror/provenance and generated outputs
+      pass. Strict/links have no diagnostics; default retains one historical provenance warning. All734
+      staging files/6,791,350 bytes remain unchanged.
+    observed_at: '2026-11-14T23:13:35Z'
+  - command: Pinned Hygiene1.2 ADR schema/FormatChecker and decision owner check
+    outcome: passed
+    notes: Proposed ADR-0011 metadata passes exact selected owner validation; no human acceptance is supplied.
+    observed_at: '2026-11-14T23:13:35Z'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -147,51 +157,55 @@ Read AGENTS, the canonical sources below and verified live issue/PR state before
 
 ## Current objective and success conditions
 
-Reject unrecorded quarantine intake and bind real staging changes to immutable preimages, retained disposition evidence and designated-account approval under ADR-0005.
+Compose one roadmap-impact completion module and portable receipt through every canonical agent without changing role tools or human strategic authority.
 
-- Recorded intake covers every new or changed nested file without requiring immediate legacy evacuation.
-- Changed source, forged or stale approval, head-only approval, changed destinations and unsupported dispositions fail closed; the separate synthetic plan/attestation/removal lifecycle passes.
-- CI uses actual base/head event inputs and the base-admitted controller; source integration and human ratification remain distinct.
+- Every canonical agent/provider handoff composes the same module exactly once; a no-change reason creates no artificial edit and read-only roles remain nonmutating.
+- Updated receipts require current input and exact canonical path; missing review references, source context, role ceilings and private public-export constraints fail closed without granting authority.
+- Roadmap partial evidence, real stable IDs, owner-directed inferred signals and separate source/release/human acceptance remain explicit.
 
 ## State snapshot
 
-Observed default source `23bbfe29fa4b1905fd4c44ec5b41a79cfe683033`. Candidate `codex/staging-intake-and-removal` is a review checkpoint; its containing revision remains null intentionally.
+Observed default source `28983e522dc358d82ba7ca0749c4a4c796aa142b`. Candidate `codex/roadmap-impact-reconciliation` is a review checkpoint; its containing revision remains null intentionally.
 
 ## Completed and material changes
 
-Strict local intake validation covers nested and untracked supporting files while grandfathering exact bytes in the retained 734-file ledger. The 16 historical flat and hook disposition records retain their separate meanings.
+A draft reconcile-roadmap-impact skill composes existing roadmap authoring/specification and continuity. Every handoff emits updated, proposed, not-affected or blocked with a reason; organization impact stays an inferred owner-directed signal.
 
-The repository-local standalone diff guard verifies actual full base/head Git objects, base-admitted approval payloads, exact modes/blobs, retained canonical/rejection bytes and provider account statements bound to immutable review commits. Pending attestation completion cannot authorize removal in the same diff.
+All10 canonical agents declare the shared skill/spec dependency. Generated GitHub, Claude, OpenCode, Codex/repository and manual Zencoder projections contain one managed module; read-only and other tool ceilings remain unchanged. Consumer prose and singular/idempotent replacement are tested.
 
-PR scheduling executes the controller extracted from the immutable base with read permissions and no persisted Git credentials; initial controller admission accepts no staging changes. Proposed ADR-0010 records this mechanism without ratifying policy.
+A versioned closed receipt schema and byte-identical portable projection, safe read-only validator,10 deterministic synthetic cases and nine adversarial test methods qualify structure/role/path/privacy refusals. AET-Q06 gains factual partial-source evidence while remaining planned and incomplete.
+
+The retained734-file/222-unit ledger refreshes nine canonical-owner comparisons at immutable implementation0030c546498556b2a8febb4ef50958ae79977d50. All staging blobs, historical removal records and removal authority remain unchanged.
 
 ## Validation and review evidence
 
-`python -m unittest tests.test_staging_guard -v` — passed: 13 synthetic Git/provider controls pass, including the complete separate plan/attestation/removal lifecycle, same-diff refusal, account rename, forged/quoted statements, special files and poisoned proposed controllers.
+`./aether test` — passed: 334 full tests pass,11 existing optional/native skips. No new skip or gate suppression.
 
-`python -m unittest discover -s tests -p test_*.py -v` — passed: 325 tests pass with 11 existing optional/native skips.
+`python -m unittest tests.test_roadmap_impact tests.test_provider_projections tests.test_continuity_integration -q` — passed: 34 focused tests pass, including actual generated outputs, role tool ceilings, shared module idempotency/duplicates, receipt branch/path/intent-reference/privacy controls and CLI refusal.
 
-`./aether validate --staging --strict-staging --format json; catalog, ledger, links, schema and distribution checks` — passed: Intake/strict-staging and links report no diagnostics. Default validation preserves one historical provenance warning. Workflow shell syntax and diff whitespace checks pass.
+`./aether eval run --skill reconcile-roadmap-impact --mode deterministic --format json` — passed: 10 cases run and pass with zero skips/suite errors; scope is deterministic structure and declared assertions, not model/host behavior.
 
-`Selected Hygiene ADR policy v1.2.0 schema and owner decision reference check` — passed: Exact six-file immutable owner sources and digests verified. Proposed ADR-0010 front matter passes the selected schema, formats and reference validator; no full native source admission or human disposition is implied.
+`Catalog, provenance, schema/fixture, distribution/check, source/default/links/strict-staging and immutable ledger checks` — passed: 39 skills/35 specs/10 agents; catalog/schema/portable mirror/provenance and generated outputs pass. Strict/links have no diagnostics; default retains one historical provenance warning. All734 staging files/6,791,350 bytes remain unchanged.
 
-ADR-Ref: accepted ADR-0005 and historical hook records retain authority. New ADR-0010 is proposed with null approval for the immutable evidence/controller mechanism. Existing ADR-0009 remains proposed independently.
+`Pinned Hygiene1.2 ADR schema/FormatChecker and decision owner check` — passed: Proposed ADR-0011 metadata passes exact selected owner validation; no human acceptance is supplied.
+
+ADR-Ref: proposed ADR-0011 records the shared output/composition choice with null approval; accepted Hygiene ADR policy1.2 remains independently governing. Existing legacy ADRs and proposed0008/0009/0010 keep their dispositions. Roadmap impact: updated factual partial AET-Q06 evidence; no intent/priority change or completed kit is claimed.
 
 ## Blockers, risks, unknowns, and deferred work
 
-No staged source was removed or executed, and no human approval comment was created. Synthetic provider fixtures do not prove a real human operation or live removal authorization.
+The draft module is static guidance and does not install/enforce a host hook. Deterministic goldens check declared structure/assertions, not model routing, strategic judgment or actual host discovery.
 
-External-planned removal stays blocked until its origin adapter is separately qualified; an external catalog entry cannot override accepted ADR-0005. Branch protection remains organization issue22.
+Receipt validation authenticates no human review or evidence. ADR-0011 remains proposed/null approval; priority, horizon and optionality need actual human governance. Private receipts cannot emit public organization signals.
 
-Existing issue38 consumer-installation qualification was not-ready in the prior hosted run. The 11 existing optional/native skips remain explicit. New hosted controller bootstrap and integration evidence must be inspected after push.
+Existing38 consumer installation remains not-ready and release scheduling remains failed in prior hosted evidence. No release, deployment, policy ratification, source-rights clearance, staging execution/removal or fleet adoption occurs.
 
 ## Next dependency-ready work
 
-Inspect this PR hosted bootstrap and existing consumer qualification separately; retain actual not-ready evidence, then select a bounded source checkpoint from issue105.
+After reviewing this source checkpoint, complete bounded issue sizing and interruption/resume guidance using existing continuity/issue-authoring foundations; preserve actual host capability and source/release limits.
 
 ## Parallel changes and reconciliation
 
-Preserve repository-owned source, existing immutable selections and any later handoff changes. Verify live state again before integration.
+Preserve129 staging controls and all dated audits. Hygiene123/124 and organization72 keep their original strategy/evidence owners; Holon110 repairs its own cache boundary. No local module writes organization strategy or normalizes the fleet.
 
 ## Privacy and redaction
 

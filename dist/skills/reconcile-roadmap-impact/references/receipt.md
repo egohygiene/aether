@@ -10,7 +10,9 @@ Required fields describe the repository, visibility, actual role ceiling,
 disposition, concise reason, materiality/intent change, canonical roadmap
 path/revision/availability, known steps, changed paths, proposed changes,
 evidence and optional organization signals. Paths are relative; source revisions
-are full immutable commits or explicit null when blocked.
+are full immutable commits or explicit null when blocked. `roadmap.revision`
+identifies the input source inspected before the change; the PR/diff binds the
+resulting output. A receipt does not embed its own containing commit.
 
 | Disposition | Required meaning |
 | --- | --- |

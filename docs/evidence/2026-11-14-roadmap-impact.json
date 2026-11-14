@@ -1,0 +1,45 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "updated",
+  "reason": "Record the delivered shared reconciliation component as partial AET-Q06 source evidence while preserving the planned kit state and incomplete release/host criteria.",
+  "materiality": "material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "0030c546498556b2a8febb4ef50958ae79977d50",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q06"
+  ],
+  "changed_paths": [
+    "ROADMAP.md"
+  ],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "https://github.com/egohygiene/aether/blob/0030c546498556b2a8febb4ef50958ae79977d50/library/organization/skills/architecture/reconcile-roadmap-impact/SKILL.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/evidence/2026-11-14-roadmap-impact-qualification.json"
+    }
+  ],
+  "organization_signals": [
+    {
+      "type": "organization-roadmap-impact",
+      "owner": "egohygiene/hygiene",
+      "canonical_source": "organization/roadmap.v1.json",
+      "initiative": "ORG-I001",
+      "relation": "evidences",
+      "source_reference": "https://github.com/egohygiene/hygiene/blob/d51043f1e4d2ddc22ef4534bd0d65c0053afcbda/organization/roadmap.v1.json",
+      "reason": "Shared source-truth handoff controls contribute partial foundation evidence; owner review is required and no priority or initiative completion is changed.",
+      "assertion": "inferred"
+    }
+  ]
+}
