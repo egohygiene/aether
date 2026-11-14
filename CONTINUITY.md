@@ -7,32 +7,33 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T21:22:11Z'
+  updated_at: '2026-11-14T22:15:09Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Complete the finite retained-staging owner/disposition inventory while preserving unknown rights,
-    transfer receipts and all source bytes.
+  purpose: Reject unrecorded quarantine intake and bind real staging changes to immutable preimages, retained
+    disposition evidence and designated-account approval under ADR-0005.
   includes:
-  - One deterministic ledger covers734 tracked files,6,791,350 raw bytes and222 semantic units across
-    all eight buckets;186 current skill roots stay separate from six historical removals.
-  - Nine canonical agent comparisons record source digests, actual permissions and shared contracts. Four
-    domain agents retain explicit transfer-pending state; every other class has source references, an
-    owner/review role and a bounded deferred checkpoint.
-  - A closed schema, exact immutable reconstruction, complete membership/digest checks and current owner-input
-    drift detection run through catalog/PR validation. The generated current view links the unmodified
-    historical August assessment body and October audit.
+  - Strict local intake validation covers nested and untracked supporting files while grandfathering exact
+    bytes in the retained 734-file ledger. The 16 historical flat and hook disposition records retain
+    their separate meanings.
+  - The repository-local standalone diff guard verifies actual full base/head Git objects, base-admitted
+    approval payloads, exact modes/blobs, retained canonical/rejection bytes and provider account statements
+    bound to immutable review commits. Pending attestation completion cannot authorize removal in the
+    same diff.
+  - PR scheduling executes the controller extracted from the immutable base with read permissions and
+    no persisted Git credentials; initial controller admission accepts no staging changes. Proposed ADR-0010
+    records this mechanism without ratifying policy.
   excludes: &id001
-  - The ledger cannot authorize staged execution, rights clearance, adoption, transfer, removal or policy
-    ratification. Destination/owner receipts remain unknown unless the ledger claims only verified local
-    canonical source.
-  - Issue111 still owns recorded intake and actual base/head deletion/rename approval. Ledger success
-    alone is not that gate.
-  - Existing38 actual consumer qualification remains capability-dependent; the 11 optional/native skips
-    in the full suite remain explicit. No publication, host/fleet adoption, cleanup or staged execution
-    occurred.
+  - No staged source was removed or executed, and no human approval comment was created. Synthetic provider
+    fixtures do not prove a real human operation or live removal authorization.
+  - External-planned removal stays blocked until its origin adapter is separately qualified; an external
+    catalog entry cannot override accepted ADR-0005. Branch protection remains organization issue22.
+  - Existing issue38 consumer-installation qualification was not-ready in the prior hosted run. The 11
+    existing optional/native skips remain explicit. New hosted controller bootstrap and integration evidence
+    must be inspected after push.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -42,84 +43,83 @@ scope:
   canonical_sources:
   - AGENTS.md
   - ROADMAP.md
-  - catalog/staging_ledger.py
-  - catalog/reports/staging-residual-ledger.v1.json
-  - catalog/schemas/aether.staging-residual-ledger.v1.schema.json
-  - docs/staging-residual-ledger.md
-  - tests/test_staging_residual_ledger.py
-  - https://github.com/egohygiene/aether/issues/113
+  - DECISIONS.md
+  - catalog/staging_guard.py
+  - catalog/staging
+  - docs/staging-intake-and-removal.md
+  - docs/decisions/ADR-0010-immutable-staging-review-controls.md
+  - tests/test_staging_guard.py
   - https://github.com/egohygiene/aether/issues/111
 work:
-  objective: Complete the finite retained-staging owner/disposition inventory while preserving unknown
-    rights, transfer receipts and all source bytes.
+  objective: Reject unrecorded quarantine intake and bind real staging changes to immutable preimages,
+    retained disposition evidence and designated-account approval under ADR-0005.
   success_conditions:
-  - Every current Git file belongs to exactly one stable semantic unit and has exact raw-blob evidence.
-  - Retained/removed, local canonical source/unknown transfer, original disposition and permission remain
-    separate.
-  - Unchanged replay is byte-identical and malformed memberships, digests, forged approval and current
-    source drift fail.
+  - Recorded intake covers every new or changed nested file without requiring immediate legacy evacuation.
+  - Changed source, forged or stale approval, head-only approval, changed destinations and unsupported
+    dispositions fail closed; the separate synthetic plan/attestation/removal lifecycle passes.
+  - CI uses actual base/head event inputs and the base-admitted controller; source integration and human
+    ratification remain distinct.
   active_issue:
     provider: github
-    id: egohygiene/aether#113
-    url: https://github.com/egohygiene/aether/issues/113
+    id: egohygiene/aether#111
+    url: https://github.com/egohygiene/aether/issues/111
   next:
     kind: issue
-    id: egohygiene/aether#111
-    description: Consume this grandfathered inventory in explicit intake checks and actual base/head preimage/removal
-      approval, preserving all historical typed disposition variants and rejecting forged receipts.
-    readiness: ready
+    id: egohygiene/aether#38
+    description: Inspect this PR hosted bootstrap and existing consumer qualification separately; retain
+      actual not-ready evidence, then select a bounded source checkpoint from issue105.
+    readiness: blocked
     references:
-    - https://github.com/egohygiene/aether/issues/111
+    - https://github.com/egohygiene/aether/issues/38
+    - https://github.com/egohygiene/aether/issues/105
     depends_on: []
 state:
   base:
-    revision: 089d19ba556ec05cc761356dbae42046ca6515c4
+    revision: 23bbfe29fa4b1905fd4c44ec5b41a79cfe683033
     ref: refs/heads/main
-    verified_at: '2026-11-14T21:22:11Z'
+    verified_at: '2026-11-14T22:15:09Z'
   candidate:
-    branch: codex/staging-residual-ledger
+    branch: codex/staging-intake-and-removal
     revision: null
-    pull_request:
-      provider: github
-      id: egohygiene/aether#128
-      url: https://github.com/egohygiene/aether/pull/128
+    pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T21:22:11Z'
-    default_branch_revision: 089d19ba556ec05cc761356dbae42046ca6515c4
+    observed_at: '2026-11-14T22:15:09Z'
+    default_branch_revision: 23bbfe29fa4b1905fd4c44ec5b41a79cfe683033
     issue_state: open
-    pull_request_state: open
-    notes: Main089d19b includes the prior merged repairs/audit. PR128 is open at6c7434e; its first hosted
-      run failed at source reconstruction because checkout depth1 omitted the ledger baseline. This candidate
-      adds fetch-depth0 and an actual shallow/unshallow regression; no hosted requalification or merge
-      is claimed yet.
+    pull_request_state: not-applicable
+    notes: Observed main23bbfe2 includes merged residual ledger PR128. No PR yet exists for this local
+      candidate. Its containing revision remains null deliberately; recheck the actual PR and source before
+      integration.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T21:22:11Z'
+  reviewed_at: '2026-11-14T22:15:09Z'
   reviewed_by: Codex
   evidence:
-  - command: python -m unittest tests.test_staging_residual_ledger tests.test_staging_supply_chain_inventory
-      -q; ./aether test
+  - command: python -m unittest tests.test_staging_guard -v
     outcome: passed
-    notes: 14 focused tests and312 full-suite tests pass;11 existing optional/native skips. Controls cover
-      missing/duplicate/dangling/cross-unit membership, digest/totals tampering, nested supporting additions,
-      symlink blobs, canonical tool/digest drift, historical retention and false removal authority.
-    observed_at: '2026-11-14T21:22:11Z'
-  - command: python -m catalog.staging_ledger check; exact repeat generation/report comparisons; catalog/default/links/strict-staging/distribution
-      checks
+    notes: 13 synthetic Git/provider controls pass, including the complete separate plan/attestation/removal
+      lifecycle, same-diff refusal, account rename, forged/quoted statements, special files and poisoned
+      proposed controllers.
+    observed_at: '2026-11-14T22:15:09Z'
+  - command: python -m unittest discover -s tests -p test_*.py -v
     outcome: passed
-    notes: The734-file/222-unit ledger and human report replay byte-identically. Closed schemas/fixtures,
-      registered catalog checks, current inputs and generated distribution pass. Historical provenance
-      warning is preserved.
-    observed_at: '2026-11-14T21:22:11Z'
-  - command: First hosted PR128 validation; actual shallow-clone/unshallow regression
-    outcome: limited
-    notes: The initial hosted checkout lacked recorded source history and failed closed. Checkout now
-      requests complete history without persisted credentials; the new native shallow/unshallow regression
-      passes. Updated hosted execution is pending, not inferred from local success.
-    observed_at: '2026-11-14T21:22:11Z'
+    notes: 325 tests pass with 11 existing optional/native skips.
+    observed_at: '2026-11-14T22:15:09Z'
+  - command: ./aether validate --staging --strict-staging --format json; catalog, ledger, links, schema
+      and distribution checks
+    outcome: passed
+    notes: Intake/strict-staging and links report no diagnostics. Default validation preserves one historical
+      provenance warning. Workflow shell syntax and diff whitespace checks pass.
+    observed_at: '2026-11-14T22:15:09Z'
+  - command: Selected Hygiene ADR policy v1.2.0 schema and owner decision reference check
+    outcome: passed
+    notes: Exact six-file immutable owner sources and digests verified. Proposed ADR-0010 front matter
+      passes the selected schema, formats and reference validator; no full native source admission or
+      human disposition is implied.
+    observed_at: '2026-11-14T22:15:09Z'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -147,45 +147,47 @@ Read AGENTS, the canonical sources below and verified live issue/PR state before
 
 ## Current objective and success conditions
 
-Complete the finite retained-staging owner/disposition inventory while preserving unknown rights, transfer receipts and all source bytes.
+Reject unrecorded quarantine intake and bind real staging changes to immutable preimages, retained disposition evidence and designated-account approval under ADR-0005.
 
-- Every current Git file belongs to exactly one stable semantic unit and has exact raw-blob evidence.
-- Retained/removed, local canonical source/unknown transfer, original disposition and permission remain separate.
-- Unchanged replay is byte-identical and malformed memberships, digests, forged approval and current source drift fail.
+- Recorded intake covers every new or changed nested file without requiring immediate legacy evacuation.
+- Changed source, forged or stale approval, head-only approval, changed destinations and unsupported dispositions fail closed; the separate synthetic plan/attestation/removal lifecycle passes.
+- CI uses actual base/head event inputs and the base-admitted controller; source integration and human ratification remain distinct.
 
 ## State snapshot
 
-Observed default source `089d19ba556ec05cc761356dbae42046ca6515c4`. Candidate `codex/staging-residual-ledger` is a review checkpoint; its containing revision remains null intentionally.
+Observed default source `23bbfe29fa4b1905fd4c44ec5b41a79cfe683033`. Candidate `codex/staging-intake-and-removal` is a review checkpoint; its containing revision remains null intentionally.
 
 ## Completed and material changes
 
-One deterministic ledger covers734 tracked files,6,791,350 raw bytes and222 semantic units across all eight buckets;186 current skill roots stay separate from six historical removals.
+Strict local intake validation covers nested and untracked supporting files while grandfathering exact bytes in the retained 734-file ledger. The 16 historical flat and hook disposition records retain their separate meanings.
 
-Nine canonical agent comparisons record source digests, actual permissions and shared contracts. Four domain agents retain explicit transfer-pending state; every other class has source references, an owner/review role and a bounded deferred checkpoint.
+The repository-local standalone diff guard verifies actual full base/head Git objects, base-admitted approval payloads, exact modes/blobs, retained canonical/rejection bytes and provider account statements bound to immutable review commits. Pending attestation completion cannot authorize removal in the same diff.
 
-A closed schema, exact immutable reconstruction, complete membership/digest checks and current owner-input drift detection run through catalog/PR validation. The generated current view links the unmodified historical August assessment body and October audit.
+PR scheduling executes the controller extracted from the immutable base with read permissions and no persisted Git credentials; initial controller admission accepts no staging changes. Proposed ADR-0010 records this mechanism without ratifying policy.
 
 ## Validation and review evidence
 
-`python -m unittest tests.test_staging_residual_ledger tests.test_staging_supply_chain_inventory -q; ./aether test` — passed: 14 focused tests and312 full-suite tests pass;11 existing optional/native skips. Controls cover missing/duplicate/dangling/cross-unit membership, digest/totals tampering, nested supporting additions, symlink blobs, canonical tool/digest drift, historical retention and false removal authority.
+`python -m unittest tests.test_staging_guard -v` — passed: 13 synthetic Git/provider controls pass, including the complete separate plan/attestation/removal lifecycle, same-diff refusal, account rename, forged/quoted statements, special files and poisoned proposed controllers.
 
-`python -m catalog.staging_ledger check; exact repeat generation/report comparisons; catalog/default/links/strict-staging/distribution checks` — passed: The734-file/222-unit ledger and human report replay byte-identically. Closed schemas/fixtures, registered catalog checks, current inputs and generated distribution pass. Historical provenance warning is preserved.
+`python -m unittest discover -s tests -p test_*.py -v` — passed: 325 tests pass with 11 existing optional/native skips.
 
-`First hosted PR128 validation; actual shallow-clone/unshallow regression` — limited: The initial hosted checkout lacked recorded source history and failed closed. Checkout now requests complete history without persisted credentials; the new native shallow/unshallow regression passes. Updated hosted execution is pending, not inferred from local success.
+`./aether validate --staging --strict-staging --format json; catalog, ledger, links, schema and distribution checks` — passed: Intake/strict-staging and links report no diagnostics. Default validation preserves one historical provenance warning. Workflow shell syntax and diff whitespace checks pass.
 
-ADR-Ref: existing ADR-0005 and recorded hook decisions remain governing history. ADR not required: finite evidence inventory implements existing retained-source accounting without changing ownership or granting removal.
+`Selected Hygiene ADR policy v1.2.0 schema and owner decision reference check` — passed: Exact six-file immutable owner sources and digests verified. Proposed ADR-0010 front matter passes the selected schema, formats and reference validator; no full native source admission or human disposition is implied.
+
+ADR-Ref: accepted ADR-0005 and historical hook records retain authority. New ADR-0010 is proposed with null approval for the immutable evidence/controller mechanism. Existing ADR-0009 remains proposed independently.
 
 ## Blockers, risks, unknowns, and deferred work
 
-The ledger cannot authorize staged execution, rights clearance, adoption, transfer, removal or policy ratification. Destination/owner receipts remain unknown unless the ledger claims only verified local canonical source.
+No staged source was removed or executed, and no human approval comment was created. Synthetic provider fixtures do not prove a real human operation or live removal authorization.
 
-Issue111 still owns recorded intake and actual base/head deletion/rename approval. Ledger success alone is not that gate.
+External-planned removal stays blocked until its origin adapter is separately qualified; an external catalog entry cannot override accepted ADR-0005. Branch protection remains organization issue22.
 
-Existing38 actual consumer qualification remains capability-dependent; the 11 optional/native skips in the full suite remain explicit. No publication, host/fleet adoption, cleanup or staged execution occurred.
+Existing issue38 consumer-installation qualification was not-ready in the prior hosted run. The 11 existing optional/native skips remain explicit. New hosted controller bootstrap and integration evidence must be inspected after push.
 
 ## Next dependency-ready work
 
-Consume this grandfathered inventory in explicit intake checks and actual base/head preimage/removal approval, preserving all historical typed disposition variants and rejecting forged receipts.
+Inspect this PR hosted bootstrap and existing consumer qualification separately; retain actual not-ready evidence, then select a bounded source checkpoint from issue105.
 
 ## Parallel changes and reconciliation
 

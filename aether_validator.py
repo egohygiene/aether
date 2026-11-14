@@ -1394,6 +1394,15 @@ class AetherValidator:
                     file=_rel(child, self.repo_root),
                     context={"strict_mode": strict},
                 ))
+        from catalog.staging_guard import check_worktree
+        for message in check_worktree(self.repo_root):
+            diagnostics.append(Diagnostic(
+                rule_id="AETHER_STAGING_002",
+                severity="error" if strict else "warning",
+                message=message,
+                guidance="Record exact quarantine intake or reconcile the grandfathered ledger; intake grants no removal authority.",
+                context={"strict_mode": strict},
+            ))
         return diagnostics
 
     def validate_skill_spec_mapping(self, specs_by_id: dict[str, dict[str, Any]]) -> list[Diagnostic]:

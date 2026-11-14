@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Added exact recorded quarantine intake, legacy disposition adapters and a
+  base-admitted per-file removal guard with provider account attestations,
+  immutable source/destination binding and actual PR base/head wiring (#111).
+
 - Added a reproducible finite ledger for all 734 retained staging files and
   222 semantic units, nine canonical-agent comparisons, six distinct historical
   skill removals and explicit deferred owner/receipt jobs without adoption or

@@ -1,0 +1,11 @@
+{
+  "schema_version": "aether.staging-guard-policy/v1",
+  "repository": "egohygiene/aether",
+  "approvers": [
+    {
+      "id": 14865041,
+      "login": "szmyty"
+    }
+  ],
+  "adr": "ADR-0005"
+}
