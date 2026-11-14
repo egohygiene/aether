@@ -11,7 +11,60 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  staging-diff:
+    name: Validate immutable staging changes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Read exact proposed source and complete history
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Execute the base-admitted controller against actual base and head
+        env:
+          STAGING_BASE: ${{ github.event.pull_request.base.sha }}
+          STAGING_HEAD: ${{ github.event.pull_request.head.sha }}
+          STAGING_PR: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ github.token }}
+          GIT_NO_REPLACE_OBJECTS: "1"
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "${STAGING_BASE}" =~ ^[0-9a-f]{40}$ ]]
+          [[ "${STAGING_HEAD}" =~ ^[0-9a-f]{40}$ ]]
+          report="${RUNNER_TEMP}/staging-diff.json"
+          if git cat-file -e "${STAGING_BASE}:catalog/staging_guard.py" 2>/dev/null; then
+            controller="${RUNNER_TEMP}/aether-staging-guard.py"
+            git show "${STAGING_BASE}:catalog/staging_guard.py" > "${controller}"
+            python3 "${controller}" diff --repository-root "${GITHUB_WORKSPACE}" \
+              --base "${STAGING_BASE}" --head "${STAGING_HEAD}" \
+              --pull-request "${STAGING_PR}" --controller-revision "${STAGING_BASE}" \
+              --report "${report}"
+          else
+            # First controller admission can change no quarantined source.
+            changed="$(git -c core.fsmonitor=false diff --no-ext-diff --name-only "${STAGING_BASE}" "${STAGING_HEAD}" -- .staging/)"
+            if [[ -n "${changed}" ]]; then
+              printf '%s\n' '{"status":"fail","reason":"base controller absent; staging changes blocked"}' > "${report}"
+              exit 1
+            fi
+            printf '%s\n' '{"status":"pass","scope":"controller bootstrap; no staging changes"}' > "${report}"
+          fi
+
+      - name: Retain staging input and decision evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: staging-diff-evidence
+          path: ${{ runner.temp }}/staging-diff.json
+          if-no-files-found: warn
+
   validate:
+    needs: staging-diff
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -47,6 +100,7 @@ jobs:
           ./aether validate --format "text" | tee "${RUN_REPORT_DIR}/validate.txt"
           ./aether validate --shell --format "text" | tee "${RUN_REPORT_DIR}/shell.txt"
           ./aether validate --staging --strict-staging --format "text" | tee "${RUN_REPORT_DIR}/staging.txt"
+          python3 catalog/staging_guard.py intake | tee "${RUN_REPORT_DIR}/staging-intake.json"
           python3 -m catalog.staging_ledger check | tee "${RUN_REPORT_DIR}/staging-ledger.json"
           ./aether catalog generate --check | tee "${RUN_REPORT_DIR}/catalog-generate.txt"
           python3 catalog/validate_catalog.py | tee "${RUN_REPORT_DIR}/catalog-schema.txt"
