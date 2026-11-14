@@ -3,7 +3,7 @@
   "schema_version": "aether.continuity-dispositions/v1",
   "contract": "aether.repository-continuity/v1",
   "composition_skill": "maintain-repository-continuity",
-  "reviewed_at": "2026-09-10",
+  "reviewed_at": "2026-11-10",
   "scope": {
     "canonical_skills": "library/organization/skills/**/SKILL.md",
     "canonical_agents": "library/organization/agents/*/AGENT.md",
@@ -341,6 +341,16 @@
       "rationale": "Authorized cleanup mutates repository files and must leave a reviewable handoff."
     },
     {
+      "id": "review-architecture-coherence",
+      "source": "library/organization/skills/architecture/review-architecture-coherence/SKILL.md",
+      "disposition": "reader",
+      "startup_read": true,
+      "pre_pr_write": false,
+      "domain_evidence": ["Exact architecture review scope, source revisions, assessment, uncertainty, human boundary, and validation gaps"],
+      "never_claim": ["Human ratification, policy applicability, implementation authority, or permission to mutate continuity without separately trusted evidence and authorization"],
+      "rationale": "The default review consumes repository state and returns candidates; separately authorized artifact writing does not grant continuity or architecture mutation authority."
+    },
+    {
       "id": "skill-authoring",
       "source": "library/organization/skills/authoring/skill-authoring/SKILL.md",
       "disposition": "reader-writer",
@@ -369,6 +379,20 @@
       "domain_evidence": ["Behavior under test, deterministic coverage, exact commands and outcomes, remaining gaps, and residual risk"],
       "never_claim": ["That tests prove behavior, environments, or integrations they did not exercise"],
       "rationale": "Authorized test engineering mutates repository tests and sometimes bounded testability seams."
+    },
+    {
+      "id": "triage-local-ci-reports",
+      "source": "library/organization/skills/quality/triage-local-ci-reports/SKILL.md",
+      "disposition": "reader",
+      "startup_read": true,
+      "pre_pr_write": false,
+      "domain_evidence": [
+        "Source identity, actual checks, classified failures, issue matches and provider receipts"
+      ],
+      "never_claim": [
+        "That unrun checks passed or proposed issue actions were published"
+      ],
+      "rationale": "Local CI triage executes authorized validation and creates local evidence; source/handoff edits belong to a separately selected workflow."
     },
     {
       "id": "validate-repository-locally",
@@ -451,6 +475,20 @@
       "domain_evidence": ["Dependency order, phases, validation, rollback, risks, assumptions, and blocked decisions"],
       "never_claim": ["That planned production work, tests, migrations, or rollout have been executed"],
       "rationale": "The role may write a repository plan and hand it off for implementation."
+    },
+    {
+      "id": "local-ci-triager",
+      "source": "library/organization/agents/local-ci-triager/AGENT.md",
+      "disposition": "reader",
+      "startup_read": true,
+      "pre_pr_write": false,
+      "domain_evidence": [
+        "Tested revision, coverage, findings, issue matching and actual provider receipts"
+      ],
+      "never_claim": [
+        "That proposed actions were published or local checks establish hosted parity"
+      ],
+      "rationale": "Local CI triage executes authorized validation and creates local evidence; source/handoff edits belong to a separately selected workflow."
     },
     {
       "id": "specfile-creator",

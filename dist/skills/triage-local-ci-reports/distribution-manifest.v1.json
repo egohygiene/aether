@@ -1,0 +1,22 @@
+{
+  "artifact_id": "skill/triage-local-ci-reports",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/triage-local-ci-reports",
+  "generated_paths": [
+    "dist/skills/triage-local-ci-reports/SKILL.md",
+    "dist/skills/triage-local-ci-reports/evals/evals.json",
+    "dist/skills/triage-local-ci-reports/references/report-to-findings.md",
+    "dist/skills/triage-local-ci-reports/templates/diagnoses.template.json",
+    "dist/skills/triage-local-ci-reports/scripts/triage-local-ci.py",
+    "dist/skills/triage-local-ci-reports/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "dcaa805653be596600e23afaf2515eb44662404dc54c01b12a74a5e363362920"
+  }
+}

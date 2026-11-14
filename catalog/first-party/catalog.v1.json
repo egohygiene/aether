@@ -49,23 +49,23 @@
       "title": "Architecture Authoring"
     },
     {
-      "artifact_version": "1.1.0",
+      "artifact_version": "1.2.0",
       "compatibility": {
         "required_tools": []
       },
       "dependencies": [
-        "specification/auditor"
+        "specification/repository-audit-data"
       ],
       "deprecation": {
         "replacement_id": null
       },
-      "description": "Audits a repository for quality, alignment, risk, and strengths using observable evidence. Use when a project needs an impartial assessment of its current state and actionable findings.",
+      "description": "Audits an explicitly scoped repository or public organization roster through composable profiles, preserving evidence, uncertainty, strengths and suggestion-only follow-up in immutable reports and typed sidecars. Use when a structured repository audit or an explicitly authorized organization audit is requested.",
       "domain": "quality",
       "generated_distribution_paths": [
         "dist/skills/audit-repository/SKILL.md"
       ],
       "id": "skill/audit-repository",
-      "implements_specification_id": "specification/auditor",
+      "implements_specification_id": "specification/repository-audit-data",
       "kind": "skill",
       "license": "MIT",
       "lifecycle": {
@@ -85,7 +85,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "7d11ce81ef38546d40163ce0c69da8054df58bc9b099426525278123b329231a"
+        "value": "878fd5df844188ec1f1dd8db31a61f9bd0d7f1c92558814bd0fc0a53e8892212"
       },
       "source_path": "library/organization/skills/quality/audit-repository/SKILL.md",
       "supersedes_ids": [],
@@ -235,7 +235,7 @@
       "title": "Create Architecture Document"
     },
     {
-      "artifact_version": "1.1.0",
+      "artifact_version": "2.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -245,7 +245,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "Creates or updates DECISIONS.md with architectural decision records (ADRs) from repository evidence. Use when a project needs to capture, repair, or review architectural decisions and their rationale.",
+      "description": "Authors proposed ADRs, reconstructs consequential historical decisions, and updates or references existing records under pinned Hygiene policy. Use when checking decision impact, correcting evidence, proposing supersession, or migrating legacy decision logs.",
       "domain": "architecture",
       "generated_distribution_paths": [
         "dist/skills/create-decisions-document/SKILL.md"
@@ -423,7 +423,7 @@
       "title": "Create Diagnosis Record"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1128,7 +1128,7 @@
       "title": "Create Vision Document"
     },
     {
-      "artifact_version": "1.1.0",
+      "artifact_version": "1.2.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1498,6 +1498,53 @@
       "title": "Repository Cleanup"
     },
     {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-coherence-review"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Reconstructs a repository, subsystem, or organization architecture from exact source revisions and prepares a portable evidence-based explanation and coherence assessment for its human alignment authority. Use when reviewing architecture drift, ownership or dependency concerns, consequential design changes, or an explicit sanity review; never use it to imply AI ratification or authorize implementation.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/skills/review-architecture-coherence/SKILL.md"
+      ],
+      "id": "skill/review-architecture-coherence",
+      "implements_specification_id": "specification/architecture-coherence-review",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6a21ca69ddafa01edc46b5e812f72eb303e26412c639b121c686879c3aaf1fbe"
+      },
+      "source_path": "library/organization/skills/architecture/review-architecture-coherence/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture",
+        "skill"
+      ],
+      "title": "Review Architecture Coherence"
+    },
+    {
       "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
@@ -1543,7 +1590,7 @@
       "title": "Skill Authoring"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.0.1",
       "compatibility": {
         "required_tools": []
       },
@@ -1634,6 +1681,53 @@
     },
     {
       "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/local-ci-triage"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Converts executed local CI reports into diagnosed, deduplicated issue proposals and an authorized provider handoff. Use when triaging a scoped local validation run; compose validate-repository-locally when execution is requested.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/skills/triage-local-ci-reports/SKILL.md"
+      ],
+      "id": "skill/triage-local-ci-reports",
+      "implements_specification_id": "specification/local-ci-triage",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "dcaa805653be596600e23afaf2515eb44662404dc54c01b12a74a5e363362920"
+      },
+      "source_path": "library/organization/skills/quality/triage-local-ci-reports/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "quality",
+        "skill"
+      ],
+      "title": "Triage Local Ci Reports"
+    },
+    {
+      "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1793,7 +1887,59 @@
       "title": "Architecture Document Specification"
     },
     {
-      "artifact_version": "2.0.0",
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/specfile",
+        "specification/reflector"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Reconstruct an architecture from actual sources, explain it to its human alignment authority, and preserve a portable assessment that can be ratified later. This draft implements the record/procedure requested by [Aether #87](https://github.com/egohygiene/aether/issues/87). Its existence, implementation, merge, and execution do not approve an architecture or activate the proposed Hygiene applicability policy.",
+      "domain": "architecture",
+      "generated_distribution_paths": [
+        "dist/specs/architecture-coherence-review.spec.md"
+      ],
+      "id": "specification/architecture-coherence-review",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/auditor",
+        "skill/review-architecture-coherence"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "6676d05ac90be62a2128e5cc4d1d5479afc743dece5718ef71ab5f3e279b3a9a"
+      },
+      "source_path": "library/organization/specs/architecture/architecture-coherence-review.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "architecture-coherence",
+        "human-alignment",
+        "evidence"
+      ],
+      "title": "Architecture Coherence Review Contract"
+    },
+    {
+      "artifact_version": "3.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1808,7 +1954,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines how `DECISIONS.md` shall be authored, maintained, and validated.",
+      "description": "This draft Aether specification defines an authoring workflow for repository-owned ADRs. It consumes accepted Hygiene policy v1.2.0 at `a05b14f8b9e2772124f879f818e09a911e996ad8`; it does not redefine policy, schemas or human authority. The exact selection and approval evidence are in the portable [authoring package](../../../skills/architecture/create-decisions-document/references/policy-selection.json).",
       "domain": "architecture",
       "generated_distribution_paths": [
         "dist/specs/architecture-decisions.spec.md"
@@ -1976,7 +2122,7 @@
       "title": "Design System Architecture Document Specification"
     },
     {
-      "artifact_version": "2.0.0",
+      "artifact_version": "2.1.0",
       "compatibility": {
         "required_tools": []
       },
@@ -2019,7 +2165,8 @@
         "specification/architecture-roadmap",
         "specification/architecture-design",
         "specification/architecture-design-system",
-        "specification/architecture-decisions"
+        "specification/architecture-decisions",
+        "specification/architecture-set"
       ],
       "release": {
         "included": false,
@@ -2677,7 +2824,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines how a repository selects, materializes, inventories,",
+      "description": "This specification defines how a repository selects, materializes, inventories, and validates an applicable set of architecture documents from the Aether architecture-document system.",
       "domain": "architecture",
       "generated_distribution_paths": [
         "dist/specs/architecture-set.spec.md"
@@ -2696,8 +2843,8 @@
         "primary": "egohygiene"
       },
       "related_ids": [
-        "skill/architecture-authoring",
-        "specification/architecture-meta"
+        "specification/architecture-meta",
+        "skill/architecture-authoring"
       ],
       "release": {
         "included": false,
@@ -2943,7 +3090,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines a portable, inspectable packet for moving public",
+      "description": "This specification defines a portable, inspectable packet for moving public evidence and bounded findings between agents or execution zones. It provides a file contract, not a bidirectional channel, transport, capability grant, or authorization to act on a destination system.",
       "domain": "evidence",
       "generated_distribution_paths": [
         "dist/specs/cross-agent-evidence.spec.md"
@@ -2993,7 +3140,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "A diagnosis record is a durable, evidence-labelled account of a bounded",
+      "description": "A diagnosis record is a durable, evidence-labelled account of a bounded technical investigation. It preserves what failed, what was examined, which hypotheses remain viable, what was changed when change was authorized, and what validation actually ran.",
       "domain": "quality",
       "generated_distribution_paths": [
         "dist/specs/diagnosis-record.spec.md"
@@ -3012,10 +3159,10 @@
         "primary": "egohygiene"
       },
       "related_ids": [
-        "skill/bug-fixing",
-        "skill/create-diagnosis-record",
         "specification/auditor",
-        "specification/repository-journal"
+        "specification/repository-journal",
+        "skill/bug-fixing",
+        "skill/create-diagnosis-record"
       ],
       "release": {
         "included": false,
@@ -3043,12 +3190,66 @@
         "required_tools": []
       },
       "dependencies": [
+        "specification/local-validation-evidence"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Compose existing local validation, diagnosis and issue authoring into a reusable workflow for an explicitly selected workspace. Aether owns this portable handoff and agent procedure. Realm owns its execution capability; repository commands and EgoLint retain validation semantics; an authorized provider adapter owns actual GitHub writes. This does not create another CI engine.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/specs/local-ci-triage.spec.md"
+      ],
+      "id": "specification/local-ci-triage",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/diagnosis-record",
+        "skill/validate-repository-locally",
+        "skill/github-issue-authoring",
+        "specification/repository-continuity"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "930298c1783571452fd7960938a193953bbfc3fedc2a0d02cd4a7bb03b32b11e"
+      },
+      "source_path": "library/organization/specs/quality/local-ci-triage.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "local-ci",
+        "triage",
+        "evidence",
+        "issue-authoring"
+      ],
+      "title": "Local CI Report Triage and Issue Handoff"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
         "specification/specfile"
       ],
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines a portable, capability-aware contract for running",
+      "description": "This specification defines a portable, capability-aware contract for running as much trustworthy repository validation as the current local execution environment permits. It preserves useful forward progress when remote CI is unavailable, disabled, unaffordable, or intentionally deferred without representing unobserved checks as successful.",
       "domain": "quality",
       "generated_distribution_paths": [
         "dist/specs/local-validation-evidence.spec.md"
@@ -3067,10 +3268,10 @@
         "primary": "egohygiene"
       },
       "related_ids": [
+        "specification/diagnosis-record",
         "skill/maintain-repository-continuity",
         "skill/test-engineering",
-        "skill/validate-repository-locally",
-        "specification/diagnosis-record"
+        "skill/validate-repository-locally"
       ],
       "release": {
         "included": false,
@@ -3150,11 +3351,65 @@
       "compatibility": {
         "required_tools": []
       },
+      "dependencies": [
+        "specification/specfile",
+        "specification/auditor"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This draft extends the approved `auditor` specification 2.0.0 with a portable machine projection and intent profiles. The approved specification retains its exact source and human lifecycle; this draft neither amends its approval nor promotes the `audit-repository` skill or auditor agent. Normative machine contracts are `aether.audit-profile-registry/v1` and `aether.repository-audit-report/v1`, each contract version `1.0.0`.",
+      "domain": "quality",
+      "generated_distribution_paths": [
+        "dist/specs/repository-audit-data.spec.md"
+      ],
+      "id": "specification/repository-audit-data",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/audit-repository",
+        "specification/reflector"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "b361d567e08dddcae6bf160bcaff61e3fa27d6138fa4da9867725d5186936464"
+      },
+      "source_path": "library/organization/specs/quality/repository-audit-data.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "audit",
+        "profiles",
+        "evidence",
+        "provenance",
+        "read-only"
+      ],
+      "title": "Composable Audit Profiles and Checkpoint Data"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
       "dependencies": [],
       "deprecation": {
         "replacement_id": null
       },
-      "description": "A repository continuity document is a concise, repository-owned checkpoint",
+      "description": "A repository continuity document is a concise, repository-owned checkpoint that lets a fresh human or coding-agent session recover the current execution state without replaying a conversation. Its semantic identity is `aether.repository-continuity/v1`, and its canonical exact-case location is the regular file `CONTINUITY.md` at the repository root.",
       "domain": "methodology",
       "generated_distribution_paths": [
         "dist/specs/repository-continuity.spec.md"
@@ -3173,8 +3428,8 @@
         "primary": "egohygiene"
       },
       "related_ids": [
-        "skill/maintain-repository-continuity",
-        "specification/repository-journal"
+        "specification/repository-journal",
+        "skill/maintain-repository-continuity"
       ],
       "release": {
         "included": false,
@@ -3205,7 +3460,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "A repository journal is a bounded decision aid, not an automation authority.",
+      "description": "A repository journal is a bounded decision aid, not an automation authority. It summarizes caller-supplied repository evidence for a closed interval. It does not inspect new sources, alter a repository, create work, or deliver a report to an external destination.",
       "domain": "quality",
       "generated_distribution_paths": [
         "dist/specs/repository-journal.spec.md"
@@ -3253,7 +3508,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines the provider-neutral release convention for Ego",
+      "description": "This specification defines the provider-neutral release convention for Ego Hygiene repositories. It governs release intent, semantic versioning, changelogs, evidence, rollback information, and the boundary between a repository release and its delivery adapters.",
       "domain": "release",
       "generated_distribution_paths": [
         "dist/specs/repository-release.spec.md"
@@ -3302,7 +3557,7 @@
       "deprecation": {
         "replacement_id": null
       },
-      "description": "This specification defines a deterministic handoff between approved Identity",
+      "description": "This specification defines a deterministic handoff between approved Identity artifacts, pinned Aether platform facts, human campaign intent, and a separately authorized publishing adapter. It permits candidate drafting and reviewed export. It does not authorize account access, scheduling, posting, advertising spend, targeting, or analytics.",
       "domain": "marketing",
       "generated_distribution_paths": [
         "dist/specs/social-campaign-handoff.spec.md"
@@ -3320,10 +3575,7 @@
         ],
         "primary": "egohygiene"
       },
-      "related_ids": [
-        "skill/prepare-social-campaign-handoff",
-        "skill/social-surface-specs"
-      ],
+      "related_ids": [],
       "release": {
         "included": false,
         "reason": "Only stable artifacts are releasable under catalog policy."
@@ -3428,9 +3680,9 @@
         "primary": "egohygiene"
       },
       "related_ids": [
-        "skill/repository-cleanup",
+        "specification/auditor",
         "skill/test-engineering",
-        "specification/auditor"
+        "skill/repository-cleanup"
       ],
       "release": {
         "included": false,

@@ -8,7 +8,7 @@ status: draft
 owners:
   - egohygiene
 created: 2026-08-08
-updated: 2026-08-25
+updated: 2026-11-13
 governed_by:
   - architecture-roadmap
 depends_on:
@@ -33,14 +33,14 @@ repository: egohygiene/aether
 visibility: public
 publication: central
 route: /roadmap/aether/
-updated: 2026-08-25
+updated: 2026-11-13
 -->
-## 2026-08-25 execution snapshot
+## 2026-11-13 execution pointers
 
-> This evidence-reconciled snapshot is the issue-generation and visual-roadmap handoff. The longer-horizon strategy below remains canonical context; generated HTML, JSON, progress, issue plans, and commit lists are projections.
+> This snapshot preserves strategic IDs. [Issue105](https://github.com/egohygiene/aether/issues/105) owns the live tactical ledger and [CONTINUITY](CONTINUITY.md) the current checkpoint. Dated evidence below is historical where labeled; generated HTML/JSON and issue plans are projections.
 
 **Lifecycle:** active pre-release authoring plane  
-**Current gate:** Repair release workflow run 32672225496, which selected zero jobs, then publish the first immutable bundle release tracked by issue #38.  
+**Current gate:** Issue #38 retains release workflow/payload/provenance and real consumer acceptance; source preparation and deterministic tests do not authorize or prove publication.
 **North-star outcome:** Immutable, provenance-rich AI authoring bundles made from validated specifications, skills, and agents.
 
 ### Visual roadmap publication
@@ -73,7 +73,7 @@ issues: []
 
 **Current evidence:**
 
-- The audit counted 23 specifications, 29 skills, and 9 agents.
+- The August 25 audit counted 23 specifications, 29 skills and 9 agents; those are historical totals. Current source inventory is recorded/recomputable in [README](README.md#4-first-party-catalog-summary).
 - PR #47 merged at ce8308fdc230 with green PR validation.
 
 <!-- roadmap-step
@@ -96,7 +96,7 @@ issues: []
 
 **Current evidence:**
 
-- Release run 32672225496 failed with zero jobs.
+- Historical release run 32672225496 failed with zero jobs; issue #38 owns current workflow and publication acceptance. This document does not claim a fresh hosted run.
 
 <!-- roadmap-step
 id: AET-Q03
@@ -163,7 +163,7 @@ issues: [38]
 **Current evidence:**
 
 - Issue #38 tracks the first release.
-- No GitHub release was observed.
+- No GitHub release was observed at the dated original audit; current acceptance remains under issue #38.
 
 <!-- roadmap-step
 id: AET-Q06
@@ -189,13 +189,13 @@ issues: []
 
 <!-- roadmap-step
 id: AET-Q07
-status: ready
+status: complete
 depends_on: [AET-Q01]
 issues: [49, 91]
 -->
 #### AET-Q07 — Add the decision-impact instruction hook
 
-**State:** `ready`
+**State:** `complete` for the bounded source/instruction package; host/consumer adoption remains separate.
 **Depends on:** `AET-Q01`
 
 **Outcome:** Every generated agent projection receives one concise,
@@ -204,15 +204,15 @@ routine implementation and preserves human decision authority.
 
 **Exit criteria:**
 
-- [ ] The shared module pins the accepted Hygiene ADR policy while retaining the independent proposed Repository Intelligence contract.
-- [ ] Create, update, supersede, reference, and `ADR not required` flows cover consequential and routine examples.
-- [ ] Provider projections and a generated repository `AGENTS.md` fixture contain exactly one managed hook.
-- [ ] Deterministic tests reject malformed or duplicate managed blocks.
+- [x] The shared module pins the accepted Hygiene ADR policy while retaining the independent proposed Repository Intelligence contract.
+- [x] Create, update, supersede, reference, and `ADR not required` flows cover consequential and routine examples.
+- [x] Provider projections and a generated repository `AGENTS.md` fixture contain exactly one managed hook.
+- [x] Deterministic tests reject malformed or duplicate managed blocks.
 
 **Current evidence:**
 
 - Issue #49 defines the decision-impact scope and acceptance criteria.
-- Follow-up #91 aligns authoring, templates and the managed hook with ratified ADR policy v1.1.0; Aether artifacts and the independent Intelligence contract retain their own draft/proposed lifecycle.
+- Delivered #91 and the four-digit upgrade align draft skill 2.1.0/spec 3.1.0/module 0.3.0 with accepted Hygiene 1.2.0 and selected Holon 1.1.0. Aether artifacts and the independent Intelligence contract retain their separate draft/proposed lifecycle.
 - Existing hook delivery under #49 is complete. Ratified-policy authoring adoption and the Identity canary remain separate evidence gates.
 
 ### Roadmap-to-issue handoff
@@ -233,9 +233,9 @@ routine implementation and preserves human decision authority.
 ## 1. Reading This Document
 
 This roadmap describes the **sequence of structural work** required to move
-Aether from its current state (a canonical library without a distribution
-pipeline, without a staging review process, and without a schema layer) to its
-target state.
+Aether from its original architecture-only baseline toward qualified consumer
+and release use. Builders, catalogs, schemas, local workflows and staged review
+records already exist; their remaining acceptance is tracked by issue #105.
 
 It distinguishes:
 - **Current state** — what exists today in the repository.
@@ -252,18 +252,22 @@ when individual issues are opened that reference the ADRs in
 
 | Asset | State |
 |---|---|
-| Canonical specifications | 23+ in `library/organization/specs/` — `draft` status |
-| Canonical skills | 23+ in `library/organization/skills/` — `draft` status |
-| Staged material | 936+ files in `.staging/` — unreviewed, non-canonical |
-| Distribution pipeline | Does not exist |
-| Schema layer | Does not exist |
-| Catalogs | Do not exist |
-| Releases | None published |
-| Governance documents | Created by this issue (issue 001) |
+| Canonical artifacts | Current recomputable counts in README; lifecycle is artifact-specific, not inferred from counts |
+| Staged material | 734 tracked files; non-canonical evidence, full ledger remains issue #113 |
+| Distribution pipeline | Existing `./aether distribution build` plus drift/failure/containment regressions |
+| Schema layer | Existing `catalog/schemas/`, fixtures and contract checks |
+| Catalogs | Existing first-party/agent indexes, external records and provenance projection |
+| Consumer/release acceptance | Separate actual gates; issue #38 remains open, missing adapters stay not-ready |
+| Governance documents | Root navigation and canonical new ADR index; legacy conflicts await proposed ADR-0009 review |
 
 ---
 
-## 3. Phase 0 — Architecture and Governance (This Issue)
+The phase sections below retain the original strategic sequence. They are not
+an assertion that implemented schemas/builders are absent or that every listed
+task remains unstarted; issue #105 owns current checkpoints. The release-only
+and reusable/local workflow conflicts remain explicit in proposed ADR-0009.
+
+## 3. Phase 0 — Architecture and Governance (Original Baseline)
 
 **Goal:** Establish the documents every later issue treats as authoritative.
 
@@ -305,7 +309,7 @@ status after review.
 front-matter, catalog entries, and manifest files.
 
 **Planned work:**
-- Create `schemas/` directory.
+- The implemented schema home is `catalog/schemas/`; extend only for a demonstrated contract gap.
 - Publish at least one schema per canonical artifact kind.
 - Validate all canonical artifacts against their schemas.
 
@@ -336,13 +340,14 @@ canonical source and publishes them as GitHub Release artifacts.
 - Design build process (requires ADR).
 - Implement catalog generation.
 - Implement distribution bundle assembly.
-- Add `dist/` to `.gitignore`.
+- Resolve the historical release-only versus tracked-generated conflict through proposed ADR-0009 before any policy migration or deletion.
 - Publish first versioned release.
 
 **Dependency:** Phase 2 complete (schemas are needed to validate distribution content).
 
-**Note:** The implementation of GitHub Actions for this pipeline belongs to
-Relay, not Aether.  Aether defines the artifacts; Relay provides the workflow.
+**Note:** Relay owns reusable CI execution. Aether currently owns local validation
+and release callers. Proposed ADR-0009 records the historical ownership
+conflict without changing either accepted decision or authorizing publication.
 
 ---
 
@@ -365,7 +370,7 @@ this repository.
 The following are **not** on this roadmap regardless of phase, as they belong
 to neighboring repositories:
 
-- CI workflow implementation (Relay).
+- Reusable CI workflow implementation (Relay); local callers retain their explicit repository scope and unresolved ADR clarification.
 - Toolchain installation (Realm).
 - Organization deployment of agents (egohygiene/.github).
 - Conformance measurement (PACE).

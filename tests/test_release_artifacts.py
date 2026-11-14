@@ -33,6 +33,23 @@ br = _load_module(
 
 
 class TestDistributionBuildCommand(unittest.TestCase):
+    def test_generator_failure_survives_later_successful_generators(self):
+        for check in (False, True):
+            for failed_generator in (0, 1):
+                with self.subTest(check=check, failed_generator=failed_generator):
+                    args = type("Args", (), {
+                        "repo_root": "/tmp/example-repo",
+                        "output_directory": "custom-dist",
+                        "check": check,
+                    })()
+                    results = [0, 0, 0, 0]
+                    results[failed_generator] = 1
+                    with mock.patch.object(av, "find_repo_root", return_value=Path("/tmp/example-repo")):
+                        with mock.patch.object(av, "_run_python_script", side_effect=results) as run_script:
+                            self.assertNotEqual(0, av.command_distribution_build(args))
+                    self.assertEqual(4, run_script.call_count)
+                    self.assertTrue(all(call.kwargs["check"] == check for call in run_script.call_args_list))
+
     def test_distribution_build_runs_all_generators(self):
         args = type(
             "Args",

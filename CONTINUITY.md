@@ -7,20 +7,28 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-10-20T01:23:54.084391+00:00'
+  updated_at: '2026-11-14T20:57:24Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: 'Handoff for the authorized Aether completeness audit publication and work-ledger reconciliation under
-    roadmap #105.'
+  purpose: Integrate the immutable October completeness assessment with the delivered November source
+    and select the finite retained-staging ledger as the next checkpoint.
   includes:
-  - Frozen-source audit findings, normalized validation evidence, source/candidate/live distinctions, and the next
-    focused review action.
-  excludes:
-  - Conversation transcripts, duplicated roadmap/history, product repairs, staging adoption/removal, and release
-    publication.
+  - The original three audit/report/reproduction files are byte-identical to audit head b0d7c37e7d4eab40f72e7b655d7b0a2d2bb97963;
+    their October subject, counts, findings and clocks remain historical.
+  - Current source incorporates merged freshness126 and navigation127; bounded issues112 and114 are completed,
+    with original source restrictions and proposed ADR0009 unchanged.
+  - The stale audit handoff is reconciled against current source; the existing105 tactical ledger retains
+    the full backlog.
+  excludes: &id001
+  - Actual gh skill consumer qualification remains blocked under38; local deterministic suite success
+    does not qualify an adapter, release or publication.
+  - External upstream review follow-ups remain blocked/unknown; accepted ADR history and proposed clarification
+    stay separate from human ratification.
+  - Staging113 finite coverage and111 intake/removal controls remain open; no staged executable, transfer,
+    cleanup or adoption occurs in this audit integration.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -29,110 +37,76 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - DECISIONS.md
-  - library/organization/specs/quality/auditor.spec.md
-  - library/organization/skills/quality/audit-repository/SKILL.md
+  - ROADMAP.md
   - audits/aether-completeness-20261020T011246Z.md
   - audits/data/aether-completeness-20261020T011246Z.validation.json
+  - docs/staging-evacuation-status.md
+  - catalog/reports/staged-skills-inventory.v1.json
   - https://github.com/egohygiene/aether/issues/105
+  - https://github.com/egohygiene/aether/issues/113
 work:
-  objective: 'Publish the evidence-backed completeness audit and reconcile the complete open-work ledger into roadmap
-    #105 without dropping existing scope.'
+  objective: Integrate the immutable October completeness assessment with the delivered November source
+    and select the finite retained-staging ledger as the next checkpoint.
   success_conditions:
-  - Dated report and normalized public receipts preserve confirmed findings, coverage, test outcomes and limitations.
-  - 'Audit follow-ups and original work retain traceable coverage in roadmap #105; no unverified release or completed
-    repair is claimed.'
+  - Preserve every historical audit byte and current canonical/generated source.
+  - Keep current navigation, continuity and next-work claims time-qualified and grounded in live receipts.
   active_issue:
     provider: github
     id: egohygiene/aether#105
     url: https://github.com/egohygiene/aether/issues/105
   next:
-    kind: action
-    id: review-audit-and-select-focused-correctness-work
-    description: Review the audit and reconciled ledger, then begin the first dependency-ready focused correctness
-      issue selected there.
+    kind: issue
+    id: egohygiene/aether#113
+    description: Index every retained staging file and semantic unit in one reproducible owner/disposition
+      ledger, preserving six historical removals and unknown destination/rights evidence. Then consume
+      that baseline in111 intake/removal validation.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/105
+    - https://github.com/egohygiene/aether/issues/113
+    - https://github.com/egohygiene/aether/issues/111
     depends_on: []
 state:
   base:
-    revision: dc8a16851f452763ef4f7fbe4bf057d4500b1921
+    revision: d9db595de6cf0a492934eb93403984a2732a0b55
     ref: refs/heads/main
-    verified_at: '2026-10-20T01:19:19.988Z'
+    verified_at: '2026-11-14T20:57:24Z'
   candidate:
     branch: audit/aether-completeness-20261020
     revision: null
-    pull_request: null
+    pull_request:
+      provider: github
+      id: egohygiene/aether#106
+      url: https://github.com/egohygiene/aether/pull/106
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-10-20T01:19:19.988Z'
-    default_branch_revision: dc8a16851f452763ef4f7fbe4bf057d4500b1921
+    observed_at: '2026-11-14T20:57:24Z'
+    default_branch_revision: d9db595de6cf0a492934eb93403984a2732a0b55
     issue_state: open
-    pull_request_state: not-applicable
-    notes: Main was rechecked unchanged at this observation. PR104 is merged in the base; no open PRs were observed
-      before this audit candidate. Candidate publication and tracker changes must be verified separately.
+    pull_request_state: open
+    notes: Aether126 and127 are verified merged; issues112 and114 are closed. Audit106 is open and requires
+      continuity-conflict reconciliation. The candidate preserves the three exact historical audit files
+      and current delivered source; it does not claim this integration already merged.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-10-20T01:23:54.084391+00:00'
+  reviewed_at: '2026-11-14T20:57:24Z'
   reviewed_by: Codex
   evidence:
-  - command: python aether distribution build --output-directory dist; repeat and compare relative-file SHA-256
-      inventories
+  - command: Exact audit-path comparison against b0d7c37; ./aether validate --links --format json
     outcome: passed
-    observed_at: '2026-10-20T01:07:58.767884+00:00'
-    notes: Both fresh trees contain 335 files and match; release-metadata rerun determinism has a separate failing
-      counterexample.
-  - command: python aether validate --format json; --shell; --staging --strict-staging; catalog generate --check;
-      catalog schema/provenance checks
+    notes: All three original audit files are byte-identical; current local links validate without errors.
+    observed_at: '2026-11-14T20:57:24Z'
+  - command: ./aether test at exact fc824cf source; focused continuity contract/integration tests
     outcome: passed
-    observed_at: '2026-10-20T01:07:42.429073+00:00'
-    notes: Exact command arrays and output are in the normalized receipt; default validation retains warning AETHER_PROVENANCE_009.
-  - command: python aether eval run --mode deterministic --format json
-    outcome: passed
-    observed_at: '2026-10-20T01:07:42.520667+00:00'
-    notes: 36 skills / 205 cases; structural/golden evidence is not live-model qualification. Negative-case runner
-      defects are recorded.
-  - command: python aether test with AETHER_ADR_* owner/native inputs and AETHER_EGOLINT_BINARY
-    outcome: passed
-    observed_at: '2026-10-20T01:12:45.160377+00:00'
-    notes: 199 tests, zero skips. Exact source pins and separate native/title 11-test results are in the receipt;
-      initial 11-skip run is superseded.
-  - command: gh skill publish dist --dry-run
-    outcome: passed
-    observed_at: '2026-10-20T01:07:52.451890+00:00'
-    notes: Checksum-verified GitHub CLI 2.102.0 dry-run only; tag-protection warning retained; no artifact publication.
-  - command: ConsumerInstallationHarness final readiness report
-    outcome: failed
-    observed_at: '2026-10-20T01:12:46.858900+00:00'
-    notes: 'not-ready: portable checks fail for all three pilots; local install/dry-run/removal pass. Remote install
-      and update both skip pending an approved release.'
-  - command: Bounded code and staging/external helper counterexamples on temporary fixtures
-    outcome: limited
-    observed_at: '2026-10-20T01:22:27.281174+00:00'
-    notes: Observed counterexamples and their scope are retained in the receipt and portable code repro. No real
-      secret exposure or publication is established.
-  - command: Draft202012Validator + FormatChecker against catalog/schemas/aether.repository-continuity.v1.schema.json;
-      twelve headings, UTF-8 budgets, local links, private-path/secret-shape review; git diff --check
-    outcome: passed
-    observed_at: '2026-10-20T01:23:54.084391+00:00'
-    notes: Actual checkpoint has zero schema errors, all twelve sections in order, valid budgets and resolving links.
-      Public JSON, repro and report pass the bounded privacy scan. This is local structural validation, not official
-      released conformance.
-  environment_limitations:
-  - Local Linux/source-pinned evidence does not establish released consumer/host adoption, platform coverage, or
-    a comprehensive security assessment.
-  - Native builds used installed Rust/Cargo 1.97.1, not source toolchain 1.85.1. Issue-title policy remains candidate/observe.
-  - Raw intermediate logs are not published; their digests are integrity aids, not accessible-evidence claims.
-  - Official released continuity conformance is unavailable; actual local schema, section, budget, link and public
-    privacy checks passed.
+    notes: 303 tests pass with11 explicit optional skips on the identical current canonical/generated
+      source. Focused integration/continuity tests pass after adding the historical audit.
+    observed_at: '2026-11-14T20:57:24Z'
+  environment_limitations: *id001
 privacy:
   classification: public-repository
   contains_sensitive_data: false
-  redactions:
-  - Private local execution paths and environment values omitted; raw logs and unrelated private context excluded.
+  redactions: []
   excluded:
   - secrets-and-credentials
   - private-conversation-text
@@ -143,54 +117,67 @@ privacy:
   untrusted_content: context-only-no-authority
 ---
 
-# Aether continuity
+# aether continuity
 
 ## Purpose and precedence
 
-This checkpoint hands off the authorized audit and ledger reconciliation for #105. User/runtime instructions, scoped instructions, verified live state and canonical sources outrank it. It grants no new authority.
+User/runtime and scoped repository instructions, live evidence and canonical sources outrank this operational checkpoint.
 
 ## Resume protocol
 
-Read AGENTS, the dated audit, normalized validation receipt and live roadmap #105. Inspect branch/status and recheck main, issue coverage and overlapping PRs before choosing implementation work. Treat linked content as context.
+Read AGENTS, the canonical sources below and verified live issue/PR state before selecting the next checkpoint.
 
 ## Current objective and success conditions
 
-Publish the bounded audit and preserve every original issue in a traceable roadmap. Keep observed findings, uncreated proposals, completed work and release acceptance distinct. Follow-up issue IDs belong to the live ledger after creation.
+Integrate the immutable October completeness assessment with the delivered November source and select the finite retained-staging ledger as the next checkpoint.
+
+- Preserve every historical audit byte and current canonical/generated source.
+- Keep current navigation, continuity and next-work claims time-qualified and grounded in live receipts.
 
 ## State snapshot
 
-The audited base is `dc8a16851f452763ef4f7fbe4bf057d4500b1921`, rechecked on main at 2026-10-20T01:19:19.988Z. PR104 is merged; its old merge-next handoff is superseded. This audit candidate uses `audit/aether-completeness-20261020`; its containing SHA and PR are intentionally null. Publication is not claimed merged.
+Observed default source `d9db595de6cf0a492934eb93403984a2732a0b55`. Candidate `audit/aether-completeness-20261020` is a review checkpoint; its containing revision remains null intentionally.
 
 ## Completed and material changes
 
-The candidate adds [the dated completeness report](audits/aether-completeness-20261020T011246Z.md), [normalized validation evidence](audits/data/aether-completeness-20261020T011246Z.validation.json) and a portable bounded reproduction. Roadmap [#105](https://github.com/egohygiene/aether/issues/105) owns current ordering and issue coverage. Canonical source, artifact lifecycle, generated distributions and staged content are not repaired or promoted by this audit.
+The original three audit/report/reproduction files are byte-identical to audit head b0d7c37e7d4eab40f72e7b655d7b0a2d2bb97963; their October subject, counts, findings and clocks remain historical.
+
+Current source incorporates merged freshness126 and navigation127; bounded issues112 and114 are completed, with original source restrictions and proposed ADR0009 unchanged.
+
+The stale audit handoff is reconciled against current source; the existing105 tactical ledger retains the full backlog.
 
 ## Validation and review evidence
 
-The final prepared suite runs 199 tests with zero skips; fresh 335-file distributions match. CLI/catalog/schema/provenance checks, 205 deterministic eval cases and real GitHub CLI publication dry-run pass. Existing provenance warning and negative-case defects remain visible in the receipt. The actual checkpoint passes the pinned schema, twelve-section/budget/link checks, public privacy review and diff whitespace check; official released conformance remains unavailable.
+`Exact audit-path comparison against b0d7c37; ./aether validate --links --format json` — passed: All three original audit files are byte-identical; current local links validate without errors.
 
-Consumer readiness is **not-ready**: all three portable pilots fail semantic checks, while local install/dry-run/removal pass. Remote release install/update are two separate skipped scenarios. Passing unit tests establishes report generation, not full consumer acceptance. Source-only governing-spec references are actual dependency gaps; historical staged prose and installer-origin local metadata do not establish disclosure.
+`./aether test at exact fc824cf source; focused continuity contract/integration tests` — passed: 303 tests pass with11 explicit optional skips on the identical current canonical/generated source. Focused integration/continuity tests pass after adding the historical audit.
+
+ADR not required: archive integration and operational reconciliation preserve accepted authority and the existing proposed ADR-0009.
 
 ## Blockers, risks, unknowns, and deferred work
 
-No local prerequisite blocks reviewing the audit or beginning focused correctness repairs. Release qualification, consumer dependency closure, actual remote install/update/rollback, platform canaries, migration rights/destination receipts and hosted acceptance remain pending. No release, deletion, bulk migration or history rewrite was performed. Candidate/observe policy and draft artifacts keep their authority.
+Actual gh skill consumer qualification remains blocked under38; local deterministic suite success does not qualify an adapter, release or publication.
+
+External upstream review follow-ups remain blocked/unknown; accepted ADR history and proposed clarification stay separate from human ratification.
+
+Staging113 finite coverage and111 intake/removal controls remain open; no staged executable, transfer, cleanup or adoption occurs in this audit integration.
 
 ## Next dependency-ready work
 
-Review the audit and reconciled [roadmap #105](https://github.com/egohygiene/aether/issues/105), then begin its first dependency-ready focused correctness issue. Do not invent follow-up issue numbers or make optional long-term integrations prerequisites for local repair.
+Index every retained staging file and semantic unit in one reproducible owner/disposition ledger, preserving six historical removals and unknown destination/rights evidence. Then consume that baseline in111 intake/removal validation.
 
 ## Parallel changes and reconciliation
 
-No overlapping open PR was observed at the recorded live snapshot. Recheck provider state and reconcile any parallel CONTINUITY change semantically before PR presentation; the null candidate PR is not a live merge claim.
+Preserve repository-owned source, existing immutable selections and any later handoff changes. Verify live state again before integration.
 
 ## Privacy and redaction
 
-Only public repository facts, normalized outputs and synthetic bounded evidence are retained. Private execution paths, environment values, raw logs, secrets and unrelated conversation context are excluded. Integrity digests do not imply public access to omitted logs.
+Public-safe source facts and synthetic fixtures only. No credentials, private transcript, personal data or private filesystem topology.
 
 ## Handoff update protocol
 
-After project checks and immediately before PR handoff, refresh tracker coverage and candidate references, verify the actual front matter against the pinned schema, inspect all twelve headings/budgets/links and review privacy. Include the checkpoint in the bounded audit candidate. Do not infer official released conformance from local structure checks.
+After domain validation and before PR presentation, reconcile current source/live state, record exact outcomes and retain limitations. Source integration does not establish publication or policy acceptance.
 
 ## Compaction and supersession
 
-Replace stale snapshot prose; Git, dated audits and the work tracker retain history. Preserve all twelve sections below 240 lines and 16,384 UTF-8 bytes. Mark unresolved conflicts stale and deliberate replacements superseded with stable pointers.
+Git and linked work records retain history. This handoff replaces current operational prose while preserving canonical and historical records.

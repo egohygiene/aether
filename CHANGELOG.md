@@ -10,6 +10,47 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Reconciled active source/navigation and ADR-authoring references, preserved
+  strategic step identities and historical decisions, and proposed ADR-0009
+  for the generated-output/local-workflow authority conflicts (#114).
+
+- Added real-calendar external review validation, explicit frozen-date freshness
+  assessment and evidence-backed blocked/unknown follow-ups while preserving
+  original pins, deadlines and restrictions (#112).
+
+- Separated deterministic consumer harness controls from explicit local/release
+  qualification. Missing adapters report blocked, real validation errors fail,
+  and mandatory workflow gates retain the actual consumer checks (#38).
+
+- Completed draft coherence package loading/resource metadata, evaluation and
+  continuity contracts with deterministic assessment and untrusted-claim controls;
+  preserved pinned governance and human ratification boundaries (#87).
+
+- Repaired draft audit package loading/resource metadata and evaluation identity,
+  with deterministic profile/completion controls and unchanged read-only policy
+  boundaries (#86).
+
+- Corrected staged skill inventory checks to distinguish retained current
+  evidence from removed copies, with Git membership and negative controls;
+  preserved staged source and the broader ledger follow-up (#113).
+
+- Completed source-authoritative agent catalog regeneration and semantic drift
+  checks, preserving catalog annotations and source lifecycle while correcting
+  local CI continuity metadata consistency (#107).
+
+- Added a draft local CI triage spec, portable skill and bounded agent, with a
+  Realm report adapter, diagnosed root-cause grouping, stable duplicate markers,
+  sanitized issue proposals and explicit provider handoffs.
+
+- Added draft composable audit profiles and typed checkpoint reports, with
+  evidence-bound classifications, immutable report handoffs, and a read-only
+  auditor procedure; preserved the approved auditor 2.0.0 specification (#86,
+  #68).
+- Added a draft architecture coherence review skill, draft portable
+  assessment contract, and exact Hygiene governance binding with separately
+  trusted human evidence. AI recommendations, human claims, applicability and
+  material freshness remain distinct; no architecture is ratified (#87).
+
 - Aligned ADR authoring and decision-impact guidance with ratified Hygiene policy
   v1.1.0, including proposed records, evidence-preserving historical reconstruction,
   legacy index migration, completion handoffs and explicit canary compatibility (#91).

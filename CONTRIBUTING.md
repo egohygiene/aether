@@ -30,6 +30,11 @@ python3 catalog/validate_catalog.py
 ./aether test
 ```
 
+Consumer qualification is a separate strict gate using the actual `gh skill`
+adapter; deterministic harness tests do not establish readiness. See the
+[consumer qualification instructions](docs/release-and-pinning-guide.md#explicit-consumer-qualification)
+for local and release scopes, required capabilities and durable report output.
+
 ## Common contributor tasks
 
 - Catalog records and provenance: `docs/catalog-contribution-guide.md`

@@ -42,12 +42,36 @@ Canonical first-party source lives under `library/organization/`.
 Current source-specific catalogs have different responsibilities:
 
 - specification and skill frontmatter is authoritative for `first-party/catalog.v1.json`;
-- canonical agent source and `library/organization/agents/catalog.json` own agent-specific capability metadata;
+- canonical agent frontmatter owns name, description, domain, lifecycle, version,
+  skills, specifications and tools in `library/organization/agents/catalog.json`;
+  the catalog retains projection paths and other reviewed annotations;
 - `library/organization/instructions/repository-continuity/` owns the reusable
   continuity pointer and reviewed per-skill/per-agent dispositions;
 - reviewed external source records own their upstream provenance and redistribution evidence.
 
 The normalized provenance model is a **derived policy view**, not a second hand-edited source of truth. It gives these artifact kinds one common vocabulary for source, revision, digest, license, trust, lifecycle, compatibility, maintainer ownership, and publication readiness.
+
+`aether catalog generate` refreshes both first-party and agent catalogs;
+`--check` and `aether validate --catalog` detect semantic source-field drift even
+when source digests match. Specification descriptions use explicit frontmatter
+or the first body paragraph when absent, and an absent specification license uses the
+repository MIT license. Removing an optional source field cannot keep its stale
+previous value. Compatibility notes, deprecation guidance, explicit release
+exclusions, skill display annotations and agent projection paths remain
+catalog-owned. Regeneration preserves the approved-to-stable specification
+mapping with `source_state: approved`; it does not approve a source artifact or
+override release exclusions.
+
+The staged skill inventory distinguishes Git-tracked current roots from
+historical removed copies. A first-party disposition may preserve evidence for
+a source that is still present; its existence or disposition name does not
+establish removal. The retained `repository-audit` source therefore stays among
+the 186 current roots, separately from six removed copies (192 identities).
+The inventory test checks unique/exact membership and present/removed state
+against Git and disposition records, ignoring untracked local files. This
+classification checkpoint under #113 changes no staged bytes, ownership, trust
+classification or dated inventory totals; the complete 734-file ledger remains
+open in that issue.
 
 ## Lifecycle and versioning rules
 

@@ -61,10 +61,19 @@ jobs:
           cp -R dist /tmp/aether-dist-pass-2
           diff -ru /tmp/aether-dist-pass-1 /tmp/aether-dist-pass-2 | tee "${RUN_REPORT_DIR}/distribution-reproducibility.diff"
 
-      - name: Validate publish payload without publishing
+      - name: Qualify local consumer installation without publishing
         run: |
           set -euo pipefail
-          gh skill publish "dist" --dry-run | tee "${RUN_REPORT_DIR}/gh-skill-publish-dry-run.txt"
+          python3 -m catalog.consumer_installation --scope local \
+            --output "${AETHER_E2E_REPORT_DIR}" | tee "${RUN_REPORT_DIR}/consumer-qualification.txt"
+
+      - name: Retain consumer qualification receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: pr-consumer-qualification
+          path: .artifacts/pr-validation/consumer-installation/
+          if-no-files-found: ignore
 
       - name: Upload diagnostics on failure
         if: failure()

@@ -1,11 +1,17 @@
 from __future__ import annotations
 
+import hashlib
 import json
+import contextlib
+import copy
+import io
 import tempfile
 import unittest
+import yaml
+from unittest import mock
 from pathlib import Path
 
-from aether_validator import AetherValidator, validate_portable_skill_package
+from aether_validator import (AetherValidator, ValidationError, _format_eval_text, command_eval_run, validate_portable_skill_package)
 
 
 def write(path: Path, content: str) -> None:
@@ -160,6 +166,21 @@ See [Reference](./references/reference.md).
 
 
 class TestAetherValidatorRegressions(unittest.TestCase):
+    def test_specification_identifiers_reject_paths_and_preserve_valid_yaml_quoting(self):
+        fx = ValidatorFixture.create()
+        path = fx.root / "library/organization/specs/domain/example.spec.md"
+        template = path.read_text()
+        for value in ["../../escaped", "/absolute", "C:\\escaped", "bad/id", "bad space", None, 7]:
+            with self.subTest(value=value):
+                path.write_text(template.replace("id: example-spec", "id: " + json.dumps(value)))
+                diagnostics, by_id, _ = fx.validator().validate_specs()
+                self.assertIn("AETHER_SPEC_007", {d.rule_id for d in diagnostics})
+                self.assertNotIn(str(value), by_id)
+        path.write_text(template.replace("id: example-spec", 'id: "example-spec" # quoted semantic identifier'))
+        diagnostics, by_id, _ = fx.validator().validate_specs()
+        self.assertNotIn("AETHER_SPEC_007", {d.rule_id for d in diagnostics})
+        self.assertIn("example-spec", by_id)
+
     def test_missing_skill_name(self):
         fx = ValidatorFixture.create()
         skill = fx.root / "library/organization/skills/domain/example-skill/SKILL.md"
@@ -286,11 +307,185 @@ Second.
         diags = fx.validator().validate_catalog(check_only=True)
         self.assertTrue(any(d.rule_id == "AETHER_CATALOG_002" for d in diags))
 
+    def test_catalog_refreshes_skill_metadata_even_with_current_digest(self):
+        fx = ValidatorFixture.create()
+        skill = fx.root / "library/organization/skills/domain/example-skill/SKILL.md"
+        skill.write_text(
+            skill.read_text().replace('aether-version: "1.0.0"', 'aether-version: "9.9.9"')
+            .replace('aether-status: "draft"', 'aether-status: "stable"')
+            .replace("license: MIT", "license: Apache-2.0")
+            .replace("Demonstrates a valid skill fixture.", "Describes updated source metadata."),
+            encoding="utf-8",
+        )
+        catalog = fx.root / "catalog/first-party/catalog.v1.json"
+        current = json.loads(catalog.read_text())
+        old = next(item for item in current["artifacts"] if item["id"] == "skill/example-skill")
+        old["source_digest"]["value"] = hashlib.sha256(skill.read_bytes()).hexdigest()
+        catalog.write_text(json.dumps(current), encoding="utf-8")
+
+        diags = fx.validator().validate_catalog()
+        drift = next(d for d in diags if d.rule_id == "AETHER_CATALOG_005" and d.artifact_id == "skill/example-skill")
+        self.assertTrue({"artifact_version", "description", "license", "lifecycle"}.issubset(drift.context["fields"]))
+        fx.validator().write_catalog()
+        updated = next(item for item in json.loads(catalog.read_text())["artifacts"] if item["id"] == old["id"])
+        self.assertEqual(updated["artifact_version"], "9.9.9")
+        self.assertEqual(updated["lifecycle"], {"state": "stable"})
+        self.assertEqual(updated["license"], "Apache-2.0")
+        self.assertIn("updated source metadata", updated["description"])
+        self.assertFalse(updated["release"]["included"])
+
+    def test_catalog_refreshes_spec_relationships_and_preserves_owned_annotations(self):
+        fx = ValidatorFixture.create()
+        spec = fx.root / "library/organization/specs/domain/example.spec.md"
+        other = spec.with_name("other.spec.md")
+        other.write_text(spec.read_text().replace("id: example-spec", "id: other-spec"), encoding="utf-8")
+        spec.write_text(
+            spec.read_text().replace("version: 1.0.0", "version: 2.0.0")
+            .replace("status: draft", "status: approved")
+            .replace("depends_on: []", "depends_on: [other-spec]")
+            .replace("supersedes: []", "supersedes: [other-spec]"),
+            encoding="utf-8",
+        )
+        catalog = fx.root / "catalog/first-party/catalog.v1.json"
+        current = json.loads(catalog.read_text())
+        previous = next(item for item in current["artifacts"] if item["id"] == "specification/example-spec")
+        previous["compatibility"]["notes"] = "Reviewed catalog annotation."
+        previous["deprecation"]["notes"] = "Retain the migration guidance."
+        catalog.write_text(json.dumps(current), encoding="utf-8")
+        fx.validator().write_catalog()
+        generated = next(item for item in json.loads(catalog.read_text())["artifacts"] if item["id"] == previous["id"])
+        self.assertEqual(generated["artifact_version"], "2.0.0")
+        self.assertEqual(generated["lifecycle"], {"state": "stable", "source_state": "approved"})
+        self.assertEqual(generated["dependencies"], ["specification/other-spec"])
+        self.assertEqual(generated["supersedes_ids"], ["specification/other-spec"])
+        self.assertEqual(generated["compatibility"], previous["compatibility"])
+        self.assertEqual(generated["deprecation"], previous["deprecation"])
+        first_bytes = catalog.read_bytes()
+        fx.validator().write_catalog()
+        self.assertEqual(first_bytes, catalog.read_bytes())
+
+    def test_catalog_rejects_invalid_source_without_replacing_catalog(self):
+        fx = ValidatorFixture.create()
+        catalog = fx.root / "catalog/first-party/catalog.v1.json"
+        before = catalog.read_bytes()
+        spec = fx.root / "library/organization/specs/domain/example.spec.md"
+        spec.write_text(spec.read_text().replace("depends_on: []", "depends_on: invalid-string"), encoding="utf-8")
+        with self.assertRaisesRegex(ValidationError, "example.spec.md: depends_on"):
+            fx.validator().write_catalog()
+        self.assertEqual(before, catalog.read_bytes())
+        diagnostics = fx.validator().validate_catalog()
+        self.assertTrue(any(d.rule_id == "AETHER_CATALOG_004" and "depends_on" in d.message for d in diagnostics))
+
+    def test_spec_optional_metadata_removal_uses_source_defaults(self):
+        fx = ValidatorFixture.create()
+        source = fx.root / "library/organization/specs/domain/example.spec.md"
+        original = source.read_text()
+        source.write_text(original.replace("title: Example Specification", "title: Example Specification\ndescription: Explicit source description\nlicense: Apache-2.0"))
+        fx.validator().write_catalog()
+        source.write_text(original.replace("A deterministic example specification body.", "Current source body description."))
+        current = json.loads(fx.validator().catalog_path.read_text())
+        item = next(x for x in current["artifacts"] if x["kind"] == "specification")
+        item["source_digest"]["value"] = hashlib.sha256(source.read_bytes()).hexdigest()
+        fx.validator().catalog_path.write_text(json.dumps(current))
+        drift = next(d for d in fx.validator().validate_catalog() if d.rule_id == "AETHER_CATALOG_005")
+        self.assertTrue({"description", "license"}.issubset(drift.context["fields"]))
+        fx.validator().write_catalog()
+        item = next(x for x in json.loads(fx.validator().catalog_path.read_text())["artifacts"] if x["kind"] == "specification")
+        self.assertEqual(item["description"], "Current source body description.")
+        self.assertEqual(item["license"], "MIT")
+
     def test_unclassified_staging_material(self):
         fx = ValidatorFixture.create()
         (fx.root / ".staging" / "unknown").mkdir(parents=True)
         diags = fx.validator().validate_staging(strict=False)
         self.assertTrue(any(d.rule_id == "AETHER_STAGING_001" for d in diags))
+
+
+class TestAgentCatalogAuthority(unittest.TestCase):
+    def setUp(self):
+        self.fixture = ValidatorFixture.create()
+        self.validator = self.fixture.validator()
+        self.source = self.fixture.root / "library/organization/agents/example-agent/AGENT.md"
+        self.frontmatter = {
+            "aether-id": "example-agent", "name": "Example Agent",
+            "description": "Inspect the selected repository.", "tools": ["read"],
+            "metadata": {"aether-version": "1.0.0", "aether-status": "draft",
+                         "aether-domain": "quality", "aether-skills": ["example-skill"],
+                         "aether-specs": ["example-spec"]},
+        }
+        self.write_source()
+        write(self.validator.agent_catalog_path, json.dumps({
+            "schema": "aether.agents/v1", "generated": "2026-08-01",
+            "agents": {"example-agent": {
+                "version": "0.1.0", "tools": ["read", "execute"],
+                "projections": {"reviewed-host": "dist/reviewed/example-agent.md"},
+                "notes": "Reviewed catalog-owned annotation.",
+            }},
+        }))
+        self.validator.write_catalog()
+
+    def write_source(self):
+        write(self.source, "---\n" + yaml.safe_dump(self.frontmatter, sort_keys=False) + "---\n\n# Example Agent\n")
+
+    def test_source_mutations_refresh_fields_and_preserve_catalog_annotations(self):
+        self.frontmatter.update(name="Revised Agent", description="Current source description.", tools=["read", "search"])
+        self.frontmatter["metadata"].update({"aether-version": "9.9.9", "aether-status": "stable", "aether-domain": "architecture", "aether-skills": [], "aether-specs": []})
+        self.write_source()
+        drift = next(d for d in self.validator.validate_catalog() if d.rule_id == "AETHER_CATALOG_007")
+        self.assertEqual(drift.artifact_id, "agent/example-agent")
+        self.assertEqual(set(drift.context["fields"]), {"name", "description", "tools", "version", "status", "domain", "skills", "specs"})
+        self.validator.write_catalog()
+        entry = json.loads(self.validator.agent_catalog_path.read_text())["agents"]["example-agent"]
+        self.assertEqual(entry["version"], "9.9.9")
+        self.assertEqual(entry["status"], "stable")
+        self.assertEqual(entry["tools"], ["read", "search"])
+        self.assertEqual(entry["skills"], [])
+        self.assertEqual(entry["projections"], {"reviewed-host": "dist/reviewed/example-agent.md"})
+        self.assertEqual(entry["notes"], "Reviewed catalog-owned annotation.")
+        self.assertEqual(self.validator.validate_catalog(), [])
+        before = self.validator.agent_catalog_path.read_bytes()
+        self.validator.write_catalog()
+        self.assertEqual(before, self.validator.agent_catalog_path.read_bytes())
+
+    def test_catalog_only_semantic_drift_is_detected_and_repaired(self):
+        current = json.loads(self.validator.agent_catalog_path.read_text())
+        current["agents"]["example-agent"].update(version="0.1.0", tools=["read", "execute"])
+        self.validator.agent_catalog_path.write_text(json.dumps(current))
+        drift = next(d for d in self.validator.validate_catalog() if d.rule_id == "AETHER_CATALOG_007")
+        self.assertEqual(set(drift.context["fields"]), {"tools", "version"})
+        self.validator.write_catalog()
+        self.assertEqual(json.loads(self.validator.agent_catalog_path.read_text())["agents"]["example-agent"]["tools"], ["read"])
+
+    def test_invalid_source_preserves_both_catalogs(self):
+        first_party = self.validator.catalog_path.read_bytes()
+        agents = self.validator.agent_catalog_path.read_bytes()
+        baseline = copy.deepcopy(self.frontmatter)
+        mutations = [
+            lambda d: d.update({"aether-id": "other-agent"}),
+            lambda d: d.update(tools=[]),
+            lambda d: d.update(tools=["read", "read"]),
+            lambda d: d.update(tools=["unknown"]),
+            lambda d: d["metadata"].update({"aether-version": 7}),
+            lambda d: d["metadata"].update({"aether-version": "invalid"}),
+            lambda d: d["metadata"].update({"aether-status": ["stable"]}),
+            lambda d: d["metadata"].update({"aether-skills": "example-skill"}),
+            lambda d: d["metadata"].update({"aether-specs": ["missing-spec"]}),
+        ]
+        for mutate in mutations:
+            with self.subTest(mutate=mutate):
+                self.frontmatter = copy.deepcopy(baseline)
+                mutate(self.frontmatter)
+                self.write_source()
+                with self.assertRaisesRegex(ValidationError, "example-agent/AGENT.md"):
+                    self.validator.write_catalog()
+                self.assertEqual(self.validator.catalog_path.read_bytes(), first_party)
+                self.assertEqual(self.validator.agent_catalog_path.read_bytes(), agents)
+                self.assertTrue(any(d.rule_id == "AETHER_CATALOG_006" for d in self.validator.validate_catalog()))
+
+    def test_catalog_cannot_retain_an_agent_without_canonical_source(self):
+        self.source.unlink()
+        with self.assertRaisesRegex(ValidationError, "missing canonical agent source"):
+            self.validator.write_catalog()
 
 
 _VALID_EVALS_V2 = {
@@ -509,7 +704,99 @@ class TestEvalHarness(unittest.TestCase):
         fx = self._fx_with_evals(data)
         results = fx.validator().run_evals(skill_filter="example-skill")
         self.assertEqual(results["status"], "fail")
-        self.assertGreater(results["total_failed"], 0)
+        self.assertEqual(results["total_suite_errors"], 1)
+        self.assertEqual(results["total_cases"], 0)
+        self.assertEqual(results["total_failed"], 0)
+
+    def test_runner_and_validator_share_invalid_suite_preflight(self):
+        cases = []
+        empty = copy.deepcopy(_VALID_EVALS_V2)
+        empty["cases"] = []
+        cases.append((empty, "AETHER_EVAL_001"))
+        duplicate = copy.deepcopy(_VALID_EVALS_V2)
+        duplicate["cases"][1]["id"] = duplicate["cases"][0]["id"]
+        cases.append((duplicate, "AETHER_EVAL_002"))
+        unknown = copy.deepcopy(_VALID_EVALS_V2)
+        unknown["schema"] = "unknown/v1"
+        cases.append((unknown, "AETHER_EVAL_007"))
+        identity = copy.deepcopy(_VALID_EVALS_V2)
+        identity["skill"] = "another-skill"
+        cases.append((identity, "AETHER_EVAL_009"))
+        for suite, code in cases:
+            with self.subTest(code=code):
+                validator = self._fx_with_evals(suite).validator()
+                self.assertIn(code, {d.rule_id for d in validator.validate_evals()})
+                result = validator.run_evals()
+                self.assertEqual("fail", result["status"])
+                self.assertEqual(0, result["total_cases"])
+                self.assertEqual(1, result["total_suite_errors"])
+                self.assertIn(code, {d["rule_id"] for d in result["results"][0]["diagnostics"]})
+
+    def test_unknown_selection_and_unsupported_mode_do_not_fabricate_a_pass(self):
+        validator = self._fx_with_evals(_VALID_EVALS_V2).validator()
+        for kwargs, code in [({"skill_filter": "missing-skill"}, "AETHER_EVAL_010"), ({"mode": "model-assisted"}, "AETHER_EVAL_011")]:
+            with self.subTest(kwargs=kwargs):
+                result = validator.run_evals(**kwargs)
+                self.assertEqual("fail", result["status"])
+                self.assertEqual(0, result["total_cases"])
+                self.assertEqual([], result["results"])
+                self.assertIn(code, {error["rule_id"] for error in result["errors"]})
+
+    def test_text_assertions_require_goldens_but_filesystem_assertions_execute_without_them(self):
+        data = copy.deepcopy(_VALID_EVALS_V2)
+        data["cases"][0]["assertions"] = [{"type": "contains", "value": "required-text"}]
+        data["cases"][1]["assertions"] = [{"type": "file-exists", "value": "SKILL.md"}]
+        data["cases"][2]["assertions"] = [{"type": "file-not-exists", "value": "not-present.txt"}]
+        result = self._fx_with_evals(data).validator().run_evals()
+        self.assertEqual((4, 3, 1), (result["total_cases"], result["total_passed"], result["total_failed"]))
+        self.assertEqual("fail", result["status"])
+        cases = result["results"][0]["cases"]
+        self.assertIn("assertion not executed", cases[0]["checks"][-1]["detail"])
+        self.assertEqual("fail", cases[0]["checks"][-1]["status"])
+        self.assertEqual("pass", cases[1]["checks"][-1]["status"])
+        self.assertEqual("assertion/file-exists", cases[1]["checks"][-1]["check"])
+        self.assertIn("1 failed case(s)", _format_eval_text(result))
+
+    def test_regex_execution_errors_and_failed_file_checks_have_attributable_counts(self):
+        data = copy.deepcopy(_VALID_EVALS_V2)
+        data["cases"][0]["assertions"] = [{"type": "matches-pattern", "value": "["}]
+        data["cases"][1]["assertions"] = [{"type": "file-exists", "value": "missing.txt"}]
+        fx = self._fx_with_evals(data)
+        write(fx.root / "library/organization/skills/domain/example-skill/evals/goldens/example-positive.golden.txt", "evidence\n")
+        result = fx.validator().run_evals()
+        self.assertEqual((4, 2, 2), (result["total_cases"], result["total_passed"], result["total_failed"]))
+        self.assertIn("Assertion execution failed", result["results"][0]["cases"][0]["checks"][-1]["detail"])
+
+    def test_legacy_only_execution_is_explicitly_skipped_and_not_a_success(self):
+        data = copy.deepcopy(_VALID_EVALS_V2)
+        data["schema"] = "aether.skill-evaluations/v1"
+        result = self._fx_with_evals(data).validator().run_evals()
+        self.assertEqual(("fail", 0, 1), (result["status"], result["total_cases"], result["total_skipped"]))
+        self.assertEqual("skip", result["results"][0]["status"])
+        self.assertIn("AETHER_EVAL_012", {error["rule_id"] for error in result["errors"]})
+
+    def test_malformed_root_and_duplicate_json_keys_fail_without_crashing(self):
+        for payload in ["[]", "{", '{"schema":"ignored","schema":"aether.skill-evaluations/v2"}']:
+            with self.subTest(payload=payload):
+                fx = self._fx_with_evals(_VALID_EVALS_V2)
+                write(fx.root / "library/organization/skills/domain/example-skill/evals/evals.json", payload)
+                result = fx.validator().run_evals()
+                self.assertEqual("fail", result["status"])
+                self.assertEqual(0, result["total_cases"])
+                self.assertEqual(1, result["total_suite_errors"])
+
+    def test_public_eval_command_returns_nonzero_and_prints_selection_error_in_both_formats(self):
+        fx = self._fx_with_evals(_VALID_EVALS_V2)
+        for output_format in ["json", "text"]:
+            with self.subTest(format=output_format):
+                args = type("Args", (), {"repo_root": str(fx.root), "skill": "missing-skill", "mode": "deterministic", "format": output_format})()
+                output = io.StringIO()
+                with mock.patch("aether_validator.find_repo_root", return_value=fx.root), contextlib.redirect_stdout(output):
+                    status = command_eval_run(args)
+                self.assertNotEqual(0, status)
+                self.assertIn("AETHER_EVAL_010", output.getvalue())
+                if output_format == "json":
+                    self.assertEqual(0, json.loads(output.getvalue())["total_cases"])
 
     def test_run_evals_applies_deterministic_assertion_against_golden(self):
         fx = self._fx_with_evals({
@@ -617,7 +904,7 @@ class TestAgentValidator(unittest.TestCase):
     # ------------------------------------------------------------------
 
     def test_canonical_agents_all_valid(self) -> None:
-        """All nine canonical agent source files must pass validation."""
+        """Every canonical agent source file must pass validation."""
         agents_dir = (
             Path(__file__).resolve().parents[1]
             / "library"
@@ -626,7 +913,7 @@ class TestAgentValidator(unittest.TestCase):
         )
         rc, output = self._run_validator(agents_dir)
         self.assertEqual(rc, 0, msg=f"validate-agents.py exited non-zero:\n{output}")
-        self.assertIn("9 agent(s) validated successfully", output)
+        self.assertIn(f"{len(list(agents_dir.glob('*/AGENT.md')))} agent(s) validated successfully", output)
 
     # ------------------------------------------------------------------
     # Unit tests for projection builder

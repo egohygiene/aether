@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any
 
 import yaml
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, SchemaError
 
 EXIT_OK = 0
 EXIT_VALIDATION_FAILED = 1
@@ -415,6 +415,8 @@ class AetherValidator:
         self.specs_root = repo_root / "library" / "organization" / "specs"
         self.catalog_path = repo_root / "catalog" / "first-party" / "catalog.v1.json"
         self.catalog_schema_path = repo_root / "catalog" / "schemas" / "aether.artifact-catalog.v1.schema.json"
+        self.agents_root = repo_root / "library" / "organization" / "agents"
+        self.agent_catalog_path = self.agents_root / "catalog.json"
 
     def _skill_dirs(self) -> list[Path]:
         return sorted({p.parent for p in self.skills_root.rglob("SKILL.md")})
@@ -608,7 +610,15 @@ class AetherValidator:
                 diagnostics.append(err)
                 continue
             assert fm is not None
-            spec_id = str(fm.get("id", ""))
+            raw_id = fm.get("id")
+            spec_id = raw_id if isinstance(raw_id, str) and SKILL_NAME_RE.fullmatch(raw_id) else ""
+            if not spec_id:
+                diagnostics.append(Diagnostic(
+                    rule_id="AETHER_SPEC_007", severity="error",
+                    message="Specification id must be a lowercase kebab-case stable identifier.",
+                    guidance="Use a semantic identifier without paths, drives, dots or whitespace.",
+                    file=rel, line=1,
+                ))
             artifact_id = f"specification/{spec_id}" if spec_id else None
 
             if fm.get("schema") != SPEC_SCHEMA:
@@ -648,7 +658,7 @@ class AetherValidator:
                 ))
 
             status = fm.get("status")
-            if status not in SPEC_STATUS:
+            if not isinstance(status, str) or status not in SPEC_STATUS:
                 diagnostics.append(Diagnostic(
                     rule_id="AETHER_SPEC_004",
                     severity="error",
@@ -785,7 +795,33 @@ class AetherValidator:
     def generate_catalog(self) -> dict[str, Any]:
         specs_diags, specs_by_id, _ = self._collect_specs()
         if any(d.severity == "error" for d in specs_diags):
-            raise ValidationError("Cannot generate catalog while specification frontmatter is invalid.")
+            errors = "; ".join(f"{d.file}: {d.message}" for d in specs_diags if d.severity == "error")
+            raise ValidationError(f"Cannot generate catalog from invalid specification frontmatter: {errors}")
+
+        def string_list(value: Any, source_path: str, field: str, *, nonempty: bool = False) -> list[str]:
+            if (not isinstance(value, list) or (nonempty and not value)
+                    or any(not isinstance(item, str) or not item.strip() for item in value)):
+                raise ValidationError(f"{source_path}: {field} must be a {'non-empty ' if nonempty else ''}list of non-empty strings.")
+            return value
+
+        def lifecycle(value: Any, source_path: str, *, specification: bool = False) -> dict[str, str]:
+            allowed = {"draft", "experimental", "stable", "deprecated", "retired"}
+            if specification:
+                allowed.add("approved")
+            if not isinstance(value, str) or value not in allowed:
+                raise ValidationError(f"{source_path}: invalid source lifecycle {value!r}.")
+            return {"source_state": "approved", "state": "stable"} if value == "approved" else {"state": value}
+
+        def release_policy(state: str, previous: dict[str, Any]) -> dict[str, Any]:
+            # Preserve explicit catalog exclusions. Source regeneration is not a
+            # release approval, and a non-stable source can never stay included.
+            release = dict(previous.get("release") or {
+                "included": state == "stable",
+                "reason": "Only stable artifacts are releasable under catalog policy.",
+            })
+            if state != "stable" and release.get("included"):
+                release = {"included": False, "reason": "Only stable artifacts are releasable under catalog policy."}
+            return release
 
         bare_skill, _prefixed, _skill_paths = self._skill_identity_maps()
         known_spec_ids = {f"specification/{x}" for x in specs_by_id}
@@ -808,15 +844,15 @@ class AetherValidator:
                 continue
             spec_id = str(fm["id"])
             source_path = _rel(spec_path, self.repo_root)
+            if fm["kind"] != "specification":
+                raise ValidationError(f"{source_path}: specification kind must be 'specification'.")
             source_digest = _sha256_utf8_lf(spec_path)
-            if source_path in existing_by_path:
-                record = existing_by_path[source_path]
-                record["source_digest"] = {"algorithm": "sha256-utf8-lf", "value": source_digest}
-                artifacts.append(record)
-                continue
+            previous = existing_by_path.get(source_path, {})
+            source_lifecycle = lifecycle(fm["status"], source_path, specification=True)
+            owners = string_list(fm["owners"], source_path, "owners", nonempty=True)
 
             related_ids = []
-            for ref in fm.get("related") or []:
+            for ref in string_list(fm.get("related", []), source_path, "related"):
                 if ref in specs_by_id:
                     related_ids.append(f"specification/{ref}")
                 elif ref.startswith("specification/") and ref in known_spec_ids:
@@ -828,98 +864,103 @@ class AetherValidator:
 
             dependencies = [
                 f"specification/{x}" if not str(x).startswith("specification/") else str(x)
-                for x in (fm.get("depends_on") or [])
+                for x in string_list(fm.get("depends_on", []), source_path, "depends_on")
             ]
             supersedes_ids = [
                 f"specification/{x}" if not str(x).startswith("specification/") else str(x)
-                for x in (fm.get("supersedes") or [])
+                for x in string_list(fm.get("supersedes", []), source_path, "supersedes")
             ]
-            description = ""
+            description_lines = []
             body = _normalized_text(spec_path)
             after_frontmatter = body.split("---\n", 2)[-1]
             for line in after_frontmatter.splitlines():
                 stripped = line.strip()
-                if stripped and not stripped.startswith("#"):
-                    description = stripped
-                    break
+                if not stripped or stripped.startswith("#"):
+                    if description_lines:
+                        break
+                    continue
+                description_lines.append(stripped)
+            description = " ".join(description_lines)
 
             artifacts.append({
                 "artifact_version": str(fm.get("version", "1.0.0")),
-                "compatibility": {"required_tools": []},
+                "compatibility": previous.get("compatibility", {"required_tools": []}),
                 "dependencies": dependencies,
-                "deprecation": {"replacement_id": None},
-                "description": description,
-                "domain": str(fm.get("domain", "unknown")),
+                "deprecation": previous.get("deprecation", {"replacement_id": None}),
+                "description": fm.get("description", description),
+                "domain": fm["domain"],
                 "generated_distribution_paths": [f"dist/specs/{spec_id}.spec.md"],
                 "id": f"specification/{spec_id}",
                 "implements_specification_id": None,
                 "kind": "specification",
-                "license": "MIT",
-                "lifecycle": {"state": str(fm.get("status", "draft"))},
+                "license": fm.get("license", "MIT"),
+                "lifecycle": source_lifecycle,
                 "owner": {
-                    "maintainers": [str(x) for x in (fm.get("owners") or ["egohygiene"])],
-                    "primary": str((fm.get("owners") or ["egohygiene"])[0]),
+                    "maintainers": owners,
+                    "primary": owners[0],
                 },
-                "related_ids": sorted(set(related_ids)),
-                "release": {
-                    "included": str(fm.get("status", "draft")) == "stable",
-                    "reason": "Only stable artifacts are releasable under catalog policy." if str(fm.get("status", "draft")) != "stable" else "Stable artifact is eligible for release manifests.",
-                },
-                "scope": "organization",
+                "related_ids": list(dict.fromkeys(related_ids)),
+                "release": release_policy(source_lifecycle["state"], previous),
+                "scope": previous.get("scope", "organization"),
                 "source_digest": {"algorithm": "sha256-utf8-lf", "value": source_digest},
                 "source_path": source_path,
                 "supersedes_ids": supersedes_ids,
-                "tags": [str(x) for x in (fm.get("tags") or [])],
-                "title": str(fm.get("title", spec_id)),
+                "tags": string_list(fm["tags"], source_path, "tags"),
+                "title": fm["title"],
             })
 
         for skill_dir in self._skill_dirs():
             skill_path = skill_dir / "SKILL.md"
-            fm, _ = _parse_frontmatter(skill_path)
-            if fm is None:
-                continue
-            name = str(fm.get("name", skill_dir.name))
             source_path = _rel(skill_path, self.repo_root)
+            fm, err = _parse_frontmatter(skill_path)
+            if err or fm is None:
+                raise ValidationError(f"{source_path}: {err.message if err else 'Missing skill frontmatter.'}")
+            name = fm.get("name")
+            if not isinstance(name, str) or not SKILL_NAME_RE.fullmatch(name) or name != skill_dir.name:
+                raise ValidationError(f"{source_path}: skill name must be a lowercase kebab-case directory name.")
             source_digest = _sha256_utf8_lf(skill_path)
-            if source_path in existing_by_path:
-                record = existing_by_path[source_path]
-                record["source_digest"] = {"algorithm": "sha256-utf8-lf", "value": source_digest}
-                artifacts.append(record)
-                continue
+            previous = existing_by_path.get(source_path, {})
 
-            metadata = fm.get("metadata") if isinstance(fm.get("metadata"), dict) else {}
-            spec_ref = str(metadata.get("aether-spec-id", "")).strip()
-            implements = f"specification/{spec_ref}" if spec_ref else None
+            metadata = fm.get("metadata", {})
+            if not isinstance(metadata, dict):
+                raise ValidationError(f"{source_path}: skill metadata must be a mapping.")
+            spec_ref = metadata.get("aether-spec-id", "")
+            if not isinstance(spec_ref, str):
+                raise ValidationError(f"{source_path}: metadata.aether-spec-id must be a string.")
+            spec_ref = spec_ref.strip()
+            implements = (spec_ref if spec_ref.startswith("specification/") else f"specification/{spec_ref}") if spec_ref else None
             dependencies = [implements] if implements else []
+            source_lifecycle = lifecycle(metadata.get("aether-status", "draft"), source_path)
+            owners = metadata.get("aether-owners", "egohygiene")
+            owners = string_list([owners] if isinstance(owners, str) else owners, source_path, "metadata.aether-owners", nonempty=True)
+            compatibility = dict(previous.get("compatibility") or {})
+            compatibility["required_tools"] = string_list(fm.get("allowed-tools", []), source_path, "allowed-tools")
 
             artifacts.append({
-                "artifact_version": str(metadata.get("aether-version", "1.0.0")),
-                "compatibility": {"required_tools": [str(x) for x in (fm.get("allowed-tools") or []) if isinstance(x, str)]},
+                "artifact_version": metadata.get("aether-version", "1.0.0"),
+                "compatibility": compatibility,
                 "dependencies": dependencies,
-                "deprecation": {"replacement_id": None},
-                "description": str(fm.get("description", "")),
-                "domain": str(metadata.get("aether-domain", "unknown")),
+                "deprecation": previous.get("deprecation", {"replacement_id": None}),
+                "description": fm.get("description", ""),
+                "domain": metadata.get("aether-domain", "unknown"),
                 "generated_distribution_paths": [f"dist/skills/{name}/SKILL.md"],
                 "id": f"skill/{name}",
                 "implements_specification_id": implements,
                 "kind": "skill",
-                "license": str(fm.get("license", "MIT")),
-                "lifecycle": {"state": str(metadata.get("aether-status", "draft"))},
+                "license": fm.get("license", "MIT"),
+                "lifecycle": source_lifecycle,
                 "owner": {
-                    "maintainers": [str(metadata.get("aether-owners", "egohygiene"))],
-                    "primary": str(metadata.get("aether-owners", "egohygiene")),
+                    "maintainers": owners,
+                    "primary": owners[0],
                 },
-                "related_ids": [],
-                "release": {
-                    "included": str(metadata.get("aether-status", "draft")) == "stable",
-                    "reason": "Only stable artifacts are releasable under catalog policy." if str(metadata.get("aether-status", "draft")) != "stable" else "Stable artifact is eligible for release manifests.",
-                },
-                "scope": str(metadata.get("aether-scope", "organization")),
+                "related_ids": previous.get("related_ids", []),
+                "release": release_policy(source_lifecycle["state"], previous),
+                "scope": metadata.get("aether-scope", "organization"),
                 "source_digest": {"algorithm": "sha256-utf8-lf", "value": source_digest},
                 "source_path": source_path,
-                "supersedes_ids": [],
-                "tags": [str(metadata.get("aether-domain", "skill")), "skill"],
-                "title": " ".join(piece.capitalize() for piece in name.split("-")),
+                "supersedes_ids": previous.get("supersedes_ids", []),
+                "tags": previous.get("tags", [metadata.get("aether-domain", "skill"), "skill"]),
+                "title": previous.get("title", " ".join(piece.capitalize() for piece in name.split("-"))),
             })
 
         authority = existing_catalog.get("authority") if existing_catalog else None
@@ -949,11 +990,28 @@ class AetherValidator:
                 "allowed_states": ["draft", "experimental", "stable", "deprecated", "retired"],
             },
         }
+        if self.catalog_schema_path.exists():
+            schema = json.loads(self.catalog_schema_path.read_text(encoding="utf-8"))
+            for err in Draft202012Validator(schema).iter_errors(catalog):
+                location = list(err.path)
+                source = "catalog metadata"
+                if len(location) > 1 and location[0] == "artifacts" and isinstance(location[1], int):
+                    source = catalog["artifacts"][location[1]]["source_path"]
+                raise ValidationError(f"{source}: invalid catalog metadata at {'/'.join(map(str, location))}: {err.message}")
         return catalog
 
     def validate_catalog(self, check_only: bool = True) -> list[Diagnostic]:
         diagnostics: list[Diagnostic] = []
-        generated = self.generate_catalog()
+        try:
+            generated = self.generate_catalog()
+        except ValidationError as exc:
+            return [Diagnostic(
+                rule_id="AETHER_CATALOG_004",
+                severity="error",
+                message=str(exc),
+                guidance="Fix the named canonical source metadata before regenerating the catalog.",
+                file=_rel(self.catalog_path, self.repo_root),
+            )]
 
         if self.catalog_schema_path.exists():
             schema = json.loads(self.catalog_schema_path.read_text(encoding="utf-8"))
@@ -971,6 +1029,20 @@ class AetherValidator:
         if self.catalog_path.exists():
             current = json.loads(self.catalog_path.read_text(encoding="utf-8"))
             if current != generated:
+                current_by_path = {item.get("source_path"): item for item in current.get("artifacts", [])}
+                for expected in generated["artifacts"]:
+                    actual = current_by_path.get(expected["source_path"], {})
+                    fields = sorted(key for key in expected if key != "source_digest" and actual.get(key) != expected[key])
+                    if fields:
+                        diagnostics.append(Diagnostic(
+                            rule_id="AETHER_CATALOG_005",
+                            severity="error",
+                            message=f"Catalog metadata disagrees with canonical source: {', '.join(fields)}.",
+                            guidance="Regenerate the catalog from canonical frontmatter; refreshing only the source digest is insufficient.",
+                            artifact_id=expected["id"],
+                            file=expected["source_path"],
+                            context={"fields": fields},
+                        ))
                 diagnostics.append(Diagnostic(
                     rule_id="AETHER_CATALOG_002",
                     severity="error",
@@ -992,12 +1064,74 @@ class AetherValidator:
                 file=_rel(self.catalog_path, self.repo_root),
             ))
 
-        return diagnostics
+        return diagnostics + self.validate_agent_catalog(check_only=check_only)
 
     def write_catalog(self) -> None:
         generated = self.generate_catalog()
+        agents = self.generate_agent_catalog()
         self.catalog_path.parent.mkdir(parents=True, exist_ok=True)
         self.catalog_path.write_text(json.dumps(generated, indent=2, sort_keys=False) + "\n", encoding="utf-8")
+        if agents is not None:
+            self.agent_catalog_path.write_text(json.dumps(agents, indent=2) + "\n", encoding="utf-8")
+
+    def generate_agent_catalog(self) -> dict[str, Any] | None:
+        """Refresh source-owned agent fields, retaining projection/annotation ownership."""
+        files = sorted(self.agents_root.glob("*/AGENT.md"))
+        if not files and not self.agent_catalog_path.exists():
+            return None
+        current = json.loads(self.agent_catalog_path.read_text(encoding="utf-8")) if self.agent_catalog_path.exists() else {"schema": "aether.agents/v1", "agents": {}}
+        if not isinstance(current, dict) or current.get("schema") != "aether.agents/v1" or not isinstance(current.get("agents"), dict):
+            raise ValidationError("library/organization/agents/catalog.json: expected an aether.agents/v1 agents mapping.")
+        previous = current["agents"]
+        identifiers = {path.parent.name for path in files}
+        if set(previous) - identifiers:
+            raise ValidationError(f"library/organization/agents/catalog.json: missing canonical agent source for {sorted(set(previous) - identifiers)}.")
+        skills, _, _ = self._skill_identity_maps()
+        _, specifications, _ = self._collect_specs()
+        agents = {}
+        for path in files:
+            source = _rel(path, self.repo_root)
+            fm, error = _parse_frontmatter(path)
+            if error or fm is None:
+                raise ValidationError(f"{source}: {error.message if error else 'missing frontmatter'}")
+            identity = path.parent.name
+            metadata = fm.get("metadata")
+            if fm.get("aether-id") != identity or not SKILL_NAME_RE.fullmatch(identity) or not isinstance(metadata, dict):
+                raise ValidationError(f"{source}: matching aether-id and a metadata mapping are required.")
+            for field, value in (("name", fm.get("name")), ("description", fm.get("description")), ("metadata.aether-domain", metadata.get("aether-domain")), ("metadata.aether-version", metadata.get("aether-version"))):
+                if not isinstance(value, str) or not value.strip():
+                    raise ValidationError(f"{source}: {field} must be a non-empty string.")
+            if not re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?", metadata["aether-version"]):
+                raise ValidationError(f"{source}: metadata.aether-version must be semantic version text.")
+            status = metadata.get("aether-status")
+            if not isinstance(status, str) or status not in {"draft", "stable", "deprecated", "retired"}:
+                raise ValidationError(f"{source}: invalid metadata.aether-status {status!r}.")
+            lists = {}
+            for field, value, allowed in (("tools", fm.get("tools"), {"read", "search", "edit", "execute", "web"}), ("skills", metadata.get("aether-skills", []), set(skills)), ("specs", metadata.get("aether-specs", []), set(specifications))):
+                if not isinstance(value, list) or (field == "tools" and not value) or any(not isinstance(item, str) or item not in allowed for item in value) or len(value) != len(set(value)):
+                    raise ValidationError(f"{source}: {field} must be an explicit list of unique known identifiers.")
+                lists[field] = value
+            entry = previous.get(identity, {})
+            if not isinstance(entry, dict):
+                raise ValidationError(f"library/organization/agents/catalog.json: agent {identity} must be a mapping.")
+            agents[identity] = {**entry, "name": fm["name"], "description": fm["description"], "domain": metadata["aether-domain"], "status": status, "version": metadata["aether-version"], **lists}
+        return {**current, "agents": agents}
+
+    def validate_agent_catalog(self, check_only: bool = True) -> list[Diagnostic]:
+        try:
+            generated = self.generate_agent_catalog()
+        except (ValidationError, ValueError, OSError) as error:
+            return [Diagnostic(rule_id="AETHER_CATALOG_006", severity="error", message=str(error), guidance="Fix the named agent source/catalog metadata before regeneration.", file=_rel(self.agent_catalog_path, self.repo_root))]
+        if generated is None:
+            return []
+        current = json.loads(self.agent_catalog_path.read_text(encoding="utf-8")) if self.agent_catalog_path.exists() else {"agents": {}}
+        diagnostics = []
+        for identity, expected in generated["agents"].items():
+            actual = current["agents"].get(identity, {})
+            fields = sorted(key for key in expected if actual.get(key) != expected[key])
+            if fields:
+                diagnostics.append(Diagnostic(rule_id="AETHER_CATALOG_007", severity="error", message=f"Agent catalog metadata differs from canonical source: {', '.join(fields)}.", guidance="Run `aether catalog generate`; retain source lifecycle and tool authority.", artifact_id=f"agent/{identity}", file=_rel(self.agent_catalog_path, self.repo_root), context={"fields": fields, "source": _rel(self.agents_root / identity / "AGENT.md", self.repo_root), "check_mode": check_only}))
+        return diagnostics
 
     def validate_json_files(self) -> list[Diagnostic]:
         diagnostics: list[Diagnostic] = []
@@ -1292,340 +1426,209 @@ class AetherValidator:
     _EVAL_SCHEMA_V1 = "aether.skill-evaluations/v1"
     _EVAL_REQUIRED_CATEGORIES = frozenset({"positive", "negative", "insufficient-evidence", "boundary"})
 
+    @staticmethod
+    def _read_eval_json(path: Path) -> Any:
+        def unique_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+            result: dict[str, Any] = {}
+            for key, value in pairs:
+                if key in result:
+                    raise ValueError(f"duplicate JSON key {key!r}")
+                result[key] = value
+            return result
+        return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_keys)
+
     def _load_eval_v2_schema(self) -> tuple[dict[str, Any] | None, Diagnostic | None]:
-        schema_path = (
-            self.repo_root / "catalog" / "schemas" / "aether.skill-evaluations.v2.schema.json"
-        )
+        path = self.repo_root / "catalog/schemas/aether.skill-evaluations.v2.schema.json"
         try:
-            return json.loads(schema_path.read_text(encoding="utf-8")), None
-        except FileNotFoundError:
+            schema = self._read_eval_json(path)
+            if not isinstance(schema, dict) or schema.get("$id") != self._EVAL_SCHEMA_V2:
+                raise ValueError("expected the named v2 evaluation schema object")
+            Draft202012Validator.check_schema(schema)
+            return schema, None
+        except (OSError, UnicodeError, ValueError, SchemaError) as exc:
             return None, Diagnostic(
-                rule_id="AETHER_EVAL_000",
-                severity="error",
-                message="Eval v2 schema not found at catalog/schemas/aether.skill-evaluations.v2.schema.json.",
-                guidance="Ensure the v2 eval schema file exists in catalog/schemas/.",
+                rule_id="AETHER_EVAL_000", severity="error",
+                message=f"Eval v2 schema unavailable or invalid: {exc}",
+                guidance="Restore catalog/schemas/aether.skill-evaluations.v2.schema.json.",
             )
-        except json.JSONDecodeError as exc:
-            return None, Diagnostic(
-                rule_id="AETHER_EVAL_000",
-                severity="error",
-                message=f"Eval v2 schema is malformed JSON: {exc}",
-                guidance="Fix catalog/schemas/aether.skill-evaluations.v2.schema.json.",
-            )
+
+    def _eval_suite_preflight(
+        self, skill_dir: Path, data: Any, validator: Draft202012Validator,
+    ) -> list[Diagnostic]:
+        """One structural admission path shared by validation and execution."""
+        diagnostics: list[Diagnostic] = []
+        path = skill_dir / "evals/evals.json"
+
+        def report(code: str, message: str, *, severity: str = "error", context: dict | None = None, file: Path = path) -> None:
+            diagnostics.append(Diagnostic(
+                rule_id=code, severity=severity, message=message,
+                guidance="Correct the suite before running deterministic evaluations.",
+                artifact_id=f"skill/{skill_dir.name}", file=_rel(file, self.repo_root),
+                context=context or {},
+            ))
+
+        if not isinstance(data, dict):
+            report("AETHER_EVAL_001", "Eval suite must be an object.")
+            return diagnostics
+        schema_version = data.get("schema")
+        if schema_version == self._EVAL_SCHEMA_V1:
+            report("AETHER_EVAL_006", f"Eval file uses deprecated schema '{self._EVAL_SCHEMA_V1}'. Migrate to v2.", severity="warning")
+            return diagnostics
+        if schema_version != self._EVAL_SCHEMA_V2:
+            report("AETHER_EVAL_007", f"Unknown eval schema '{schema_version}'.")
+            return diagnostics
+        schema_errors = sorted(validator.iter_errors(data), key=str)
+        for error in schema_errors:
+            location = " > ".join(map(str, error.absolute_path)) or "(root)"
+            report("AETHER_EVAL_001", f"Eval schema violation at {location}: {error.message}", context={"schema_path": location})
+        if schema_errors:
+            return diagnostics
+        if data["skill"] != skill_dir.name:
+            report("AETHER_EVAL_009", "Eval skill identity must match its canonical package directory.")
+        cases = data["cases"]
+        seen: set[str] = set()
+        for case in cases:
+            if case["id"] in seen:
+                report("AETHER_EVAL_002", f"Duplicate case ID '{case['id']}'.")
+            seen.add(case["id"])
+        missing = self._EVAL_REQUIRED_CATEGORIES - {case["category"] for case in cases}
+        if missing:
+            report("AETHER_EVAL_003", f"Missing required eval categories: {', '.join(sorted(missing))}.", context={"missing": sorted(missing)})
+        for case in cases:
+            fixture = case.get("fixture")
+            if fixture and not (skill_dir / "evals" / fixture).is_file():
+                report("AETHER_EVAL_004", f"Case '{case['id']}' references missing fixture '{fixture}'.", context={"fixture": fixture})
+            golden = skill_dir / "evals/goldens" / f"{case['id']}.golden.txt"
+            if golden.is_file() and not golden.read_text(encoding="utf-8").strip():
+                report("AETHER_EVAL_005", f"Golden fixture for case '{case['id']}' is empty.", severity="warning", file=golden)
+        return diagnostics
+
+    def _preflight_eval_path(
+        self, skill_dir: Path, validator: Draft202012Validator,
+    ) -> tuple[Any, list[Diagnostic]]:
+        path = skill_dir / "evals/evals.json"
+        try:
+            data = self._read_eval_json(path)
+            return data, self._eval_suite_preflight(skill_dir, data, validator)
+        except (OSError, UnicodeError, ValueError) as exc:
+            return None, [Diagnostic(
+                rule_id="AETHER_EVAL_008", severity="error",
+                message=f"Eval suite or evidence could not be loaded: {exc}",
+                guidance="Restore valid readable evaluation inputs.",
+                artifact_id=f"skill/{skill_dir.name}", file=_rel(path, self.repo_root),
+            )]
 
     def validate_evals(self) -> list[Diagnostic]:
-        """Layer 1 deterministic structural evaluation for all first-party skill evals."""
+        """Validate the same structural prerequisites used by the runner."""
+        schema, error = self._load_eval_v2_schema()
+        if error:
+            return [error]
+        validator = Draft202012Validator(schema)
         diagnostics: list[Diagnostic] = []
-        v2_schema, schema_err = self._load_eval_v2_schema()
-        if schema_err:
-            diagnostics.append(schema_err)
-            return diagnostics
-
-        assert v2_schema is not None
-        jsonschema_validator = Draft202012Validator(v2_schema)
-
         for skill_dir in self._skill_dirs():
-            evals_path = skill_dir / "evals" / "evals.json"
-            if not evals_path.exists():
-                continue  # already reported by validate_skills (AETHER_SKILL_009)
-
-            rel = _rel(evals_path, self.repo_root)
-            artifact_id = f"skill/{skill_dir.name}"
-
-            try:
-                data = json.loads(evals_path.read_text(encoding="utf-8"))
-            except json.JSONDecodeError:
-                continue  # already reported by validate_json_files (AETHER_JSON_001)
-
-            schema_version = data.get("schema", "")
-
-            if schema_version == self._EVAL_SCHEMA_V1:
-                diagnostics.append(Diagnostic(
-                    rule_id="AETHER_EVAL_006",
-                    severity="warning",
-                    message=f"Eval file uses deprecated schema '{self._EVAL_SCHEMA_V1}'. Migrate to v2.",
-                    guidance="Upgrade to 'aether.skill-evaluations/v2' and add required category/trigger fields.",
-                    artifact_id=artifact_id,
-                    file=rel,
-                ))
-                continue
-
-            if schema_version != self._EVAL_SCHEMA_V2:
-                diagnostics.append(Diagnostic(
-                    rule_id="AETHER_EVAL_007",
-                    severity="error",
-                    message=f"Unknown eval schema '{schema_version}'.",
-                    guidance="Use 'aether.skill-evaluations/v2' as the schema value.",
-                    artifact_id=artifact_id,
-                    file=rel,
-                ))
-                continue
-
-            # JSON Schema validation against v2
-            schema_errors = sorted(jsonschema_validator.iter_errors(data), key=str)
-            for err in schema_errors:
-                path_str = " > ".join(str(p) for p in err.absolute_path) if err.absolute_path else "(root)"
-                diagnostics.append(Diagnostic(
-                    rule_id="AETHER_EVAL_001",
-                    severity="error",
-                    message=f"Eval schema violation at {path_str}: {err.message}",
-                    guidance="Fix the eval definition to conform to aether.skill-evaluations/v2.",
-                    artifact_id=artifact_id,
-                    file=rel,
-                    context={"schema_path": path_str},
-                ))
-            if schema_errors:
-                continue
-
-            cases = data.get("cases", [])
-
-            # Unique case IDs
-            seen_ids: set[str] = set()
-            for case in cases:
-                cid = case.get("id", "")
-                if cid in seen_ids:
-                    diagnostics.append(Diagnostic(
-                        rule_id="AETHER_EVAL_002",
-                        severity="error",
-                        message=f"Duplicate case ID '{cid}'.",
-                        guidance="Assign a unique kebab-case ID to each eval case.",
-                        artifact_id=artifact_id,
-                        file=rel,
-                    ))
-                seen_ids.add(cid)
-
-            # Required categories
-            present_cats = {c.get("category") for c in cases}
-            missing_cats = self._EVAL_REQUIRED_CATEGORIES - present_cats
-            if missing_cats:
-                diagnostics.append(Diagnostic(
-                    rule_id="AETHER_EVAL_003",
-                    severity="error",
-                    message=f"Missing required eval categories: {', '.join(sorted(missing_cats))}.",
-                    guidance=(
-                        "Add at least one case for each required category: "
-                        "positive, negative, insufficient-evidence, boundary."
-                    ),
-                    artifact_id=artifact_id,
-                    file=rel,
-                    context={"missing": sorted(missing_cats)},
-                ))
-
-            # Fixture existence
-            for case in cases:
-                fixture = case.get("fixture")
-                if fixture:
-                    fixture_path = (skill_dir / "evals" / fixture).resolve()
-                    if not fixture_path.exists():
-                        diagnostics.append(Diagnostic(
-                            rule_id="AETHER_EVAL_004",
-                            severity="error",
-                            message=f"Case '{case['id']}' references missing fixture '{fixture}'.",
-                            guidance="Create the referenced fixture file or correct the path.",
-                            artifact_id=artifact_id,
-                            file=rel,
-                            context={"fixture": fixture},
-                        ))
-
-            # Golden fixture drift — empty goldens are suspicious
-            goldens_dir = skill_dir / "evals" / "goldens"
-            for case in cases:
-                cid = case.get("id", "")
-                golden_path = goldens_dir / f"{cid}.golden.txt"
-                if golden_path.exists():
-                    if not golden_path.read_text(encoding="utf-8").strip():
-                        diagnostics.append(Diagnostic(
-                            rule_id="AETHER_EVAL_005",
-                            severity="warning",
-                            message=f"Golden fixture for case '{cid}' is empty.",
-                            guidance="Populate or remove the golden fixture file.",
-                            artifact_id=artifact_id,
-                            file=_rel(golden_path, self.repo_root),
-                        ))
-
+            if (skill_dir / "evals/evals.json").exists():
+                _, found = self._preflight_eval_path(skill_dir, validator)
+                diagnostics.extend(found)
         return diagnostics
 
     def run_evals(
-        self,
-        skill_filter: str | None = None,
-        mode: str = "deterministic",
+        self, skill_filter: str | None = None, mode: str = "deterministic",
     ) -> dict[str, Any]:
-        """Run the eval harness and return versioned JSON results.
-
-        Only the deterministic mode is supported by this method. Optional
-        model-assisted evaluation is not implemented here and must never run
-        silently on pull requests.
-
-        Returns a dict matching the aether.eval-run-result/v1 structure.
-        """
-        run_id = str(uuid.uuid4())
-        timestamp = datetime.now(tz=timezone.utc).isoformat()
-
+        """Run structure and declared assertions only; never infer prose/model behavior."""
         skill_results: list[dict[str, Any]] = []
-        total_cases = 0
-        total_passed = 0
-        total_failed = 0
-        total_skipped = 0
+        run_errors: list[dict[str, Any]] = []
+        total_cases = total_passed = total_failed = total_skipped = suite_errors = 0
 
-        for skill_dir in self._skill_dirs():
-            skill_name = skill_dir.name
-            if skill_filter and skill_name != skill_filter:
-                continue
+        def run_error(code: str, message: str) -> None:
+            run_errors.append(asdict(Diagnostic(
+                rule_id=code, severity="error", message=message,
+                guidance="Select an executable deterministic suite and available inputs.",
+            )))
 
-            evals_path = skill_dir / "evals" / "evals.json"
-            if not evals_path.exists():
-                skill_results.append({
-                    "skill": skill_name,
-                    "status": "skip",
-                    "reason": "evals/evals.json not found",
-                    "cases": [],
-                })
+        skills = self._skill_dirs() if mode == "deterministic" else []
+        if mode != "deterministic":
+            run_error("AETHER_EVAL_011", f"Unsupported evaluation mode: {mode}; no model or assertions executed.")
+        if skill_filter is not None:
+            skills = [path for path in skills if path.name == skill_filter]
+            if not skills and mode == "deterministic":
+                run_error("AETHER_EVAL_010", f"No canonical skill matches explicit selection {skill_filter!r}.")
+        schema, schema_error = self._load_eval_v2_schema() if skills else (None, None)
+        if schema_error:
+            run_errors.append(asdict(schema_error))
+            skills = []
+        validator = Draft202012Validator(schema) if schema is not None else None
+        for skill_dir in skills:
+            name = skill_dir.name
+            if not (skill_dir / "evals/evals.json").exists():
+                skill_results.append({"skill": name, "status": "skip", "reason": "evals/evals.json not found", "cases": []})
                 total_skipped += 1
                 continue
-
-            try:
-                data = json.loads(evals_path.read_text(encoding="utf-8"))
-            except json.JSONDecodeError as exc:
+            data, diagnostics = self._preflight_eval_path(skill_dir, validator)
+            errors = [d for d in diagnostics if d.severity == "error"]
+            if errors:
+                suite_errors += 1
                 skill_results.append({
-                    "skill": skill_name,
-                    "status": "fail",
-                    "reason": f"malformed JSON: {exc}",
-                    "cases": [],
+                    "skill": name, "status": "fail", "reason": "suite preflight failed; no cases executed",
+                    "diagnostics": [asdict(d) for d in diagnostics],
+                    "cases_total": 0, "cases_passed": 0, "cases_failed": 0, "cases": [],
                 })
-                total_failed += 1
                 continue
-
-            schema_version = data.get("schema", "")
-            if schema_version != self._EVAL_SCHEMA_V2:
-                skill_results.append({
-                    "skill": skill_name,
-                    "status": "skip",
-                    "reason": f"schema '{schema_version}' is not v2; migrate to run evals",
-                    "cases": [],
-                })
+            if data["schema"] == self._EVAL_SCHEMA_V1:
+                skill_results.append({"skill": name, "status": "skip", "reason": "legacy v1 suite; migrate before execution", "diagnostics": [asdict(d) for d in diagnostics], "cases": []})
                 total_skipped += 1
                 continue
-
             case_results: list[dict[str, Any]] = []
-            skill_pass = 0
-            skill_fail = 0
-
-            cases = data.get("cases", [])
-
-            # Check required categories
-            present_cats = {c.get("category") for c in cases}
-            missing_cats = self._EVAL_REQUIRED_CATEGORIES - present_cats
-
-            # Check fixture existence
-            fixture_errors: dict[str, str] = {}
-            for case in cases:
-                fixture = case.get("fixture")
-                if fixture:
-                    fixture_path = (skill_dir / "evals" / fixture).resolve()
-                    if not fixture_path.exists():
-                        fixture_errors[case["id"]] = fixture
-
-            # Check goldens
-            goldens_dir = skill_dir / "evals" / "goldens"
-            golden_drift: dict[str, str] = {}
-            for case in cases:
-                cid = case.get("id", "")
-                golden_path = goldens_dir / f"{cid}.golden.txt"
-                if golden_path.exists():
-                    content = golden_path.read_text(encoding="utf-8").strip()
-                    if not content:
-                        golden_drift[cid] = "golden is empty"
-
-            for case_idx, case in enumerate(cases):
-                cid = case.get("id", "")
-                checks: list[dict[str, Any]] = []
-                passed = True
-
-                # Check: fixture exists if declared
-                if cid in fixture_errors:
-                    checks.append({
-                        "check": "fixture-exists",
-                        "status": "fail",
-                        "detail": f"missing fixture '{fixture_errors[cid]}'",
-                    })
-                    passed = False
-                elif case.get("fixture"):
-                    checks.append({"check": "fixture-exists", "status": "pass"})
-
-                # Check: golden not empty
-                if cid in golden_drift:
-                    checks.append({
-                        "check": "golden-not-empty",
-                        "status": "fail",
-                        "detail": golden_drift[cid],
-                    })
-                    passed = False
-
-                # Check: required categories present (report on first case only)
-                if missing_cats and case_idx == 0:
-                    checks.append({
-                        "check": "required-categories",
-                        "status": "fail",
-                        "detail": f"missing categories: {', '.join(sorted(missing_cats))}",
-                    })
-                    passed = False
-
-                # Deterministic string assertions against golden if available
-                golden_path = goldens_dir / f"{cid}.golden.txt"
-                if golden_path.exists():
-                    golden_text = golden_path.read_text(encoding="utf-8")
-                    for assertion in case.get("assertions", []):
-                        atype = assertion.get("type", "")
-                        avalue = assertion.get("value", "")
-                        result = _run_assertion(atype, avalue, golden_text, skill_dir)
-                        checks.append({
-                            "check": f"assertion/{atype}",
-                            "status": "pass" if result else "fail",
-                            "detail": avalue,
-                        })
-                        if not result:
-                            passed = False
-
-                case_status = "pass" if passed else "fail"
-                case_results.append({
-                    "id": cid,
-                    "category": case.get("category"),
-                    "trigger": case.get("trigger"),
-                    "status": case_status,
-                    "checks": checks,
-                })
-                total_cases += 1
-                if passed:
-                    skill_pass += 1
-                    total_passed += 1
-                else:
-                    skill_fail += 1
-                    total_failed += 1
-
-            skill_status = "pass" if skill_fail == 0 else "fail"
+            for case in data["cases"]:
+                cid = case["id"]
+                checks: list[dict[str, Any]] = [{
+                    "check": "suite-preflight", "status": "pass",
+                    "detail": "Suite/case structure validated; prose expectations and routing/model behavior not executed.",
+                }]
+                if case.get("fixture"):
+                    exists = (skill_dir / "evals" / case["fixture"]).is_file()
+                    checks.append({"check": "fixture-exists", "status": "pass" if exists else "fail"})
+                golden = skill_dir / "evals/goldens" / f"{cid}.golden.txt"
+                text: str | None = None
+                if golden.exists():
+                    try:
+                        text = golden.read_text(encoding="utf-8")
+                        checks.append({"check": "golden-not-empty", "status": "pass" if text.strip() else "fail"})
+                    except (OSError, UnicodeError) as exc:
+                        checks.append({"check": "golden-readable", "status": "fail", "detail": str(exc)})
+                for assertion in case.get("assertions", []):
+                    atype, value = assertion["type"], assertion["value"]
+                    filesystem = atype in {"file-exists", "file-not-exists"}
+                    if not filesystem and text is None:
+                        checks.append({"check": f"assertion/{atype}", "status": "fail", "detail": "Required text assertion has no readable golden; assertion not executed."})
+                        continue
+                    try:
+                        passed = _run_assertion(atype, value, text or "", skill_dir)
+                        checks.append({"check": f"assertion/{atype}", "status": "pass" if passed else "fail", "detail": value})
+                    except (OSError, UnicodeError, re.error) as exc:
+                        checks.append({"check": f"assertion/{atype}", "status": "fail", "detail": f"Assertion execution failed: {exc}"})
+                passed = all(check["status"] == "pass" for check in checks)
+                case_results.append({"id": cid, "category": case["category"], "trigger": case["trigger"], "status": "pass" if passed else "fail", "checks": checks})
+            skill_pass = sum(case["status"] == "pass" for case in case_results)
+            skill_fail = len(case_results) - skill_pass
+            total_cases += len(case_results)
+            total_passed += skill_pass
+            total_failed += skill_fail
             skill_results.append({
-                "skill": skill_name,
-                "status": skill_status,
-                "cases_total": len(cases),
-                "cases_passed": skill_pass,
-                "cases_failed": skill_fail,
-                "cases": case_results,
+                "skill": name, "status": "fail" if skill_fail else "pass",
+                "cases_total": len(case_results), "cases_passed": skill_pass, "cases_failed": skill_fail,
+                "diagnostics": [asdict(d) for d in diagnostics], "cases": case_results,
             })
-
-        overall_status = "pass" if total_failed == 0 else "fail"
+        if not total_cases and not run_errors and not suite_errors:
+            run_error("AETHER_EVAL_012", "No executable deterministic cases; skipped or absent suites do not establish a pass.")
         return {
-            "schema": "aether.eval-run-result/v1",
-            "run_id": run_id,
-            "timestamp": timestamp,
-            "mode": mode,
-            "skill_filter": skill_filter,
-            "status": overall_status,
-            "skills_evaluated": len(skill_results),
-            "total_cases": total_cases,
-            "total_passed": total_passed,
-            "total_failed": total_failed,
-            "total_skipped": total_skipped,
-            "results": skill_results,
+            "schema": "aether.eval-run-result/v1", "run_id": str(uuid.uuid4()),
+            "timestamp": datetime.now(tz=timezone.utc).isoformat(), "mode": mode,
+            "skill_filter": skill_filter, "status": "fail" if run_errors or suite_errors or total_failed else "pass",
+            "evaluation_scope": "deterministic-structure-and-declared-assertions",
+            "skills_evaluated": len(skill_results), "total_cases": total_cases,
+            "total_passed": total_passed, "total_failed": total_failed,
+            "total_skipped": total_skipped, "total_suite_errors": suite_errors,
+            "errors": run_errors, "results": skill_results,
         }
 
     def run_validation(self, scopes: set[str], strict_staging: bool = False, catalog_check: bool = True) -> list[Diagnostic]:
@@ -1746,17 +1749,18 @@ def command_validate(args: argparse.Namespace) -> int:
 def command_catalog_generate(args: argparse.Namespace) -> int:
     root = find_repo_root(Path(args.repo_root).resolve() if args.repo_root else Path.cwd())
     validator = AetherValidator(root)
-    generated = validator.generate_catalog()
     if args.check:
-        existing = json.loads(validator.catalog_path.read_text(encoding="utf-8")) if validator.catalog_path.exists() else None
-        if existing != generated:
-            print("Catalog drift detected.")
+        diagnostics = validator.validate_catalog(check_only=True)
+        if any(item.severity == "error" for item in diagnostics):
+            print(format_text(diagnostics))
             return EXIT_VALIDATION_FAILED
         print("Catalog is up to date.")
         return EXIT_OK
 
     validator.write_catalog()
     print(f"Wrote {validator.catalog_path}")
+    if validator.agent_catalog_path.exists():
+        print(f"Wrote {validator.agent_catalog_path}")
     return EXIT_OK
 
 
@@ -1803,12 +1807,15 @@ def _format_eval_text(results: dict[str, Any]) -> str:
         f"Mode      : {results['mode']}",
         f"Status    : {results['status'].upper()}",
         f"Skills    : {results['skills_evaluated']}",
+        "Scope     : structure and declared deterministic assertions; prose/routing/model behavior not executed",
         f"Cases     : {results['total_cases']} total, "
         f"{results['total_passed']} passed, "
         f"{results['total_failed']} failed, "
         f"{results['total_skipped']} skipped",
         "",
     ]
+    for error in results.get("errors", []):
+        lines.append(f"  ERROR {error['rule_id']}: {error['message']}")
     for sr in results.get("results", []):
         skill = sr["skill"]
         status = sr["status"].upper()
@@ -1819,6 +1826,10 @@ def _format_eval_text(results: dict[str, Any]) -> str:
             f"  {status:<4}  {skill}"
             f"  ({sr.get('cases_passed', 0)}/{sr.get('cases_total', 0)} cases passed)"
         )
+        if sr.get("reason"):
+            lines.append(f"          {sr['reason']}")
+        for diagnostic in sr.get("diagnostics", []):
+            lines.append(f"          {diagnostic['rule_id']}: {diagnostic['message']}")
         for cr in sr.get("cases", []):
             if cr["status"] == "fail":
                 lines.append(f"          FAIL  [{cr['category']}] {cr['id']}")
@@ -1828,9 +1839,9 @@ def _format_eval_text(results: dict[str, Any]) -> str:
                         lines.append(f"                - {chk['check']}: {detail}")
     lines.append("")
     if results["status"] == "pass":
-        lines.append("All eval checks passed.")
+        lines.append("All executed deterministic checks passed; skipped suites and prose/model behavior are not qualified.")
     else:
-        lines.append(f"Eval run FAILED with {results['total_failed']} failed case(s).")
+        lines.append(f"Eval run FAILED: {results['total_failed']} failed case(s), {results.get('total_suite_errors', 0)} invalid suite(s), {len(results.get('errors', []))} run error(s).")
     return "\n".join(lines)
 
 

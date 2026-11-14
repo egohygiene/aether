@@ -159,7 +159,7 @@
       "source": "library/organization/agents/auditor/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "a9aa784a8746a8af943367c5d8b19eff447a48d19d28acfbbea368904d0cdfe2"
+        "value": "16cd56acc47c44973004b522cf25c1dfbf972ec1d6cdc6cd66e66b50b0fb5f0e"
       }
     },
     "bug-fix-teammate": {
@@ -391,6 +391,60 @@
         "value": "44ef29912b15ef793c82184e0c8a369041990a25b68661bc16edb4998bfcdd91"
       }
     },
+    "local-ci-triager": {
+      "continuity_disposition": "reader",
+      "generator": "library/organization/projections/build-projections.py",
+      "instruction_modules": [
+        {
+          "id": "decision-impact",
+          "inherits": [
+            {
+              "approval_url": "https://github.com/egohygiene/hygiene/pull/72",
+              "contract": "egohygiene.architecture-decision/v1",
+              "policy_version": "1.2.0",
+              "revision": "a05b14f8b9e2772124f879f818e09a911e996ad8",
+              "source_url": "https://github.com/egohygiene/hygiene/blob/a05b14f8b9e2772124f879f818e09a911e996ad8/docs/decisions/POLICY.md",
+              "status": "accepted"
+            },
+            {
+              "contract": "egohygiene.repository-intelligence/v1",
+              "contract_version": "1.0.0-alpha.1",
+              "revision": "5e0602265b6ac5e5165b89f418e55a3fd12f8a64",
+              "source_url": "https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md",
+              "status": "proposed"
+            }
+          ],
+          "source": "library/organization/projections/templates/decision-impact.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "7d3c1524fe643794df4b953b50d6a194a1268a0890785981fe465346398fb346"
+          },
+          "status": "draft",
+          "version": "0.3.0"
+        },
+        {
+          "continuity_path": "CONTINUITY.md",
+          "contract": "aether.repository-continuity/v1",
+          "id": "repository-continuity",
+          "skill": "maintain-repository-continuity",
+          "source": "library/organization/instructions/repository-continuity/INSTRUCTION.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"
+          },
+          "status": "draft",
+          "version": "1.0.0"
+        }
+      ],
+      "interface": "aether.projection-interface/v1",
+      "interface_version": "1.2.0",
+      "provider": "canonical",
+      "source": "library/organization/agents/local-ci-triager/AGENT.md",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "2912aabfaddae5b4ca854f772cf14a3bdde3c58ded6f4ceb7ed7f132e73ae98d"
+      }
+    },
     "specfile-creator": {
       "continuity_disposition": "reader-writer",
       "generator": "library/organization/projections/build-projections.py",
@@ -505,7 +559,7 @@
     "source": "library/organization/instructions/repository-continuity/continuity-dispositions.v1.json",
     "source_digest": {
       "algorithm": "sha256-utf8-lf",
-      "value": "b95a7ddcfd0ea27b1f0439620260ca1f97f8488405303603e7f9446097482919"
+      "value": "015cd4819d070d725bc4ed31da3246af7a40bdbc7fe4c6ff241b258ac6445802"
     }
   },
   "generator": "library/organization/projections/build-projections.py",
@@ -521,7 +575,7 @@
     },
     {
       "path": "dist/claude/repository/.claude/agents/auditor.md",
-      "sha256": "962d991993b997976a80adb52619a53568fdc56951efff85e768df454b7d0163"
+      "sha256": "9e6c0a16514b957dccb369dbb63e4406afe9780ef1d7940a056ed6ffda51cb70"
     },
     {
       "path": "dist/claude/repository/.claude/agents/bug-fix-teammate.md",
@@ -538,6 +592,10 @@
     {
       "path": "dist/claude/repository/.claude/agents/implementation-planner.md",
       "sha256": "c5d86f626115e42f54e034746079030845735005879432a2ab09bf373fa56efe"
+    },
+    {
+      "path": "dist/claude/repository/.claude/agents/local-ci-triager.md",
+      "sha256": "c7464ec3be19983d958de71cd3b941ecf255d7ea43f8071b25a2c90d9970495f"
     },
     {
       "path": "dist/claude/repository/.claude/agents/specfile-creator.md",
@@ -569,7 +627,7 @@
     },
     {
       "path": "dist/github/organization/agents/auditor.agent.md",
-      "sha256": "7a2a9c49867a0b1ac3b4ceeb0b95d85b2824e89bcad6fe89f24f4e1da56cd98c"
+      "sha256": "055402c7dff2cee6ebafbbe57bd698a0d47656d6622b7bae34466680fb4c6ad5"
     },
     {
       "path": "dist/github/organization/agents/bug-fix-teammate.agent.md",
@@ -586,6 +644,10 @@
     {
       "path": "dist/github/organization/agents/implementation-planner.agent.md",
       "sha256": "4760096cf11dd175fee239ddb76db3c05fb88c5830412c5afa02ff0686da2d69"
+    },
+    {
+      "path": "dist/github/organization/agents/local-ci-triager.agent.md",
+      "sha256": "156a1299270923d9e96a459344ad5fc385bdb4873d0d5b6489547b7a907688d5"
     },
     {
       "path": "dist/github/organization/agents/specfile-creator.agent.md",
@@ -605,7 +667,7 @@
     },
     {
       "path": "dist/github/repository/.github/agents/auditor.agent.md",
-      "sha256": "c72f3e0f6d3f8fd4bbc4b0ac4c6fbd052d9f322869243db76f0ab5823b23df44"
+      "sha256": "75685fabc95967a09dab615d5220fabd3a8e86c5c5959aa8598a5eeabeab2c22"
     },
     {
       "path": "dist/github/repository/.github/agents/bug-fix-teammate.agent.md",
@@ -622,6 +684,10 @@
     {
       "path": "dist/github/repository/.github/agents/implementation-planner.agent.md",
       "sha256": "4760096cf11dd175fee239ddb76db3c05fb88c5830412c5afa02ff0686da2d69"
+    },
+    {
+      "path": "dist/github/repository/.github/agents/local-ci-triager.agent.md",
+      "sha256": "70d8580a81d6b7d75b228b4e632d93ea581d2f483559b5cbad6403f210b1921a"
     },
     {
       "path": "dist/github/repository/.github/agents/specfile-creator.agent.md",
@@ -649,7 +715,7 @@
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/auditor.md",
-      "sha256": "aa4a2bf7064719e358135b62e17ab7e288c04fc4fe94820556e81c5c354df5b8"
+      "sha256": "a5b1f871b8c79b2a32059305339e24694113d1415ee51352e7353361e1897512"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/bug-fix-teammate.md",
@@ -668,6 +734,10 @@
       "sha256": "b78ca8660cefd768fc5bfd47c00891ab6ed78089bf191f17200bf1829beb2a22"
     },
     {
+      "path": "dist/opencode/repository/.opencode/agents/local-ci-triager.md",
+      "sha256": "533795f1838f69dd8fff51b2059d632fe643c234429a53046d88596adae1128a"
+    },
+    {
       "path": "dist/opencode/repository/.opencode/agents/specfile-creator.md",
       "sha256": "6b17c971e138be76240782269bbf69f77c6c2987708c915fb970019c2dd45731"
     },
@@ -677,11 +747,11 @@
     },
     {
       "path": "dist/projections/continuity-dispositions.v1.json",
-      "sha256": "b95a7ddcfd0ea27b1f0439620260ca1f97f8488405303603e7f9446097482919"
+      "sha256": "015cd4819d070d725bc4ed31da3246af7a40bdbc7fe4c6ff241b258ac6445802"
     },
     {
       "path": "dist/zencoder/manual-import/agents.json",
-      "sha256": "fc0e1a17f1768346389141f304eda5cf80cd3bde65449522a4691eefab83edf8"
+      "sha256": "78cce1825dc1c80d23757f2e25a33561f8b867749b70a6b01da39476268dcb00"
     }
   ],
   "provider_registry": "library/organization/projections/provider-registry.v1.json",

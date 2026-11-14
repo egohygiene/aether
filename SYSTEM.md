@@ -8,7 +8,7 @@ status: draft
 owners:
   - egohygiene
 created: 2026-08-08
-updated: 2026-08-19
+updated: 2026-11-13
 governed_by:
   - architecture-system
 depends_on:
@@ -56,7 +56,7 @@ Skill Package (SKILL.md + evals + templates + references)
   ├─► tested by evals/evals.json
   └─► assembled into Distribution Packages
 
-Agent Source (*.agent.md)
+Agent Source (<id>/AGENT.md)
   │
   ├─► cites one or more Skills
   ├─► deployed via egohygiene/.github (not Aether)
@@ -65,19 +65,19 @@ Agent Source (*.agent.md)
 Schema
   │
   ├─► validates Catalog entries and Manifest files
-  └─► consumed by future build tooling
+  └─► consumed by existing validators and builders
 
-Catalog (generated)
+Catalog (source-derived fields + reviewed annotations)
   │
   ├─► indexes available Skills, Agents, and Specifications
-  ├─► generated from canonical source — not hand-edited
+  ├─► source fields generated; declared catalog annotations preserved
   └─► included in Distribution Packages
 
 Distribution Package (generated)
   │
   ├─► assembled from canonical Skills, Agents, Schemas, and Catalogs
   ├─► versioned by repository release (see ADR-0004)
-  └─► published as a GitHub Release artifact
+  └─► eligible publication is a separately authorized release handoff
 
 Hook (planned)
   │
@@ -92,26 +92,28 @@ Release
 
 ## 3. How Canonical Source Becomes Installable
 
-> **Current state:** No automated build process exists.  Consumers reference
-> files directly from `library/organization/`.
->
-> **Target state** (not yet implemented):
+The repository command `./aether distribution build` already assembles
+specifications, portable skills, provider projections and selected catalog
+outputs. Canonical artifact content lives under `library/organization/`;
+`catalog/` owns schemas, provenance records and declared annotations.
 
-```
-library/organization/   (canonical source)
-         │
-         ▼
-   build process         (future; not specified here)
-         │
-         ▼
-      dist/              (generated; never hand-edited)
-         │
-         ▼
-   GitHub Release         (tagged; consumers download artifacts)
+```text
+canonical content + catalog contracts
+                  ↓
+repository-owned deterministic builders/validators
+                  ↓
+tracked dist/ + manifests/projections (derived)
+                  ↓
+explicit consumer qualification and reviewed release selection
+                  ↓
+separately authorized immutable publication / downstream install
 ```
 
-The build process is not part of this issue.  Its design will require an ADR
-when proposed.
+Tracked generated output and local CI/release callers exist, while historical
+ADR-0006 and ADR-0002 contain conflicting rules. [Proposed ADR-0009](docs/decisions/ADR-0009-generated-evidence-and-local-validation.md)
+records this for human review; source existence is not acceptance. Actual
+consumer qualification remains not-ready when the preview adapter is missing.
+See [release/pinning](docs/release-and-pinning-guide.md) and [the tactical ledger](https://github.com/egohygiene/aether/issues/105).
 
 ---
 
@@ -123,8 +125,9 @@ A Skill defines **how** that behavior is invoked.
 A skill's `SKILL.md` front-matter references the specification it implements.
 An eval in `evals/evals.json` tests conformance to that specification.
 
-This is a one-to-one relationship today; future skills may implement a
-composition of specifications.
+Skills already compose governing contracts, references and other skills.
+Declared metadata and packaged resource checks establish those relationships;
+deterministic evals exercise declared assertions only and do not run a model.
 
 ---
 
@@ -161,16 +164,18 @@ Aether defaults are **strong defaults**, not mandates.
 | Skill | How a task is invoked; evals; templates | Yes (first-party) | Yes |
 | Agent source | Persona, context, task routing | Yes (first-party) | Yes |
 | Consumer instructions | Local overrides and context | Yes (consumer) | Yes |
-| Catalog | Index of available artifacts | No (generated) | No |
+| Catalog | Source-derived index plus declared annotations | Fields retain their documented owner | Regenerate source fields; review annotations |
 | Distribution | Installable bundle | No (generated) | No |
 
 ---
 
 ## 8. Hooks (Planned)
 
-Hooks are lifecycle scripts that fire on artifact state transitions (e.g., when
-a skill moves from `draft` to `stable`).  No hooks exist yet.  When introduced,
-they will require an ADR.
+Historical hook prototypes remain staged and excluded from first-party
+execution/distribution under [ADR-0007](DECISIONS.md#adr-0007). The delivered
+decision-impact and continuity instruction blocks are guidance, not proof of an
+automatically installed runtime hook. New executable hook adoption still needs
+its own review and permitted source disposition.
 
 ---
 
@@ -185,8 +190,8 @@ for the promotion gate.
 
 ## 10. Open Questions
 
-- **OQ-S1 (provisional):** Whether a Catalog should be a single file or a
-  per-domain index.  No decision until at least one distribution build is
-  designed.
+- **OQ-S1 (historical):** The implemented catalog families have explicit
+  responsibilities in [catalog/README.md](catalog/README.md); no index split or
+  new canonical registry is proposed here.
 - **OQ-S2 (provisional):** Whether hooks will be implemented in Mantle (shell)
   or Relay (Actions).  Deferred to the hook design ADR.

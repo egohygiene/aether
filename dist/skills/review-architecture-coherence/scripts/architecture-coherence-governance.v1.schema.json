@@ -1,0 +1,507 @@
+{
+  "$comment": "Source claim only. No JSON field proves authentic human authority. Evaluate with separately trusted typed evidence; default evaluation never ratifies. Reference helper additionally validates exact scope/revision/review/time bindings and public admission before payload.",
+  "$defs": {
+    "applicability": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "declared_at": {
+                "$ref": "#/$defs/instant"
+              },
+              "evidence": {
+                "items": {
+                  "$ref": "#/$defs/url"
+                },
+                "maxItems": 32,
+                "minItems": 1,
+                "type": "array",
+                "uniqueItems": true
+              },
+              "reason": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "status": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "authority": {
+                "const": null
+              },
+              "declared_at": {
+                "const": null
+              },
+              "deferred_until": {
+                "const": null
+              },
+              "evidence": {
+                "const": []
+              },
+              "reason": {
+                "const": null
+              }
+            }
+          }
+        },
+        {
+          "else": {
+            "properties": {
+              "authority": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "not-applicable",
+                  "deferred"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "authority": {
+                "$ref": "#/$defs/authority"
+              }
+            }
+          }
+        },
+        {
+          "else": {
+            "properties": {
+              "deferred_until": {
+                "type": "null"
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "status": {
+                "const": "deferred"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "deferred_until": {
+                "$ref": "#/$defs/instant"
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "authority": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/authority"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "declared_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/instant"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "deferred_until": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/instant"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/url"
+          },
+          "maxItems": 32,
+          "minItems": 0,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/text"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "unknown",
+            "required",
+            "recommended",
+            "optional",
+            "not-applicable",
+            "deferred"
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "declared_at",
+        "evidence",
+        "reason",
+        "deferred_until",
+        "authority"
+      ],
+      "type": "object"
+    },
+    "authority": {
+      "additionalProperties": false,
+      "properties": {
+        "decided_at": {
+          "$ref": "#/$defs/instant"
+        },
+        "evidence_url": {
+          "$ref": "#/$defs/url"
+        },
+        "kind": {
+          "const": "human"
+        },
+        "reference": {
+          "pattern": "^https://github\\.com/[A-Za-z0-9][A-Za-z0-9-]{0,38}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reference",
+        "evidence_url",
+        "decided_at"
+      ],
+      "type": "object"
+    },
+    "decision": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "disposition": {
+                "const": "ratified-with-notes"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "notes": {
+                "items": {
+                  "$ref": "#/$defs/text"
+                },
+                "maxItems": 32,
+                "minItems": 1,
+                "type": "array"
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "assessment_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "authority": {
+          "$ref": "#/$defs/authority"
+        },
+        "disposition": {
+          "enum": [
+            "ratified",
+            "ratified-with-notes",
+            "revision-required",
+            "rejected",
+            "deferred",
+            "not-applicable"
+          ]
+        },
+        "follow_up": {
+          "items": {
+            "$ref": "#/$defs/url"
+          },
+          "maxItems": 32,
+          "minItems": 0,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "notes": {
+          "items": {
+            "$ref": "#/$defs/text"
+          },
+          "maxItems": 32,
+          "minItems": 0,
+          "type": "array"
+        },
+        "represented_revisions": {
+          "$ref": "#/$defs/revisions"
+        },
+        "review_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "scope_key": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "disposition",
+        "authority",
+        "review_id",
+        "assessment_sha256",
+        "scope_key",
+        "represented_revisions",
+        "notes",
+        "follow_up"
+      ],
+      "type": "object"
+    },
+    "hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "instant": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+      "type": "string"
+    },
+    "repository": {
+      "pattern": "^egohygiene/(?:\\.github|[a-z0-9][a-z0-9.-]*)$",
+      "type": "string"
+    },
+    "review": {
+      "additionalProperties": false,
+      "properties": {
+        "assessment_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "completed_at": {
+          "$ref": "#/$defs/instant"
+        },
+        "id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "$ref": "#/$defs/url"
+        }
+      },
+      "required": [
+        "id",
+        "url",
+        "assessment_sha256",
+        "completed_at"
+      ],
+      "type": "object"
+    },
+    "revision": {
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "$ref": "#/$defs/repository"
+        },
+        "revision": {
+          "$ref": "#/$defs/sha"
+        }
+      },
+      "required": [
+        "repository",
+        "revision"
+      ],
+      "type": "object"
+    },
+    "revisions": {
+      "items": {
+        "$ref": "#/$defs/revision"
+      },
+      "maxItems": 256,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "scope": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "repository",
+            "subsystem",
+            "organization"
+          ]
+        },
+        "repositories": {
+          "items": {
+            "$ref": "#/$defs/repository"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "kind",
+        "key",
+        "repositories"
+      ],
+      "type": "object"
+    },
+    "sha": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "text": {
+      "maxLength": 2048,
+      "minLength": 1,
+      "type": "string"
+    },
+    "url": {
+      "format": "uri",
+      "maxLength": 2048,
+      "pattern": "^https://github\\.com/egohygiene/(?:\\.github|[a-z0-9][a-z0-9.-]*)/[^%?\\\\]+$",
+      "type": "string"
+    }
+  },
+  "$id": "https://egohygiene.io/schemas/hygiene/architecture-coherence-governance.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "else": {
+        "properties": {
+          "human_decision": {
+            "type": "null"
+          },
+          "review_ref": {
+            "type": "null"
+          },
+          "valid_until": {
+            "type": "null"
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "progress": {
+            "const": "complete"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review_ref": {
+            "$ref": "#/$defs/review"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "applicability": {
+      "$ref": "#/$defs/applicability"
+    },
+    "contract_version": {
+      "const": "1.0.0-alpha.1"
+    },
+    "human_decision": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/decision"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "progress": {
+      "enum": [
+        "not-started",
+        "due",
+        "in-progress",
+        "complete"
+      ]
+    },
+    "represented_revisions": {
+      "$ref": "#/$defs/revisions"
+    },
+    "review_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/review"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema": {
+      "const": "egohygiene.architecture-coherence-governance/v1"
+    },
+    "scope": {
+      "$ref": "#/$defs/scope"
+    },
+    "valid_until": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/instant"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "internal",
+        "restricted"
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "contract_version",
+    "visibility",
+    "scope",
+    "represented_revisions",
+    "applicability",
+    "progress",
+    "review_ref",
+    "human_decision",
+    "valid_until"
+  ],
+  "title": "Proposed architecture-coherence governance source alpha.1",
+  "type": "object"
+}

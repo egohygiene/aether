@@ -1,0 +1,202 @@
+{
+  "$comment": "Classification is explicit sourced input, never inferred from commit count, file changes, CI, or audit severity. Explicit-human-invalidation additionally requires separately trusted human evidence.",
+  "$defs": {
+    "authority": {
+      "additionalProperties": false,
+      "properties": {
+        "decided_at": {
+          "$ref": "#/$defs/instant"
+        },
+        "evidence_url": {
+          "$ref": "#/$defs/url"
+        },
+        "kind": {
+          "const": "human"
+        },
+        "reference": {
+          "pattern": "^https://github\\.com/[A-Za-z0-9][A-Za-z0-9-]{0,38}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reference",
+        "evidence_url",
+        "decided_at"
+      ],
+      "type": "object"
+    },
+    "hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "instant": {
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+      "type": "string"
+    },
+    "repository": {
+      "pattern": "^egohygiene/(?:\\.github|[a-z0-9][a-z0-9.-]*)$",
+      "type": "string"
+    },
+    "scope": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "repository",
+            "subsystem",
+            "organization"
+          ]
+        },
+        "repositories": {
+          "items": {
+            "$ref": "#/$defs/repository"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "kind",
+        "key",
+        "repositories"
+      ],
+      "type": "object"
+    },
+    "sha": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "text": {
+      "maxLength": 2048,
+      "minLength": 1,
+      "type": "string"
+    },
+    "url": {
+      "format": "uri",
+      "maxLength": 2048,
+      "pattern": "^https://github\\.com/egohygiene/(?:\\.github|[a-z0-9][a-z0-9.-]*)/[^%?\\\\]+$",
+      "type": "string"
+    }
+  },
+  "$id": "https://egohygiene.io/schemas/hygiene/architecture-coherence-material-change.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "else": {
+        "properties": {
+          "authority": {
+            "type": "null"
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "explicit-human-invalidation"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "authority": {
+            "$ref": "#/$defs/authority"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "authority": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/authority"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "contract_version": {
+      "const": "1.0.0-alpha.1"
+    },
+    "evidence_url": {
+      "$ref": "#/$defs/url"
+    },
+    "id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "architecture-milestone",
+        "ownership-change",
+        "accepted-adr-topology-change",
+        "cross-repository-dependency",
+        "persistence-boundary",
+        "trust-boundary",
+        "runtime-replacement",
+        "repository-split-merge-extraction",
+        "organization-architecture-change",
+        "audit-architecture-drift",
+        "material-architecture-document-change",
+        "explicit-human-invalidation",
+        "repeated-ownership-confusion",
+        "maintainer-request",
+        "routine-implementation"
+      ]
+    },
+    "observed_at": {
+      "$ref": "#/$defs/instant"
+    },
+    "review_id": {
+      "anyOf": [
+        {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema": {
+      "const": "egohygiene.architecture-coherence-material-change/v1"
+    },
+    "scope": {
+      "$ref": "#/$defs/scope"
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "internal",
+        "restricted"
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "contract_version",
+    "visibility",
+    "scope",
+    "review_id",
+    "id",
+    "kind",
+    "observed_at",
+    "evidence_url",
+    "authority"
+  ],
+  "title": "Proposed explicit scoped architecture-coherence change evidence alpha.1",
+  "type": "object"
+}

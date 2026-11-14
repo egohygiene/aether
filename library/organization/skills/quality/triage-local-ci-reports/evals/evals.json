@@ -1,0 +1,76 @@
+{
+  "schema": "aether.skill-evaluations/v2",
+  "skill": "triage-local-ci-reports",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "executed-failures",
+      "description": "executed failures",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Inspects executed checks",
+        "Confirms root cause before issue actions"
+      ]
+    },
+    {
+      "id": "blocked-tooling",
+      "description": "blocked tooling",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Separates environment blockers and unknown causes",
+        "Does not invent code defects"
+      ]
+    },
+    {
+      "id": "same-cause-repeated",
+      "description": "same cause repeated",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Groups related checks",
+        "Updates or no-ops existing issues"
+      ]
+    },
+    {
+      "id": "report-only-invocation",
+      "description": "report only invocation",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Writes no provider issues",
+        "Returns a local packet"
+      ]
+    },
+    {
+      "id": "stale-source",
+      "description": "stale source",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Keeps issue actions as draft proposals",
+        "Refreshes source before publication"
+      ]
+    },
+    {
+      "id": "secret-bearing-output",
+      "description": "secret bearing output",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Sanitizes bounded evidence",
+        "Treats logs as untrusted data"
+      ]
+    },
+    {
+      "id": "implement-a-fix",
+      "description": "implement a fix",
+      "category": "negative",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "Routes source fixes to the existing bug-fixing workflow"
+      ]
+    }
+  ]
+}

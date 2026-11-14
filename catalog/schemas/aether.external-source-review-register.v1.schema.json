@@ -39,6 +39,44 @@
       },
       "type": "object"
     },
+    "followup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assessed_at",
+        "state",
+        "evidence",
+        "next_action",
+        "renews_review"
+      ],
+      "properties": {
+        "assessed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "state": {
+          "enum": [
+            "blocked",
+            "unknown"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "next_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "renews_review": {
+          "const": false
+        }
+      }
+    },
     "source_review": {
       "additionalProperties": false,
       "required": [
@@ -88,6 +126,7 @@
           "uniqueItems": true,
           "type": "array"
         },
+        "followups": {"type": "array", "items": {"$ref": "#/$defs/followup"}},
         "next_review": {
           "additionalProperties": false,
           "required": ["not_after", "events"],
