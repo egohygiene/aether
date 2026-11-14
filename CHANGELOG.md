@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Added real-calendar external review validation, explicit frozen-date freshness
+  assessment and evidence-backed blocked/unknown follow-ups while preserving
+  original pins, deadlines and restrictions (#112).
+
 - Separated deterministic consumer harness controls from explicit local/release
   qualification. Missing adapters report blocked, real validation errors fail,
   and mandatory workflow gates retain the actual consumer checks (#38).
