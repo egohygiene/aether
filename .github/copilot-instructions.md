@@ -23,9 +23,17 @@ organization.
 ```
 library/organization/skills/   # first-party skill packages
 library/organization/specs/    # first-party specifications
+library/organization/agents/   # provider-neutral AGENT.md sources
+library/organization/instructions/ # shared instruction source
+catalog/                      # schemas, governed records and annotations
 ```
 
-Do **not** treat `.staging/`, `dist/`, or any other path as canonical source.
+Do **not** treat `.staging/` or `dist/` as canonical source. Root governance
+remains repository-owned; [catalog ownership](../catalog/README.md) distinguishes
+source-derived fields from reviewed annotations. Read [AGENTS](../AGENTS.md),
+[META](../META.md), [the tactical ledger](https://github.com/egohygiene/aether/issues/105)
+and [CONTINUITY](../CONTINUITY.md) for current work. Historical ADR conflicts are
+explicit in [proposed ADR-0009](../docs/decisions/ADR-0009-generated-evidence-and-local-validation.md); its disposition remains pending.
 
 ---
 
@@ -33,8 +41,11 @@ Do **not** treat `.staging/`, `dist/`, or any other path as canonical source.
 
 1. **Do not move or delete `.staging/` content** without satisfying the
    deletion gate in [`DECISIONS.md ADR-0005`](../DECISIONS.md#adr-0005).
-2. **Do not add CI workflows, toolchain setup, or release automation** to this
-   repository — those belong to Relay, Realm, and egohygiene/.github.
+2. **Preserve owner boundaries.** Relay owns reusable CI execution and Realm
+   owns environment provisioning. Existing Aether-local callers, builders and
+   release declaration remain repository-owned implementation evidence; changes
+   must preserve explicit authorization and reconcile historical ADR-0002
+   through proposed ADR-0009 rather than silently treating it superseded.
 3. **Do not promote an artifact from `draft` to `stable`** without human
    review.
 4. **Label open questions explicitly** rather than inventing intent.
@@ -82,18 +93,19 @@ find . -maxdepth 1 -type f \
 ## How to Validate Changes
 
 ```sh
-# Check for broken local Markdown links (manual scan for now; no link checker installed)
-grep -rn '\](\./' library/organization/ *.md .github/ | grep -v '.git'
-
-# Confirm spec front-matter has required fields
-find library/organization/specs -name "*.spec.md" | xargs grep -l "^schema: aether.specification/v1"
+# Existing repository-owned checks; see CONTRIBUTING.md for the complete handoff
+./aether validate --links --format json
+./aether validate --format json
+./aether catalog generate --check
+./aether distribution build --check
+./aether test
 ```
 
 ---
 
 ## Artifact States
 
-`draft` → `stable` → `deprecated` → `retired`
+`draft` → `experimental` → `stable` → `deprecated` → `retired`
 
 Only `stable` artifacts may be released.  Only human review may promote
 `draft` to `stable`.
@@ -110,8 +122,11 @@ Only `stable` artifacts may be released.  Only human review may promote
 | Dev environment | Realm |
 | Shell commands | Mantle |
 | Lint implementation | Egolint |
-| GitHub Actions | Relay |
-| Conformance | PACE |
+| Reusable GitHub Actions | Relay |
+| Aether-local validation/release callers | Aether, with the ADR-0009 conflict explicit |
+| Policy/applicability | Hygiene |
+| Fleet adoption | Pace |
+| Evidence/query projections | Observatory |
 
 See [`PURPOSE.md §4`](../PURPOSE.md#4-what-aether-is-not) for the full table.
 

@@ -10,6 +10,10 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Reconciled active source/navigation and ADR-authoring references, preserved
+  strategic step identities and historical decisions, and proposed ADR-0009
+  for the generated-output/local-workflow authority conflicts (#114).
+
 - Added real-calendar external review validation, explicit frozen-date freshness
   assessment and evidence-backed blocked/unknown follow-ups while preserving
   original pins, deadlines and restrictions (#112).

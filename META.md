@@ -8,7 +8,7 @@ status: draft
 owners:
   - egohygiene
 created: 2026-08-19
-updated: 2026-08-19
+updated: 2026-11-13
 governed_by:
   - architecture-meta
 depends_on:
@@ -27,6 +27,8 @@ supersedes: []
 ## Architecture-system overview
 
 Aether's architecture is an 18-document graph materialized from the Aether architecture specifications. Each document owns one bounded concern. This index maps ownership and relationships without replacing the documents themselves.
+
+Begin with [README](README.md) and [AGENTS](AGENTS.md); inspect the actual [catalog contracts](catalog/README.md), [validation commands](CONTRIBUTING.md) and [source topology](ARCHITECTURE.md). [Issue105](https://github.com/egohygiene/aether/issues/105) owns the tactical ledger; [ROADMAP](ROADMAP.md) retains strategic IDs and [CONTINUITY](CONTINUITY.md) carries the current operational checkpoint. [Proposed ADR-0009](docs/decisions/ADR-0009-generated-evidence-and-local-validation.md) records unresolved authority conflicts without changing old dispositions.
 
 ## Document inventory
 
@@ -103,7 +105,7 @@ A material upstream change triggers review of every downstream node. Implementat
 
 - No document in this set is intentionally omitted because Aether has repository, automation, human, AI, and public or documentation surfaces that justify the complete reference set.
 - Target systems remain provisional where implementation evidence is absent.
-- Repository-local schemas and automated graph validation should be added or connected to Aether in a later conformance pass.
+- Repository-local schemas, source/catalog/link validation and distribution drift checks already exist under `catalog/`, `aether_validator.py` and `tests/`. Passing them does not ratify these draft architecture documents or establish hosted/release acceptance.
 
 ## Evidence and uncertainty
 

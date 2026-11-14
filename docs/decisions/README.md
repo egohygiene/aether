@@ -20,3 +20,4 @@ declaration and migration of the legacy inline records remain separate work.
 | ADR-0006 | Generated distribution committed vs. release-only | Accepted (preserved legacy label) | 2026-08-08 | [Inline record](../../DECISIONS.md#adr-0006) |
 | ADR-0007 | Staged hook prototype disposition for first release | Accepted (preserved legacy label) | 2026-08-09 | [Inline record](../../DECISIONS.md#adr-0007) |
 | ADR-0008 | Separate portable review evidence from policy and human authority | Proposed | 2026-11-10 | [Record](ADR-0008-portable-review-evidence-and-human-authority.md) |
+| ADR-0009 | Clarify tracked generated evidence and repository-local validation | Proposed | 2026-11-13 | [Record](ADR-0009-generated-evidence-and-local-validation.md) |

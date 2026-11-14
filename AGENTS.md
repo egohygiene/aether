@@ -42,5 +42,17 @@ enforcement. The organization repository's instructions do not inherit here
 automatically; this local pointer makes discovery explicit. Preserve scoped
 instructions and existing role permissions.
 
+## Current navigation and unresolved decisions
+
+[README](README.md) starts the human path; [META](META.md) and
+[ARCHITECTURE](ARCHITECTURE.md) map source ownership. [Issue105](https://github.com/egohygiene/aether/issues/105)
+is the tactical ledger; [ROADMAP](ROADMAP.md) preserves strategic IDs and
+[CONTINUITY](CONTINUITY.md) records the current operational checkpoint.
+
+[Proposed ADR-0009](docs/decisions/ADR-0009-generated-evidence-and-local-validation.md)
+exposes the historical ADR-0002/ADR-0006 conflict with tracked generated output
+and local workflow callers. Preserve historical decisions; a factual correction,
+merge, passing check or this proposal does not supply human disposition.
+
 Run the relevant deterministic validation and regenerate `dist/` and the
 first-party catalog after changing canonical source.
