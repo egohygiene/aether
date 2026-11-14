@@ -34,6 +34,34 @@ within seven days. Run the routine source review at least every 30 days.
 4. Keep first-party adoption, installation, execution, delivery, and
    publication as separately authorized actions.
 
-Run the deterministic check with:
+Run the offline structural check with:
 
     python3 catalog/external/validate.py
+
+That command validates real calendar dates, timestamp ordering, source coverage
+and the bounded allowlist. A structural pass does not establish freshness or a
+live source, license, advisory, or embedded-instruction review.
+
+Select a reproducible calendar assessment explicitly:
+
+    python3 catalog/external/validate.py --as-of 2026-11-14 --format json
+
+The deadline is inclusive through its named UTC calendar day: before/on it is
+`current`, after it is `overdue`; missing/unusable evidence or an assessment
+before the recorded review is `unknown`. With `--as-of`, any overdue/unknown
+source causes exit 1, including deferred/rejected sources. Invalid input exits 2.
+Without the flag, no wall clock is substituted and no freshness is claimed.
+`complete` applies only to the selected structural/freshness scope, never to a
+full live source review or permission to install/use material.
+
+Append-only `followups` preserve blocked/unknown evidence and a concrete next
+action. They explicitly set `renews_review: false`: they cannot advance a
+deadline, replace the original assessment, allowlist a source, or grant an
+installation/execution/publication right. A completed renewed review needs its
+own reviewed evidence and explicit date decision rather than relabeling a
+follow-up. Preserve the prior record in history.
+
+The [November 14 UTC follow-up](../reports/external-source-followup-2026-11-14.json)
+records all three overdue sources. Repository/pin reads were partial evidence;
+full license/advisory/instruction qualification remains unknown or blocked.
+Their September 30 deadlines are intentionally retained as overdue.

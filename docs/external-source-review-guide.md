@@ -44,3 +44,14 @@ Follow the routine and event-driven review schedule in the external review
 cadence document. A security advisory, license change, ownership transfer,
 repository archival, redirect, pin change, executable resource, or proposed
 external action triggers immediate review.
+
+Use the [cadence and frozen-date instructions](../catalog/external/REVIEW_CADENCE.md)
+to distinguish offline structure from freshness. For example:
+
+```sh
+python3 catalog/external/validate.py --as-of 2026-11-14 --format json
+```
+
+An overdue result remains actionable even when its source is deferred or has a
+blocked/unknown follow-up. Metadata availability alone does not renew the
+original assessment, and a structural pass is not current advisory clearance.

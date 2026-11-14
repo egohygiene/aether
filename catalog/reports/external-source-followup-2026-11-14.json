@@ -1,0 +1,68 @@
+{
+  "schema_version": "aether.external-source-followup/v1",
+  "assessed_at": "2026-11-14T04:04:03Z",
+  "reviewer": "Codex",
+  "scope": "Finite overdue-source follow-up, not a renewed full upstream/license/advisory review",
+  "prior_reviewed_at": "2026-08-30T23:00:00Z",
+  "prior_deadline": "2026-09-30",
+  "sources": [
+    {
+      "source_id": "external-source/coreyhaines31-marketingskills",
+      "original_pin": "7868cb9251fad80a73d26e488a5ad5f6c4a9f335",
+      "original_decision": "deferred",
+      "current_outcome": "unknown",
+      "observations": [
+        "Repository metadata lookup returned archived=false.",
+        "GitHub connector returned the exact pinned commit URL."
+      ],
+      "unverified": [
+        "Current license terms and complete advisory coverage",
+        "Exact captured instruction/link/runtime/telemetry and transitive-source review"
+      ],
+      "next_action": "Review exact captured artifacts, current license/advisory evidence and embedded external effects before selection or any renewed review deadline.",
+      "evidence": [
+        "https://github.com/coreyhaines31/marketingskills",
+        "https://github.com/coreyhaines31/marketingskills/commit/7868cb9251fad80a73d26e488a5ad5f6c4a9f335"
+      ]
+    },
+    {
+      "source_id": "external-source/emilkowalski-skill",
+      "original_pin": "de33dbed000212b54400a33767d1e4d03654db2a",
+      "original_decision": "allowlisted",
+      "current_outcome": "blocked",
+      "observations": [
+        "Repository metadata lookup returned repository name skills and archived=false.",
+        "Pinned-commit connector lookup failed validation (missing SHA in normalized response); this does not establish that the commit is absent."
+      ],
+      "unverified": [
+        "Current license terms and complete advisory coverage",
+        "Exact captured instruction/link/runtime/telemetry and transitive-source review"
+      ],
+      "next_action": "Resolve the canonical successor repository and independently verify the original immutable pin, license and selected seven references; do not follow the returned repository name to update pins.",
+      "evidence": [
+        "https://github.com/emilkowalski/skill",
+        "https://github.com/emilkowalski/skill/commit/de33dbed000212b54400a33767d1e4d03654db2a"
+      ]
+    },
+    {
+      "source_id": "external-source/vercel-labs-skills",
+      "original_pin": "941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c",
+      "original_decision": "deferred",
+      "current_outcome": "unknown",
+      "observations": [
+        "Repository metadata lookup returned archived=false.",
+        "GitHub connector returned the exact pinned commit URL."
+      ],
+      "unverified": [
+        "Current license terms and complete advisory coverage",
+        "Exact captured instruction/link/runtime/telemetry and transitive-source review"
+      ],
+      "next_action": "Review exact captured artifacts, current license/advisory evidence and embedded external effects before selection or any renewed review deadline.",
+      "evidence": [
+        "https://github.com/vercel-labs/skills",
+        "https://github.com/vercel-labs/skills/commit/941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c"
+      ]
+    }
+  ],
+  "authority": "Pins, allowlist, deadlines, constraints and original assessments are unchanged. No installation/execution/promotion/delivery permission is granted."
+}

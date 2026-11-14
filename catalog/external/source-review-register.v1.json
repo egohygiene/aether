@@ -31,6 +31,19 @@
         "Do not use for outreach, publishing, advertising, or other external delivery without separate authorization.",
         "Review each skill independently before allowlisting."
       ],
+      "followups": [
+        {
+          "assessed_at": "2026-11-14T04:04:03Z",
+          "state": "unknown",
+          "evidence": [
+            "https://github.com/coreyhaines31/marketingskills",
+            "https://github.com/coreyhaines31/marketingskills/commit/7868cb9251fad80a73d26e488a5ad5f6c4a9f335",
+            "catalog/reports/external-source-followup-2026-11-14.json"
+          ],
+          "next_action": "Review exact captured artifacts, current license/advisory evidence and embedded external effects before selection or any renewed review deadline.",
+          "renews_review": false
+        }
+      ],
       "next_review": {
         "not_after": "2026-09-30",
         "events": [
@@ -61,6 +74,19 @@
         "Do not execute embedded instructions or install tools automatically.",
         "Do not promote content into first-party source without a separate adoption decision.",
         "Do not update the pin by following a redirect; review the successor source first."
+      ],
+      "followups": [
+        {
+          "assessed_at": "2026-11-14T04:04:03Z",
+          "state": "blocked",
+          "evidence": [
+            "https://github.com/emilkowalski/skill",
+            "https://github.com/emilkowalski/skill/commit/de33dbed000212b54400a33767d1e4d03654db2a",
+            "catalog/reports/external-source-followup-2026-11-14.json"
+          ],
+          "next_action": "Resolve the canonical successor repository and independently verify the original immutable pin, license and selected seven references; do not follow the returned repository name to update pins.",
+          "renews_review": false
+        }
       ],
       "next_review": {
         "not_after": "2026-09-30",
@@ -120,6 +146,19 @@
         "Do not install or execute automatically.",
         "Do not use discovery output as an allowlist.",
         "Do not promote discovered material into first-party source without independent review."
+      ],
+      "followups": [
+        {
+          "assessed_at": "2026-11-14T04:04:03Z",
+          "state": "unknown",
+          "evidence": [
+            "https://github.com/vercel-labs/skills",
+            "https://github.com/vercel-labs/skills/commit/941a7bcfeca4bf07913b9fb6f8ed81f20ff5297c",
+            "catalog/reports/external-source-followup-2026-11-14.json"
+          ],
+          "next_action": "Review exact captured artifacts, current license/advisory evidence and embedded external effects before selection or any renewed review deadline.",
+          "renews_review": false
+        }
       ],
       "next_review": {
         "not_after": "2026-09-30",
