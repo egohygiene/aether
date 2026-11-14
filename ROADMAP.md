@@ -186,6 +186,7 @@ issues: []
 **Current evidence:**
 
 - Aether already owns reusable AI artifacts; roadmap authoring support is assigned there by the visual-roadmap specification.
+- Issue #88 adds the draft [roadmap-impact reconciliation package](library/organization/skills/architecture/reconcile-roadmap-impact/SKILL.md), four receipt dispositions and one shared completion module in every generated agent projection. This is partial authoring-kit source; the full kit, compatible owner-policy selection and release/host adoption remain unqualified.
 
 <!-- roadmap-step
 id: AET-Q07

@@ -1,0 +1,453 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aether.roadmap-impact/v1",
+  "title": "Draft Aether roadmap-impact handoff receipt v1",
+  "$comment": "Canonical catalog/schemas/aether.roadmap-impact.v1.schema.json; the skill reference is a byte-identical portable projection, checked with catalog validation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_version",
+    "repository",
+    "visibility",
+    "role",
+    "disposition",
+    "reason",
+    "materiality",
+    "intent_change",
+    "roadmap",
+    "steps",
+    "changed_paths",
+    "proposed_changes",
+    "evidence",
+    "organization_signals"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "aether.roadmap-impact/v1"
+    },
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9.-]*/(?:\\.github|[A-Za-z0-9][A-Za-z0-9.-]*)$"
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "private"
+      ]
+    },
+    "role": {
+      "enum": [
+        "reader-writer",
+        "reader",
+        "read-only"
+      ]
+    },
+    "disposition": {
+      "enum": [
+        "updated",
+        "proposed",
+        "not-affected",
+        "blocked"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048,
+      "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+    },
+    "materiality": {
+      "enum": [
+        "material",
+        "non-material",
+        "unknown"
+      ]
+    },
+    "intent_change": {
+      "type": "boolean"
+    },
+    "roadmap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "revision",
+        "availability"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)(?:\\.{1,2}|\\.git)(?:/|$))[A-Za-z0-9 _./-]+$"
+        },
+        "revision": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "availability": {
+          "enum": [
+            "current",
+            "missing",
+            "stale",
+            "unavailable",
+            "conflicting"
+          ]
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,79}$"
+      },
+      "uniqueItems": true
+    },
+    "changed_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 240,
+        "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)(?:\\.{1,2}|\\.git)(?:/|$))[A-Za-z0-9 _./-]+$"
+      },
+      "uniqueItems": true
+    },
+    "proposed_changes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2048,
+        "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "reference"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "source",
+              "check",
+              "work",
+              "human-review"
+            ]
+          },
+          "reference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "pattern": "^(?:https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/[^\\s?]+|[A-Za-z0-9][A-Za-z0-9 _./#-]*)$"
+          }
+        }
+      }
+    },
+    "organization_signals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "owner",
+          "canonical_source",
+          "initiative",
+          "relation",
+          "source_reference",
+          "reason",
+          "assertion"
+        ],
+        "properties": {
+          "type": {
+            "const": "organization-roadmap-impact"
+          },
+          "owner": {
+            "const": "egohygiene/hygiene"
+          },
+          "canonical_source": {
+            "const": "organization/roadmap.v1.json"
+          },
+          "initiative": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^ORG-I[0-9]{3,}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "relation": {
+            "enum": [
+              "evidences",
+              "blocks",
+              "depends-on",
+              "informs"
+            ]
+          },
+          "source_reference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "pattern": "^(?:https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/[^\\s?]+|[A-Za-z0-9][A-Za-z0-9 _./#-]*)$"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+          },
+          "assertion": {
+            "const": "inferred"
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "disposition": {
+            "const": "updated"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "role": {
+            "const": "reader-writer"
+          },
+          "materiality": {
+            "const": "material"
+          },
+          "roadmap": {
+            "properties": {
+              "availability": {
+                "const": "current"
+              }
+            }
+          },
+          "changed_paths": {
+            "minItems": 1
+          },
+          "proposed_changes": {
+            "maxItems": 0
+          },
+          "evidence": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "disposition": {
+            "const": "proposed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "changed_paths": {
+            "maxItems": 0
+          },
+          "proposed_changes": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "disposition": {
+            "const": "not-affected"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "materiality": {
+            "const": "non-material"
+          },
+          "intent_change": {
+            "const": false
+          },
+          "changed_paths": {
+            "maxItems": 0
+          },
+          "proposed_changes": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "disposition": {
+            "const": "blocked"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "materiality": {
+            "const": "unknown"
+          },
+          "changed_paths": {
+            "maxItems": 0
+          },
+          "proposed_changes": {
+            "maxItems": 0
+          },
+          "roadmap": {
+            "properties": {
+              "availability": {
+                "enum": [
+                  "missing",
+                  "stale",
+                  "unavailable",
+                  "conflicting"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "roadmap": {
+            "properties": {
+              "availability": {
+                "const": "current"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "roadmap": {
+            "properties": {
+              "revision": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{40}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "roadmap": {
+            "properties": {
+              "availability": {
+                "enum": [
+                  "missing",
+                  "stale",
+                  "unavailable",
+                  "conflicting"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "disposition": {
+            "const": "blocked"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "role": {
+            "enum": [
+              "reader",
+              "read-only"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "changed_paths": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "visibility": {
+            "const": "private"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "organization_signals": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "disposition": {
+            "const": "updated"
+          },
+          "intent_change": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence": {
+            "contains": {
+              "properties": {
+                "kind": {
+                  "const": "human-review"
+                }
+              }
+            },
+            "minContains": 1
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "aether.roadmap-impact-qualification/v1",
+  "observed_at": "2026-11-14T23:11:13.560427+00:00",
+  "represented_implementation_commit": "0030c546498556b2a8febb4ef50958ae79977d50",
+  "governing_input_sha256": {
+    "library/organization/projections/templates/roadmap-impact.AGENTS.md": "b12c5ae8f0ff931ff45424915bfd86315b9f2942326bbdb05398223bf6d85811",
+    "library/organization/projections/build-projections.py": "2951e8900bbe8f02327815263ce38ab798e4ed4c532488a85dcef06c2f60aaf2",
+    "catalog/schemas/aether.roadmap-impact.v1.schema.json": "d6a86f48c70ec983eef8cf02f59d440a5a54a7710430b93f850cbe741b11bcea",
+    "library/organization/agents/AGENT-CONTRACT.md": "848057514f57fbd36dca6c911d89664783aa723ebc32a8730f4a2ae0344ba667"
+  },
+  "canonical_agents": 10,
+  "full_tests": {
+    "run": 334,
+    "skipped": 11,
+    "failures": 0,
+    "errors": 0
+  },
+  "focused_tests": 34,
+  "deterministic_receipt_cases": 10,
+  "checks": [
+    "exact-path and current-source update validation",
+    "read-only/reader writes refused; actor permissions preserved",
+    "intent updates missing a human-review reference and private organization export refused; references are not authenticated",
+    "singular/idempotent module in all supported provider projections",
+    "portable and canonical schema bytes identical",
+    "preserved consumer text and malformed/duplicate marker refusal",
+    "catalog, distributions, source/links, schema/fixture and retained-ledger checks"
+  ],
+  "retained_staging": {
+    "files": 734,
+    "units": 222,
+    "raw_bytes": 6791350,
+    "unchanged_source_tree": true,
+    "owner_comparisons_refreshed": 9,
+    "removal_authority": false
+  },
+  "limits": [
+    "Deterministic goldens exercise structure and declared assertions only; no model routing, strategic judgment or host automatic hook is qualified.",
+    "No human approval is authenticated by receipt validation. ADR-0011/package/module remain proposed or draft; no lifecycle promotion.",
+    "Existing consumer installation and release scheduling under38 remain unqualified; no package, tag, deployment or fleet adoption occurs."
+  ]
+}

@@ -49,9 +49,9 @@ Generated artifacts:
 
 ## 4) First-party catalog summary
 
-Inventory observed at merged main `2e69182` on November 14, 2026 UTC (November 13 in New York). Recompute from canonical source; counts do not establish maturity or release readiness:
+The earlier November14 snapshot at merged main `2e69182` contained38 skills. This candidate adds the roadmap-impact package; the following current counts were recomputed from canonical source on2026-11-14 UTC and do not establish maturity or release readiness:
 - 35 specifications (`find library/organization/specs -name "*.spec.md"`)
-- 38 skills (`find library/organization/skills -name "SKILL.md"`)
+- 39 skills (`find library/organization/skills -name "SKILL.md"`)
 - 10 canonical agent profiles (`find library/organization/agents -name "AGENT.md"`)
 - 1 canonical instruction module (`find library/organization/instructions -name "INSTRUCTION.md"`)
 
@@ -60,6 +60,8 @@ Start with [AGENTS.md](AGENTS.md), [META.md](META.md) and [ARCHITECTURE.md](ARCH
 Machine-readable catalog and provenance:
 - `catalog/first-party/catalog.v1.json`
 - `catalog/external/approved-skills.v1.json`
+
+Before PR handoff, the shared [roadmap-impact skill](library/organization/skills/architecture/reconcile-roadmap-impact/SKILL.md) records updated/proposed/not-affected/blocked while preserving role permissions and human strategy authority.
 
 ## 5) Prerequisites
 

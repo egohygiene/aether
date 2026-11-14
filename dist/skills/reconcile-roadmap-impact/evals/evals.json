@@ -1,0 +1,247 @@
+{
+  "schema": "aether.skill-evaluations/v2",
+  "skill": "reconcile-roadmap-impact",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "complete-factual-step",
+      "description": "A capability completes with current evidence and an authorized minimum factual update.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "A synthetic capability meets every source-owned exit criterion and its current validation is linked."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "\"disposition\": \"updated\""
+        },
+        {
+          "type": "contains",
+          "value": "\"reason\":"
+        },
+        {
+          "type": "not-contains",
+          "value": "\"assertion\": \"authoritative\""
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "partial-progress",
+      "description": "Partial delivery preserves accurate incomplete strategy.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Implementation advanced a capability, but its existing release/consumer exit criteria remain incomplete."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "\"disposition\": \"not-affected\""
+        },
+        {
+          "type": "contains",
+          "value": "\"reason\":"
+        },
+        {
+          "type": "not-contains",
+          "value": "\"assertion\": \"authoritative\""
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "routine-maintenance",
+      "description": "A routine bug fix has no strategic effect.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Bounded maintenance remains within already accurate strategy."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "\"disposition\": \"not-affected\""
+        },
+        {
+          "type": "contains",
+          "value": "\"reason\":"
+        },
+        {
+          "type": "not-contains",
+          "value": "\"assertion\": \"authoritative\""
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "missing-source",
+      "description": "Missing or stale context remains blocked, without invented IDs or edits.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Canonical roadmap context cannot be verified; obtain the owner source before reconciliation."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "\"disposition\": \"blocked\""
+        },
+        {
+          "type": "contains",
+          "value": "\"reason\":"
+        },
+        {
+          "type": "not-contains",
+          "value": "\"assertion\": \"authoritative\""
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "stale-source",
+      "description": "Missing or stale context remains blocked, without invented IDs or edits.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Canonical roadmap context cannot be verified; obtain the owner source before reconciliation."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "\"disposition\": \"blocked\""
+        },
+        {
+          "type": "contains",
+          "value": "\"reason\":"
+        },
+        {
+          "type": "not-contains",
+          "value": "\"assertion\": \"authoritative\""
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "human-priority-proposal",
+      "description": "A recommendation cannot silently reprioritize strategy.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "A horizon change needs human review before strategy is edited."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "\"disposition\": \"proposed\""
+        },
+        {
+          "type": "contains",
+          "value": "\"reason\":"
+        },
+        {
+          "type": "not-contains",
+          "value": "\"assertion\": \"authoritative\""
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "organization-proposal",
+      "description": "A local receipt signals an initiative without writing organization strategy.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Bounded maintenance remains within already accurate strategy."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "\"disposition\": \"not-affected\""
+        },
+        {
+          "type": "contains",
+          "value": "\"reason\":"
+        },
+        {
+          "type": "not-contains",
+          "value": "\"assertion\": \"authoritative\""
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "read-only-discovery",
+      "description": "A read-only role proposes and gains no write authority.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "A read-only audit found a roadmap discrepancy; an authorized owner must assess the proposed correction."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "\"disposition\": \"proposed\""
+        },
+        {
+          "type": "contains",
+          "value": "\"reason\":"
+        },
+        {
+          "type": "not-contains",
+          "value": "\"assertion\": \"authoritative\""
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "private-source",
+      "description": "Private context is not exported into public organization strategy.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Restricted source remains private; no public organization signal is emitted."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "\"disposition\": \"not-affected\""
+        },
+        {
+          "type": "contains",
+          "value": "\"reason\":"
+        },
+        {
+          "type": "not-contains",
+          "value": "\"assertion\": \"authoritative\""
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    },
+    {
+      "id": "nonrepository-task",
+      "description": "A non-repository request does not trigger the repository-changing completion workflow.",
+      "category": "negative",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "No repository-changing task or PR handoff exists; do not use roadmap reconciliation as the primary workflow."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "\"disposition\": \"not-affected\""
+        },
+        {
+          "type": "contains",
+          "value": "\"reason\":"
+        },
+        {
+          "type": "not-contains",
+          "value": "\"assertion\": \"authoritative\""
+        }
+      ],
+      "fixture": "fixtures/cases.json"
+    }
+  ]
+}

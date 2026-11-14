@@ -19,6 +19,7 @@ provenance, lifecycle, and distribution.
   software fixtures with adversarial mutation cases
 - `schemas/aether.repository-release.v1.schema.json` — repository profile,
   semantic-version, changelog, delivery, evidence, and manual-handoff contract
+- `schemas/aether.roadmap-impact.v1.schema.json` — draft completion receipt with four dispositions and inferred organization signals; its portable skill schema is checked byte-identically.
 - `schemas/aether.repository-continuity.v1.schema.json` — root operational
   handoff metadata, base/candidate/live state, review evidence, size, privacy,
   and stale/superseded lifecycle contract

@@ -1,0 +1,34 @@
+{
+  "artifact_id": "skill/reconcile-roadmap-impact",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": []
+  },
+  "distribution_id": "distribution/reconcile-roadmap-impact",
+  "generated_paths": [
+    "dist/skills/reconcile-roadmap-impact/SKILL.md",
+    "dist/skills/reconcile-roadmap-impact/evals/evals.json",
+    "dist/skills/reconcile-roadmap-impact/evals/fixtures/cases.json",
+    "dist/skills/reconcile-roadmap-impact/evals/goldens/complete-factual-step.golden.txt",
+    "dist/skills/reconcile-roadmap-impact/evals/goldens/human-priority-proposal.golden.txt",
+    "dist/skills/reconcile-roadmap-impact/evals/goldens/missing-source.golden.txt",
+    "dist/skills/reconcile-roadmap-impact/evals/goldens/nonrepository-task.golden.txt",
+    "dist/skills/reconcile-roadmap-impact/evals/goldens/organization-proposal.golden.txt",
+    "dist/skills/reconcile-roadmap-impact/evals/goldens/partial-progress.golden.txt",
+    "dist/skills/reconcile-roadmap-impact/evals/goldens/private-source.golden.txt",
+    "dist/skills/reconcile-roadmap-impact/evals/goldens/read-only-discovery.golden.txt",
+    "dist/skills/reconcile-roadmap-impact/evals/goldens/routine-maintenance.golden.txt",
+    "dist/skills/reconcile-roadmap-impact/evals/goldens/stale-source.golden.txt",
+    "dist/skills/reconcile-roadmap-impact/references/receipt.md",
+    "dist/skills/reconcile-roadmap-impact/references/receipt.schema.json",
+    "dist/skills/reconcile-roadmap-impact/templates/receipt.template.json",
+    "dist/skills/reconcile-roadmap-impact/scripts/validate_receipt.py",
+    "dist/skills/reconcile-roadmap-impact/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "bc2ad776e37825c816a76e9f7a875afaec3ab8366485d5ceb783067c4a8775f6"
+  }
+}

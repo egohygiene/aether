@@ -1,0 +1,39 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "Bounded maintenance remains within already accurate strategy.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q07"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ROADMAP.md"
+    }
+  ],
+  "organization_signals": [
+    {
+      "type": "organization-roadmap-impact",
+      "owner": "egohygiene/hygiene",
+      "canonical_source": "organization/roadmap.v1.json",
+      "initiative": "ORG-I001",
+      "relation": "evidences",
+      "source_reference": "https://github.com/egohygiene/hygiene/blob/d51043f1e4d2ddc22ef4534bd0d65c0053afcbda/organization/roadmap.v1.json",
+      "reason": "Partial first-party foundation evidence warrants owner review; no priority or completion is changed.",
+      "assertion": "inferred"
+    }
+  ]
+}

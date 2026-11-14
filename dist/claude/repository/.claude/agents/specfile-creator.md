@@ -11,7 +11,7 @@ tools:
 - WebFetch
 - WebSearch
 ---
-<!-- aether-projection {"continuity_disposition":"reader-writer","generator":"library/organization/projections/build-projections.py","instruction_modules":[{"id":"decision-impact","inherits":[{"approval_url":"https://github.com/egohygiene/hygiene/pull/72","contract":"egohygiene.architecture-decision/v1","policy_version":"1.2.0","revision":"a05b14f8b9e2772124f879f818e09a911e996ad8","source_url":"https://github.com/egohygiene/hygiene/blob/a05b14f8b9e2772124f879f818e09a911e996ad8/docs/decisions/POLICY.md","status":"accepted"},{"contract":"egohygiene.repository-intelligence/v1","contract_version":"1.0.0-alpha.1","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md","status":"proposed"}],"source":"library/organization/projections/templates/decision-impact.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"7d3c1524fe643794df4b953b50d6a194a1268a0890785981fe465346398fb346"},"status":"draft","version":"0.3.0"},{"continuity_path":"CONTINUITY.md","contract":"aether.repository-continuity/v1","id":"repository-continuity","skill":"maintain-repository-continuity","source":"library/organization/instructions/repository-continuity/INSTRUCTION.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"},"status":"draft","version":"1.0.0"}],"interface":"aether.projection-interface/v1","interface_version":"1.2.0","provider":"claude-code","source":"library/organization/agents/specfile-creator/AGENT.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"cf43d7106fdde8b75566900643b189e985428010c5b81c65dbaf95d782de2c7e"}} -->
+<!-- aether-projection {"continuity_disposition":"reader-writer","generator":"library/organization/projections/build-projections.py","instruction_modules":[{"id":"decision-impact","inherits":[{"approval_url":"https://github.com/egohygiene/hygiene/pull/72","contract":"egohygiene.architecture-decision/v1","policy_version":"1.2.0","revision":"a05b14f8b9e2772124f879f818e09a911e996ad8","source_url":"https://github.com/egohygiene/hygiene/blob/a05b14f8b9e2772124f879f818e09a911e996ad8/docs/decisions/POLICY.md","status":"accepted"},{"contract":"egohygiene.repository-intelligence/v1","contract_version":"1.0.0-alpha.1","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md","status":"proposed"}],"source":"library/organization/projections/templates/decision-impact.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"7d3c1524fe643794df4b953b50d6a194a1268a0890785981fe465346398fb346"},"status":"draft","version":"0.3.0"},{"continuity_path":"CONTINUITY.md","contract":"aether.repository-continuity/v1","id":"repository-continuity","skill":"maintain-repository-continuity","source":"library/organization/instructions/repository-continuity/INSTRUCTION.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"},"status":"draft","version":"1.0.0"},{"contract":"aether.roadmap-impact/v1","id":"roadmap-impact","inherits":[{"contract":"egohygiene.organization-roadmap/v1","contract_version":"1.0.0-alpha.1","revision":"d51043f1e4d2ddc22ef4534bd0d65c0053afcbda","source_url":"https://github.com/egohygiene/hygiene/blob/d51043f1e4d2ddc22ef4534bd0d65c0053afcbda/docs/ecosystem/ORGANIZATION_ROADMAP.md","status":"proposed"}],"skill":"reconcile-roadmap-impact","source":"library/organization/projections/templates/roadmap-impact.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"b12c5ae8f0ff931ff45424915bfd86315b9f2942326bbdb05398223bf6d85811"},"status":"draft","version":"1.0.0"}],"interface":"aether.projection-interface/v1","interface_version":"1.2.0","provider":"claude-code","source":"library/organization/agents/specfile-creator/AGENT.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"e75c5cc1826c2c82aa3b124cc8cea330f31f5972fc5dcb1049f0b25e3a7e1554"}} -->
 
 ## Mission
 
@@ -131,3 +131,31 @@ Static instructions do not install or guarantee an automatic pre-pull-request
 hook. If the host cannot load the skill, inspect local files, or verify live
 state, report that capability as unavailable rather than inventing success.
 <!-- END AETHER REPOSITORY-CONTINUITY -->
+
+<!-- BEGIN AETHER ROADMAP-IMPACT -->
+<!-- aether-instruction {"id":"roadmap-impact","version":"1.0.0","status":"draft","skill":"reconcile-roadmap-impact","contract":"aether.roadmap-impact/v1","inherits":[{"contract":"egohygiene.organization-roadmap/v1","contract_version":"1.0.0-alpha.1","revision":"d51043f1e4d2ddc22ef4534bd0d65c0053afcbda","source_url":"https://github.com/egohygiene/hygiene/blob/d51043f1e4d2ddc22ef4534bd0d65c0053afcbda/docs/ecosystem/ORGANIZATION_ROADMAP.md","status":"proposed"}]} -->
+## Roadmap-impact checkpoint
+
+After domain validation and before PR handoff, compose
+`reconcile-roadmap-impact` with `architecture-roadmap` and
+`create-roadmap-document`. Inspect current canonical roadmap, real step IDs,
+actual diff and executed evidence; preserve missing/stale/conflicting inputs.
+Emit exactly one disposition: `updated`, `proposed`, `not-affected` or `blocked`,
+with a concise reason and evidence under `aether.roadmap-impact/v1`. Silence is
+not completion. A no-change result needs no ceremonial edit.
+
+Make only authorized minimal factual updates. Read-only roles never mutate the
+roadmap; they may propose an impact. Human-governed horizon, optionality,
+priority and strategic intent remain proposals until reviewed. Partial work,
+issue closure, a pushed branch, passing checks or this receipt do not establish
+strategic completion or supply human approval.
+
+Emit an inferred typed `organization-roadmap-impact` signal when applicable;
+local repository authority does not permit writing Hygiene's organization
+strategy. Preserve private context and emit no public signal from a private
+receipt. If source, skill loading or validation is unavailable, record the
+blocked check and next owner. Refresh continuity after domain reconciliation.
+
+This draft shared module is static guidance, not an installed or enforced host
+hook. Preserve consumer prose, scoped instructions and tool permissions.
+<!-- END AETHER ROADMAP-IMPACT -->

@@ -54,6 +54,7 @@ request; do not edit past decisions in place—append a superseding ADR instead.
 | [ADR-0008](docs/decisions/ADR-0008-portable-review-evidence-and-human-authority.md) | Separate portable review evidence from policy and human authority | Proposed |
 | [ADR-0009](docs/decisions/ADR-0009-generated-evidence-and-local-validation.md) | Clarify tracked generated evidence and repository-local validation | Proposed |
 | [ADR-0010](docs/decisions/ADR-0010-immutable-staging-review-controls.md) | Bind staging changes to recorded intake and immutable review evidence | Proposed |
+| [ADR-0011](docs/decisions/ADR-0011-shared-roadmap-impact-handoff.md) | Compose roadmap-impact reconciliation as one shared agent handoff module | Proposed |
 
 New records and links to preserved historical records are indexed in
 [docs/decisions/README.md](docs/decisions/README.md). The inline records below

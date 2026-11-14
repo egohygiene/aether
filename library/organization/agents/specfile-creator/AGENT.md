@@ -8,17 +8,19 @@ tools:
   - edit
   - web
 metadata:
-  aether-version: "1.1.0"
+  aether-version: "1.2.0"
   aether-status: "draft"
   aether-scope: "organization"
   aether-domain: "authoring"
   aether-owners: "egohygiene"
   aether-created: "2026-08-08"
-  aether-updated: "2026-09-08"
+  aether-updated: "2026-11-14"
   aether-skills:
+    - reconcile-roadmap-impact
     - create-specification-file
     - maintain-repository-continuity
   aether-specs:
+    - architecture-roadmap
     - specfile
     - repository-continuity
 ---

@@ -1,0 +1,30 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "read-only",
+  "disposition": "proposed",
+  "reason": "A read-only audit found a roadmap discrepancy; an authorized owner must assess the proposed correction.",
+  "materiality": "material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q07"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [
+    "Review the stale local completion claim against current consumer evidence."
+  ],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ROADMAP.md"
+    }
+  ],
+  "organization_signals": []
+}

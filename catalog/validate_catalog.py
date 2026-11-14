@@ -35,6 +35,7 @@ SCHEMA_FILES = [
     "aether.continuity-dispositions.v1.schema.json",
     "aether.staging-disposition-record.v1.schema.json",
     "aether.staging-residual-ledger.v1.schema.json",
+    "aether.roadmap-impact.v1.schema.json",
     "aether.evaluation-definition.v1.schema.json",
     "aether.evaluation-result.v1.schema.json",
     "aether.social-surface-catalog.v1.schema.json",
@@ -227,6 +228,10 @@ def main() -> int:
     validators = build_validators()
     errors = []
     errors.extend(validate_fixtures(validators))
+    roadmap_schema = SCHEMAS_DIR / "aether.roadmap-impact.v1.schema.json"
+    portable_schema = SKILLS_DIR / "architecture/reconcile-roadmap-impact/references/receipt.schema.json"
+    if roadmap_schema.read_bytes() != portable_schema.read_bytes():
+        errors.append("Portable roadmap-impact schema differs from its canonical catalog source")
     errors.extend(validate_catalog(validators))
     errors.extend(validate_external_source_candidates(validators))
     errors.extend(validate_external_source_governance())
