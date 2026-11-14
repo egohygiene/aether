@@ -49,11 +49,13 @@ Generated artifacts:
 
 ## 4) First-party catalog summary
 
-Current canonical inventory snapshot (recompute with the commands shown):
-- 32 specifications (`find library/organization/specs -name "*.spec.md"`)
-- 36 skills (`find library/organization/skills -name "SKILL.md"`)
-- 9 canonical agent profiles (`find library/organization/agents -name "AGENT.md"`)
+Inventory observed at merged main `2e69182` on November 14, 2026 UTC (November 13 in New York). Recompute from canonical source; counts do not establish maturity or release readiness:
+- 35 specifications (`find library/organization/specs -name "*.spec.md"`)
+- 38 skills (`find library/organization/skills -name "SKILL.md"`)
+- 10 canonical agent profiles (`find library/organization/agents -name "AGENT.md"`)
 - 1 canonical instruction module (`find library/organization/instructions -name "INSTRUCTION.md"`)
+
+Start with [AGENTS.md](AGENTS.md), [META.md](META.md) and [ARCHITECTURE.md](ARCHITECTURE.md). [ROADMAP.md](ROADMAP.md) preserves strategic step IDs; [issue #105](https://github.com/egohygiene/aether/issues/105) is the tactical ledger and [CONTINUITY.md](CONTINUITY.md) the current handoff. [Proposed ADR-0009](docs/decisions/ADR-0009-generated-evidence-and-local-validation.md) exposes unresolved historical distribution/workflow authority conflicts; it does not accept them.
 
 Machine-readable catalog and provenance:
 - `catalog/first-party/catalog.v1.json`
@@ -63,7 +65,7 @@ Machine-readable catalog and provenance:
 
 - Python 3.12+
 - Git
-- GitHub CLI (`gh`) 2.96+ for skill publish/install flows
+- A GitHub CLI (`gh`) exposing the compatible preview `skill` commands for actual install/publish qualification; a version string alone is insufficient. See the [explicit qualification gate](docs/release-and-pinning-guide.md#explicit-consumer-qualification).
 - Task 3 (optional) for convenience wrappers in `Taskfile.yml`
 
 Install dev dependencies:
