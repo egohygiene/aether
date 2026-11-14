@@ -52,6 +52,7 @@ request; do not edit past decisions in place—append a superseding ADR instead.
 | [ADR-0006](#adr-0006) | Whether generated `dist/` content is committed or release-only | Accepted |
 | [ADR-0007](#adr-0007) | Staged hook prototype disposition for first release | Accepted |
 | [ADR-0008](docs/decisions/ADR-0008-portable-review-evidence-and-human-authority.md) | Separate portable review evidence from policy and human authority | Proposed |
+| [ADR-0009](docs/decisions/ADR-0009-generated-evidence-and-local-validation.md) | Clarify tracked generated evidence and repository-local validation | Proposed |
 
 New records and links to preserved historical records are indexed in
 [docs/decisions/README.md](docs/decisions/README.md). The inline records below

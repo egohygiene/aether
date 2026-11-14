@@ -1,9 +1,9 @@
 # ADR authoring adoption checkpoint
 
 This implements [Aether #91](https://github.com/egohygiene/aether/issues/91).
-The existing `create-decisions-document` skill v2.0.0 and governing specification
-v3.0.0 remain draft. Their workflow now consumes the already ratified Hygiene ADR
-policy; independent proposed contracts retain their prior authority and pins.
+The existing `create-decisions-document` skill v2.1.0 and governing specification
+v3.1.0 remain draft. Their workflow now consumes the already ratified Hygiene ADR
+policy v1.2.0; independent proposed contracts retain their prior authority and pins.
 
 The portable [adoption guide](../library/organization/skills/architecture/create-decisions-document/references/adoption.md)
 covers preview, immutable installation, managed instructions, upgrade, rollback,
@@ -14,8 +14,8 @@ not activate enforcement or establish host adoption.
 
 ## Reproduce local evidence
 
-Use Aether's `requirements-dev.lock` and a GitHub CLI supporting `gh skill` for
-the repository suite. Keep Relay's Python environment separate: its pinned
+Use Aether's `requirements-dev.lock` for deterministic tests. Actual `gh skill`
+consumer qualification is a [separate strict gate](release-and-pinning-guide.md#explicit-consumer-qualification); unit tests do not supply that acceptance. Keep Relay's Python environment separate: its pinned
 `scripts/architecture-validation-requirements.txt` differs from Aether's lock.
 Prepare the offline architecture runtime with the selected Relay checkout's
 documented `prepare` command and exact Hygiene, EgoLint and Holon sources.
@@ -55,9 +55,10 @@ they do not execute a model or demonstrate provider/host loading.
 
 ## Compatibility before the canary
 
-- Holon blueprint 1.0.0 at the selected commit still emits the older policy pin.
-  Native validation rejects it. A Holon-owned reference needs a reviewed owner
-  artifact/pack upgrade before materialization; preserve its provenance and ADRs.
+- The current selection names Holon blueprint 1.1.0 at
+  `a7734dba83305276b12932fcd4ce348044d9a2e9`, emitting accepted Hygiene 1.2.0
+  at the exact selected revision. Older blueprint 1.0.0 replay remains a
+  deliberate compatibility rejection, not the current selected adapter.
 - Hygiene's selected `decision-set` helper expects a reciprocal backlink for a
   proposed replacement. The selected EgoLint/Relay validator supports pending
   replacement without changing the accepted predecessor. Preserve that distinction

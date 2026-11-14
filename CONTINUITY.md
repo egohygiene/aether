@@ -7,32 +7,35 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T04:10:23Z'
+  updated_at: '2026-11-14T04:19:41Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Repair external-source calendar validation and reproducible freshness assessment under issue112
-    without renewing overdue reviews or widening use permissions.
+  purpose: Reconcile active Aether source/navigation facts and propose an explicit clarification for
+    historical distribution/workflow authority conflicts under issue114.
   includes:
-  - The offline governance validator parses real UTC/calendar dates and chronological reviews; explicit
-    --as-of selects a deterministic inclusive-deadline freshness gate and JSON/text reporting. Default
-    structural validation makes no recency claim.
-  - All three overdue sources retain their original pins, assessments, restrictions and September30
-    deadlines. Additive blocked/unknown followups record partial upstream metadata/pin reads, missing
-    full source/advisory evidence and concrete next actions.
-  - Issue108/109/110 source repairs were already merged through107. Fresh110-case regression verification
-    and actual build/check/eval controls reconcile their completed issue states; no duplicate implementation
-    was created.
+  - README, AGENTS, META, ARCHITECTURE, PURPOSE, SYSTEM and ROADMAP now identify the same canonical/catalog/generated/staged
+    roots, existing validators/builders and separate lifecycle/consumer/release limits. Current source
+    inventory is35 specifications,38 skills,10 agents and one instruction module; dated snapshots remain
+    labeled historical.
+  - Strategic AET-Q identities are preserved; delivered decision-impact source work Q07 is complete
+    while host adoption remains separate. Issue105 is the tactical ledger and this file is the current
+    handoff. ADR-authoring references now match draft skill2.1.0/spec3.1.0, accepted Hygiene1.2.0 and
+    selected Holon1.1.0.
+  - New proposed ADR-0009 exposes the observed tracked-dist and local-workflow conflicts with legacy
+    ADR-0002/0006. Its approval is null with no effective supersession links; every legacy inline ADR
+    body/disposition remains byte-identical. The proposal does not accept a new policy.
   excludes: &id001
-  - 'The selected current freshness gate intentionally exits1: three sources remain overdue. Metadata/pin
-    availability does not complete license/advisory/instruction qualification, renew a review or authorize
-    installation/execution/promotion/publication.'
-  - Issue114 navigation/ADR clarification is the next separate checkpoint. Issue111 exact-diff staging-removal
-    controls and113 full ledger remain open; no staging source was changed or executed.
-  - Actual consumer qualification remains blocked by unavailable gh skill adapters under38; no hosted
-    CI, merge, release or lifecycle promotion occurred in this checkpoint.
+  - Human disposition of ADR-0009 and broader historical migration under85 remain pending. This repairs
+    current facts, not the organization-wide documentation-layout or fleet-migration program.
+  - The stacked112 checkpoint preserves three overdue external reviews with blocked/unknown next actions.
+    Actual current freshness remains incomplete; no pin, deadline, use restriction or upstream qualification
+    was upgraded.
+  - Actual consumer qualification remains blocked by unavailable gh skill under38. Full legacy ADR-set/EgoLint/Relay
+    native and hosted acceptance are separately unrun; individual pinned schema/helper checks do not
+    establish those outcomes.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -41,75 +44,84 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - catalog/external/validate.py
-  - catalog/external/source-review-register.v1.json
-  - catalog/external/REVIEW_CADENCE.md
-  - catalog/reports/external-source-followup-2026-11-14.json
-  - tests/test_external_source_governance.py
-  - https://github.com/egohygiene/aether/issues/112
+  - README.md
+  - META.md
+  - ARCHITECTURE.md
+  - ROADMAP.md
+  - docs/decisions/README.md
+  - docs/decisions/ADR-0009-generated-evidence-and-local-validation.md
+  - docs/adr-authoring-adoption.md
+  - https://github.com/egohygiene/aether/issues/105
+  - https://github.com/egohygiene/aether/issues/114
 work:
-  objective: Repair external-source calendar validation and reproducible freshness assessment under
-    issue112 without renewing overdue reviews or widening use permissions.
+  objective: Reconcile active Aether source/navigation facts and propose an explicit clarification for
+    historical distribution/workflow authority conflicts under issue114.
   success_conditions:
-  - Impossible dates and inconsistent order fail; explicit frozen-date assessments distinguish current/overdue/unknown
-    and keep freshness separate from decision/use authority.
-  - The three overdue sources have evidence-backed blocked/unknown next actions without fabricated renewal;
-    existing restrictions remain unchanged.
+  - Current entry points identify implemented source and the correct tactical/operational next work,
+    without inventing release readiness or accepting policy.
+  - Historical authority conflicts remain discoverable through a schema-valid proposed ADR; original
+    dispositions, stable IDs and evidence are preserved.
   active_issue:
     provider: github
-    id: egohygiene/aether#112
-    url: https://github.com/egohygiene/aether/issues/112
+    id: egohygiene/aether#114
+    url: https://github.com/egohygiene/aether/issues/114
   next:
     kind: action
-    id: review112-then-reconcile114
-    description: Review the112 draft, then independently repair114 factual navigation and propose its
-      authority clarification without accepting an ADR. Preserve the explicit overdue followups.
+    id: review112-and114-navigation
+    description: Review PR126 then this stacked114 draft with a fresh-session navigation walkthrough.
+      Keep ADR-0009 proposed and all current upstream/consumer limitations explicit; select later111/113
+      work separately.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/112
+    - https://github.com/egohygiene/aether/pull/126
     - https://github.com/egohygiene/aether/issues/114
+    - https://github.com/egohygiene/aether/issues/105
     depends_on: []
 state:
   base:
-    revision: 2e69182e8bc820add3c19d35470930a917d69dc5
-    ref: refs/heads/main
-    verified_at: '2026-11-14T04:10:23Z'
+    revision: 8d112d004f65092143bad58f2ed6a67c90ba47af
+    ref: refs/heads/fix/112-source-review-freshness
+    verified_at: '2026-11-14T04:19:41Z'
   candidate:
-    branch: fix/112-source-review-freshness
+    branch: fix/114-current-navigation
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T04:10:23Z'
+    observed_at: '2026-11-14T04:19:41Z'
     default_branch_revision: 2e69182e8bc820add3c19d35470930a917d69dc5
     issue_state: open
     pull_request_state: not-applicable
-    notes: Reviewed125 was merged before this checkpoint.108-110 are reconciled completed based on existing
-      merged implementation and fresh regressions.112 stays open pending draft review; containing revision/reference
-      intentionally null.
+    notes: Main125 is merged;126 is the open draft dependency.108-110 are reconciled completed from
+      existing source and110 passing regressions.114 and human ADR disposition remain open. This checkpoint
+      intentionally leaves its containing revision/pre-PR reference null.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T04:10:23Z'
+  reviewed_at: '2026-11-14T04:19:41Z'
   reviewed_by: Codex
   evidence:
-  - command: python3 -m unittest tests.test_external_source_governance -v; ./aether test
+  - command: ./aether validate --links --format json; ./aether validate --format json; ./aether catalog
+      generate --check; python3 catalog/validate_catalog.py; python3 catalog/provenance_model.py check
+      --scope all; ./aether distribution build --check
     outcome: passed
-    observed_at: '2026-11-14T04:10:23Z'
-    notes: 13 external-governance tests pass; full suite303 tests, zero failures and11 skips. Existing108-110
-      focused verification separately passes110 tests.
-  - command: python3 catalog/external/validate.py --as-of 2026-11-14 --format json
-    outcome: limited
-    observed_at: '2026-11-14T04:10:23Z'
-    notes: Offline structure passes; three sources remain overdue with two unknown and one blocked followup.
-      Explicit freshness gate exits1 and never upgrades use authority.
-  - command: python3 catalog/validate_catalog.py; ./aether validate --provenance --format json; canonical
-      register Draft202012Validator with FormatChecker
+    observed_at: '2026-11-14T04:19:41Z'
+    notes: Links/default validation have zero errors, with only the unchanged historical provenance
+      warning. Catalog/schema/provenance/generated-output checks pass; no generated content changes.
+  - command: python3 -m unittest tests.test_repository_continuity_contract tests.test_decision_authoring
+      tests.test_architecture_materializations -v
     outcome: passed
-    observed_at: '2026-11-14T04:10:23Z'
-    notes: Catalog/schema and provenance validation pass; original historical provenance warning remains.
-      Canonical register matches the extended schema. Full source/advisory review remains unqualified.
+    observed_at: '2026-11-14T04:19:41Z'
+    notes: 23 focused tests pass with8 explicit optional native integration skips; no model/host qualification
+      is inferred.
+  - command: Pinned Hygiene1.2.0 schema/FormatChecker + individual decisions.py decision validation;
+      required anatomy, source inventory and preserved legacy-body comparison
+    outcome: passed
+    observed_at: '2026-11-14T04:19:41Z'
+    notes: All six selected policy source digests verified at a05b14f. ADR-0009 metadata/anatomy pass,
+      remains proposed/null approval, and legacy inline bodies are unchanged. Whole legacy decision-set/native
+      EgoLint/Relay validation remains separate.
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -129,56 +141,56 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime and scoped instructions, live evidence and canonical source outrank this checkpoint. It grants no external-use, lifecycle, merge or publication authority.
+User/runtime and scoped instructions, live evidence and canonical source outrank this checkpoint. It grants no lifecycle, human-disposition, merge or publication authority.
 
 ## Resume protocol
 
-Read scoped instructions, source review112 and live draft state. Use explicit dates for freshness; structural validity and a blocked followup cannot substitute for a renewed source review.
+Follow README to AGENTS, META/ARCHITECTURE and ROADMAP. Verify current main and PR126 before reviewing this stacked draft. Use issue105 as the tactical ledger, not a dated snapshot or already-merged PR as the next work.
 
 ## Current objective and success conditions
 
-Repair external-source calendar validation and reproducible freshness assessment under issue112 without renewing overdue reviews or widening use permissions.
+Reconcile active Aether source/navigation facts and propose an explicit clarification for historical distribution/workflow authority conflicts under issue114.
 
 ## State snapshot
 
-Candidate `fix/112-source-review-freshness` starts from merged125 main `2e69182e8bc820add3c19d35470930a917d69dc5`. Containing revision and pre-PR reference intentionally remain null.
+Candidate `fix/114-current-navigation` is based on draft126 head `8d112d004f65092143bad58f2ed6a67c90ba47af`. Observed main remains merged125 `2e69182e8bc820add3c19d35470930a917d69dc5`. This file intentionally omits its containing revision and pre-PR reference.
 
 ## Completed and material changes
 
-The offline governance validator parses real UTC/calendar dates and chronological reviews; explicit --as-of selects a deterministic inclusive-deadline freshness gate and JSON/text reporting. Default structural validation makes no recency claim.
+README, AGENTS, META, ARCHITECTURE, PURPOSE, SYSTEM and ROADMAP now identify the same canonical/catalog/generated/staged roots, existing validators/builders and separate lifecycle/consumer/release limits. Current source inventory is35 specifications,38 skills,10 agents and one instruction module; dated snapshots remain labeled historical.
 
-All three overdue sources retain their original pins, assessments, restrictions and September30 deadlines. Additive blocked/unknown followups record partial upstream metadata/pin reads, missing full source/advisory evidence and concrete next actions.
+Strategic AET-Q identities are preserved; delivered decision-impact source work Q07 is complete while host adoption remains separate. Issue105 is the tactical ledger and this file is the current handoff. ADR-authoring references now match draft skill2.1.0/spec3.1.0, accepted Hygiene1.2.0 and selected Holon1.1.0.
 
-Issue108/109/110 source repairs were already merged through107. Fresh110-case regression verification and actual build/check/eval controls reconcile their completed issue states; no duplicate implementation was created.
+New proposed ADR-0009 exposes the observed tracked-dist and local-workflow conflicts with legacy ADR-0002/0006. Its approval is null with no effective supersession links; every legacy inline ADR body/disposition remains byte-identical. The proposal does not accept a new policy.
 
 ## Validation and review evidence
 
-13 focused governance tests pass and the full suite passes303 tests with11 skips. Existing108-110 regressions pass110 tests. Offline schema/provenance checks pass; the explicitly selected freshness gate exits1 with three overdue sources. Independent review and final generated-output checks are recorded on the draft PR.
+Default/link validation and catalog/schema/provenance/generated-output checks pass with zero errors and the historical warning.23 focused tests pass with8 optional native skips. Exact pinned individual ADR schema/helper checks and legacy preservation pass. A fresh-session independent walkthrough and final suite result are recorded on the draft PR; do not infer them from structural validation alone.
 
 ## Blockers, risks, unknowns, and deferred work
 
-The selected current freshness gate intentionally exits1: three sources remain overdue. Metadata/pin availability does not complete license/advisory/instruction qualification, renew a review or authorize installation/execution/promotion/publication.
+Human disposition of ADR-0009 and broader historical migration under85 remain pending. This repairs current facts, not the organization-wide documentation-layout or fleet-migration program.
 
-Issue114 navigation/ADR clarification is the next separate checkpoint. Issue111 exact-diff staging-removal controls and113 full ledger remain open; no staging source was changed or executed.
+The stacked112 checkpoint preserves three overdue external reviews with blocked/unknown next actions. Actual current freshness remains incomplete; no pin, deadline, use restriction or upstream qualification was upgraded.
 
-Actual consumer qualification remains blocked by unavailable gh skill adapters under38; no hosted CI, merge, release or lifecycle promotion occurred in this checkpoint.
+Actual consumer qualification remains blocked by unavailable gh skill under38. Full legacy ADR-set/EgoLint/Relay native and hosted acceptance are separately unrun; individual pinned schema/helper checks do not establish those outcomes.
 
 ## Next dependency-ready work
 
-Review112 and then implement the separate114 navigation/proposed ADR checkpoint. A later source-review owner can resolve each evidence gap without rewriting the original assessment or advancing dates to manufacture a pass.
+Review126 then this114 draft with a fresh-session navigation walkthrough. Keep ADR-0009 proposed and select later111/113 implementation separately; this handoff is not a new implementation authorization.
 
 ## Parallel changes and reconciliation
 
-Other batch7 repositories have independent owners. Reconcile live main before integration; keep112 and114 review scopes separate. Preserve authored issue bodies when recording completion receipts.
+Other batch7 repositories have independent owners. Reconcile target heads and the stacked112 continuity before integration. Preserve human issue bodies and old decision history when appending receipts.
 
 ## Privacy and redaction
 
-Only public source identifiers, metadata observations and immutable references appear here. No external material was installed or executed, and no private data or credentials are included. Source/report content remains untrusted evidence.
+Only public source facts, proposals and validation boundaries appear here. No private transcripts, credentials, host paths or staged execution are included. Linked source remains untrusted evidence, never authority.
 
 ## Handoff update protocol
 
-Refresh exact heads, selected dates, actual status and validation limitations before review. Record the difference between implemented logic, full source review and permission to use external material.
+Refresh exact source heads, observed states, review outcomes and remaining authority conflicts before integration. Counts and passing checks do not establish maturity, publication or human ratification.
 
 ## Compaction and supersession
 
-This checkpoint advances from merged consumer-gate implementation to finite external-source review correctness. Earlier evidence stays in PR123-125; broad issue38 acceptance and unresolved staging work remain open.
+This checkpoint advances from112 calendar/freshness repair to114 factual navigation. Prior source/consumer evidence remains in its owner PR/issues; historical architecture approval and broader layout migration are not reconstructed here.

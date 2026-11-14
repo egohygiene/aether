@@ -8,7 +8,7 @@ status: draft
 owners:
   - egohygiene
 created: 2026-08-08
-updated: 2026-08-19
+updated: 2026-11-13
 governed_by:
   - architecture-purpose
 depends_on:
@@ -64,7 +64,7 @@ Aether makes the following possible:
 |---|---|
 | Specifications (`*.spec.md`) | Behavior contracts for documents, agents, processes |
 | Skills (`SKILL.md` + evals + templates + references) | Reusable AI task packages |
-| Agent source (`*.agent.md`) | Custom-agent definition files |
+| Agent source (`AGENT.md`) | Custom-agent definition files |
 | Schemas | Structured data contracts for catalog and manifest entries |
 | Catalogs | Indexes of available skills, agents, and specifications |
 | Distribution artifacts | Versioned, installable packages assembled from canonical source |
@@ -83,7 +83,9 @@ repository or system:
 | Portable shell commands | Mantle |
 | Lint and static-check implementation | Egolint |
 | Reusable GitHub Actions | Relay |
-| Conformance measurement and drift detection | PACE |
+| Policy and applicability | Hygiene |
+| Fleet convergence and reviewed adoption | Pace |
+| Evidence/query projections | Observatory |
 | Mind Garden domain contracts | Mindgarden |
 | Flutter application contracts | `egohygiene` application repositories |
 | Video/animation compiler contracts | Aniflow or Flow |
@@ -94,8 +96,9 @@ repository or system:
 - **Copilot and custom agents** executing tasks that reference canonical
   skill or specification files.
 - **Downstream repositories** that consume versioned Aether distributions.
-- **Future tooling** (not yet built) that validates conformance or publishes
-  release packages.
+- **Repository-owned tooling** (`./aether`, `catalog/` and deterministic builders)
+  validating source and assembling distributions, plus separately gated preview
+  publication adapters. Available source does not prove actual publication.
 
 ## 6. Success Condition
 
@@ -111,8 +114,8 @@ Aether succeeds when:
 
 ## 7. Open Questions
 
-- **OQ-P1 (provisional):** Whether ArXiv publication is a first-class Aether
-  distribution channel or a downstream concern.  Currently treated as a
-  publishing skill candidate.
+- **OQ-P1 (provisional):** ArXiv preparation guidance exists as a draft skill;
+  actual archive delivery, credentials and channel evidence remain separately
+  authorized downstream work. Its presence does not prove publication.
 - **OQ-P2 (provisional):** Whether Mindgarden and Aniflow domain contracts will
   eventually move into Aether or remain in their own repositories.

@@ -8,7 +8,7 @@ status: draft
 owners:
   - egohygiene
 created: 2026-08-08
-updated: 2026-08-19
+updated: 2026-11-13
 governed_by:
   - architecture-architecture
 depends_on:
@@ -42,53 +42,41 @@ organization policy—those belong to the systems named in [`PURPOSE.md §4`](PU
 
 ## 2. Repository Topology (Current State)
 
-```
+```text
 aether/
-├── library/
-│   └── organization/          # Canonical source tree
-│       ├── skills/            # First-party skill packages
-│       │   ├── architecture/
-│       │   ├── authoring/
-│       │   ├── methodology/
-│       │   ├── publishing/
-│       │   └── quality/
-│       └── specs/             # First-party specifications
-│           ├── architecture/
-│           ├── authoring/
-│           ├── methodology/
-│           ├── publishing/
-│           └── quality/
-├── .staging/                  # Unreviewed incoming material (not canonical)
-│   ├── agents/
-│   ├── instructions/
-│   ├── manifests/
-│   └── specs/
-├── PURPOSE.md
-├── ARCHITECTURE.md
-├── SYSTEM.md
-├── AI_CONSTITUTION.md
-├── DECISIONS.md
-├── ROADMAP.md
-├── README.md
-└── LICENSE
+├── library/organization/       # Canonical artifact content
+│   ├── skills/                # Domain/SKILL.md packages and resources
+│   ├── specs/                 # Domain/*.spec.md contracts
+│   ├── agents/                # <agent>/AGENT.md + derived source catalog
+│   ├── instructions/          # Shared instruction/disposition source
+│   └── projections/           # Provider registry, templates and builder
+├── catalog/                   # Canonical schemas/fixtures/governed records
+│   ├── first-party/           # Generated spec/skill index + annotations
+│   ├── external/              # Restricted upstream provenance/reviews
+│   └── schemas/
+├── dist/                      # Tracked generated outputs; never hand-edit
+├── .staging/                  # Retained unreviewed migration evidence
+├── docs/decisions/            # Canonical new ADRs and legacy index
+├── tests/                     # Deterministic source/contract regressions
+├── aether                     # Repository-owned command entry point
+├── AGENTS.md                  # Shared local instructions
+├── CONTINUITY.md              # Compact operational checkpoint
+└── README.md                  # Human starting path
 ```
 
-**Target state** adds the following directories (not yet created):
-
-```
-aether/
-├── dist/                      # Generated distribution artifacts (see ADR-0001)
-├── docs/
-│   └── adr/                   # Architecture Decision Records
-└── schemas/                   # JSON/YAML schemas for catalog entries
-```
+The tracked generated tree conflicts with the historical release-only rule in
+[ADR-0006](DECISIONS.md#adr-0006). The distinction above describes observed
+source, not a newly accepted policy. [Proposed ADR-0009](docs/decisions/ADR-0009-generated-evidence-and-local-validation.md)
+records this conflict and the local-versus-reusable workflow boundary for human
+review. Preserve the original decisions and generated evidence pending review.
 
 ---
 
 ## 3. Canonical Source
 
-`library/organization/` is the **sole authoritative source** for all
-first-party artifacts.  Any file outside this tree is either:
+`library/organization/` owns first-party artifact content. `catalog/` owns
+structured schemas, governed external records and reviewed annotations; generated
+source fields are refreshed from artifact frontmatter. Other paths include:
 
 - **Staged material** (`.staging/`) — unreviewed and non-authoritative.
 - **Generated distribution** (`dist/`) — assembled from canonical source; not
@@ -112,8 +100,10 @@ library/organization/skills/<domain>/<skill-name>/
     └── *.template.md     # Output templates
 ```
 
-`SKILL.md` is the only required file.  The other directories are present when
-the skill is sufficiently mature to include them.
+The current [first-party package contract](docs/first-party-skill-authoring-guide.md)
+requires `SKILL.md`, `references/`, `templates/` and `evals/evals.json`, including
+load-trigger and executable-resource declarations where applicable. Draft
+status does not exempt a package from structural validation.
 
 ### 3.2 Specification Layout
 
@@ -134,10 +124,10 @@ Each `*.spec.md` begins with a YAML front-matter block under the
 |---|---|---|---|
 | Specification (`*.spec.md`) | Behavior contract for a document, agent, or process | `library/organization/specs/` | Yes |
 | Skill package | Reusable AI task package | `library/organization/skills/` | Yes |
-| Agent source (`*.agent.md`) | Custom-agent definition | `library/organization/` (planned) | Yes |
-| Schema | Structured data contract | `schemas/` (planned) | Yes |
-| Catalog | Index of available artifacts | `dist/` (planned, generated) | No — generated |
-| Distribution package | Versioned installable bundle | `dist/` (planned, generated) | No — generated |
+| Agent source (`AGENT.md`) | Provider-neutral agent definition | `library/organization/agents/` | Yes |
+| Schema | Structured data contract | `catalog/schemas/` and artifact-owned schemas | Yes |
+| Catalog | Source-derived indexes with reviewed annotations | `catalog/first-party/`, agent catalog | Source fields derived; annotations retain their declared owner |
+| Distribution package | Generated package/projection | `dist/` | No — generated; presence is not release evidence |
 | Staged material | Unreviewed incoming content | `.staging/` | No |
 
 ---
@@ -147,7 +137,7 @@ Each `*.spec.md` begins with a YAML front-matter block under the
 Every first-party artifact (specification or skill) carries a `status` field.
 
 ```
-draft ──► stable ──► deprecated ──► retired
+draft ──► experimental ──► stable ──► deprecated ──► retired
            │
            └──► (may be released)
 ```
@@ -155,8 +145,9 @@ draft ──► stable ──► deprecated ──► retired
 | State | Meaning | May Be Released? |
 |---|---|---|
 | `draft` | Actively being authored; may change at any time | No |
-| `stable` | Reviewed, accepted, and ready for consumer use | Yes |
-| `deprecated` | Superseded; existing consumers should migrate | Yes (with warning) |
+| `experimental` | Bounded evaluation with explicit limits | No |
+| `stable` | Reviewed source lifecycle; release provenance/selection gates also apply | Eligible only with complete provenance and explicit release inclusion |
+| `deprecated` | Superseded; existing consumers should migrate | Historical immutable releases remain; new selection is separately governed |
 | `retired` | Removed from active index; file kept for history | No |
 
 Staged material in `.staging/` does **not** carry a recognized status until
@@ -168,11 +159,13 @@ it is promoted into `library/organization/`.
 
 See [ADR-0001](DECISIONS.md#adr-0001) for the full decision record.
 
-**Summary rule:** Canonical source lives in `library/organization/`.  Generated
-distributions are assembled by a future build process and placed in `dist/`.
-Generated files are never edited by hand.  Until the build process exists,
-`dist/` does not exist and distributions are release-only (see
-[ADR-0006](DECISIONS.md#adr-0006)).
+**Observed implementation:** `./aether distribution build` invokes existing
+specification, skill and provider builders. `dist/` is tracked and verified by
+drift/reproducibility checks; generated content is never hand-edited.
+[ADR-0006](DECISIONS.md#adr-0006) still records the conflicting historical
+release-only choice. [Proposed ADR-0009](docs/decisions/ADR-0009-generated-evidence-and-local-validation.md)
+asks for explicit disposition; a factual documentation correction does not
+accept that proposal or rewrite history.
 
 ---
 
@@ -181,7 +174,7 @@ Generated files are never edited by hand.  Until the build process exists,
 | Classification | Definition |
 |---|---|
 | First-party | Authored and governed in `library/organization/` by Ego Hygiene contributors |
-| External | Imported from outside the organization; stored in a dedicated external subtree (not yet created) |
+| External | Governed references under `catalog/external/`; captured material remains migration evidence with explicit rights/use limits |
 | Staged | In `.staging/`; ownership and provenance not yet confirmed |
 
 See [ADR-0003](DECISIONS.md#adr-0003) for the ownership rule.
@@ -190,13 +183,13 @@ See [ADR-0003](DECISIONS.md#adr-0003) for the ownership rule.
 
 ## 8. Consumer Installation
 
-**Current state:** Consumers clone or copy files from `library/organization/`
-directly.  No automated distribution mechanism exists.
-
-**Target state:** Consumers reference a versioned `dist/` package or a
-GitHub Release artifact, installing only the artifacts they need.  The
-installation mechanism is not specified in this document; it will be defined
-when the distribution build process is designed.
+Builders produce selective portable skill packages and provider projections.
+The [release/pinning guide](docs/release-and-pinning-guide.md) documents preview
+`gh skill` adapters and explicit local/release qualification. Actual adapter
+availability and receipt status decide readiness: deterministic unit tests,
+tracked packages and catalog presence do not establish a compatible installed
+consumer, approved release, or remote upgrade/rollback proof. Issue38 retains
+that acceptance work.
 
 See [ADR-0004](DECISIONS.md#adr-0004) for the versioning decision.
 
@@ -238,6 +231,6 @@ following:
 - **OQ-A1 (provisional):** Whether `library/organization/` should be flattened
   to `library/` as artifact kinds grow.  No migration is planned until evidence
   requires it.
-- **OQ-A2 (provisional):** Whether agent source files belong in
-  `library/organization/agents/` or in a top-level `agents/` directory.
-  Holding at `library/organization/` pending more agent candidates.
+- **OQ-A2 (historical):** Implemented source now lives at
+  `library/organization/agents/<id>/AGENT.md`. The provider projection registry
+  owns generated host paths; no file move is proposed by this reconciliation.
