@@ -1,0 +1,383 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "aether.staging-residual-ledger/v1"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "revision": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$",
+          "minLength": 40,
+          "maxLength": 40
+        },
+        "staging_tree": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$",
+          "minLength": 40,
+          "maxLength": 40
+        },
+        "hash_algorithm": {
+          "const": "sha256-raw-git-blob"
+        },
+        "generator": {
+          "const": "catalog.staging_ledger/v1"
+        }
+      },
+      "required": [
+        "revision",
+        "staging_tree",
+        "hash_algorithm",
+        "generator"
+      ]
+    },
+    "source_inputs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "minLength": 64,
+            "maxLength": 64
+          }
+        },
+        "required": [
+          "path",
+          "sha256"
+        ]
+      }
+    },
+    "totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "files": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "units": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "current_skill_roots": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "historical_removed_skill_roots": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "by_bucket": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "required": [
+        "files",
+        "bytes",
+        "units",
+        "current_skill_roots",
+        "historical_removed_skill_roots",
+        "by_bucket"
+      ]
+    },
+    "files": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^\\.staging/[^\\r\\n]+$"
+          },
+          "mode": {
+            "enum": [
+              "100644",
+              "100755",
+              "120000"
+            ]
+          },
+          "blob": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$",
+            "minLength": 40,
+            "maxLength": 40
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "minLength": 64,
+            "maxLength": 64
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "path",
+          "mode",
+          "blob",
+          "unit",
+          "sha256",
+          "bytes"
+        ]
+      }
+    },
+    "units": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bucket": {
+            "enum": [
+              "agents",
+              "hooks",
+              "instructions",
+              "integrations",
+              "manifests",
+              "scripts",
+              "skills",
+              "specs"
+            ]
+          },
+          "members": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "state": {
+            "const": "retained"
+          },
+          "disposition": {
+            "enum": [
+              "deferred-retention",
+              "retained-recorded-disposition",
+              "retained-transfer-pending"
+            ]
+          },
+          "owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner_state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_records": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "references": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "receipt_state": {
+            "enum": [
+              "unknown",
+              "local-source-only"
+            ]
+          },
+          "next_checkpoint": {
+            "type": "string",
+            "minLength": 1
+          },
+          "removal_authority": {
+            "const": false
+          },
+          "declared_dispositions": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "classification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "external_catalog_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "canonical_comparison": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$",
+                "minLength": 64,
+                "maxLength": 64
+              },
+              "staged_tools": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "canonical_tools": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "shared_skills": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "shared_specs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "byte_identical": {
+                "type": "boolean"
+              },
+              "scope": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "staged_tools",
+              "canonical_tools",
+              "shared_skills",
+              "shared_specs",
+              "byte_identical",
+              "scope"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "bucket",
+          "members",
+          "state",
+          "disposition",
+          "owner",
+          "owner_state",
+          "source_records",
+          "references",
+          "receipt_state",
+          "next_checkpoint",
+          "removal_authority"
+        ]
+      }
+    },
+    "historical_removed_skills": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "const": "historical-absent"
+          },
+          "classification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_record": {
+            "type": "string",
+            "minLength": 1
+          },
+          "removal_authority": {
+            "const": false
+          }
+        },
+        "required": [
+          "path",
+          "state",
+          "classification",
+          "source_record",
+          "removal_authority"
+        ]
+      }
+    },
+    "authority": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "source",
+    "source_inputs",
+    "totals",
+    "files",
+    "units",
+    "historical_removed_skills",
+    "authority"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aether.staging-residual-ledger/v1",
+  "title": "Finite retained-staging inventory and deferred-job ledger"
+}

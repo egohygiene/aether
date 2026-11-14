@@ -1,5 +1,11 @@
 # Staging Evacuation Status
 
+> Historical August 9 assessment. For the reconciled file membership, six actual
+> historical removals, retained audit evidence, existing hook decisions and
+> explicit deferred owner/receipt jobs, use the
+> [current retained-staging ledger](staging-residual-ledger.md). The historical
+> claims below are preserved; they do not establish today's intake/removal gate.
+
 **Scope:** `.staging/` disposition audit for issue #18  
 **Date:** 2026-08-09  
 **Status:** Partially complete — preconditions not yet fully satisfied

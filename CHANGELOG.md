@@ -10,6 +10,11 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+- Added a reproducible finite ledger for all 734 retained staging files and
+  222 semantic units, nine canonical-agent comparisons, six distinct historical
+  skill removals and explicit deferred owner/receipt jobs without adoption or
+  removal authority (#113).
+
 - Reconciled active source/navigation and ADR-authoring references, preserved
   strategic step identities and historical decisions, and proposed ADR-0009
   for the generated-output/local-workflow authority conflicts (#114).

@@ -7,28 +7,32 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T20:57:24Z'
+  updated_at: '2026-11-14T21:15:01Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Integrate the immutable October completeness assessment with the delivered November source
-    and select the finite retained-staging ledger as the next checkpoint.
+  purpose: Complete the finite retained-staging owner/disposition inventory while preserving unknown rights,
+    transfer receipts and all source bytes.
   includes:
-  - The original three audit/report/reproduction files are byte-identical to audit head b0d7c37e7d4eab40f72e7b655d7b0a2d2bb97963;
-    their October subject, counts, findings and clocks remain historical.
-  - Current source incorporates merged freshness126 and navigation127; bounded issues112 and114 are completed,
-    with original source restrictions and proposed ADR0009 unchanged.
-  - The stale audit handoff is reconciled against current source; the existing105 tactical ledger retains
-    the full backlog.
+  - One deterministic ledger covers734 tracked files,6,791,350 raw bytes and222 semantic units across
+    all eight buckets;186 current skill roots stay separate from six historical removals.
+  - Nine canonical agent comparisons record source digests, actual permissions and shared contracts. Four
+    domain agents retain explicit transfer-pending state; every other class has source references, an
+    owner/review role and a bounded deferred checkpoint.
+  - A closed schema, exact immutable reconstruction, complete membership/digest checks and current owner-input
+    drift detection run through catalog/PR validation. The generated current view links the unmodified
+    historical August assessment body and October audit.
   excludes: &id001
-  - Actual gh skill consumer qualification remains blocked under38; local deterministic suite success
-    does not qualify an adapter, release or publication.
-  - External upstream review follow-ups remain blocked/unknown; accepted ADR history and proposed clarification
-    stay separate from human ratification.
-  - Staging113 finite coverage and111 intake/removal controls remain open; no staged executable, transfer,
-    cleanup or adoption occurs in this audit integration.
+  - The ledger cannot authorize staged execution, rights clearance, adoption, transfer, removal or policy
+    ratification. Destination/owner receipts remain unknown unless the ledger claims only verified local
+    canonical source.
+  - Issue111 still owns recorded intake and actual base/head deletion/rename approval. Ledger success
+    alone is not that gate.
+  - Existing38 actual consumer qualification remains capability-dependent; the 11 optional/native skips
+    in the full suite remain explicit. No publication, host/fleet adoption, cleanup or staged execution
+    occurred.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -38,70 +42,73 @@ scope:
   canonical_sources:
   - AGENTS.md
   - ROADMAP.md
-  - audits/aether-completeness-20261020T011246Z.md
-  - audits/data/aether-completeness-20261020T011246Z.validation.json
-  - docs/staging-evacuation-status.md
-  - catalog/reports/staged-skills-inventory.v1.json
-  - https://github.com/egohygiene/aether/issues/105
+  - catalog/staging_ledger.py
+  - catalog/reports/staging-residual-ledger.v1.json
+  - catalog/schemas/aether.staging-residual-ledger.v1.schema.json
+  - docs/staging-residual-ledger.md
+  - tests/test_staging_residual_ledger.py
   - https://github.com/egohygiene/aether/issues/113
+  - https://github.com/egohygiene/aether/issues/111
 work:
-  objective: Integrate the immutable October completeness assessment with the delivered November source
-    and select the finite retained-staging ledger as the next checkpoint.
+  objective: Complete the finite retained-staging owner/disposition inventory while preserving unknown
+    rights, transfer receipts and all source bytes.
   success_conditions:
-  - Preserve every historical audit byte and current canonical/generated source.
-  - Keep current navigation, continuity and next-work claims time-qualified and grounded in live receipts.
+  - Every current Git file belongs to exactly one stable semantic unit and has exact raw-blob evidence.
+  - Retained/removed, local canonical source/unknown transfer, original disposition and permission remain
+    separate.
+  - Unchanged replay is byte-identical and malformed memberships, digests, forged approval and current
+    source drift fail.
   active_issue:
     provider: github
-    id: egohygiene/aether#105
-    url: https://github.com/egohygiene/aether/issues/105
+    id: egohygiene/aether#113
+    url: https://github.com/egohygiene/aether/issues/113
   next:
     kind: issue
-    id: egohygiene/aether#113
-    description: Index every retained staging file and semantic unit in one reproducible owner/disposition
-      ledger, preserving six historical removals and unknown destination/rights evidence. Then consume
-      that baseline in111 intake/removal validation.
+    id: egohygiene/aether#111
+    description: Consume this grandfathered inventory in explicit intake checks and actual base/head preimage/removal
+      approval, preserving all historical typed disposition variants and rejecting forged receipts.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/113
     - https://github.com/egohygiene/aether/issues/111
     depends_on: []
 state:
   base:
-    revision: d9db595de6cf0a492934eb93403984a2732a0b55
+    revision: 089d19ba556ec05cc761356dbae42046ca6515c4
     ref: refs/heads/main
-    verified_at: '2026-11-14T20:57:24Z'
+    verified_at: '2026-11-14T21:15:01Z'
   candidate:
-    branch: audit/aether-completeness-20261020
+    branch: codex/staging-residual-ledger
     revision: null
-    pull_request:
-      provider: github
-      id: egohygiene/aether#106
-      url: https://github.com/egohygiene/aether/pull/106
+    pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T20:57:24Z'
-    default_branch_revision: d9db595de6cf0a492934eb93403984a2732a0b55
+    observed_at: '2026-11-14T21:15:01Z'
+    default_branch_revision: 089d19ba556ec05cc761356dbae42046ca6515c4
     issue_state: open
-    pull_request_state: open
-    notes: Aether126 and127 are verified merged; issues112 and114 are closed. Audit106 is open and requires
-      continuity-conflict reconciliation. The candidate preserves the three exact historical audit files
-      and current delivered source; it does not claim this integration already merged.
+    pull_request_state: not-applicable
+    notes: Main089d19b includes merged audit106 plus freshness126/navigation127.113 is open; this unsubmitted
+      candidate adds a finite inventory and controls without changing staging or claiming future integration.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T20:57:24Z'
+  reviewed_at: '2026-11-14T21:15:01Z'
   reviewed_by: Codex
   evidence:
-  - command: Exact audit-path comparison against b0d7c37; ./aether validate --links --format json
+  - command: python -m unittest tests.test_staging_residual_ledger tests.test_staging_supply_chain_inventory
+      -q; ./aether test
     outcome: passed
-    notes: All three original audit files are byte-identical; current local links validate without errors.
-    observed_at: '2026-11-14T20:57:24Z'
-  - command: ./aether test at exact fc824cf source; focused continuity contract/integration tests
+    notes: 13 focused tests and311 full-suite tests pass;11 existing optional/native skips. Controls cover
+      missing/duplicate/dangling/cross-unit membership, digest/totals tampering, nested supporting additions,
+      symlink blobs, canonical tool/digest drift, historical retention and false removal authority.
+    observed_at: '2026-11-14T21:15:01Z'
+  - command: python -m catalog.staging_ledger check; exact repeat generation/report comparisons; catalog/default/links/strict-staging/distribution
+      checks
     outcome: passed
-    notes: 303 tests pass with11 explicit optional skips on the identical current canonical/generated
-      source. Focused integration/continuity tests pass after adding the historical audit.
-    observed_at: '2026-11-14T20:57:24Z'
+    notes: The734-file/222-unit ledger and human report replay byte-identically. Closed schemas/fixtures,
+      registered catalog checks, current inputs and generated distribution pass. Historical provenance
+      warning is preserved.
+    observed_at: '2026-11-14T21:15:01Z'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -129,42 +136,43 @@ Read AGENTS, the canonical sources below and verified live issue/PR state before
 
 ## Current objective and success conditions
 
-Integrate the immutable October completeness assessment with the delivered November source and select the finite retained-staging ledger as the next checkpoint.
+Complete the finite retained-staging owner/disposition inventory while preserving unknown rights, transfer receipts and all source bytes.
 
-- Preserve every historical audit byte and current canonical/generated source.
-- Keep current navigation, continuity and next-work claims time-qualified and grounded in live receipts.
+- Every current Git file belongs to exactly one stable semantic unit and has exact raw-blob evidence.
+- Retained/removed, local canonical source/unknown transfer, original disposition and permission remain separate.
+- Unchanged replay is byte-identical and malformed memberships, digests, forged approval and current source drift fail.
 
 ## State snapshot
 
-Observed default source `d9db595de6cf0a492934eb93403984a2732a0b55`. Candidate `audit/aether-completeness-20261020` is a review checkpoint; its containing revision remains null intentionally.
+Observed default source `089d19ba556ec05cc761356dbae42046ca6515c4`. Candidate `codex/staging-residual-ledger` is a review checkpoint; its containing revision remains null intentionally.
 
 ## Completed and material changes
 
-The original three audit/report/reproduction files are byte-identical to audit head b0d7c37e7d4eab40f72e7b655d7b0a2d2bb97963; their October subject, counts, findings and clocks remain historical.
+One deterministic ledger covers734 tracked files,6,791,350 raw bytes and222 semantic units across all eight buckets;186 current skill roots stay separate from six historical removals.
 
-Current source incorporates merged freshness126 and navigation127; bounded issues112 and114 are completed, with original source restrictions and proposed ADR0009 unchanged.
+Nine canonical agent comparisons record source digests, actual permissions and shared contracts. Four domain agents retain explicit transfer-pending state; every other class has source references, an owner/review role and a bounded deferred checkpoint.
 
-The stale audit handoff is reconciled against current source; the existing105 tactical ledger retains the full backlog.
+A closed schema, exact immutable reconstruction, complete membership/digest checks and current owner-input drift detection run through catalog/PR validation. The generated current view links the unmodified historical August assessment body and October audit.
 
 ## Validation and review evidence
 
-`Exact audit-path comparison against b0d7c37; ./aether validate --links --format json` — passed: All three original audit files are byte-identical; current local links validate without errors.
+`python -m unittest tests.test_staging_residual_ledger tests.test_staging_supply_chain_inventory -q; ./aether test` — passed: 13 focused tests and311 full-suite tests pass;11 existing optional/native skips. Controls cover missing/duplicate/dangling/cross-unit membership, digest/totals tampering, nested supporting additions, symlink blobs, canonical tool/digest drift, historical retention and false removal authority.
 
-`./aether test at exact fc824cf source; focused continuity contract/integration tests` — passed: 303 tests pass with11 explicit optional skips on the identical current canonical/generated source. Focused integration/continuity tests pass after adding the historical audit.
+`python -m catalog.staging_ledger check; exact repeat generation/report comparisons; catalog/default/links/strict-staging/distribution checks` — passed: The734-file/222-unit ledger and human report replay byte-identically. Closed schemas/fixtures, registered catalog checks, current inputs and generated distribution pass. Historical provenance warning is preserved.
 
-ADR not required: archive integration and operational reconciliation preserve accepted authority and the existing proposed ADR-0009.
+ADR-Ref: existing ADR-0005 and recorded hook decisions remain governing history. ADR not required: finite evidence inventory implements existing retained-source accounting without changing ownership or granting removal.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Actual gh skill consumer qualification remains blocked under38; local deterministic suite success does not qualify an adapter, release or publication.
+The ledger cannot authorize staged execution, rights clearance, adoption, transfer, removal or policy ratification. Destination/owner receipts remain unknown unless the ledger claims only verified local canonical source.
 
-External upstream review follow-ups remain blocked/unknown; accepted ADR history and proposed clarification stay separate from human ratification.
+Issue111 still owns recorded intake and actual base/head deletion/rename approval. Ledger success alone is not that gate.
 
-Staging113 finite coverage and111 intake/removal controls remain open; no staged executable, transfer, cleanup or adoption occurs in this audit integration.
+Existing38 actual consumer qualification remains capability-dependent; the 11 optional/native skips in the full suite remain explicit. No publication, host/fleet adoption, cleanup or staged execution occurred.
 
 ## Next dependency-ready work
 
-Index every retained staging file and semantic unit in one reproducible owner/disposition ledger, preserving six historical removals and unknown destination/rights evidence. Then consume that baseline in111 intake/removal validation.
+Consume this grandfathered inventory in explicit intake checks and actual base/head preimage/removal approval, preserving all historical typed disposition variants and rejecting forged receipts.
 
 ## Parallel changes and reconciliation
 
