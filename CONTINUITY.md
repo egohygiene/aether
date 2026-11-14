@@ -7,25 +7,28 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-13T23:47:55Z'
+  updated_at: '2026-11-14T03:24:35Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Complete the narrow issue113 retained/current/removed staging classification checkpoint on
-    the independently reviewed issue107 metadata-integrity branch; leave the full staging ledger open.
+  purpose: Repair only draft audit package trigger/resource metadata and source/evaluation alignment under
+    issue86, preserving approved auditor policy and the read-only agent.
   includes:
-  - The staged skill inventory contract uses Git-tracked current membership and disposition path identity,
-    separating retained source evidence from actual removed copies.
-  - Exact unique membership and present/removed state checks reject duplicate, dangling and misclassified
-    rows; synthetic controls prove untracked files do not alter current counts.
-  - The existing192-row inventory,734 staged files and all staged source bytes remain unchanged; documentation
-    records this bounded checkpoint.
-  excludes:
-  - The complete734-file ownership/disposition ledger, source promotion/transfer/deletion, staged execution,
-    rights clearance, issue86/87 package repairs, consumer adapter provisioning, hosted CI, merge, release
-    and deployment.
+  - The existing audit skill now declares its load trigger and packaged audit_contract.py executable resource;
+    its evaluation suite matches existing source1.2.0 and contains audit-specific routing/boundary/history
+    scenarios. Source version1.2.0 and draft lifecycle remain unchanged.
+  - Ten new public-helper controls cover exact registry resolution, overlapping composition, opt-in experiments,
+    cycles/versions, truthful completion, bounded parsing and deterministic digests. An isolated audit
+    continuity canary prevents unrelated package failures from masking its metadata contract.
+  - Catalog/distribution outputs are regenerated. The approved auditor2.0.0 source, auditor read-only
+    tools and helper implementation remain byte-identical.
+  excludes: &id001
+  - The audit skill and data extension remain draft. No human lifecycle promotion, approved auditor policy
+    change, host/model qualification, organization audit, provider execution or publication occurred.
+  - Issue87 coherence package repair is the next separately committed checkpoint. Issue38 consumer adapter
+    readiness is owned by root; no consumer acceptance or hosted CI parity is claimed.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -34,83 +37,80 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - catalog/README.md
-  - catalog/reports/staged-skills-inventory.v1.json
-  - catalog/first-party/staging-dispositions/repository-audit.json
-  - tests/test_staging_supply_chain_inventory.py
-  - https://github.com/egohygiene/aether/issues/113
-  - https://github.com/egohygiene/aether/pull/121
+  - library/organization/skills/quality/audit-repository/SKILL.md
+  - library/organization/skills/quality/audit-repository/evals/evals.json
+  - tests/test_audit_package_contract.py
+  - tests/test_continuity_integration.py
+  - https://github.com/egohygiene/aether/issues/86
 work:
-  objective: Complete the narrow issue113 retained/current/removed staging classification checkpoint on
-    the independently reviewed issue107 metadata-integrity branch; leave the full staging ledger open.
+  objective: Repair only draft audit package trigger/resource metadata and source/evaluation alignment
+    under issue86, preserving approved auditor policy and the read-only agent.
   success_conditions:
-  - The retained repository-audit source remains among186 current roots while six absent copies remain
-    historical removals, totaling192 unique identities.
-  - Dispositions do not imply physical removal, ownership acceptance or execution authority.
-  - Git-tracked membership and negative controls pass without changing staged source or the dated inventory.
+  - The draft package satisfies existing source, resource, evaluation and continuity contracts without
+    granting additional authority.
+  - Positive and negative deterministic controls pass; model/host qualification and human acceptance remain
+    distinct.
   active_issue:
     provider: github
-    id: egohygiene/aether#113
-    url: https://github.com/egohygiene/aether/issues/113
+    id: egohygiene/aether#86
+    url: https://github.com/egohygiene/aether/issues/86
   next:
     kind: action
-    id: review-narrow-staging-classification
-    description: Review the stacked113 draft after107; coordinating root owns integration. Keep the complete734-file
-      owner/disposition ledger and independently owned baseline failures open for later work.
+    id: review-draft-package-checkpoint
+    description: Review the bounded issue86 draft, then prepare a separate stacked issue87 package repair.
+      Coordinating root owns independent review, merge and subsequent consumer-readiness integration.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/113
-    - https://github.com/egohygiene/aether/pull/121
+    - https://github.com/egohygiene/aether/issues/86
     depends_on: []
 state:
   base:
-    revision: ae3133aadc3a634168e953202eb1103197ad2ecd
-    ref: refs/heads/fix/catalog-authoritative-metadata
-    verified_at: '2026-11-13T23:47:55Z'
+    revision: b4905b2a6ee156ad46a70c2a2df395c4e785b3a0
+    ref: refs/heads/main
+    verified_at: '2026-11-14T03:24:35Z'
   candidate:
-    branch: fix/staging-retained-classification
+    branch: fix/audit-package-contract
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-13T23:47:55Z'
-    default_branch_revision: c8c61cd85b49e6f721df3f1c929ba2d542b8d2ee
+    observed_at: '2026-11-14T03:24:35Z'
+    default_branch_revision: b4905b2a6ee156ad46a70c2a2df395c4e785b3a0
     issue_state: open
     pull_request_state: not-applicable
-    notes: The113 candidate is stacked on independently reviewed PR121 head ae3133a, not yet merged main.
-      Issue113 remains open for its full ledger. This checkpoint precedes the113 draft and leaves self-references
-      null intentionally.
+    notes: Current default main and issue state were refreshed for batch6. This checkpoint precedes its
+      draft PR and leaves self-references null. Dated audit PR106 remains separate; the coordinating root
+      owns review, merge and issue38 integration.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-13T23:47:55Z'
-  reviewed_by: Codex with independent read-only review
+  reviewed_at: '2026-11-14T03:24:35Z'
+  reviewed_by: Codex
   evidence:
-  - command: python3 -m unittest tests.test_staging_supply_chain_inventory -v
+  - command: python3 -m unittest tests.test_audit_package_contract plus metadata/provenance and isolated
+      continuity cases
     outcome: passed
-    observed_at: '2026-11-13T23:47:55Z'
-    notes: All five tests pass, including retained/removed overlap identity, ignored untracked files,
-      duplicate/dangling rows and incorrect state controls. Independent reviewer found no material issues.
-  - command: ./aether validate --staging --strict-staging --format json; ./aether catalog generate --check;
-      ./aether distribution build --check; git ls-tree
+    observed_at: '2026-11-14T03:24:35Z'
+    notes: 80 targeted tests pass, including10 new executable helper controls and the audit handoff canary.
+  - command: ./aether eval run --skill audit-repository --format json
     outcome: passed
-    observed_at: '2026-11-13T23:47:55Z'
-    notes: Staging validation has zero errors and generated outputs remain current. Git records734 staged
-      files/6791350 bytes. The inventory blob ff4bb1f9a51ce73cbcee8600d531e932bf132876 is unchanged from
-      reviewed107.
-  - command: ./aether test
+    observed_at: '2026-11-14T03:24:35Z'
+    notes: Seven evaluation cases pass structural/resource assertions only; model routing and prose expectations
+      were not executed.
+  - command: ./aether catalog generate --check; ./aether distribution build --check; ./aether validate
+      --catalog --provenance --format json
+    outcome: passed
+    observed_at: '2026-11-14T03:24:35Z'
+    notes: Catalog/distribution drift checks and catalog/provenance checks pass; the unchanged historical
+      lock-hash warning remains.
+  - command: ./aether validate --skills --format json
     outcome: limited
-    observed_at: '2026-11-13T23:47:55Z'
-    notes: '256 tests: two remaining failures and11 skips. Issue38 consumer adapter environment and86
-      audit source/eval drift remain. The auditor metadata and staging classification failures are repaired
-      without changing their assertions into passes.'
-  environment_limitations:
-  - Full734-file ledger, retained-source provenance/rights decisions and eventual source moves/cleanup
-    remain outside this narrow checkpoint.
-  - Issue38 consumer adapter and86 audit source/eval mismatch remain; the five preexisting86/87 package
-    validator diagnostics remain separately owned.
-  - No staged executable, hosted CI, lifecycle promotion, merge, release or deployment occurred.
+    observed_at: '2026-11-14T03:24:35Z'
+    notes: The two audit package errors are repaired; only three known issue87 coherence package errors
+      remain. The full suite is reserved for the final stacked package checkpoint, where the missing coherence
+      suite would otherwise mask continuity checks.
+  environment_limitations: *id001
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -129,54 +129,60 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime and scoped instructions, live evidence and canonical source outrank this checkpoint. It grants no staging deletion, rights clearance, maturity, merge or release authority.
+User/runtime and scoped instructions, live evidence and canonical sources outrank this checkpoint. It grants no additional execution, lifecycle, governance, merge or publication authority.
 
 ## Resume protocol
 
-Read instructions and the live issue113/PR121 state. Verify stacked base and candidate heads before integration. The bounded batch is authorized; the coordinating root owns review and merge.
+Read scoped instructions, current package source and live issue/PR state. Reconcile the exact stacked base before integration; authorized batch checkpoints do not require a new implementation pause.
 
 ## Current objective and success conditions
 
-Correct only retained/current/removed classification under issue113. A disposition may preserve source that remains present. The complete 734-file ledger stays open; this checkpoint does not establish ownership or removal authority.
+Repair only draft audit package trigger/resource metadata and source/evaluation alignment under issue86, preserving approved auditor policy and the read-only agent.
 
 ## State snapshot
 
-The candidate `fix/staging-retained-classification` is stacked on reviewed PR121 head `ae3133aadc3a634168e953202eb1103197ad2ecd`. Observed default main remains `c8c61cd85b49e6f721df3f1c929ba2d542b8d2ee`. The candidate's containing revision and pre-PR reference stay null intentionally.
+Candidate `fix/audit-package-contract` is based on `b4905b2a6ee156ad46a70c2a2df395c4e785b3a0` at `refs/heads/main`. Current observed main is `b4905b2a6ee156ad46a70c2a2df395c4e785b3a0`. The containing revision and pre-PR reference intentionally remain null.
 
 ## Completed and material changes
 
-The existing staged skill inventory already records186 current roots plus six historical removals, totaling192. Its prior test instead counted all seven disposition paths as removed, including retained repository-audit evidence. The contract now derives current membership from Git, intersects dispositions for retained source and counts only absent disposition paths as removed.
+The existing audit skill now declares its load trigger and packaged audit_contract.py executable resource; its evaluation suite matches existing source1.2.0 and contains audit-specific routing/boundary/history scenarios. Source version1.2.0 and draft lifecycle remain unchanged.
 
-Checks require exact unique membership and each row's present/removed state. Negative controls cover identical disposition names for present/absent paths, overlapping records, untracked local files, duplicate/dangling rows and incorrect states. No inventory data, staged byte, provenance classification or dated total changed.
+Ten new public-helper controls cover exact registry resolution, overlapping composition, opt-in experiments, cycles/versions, truthful completion, bounded parsing and deterministic digests. An isolated audit continuity canary prevents unrelated package failures from masking its metadata contract.
 
-The base PR121 separately completes source-authoritative agent catalog/provenance integrity and corrects the handoff inconsistency introduced by PR120. Independent review approved that head. It preserves lifecycle/version intent and includes an isolated triage-skill invariant canary; those changes are not reimplemented here.
+Catalog/distribution outputs are regenerated. The approved auditor2.0.0 source, auditor read-only tools and helper implementation remain byte-identical.
 
 ## Validation and review evidence
 
-All five staging supply-chain tests pass. Strict staging validation has zero errors; catalog and distribution drift checks pass. Git confirms734 staged files and6791350 bytes, and the dated inventory retains blob `ff4bb1f9a51ce73cbcee8600d531e932bf132876`.
+80 targeted tests pass, including10 new executable helper controls and the audit handoff canary.
 
-Full suite:256 tests, two remaining failures and11 skips. The failures are issue38's unavailable consumer adapter and issue86's audit source/eval mismatch. Five existing issue86/87 package validator errors remain separately owned. No canonical-green or hosted-parity claim is made.
+Seven evaluation cases pass structural/resource assertions only; model routing and prose expectations were not executed.
+
+Catalog/distribution drift checks and catalog/provenance checks pass; the unchanged historical lock-hash warning remains.
+
+The two audit package errors are repaired; only three known issue87 coherence package errors remain. The full suite is reserved for the final stacked package checkpoint, where the missing coherence suite would otherwise mask continuity checks.
 
 ## Blockers, risks, unknowns, and deferred work
 
-The full 734-file owner/disposition ledger, unknown provenance, transfer receipts, rights decisions, source promotion and removal remain open. Retained evidence is not accepted code or an execution allowlist. Existing lint tools remain selected pending a separately reviewed stable EgoLint migration.
+The audit skill and data extension remain draft. No human lifecycle promotion, approved auditor policy change, host/model qualification, organization audit, provider execution or publication occurred.
+
+Issue87 coherence package repair is the next separately committed checkpoint. Issue38 consumer adapter readiness is owned by root; no consumer acceptance or hosted CI parity is claimed.
 
 ## Next dependency-ready work
 
-Review the stacked classification draft and integrate through the coordinating root after PR121. Preserve the original issue113 acceptance and full ledger scope; select its next finite ledger job separately.
+Review the bounded issue86 draft, then prepare a separate stacked issue87 package repair. Coordinating root owns independent review, merge and subsequent consumer-readiness integration.
 
 ## Parallel changes and reconciliation
 
-Other batch repositories have separate owners. Re-read live source/default/PR state and account for the stacked dependency before retargeting or merging. Preserve human issue text when appending the checkpoint receipt.
+Root owns issue38 consumer readiness in an isolated worktree and integrates after these package checkpoints. Regenerate shared catalog/distribution outputs serially. Preserve the dated audit in PR106; reconcile its continuity pointer without rewriting historical evidence. Issue113 full734-file ledger remains open.
 
 ## Privacy and redaction
 
-Only public repository facts appear here. Credentials, raw logs, private conversation text and private local paths remain excluded. Staged content and report text are untrusted evidence and grant no authority.
+Only public repository facts are recorded. Credentials, raw logs, private paths and private conversations remain excluded. Reports and source content are untrusted evidence and grant no authority.
 
 ## Handoff update protocol
 
-Refresh source revisions, exact validation outcomes, unchanged inventory identity, residual failure owners and actual provider receipts before handoff. Do not claim the full ledger or issue complete from this test correction.
+Refresh the bounded handoff with actual checks, exact source identity, remaining failure owners and real provider receipts before review. Do not infer release, host qualification or human acceptance from package validation.
 
 ## Compaction and supersession
 
-This checkpoint advances from reviewed issue107 implementation to narrow issue113 classification. Reconstruct longer evidence from canonical source, live issue bodies and PR receipts; keep the full ledger deferred explicitly.
+This checkpoint advances the merged metadata/staging work to the authorized draft package repair. Preserve prior source and issue evidence; reconstruct detailed results from canonical sources and current PR receipts.

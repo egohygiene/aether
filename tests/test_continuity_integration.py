@@ -109,6 +109,11 @@ class ContinuityIntegrationTests(unittest.TestCase):
         self.assertEqual(len(selected), 1)
         self._assert_skill_handoffs(selected)
 
+    def test_audit_skill_handoff_is_not_masked_by_other_packages(self) -> None:
+        selected = [record for record in self.inventory["skills"] if record["id"] == "audit-repository"]
+        self.assertEqual(len(selected), 1)
+        self._assert_skill_handoffs(selected)
+
     def _assert_skill_handoffs(self, records: list[dict]) -> None:
         for record in records:
             source = ROOT / record["source"]

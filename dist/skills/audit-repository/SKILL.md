@@ -1,6 +1,6 @@
 ---
 name: audit-repository
-description: Audits an explicitly scoped repository or public organization roster through composable profiles, preserving evidence, uncertainty, strengths and suggestion-only follow-up in immutable reports and typed sidecars.
+description: Audits an explicitly scoped repository or public organization roster through composable profiles, preserving evidence, uncertainty, strengths and suggestion-only follow-up in immutable reports and typed sidecars. Use when a structured repository audit or an explicitly authorized organization audit is requested.
 license: MIT
 metadata:
   aether-version: "1.2.0"
@@ -10,7 +10,9 @@ metadata:
   aether-domain: "quality"
   aether-owners: "egohygiene"
   aether-created: "2026-08-02"
-  aether-updated: "2026-11-09"
+  aether-updated: "2026-11-14"
+  aether-executable-resources:
+    - "scripts/audit_contract.py"
   aether-distribution-resources:
     - source: "catalog/schemas/aether.audit-profile-registry.v1.schema.json"
       destination: "references/aether.audit-profile-registry.v1.schema.json"
