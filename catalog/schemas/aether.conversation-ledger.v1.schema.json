@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "aether.conversation-ledger/v1",
+  "$id": "https://egohygiene.io/schemas/aether/conversation-ledger/v1.json",
   "title": "Optional conversation evidence ledger; context only",
   "type": "object",
   "additionalProperties": false,
