@@ -1,0 +1,32 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "Adds an optional draft authoring extension within the existing corpus; no strategic IDs, state, horizon, priority or release/adoption acceptance changes. Root continuity bounds and current authority stay unchanged.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "b5bb6032c0fbdc2a43443ee0ebbb0344a377dd29",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q01"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "https://github.com/egohygiene/aether/blob/b5bb6032c0fbdc2a43443ee0ebbb0344a377dd29/library/organization/specs/methodology/conversation-continuity.spec.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/evidence/2026-11-15-conversation-continuity-qualification.json"
+    }
+  ],
+  "organization_signals": []
+}

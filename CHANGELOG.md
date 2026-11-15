@@ -10,6 +10,13 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+### Added
+
+- Draft opt-in conversation-continuity extension, onboarding/instruction templates,
+  bounded discussion-ledger schema, read-only validator and synthetic iteration,
+  correction, concurrency, privacy and isolated fresh-process examples. Root
+  repository continuity bounds and current role authority remain unchanged.
+
 ### Fixed
 
 - Repair release workflow context evaluation and bind tagged validation/publication

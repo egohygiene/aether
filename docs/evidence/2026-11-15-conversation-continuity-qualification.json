@@ -1,0 +1,70 @@
+{
+  "schema_version": "aether.source-qualification/v1",
+  "observed_at": "2026-11-15T00:27:56Z",
+  "issue": "https://github.com/egohygiene/aether/issues/102",
+  "status": "qualified-source-only",
+  "source_revision": "b5bb6032c0fbdc2a43443ee0ebbb0344a377dd29",
+  "baseline_revision": "919bb4874dd9376944f6459474c01e9f3a4d93ef",
+  "contract": "conversation-continuity0.1.0; aether.conversation-ledger/v1 draft",
+  "validation": {
+    "full_tests": {
+      "status": "pass",
+      "total": 359,
+      "existing_explicit_skips": 11
+    },
+    "focused_conversation_and_continuity": {
+      "status": "pass",
+      "total": 16
+    },
+    "declared_deterministic_examples": {
+      "status": "pass",
+      "cases": 12,
+      "skipped": 0,
+      "suite_errors": 0,
+      "scope": "Structure and declared golden assertions; native helper/Git tests separately qualify actual behavior."
+    },
+    "portable_generated_package": {
+      "status": "pass",
+      "execution": "Copied actual generated package outside Aether, invoked Python-I helper against bundled synthetic ledger; no repository imports or writes."
+    },
+    "source_catalog_schema_provenance_links_strict_distribution_checks": {
+      "status": "pass"
+    },
+    "native_controls": [
+      "Saved authored onboarding -> schema-valid bounded current checkpoint -> ledger -> exact artifact revision -> actual branch/head/worktree in isolated process without prior chat",
+      "Request/interpretation/attempt/feedback/next iteration with attributed user choice separate from agent proposal",
+      "Prepared artifact and not-run checks distinct from submission/publication",
+      "Unchanged stable-ID capture is no-op; correction retains prior claim; concurrent distinct captures commute; different content at one ID refuses overwrite",
+      "Missing/self/future/cyclic links and unsupported major/bounds fail admission",
+      "Private entries/sources/prior segments fail public admission; private ledger stays private; unsafe references rejected",
+      "Stored hostile instruction never changes context-only authority; duplicate JSON/symlink/FIFO refused; generic diagnostics withhold source content"
+    ],
+    "pinned_environment": {
+      "status": "pass",
+      "dependencies": "requirements-dev.lock (PyYAML6.0.1/jsonschema4.10.3/attrs22.2.0/pyrsistent0.20.0)",
+      "full_tests": 359,
+      "existing_explicit_skips": 11,
+      "focused_tests": 16,
+      "catalog_schema_check": "pass",
+      "repair": "Absolute schema identifier resolves nested internal definitions in the pinned resolver; initial hosted43658350782 failed before consumer qualification and is retained as corrected source evidence."
+    }
+  },
+  "root_continuity": {
+    "schema_unchanged": true,
+    "max_bytes": 16384,
+    "max_lines": 240
+  },
+  "staging": {
+    "source": "faa865ee38d70a5e0c750e5367789453f9eabcff",
+    "files": 734,
+    "units": 222,
+    "raw_bytes": 6791350,
+    "all_staging_blobs_unchanged": true
+  },
+  "limitations": [
+    "The extension, ledger schema and ADR0012 remain draft/proposed with null approval. Source integration does not authenticate user decisions, human review, private prose classification or downstream policy/adoption.",
+    "No repository is opted in or receives a live ledger/onboarding installation. Static guidance installs no background memory, context warning, saving hook or zero-loss guarantee. Isolated-process recovery proves mechanical file/Git access, not model/host effectiveness.",
+    "The helper does not load prior segments, resolve cross-segment identities, fetch live provider state, write files or redact history. Missing access/prior context is explicit. Public admission rejects classified private sources but still needs content review.",
+    "Existing38 real consumer qualification remains not-ready: no real release-eligible skills, no installed gh skill adapter and no actual publication or remote acceptance. Eleven existing optional/native test skips remain explicit."
+  ]
+}

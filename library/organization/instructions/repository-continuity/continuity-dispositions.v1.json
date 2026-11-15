@@ -3,7 +3,7 @@
   "schema_version": "aether.continuity-dispositions/v1",
   "contract": "aether.repository-continuity/v1",
   "composition_skill": "maintain-repository-continuity",
-  "reviewed_at": "2026-11-14",
+  "reviewed_at": "2026-11-15",
   "scope": {
     "canonical_skills": "library/organization/skills/**/SKILL.md",
     "canonical_agents": "library/organization/agents/*/AGENT.md",
@@ -395,6 +395,20 @@
         "That planned work, tests, migrations, or rollout have been executed"
       ],
       "rationale": "The skill may create a durable repository plan and controls the next executable work selection."
+    },
+    {
+      "id": "maintain-conversation-checkpoint",
+      "source": "library/organization/skills/methodology/maintain-conversation-checkpoint/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": [
+        "Attributed intent, meaningful iteration, unresolved questions, exact evidence, current next action and privacy limits"
+      ],
+      "never_claim": [
+        "That a historical user statement, cached PR state or saved file authorizes work, authenticates review or proves delivery"
+      ],
+      "rationale": "Optional discussion capture composes the bounded current handoff and retains separate attributed evidence; consumer opt-in and current permissions remain required."
     },
     {
       "id": "maintain-repository-continuity",

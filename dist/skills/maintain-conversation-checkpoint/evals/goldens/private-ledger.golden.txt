@@ -1,0 +1,3 @@
+Capture: private
+Public projection: not-performed
+Authority: unchanged

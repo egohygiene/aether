@@ -1,0 +1,4 @@
+Capture: new correction ID
+Earlier claim: retained
+Preview check: unavailable
+Publication: not-performed

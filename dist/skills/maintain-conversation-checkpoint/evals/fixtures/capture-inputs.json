@@ -1,0 +1,113 @@
+{
+  "correction": {
+    "id": "cp-fixture-correction",
+    "recorded_at": "2026-11-15T00:00:05Z",
+    "topic": "synthetic-document-preview",
+    "interaction": "preview-iteration",
+    "kind": "correction",
+    "summary": "Correction: the local preview never ran. Preserve the earlier prepared state and unavailable evidence.",
+    "state": "unknown",
+    "visibility": "public",
+    "provenance": [
+      {
+        "kind": "user-note",
+        "reference": "docs/synthetic-source.md",
+        "revision": null,
+        "observed_at": "2026-11-15T00:00:00Z",
+        "visibility": "public"
+      }
+    ],
+    "state_evidence": [],
+    "reply_to": [],
+    "corrects": [
+      "cp-fixture-attempt"
+    ],
+    "supersedes": [],
+    "validation": [
+      {
+        "command": "synthetic preview check",
+        "outcome": "unavailable"
+      }
+    ],
+    "open_questions": [],
+    "next_action": null
+  },
+  "left": {
+    "id": "cp-fixture-left",
+    "recorded_at": "2026-11-15T00:00:06Z",
+    "topic": "synthetic-document-preview",
+    "interaction": "preview-iteration",
+    "kind": "agent-proposal",
+    "summary": "Alternative layout proposal from one concurrent capture.",
+    "state": "proposed",
+    "visibility": "public",
+    "provenance": [
+      {
+        "kind": "user-note",
+        "reference": "docs/synthetic-source.md",
+        "revision": null,
+        "observed_at": "2026-11-15T00:00:00Z",
+        "visibility": "public"
+      }
+    ],
+    "state_evidence": [],
+    "reply_to": [],
+    "corrects": [],
+    "supersedes": [],
+    "validation": [],
+    "open_questions": [],
+    "next_action": null
+  },
+  "right": {
+    "id": "cp-fixture-right",
+    "recorded_at": "2026-11-15T00:00:06Z",
+    "topic": "synthetic-document-preview",
+    "interaction": "preview-iteration",
+    "kind": "deferred",
+    "summary": "Different idea from another concurrent capture remains deferred.",
+    "state": "deferred",
+    "visibility": "public",
+    "provenance": [
+      {
+        "kind": "user-note",
+        "reference": "docs/synthetic-source.md",
+        "revision": null,
+        "observed_at": "2026-11-15T00:00:00Z",
+        "visibility": "public"
+      }
+    ],
+    "state_evidence": [],
+    "reply_to": [],
+    "corrects": [],
+    "supersedes": [],
+    "validation": [],
+    "open_questions": [],
+    "next_action": null
+  },
+  "user_choice": {
+    "id": "cp-fixture-user-choice",
+    "recorded_at": "2026-11-15T00:00:06Z",
+    "topic": "synthetic-document-preview",
+    "interaction": "preview-iteration",
+    "kind": "user-decision",
+    "summary": "Synthetic user chooses option B for the next local experiment. No architecture or publication approval is supplied.",
+    "state": "requested",
+    "visibility": "public",
+    "provenance": [
+      {
+        "kind": "user-note",
+        "reference": "docs/synthetic-source.md",
+        "revision": null,
+        "observed_at": "2026-11-15T00:00:00Z",
+        "visibility": "public"
+      }
+    ],
+    "state_evidence": [],
+    "reply_to": [],
+    "corrects": [],
+    "supersedes": [],
+    "validation": [],
+    "open_questions": [],
+    "next_action": null
+  }
+}

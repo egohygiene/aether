@@ -1,0 +1,163 @@
+{
+  "schema_version": "aether.conversation-ledger/v1",
+  "repository": "example/synthetic",
+  "visibility": "public",
+  "authority": "allowed-to-publish",
+  "onboarding": "docs/CONVERSATION.md",
+  "checkpoint_path": "CONTINUITY.md",
+  "prior_segments": [],
+  "entries": [
+    {
+      "id": "cp-fixture-request",
+      "recorded_at": "2026-11-15T00:00:00Z",
+      "topic": "synthetic-document-preview",
+      "interaction": "preview-iteration",
+      "kind": "user-statement",
+      "summary": "Request a local preview; no publication requested.",
+      "state": "requested",
+      "visibility": "public",
+      "provenance": [
+        {
+          "kind": "user-note",
+          "reference": "docs/synthetic-source.md",
+          "revision": null,
+          "observed_at": "2026-11-15T00:00:00Z",
+          "visibility": "public"
+        }
+      ],
+      "state_evidence": [],
+      "reply_to": [],
+      "corrects": [],
+      "supersedes": [],
+      "validation": [],
+      "open_questions": [],
+      "next_action": null
+    },
+    {
+      "id": "cp-fixture-interpretation",
+      "recorded_at": "2026-11-15T00:00:00Z",
+      "topic": "synthetic-document-preview",
+      "interaction": "preview-iteration",
+      "kind": "agent-interpretation",
+      "summary": "Interpret the request as preparing a local draft, not submitting it.",
+      "state": "proposed",
+      "visibility": "public",
+      "provenance": [
+        {
+          "kind": "user-note",
+          "reference": "docs/synthetic-source.md",
+          "revision": null,
+          "observed_at": "2026-11-15T00:00:00Z",
+          "visibility": "public"
+        }
+      ],
+      "state_evidence": [],
+      "reply_to": [
+        "cp-fixture-request"
+      ],
+      "corrects": [],
+      "supersedes": [],
+      "validation": [],
+      "open_questions": [],
+      "next_action": null
+    },
+    {
+      "id": "cp-fixture-attempt",
+      "recorded_at": "2026-11-15T00:00:00Z",
+      "topic": "synthetic-document-preview",
+      "interaction": "preview-iteration",
+      "kind": "attempt",
+      "summary": "Prepared the first draft at the referenced synthetic artifact revision.",
+      "state": "prepared",
+      "visibility": "public",
+      "provenance": [
+        {
+          "kind": "user-note",
+          "reference": "docs/synthetic-source.md",
+          "revision": null,
+          "observed_at": "2026-11-15T00:00:00Z",
+          "visibility": "public"
+        },
+        {
+          "kind": "artifact",
+          "reference": "docs/synthetic-draft.md",
+          "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "observed_at": "2026-11-15T00:00:00Z",
+          "visibility": "public"
+        }
+      ],
+      "state_evidence": [],
+      "reply_to": [
+        "cp-fixture-interpretation"
+      ],
+      "corrects": [],
+      "supersedes": [],
+      "validation": [
+        {
+          "command": "synthetic preview check",
+          "outcome": "not-run"
+        }
+      ],
+      "open_questions": [],
+      "next_action": null
+    },
+    {
+      "id": "cp-fixture-feedback",
+      "recorded_at": "2026-11-15T00:00:00Z",
+      "topic": "synthetic-document-preview",
+      "interaction": "preview-iteration",
+      "kind": "feedback",
+      "summary": "User feedback prefers the second layout; this is attributed feedback, not architectural approval.",
+      "state": "requested",
+      "visibility": "public",
+      "provenance": [
+        {
+          "kind": "user-note",
+          "reference": "docs/synthetic-source.md",
+          "revision": null,
+          "observed_at": "2026-11-15T00:00:00Z",
+          "visibility": "public"
+        }
+      ],
+      "state_evidence": [],
+      "reply_to": [
+        "cp-fixture-attempt"
+      ],
+      "corrects": [],
+      "supersedes": [],
+      "validation": [],
+      "open_questions": [],
+      "next_action": null
+    },
+    {
+      "id": "cp-fixture-next",
+      "recorded_at": "2026-11-15T00:00:00Z",
+      "topic": "synthetic-document-preview",
+      "interaction": "preview-iteration",
+      "kind": "next-action",
+      "summary": "Prepare the next local iteration after checking actual current source.",
+      "state": "proposed",
+      "visibility": "public",
+      "provenance": [
+        {
+          "kind": "user-note",
+          "reference": "docs/synthetic-source.md",
+          "revision": null,
+          "observed_at": "2026-11-15T00:00:00Z",
+          "visibility": "public"
+        }
+      ],
+      "state_evidence": [],
+      "reply_to": [
+        "cp-fixture-feedback"
+      ],
+      "corrects": [],
+      "supersedes": [],
+      "validation": [],
+      "open_questions": [
+        "Which layout source is current?"
+      ],
+      "next_action": "Inspect actual draft revision and unavailable preview check; do not publish."
+    }
+  ]
+}

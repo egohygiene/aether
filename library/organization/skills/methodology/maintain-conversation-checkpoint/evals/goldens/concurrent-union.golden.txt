@@ -1,0 +1,3 @@
+Distinct contributions: both retained
+Ordering: deterministic
+Authority: context-only

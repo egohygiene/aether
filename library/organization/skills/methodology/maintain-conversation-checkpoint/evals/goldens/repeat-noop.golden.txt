@@ -1,0 +1,3 @@
+Capture: unchanged stable ID
+Result: no duplicate
+History: preserved

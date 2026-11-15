@@ -1,0 +1,3 @@
+Capture: blocked
+Reason: different content at one stable ID
+Earlier contribution: preserved

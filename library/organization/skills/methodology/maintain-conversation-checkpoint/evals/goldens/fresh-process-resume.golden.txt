@@ -1,0 +1,5 @@
+Topic: synthetic-document-preview
+Open question: Which layout source is current?
+Next action: inspect actual draft and unavailable check.
+Live PR: unavailable
+Authority: current session only

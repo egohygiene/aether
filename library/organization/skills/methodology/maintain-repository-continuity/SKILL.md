@@ -6,14 +6,14 @@ compatibility:
   required_tools:
     - git
 metadata:
-  aether-version: "1.1.0"
+  aether-version: "1.2.0"
   aether-status: "draft"
   aether-spec-id: "repository-continuity"
   aether-scope: "organization"
   aether-domain: "methodology"
   aether-owners: "egohygiene"
   aether-created: "2026-09-08"
-  aether-updated: "2026-09-08"
+  aether-updated: "2026-11-15"
   aether-distribution-resources:
     - source: "catalog/schemas/aether.repository-continuity.v1.schema.json"
       destination: "references/aether.repository-continuity.v1.schema.json"
@@ -108,6 +108,16 @@ A read-only CI check may detect drift after a pull request exists, but it does
 not author semantic prose. This skill never stages, commits, pushes, opens,
 updates, merges, publishes, deletes, or communicates externally unless those
 actions are separately authorized by the user and governing workflow.
+
+## Optional conversation route
+
+If a consumer explicitly selected an authored conversation-onboarding route,
+compose `conversation-continuity`0.1.0 and `maintain-conversation-checkpoint` to
+read meaningful attributed discussion, corrections and unanswered questions.
+The optional ledger remains separate from this current snapshot and grants no
+authority. No opt-in means no new required file or capture. Default-bundle
+discovery uses this existing entry point; adoption stays with the consumer and
+applicable Hygiene/Holon/EgoLint/Relay/Pace owners.
 
 ## Compact and supersede
 

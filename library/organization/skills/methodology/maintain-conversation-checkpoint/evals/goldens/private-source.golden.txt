@@ -1,0 +1,3 @@
+Public capture: blocked
+Reason: private source
+Private content: withheld
