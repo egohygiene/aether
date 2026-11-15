@@ -6,7 +6,7 @@
   "role": "reader-writer",
   "disposition": "updated",
   "reason": "Adds factual partial source-repair evidence to existing release job and provenance steps. Their states, strategic identity, horizon, priority and unmet release/consumer acceptance remain unchanged.",
-  "materiality": "non-material",
+  "materiality": "material",
   "intent_change": false,
   "roadmap": {
     "path": "ROADMAP.md",
