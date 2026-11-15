@@ -1,0 +1,127 @@
+{
+  "schema": "aether.repository-audit-report/v1",
+  "contract_version": "1.0.0",
+  "audit_id": "synthetic-experimental",
+  "visibility": "public",
+  "scope": {
+    "kind": "repository",
+    "repositories": [
+      {
+        "full_name": "example-org/library",
+        "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "visibility": "public"
+      }
+    ],
+    "include": [
+      "Declared synthetic source fixture"
+    ],
+    "exclude": [
+      "Provider discovery and publication"
+    ],
+    "inspected": [
+      "Synthetic supplied capture"
+    ],
+    "uninspected": []
+  },
+  "profiles": {
+    "registry_version": "1.0.0",
+    "registry_sha256": "58fd660134444c480d16c48c106b1572974fd2243beedfe665962c96fccfe525",
+    "requested": [
+      {
+        "id": "experimental-opportunity",
+        "version": "1.0.0"
+      }
+    ],
+    "resolved": [
+      {
+        "id": "experimental-opportunity",
+        "version": "1.0.0"
+      }
+    ]
+  },
+  "started_at": "2026-11-15T00:00:00Z",
+  "completed_at": "2026-11-15T00:01:00Z",
+  "completion": {
+    "state": "complete",
+    "reason": null,
+    "continuation": [],
+    "profiles": [
+      {
+        "profile": {
+          "id": "experimental-opportunity",
+          "version": "1.0.0"
+        },
+        "state": "complete",
+        "reason": null
+      }
+    ]
+  },
+  "findings": [
+    {
+      "id": "AUDIT-001",
+      "visibility": "public",
+      "repository": "example-org/library",
+      "title": "Synthetic research suggestion",
+      "classification": "future-enhancement",
+      "nature": "experimental-opportunity",
+      "severity": "informational",
+      "confidence": "low",
+      "status": "needs-validation",
+      "area": "fixture",
+      "effort": "small",
+      "impact": "low",
+      "observation": "The synthetic capture records the stated fixture condition.",
+      "why_it_matters": "Demonstrates an independently modeled finding.",
+      "recommendation": "Inspect the supplied fixture.",
+      "suggested_validation": [
+        "Verify source independently before taking action."
+      ],
+      "dependencies": [],
+      "evidence_classification": "recommended",
+      "evidence_refs": [],
+      "source_profile": {
+        "id": "experimental-opportunity",
+        "version": "1.0.0"
+      },
+      "missing_evidence": [
+        "Independent usefulness evaluation."
+      ],
+      "history": {
+        "delta": "not-compared",
+        "prior_audit_id": null,
+        "prior_finding_id": null,
+        "evidence_classification": "unverified",
+        "evidence_refs": []
+      }
+    }
+  ],
+  "evidence": [],
+  "positive_observations": {
+    "finding_ids": [],
+    "absence_reason": "This synthetic case defines no positive observation."
+  },
+  "candidate_issues": [],
+  "prior_audits": [],
+  "provenance": {
+    "producer": {
+      "name": "synthetic-fixture",
+      "version": "1.0.0",
+      "uri": null
+    },
+    "tools": [],
+    "commands": [],
+    "limitations": [
+      "Synthetic authoring example; no real audit, execution, provider identity or policy approval."
+    ],
+    "privacy": {
+      "contains_sensitive_data": false,
+      "redactions": []
+    },
+    "execution": "read-only"
+  },
+  "canonical_report": {
+    "path": "audits/experimental-20261115T000000Z.md",
+    "uri": null,
+    "sha256": "fd3e3b5edfa2cd30209c696b6879f2432386e9ea47eabb89f21588992084bcb9"
+  }
+}

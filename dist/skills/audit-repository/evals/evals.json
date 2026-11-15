@@ -1,7 +1,7 @@
 {
   "schema": "aether.skill-evaluations/v2",
   "skill": "audit-repository",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "cases": [
     {
       "id": "single-profile",
@@ -92,6 +92,30 @@
       "expected": [
         "Do not convert a supplied claim into observed execution",
         "Keep host execution and consumer qualification unverified"
+      ]
+    },
+    {
+      "id": "checkpoint-data-fixtures",
+      "description": "Inspect reusable repository and organization checkpoints with explicit stale/partial/blocked evidence.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Keep old capture clocks and unresolved scope visible",
+        "Validate authored findings without inferring execution, resolution, policy acceptance or issue creation"
+      ],
+      "assertions": [
+        {
+          "type": "file-exists",
+          "value": "references/examples/repository-complete.json"
+        },
+        {
+          "type": "file-exists",
+          "value": "references/examples/organization-stale-partial.json"
+        },
+        {
+          "type": "file-exists",
+          "value": "references/checkpoint-adoption.md"
+        }
       ]
     }
   ]
