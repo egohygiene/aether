@@ -97,6 +97,7 @@ issues: []
 **Current evidence:**
 
 - Historical release run 32672225496 failed with zero jobs; issue #38 owns current workflow and publication acceptance. This document does not claim a fresh hosted run.
+- 2026-11-15 source checkpoint repairs the invalid job-level context and adds a read-only PR qualification job. Native disposable-Git tests cover exact selected commits, lightweight/annotated tags, moved tags and non-default-branch source refusal. Tagged release jobs and actual release dry-run acceptance remain unproven.
 
 <!-- roadmap-step
 id: AET-Q03
@@ -141,6 +142,7 @@ issues: []
 **Current evidence:**
 
 - Immutable provenance is the stated target; no published bundle proof was observed.
+- 2026-11-15 source checkpoint stages only release-selected distribution inventories, binds provenance to the selected full commit, verifies exact payload checksums, and reproduces metadata/archive bytes in synthetic stable-selection fixtures. These controls do not select/promote real stable artifacts or prove publication/remote consumption.
 
 <!-- roadmap-step
 id: AET-Q05

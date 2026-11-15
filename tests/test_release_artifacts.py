@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
 import sys
+import tarfile
 import tempfile
 import unittest
 from pathlib import Path
@@ -144,6 +146,7 @@ class TestBuildProjections(unittest.TestCase):
 class TestBuildReleaseArtifacts(unittest.TestCase):
     def setUp(self):
         self._tmp = Path(tempfile.mkdtemp(prefix="aether-release-test-"))
+        self.addCleanup(__import__("shutil").rmtree, self._tmp)
         self.output_directory = self._tmp / "dist"
         skill_dir = self.output_directory / "skills" / "example-skill"
         skill_dir.mkdir(parents=True, exist_ok=True)
@@ -193,7 +196,7 @@ class TestBuildReleaseArtifacts(unittest.TestCase):
         self.license_path.write_text("MIT License\n", encoding="utf-8")
         self.changelog_path = self._tmp / "CHANGELOG.md"
         self.changelog_path.write_text(
-            "# Changelog\n\n## Unreleased\n\n- Example release notes.\n\n## Older\n\n- Done.\n",
+            "# Changelog\n\n## [Unreleased]\n\n- Example release notes.\n\n## [1.0.0] - 2026-01-01\n\n- Done.\n",
             encoding="utf-8",
         )
 
@@ -235,7 +238,7 @@ class TestBuildReleaseArtifacts(unittest.TestCase):
         br.SOCIAL_SURFACE_CATALOG_PATH = self._orig_social_catalog_path
 
     def test_build_release_artifacts_writes_expected_files(self):
-        release_dir = br.build_release_artifacts("v1.2.3", self.output_directory, "deadbeef")
+        release_dir = br.build_release_artifacts("v1.2.3", self.output_directory, "d" * 40)
 
         manifest = json.loads((release_dir / "release-manifest.v1.json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["repository_release_tag"], "v1.2.3")
@@ -252,7 +255,7 @@ class TestBuildReleaseArtifacts(unittest.TestCase):
         )
 
         with self.assertRaises(ValueError):
-            br.build_release_artifacts("v1.2.3", self.output_directory, "deadbeef")
+            br.build_release_artifacts("v1.2.3", self.output_directory, "d" * 40)
 
     def test_stable_rights_approved_catalog_is_included(self):
         catalog_dir = self.output_directory / "catalogs" / "social-surface-specs"
@@ -262,11 +265,14 @@ class TestBuildReleaseArtifacts(unittest.TestCase):
                 {
                     "catalog_id": "catalog/social-surface-specs",
                     "catalog_version": "1.0.0",
-                    "catalog_digest": {"algorithm": "sha256-utf8-lf", "value": "b" * 64}
+                    "catalog_digest": {"algorithm": "sha256-utf8-lf", "value": "b" * 64},
+                    "generated_paths": ["dist/catalogs/social-surface-specs/distribution-manifest.v1.json",
+                                        "dist/catalogs/social-surface-specs/catalog.v1.json"]
                 }
             ) + "\n",
             encoding="utf-8",
         )
+        (catalog_dir / "catalog.v1.json").write_text('{"synthetic": true}\n', encoding="utf-8")
         br.SOCIAL_SURFACE_CATALOG_PATH.write_text(
             json.dumps(
                 {
@@ -282,9 +288,116 @@ class TestBuildReleaseArtifacts(unittest.TestCase):
             encoding="utf-8",
         )
 
-        release_dir = br.build_release_artifacts("v1.2.3", self.output_directory, "deadbeef")
+        release_dir = br.build_release_artifacts("v1.2.3", self.output_directory, "d" * 40)
         manifest = json.loads((release_dir / "release-manifest.v1.json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["catalogs"][0]["catalog_id"], "catalog/social-surface-specs")
+        payload = self._tmp / "catalog-payload"
+        archive = self._tmp / "catalog.tar.gz"
+        br.build_release_payload(self.output_directory, payload, archive)
+        with tarfile.open(archive) as bundle:
+            self.assertIn("catalogs/social-surface-specs/catalog.v1.json", bundle.getnames())
+
+    def test_metadata_and_archive_repeat_exactly_without_prior_self_hashes(self):
+        first = br.build_release_artifacts("v1.2.3", self.output_directory, "d" * 40)
+        before = {p.name: p.read_bytes() for p in first.iterdir()}
+        (first / "prior-unselected.tar.gz").write_bytes(b"old output must not become input")
+        br.build_release_artifacts("v1.2.3", self.output_directory, "d" * 40)
+        self.assertEqual(before, {name: (first / name).read_bytes() for name in before})
+        provenance = json.loads((first / "release-provenance.v1.json").read_text())
+        self.assertEqual("d" * 40, provenance["commit_sha"])
+        provenance_paths = {item["path"] for item in provenance["output_files"]}
+        self.assertNotIn("release/release-provenance.v1.json", provenance_paths)
+        self.assertNotIn("release/checksums.txt", provenance_paths)
+        for entry in provenance["output_files"]:
+            self.assertEqual(entry["sha256"], hashlib.sha256(
+                (self.output_directory / entry["path"]).read_bytes()).hexdigest())
+        checksums = {}
+        for line in (first / "checksums.txt").read_text().splitlines():
+            digest, path = line.split("  ", 1)
+            checksums[path] = digest
+            self.assertEqual(digest, hashlib.sha256((self.output_directory / path).read_bytes()).hexdigest())
+        self.assertIn("release/release-provenance.v1.json", checksums)
+        self.assertNotIn("release/checksums.txt", checksums)
+        archives = []
+        for index in (1, 2):
+            payload = self._tmp / f"payload-{index}"
+            archive = self._tmp / f"archive-{index}.tar.gz"
+            br.build_release_payload(self.output_directory, payload, archive)
+            archives.append(archive.read_bytes())
+            with tarfile.open(archive) as bundle:
+                names = set(bundle.getnames())
+                self.assertEqual(set(checksums) | {"release/checksums.txt"}, names)
+                for member in bundle.getmembers():
+                    self.assertEqual((0, 0, 0, "", ""),
+                                     (member.mtime, member.uid, member.gid, member.uname, member.gname))
+        self.assertEqual(*archives)
+
+    def test_unselected_drafts_projections_and_extra_files_never_enter_channel(self):
+        for relative in ("skills/draft-skill/SKILL.md", "github/repository/draft.agent.md",
+                         "skills/example-skill/unlisted-secret.txt"):
+            path = self.output_directory / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("synthetic excluded fixture\n")
+        br.build_release_artifacts("v1.2.3", self.output_directory, "d" * 40)
+        payload, archive = self._tmp / "selected", self._tmp / "selected.tar.gz"
+        br.build_release_payload(self.output_directory, payload, archive)
+        with tarfile.open(archive) as bundle:
+            names = bundle.getnames()
+            self.assertEqual(7, len(names))
+            self.assertTrue(all(name.startswith(("release/", "skills/example-skill/")) for name in names))
+            self.assertFalse(any("draft" in name or "secret" in name for name in names))
+        self.assertTrue((self.output_directory / "skills/draft-skill/SKILL.md").exists())
+
+    def test_manifest_escape_symlink_and_special_file_fail_closed(self):
+        manifest_path = self.output_directory / "skills/example-skill/distribution-manifest.v1.json"
+        original = json.loads(manifest_path.read_text())
+        for bad in ("dist/skills/example-skill/../draft/SKILL.md", "/tmp/private",
+                    "dist/skills/draft/SKILL.md", "dist/skills/example-skill/./SKILL.md"):
+            manifest = {**original, "generated_paths": [*original["generated_paths"], bad]}
+            manifest_path.write_text(json.dumps(manifest))
+            with self.subTest(path=bad), self.assertRaises(ValueError):
+                br.build_release_artifacts("v1.2.3", self.output_directory, "d" * 40)
+        manifest_path.write_text(json.dumps(original))
+        entry = manifest_path.parent / "SKILL.md"
+        entry.unlink()
+        private = self._tmp / "private.txt"
+        private.write_text("synthetic private fixture")
+        entry.symlink_to(private)
+        with self.assertRaises(ValueError):
+            br.build_release_artifacts("v1.2.3", self.output_directory, "d" * 40)
+        entry.unlink()
+        __import__("os").mkfifo(entry)
+        with self.assertRaises(ValueError):
+            br.build_release_artifacts("v1.2.3", self.output_directory, "d" * 40)
+
+    def test_destinations_do_not_overwrite_existing_data(self):
+        br.build_release_artifacts("v1.2.3", self.output_directory, "d" * 40)
+        for payload, archive in ((self.output_directory / "nested", self._tmp / "nested.tar.gz"),
+                                 (self._tmp / "existing", self._tmp / "existing/archive.tar.gz")):
+            with self.assertRaises(ValueError):
+                br.build_release_payload(self.output_directory, payload, archive)
+        payload, archive = self._tmp / "unused", self._tmp / "existing.tar.gz"
+        archive.write_bytes(b"caller-owned")
+        with self.assertRaises(ValueError):
+            br.build_release_payload(self.output_directory, payload, archive)
+        self.assertEqual(b"caller-owned", archive.read_bytes())
+        self.assertFalse(payload.exists())
+
+    def test_changelog_boundaries_and_full_source_identity(self):
+        self.assertEqual("## [Unreleased]\n\n- Example release notes.",
+                         br._extract_unreleased_changelog(self.changelog_path))
+        for tag, commit in (("main", "d" * 40), ("v01.2.3", "d" * 40), ("v1.2.3", "unknown")):
+            with self.subTest(tag=tag, commit=commit), self.assertRaises(ValueError):
+                br.build_release_artifacts(tag, self.output_directory, commit)
+
+    def test_stale_metadata_cannot_package_mutated_source(self):
+        br.build_release_artifacts("v1.2.3", self.output_directory, "d" * 40)
+        (self.output_directory / "skills/example-skill/SKILL.md").write_text("changed after metadata\n")
+        payload, archive = self._tmp / "stale", self._tmp / "stale.tar.gz"
+        with self.assertRaisesRegex(ValueError, "checksums differ"):
+            br.build_release_payload(self.output_directory, payload, archive)
+        self.assertFalse(payload.exists())
+        self.assertFalse(archive.exists())
 
 
 if __name__ == "__main__":

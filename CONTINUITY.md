@@ -7,33 +7,35 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T23:49:19Z'
+  updated_at: '2026-11-15T00:11:34Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Complete proportional issue sizing and recoverable checkpoint execution by extending the existing
-    worker strategy, without a new scheduler or permission boundary.
+  purpose: Repair existing first-party release source selection, payload and metadata without publishing
+    or promoting an unqualified stable set.
   includes:
-  - "Existing worker-strategy0.2.0 adds WRK018\u2013021 for small-unsplit/minimal-split/existing-checkpoint\
-    \ recognition, full acceptance coverage, real prerequisites, meaningful saves and fresh-session verification."
-  - A thin draft execute-issue-checkpoint skill, safe handoff template, nine synthetic cases and a shared
-    worker-strategy entry point compose existing continuity/local-validation/issue-authoring/roadmap contracts.
-    All10 canonical agents and generated providers retain their tool ceilings.
-  - Six new qualification methods cover declared fixture scope/DAG consistency, saved/unavailable evidence,
-    an actual isolated process reading saved files/Git without prior chat, and singular/idempotent module
-    generation. No actual provider state or model judgment is inferred from a fixture.
-  - The retained ledger refreshes nine owner comparisons at immutable source835561fb5e54d11538e869825a5457e68e3c6582;
-    every734-file/222-unit staging blob and historical disposition remains unchanged.
+  - Existing release workflow removes invalid job-level steps context and adds a read-only PR source qualification
+    job. Tagged validation and protected publication remain dispatch-only. GH_TOKEN is mapped on CLI steps
+    and checkout credentials are not persisted.
+  - catalog/release_source.py binds the existing remote lightweight/annotated tag to full selected commit
+    and current default-branch ancestry. Publication checks out the validated commit and refuses moved
+    tags before rebuilding and immediately before publication.
+  - Release tooling selects only stable/release-included skill inventories and eligible governed catalogs.
+    Channel payload and deterministic archive share exact paths; draft/provider/unlisted/prior-output
+    data is excluded without deleting development distributions.
+  - Metadata uses acyclic checksums/provenance, requires full source SHA, recognizes canonical bracketed
+    Unreleased, rejects unsafe input/output paths and refuses stale payload hashes. Synthetic stable-selection
+    fixtures do not approve real artifacts.
   excludes: &id001
-  - Static guidance installs no recovery hook, scheduler, context warning or zero-loss guarantee. Fresh-process
-    testing qualifies mechanical saved-file/Git recovery, not agent judgment or consumer effectiveness.
-  - No live issue hierarchy is created or normalized. Parent grouping, real blockers, source preparation,
-    validation, review, merge and delivery remain separate. Stored context cannot expand current authority.
-  - Existing38 consumer/release qualification remains not-ready in prior hosted evidence. The11 existing
-    optional/native skips remain explicit; no release, deployment, source-rights clearance or fleet rollout
-    occurs.
+  - Actual Aether catalog has no release-eligible first-party skills; metadata preparation refuses the
+    candidate. No lifecycle/rights status, reviewed stable set, tag or release is created or promoted.
+  - Installed GitHub CLI has no skill command. Native consumer acceptance remains blocked/not-ready; portable
+    pilot governing dependencies and remote install/update/deprecation/rollback remain issue38 obligations.
+  - Actionlint validates workflow expressions and native disposable-Git/metadata fixtures qualify source
+    behavior. Hosted PR source-job creation is pending; dispatch-only tagged jobs and publication are
+    not exercised. Token mapping is source wiring, not credential or publication proof.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -42,87 +44,85 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
+  - .egohygiene/release.json
+  - CHANGELOG.md
   - ROADMAP.md
-  - library/organization/specs/methodology/worker-strategy.spec.md
-  - library/organization/skills/methodology/execute-issue-checkpoint/SKILL.md
-  - library/organization/projections/templates/worker-strategy.AGENTS.md
-  - tests/test_issue_checkpoint.py
-  - docs/evidence/2026-11-14-issue-checkpoint-qualification.json
-  - docs/evidence/2026-11-14-issue-checkpoint-roadmap-impact.json
-  - https://github.com/egohygiene/aether/issues/92
+  - .github/workflows/release-first-party-skills.yml
+  - catalog/release_source.py
+  - library/organization/skills/build-release-artifacts.py
+  - docs/release-and-pinning-guide.md
+  - docs/evidence/2026-11-15-release-source-qualification.json
+  - docs/evidence/2026-11-15-release-source-roadmap-impact.json
+  - https://github.com/egohygiene/aether/issues/38
 work:
-  objective: Complete proportional issue sizing and recoverable checkpoint execution by extending the
-    existing worker strategy, without a new scheduler or permission boundary.
+  objective: Repair existing first-party release source selection, payload and metadata without publishing
+    or promoting an unqualified stable set.
   success_conditions:
-  - Small issues remain unsplit, justified splits preserve every criterion, and existing stable checkpoints/PRs
-    produce no duplicate structure.
-  - One checkpoint at a time preserves meaningful progress and exact next action within the caller-authorized
-    batch; unreadable/unpushed/stale state and unrun checks remain explicit.
-  - The shared default-guidance entry point, specification, skill, examples and generated projections
-    agree without granting new tools or promising automatic host recovery.
+  - Workflow parses and a read-only PR source job can execute without entering dispatch-only publication.
+  - Native disposable-Git tests reject moved tags, wrong source and non-default ancestry while provenance
+    uses the selected immutable commit.
+  - Exact selected channel/archive inventories and final checksums agree; repeated metadata/archive output
+    is stable and canonical changelog notes are retained.
   active_issue:
     provider: github
-    id: egohygiene/aether#92
-    url: https://github.com/egohygiene/aether/issues/92
+    id: egohygiene/aether#38
+    url: https://github.com/egohygiene/aether/issues/38
   next:
     kind: issue
     id: egohygiene/aether#102
-    description: Compose the optional conversation checkpoint/evidence extension with current continuity;
-      preserve source/decision provenance, bounded snapshots, private handling and explicit host/authority
-      limits.
+    description: After source qualification, compose optional conversation checkpoint/evidence extension
+      with continuity; release38 stays open for a reviewed real stable set, available adapter, portable
+      package dependencies and actual authorized remote proof.
     readiness: ready
     references:
     - https://github.com/egohygiene/aether/issues/102
-    - https://github.com/egohygiene/aether/issues/105
+    - https://github.com/egohygiene/aether/issues/38
     depends_on: []
 state:
   base:
-    revision: 9df31e029df4e45abd5419aa670e5efe4047184f
+    revision: aefd467e00906f6ee95a6bc27dd96ab97db3f545
     ref: refs/heads/main
-    verified_at: '2026-11-14T23:49:19Z'
+    verified_at: '2026-11-15T00:11:34Z'
   candidate:
-    branch: codex/bounded-issue-checkpoints
+    branch: codex/release-source-integrity
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T23:49:19Z'
-    default_branch_revision: 9df31e029df4e45abd5419aa670e5efe4047184f
+    observed_at: '2026-11-15T00:11:34Z'
+    default_branch_revision: aefd467e00906f6ee95a6bc27dd96ab97db3f545
     issue_state: open
     pull_request_state: not-applicable
-    notes: Observed main9df31e0 includes merged130 and88 is closed.92 remains open and this local candidate
-      has no PR yet; implementation source835561f is separate from its later report/continuity commit.
-      Organization profile25 closed after actual rendered readback; remaining24 receiving labels and Empathy110
-      owner-consumption prerequisites remain open.
+    notes: Observed mainaefd467 includes merged131 and92 is closed.38 remains open. This implementation
+      sourcef3f6cf3 has no PR yet; its later evidence/handoff commit cannot contain its own identifier.
+      Remote tags are empty and installed gh skill is unavailable.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T23:49:19Z'
+  reviewed_at: '2026-11-15T00:11:34Z'
   reviewed_by: Codex
   evidence:
   - command: ./aether test
     outcome: passed
-    notes: 340 full tests pass with11 existing optional/native skips; no new skip or suppressed gate.
-    observed_at: '2026-11-14T23:49:19Z'
-  - command: python -m unittest tests.test_issue_checkpoint tests.test_provider_projections tests.test_continuity_integration
+    notes: 351 full tests pass with11 existing explicit optional/native skips; no gate weakened.
+    observed_at: '2026-11-15T00:11:34Z'
+  - command: python -m unittest tests.test_release_artifacts tests.test_release_workflow tests.test_repository_release_contract
       -q
     outcome: passed
-    notes: 31 focused tests pass. Actual generated outputs keep singular modules and role ceilings; fixture
-      coverage/DAG and isolated saved-file/Git recovery controls pass.
-    observed_at: '2026-11-14T23:49:19Z'
-  - command: ./aether eval run --skill execute-issue-checkpoint --mode deterministic --format json
+    notes: 24 focused tests include actual disposable Git origins and selected-payload/hash/archive controls.
+    observed_at: '2026-11-15T00:11:34Z'
+  - command: actionlint1.7.7 -shellcheck= -pyflakes= .github/workflows/release-first-party-skills.yml
     outcome: passed
-    notes: Nine declared case/golden assertion checks pass with zero skips/errors. Scope does not include
-      model routing, live provider behavior or host effectiveness.
-    observed_at: '2026-11-14T23:49:19Z'
-  - command: Catalog/schema, provenance, distribution/check, source/default/links/strict-staging and immutable
-      ledger checks
+    notes: Checksum-verified official binary reproduced the prior invalid steps context and accepts changed
+      source. Optional external lint integrations disabled; every workflow shell body separately passes
+      bash -n.
+    observed_at: '2026-11-15T00:11:34Z'
+  - command: Source/catalog/links/shell/distribution, release-declaration and staging ledger checks
     outcome: passed
-    notes: 40skills/35specs/10agents qualify source/generation checks; strict and links have no diagnostics,
-      default preserves the historical provenance warning. Staging raw bytes remain6,791,350 with no execution/removal
-      authority.
-    observed_at: '2026-11-14T23:49:19Z'
+    notes: Canonical source checks pass; existing default provenance warning retained. Actual catalog
+      metadata candidate deliberately fails with no eligible skills; no tag is created.
+    observed_at: '2026-11-15T00:11:34Z'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -150,53 +150,53 @@ Read AGENTS, the canonical sources below and verified live issue/PR state before
 
 ## Current objective and success conditions
 
-Complete proportional issue sizing and recoverable checkpoint execution by extending the existing worker strategy, without a new scheduler or permission boundary.
+Repair existing first-party release source selection, payload and metadata without publishing or promoting an unqualified stable set.
 
-- Small issues remain unsplit, justified splits preserve every criterion, and existing stable checkpoints/PRs produce no duplicate structure.
-- One checkpoint at a time preserves meaningful progress and exact next action within the caller-authorized batch; unreadable/unpushed/stale state and unrun checks remain explicit.
-- The shared default-guidance entry point, specification, skill, examples and generated projections agree without granting new tools or promising automatic host recovery.
+- Workflow parses and a read-only PR source job can execute without entering dispatch-only publication.
+- Native disposable-Git tests reject moved tags, wrong source and non-default ancestry while provenance uses the selected immutable commit.
+- Exact selected channel/archive inventories and final checksums agree; repeated metadata/archive output is stable and canonical changelog notes are retained.
 
 ## State snapshot
 
-Observed default source `9df31e029df4e45abd5419aa670e5efe4047184f`. Candidate `codex/bounded-issue-checkpoints` is a review checkpoint; its containing revision remains null intentionally.
+Observed default source `aefd467e00906f6ee95a6bc27dd96ab97db3f545`. Candidate `codex/release-source-integrity` is a review checkpoint; its containing revision remains null intentionally.
 
 ## Completed and material changes
 
-Existing worker-strategy0.2.0 adds WRK018–021 for small-unsplit/minimal-split/existing-checkpoint recognition, full acceptance coverage, real prerequisites, meaningful saves and fresh-session verification.
+Existing release workflow removes invalid job-level steps context and adds a read-only PR source qualification job. Tagged validation and protected publication remain dispatch-only. GH_TOKEN is mapped on CLI steps and checkout credentials are not persisted.
 
-A thin draft execute-issue-checkpoint skill, safe handoff template, nine synthetic cases and a shared worker-strategy entry point compose existing continuity/local-validation/issue-authoring/roadmap contracts. All10 canonical agents and generated providers retain their tool ceilings.
+catalog/release_source.py binds the existing remote lightweight/annotated tag to full selected commit and current default-branch ancestry. Publication checks out the validated commit and refuses moved tags before rebuilding and immediately before publication.
 
-Six new qualification methods cover declared fixture scope/DAG consistency, saved/unavailable evidence, an actual isolated process reading saved files/Git without prior chat, and singular/idempotent module generation. No actual provider state or model judgment is inferred from a fixture.
+Release tooling selects only stable/release-included skill inventories and eligible governed catalogs. Channel payload and deterministic archive share exact paths; draft/provider/unlisted/prior-output data is excluded without deleting development distributions.
 
-The retained ledger refreshes nine owner comparisons at immutable source835561fb5e54d11538e869825a5457e68e3c6582; every734-file/222-unit staging blob and historical disposition remains unchanged.
+Metadata uses acyclic checksums/provenance, requires full source SHA, recognizes canonical bracketed Unreleased, rejects unsafe input/output paths and refuses stale payload hashes. Synthetic stable-selection fixtures do not approve real artifacts.
 
 ## Validation and review evidence
 
-`./aether test` — passed: 340 full tests pass with11 existing optional/native skips; no new skip or suppressed gate.
+`./aether test` — passed: 351 full tests pass with11 existing explicit optional/native skips; no gate weakened.
 
-`python -m unittest tests.test_issue_checkpoint tests.test_provider_projections tests.test_continuity_integration -q` — passed: 31 focused tests pass. Actual generated outputs keep singular modules and role ceilings; fixture coverage/DAG and isolated saved-file/Git recovery controls pass.
+`python -m unittest tests.test_release_artifacts tests.test_release_workflow tests.test_repository_release_contract -q` — passed: 24 focused tests include actual disposable Git origins and selected-payload/hash/archive controls.
 
-`./aether eval run --skill execute-issue-checkpoint --mode deterministic --format json` — passed: Nine declared case/golden assertion checks pass with zero skips/errors. Scope does not include model routing, live provider behavior or host effectiveness.
+`actionlint1.7.7 -shellcheck= -pyflakes= .github/workflows/release-first-party-skills.yml` — passed: Checksum-verified official binary reproduced the prior invalid steps context and accepts changed source. Optional external lint integrations disabled; every workflow shell body separately passes bash -n.
 
-`Catalog/schema, provenance, distribution/check, source/default/links/strict-staging and immutable ledger checks` — passed: 40skills/35specs/10agents qualify source/generation checks; strict and links have no diagnostics, default preserves the historical provenance warning. Staging raw bytes remain6,791,350 with no execution/removal authority.
+`Source/catalog/links/shell/distribution, release-declaration and staging ledger checks` — passed: Canonical source checks pass; existing default provenance warning retained. Actual catalog metadata candidate deliberately fails with no eligible skills; no tag is created.
 
-ADR not required: this extends the existing worker-strategy source and shared composition pattern without adding a service, public handoff schema, architectural owner or actor permission. Existing proposed ADR-0011 governs the shared output/composition pattern without being ratified. Roadmap impact: not-affected; existing strategic IDs/states/horizons/priority and release acceptance remain intact.
+No new architectural choice: implements existing explicit/manual first-party release path, owner boundaries and stable-selection rules. No replacement preparation engine, catalog lifecycle decision or public schema is introduced. Roadmap impact: updated factual partial evidence on AET-Q02/AET-Q04 only; both broader release gates remain unmet.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Static guidance installs no recovery hook, scheduler, context warning or zero-loss guarantee. Fresh-process testing qualifies mechanical saved-file/Git recovery, not agent judgment or consumer effectiveness.
+Actual Aether catalog has no release-eligible first-party skills; metadata preparation refuses the candidate. No lifecycle/rights status, reviewed stable set, tag or release is created or promoted.
 
-No live issue hierarchy is created or normalized. Parent grouping, real blockers, source preparation, validation, review, merge and delivery remain separate. Stored context cannot expand current authority.
+Installed GitHub CLI has no skill command. Native consumer acceptance remains blocked/not-ready; portable pilot governing dependencies and remote install/update/deprecation/rollback remain issue38 obligations.
 
-Existing38 consumer/release qualification remains not-ready in prior hosted evidence. The11 existing optional/native skips remain explicit; no release, deployment, source-rights clearance or fleet rollout occurs.
+Actionlint validates workflow expressions and native disposable-Git/metadata fixtures qualify source behavior. Hosted PR source-job creation is pending; dispatch-only tagged jobs and publication are not exercised. Token mapping is source wiring, not credential or publication proof.
 
 ## Next dependency-ready work
 
-Compose the optional conversation checkpoint/evidence extension with current continuity; preserve source/decision provenance, bounded snapshots, private handling and explicit host/authority limits.
+After source qualification, compose optional conversation checkpoint/evidence extension with continuity; release38 stays open for a reviewed real stable set, available adapter, portable package dependencies and actual authorized remote proof.
 
 ## Parallel changes and reconciliation
 
-Preserve merged130 roadmap controls,129 intake and all original audits. Historical Aniflow13 was inspected for stable link-based checkpoints and separate local/hosted evidence; its historical deferral and authority are not inherited.
+Preserve131 checkpoint guidance,130 roadmap controls,129 staging guard and unchanged734 staging blobs. Original audit history and proposed ADR disposition remain unchanged.
 
 ## Privacy and redaction
 
