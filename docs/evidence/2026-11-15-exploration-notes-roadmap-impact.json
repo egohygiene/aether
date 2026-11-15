@@ -1,0 +1,32 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "Extends the existing authoring corpus with an optional authored note output and parked canary. No strategic IDs, state, horizon, priority, rollout commitment or release acceptance change.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "27ae1db51943a39835a87d6f678026877a821800",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q01"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "https://github.com/egohygiene/aether/blob/27ae1db51943a39835a87d6f678026877a821800/library/organization/specs/authoring/exploration-note.spec.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/evidence/2026-11-15-exploration-notes-qualification.json"
+    }
+  ],
+  "organization_signals": []
+}

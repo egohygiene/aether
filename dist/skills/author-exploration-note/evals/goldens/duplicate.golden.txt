@@ -1,0 +1,4 @@
+Result: blocked duplicate identity
+Authority: exploratory-only
+Automatic promotion: not-performed
+Canonical source: consumer repository

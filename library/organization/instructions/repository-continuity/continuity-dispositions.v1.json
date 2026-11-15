@@ -49,6 +49,20 @@
       "rationale": "Audits need current handoff context but the normal workflow is deliberately non-mutating."
     },
     {
+      "id": "author-exploration-note",
+      "source": "library/organization/skills/authoring/author-exploration-note/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": [
+        "Tentative idea identity, provenance, alternatives, uncertainty, parked or linked next step and validation limits"
+      ],
+      "never_claim": [
+        "That an exploration, template, link, review or passing check accepts architecture, authorizes a task or publishes knowledge"
+      ],
+      "rationale": "Optional repository-owned note authoring composes current handoff and preserves distinct tentative knowledge; no installation or promotion authority."
+    },
+    {
       "id": "bug-fixing",
       "source": "library/organization/skills/quality/bug-fixing/SKILL.md",
       "disposition": "reader-writer",

@@ -1,0 +1,67 @@
+{
+  "schema_version": "aether.source-qualification/v1",
+  "observed_at": "2026-11-15T00:44:09Z",
+  "issue": "https://github.com/egohygiene/aether/issues/103",
+  "status": "qualified-source-only",
+  "source_revision": "27ae1db51943a39835a87d6f678026877a821800",
+  "baseline_revision": "c337e2642f9fa3462cf8a3fa92a7c3748a5149f1",
+  "contract": "exploration-note-authoring0.1.0 draft; authored document output only",
+  "validation": {
+    "repository_pinned_full_tests": {
+      "status": "pass",
+      "total": 367,
+      "existing_explicit_skips": 11
+    },
+    "focused_note_and_continuity_methods": {
+      "status": "pass",
+      "total": 16
+    },
+    "declared_deterministic_cases": {
+      "status": "pass",
+      "cases": 11,
+      "skipped": 0,
+      "suite_errors": 0,
+      "scope": "Declared structure/golden assertions, not model behavior; native helper tests run separately."
+    },
+    "portable_generated_helper": {
+      "status": "pass",
+      "scope": "Actual generated package copied outside Aether; Python-I with repository-pinned PyYAML checks actual canary/local references."
+    },
+    "catalog_schema_provenance_source_links_strict_distribution": {
+      "status": "pass"
+    },
+    "native_controls": [
+      "Create-only scaffold creates then unchanged repeat is a no-op",
+      "Authored revision retains stable ID and correction; rerun refuses overwrite",
+      "Park requires no issue/deadline; linked downstream task leaves note draft",
+      "Duplicate identity preserves both contributions and blocks collection validation",
+      "Conflicting architecture remains hypothesis; accepted/authority escalation metadata refused",
+      "Missing local source returns partial; no inferred truth or external fetching",
+      "Private-to-public source admission, duplicate metadata and unsafe references refused",
+      "Symlink/missing parent directory refused; generic CLI diagnostics withhold source content"
+    ]
+  },
+  "canary": {
+    "path": "docs/explorations/2026-11-15-opt-in-onboarding-discovery.md",
+    "id": "exp-opt-in-onboarding-discovery",
+    "source_revision": "27ae1db51943a39835a87d6f678026877a821800",
+    "reviewer": "Codex",
+    "review_scope": "Actual authored source, public facts/links, attribution, privacy, tentative authority and future projection boundary",
+    "status": "draft",
+    "next_step": null,
+    "canonical_owner": "egohygiene/aether",
+    "garden_projection": "not-performed",
+    "human_ratification": "not-supplied",
+    "actual_create_results": [
+      "created",
+      "unchanged"
+    ]
+  },
+  "limitations": [
+    "The convention is optional draft authoring guidance and a consumer-owned Markdown output, not a new first-party artifact kind or organization lifecycle policy. No fleet installation, forced migration, issue promotion, garden ingestion or public deployment occurs.",
+    "The Aether canary is reviewed by Codex for source/authority/privacy and stays draft/parked. It supplies no human architectural acceptance, usefulness measurement, model effectiveness or organization applicability decision.",
+    "The helper checks bounded metadata and available local source paths; external references, source truth, private prose classification and actual review require independent verification. Authored edits and normal Git review own revisions; no archive or ingestion engine is added.",
+    "Mindgarden39 is closed not-planned as actually observed; it is historical context, not an active prerequisite. Existing downstream owner work remains separate. The real consumer/release gate under38 stays not-ready, with 11 existing optional/native skips explicit."
+  ],
+  "decision_impact": "ADR not required: implements the requested optional authored document output through existing specification/skill kinds; adds no public schema, global lifecycle policy, new owner, service or authorization."
+}

@@ -1,0 +1,4 @@
+Result: draft created
+Authority: exploratory-only
+Automatic promotion: not-performed
+Canonical source: consumer repository

@@ -1,0 +1,37 @@
+{
+  "artifact_id": "skill/author-exploration-note",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": [
+      "python3",
+      "PyYAML"
+    ]
+  },
+  "distribution_id": "distribution/author-exploration-note",
+  "generated_paths": [
+    "dist/skills/author-exploration-note/SKILL.md",
+    "dist/skills/author-exploration-note/evals/evals.json",
+    "dist/skills/author-exploration-note/evals/fixtures/notes.json",
+    "dist/skills/author-exploration-note/evals/goldens/conflicting-decision.golden.txt",
+    "dist/skills/author-exploration-note/evals/goldens/create.golden.txt",
+    "dist/skills/author-exploration-note/evals/goldens/duplicate.golden.txt",
+    "dist/skills/author-exploration-note/evals/goldens/graduate-link.golden.txt",
+    "dist/skills/author-exploration-note/evals/goldens/missing-source.golden.txt",
+    "dist/skills/author-exploration-note/evals/goldens/non-exploration-task.golden.txt",
+    "dist/skills/author-exploration-note/evals/goldens/park.golden.txt",
+    "dist/skills/author-exploration-note/evals/goldens/private-to-public.golden.txt",
+    "dist/skills/author-exploration-note/evals/goldens/private.golden.txt",
+    "dist/skills/author-exploration-note/evals/goldens/public.golden.txt",
+    "dist/skills/author-exploration-note/evals/goldens/revise.golden.txt",
+    "dist/skills/author-exploration-note/references/examples.md",
+    "dist/skills/author-exploration-note/templates/EXPLORATION.template.md",
+    "dist/skills/author-exploration-note/scripts/note.py",
+    "dist/skills/author-exploration-note/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "4b98266a632ffa84caa3be1d0a9ab2a7a2c57a0011fda787485811473a58f55e"
+  }
+}

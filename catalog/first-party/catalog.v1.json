@@ -96,6 +96,53 @@
       "title": "Audit Repository"
     },
     {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/exploration-note-authoring"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Creates, revises, links or parks a repository-owned tentative exploration note. Use when an opted-in repository needs durable brainstorming before an issue, RFC, ADR or specification; do not promote ideas automatically.",
+      "domain": "authoring",
+      "generated_distribution_paths": [
+        "dist/skills/author-exploration-note/SKILL.md"
+      ],
+      "id": "skill/author-exploration-note",
+      "implements_specification_id": "specification/exploration-note-authoring",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "4b98266a632ffa84caa3be1d0a9ab2a7a2c57a0011fda787485811473a58f55e"
+      },
+      "source_path": "library/organization/skills/authoring/author-exploration-note/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "authoring",
+        "skill"
+      ],
+      "title": "Author Exploration Note"
+    },
+    {
       "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
@@ -3377,6 +3424,60 @@
         "traceability"
       ],
       "title": "Diagnosis Record Specification"
+    },
+    {
+      "artifact_version": "0.1.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/architecture-epistemology",
+        "specification/repository-continuity"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "An Exploration Note preserves a worthwhile tentative idea before it becomes an RFC, spike, ADR, specification or issue. It is a consumer-authored Markdown document output, not a new first-party catalog kind, organization lifecycle policy, knowledge ontology, ingestion engine or implementation commitment. Use the existing specification/skill catalog and portable package conventions.",
+      "domain": "authoring",
+      "generated_distribution_paths": [
+        "dist/specs/exploration-note-authoring.spec.md"
+      ],
+      "id": "specification/exploration-note-authoring",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/architecture-decisions",
+        "specification/repository-journal",
+        "specification/conversation-continuity"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "08c345737c7c3b340ee8995844183194a8738389aa0842af79059b1bdca45855"
+      },
+      "source_path": "library/organization/specs/authoring/exploration-note.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "exploration",
+        "notes",
+        "provenance",
+        "privacy"
+      ],
+      "title": "Optional Repository Exploration Note Authoring"
     },
     {
       "artifact_version": "1.0.0",
