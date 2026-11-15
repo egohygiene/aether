@@ -1,0 +1,32 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "Qualifies the existing checkpoint-audit source within AET-Q01 without changing strategy, IDs, horizon, priority, host adoption or release acceptance.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "f5ea0a704b31f301567e9ea9fa3372faa13ce244",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q01"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "https://github.com/egohygiene/aether/blob/f5ea0a704b31f301567e9ea9fa3372faa13ce244/library/organization/specs/quality/repository-audit-data.spec.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/evidence/2026-11-15-checkpoint-audit-qualification.json"
+    }
+  ],
+  "organization_signals": []
+}
