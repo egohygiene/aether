@@ -7,35 +7,45 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-15T00:11:34Z'
+  updated_at: '2026-11-15T00:27:56Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Repair existing first-party release source selection, payload and metadata without publishing
-    or promoting an unqualified stable set.
+  purpose: Complete the optional conversation-onboarding/checkpoint-ledger source extension while preserving
+    bounded current continuity, privacy and current authority.
   includes:
-  - Existing release workflow removes invalid job-level steps context and adds a read-only PR source qualification
-    job. Tagged validation and protected publication remain dispatch-only. GH_TOKEN is mapped on CLI steps
-    and checkout credentials are not persisted.
-  - catalog/release_source.py binds the existing remote lightweight/annotated tag to full selected commit
-    and current default-branch ancestry. Publication checks out the validated commit and refuses moved
-    tags before rebuilding and immediately before publication.
-  - Release tooling selects only stable/release-included skill inventories and eligible governed catalogs.
-    Channel payload and deterministic archive share exact paths; draft/provider/unlisted/prior-output
-    data is excluded without deleting development distributions.
-  - Metadata uses acyclic checksums/provenance, requires full source SHA, recognizes canonical bracketed
-    Unreleased, rejects unsafe input/output paths and refuses stale payload hashes. Synthetic stable-selection
-    fixtures do not approve real artifacts.
+  - Draft conversation-continuity0.1.0 composes unchanged repository-continuity1.0.0 and worker-strategy0.2.0.
+    Authored opt-in AGENTS/onboarding templates route to current snapshot, separate meaningful discussion
+    ledger and canonical artifacts. No new required files or first-party artifact kind.
+  - The schema and read-only portable helper preserve stable attributed requests, decisions/proposals,
+    interpretations/attempts/feedback, exact revisions, unknowns, questions and next action. Prepared/validated/merged/published/provider-submitted
+    remain separate evidence claims.
+  - Native controls exercise unchanged capture, append correction, deterministic concurrent union/collision
+    refusal, missing/future/cyclic links, unsafe references, classified private inputs, bounded regular-file
+    admission and source-withholding diagnostics. No helper writes or network requests occur.
+  - One isolated fresh process reads authored route, a schema-valid bounded current snapshot, saved ledger,
+    exact committed artifact and actual Git branch/head/worktree without prior chat. Generated portable
+    package validates outside Aether with Python-I. These are mechanical proofs only.
+  - Existing continuity skill1.2.0 discovers the optional route for default-bundle67 without enabling
+    it. Canonical inventory, schema mirror, catalog and generated distributions are reconciled; corpus36specs/41skills/10agents.
+    ADR0012 stays proposed/null.734 retained staging files and raw bytes are unchanged.
+  - Merged132 release repair now has actual hosted read-only parse/job-creation proof at13f7508/run43657025924,
+    with tagged validation/publication skipped. Its dated source receipt is updated to retain that bounded
+    observation.38 stays open.
   excludes: &id001
-  - Actual Aether catalog has no release-eligible first-party skills; metadata preparation refuses the
-    candidate. No lifecycle/rights status, reviewed stable set, tag or release is created or promoted.
-  - Installed GitHub CLI has no skill command. Native consumer acceptance remains blocked/not-ready; portable
-    pilot governing dependencies and remote install/update/deprecation/rollback remain issue38 obligations.
-  - Actionlint validates workflow expressions and native disposable-Git/metadata fixtures qualify source
-    behavior. Hosted PR source-job creation is pending; dispatch-only tagged jobs and publication are
-    not exercised. Token mapping is source wiring, not credential or publication proof.
+  - The extension, ledger schema and ADR0012 remain draft/proposed with null approval. Source integration
+    does not authenticate user decisions, human review, private prose classification or downstream policy/adoption.
+  - No repository is opted in or receives a live ledger/onboarding installation. Static guidance installs
+    no background memory, context warning, saving hook or zero-loss guarantee. Isolated-process recovery
+    proves mechanical file/Git access, not model/host effectiveness.
+  - The helper does not load prior segments, resolve cross-segment identities, fetch live provider state,
+    write files or redact history. Missing access/prior context is explicit. Public admission rejects
+    classified private sources but still needs content review.
+  - 'Existing38 real consumer qualification remains not-ready: no real release-eligible skills, no installed
+    gh skill adapter and no actual publication or remote acceptance. Eleven existing optional/native test
+    skips remain explicit.'
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -44,85 +54,85 @@ scope:
   - continuity-checkpoint
   canonical_sources:
   - AGENTS.md
-  - .egohygiene/release.json
-  - CHANGELOG.md
   - ROADMAP.md
-  - .github/workflows/release-first-party-skills.yml
-  - catalog/release_source.py
-  - library/organization/skills/build-release-artifacts.py
-  - docs/release-and-pinning-guide.md
-  - docs/evidence/2026-11-15-release-source-qualification.json
-  - docs/evidence/2026-11-15-release-source-roadmap-impact.json
-  - https://github.com/egohygiene/aether/issues/38
+  - library/organization/specs/methodology/conversation-continuity.spec.md
+  - library/organization/skills/methodology/maintain-conversation-checkpoint/SKILL.md
+  - library/organization/skills/methodology/maintain-repository-continuity/SKILL.md
+  - catalog/schemas/aether.conversation-ledger.v1.schema.json
+  - tests/test_conversation_continuity.py
+  - docs/decisions/ADR-0012-optional-conversation-evidence-extension.md
+  - docs/evidence/2026-11-15-conversation-continuity-qualification.json
+  - https://github.com/egohygiene/aether/issues/102
 work:
-  objective: Repair existing first-party release source selection, payload and metadata without publishing
-    or promoting an unqualified stable set.
+  objective: Complete the optional conversation-onboarding/checkpoint-ledger source extension while preserving
+    bounded current continuity, privacy and current authority.
   success_conditions:
-  - Workflow parses and a read-only PR source job can execute without entering dispatch-only publication.
-  - Native disposable-Git tests reject moved tags, wrong source and non-default ancestry while provenance
-    uses the selected immutable commit.
-  - Exact selected channel/archive inventories and final checksums agree; repeated metadata/archive output
-    is stable and canonical changelog notes are retained.
+  - Opt-in authored discovery recovers active topic/artifacts/questions/next action without replaying
+    chat or replacing root continuity.
+  - Repeated and concurrent captures preserve source identity/provenance; corrections, unavailable state,
+    privacy and current role limits remain explicit.
+  - Canonical spec/skill/schema, generated portable resources and deterministic examples agree; no runtime/adoption/publication
+    proof is inferred.
   active_issue:
     provider: github
-    id: egohygiene/aether#38
-    url: https://github.com/egohygiene/aether/issues/38
+    id: egohygiene/aether#102
+    url: https://github.com/egohygiene/aether/issues/102
   next:
     kind: issue
-    id: egohygiene/aether#102
-    description: After source qualification, compose optional conversation checkpoint/evidence extension
-      with continuity; release38 stays open for a reviewed real stable set, available adapter, portable
-      package dependencies and actual authorized remote proof.
+    id: egohygiene/aether#103
+    description: Define optional repository-owned exploration notes as authored document outputs; compose
+      brain-dump/continuity boundaries and qualify a reviewed local opt-in canary without new artifact
+      kind, automatic promotion or fleet rollout.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/102
-    - https://github.com/egohygiene/aether/issues/38
+    - https://github.com/egohygiene/aether/issues/103
     depends_on: []
 state:
   base:
-    revision: aefd467e00906f6ee95a6bc27dd96ab97db3f545
+    revision: 919bb4874dd9376944f6459474c01e9f3a4d93ef
     ref: refs/heads/main
-    verified_at: '2026-11-15T00:11:34Z'
+    verified_at: '2026-11-15T00:27:56Z'
   candidate:
-    branch: codex/release-source-integrity
+    branch: codex/conversation-continuity-extension
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-15T00:11:34Z'
-    default_branch_revision: aefd467e00906f6ee95a6bc27dd96ab97db3f545
+    observed_at: '2026-11-15T00:27:56Z'
+    default_branch_revision: 919bb4874dd9376944f6459474c01e9f3a4d93ef
     issue_state: open
     pull_request_state: not-applicable
-    notes: Observed mainaefd467 includes merged131 and92 is closed.38 remains open. This implementation
-      sourcef3f6cf3 has no PR yet; its later evidence/handoff commit cannot contain its own identifier.
-      Remote tags are empty and installed gh skill is unavailable.
+    notes: Observed main919bb48 includes merged132 source repair;38 remains open.102 is open and this
+      local sourcefaa865e has no PR yet.92 is closed at merged131. Reports/handoff are later source-bound
+      additions; containing revision remains null.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-15T00:11:34Z'
+  reviewed_at: '2026-11-15T00:27:56Z'
   reviewed_by: Codex
   evidence:
   - command: ./aether test
     outcome: passed
-    notes: 351 full tests pass with11 existing explicit optional/native skips; no gate weakened.
-    observed_at: '2026-11-15T00:11:34Z'
-  - command: python -m unittest tests.test_release_artifacts tests.test_release_workflow tests.test_repository_release_contract
-      -q
+    notes: 359 full tests pass with11 existing optional/native skips.
+    observed_at: '2026-11-15T00:27:56Z'
+  - command: python -m unittest tests.test_conversation_continuity tests.test_continuity_integration -q
     outcome: passed
-    notes: 24 focused tests include actual disposable Git origins and selected-payload/hash/archive controls.
-    observed_at: '2026-11-15T00:11:34Z'
-  - command: actionlint1.7.7 -shellcheck= -pyflakes= .github/workflows/release-first-party-skills.yml
+    notes: 16 focused methods pass, including actual isolated saved-file/Git recovery with schema-valid
+      bounded checkpoint.
+    observed_at: '2026-11-15T00:27:56Z'
+  - command: ./aether eval run --skill maintain-conversation-checkpoint --mode deterministic --format
+      json
     outcome: passed
-    notes: Checksum-verified official binary reproduced the prior invalid steps context and accepts changed
-      source. Optional external lint integrations disabled; every workflow shell body separately passes
-      bash -n.
-    observed_at: '2026-11-15T00:11:34Z'
-  - command: Source/catalog/links/shell/distribution, release-declaration and staging ledger checks
+    notes: 12 declared structure/golden assertion cases pass withzero skips/suite errors; not model judgment.
+    observed_at: '2026-11-15T00:27:56Z'
+  - command: Catalog/schema/provenance/source/links/strict-staging/distribution, portable helper and proposed
+      ADR metadata checks
     outcome: passed
-    notes: Canonical source checks pass; existing default provenance warning retained. Actual catalog
-      metadata candidate deliberately fails with no eligible skills; no tag is created.
-    observed_at: '2026-11-15T00:11:34Z'
+    notes: Actual generated package executes outside Aether with Python-I and bundled schema. Default
+      source keeps only historical provenance warning.734 staging files/222units/6,791,350 raw bytes remain
+      unchanged.
+    observed_at: '2026-11-15T00:27:56Z'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -150,53 +160,59 @@ Read AGENTS, the canonical sources below and verified live issue/PR state before
 
 ## Current objective and success conditions
 
-Repair existing first-party release source selection, payload and metadata without publishing or promoting an unqualified stable set.
+Complete the optional conversation-onboarding/checkpoint-ledger source extension while preserving bounded current continuity, privacy and current authority.
 
-- Workflow parses and a read-only PR source job can execute without entering dispatch-only publication.
-- Native disposable-Git tests reject moved tags, wrong source and non-default ancestry while provenance uses the selected immutable commit.
-- Exact selected channel/archive inventories and final checksums agree; repeated metadata/archive output is stable and canonical changelog notes are retained.
+- Opt-in authored discovery recovers active topic/artifacts/questions/next action without replaying chat or replacing root continuity.
+- Repeated and concurrent captures preserve source identity/provenance; corrections, unavailable state, privacy and current role limits remain explicit.
+- Canonical spec/skill/schema, generated portable resources and deterministic examples agree; no runtime/adoption/publication proof is inferred.
 
 ## State snapshot
 
-Observed default source `aefd467e00906f6ee95a6bc27dd96ab97db3f545`. Candidate `codex/release-source-integrity` is a review checkpoint; its containing revision remains null intentionally.
+Observed default source `919bb4874dd9376944f6459474c01e9f3a4d93ef`. Candidate `codex/conversation-continuity-extension` is a review checkpoint; its containing revision remains null intentionally.
 
 ## Completed and material changes
 
-Existing release workflow removes invalid job-level steps context and adds a read-only PR source qualification job. Tagged validation and protected publication remain dispatch-only. GH_TOKEN is mapped on CLI steps and checkout credentials are not persisted.
+Draft conversation-continuity0.1.0 composes unchanged repository-continuity1.0.0 and worker-strategy0.2.0. Authored opt-in AGENTS/onboarding templates route to current snapshot, separate meaningful discussion ledger and canonical artifacts. No new required files or first-party artifact kind.
 
-catalog/release_source.py binds the existing remote lightweight/annotated tag to full selected commit and current default-branch ancestry. Publication checks out the validated commit and refuses moved tags before rebuilding and immediately before publication.
+The schema and read-only portable helper preserve stable attributed requests, decisions/proposals, interpretations/attempts/feedback, exact revisions, unknowns, questions and next action. Prepared/validated/merged/published/provider-submitted remain separate evidence claims.
 
-Release tooling selects only stable/release-included skill inventories and eligible governed catalogs. Channel payload and deterministic archive share exact paths; draft/provider/unlisted/prior-output data is excluded without deleting development distributions.
+Native controls exercise unchanged capture, append correction, deterministic concurrent union/collision refusal, missing/future/cyclic links, unsafe references, classified private inputs, bounded regular-file admission and source-withholding diagnostics. No helper writes or network requests occur.
 
-Metadata uses acyclic checksums/provenance, requires full source SHA, recognizes canonical bracketed Unreleased, rejects unsafe input/output paths and refuses stale payload hashes. Synthetic stable-selection fixtures do not approve real artifacts.
+One isolated fresh process reads authored route, a schema-valid bounded current snapshot, saved ledger, exact committed artifact and actual Git branch/head/worktree without prior chat. Generated portable package validates outside Aether with Python-I. These are mechanical proofs only.
+
+Existing continuity skill1.2.0 discovers the optional route for default-bundle67 without enabling it. Canonical inventory, schema mirror, catalog and generated distributions are reconciled; corpus36specs/41skills/10agents. ADR0012 stays proposed/null.734 retained staging files and raw bytes are unchanged.
+
+Merged132 release repair now has actual hosted read-only parse/job-creation proof at13f7508/run43657025924, with tagged validation/publication skipped. Its dated source receipt is updated to retain that bounded observation.38 stays open.
 
 ## Validation and review evidence
 
-`./aether test` — passed: 351 full tests pass with11 existing explicit optional/native skips; no gate weakened.
+`./aether test` — passed: 359 full tests pass with11 existing optional/native skips.
 
-`python -m unittest tests.test_release_artifacts tests.test_release_workflow tests.test_repository_release_contract -q` — passed: 24 focused tests include actual disposable Git origins and selected-payload/hash/archive controls.
+`python -m unittest tests.test_conversation_continuity tests.test_continuity_integration -q` — passed: 16 focused methods pass, including actual isolated saved-file/Git recovery with schema-valid bounded checkpoint.
 
-`actionlint1.7.7 -shellcheck= -pyflakes= .github/workflows/release-first-party-skills.yml` — passed: Checksum-verified official binary reproduced the prior invalid steps context and accepts changed source. Optional external lint integrations disabled; every workflow shell body separately passes bash -n.
+`./aether eval run --skill maintain-conversation-checkpoint --mode deterministic --format json` — passed: 12 declared structure/golden assertion cases pass withzero skips/suite errors; not model judgment.
 
-`Source/catalog/links/shell/distribution, release-declaration and staging ledger checks` — passed: Canonical source checks pass; existing default provenance warning retained. Actual catalog metadata candidate deliberately fails with no eligible skills; no tag is created.
+`Catalog/schema/provenance/source/links/strict-staging/distribution, portable helper and proposed ADR metadata checks` — passed: Actual generated package executes outside Aether with Python-I and bundled schema. Default source keeps only historical provenance warning.734 staging files/222units/6,791,350 raw bytes remain unchanged.
 
-No new architectural choice: implements existing explicit/manual first-party release path, owner boundaries and stable-selection rules. No replacement preparation engine, catalog lifecycle decision or public schema is introduced. Roadmap impact: updated factual partial evidence on AET-Q02/AET-Q04 only; both broader release gates remain unmet.
+Proposed ADR0012 records the optional separate evidence output choice. Approval remains null; integration supplies no human policy disposition. Roadmap impact: not-affected within existing authoring corpus.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Actual Aether catalog has no release-eligible first-party skills; metadata preparation refuses the candidate. No lifecycle/rights status, reviewed stable set, tag or release is created or promoted.
+The extension, ledger schema and ADR0012 remain draft/proposed with null approval. Source integration does not authenticate user decisions, human review, private prose classification or downstream policy/adoption.
 
-Installed GitHub CLI has no skill command. Native consumer acceptance remains blocked/not-ready; portable pilot governing dependencies and remote install/update/deprecation/rollback remain issue38 obligations.
+No repository is opted in or receives a live ledger/onboarding installation. Static guidance installs no background memory, context warning, saving hook or zero-loss guarantee. Isolated-process recovery proves mechanical file/Git access, not model/host effectiveness.
 
-Actionlint validates workflow expressions and native disposable-Git/metadata fixtures qualify source behavior. Hosted PR source-job creation is pending; dispatch-only tagged jobs and publication are not exercised. Token mapping is source wiring, not credential or publication proof.
+The helper does not load prior segments, resolve cross-segment identities, fetch live provider state, write files or redact history. Missing access/prior context is explicit. Public admission rejects classified private sources but still needs content review.
+
+Existing38 real consumer qualification remains not-ready: no real release-eligible skills, no installed gh skill adapter and no actual publication or remote acceptance. Eleven existing optional/native test skips remain explicit.
 
 ## Next dependency-ready work
 
-After source qualification, compose optional conversation checkpoint/evidence extension with continuity; release38 stays open for a reviewed real stable set, available adapter, portable package dependencies and actual authorized remote proof.
+Define optional repository-owned exploration notes as authored document outputs; compose brain-dump/continuity boundaries and qualify a reviewed local opt-in canary without new artifact kind, automatic promotion or fleet rollout.
 
 ## Parallel changes and reconciliation
 
-Preserve131 checkpoint guidance,130 roadmap controls,129 staging guard and unchanged734 staging blobs. Original audit history and proposed ADR disposition remain unchanged.
+Preserve132 release source repairs and its not-ready consumer gate,131 worker guidance,130 roadmap module and129 staging controls. Historical audit and source-rights dispositions remain unchanged.
 
 ## Privacy and redaction
 

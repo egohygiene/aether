@@ -52,8 +52,11 @@
     ]
   },
   "hosted_job_creation": {
-    "status": "not-run",
-    "reason": "Pending exact-head PR source qualification; publication jobs must remain skipped on PR"
+    "status": "pass",
+    "observed_at": "2026-11-15T00:12:47Z",
+    "source_revision": "13f7508638006b996da456ee61760c6a82c410ba",
+    "run": "https://github.com/egohygiene/aether/actions/runs/43657025924",
+    "scope": "Read-only PR source job executed; both tagged validation/publication jobs skipped. Not tagged-release job completion or publication proof."
   },
   "current_real_catalog": {
     "exit_code": 1,
@@ -64,7 +67,7 @@
   "limitations": [
     "Actual Aether catalog has no release-eligible first-party skills; metadata preparation refuses the candidate. No lifecycle/rights status, reviewed stable set, tag or release is created or promoted.",
     "Installed GitHub CLI has no skill command. Native consumer acceptance remains blocked/not-ready; portable pilot governing dependencies and remote install/update/deprecation/rollback remain issue38 obligations.",
-    "Actionlint validates workflow expressions and native disposable-Git/metadata fixtures qualify source behavior. Hosted PR source-job creation is pending; dispatch-only tagged jobs and publication are not exercised. Token mapping is source wiring, not credential or publication proof."
+    "Actionlint validates workflow expressions and native disposable-Git/metadata fixtures qualify source behavior. Hosted PR source-job creation passed; dispatch-only tagged jobs and publication are not exercised. Token mapping is source wiring, not credential or publication proof."
   ],
   "adr": "No new architectural choice: implements existing explicit/manual first-party release path, owner boundaries and stable-selection rules. No replacement preparation engine, catalog lifecycle decision or public schema is introduced."
 }

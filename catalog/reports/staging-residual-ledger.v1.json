@@ -1,7 +1,7 @@
 {
   "schema_version": "aether.staging-residual-ledger/v1",
   "source": {
-    "revision": "835561fb5e54d11538e869825a5457e68e3c6582",
+    "revision": "faa865ee38d70a5e0c750e5367789453f9eabcff",
     "staging_tree": "02941cf65a1cb3c62b9a497373f24badad041b6b",
     "hash_algorithm": "sha256-raw-git-blob",
     "generator": "catalog.staging_ledger/v1"
