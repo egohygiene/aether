@@ -17,7 +17,7 @@
 | Workflow | Trigger | Permissions | Purpose |
 | --- | --- | --- | --- |
 | `.github/workflows/pr-validation.yml` | `pull_request` | `contents: read` | Deterministic tests and explicit local consumer qualification; no publish credentials |
-| `.github/workflows/release-first-party-skills.yml` | Manual dispatch from the default branch with an existing `release_tag` | read-only validation job, `contents: write` only in gated publish job | Explicit immutable tagged publication |
+| `.github/workflows/release-first-party-skills.yml` | Changed release tooling PR, or manual dispatch from the default branch with an existing `release_tag` | PR source qualification and tagged validation are read-only; `contents: write` only in dispatch-only gated publish job | Qualify source independently; explicit immutable tagged publication remains gated |
 
 The publication job targets the `first-party-skill-release` environment. Configure
 required reviewers there so publication remains deliberate and reviewable.
@@ -92,7 +92,7 @@ the broader release workflow can run successfully.
 
 1. Create the exact immutable tag from reviewed default-branch history, then
    manually dispatch the workflow from the default branch with `release_tag`.
-2. Check out the tagged commit in a clean runner.
+2. Resolve the existing remote tag to its full commit, check out that commit in a clean runner, and verify it is on current default-branch history. Lightweight and annotated tags are supported. The publication job checks out the validated commit and rechecks the remote tag before rebuilding and immediately before publishing; a moved tag is refused. Workflow-dispatch `GITHUB_SHA` is never the selected release authority.
 3. Rebuild `dist/`, rerun deterministic validation/tests/evals and the explicit release-scope consumer gate, and verify two-build reproducibility.
 4. Generate release metadata with:
 
@@ -100,15 +100,17 @@ the broader release workflow can run successfully.
    python3 library/organization/skills/build-release-artifacts.py \
      --release-tag "v1.2.3" \
      --output-directory "dist" \
-     --commit-sha "<sha>"
+     --commit-sha "<full 40-character selected source commit>" \
+     --payload-directory ".artifacts/release-candidate/payload" \
+     --archive ".artifacts/release-candidate/aether-v1.2.3-dist.tar.gz"
    ```
 
 5. Confirm `dist/release/release-manifest.v1.json` matches the approved tag.
-6. Run `gh skill publish "dist" --dry-run`.
-7. After environment approval, rebuild from the same tag, rerun the dry-run, and publish with:
+6. Run `gh skill publish ".artifacts/release-candidate/payload" --dry-run` only with a compatible adapter. The payload is an unused directory outside `dist/`, built from selected stable skill and eligible governed-catalog inventories plus exactly five release metadata files. Draft skills, unselected provider projections, unlisted files, and prior release outputs are excluded. Manifest escapes, symlinks and special files are refused. The archive has the same exact inventory; nothing is archived by sweeping all of `dist/`.
+7. After explicit publication authorization and environment approval, rebuild from the validated full commit, recheck the unchanged tag, rerun the dry-run, and publish the selected payload with:
 
    ```sh
-   gh skill publish "dist" --tag "v1.2.3"
+   gh skill publish ".artifacts/release-candidate/payload" --tag "v1.2.3"
    ```
 
 8. Attach the release bundle archive plus:
@@ -125,17 +127,32 @@ it never replaces a published asset. Tags are never rewritten.
 
 - `release-manifest.v1.json` — repository tag plus release-eligible first-party skills
 - `release-manifest.v1.json` may also list release-eligible governed catalogs, with their exact version and digest
-- `checksums.txt` — SHA-256 digests for generated release payload files
-- `release-provenance.v1.json` — source commit, included artifacts, and output digests
+- `checksums.txt` — SHA-256 digests for the exact selected payload, including the final provenance file; excludes itself to avoid a hash cycle
+- `release-provenance.v1.json` — selected immutable source commit, included artifacts, and digests of selected distribution files plus manifest/license/notes; excludes generated provenance and checksums to avoid self-reference
 - `LICENSE.notices.txt` — repository license plus included artifact license summary
-- `release-notes.md` — included artifacts plus the current `## Unreleased` changelog excerpt
+- `release-notes.md` — included artifacts plus the current canonical `## [Unreleased]` changelog excerpt (legacy unbracketed input remains recognized)
+
+Repeated metadata generation overwrites only its five named outputs, retains unknown
+prior files without including them, and is byte-identical for identical selected
+inputs. Before staging the payload, final checksums/provenance must match its
+actual bytes. The tar/gzip archive normalizes names, timestamps, ownership and
+permission bits while preserving whether a selected resource is executable.
+Payload/archive destinations must be unused; no unrelated output is overwritten.
+
+The read-only PR job runs native disposable-Git tag/commit controls and synthetic
+stable-selection, archive-inventory, checksum and repeatability cases. It proves
+that GitHub parses this workflow and creates its source-qualification job at the
+changed revision. It never enters the release validation/publication jobs. This
+is not tagged-release job completion or consumer acceptance. `GH_TOKEN` is mapped
+explicitly only on CLI steps, with the containing job's scoped token; checkout
+does not persist credentials. Secret availability is not asserted by source.
 
 ## Preview GitHub CLI compatibility
 
-`gh skill` is currently preview functionality. The workflows assume the current CLI contract:
+`gh skill` is an unqualified preview adapter here. The installed CLI may not provide it; missing capabilities keep consumer qualification blocked. These are the existing adapter assumptions to validate before publication:
 
-- `gh skill publish "dist" --dry-run` validates without publishing
-- `gh skill publish "dist" --tag "<tag>"` publishes non-interactively
+- `gh skill publish "<selected-payload>" --dry-run` validates without publishing
+- `gh skill publish "<selected-payload>" --tag "<tag>"` publishes non-interactively
 
 If GitHub CLI changes the preview contract, update the workflows and this guide in the
 same pull request.

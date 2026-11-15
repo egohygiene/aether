@@ -10,6 +10,15 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ## [Unreleased]
 
+### Fixed
+
+- Repair release workflow context evaluation and bind tagged validation/publication
+  to the exact selected commit, with explicit CLI token mapping and moved-tag refusal.
+- Stage only release-selected distribution inventories, generate stable metadata
+  without cyclic/prior-output hashes, and archive the same selected payload.
+- Read canonical bracketed Unreleased notes. Read-only PR qualification exercises
+  source controls without publishing or promoting draft artifacts.
+
 - Extend worker-strategy with proportional issue sizing, preserved scope/identity, intermediate saves and fresh-session recovery; compose a thin shared checkpoint skill without changing actor tools.
 
 
