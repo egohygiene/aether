@@ -3,14 +3,14 @@ name: review-architecture-coherence
 description: Reconstructs a repository, subsystem, or organization architecture from exact source revisions and prepares a portable evidence-based explanation and coherence assessment for its human alignment authority. Use when reviewing architecture drift, ownership or dependency concerns, consequential design changes, or an explicit sanity review; never use it to imply AI ratification or authorize implementation.
 license: MIT
 metadata:
-  aether-version: "1.0.0"
+  aether-version: "1.0.1"
   aether-status: "draft"
   aether-spec-id: "architecture-coherence-review"
   aether-scope: "organization"
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-11-10"
-  aether-updated: "2026-11-14"
+  aether-updated: "2026-11-15"
   aether-executable-resources:
     - "scripts/architecture_coherence.py"
     - "scripts/architecture_coherence_governance.py"
@@ -113,3 +113,9 @@ draft; artifact implementation is not owner policy selection, skill
 adoption or real human ratification. Deterministic helper checks cover only the
 tested contract cases; model routing, host adoption and real human ratification
 remain separate qualification work.
+
+The [six fictional scenario examples](references/scenario-qualification.md) cover
+coherent, over-engineered, contradictory, incomplete, stale and insufficient-
+evidence reviews. Native schema/helper tests preserve the human boundary; they
+do not establish that a model made those judgments or that a real human ratified
+anything. Captured owner resources and their exact source lock are unchanged.

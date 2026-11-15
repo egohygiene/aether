@@ -1,0 +1,239 @@
+{
+  "schema": "egohygiene.architecture-coherence-review/v1",
+  "contract_version": "1.0.0-alpha.1",
+  "id": "synthetic-coherent",
+  "visibility": "public",
+  "scope": {
+    "kind": "repository",
+    "key": "egohygiene/aether",
+    "repositories": [
+      "egohygiene/aether"
+    ]
+  },
+  "represented_revisions": [
+    {
+      "repository": "egohygiene/aether",
+      "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "generated_at": "2026-11-14T10:00:00Z",
+  "reviewer": {
+    "kind": "ai",
+    "provider": null,
+    "model": null,
+    "method": "Synthetic local contract fixture; no real review occurred.",
+    "independent_challenge": "not-performed"
+  },
+  "execution": {
+    "status": "complete",
+    "completed_at": "2026-11-14T09:00:00Z",
+    "limitations": [
+      "Synthetic evidence does not qualify a real architecture."
+    ]
+  },
+  "sources": [
+    {
+      "id": "architecture",
+      "repository": "egohygiene/aether",
+      "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "path": "ARCHITECTURE.md",
+      "kind": "architecture",
+      "origin": "canonical",
+      "visibility": "public",
+      "url": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ARCHITECTURE.md"
+    }
+  ],
+  "explanation": {
+    "system": "The fixture represents a repository of reusable contracts.",
+    "boundaries": "The source library owns its public contracts.",
+    "flows": "Consumers read versioned artifacts from the library.",
+    "rationale": "One declared source avoids duplicated contract ownership.",
+    "summary": "Fictional coherent scenario; the reviewer recommendation remains advisory and no human disposition exists."
+  },
+  "components": [
+    {
+      "id": "library",
+      "name": "Contract library",
+      "responsibility": "Own reusable draft artifacts.",
+      "owner": "Ego Hygiene",
+      "evidence": [
+        "architecture"
+      ]
+    }
+  ],
+  "relationships": [],
+  "dimensions": [
+    {
+      "id": "purpose",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "responsibility-boundaries",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "source-of-truth",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "dependency-direction",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "cohesion",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "duplicate-ownership",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "speculative-abstractions",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "missing-ownership",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "coupling",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "documentation-divergence",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "decision-consistency",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "replaceability",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "operational-plausibility",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "security-privacy-trust",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "maintainability",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "justified-complexity",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "simplest-credible-alternative",
+      "status": "coherent",
+      "summary": "The fictional architecture declares a bounded consistent responsibility; this is authored scenario input, not an automated judgment.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "assumptions": [],
+  "strengths": [
+    {
+      "id": "single-owner",
+      "summary": "The fixture names one contract owner.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "low"
+    }
+  ],
+  "concerns": [],
+  "questions": [],
+  "alternatives": [],
+  "recommendation": {
+    "disposition": "ratify",
+    "reason": "Synthetic advisory recommendation only; no human decision exists."
+  },
+  "governance": null
+}

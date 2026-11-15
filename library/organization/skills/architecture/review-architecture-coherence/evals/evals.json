@@ -1,7 +1,7 @@
 {
   "schema": "aether.skill-evaluations/v2",
   "skill": "review-architecture-coherence",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "cases": [
     {
       "id": "bounded-review",
@@ -107,6 +107,46 @@
       "expected": [
         "Refuse to manufacture human authority or infer ratification from silence",
         "Preserve the real human alignment boundary"
+      ]
+    },
+    {
+      "id": "six-scenario-contracts",
+      "description": "Inspect coherent, over-engineered, contradictory, incomplete, stale and insufficient-evidence authored review inputs.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve authored concerns and credible alternatives without claiming automated architectural judgment",
+        "Keep missing and stale inputs distinct from current human ratification"
+      ],
+      "assertions": [
+        {
+          "type": "file-exists",
+          "value": "references/scenario-qualification.md"
+        },
+        {
+          "type": "file-exists",
+          "value": "references/examples/coherent.json"
+        },
+        {
+          "type": "file-exists",
+          "value": "references/examples/over-engineered.json"
+        },
+        {
+          "type": "file-exists",
+          "value": "references/examples/contradictory.json"
+        },
+        {
+          "type": "file-exists",
+          "value": "references/examples/incomplete.json"
+        },
+        {
+          "type": "file-exists",
+          "value": "references/examples/stale.json"
+        },
+        {
+          "type": "file-exists",
+          "value": "references/examples/insufficient-evidence.json"
+        }
       ]
     }
   ]
