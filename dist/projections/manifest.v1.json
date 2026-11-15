@@ -64,6 +64,19 @@
           },
           "status": "draft",
           "version": "1.0.0"
+        },
+        {
+          "id": "worker-strategy",
+          "skill": "execute-issue-checkpoint",
+          "source": "library/organization/projections/templates/worker-strategy.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8"
+          },
+          "spec": "worker-strategy",
+          "spec_version": "0.2.0",
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
@@ -72,7 +85,7 @@
       "source": "library/organization/agents/architect/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "9cdc23dbd28702eb593f0c6c4e04903134d89258b20714635cd07e309119f825"
+        "value": "9172ef4900fea193a6a7c62b23eb960d8d6a2cd8a60bc311566e2f4192809f52"
       }
     },
     "arxiv-publisher": {
@@ -139,6 +152,19 @@
           },
           "status": "draft",
           "version": "1.0.0"
+        },
+        {
+          "id": "worker-strategy",
+          "skill": "execute-issue-checkpoint",
+          "source": "library/organization/projections/templates/worker-strategy.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8"
+          },
+          "spec": "worker-strategy",
+          "spec_version": "0.2.0",
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
@@ -147,7 +173,7 @@
       "source": "library/organization/agents/arxiv-publisher/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "5d6ca94692a752341238925b06a4734e63f5b3b19c845102efc4d3e698019484"
+        "value": "bcd5631f778ce763601f8046de0cdccf791af127435087611d1ad05eb189cef4"
       }
     },
     "auditor": {
@@ -214,6 +240,19 @@
           },
           "status": "draft",
           "version": "1.0.0"
+        },
+        {
+          "id": "worker-strategy",
+          "skill": "execute-issue-checkpoint",
+          "source": "library/organization/projections/templates/worker-strategy.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8"
+          },
+          "spec": "worker-strategy",
+          "spec_version": "0.2.0",
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
@@ -222,7 +261,7 @@
       "source": "library/organization/agents/auditor/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "bcefb025191a42cf51379f9150a0cc2aabc67b3feb215ab2dbf5f79bc3766951"
+        "value": "5b460370cc9286ac9d34d306a8e135804a06cb50dbf66dbbc56a3dbc9c34715d"
       }
     },
     "bug-fix-teammate": {
@@ -289,6 +328,19 @@
           },
           "status": "draft",
           "version": "1.0.0"
+        },
+        {
+          "id": "worker-strategy",
+          "skill": "execute-issue-checkpoint",
+          "source": "library/organization/projections/templates/worker-strategy.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8"
+          },
+          "spec": "worker-strategy",
+          "spec_version": "0.2.0",
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
@@ -297,7 +349,7 @@
       "source": "library/organization/agents/bug-fix-teammate/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "ab2dba1754f3205ed29d58fb274645449bf9a71b150e3af7d8e62933b8f08d2c"
+        "value": "8093ad7a566af27ab784b62bd2355b71f97e5fec827d022635520cfa8583c1cc"
       }
     },
     "cleanup-specialist": {
@@ -364,6 +416,19 @@
           },
           "status": "draft",
           "version": "1.0.0"
+        },
+        {
+          "id": "worker-strategy",
+          "skill": "execute-issue-checkpoint",
+          "source": "library/organization/projections/templates/worker-strategy.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8"
+          },
+          "spec": "worker-strategy",
+          "spec_version": "0.2.0",
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
@@ -372,7 +437,7 @@
       "source": "library/organization/agents/cleanup-specialist/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "769629360fa1203122eb78b972b6be72930edfce0614993fe815641569b038f9"
+        "value": "065f2f6d54f7e5a30d6aee68db0bdda3904a68c356f40dd71d0f60f150458248"
       }
     },
     "github-issue-creator": {
@@ -441,6 +506,19 @@
           "version": "1.0.0"
         },
         {
+          "id": "worker-strategy",
+          "skill": "execute-issue-checkpoint",
+          "source": "library/organization/projections/templates/worker-strategy.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8"
+          },
+          "spec": "worker-strategy",
+          "spec_version": "0.2.0",
+          "status": "draft",
+          "version": "1.0.0"
+        },
+        {
           "id": "issue-authoring",
           "selection": "library/organization/skills/authoring/github-issue-authoring/references/issue-title-contract/selection.v1.json",
           "selection_sha256": "435d9310e49ee10cafa3f477c2080a88e666a247e9496dc40dbb17356d319582",
@@ -460,7 +538,7 @@
       "source": "library/organization/agents/github-issue-creator/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "4ee63878b03264a9a360adfff2a0c2f996cd36ec455a33c56e2ea1d0fb680af7"
+        "value": "2d25b717c05acb7e87c41f2f3b4221c9898a62402913685d1559980d3fa3a0c9"
       }
     },
     "implementation-planner": {
@@ -527,6 +605,19 @@
           },
           "status": "draft",
           "version": "1.0.0"
+        },
+        {
+          "id": "worker-strategy",
+          "skill": "execute-issue-checkpoint",
+          "source": "library/organization/projections/templates/worker-strategy.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8"
+          },
+          "spec": "worker-strategy",
+          "spec_version": "0.2.0",
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
@@ -535,7 +626,7 @@
       "source": "library/organization/agents/implementation-planner/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "d179778b85169628647f555a67b0f72c019928dd44c19048fe2664c28ee728e4"
+        "value": "08cfb08b81bd72b49ec61ff26d28817594189c15a41a078dd3cf1b65fd8c36b5"
       }
     },
     "local-ci-triager": {
@@ -602,6 +693,19 @@
           },
           "status": "draft",
           "version": "1.0.0"
+        },
+        {
+          "id": "worker-strategy",
+          "skill": "execute-issue-checkpoint",
+          "source": "library/organization/projections/templates/worker-strategy.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8"
+          },
+          "spec": "worker-strategy",
+          "spec_version": "0.2.0",
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
@@ -610,7 +714,7 @@
       "source": "library/organization/agents/local-ci-triager/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "3cd2e8bb28c45675432be4eae15f8a70acd3f2bda4c753c1e43c01cb92b93526"
+        "value": "8aa0b12a171ee0f042c49e37b4f4ecbdb68037782e34f807fe1fa0d607459b0d"
       }
     },
     "specfile-creator": {
@@ -677,6 +781,19 @@
           },
           "status": "draft",
           "version": "1.0.0"
+        },
+        {
+          "id": "worker-strategy",
+          "skill": "execute-issue-checkpoint",
+          "source": "library/organization/projections/templates/worker-strategy.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8"
+          },
+          "spec": "worker-strategy",
+          "spec_version": "0.2.0",
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
@@ -685,7 +802,7 @@
       "source": "library/organization/agents/specfile-creator/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "e75c5cc1826c2c82aa3b124cc8cea330f31f5972fc5dcb1049f0b25e3a7e1554"
+        "value": "3269baa02cad6b836c292d24beaff91e3100500bcd8463714fd092c619f6a74b"
       }
     },
     "test-specialist": {
@@ -752,6 +869,19 @@
           },
           "status": "draft",
           "version": "1.0.0"
+        },
+        {
+          "id": "worker-strategy",
+          "skill": "execute-issue-checkpoint",
+          "source": "library/organization/projections/templates/worker-strategy.AGENTS.md",
+          "source_digest": {
+            "algorithm": "sha256-utf8-lf",
+            "value": "e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8"
+          },
+          "spec": "worker-strategy",
+          "spec_version": "0.2.0",
+          "status": "draft",
+          "version": "1.0.0"
         }
       ],
       "interface": "aether.projection-interface/v1",
@@ -760,7 +890,7 @@
       "source": "library/organization/agents/test-specialist/AGENT.md",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "1ae69729b104a2ceeae682f98e21a0fcca386f38925f9e27ad6e6c4b25f375d9"
+        "value": "4223fa7d32e47bab93db3eb02e3398f2084dc8a5d1022b17d991ec535b655bbc"
       }
     }
   },
@@ -769,7 +899,7 @@
     "source": "library/organization/instructions/repository-continuity/continuity-dispositions.v1.json",
     "source_digest": {
       "algorithm": "sha256-utf8-lf",
-      "value": "3d991bda6458c6afba5a53e36fefc006a1b3f587c087891d826e75d5e498b535"
+      "value": "9d89345139e815178556292cf3cf5685f3593cb0cb1795d9dfde50ba162290fd"
     }
   },
   "generator": "library/organization/projections/build-projections.py",
@@ -777,139 +907,139 @@
   "outputs": [
     {
       "path": "dist/claude/repository/.claude/agents/architect.md",
-      "sha256": "13ca27bfc888c765a3d86fce29e431cda7e2f4c05ce002106e503466fe6c467e"
+      "sha256": "68662a982ee357889b4569d3666709423c520985c968dcb845e15eff29ba24fd"
     },
     {
       "path": "dist/claude/repository/.claude/agents/arxiv-publisher.md",
-      "sha256": "e8d4c215103dae45f7f5e22c02cd2efd16fa9e70204f4b5d0da34dee278564b0"
+      "sha256": "9f1b1c96078b425112887737b496987b20235fa64c255ae29e1dd937790edcb4"
     },
     {
       "path": "dist/claude/repository/.claude/agents/auditor.md",
-      "sha256": "89fa226afa907cef338a559a132ed85e0e903e96a9d47f01146e2804d5e3d01e"
+      "sha256": "4f4ee8c0e4aaef06dbd97b10fa36bc7532fa57d2e3ccc2243fc3d10a06ad7153"
     },
     {
       "path": "dist/claude/repository/.claude/agents/bug-fix-teammate.md",
-      "sha256": "caac4ad75ca82a7d4c7dbc5475df0651a772b5ced858645ad7aaa00ecc4b6cbb"
+      "sha256": "86b701f84a642706a3906cdb9d68ac915686f76d612eeef9f46f5765e9d4c949"
     },
     {
       "path": "dist/claude/repository/.claude/agents/cleanup-specialist.md",
-      "sha256": "df3bc69cee67e8b4f266b66877bef8d8b3a49c2f26029c097c7369e58c3e1f53"
+      "sha256": "250dc7d5f741883b6ebb024a749a91b9b19cdc623ee855703d51564eebd70c35"
     },
     {
       "path": "dist/claude/repository/.claude/agents/github-issue-creator.md",
-      "sha256": "7906defe462730efc44a5e2a290956ee7c196936226a30f6e95c7bda741c5c1e"
+      "sha256": "8996fbd55d417cb561c6f97cfdfd3cf5b0a1b59a111fe2dfc9bd107ae9d1b9a4"
     },
     {
       "path": "dist/claude/repository/.claude/agents/implementation-planner.md",
-      "sha256": "0909bc071dd51d92cd284b70d35e42775e822234072c2d097d658295ba0042cf"
+      "sha256": "7082880050f42adba4a80b0547f5647d0939b72a57e1166cbbde3b6745fb6144"
     },
     {
       "path": "dist/claude/repository/.claude/agents/local-ci-triager.md",
-      "sha256": "577fff09b0b4a9523264e84b8d35072d5a2af5b8a530d48d3673c989c9cdddd9"
+      "sha256": "bf7b2edaecd9ceef5c08762571082c3c32cb84e2e2d72152edd5b06531155ce3"
     },
     {
       "path": "dist/claude/repository/.claude/agents/specfile-creator.md",
-      "sha256": "f4158bcb42e6f7015265ce2cae99d46fdd7d844e8bcb47404c28ea9c99e3af40"
+      "sha256": "49fe841c4da63bcda4dfdcc72dcf15148213a0c416a942076c1819a2ae6c30a2"
     },
     {
       "path": "dist/claude/repository/.claude/agents/test-specialist.md",
-      "sha256": "11484a7725ca076490100ddea7ec4db325df13ba3b42a1fa269e3973736e03c3"
+      "sha256": "0755732b65d2f8b14f4bd2d73df493ade51371dc01818037e7ad05da9031313d"
     },
     {
       "path": "dist/claude/repository/CLAUDE.md",
-      "sha256": "c0ec9a4bddf6bbce53f5340eda86ea7cea217af82d9e0750c3a3fd6ddcfad334"
+      "sha256": "fce1bfd3acbd2c190e849ac07ebf2476ae788672c75997b1104c4a67080f745f"
     },
     {
       "path": "dist/codex/repository/AGENTS.md",
-      "sha256": "0630280698499b38a4471c60ede6ed238c92d214b41fda49fb89785cc035f78b"
+      "sha256": "5f16f9952465e849faeafe80987bb3d4ad2aae83da869c11184537a6616462f9"
     },
     {
       "path": "dist/fixtures/repository-instructions/AGENTS.md",
-      "sha256": "0630280698499b38a4471c60ede6ed238c92d214b41fda49fb89785cc035f78b"
+      "sha256": "5f16f9952465e849faeafe80987bb3d4ad2aae83da869c11184537a6616462f9"
     },
     {
       "path": "dist/github/organization/agents/architect.agent.md",
-      "sha256": "a8692846783dafb90674551a7850f1830cb36543b896edd3f756c416e55aeeb4"
+      "sha256": "e511701bcfc716525c10b06f0cfa9419a2b7887f756e034d6068daf3bf2066ea"
     },
     {
       "path": "dist/github/organization/agents/arxiv-publisher.agent.md",
-      "sha256": "62a2b07645a7bbd059c443a097ef0f434089880764f1bf51df632842515062a7"
+      "sha256": "af489baaa5b4c09cde1bd2e7f6015552ec1a9ead072893f230b652a13e8e424c"
     },
     {
       "path": "dist/github/organization/agents/auditor.agent.md",
-      "sha256": "a09bfbba7c8a26d503b1a455fefab9b5d5cb198aa2ab44e85232d27fca5ae4cc"
+      "sha256": "587a222052c6ec831e0580a80e8613262ec62d5ef3c796302ee00a8d6d3b3281"
     },
     {
       "path": "dist/github/organization/agents/bug-fix-teammate.agent.md",
-      "sha256": "506227aef7e98dfcdd4aa2a4ade990edfe6c0280d1c04a97f4e695c2d4dc7c09"
+      "sha256": "64d1f5c9be862f6e8653d795c07d0f7add188625d0e9cbb2c203f12d50ab2184"
     },
     {
       "path": "dist/github/organization/agents/cleanup-specialist.agent.md",
-      "sha256": "2e0efda4650329d4c029e47d85a4b89b97a34bcf9bf2e67a3565386b28f5f1e3"
+      "sha256": "6476c803a4cbfdcf4acba21d01a36351407dca2c9bdbbd5b1ef2c614b23708d1"
     },
     {
       "path": "dist/github/organization/agents/github-issue-creator.agent.md",
-      "sha256": "bfb7bc322b6d737dc30d3b96243f4416e46a52c8c0f51ea2883d02949c639bed"
+      "sha256": "601fd14e6b94439d74a5c91e6ba3ea8c76ada8561aa2563137db631f196b58b7"
     },
     {
       "path": "dist/github/organization/agents/implementation-planner.agent.md",
-      "sha256": "f4d121f79fa15b374588446a6a8685520dd32798d8a0878eaf8d7ea32413b53a"
+      "sha256": "de2fda56b7991762199c9f91dd65887af0e9abfaa50df91690827efeb2bccefc"
     },
     {
       "path": "dist/github/organization/agents/local-ci-triager.agent.md",
-      "sha256": "0c0fab41299120bcdd9620668a0177b33f1c248b109f7329fe7c9fd2b86a175a"
+      "sha256": "eacfbafa201159d52f27a03397e3d3b157e56a8373bd1aa3b317cf10601cf349"
     },
     {
       "path": "dist/github/organization/agents/specfile-creator.agent.md",
-      "sha256": "58bf0598f67deefc660c513d2a1062b16ef883db0a865ad8a12efaee5de0b822"
+      "sha256": "42d6d3011641cc4276e66ab364ee3e972c9d58e20f53b70ada621d6731b969a0"
     },
     {
       "path": "dist/github/organization/agents/test-specialist.agent.md",
-      "sha256": "dbd4d67ec1966b1bcbe5a09263f0576e11f6b366dbd47576aece3d1545ef9342"
+      "sha256": "20ea6ca00f8f06f662b5b39f160b0cb387d929009eeb602bdba32866792f57f4"
     },
     {
       "path": "dist/github/repository/.github/agents/architect.agent.md",
-      "sha256": "5fc93dd64f2879bfdfc858a0b4efd9e371ae8e866bc65728607db909c1fba75c"
+      "sha256": "90c24bb9d75184f63957a272abe7ed806f44b48d57fbd6919e92474bc79c4b79"
     },
     {
       "path": "dist/github/repository/.github/agents/arxiv-publisher.agent.md",
-      "sha256": "43536ede5a559d7203936a1814f341f413ceb4b9ac86ccedd9554affaee785d0"
+      "sha256": "7935878ea71dc153d43d2ae941587f8c17d3ab314f596a771d8345416187d2c0"
     },
     {
       "path": "dist/github/repository/.github/agents/auditor.agent.md",
-      "sha256": "cabb5b463ab28f425024c4c5115c0e61bcec13e5f94658e94babbc23599101f4"
+      "sha256": "b0e2d22171f13e2f834d3f9dd3ce4dd5c2960604be472e965bc14fcb9c781789"
     },
     {
       "path": "dist/github/repository/.github/agents/bug-fix-teammate.agent.md",
-      "sha256": "506227aef7e98dfcdd4aa2a4ade990edfe6c0280d1c04a97f4e695c2d4dc7c09"
+      "sha256": "64d1f5c9be862f6e8653d795c07d0f7add188625d0e9cbb2c203f12d50ab2184"
     },
     {
       "path": "dist/github/repository/.github/agents/cleanup-specialist.agent.md",
-      "sha256": "2e0efda4650329d4c029e47d85a4b89b97a34bcf9bf2e67a3565386b28f5f1e3"
+      "sha256": "6476c803a4cbfdcf4acba21d01a36351407dca2c9bdbbd5b1ef2c614b23708d1"
     },
     {
       "path": "dist/github/repository/.github/agents/github-issue-creator.agent.md",
-      "sha256": "bad30a5839e12b9093f7684aeb08500409770f6637ededd76b88cae729d3e43d"
+      "sha256": "f8d45e99e8eb25ab23d7cf4a4ca9dd5b9fa8f667f17a9e16c64a6f69555a1c0f"
     },
     {
       "path": "dist/github/repository/.github/agents/implementation-planner.agent.md",
-      "sha256": "f4d121f79fa15b374588446a6a8685520dd32798d8a0878eaf8d7ea32413b53a"
+      "sha256": "de2fda56b7991762199c9f91dd65887af0e9abfaa50df91690827efeb2bccefc"
     },
     {
       "path": "dist/github/repository/.github/agents/local-ci-triager.agent.md",
-      "sha256": "c52362c045bd8845d2d06f64a2c2df5121e092e1afcb49999a0ca6893467d304"
+      "sha256": "501f3cd9bc8588d961c0f10af3323adb4a59b9c5d7ce9b67958fbdeb313efbcc"
     },
     {
       "path": "dist/github/repository/.github/agents/specfile-creator.agent.md",
-      "sha256": "df73f862958743132c1a322f8a737974ec7296c0d819778dc7b332d1a6903fc2"
+      "sha256": "1738e0104e56b328f9e652763042a7fd5c4bccc87ddcc3c30005c7bf62828225"
     },
     {
       "path": "dist/github/repository/.github/agents/test-specialist.agent.md",
-      "sha256": "dbd4d67ec1966b1bcbe5a09263f0576e11f6b366dbd47576aece3d1545ef9342"
+      "sha256": "20ea6ca00f8f06f662b5b39f160b0cb387d929009eeb602bdba32866792f57f4"
     },
     {
       "path": "dist/github/repository/.github/copilot-instructions.md",
-      "sha256": "025166b7118c6533ec783cc3d83bb116ffc995ce7b5a99223a0f8bd3d85a0995"
+      "sha256": "4b3fc23dbc847d1c691939b97673fc29ab6579ea242a6e3d253bf023b7534732"
     },
     {
       "path": "dist/mcp/github/.mcp.json",
@@ -917,51 +1047,51 @@
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/architect.md",
-      "sha256": "3452ffe64fb0f00db044c2f96d7be9a1fb93bf2c399c52bf199573c15143cf1e"
+      "sha256": "17cc28c6a0da92428df0ea1e19161d02f62f144b149b3a7e36afc135abc87a9b"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/arxiv-publisher.md",
-      "sha256": "9283205609bb0df318b6e09f359a240b94e5baf798c0a66b2ccdde648fe39b77"
+      "sha256": "d7ea7f131b0e2c8b4d8e1325919749a0a61b94326e7b20671c2bf149aba05a8e"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/auditor.md",
-      "sha256": "2319de30f15bbc63c0f721f5683e8ee23475118613a4b8e9641fddf6eb4c6b4c"
+      "sha256": "3ebac68dfb935542f9161b41766901f2f8b9f45f888307a29d010ef800fc172a"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/bug-fix-teammate.md",
-      "sha256": "99989b880a77b1b85141fc1f9b193b7f01cd034d19db62133ca9987feb1a45c3"
+      "sha256": "67726e7a4fa9b19a998447ef8d1f4e8d87880bf26a6a7d1437f4a573c6fed3db"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/cleanup-specialist.md",
-      "sha256": "ef005385dc70d25eb92cced8271f4551766992ffc57255fef1e494940d036d6a"
+      "sha256": "6c304754fd909e8a285a4f1f77ffc372344505e935d402b590e25b31ee751e07"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/github-issue-creator.md",
-      "sha256": "47db22b66086650674e6f4dda9a4deb708c6e4008b80ec6b445b4e92ef4b0d43"
+      "sha256": "878da801ca6201b00185d0a5fbac4c5bfb44b84c8bc9df2c718166354c06893a"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/implementation-planner.md",
-      "sha256": "441a54ecd928b6a36d578025fe00ef0236ea4cd07a1d69ace39808ad097e1fb6"
+      "sha256": "fe86f48ec2147beef2378ab386f355ca391dbfa5c235c0a5756ae383a0e5b4de"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/local-ci-triager.md",
-      "sha256": "61e13d71c0e5508961cbddf917a2d14c831786b0d485532cee1112f7f04c5088"
+      "sha256": "2a4de3e66796e493b3e634d14e04d68c2f3c7f631cf290d26dd6038b5dfec6ae"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/specfile-creator.md",
-      "sha256": "c80420fbe4f0a4f8c2b3c1a867bbfd0b26faa8044d9c5ccba8704db64e1c4b18"
+      "sha256": "897920005ab66d1b39941436cca5264790ebffd61259800c65a8c711e16c629b"
     },
     {
       "path": "dist/opencode/repository/.opencode/agents/test-specialist.md",
-      "sha256": "c039991095a7d48eddd1c3d7d3fa641b009f57ecbf966536127b611d48673723"
+      "sha256": "596fa000067a20d3cc097befe32ddbba36b4b32f107f2a073c8600a1f9a220c0"
     },
     {
       "path": "dist/projections/continuity-dispositions.v1.json",
-      "sha256": "3d991bda6458c6afba5a53e36fefc006a1b3f587c087891d826e75d5e498b535"
+      "sha256": "9d89345139e815178556292cf3cf5685f3593cb0cb1795d9dfde50ba162290fd"
     },
     {
       "path": "dist/zencoder/manual-import/agents.json",
-      "sha256": "7219f1ca23e0ede17f2fc8a085d4993e50b1af3c0a710653862e774c90b804c1"
+      "sha256": "1c3057c1bc9e6db17f196654dafb61810f7f4b351d90197d5370c2ef2a6b8aee"
     }
   ],
   "provider_registry": "library/organization/projections/provider-registry.v1.json",

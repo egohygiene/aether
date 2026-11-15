@@ -1,7 +1,7 @@
 {
   "schema_version": "aether.staging-residual-ledger/v1",
   "source": {
-    "revision": "0030c546498556b2a8febb4ef50958ae79977d50",
+    "revision": "835561fb5e54d11538e869825a5457e68e3c6582",
     "staging_tree": "02941cf65a1cb3c62b9a497373f24badad041b6b",
     "hash_algorithm": "sha256-raw-git-blob",
     "generator": "catalog.staging_ledger/v1"
@@ -81,39 +81,39 @@
     },
     {
       "path": "library/organization/agents/architect/AGENT.md",
-      "sha256": "9cdc23dbd28702eb593f0c6c4e04903134d89258b20714635cd07e309119f825"
+      "sha256": "9172ef4900fea193a6a7c62b23eb960d8d6a2cd8a60bc311566e2f4192809f52"
     },
     {
       "path": "library/organization/agents/arxiv-publisher/AGENT.md",
-      "sha256": "5d6ca94692a752341238925b06a4734e63f5b3b19c845102efc4d3e698019484"
+      "sha256": "bcd5631f778ce763601f8046de0cdccf791af127435087611d1ad05eb189cef4"
     },
     {
       "path": "library/organization/agents/auditor/AGENT.md",
-      "sha256": "bcefb025191a42cf51379f9150a0cc2aabc67b3feb215ab2dbf5f79bc3766951"
+      "sha256": "5b460370cc9286ac9d34d306a8e135804a06cb50dbf66dbbc56a3dbc9c34715d"
     },
     {
       "path": "library/organization/agents/bug-fix-teammate/AGENT.md",
-      "sha256": "ab2dba1754f3205ed29d58fb274645449bf9a71b150e3af7d8e62933b8f08d2c"
+      "sha256": "8093ad7a566af27ab784b62bd2355b71f97e5fec827d022635520cfa8583c1cc"
     },
     {
       "path": "library/organization/agents/cleanup-specialist/AGENT.md",
-      "sha256": "769629360fa1203122eb78b972b6be72930edfce0614993fe815641569b038f9"
+      "sha256": "065f2f6d54f7e5a30d6aee68db0bdda3904a68c356f40dd71d0f60f150458248"
     },
     {
       "path": "library/organization/agents/github-issue-creator/AGENT.md",
-      "sha256": "4ee63878b03264a9a360adfff2a0c2f996cd36ec455a33c56e2ea1d0fb680af7"
+      "sha256": "2d25b717c05acb7e87c41f2f3b4221c9898a62402913685d1559980d3fa3a0c9"
     },
     {
       "path": "library/organization/agents/implementation-planner/AGENT.md",
-      "sha256": "d179778b85169628647f555a67b0f72c019928dd44c19048fe2664c28ee728e4"
+      "sha256": "08cfb08b81bd72b49ec61ff26d28817594189c15a41a078dd3cf1b65fd8c36b5"
     },
     {
       "path": "library/organization/agents/specfile-creator/AGENT.md",
-      "sha256": "e75c5cc1826c2c82aa3b124cc8cea330f31f5972fc5dcb1049f0b25e3a7e1554"
+      "sha256": "3269baa02cad6b836c292d24beaff91e3100500bcd8463714fd092c619f6a74b"
     },
     {
       "path": "library/organization/agents/test-specialist/AGENT.md",
-      "sha256": "1ae69729b104a2ceeae682f98e21a0fcca386f38925f9e27ad6e6c4b25f375d9"
+      "sha256": "4223fa7d32e47bab93db3eb02e3398f2084dc8a5d1022b17d991ec535b655bbc"
     }
   ],
   "totals": {
@@ -6031,7 +6031,7 @@
       "removal_authority": false,
       "canonical_comparison": {
         "path": "library/organization/agents/architect/AGENT.md",
-        "sha256": "9cdc23dbd28702eb593f0c6c4e04903134d89258b20714635cd07e309119f825",
+        "sha256": "9172ef4900fea193a6a7c62b23eb960d8d6a2cd8a60bc311566e2f4192809f52",
         "staged_tools": [
           "read",
           "search",
@@ -6045,11 +6045,13 @@
           "web"
         ],
         "shared_skills": [
+          "execute-issue-checkpoint",
           "reconcile-roadmap-impact",
           "architecture-authoring",
           "maintain-repository-continuity"
         ],
         "shared_specs": [
+          "worker-strategy",
           "architecture-roadmap",
           "architecture-document",
           "repository-continuity"
@@ -6081,7 +6083,7 @@
       "removal_authority": false,
       "canonical_comparison": {
         "path": "library/organization/agents/arxiv-publisher/AGENT.md",
-        "sha256": "5d6ca94692a752341238925b06a4734e63f5b3b19c845102efc4d3e698019484",
+        "sha256": "bcd5631f778ce763601f8046de0cdccf791af127435087611d1ad05eb189cef4",
         "staged_tools": [
           "read",
           "search",
@@ -6097,11 +6099,13 @@
           "web"
         ],
         "shared_skills": [
+          "execute-issue-checkpoint",
           "reconcile-roadmap-impact",
           "prepare-arxiv-release",
           "maintain-repository-continuity"
         ],
         "shared_specs": [
+          "worker-strategy",
           "architecture-roadmap",
           "arxiv-publishing",
           "repository-continuity"
@@ -6137,7 +6141,7 @@
       ],
       "canonical_comparison": {
         "path": "library/organization/agents/auditor/AGENT.md",
-        "sha256": "bcefb025191a42cf51379f9150a0cc2aabc67b3feb215ab2dbf5f79bc3766951",
+        "sha256": "5b460370cc9286ac9d34d306a8e135804a06cb50dbf66dbbc56a3dbc9c34715d",
         "staged_tools": [
           "read",
           "search",
@@ -6149,11 +6153,13 @@
           "search"
         ],
         "shared_skills": [
+          "execute-issue-checkpoint",
           "reconcile-roadmap-impact",
           "audit-repository",
           "maintain-repository-continuity"
         ],
         "shared_specs": [
+          "worker-strategy",
           "architecture-roadmap",
           "auditor",
           "repository-audit-data",
@@ -6186,7 +6192,7 @@
       "removal_authority": false,
       "canonical_comparison": {
         "path": "library/organization/agents/bug-fix-teammate/AGENT.md",
-        "sha256": "ab2dba1754f3205ed29d58fb274645449bf9a71b150e3af7d8e62933b8f08d2c",
+        "sha256": "8093ad7a566af27ab784b62bd2355b71f97e5fec827d022635520cfa8583c1cc",
         "staged_tools": [
           "read",
           "search",
@@ -6200,11 +6206,13 @@
           "execute"
         ],
         "shared_skills": [
+          "execute-issue-checkpoint",
           "reconcile-roadmap-impact",
           "bug-fixing",
           "maintain-repository-continuity"
         ],
         "shared_specs": [
+          "worker-strategy",
           "architecture-roadmap",
           "auditor",
           "repository-continuity"
@@ -6236,7 +6244,7 @@
       "removal_authority": false,
       "canonical_comparison": {
         "path": "library/organization/agents/cleanup-specialist/AGENT.md",
-        "sha256": "769629360fa1203122eb78b972b6be72930edfce0614993fe815641569b038f9",
+        "sha256": "065f2f6d54f7e5a30d6aee68db0bdda3904a68c356f40dd71d0f60f150458248",
         "staged_tools": [
           "read",
           "search",
@@ -6250,11 +6258,13 @@
           "execute"
         ],
         "shared_skills": [
+          "execute-issue-checkpoint",
           "reconcile-roadmap-impact",
           "repository-cleanup",
           "maintain-repository-continuity"
         ],
         "shared_specs": [
+          "worker-strategy",
           "architecture-roadmap",
           "auditor",
           "repository-continuity"
@@ -6334,7 +6344,7 @@
       "removal_authority": false,
       "canonical_comparison": {
         "path": "library/organization/agents/github-issue-creator/AGENT.md",
-        "sha256": "4ee63878b03264a9a360adfff2a0c2f996cd36ec455a33c56e2ea1d0fb680af7",
+        "sha256": "2d25b717c05acb7e87c41f2f3b4221c9898a62402913685d1559980d3fa3a0c9",
         "staged_tools": [
           "read",
           "search",
@@ -6346,11 +6356,13 @@
           "web"
         ],
         "shared_skills": [
+          "execute-issue-checkpoint",
           "reconcile-roadmap-impact",
           "github-issue-authoring",
           "maintain-repository-continuity"
         ],
         "shared_specs": [
+          "worker-strategy",
           "architecture-roadmap",
           "specfile",
           "repository-continuity"
@@ -6382,7 +6394,7 @@
       "removal_authority": false,
       "canonical_comparison": {
         "path": "library/organization/agents/implementation-planner/AGENT.md",
-        "sha256": "d179778b85169628647f555a67b0f72c019928dd44c19048fe2664c28ee728e4",
+        "sha256": "08cfb08b81bd72b49ec61ff26d28817594189c15a41a078dd3cf1b65fd8c36b5",
         "staged_tools": [
           "read",
           "search",
@@ -6396,11 +6408,13 @@
           "web"
         ],
         "shared_skills": [
+          "execute-issue-checkpoint",
           "reconcile-roadmap-impact",
           "implementation-planning",
           "maintain-repository-continuity"
         ],
         "shared_specs": [
+          "worker-strategy",
           "architecture-roadmap",
           "specfile",
           "repository-continuity"
@@ -6456,7 +6470,7 @@
       "removal_authority": false,
       "canonical_comparison": {
         "path": "library/organization/agents/specfile-creator/AGENT.md",
-        "sha256": "e75c5cc1826c2c82aa3b124cc8cea330f31f5972fc5dcb1049f0b25e3a7e1554",
+        "sha256": "3269baa02cad6b836c292d24beaff91e3100500bcd8463714fd092c619f6a74b",
         "staged_tools": [
           "read",
           "search",
@@ -6470,11 +6484,13 @@
           "web"
         ],
         "shared_skills": [
+          "execute-issue-checkpoint",
           "reconcile-roadmap-impact",
           "create-specification-file",
           "maintain-repository-continuity"
         ],
         "shared_specs": [
+          "worker-strategy",
           "architecture-roadmap",
           "specfile",
           "repository-continuity"
@@ -6530,7 +6546,7 @@
       "removal_authority": false,
       "canonical_comparison": {
         "path": "library/organization/agents/test-specialist/AGENT.md",
-        "sha256": "1ae69729b104a2ceeae682f98e21a0fcca386f38925f9e27ad6e6c4b25f375d9",
+        "sha256": "4223fa7d32e47bab93db3eb02e3398f2084dc8a5d1022b17d991ec535b655bbc",
         "staged_tools": [
           "read",
           "search",
@@ -6544,11 +6560,13 @@
           "execute"
         ],
         "shared_skills": [
+          "execute-issue-checkpoint",
           "reconcile-roadmap-impact",
           "test-engineering",
           "maintain-repository-continuity"
         ],
         "shared_specs": [
+          "worker-strategy",
           "architecture-roadmap",
           "auditor",
           "repository-continuity"

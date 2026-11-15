@@ -1,0 +1,32 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "Extends the already planned worker-strategy source and shared agent guidance within the existing authoring corpus; no strategic IDs, state, horizon, priority or release acceptance change.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "835561fb5e54d11538e869825a5457e68e3c6582",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q01"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "https://github.com/egohygiene/aether/blob/835561fb5e54d11538e869825a5457e68e3c6582/library/organization/specs/methodology/worker-strategy.spec.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/evidence/2026-11-14-issue-checkpoint-qualification.json"
+    }
+  ],
+  "organization_signals": []
+}

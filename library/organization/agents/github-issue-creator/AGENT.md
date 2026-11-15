@@ -7,7 +7,7 @@ tools:
   - search
   - web
 metadata:
-  aether-version: "1.3.0"
+  aether-version: "1.4.0"
   aether-status: "draft"
   aether-scope: "organization"
   aether-domain: "authoring"
@@ -15,10 +15,12 @@ metadata:
   aether-created: "2026-08-08"
   aether-updated: "2026-11-14"
   aether-skills:
+    - execute-issue-checkpoint
     - reconcile-roadmap-impact
     - github-issue-authoring
     - maintain-repository-continuity
   aether-specs:
+    - worker-strategy
     - architecture-roadmap
     - specfile
     - repository-continuity

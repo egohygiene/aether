@@ -1,0 +1,245 @@
+{
+  "schema": "aether.synthetic-checkpoint-cases/v1",
+  "notice": "Synthetic source examples, not a provider API, runtime planner or real execution evidence.",
+  "cases": [
+    {
+      "id": "small-unsplit",
+      "synthetic": true,
+      "category": "positive",
+      "decision": "execute-unchanged",
+      "original_criteria": [
+        "AC1"
+      ],
+      "scope_coverage": {
+        "SYN-101": [
+          "AC1"
+        ]
+      },
+      "existing_checkpoint_ids": [],
+      "proposed_checkpoint_ids": [],
+      "prerequisite_edges": [],
+      "role": "reader-writer",
+      "hosted_checks": "not-run",
+      "merged": false,
+      "delivered": false,
+      "next_action": "Verify live source and perform the named bounded next action."
+    },
+    {
+      "id": "two-useful-checkpoints",
+      "synthetic": true,
+      "category": "positive",
+      "decision": "propose-two",
+      "original_criteria": [
+        "AC1",
+        "AC2",
+        "AC3"
+      ],
+      "scope_coverage": {
+        "SYN-202": [
+          "AC1",
+          "AC2"
+        ],
+        "SYN-203": [
+          "AC3"
+        ]
+      },
+      "existing_checkpoint_ids": [],
+      "proposed_checkpoint_ids": [
+        "SYN-202",
+        "SYN-203"
+      ],
+      "prerequisite_edges": [
+        [
+          "SYN-203",
+          "SYN-202"
+        ]
+      ],
+      "role": "reader-writer",
+      "hosted_checks": "not-run",
+      "merged": false,
+      "delivered": false,
+      "next_action": "Verify live source and perform the named bounded next action."
+    },
+    {
+      "id": "existing-checkpoints-noop",
+      "synthetic": true,
+      "category": "positive",
+      "decision": "reuse-existing",
+      "original_criteria": [
+        "AC1",
+        "AC2"
+      ],
+      "scope_coverage": {
+        "SYN-302": [
+          "AC1"
+        ],
+        "SYN-303": [
+          "AC2"
+        ]
+      },
+      "existing_checkpoint_ids": [
+        "SYN-302",
+        "SYN-303"
+      ],
+      "proposed_checkpoint_ids": [],
+      "prerequisite_edges": [],
+      "role": "reader-writer",
+      "hosted_checks": "not-run",
+      "merged": false,
+      "delivered": false,
+      "next_action": "Verify live source and perform the named bounded next action."
+    },
+    {
+      "id": "group-without-blocker",
+      "synthetic": true,
+      "category": "boundary",
+      "decision": "reuse-existing",
+      "original_criteria": [
+        "AC1",
+        "AC2"
+      ],
+      "scope_coverage": {
+        "SYN-402": [
+          "AC1"
+        ],
+        "SYN-403": [
+          "AC2"
+        ]
+      },
+      "existing_checkpoint_ids": [
+        "SYN-402",
+        "SYN-403"
+      ],
+      "proposed_checkpoint_ids": [],
+      "prerequisite_edges": [],
+      "role": "reader-writer",
+      "hosted_checks": "not-run",
+      "merged": false,
+      "delivered": false,
+      "next_action": "Verify live source and perform the named bounded next action."
+    },
+    {
+      "id": "saved-draft-resume",
+      "synthetic": true,
+      "category": "positive",
+      "decision": "resume-validation",
+      "original_criteria": [
+        "AC1"
+      ],
+      "scope_coverage": {
+        "SYN-501": [
+          "AC1"
+        ]
+      },
+      "existing_checkpoint_ids": [
+        "SYN-501"
+      ],
+      "proposed_checkpoint_ids": [],
+      "prerequisite_edges": [],
+      "role": "reader-writer",
+      "hosted_checks": "not-run",
+      "merged": false,
+      "delivered": false,
+      "next_action": "Verify live source and perform the named bounded next action.",
+      "recorded_head": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "current_head": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "pr_state": "draft",
+      "prepared": true,
+      "validated": false
+    },
+    {
+      "id": "stale-concurrent-state",
+      "synthetic": true,
+      "category": "insufficient-evidence",
+      "decision": "reconcile-before-edit",
+      "original_criteria": [
+        "AC1"
+      ],
+      "scope_coverage": {
+        "SYN-601": [
+          "AC1"
+        ]
+      },
+      "existing_checkpoint_ids": [
+        "SYN-601"
+      ],
+      "proposed_checkpoint_ids": [],
+      "prerequisite_edges": [],
+      "role": "reader-writer",
+      "hosted_checks": "not-run",
+      "merged": false,
+      "delivered": false,
+      "next_action": "Verify live source and perform the named bounded next action.",
+      "recorded_head": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "current_head": "cccccccccccccccccccccccccccccccccccccccc",
+      "pr_state": "unverified",
+      "preserve_concurrent_work": true
+    },
+    {
+      "id": "provider-unavailable",
+      "synthetic": true,
+      "category": "insufficient-evidence",
+      "decision": "record-unavailable",
+      "original_criteria": [
+        "AC1"
+      ],
+      "scope_coverage": {
+        "SYN-701": [
+          "AC1"
+        ]
+      },
+      "existing_checkpoint_ids": [
+        "SYN-701"
+      ],
+      "proposed_checkpoint_ids": [],
+      "prerequisite_edges": [],
+      "role": "reader-writer",
+      "hosted_checks": "not-run",
+      "merged": false,
+      "delivered": false,
+      "next_action": "Verify live source and perform the named bounded next action.",
+      "pr_state": "unavailable"
+    },
+    {
+      "id": "read-only-session",
+      "synthetic": true,
+      "category": "boundary",
+      "decision": "propose-without-write",
+      "original_criteria": [
+        "AC1"
+      ],
+      "scope_coverage": {
+        "SYN-801": [
+          "AC1"
+        ]
+      },
+      "existing_checkpoint_ids": [
+        "SYN-801"
+      ],
+      "proposed_checkpoint_ids": [],
+      "prerequisite_edges": [],
+      "role": "read-only",
+      "hosted_checks": "not-run",
+      "merged": false,
+      "delivered": false,
+      "next_action": "Verify live source and perform the named bounded next action.",
+      "remote_mutations": 0
+    },
+    {
+      "id": "nonrepository-request",
+      "synthetic": true,
+      "category": "negative",
+      "decision": "decline-primary-workflow",
+      "original_criteria": [],
+      "scope_coverage": {},
+      "existing_checkpoint_ids": [],
+      "proposed_checkpoint_ids": [],
+      "prerequisite_edges": [],
+      "role": "reader-writer",
+      "hosted_checks": "not-run",
+      "merged": false,
+      "delivered": false,
+      "next_action": "Verify live source and perform the named bounded next action."
+    }
+  ]
+}

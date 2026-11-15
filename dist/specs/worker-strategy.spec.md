@@ -3,12 +3,12 @@ schema: aether.specification/v1
 id: worker-strategy
 title: Bounded Worker Strategy
 kind: specification
-version: 0.1.0
+version: 0.2.0
 status: draft
 owners:
   - egohygiene
 created: 2026-10-02
-updated: 2026-10-02
+updated: 2026-11-14
 domain: methodology
 tags:
   - workers
@@ -37,7 +37,7 @@ Run one small, resumable engineering checkpoint per worker session and preserve 
 
 ## 1. Purpose, context, and boundaries
 
-This opt-in strategy organizes existing repository issues into mini sprints.
+This strategy organizes existing repository issues when selected directly or through a repository-owned default instruction module.
 Its goal is to reach a usable product through short implementation jobs, durable
 handoffs, and separate completion passes for tests, documentation, validation,
 and review. It applies to humans, Copilot, and other coding assistants.
@@ -152,6 +152,30 @@ Checkpoints that do not apply are marked not applicable with a reason.
   If pushing is unavailable, report the exact saved state and delivery blocker.
   Do not discard unrelated work or start background processes without a handoff.
 
+### Adaptive checkpoint sizing and stable recognition
+
+- **WRK-018 — Proportional sizing.** First inspect the live scope, existing
+  parent/checkpoint identities, coverage and active PRs. Execute a sufficiently
+  small issue unchanged. Split only when the scope contains independently
+  reviewable outcomes; choose the smallest useful set, such as two cohesive
+  checkpoints. An already-checkpointed issue produces no duplicate structure.
+  Titles, emoji and ordinal numbering alone do not establish identity.
+- **WRK-019 — Coverage and real dependencies.** Preserve the original parent
+  outcome, requirements, acceptance, discussion and links. Every original
+  requirement remains mapped to an existing/new checkpoint or an explicit
+  owner-reviewed disposition. A parent/sub-issue relationship groups work; it
+  does not make one checkpoint a blocker for another. Record actual prerequisite
+  edges separately, including cross-repository owners and unavailable inputs.
+  Recognize both provider-native relationships and explicit stable link-based
+  groups without claiming they are the same provider feature.
+
+The portable `execute-issue-checkpoint` skill supplies the thin execution and
+fresh-session examples. The generated worker-strategy instruction is a concise
+entry point, not a scheduler or proof that a host loaded it. Default-bundle and
+fleet adoption remain separately reviewed through Aether #67 and the organization
+backlog sweep. A consumer may select this source without installing an automatic
+hook or changing any actor's permission ceiling.
+
 ## 5. Implementation-first profile and completion passes
 
 When selected by the caller, the implementation-first profile uses the following
@@ -234,6 +258,29 @@ or unrelated private context in a public handoff.
   Do not use an automatic closing keyword for the parent in an implementation-only
   PR. Merge authority comes from the user/repository, not this strategy.
 
+### Intermediate saves and interruption recovery
+
+- **WRK-020 — Save meaningful progress.** Save after durable decisions, completed
+  milestones, an explicit checkpoint request, before a planned handoff and when
+  scope or host context becomes uncertain. One checkpoint can need several
+  commit/push/draft-PR saves. Reuse the current branch/PR when appropriate; never
+  create a second checkpoint merely to record a save. The authorization and
+  active role determine which remote or local actions are available.
+- **WRK-021 — Fresh-session resume.** Read applicable shared/local instructions,
+  the selected strategy and canonical source, then current continuity/handoff.
+  Recheck actual working tree, branch/head, parent/checkpoint/PR state and required
+  evidence. A stale recorded draft or SHA is a discrepancy, not current truth.
+  Preserve concurrent work, identify the exact next bounded action and record
+  inaccessible, unpushed or unverified state. An abrupt failure before a save
+  may lose work; static instructions cannot guarantee zero loss or a warning.
+
+Prepared, validated, review-ready, merged and delivered are distinct evidence
+states. A passing local check does not imply a hosted pass, a merge does not
+prove consumer delivery, and an issue closure does not supply either. Update
+parent/child progress only from its actual acceptance and the relevant source,
+check, merge or consumer evidence. Keep unresolved validation accessible even
+when another checkpoint becomes active.
+
 ## 7. Audit, refactoring, and a finite finish line
 
 - **WRK-016 — Findings.** Audit the batch against acceptance criteria, changed
@@ -286,3 +333,22 @@ This narrow strategy relates to the broader agent/cost-policy work in
 [Aether #41](https://github.com/egohygiene/aether/issues/41) and instruction-library
 work in [Aether #40](https://github.com/egohygiene/aether/issues/40). It completes
 neither issue and does not require those larger systems for the first trial.
+
+## 10. Bounded checkpoint examples and qualification
+
+`execute-issue-checkpoint` provides small-unsplit, justified two-checkpoint,
+already-checkpointed/no-op, draft interruption, stale/concurrent and unavailable
+host cases. Its reviewed synthetic evidence distinguishes a saved draft from
+merged/delivered work and retains unrun checks. The existing continuity and
+local-validation contracts remain the only handoff/evidence authorities.
+
+The historical [Aniflow #13](https://github.com/egohygiene/aniflow/issues/13)
+example retains link-based checkpoints and separate local/hosted evidence;
+its closed state and explicit historical deferral do not grant another session
+permission or imply green hosted CI. Current native sub-issue summary is not
+inferred from its title or linked prose. This reference informed recognition;
+no media-domain instruction or permission is imported here.
+
+Deterministic synthetic/generator checks qualify structure and declared
+assertions, not model judgment, automatic recovery, actual host enforcement or
+full consumer effectiveness. Source integration is not fleet adoption.

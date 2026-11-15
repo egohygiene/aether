@@ -355,6 +355,20 @@
       "rationale": "The skill creates or updates canonical repository vision."
     },
     {
+      "id": "execute-issue-checkpoint",
+      "source": "library/organization/skills/methodology/execute-issue-checkpoint/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": [
+        "Parent/checkpoint identity, scope coverage, saved progress, actual validation and exact resume action"
+      ],
+      "never_claim": [
+        "That a saved branch, draft PR or closed issue proves unrun checks, merge or consumer delivery"
+      ],
+      "rationale": "Authorized execution saves bounded repository work; read-only roles retain their existing ceiling."
+    },
+    {
       "id": "github-issue-authoring",
       "source": "library/organization/skills/authoring/github-issue-authoring/SKILL.md",
       "disposition": "reader",

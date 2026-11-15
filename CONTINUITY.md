@@ -7,35 +7,33 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-14T23:13:35Z'
+  updated_at: '2026-11-14T23:49:19Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Compose one roadmap-impact completion module and portable receipt through every canonical agent
-    without changing role tools or human strategic authority.
+  purpose: Complete proportional issue sizing and recoverable checkpoint execution by extending the existing
+    worker strategy, without a new scheduler or permission boundary.
   includes:
-  - A draft reconcile-roadmap-impact skill composes existing roadmap authoring/specification and continuity.
-    Every handoff emits updated, proposed, not-affected or blocked with a reason; organization impact
-    stays an inferred owner-directed signal.
-  - All10 canonical agents declare the shared skill/spec dependency. Generated GitHub, Claude, OpenCode,
-    Codex/repository and manual Zencoder projections contain one managed module; read-only and other tool
-    ceilings remain unchanged. Consumer prose and singular/idempotent replacement are tested.
-  - A versioned closed receipt schema and byte-identical portable projection, safe read-only validator,10
-    deterministic synthetic cases and nine adversarial test methods qualify structure/role/path/privacy
-    refusals. AET-Q06 gains factual partial-source evidence while remaining planned and incomplete.
-  - The retained734-file/222-unit ledger refreshes nine canonical-owner comparisons at immutable implementation0030c546498556b2a8febb4ef50958ae79977d50.
-    All staging blobs, historical removal records and removal authority remain unchanged.
+  - "Existing worker-strategy0.2.0 adds WRK018\u2013021 for small-unsplit/minimal-split/existing-checkpoint\
+    \ recognition, full acceptance coverage, real prerequisites, meaningful saves and fresh-session verification."
+  - A thin draft execute-issue-checkpoint skill, safe handoff template, nine synthetic cases and a shared
+    worker-strategy entry point compose existing continuity/local-validation/issue-authoring/roadmap contracts.
+    All10 canonical agents and generated providers retain their tool ceilings.
+  - Six new qualification methods cover declared fixture scope/DAG consistency, saved/unavailable evidence,
+    an actual isolated process reading saved files/Git without prior chat, and singular/idempotent module
+    generation. No actual provider state or model judgment is inferred from a fixture.
+  - The retained ledger refreshes nine owner comparisons at immutable source835561fb5e54d11538e869825a5457e68e3c6582;
+    every734-file/222-unit staging blob and historical disposition remains unchanged.
   excludes: &id001
-  - The draft module is static guidance and does not install/enforce a host hook. Deterministic goldens
-    check declared structure/assertions, not model routing, strategic judgment or actual host discovery.
-  - Receipt validation authenticates no human review or evidence. ADR-0011 remains proposed/null approval;
-    priority, horizon and optionality need actual human governance. Private receipts cannot emit public
-    organization signals.
-  - Existing38 consumer installation remains not-ready and release scheduling remains failed in prior
-    hosted evidence. No release, deployment, policy ratification, source-rights clearance, staging execution/removal
-    or fleet adoption occurs.
+  - Static guidance installs no recovery hook, scheduler, context warning or zero-loss guarantee. Fresh-process
+    testing qualifies mechanical saved-file/Git recovery, not agent judgment or consumer effectiveness.
+  - No live issue hierarchy is created or normalized. Parent grouping, real blockers, source preparation,
+    validation, review, merge and delivery remain separate. Stored context cannot expand current authority.
+  - Existing38 consumer/release qualification remains not-ready in prior hosted evidence. The11 existing
+    optional/native skips remain explicit; no release, deployment, source-rights clearance or fleet rollout
+    occurs.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -45,91 +43,86 @@ scope:
   canonical_sources:
   - AGENTS.md
   - ROADMAP.md
-  - library/organization/agents/AGENT-CONTRACT.md
-  - library/organization/projections/templates/roadmap-impact.AGENTS.md
-  - library/organization/skills/architecture/reconcile-roadmap-impact/SKILL.md
-  - catalog/schemas/aether.roadmap-impact.v1.schema.json
-  - docs/evidence/2026-11-14-roadmap-impact.json
-  - docs/evidence/2026-11-14-roadmap-impact-qualification.json
-  - docs/decisions/ADR-0011-shared-roadmap-impact-handoff.md
-  - https://github.com/egohygiene/aether/issues/88
+  - library/organization/specs/methodology/worker-strategy.spec.md
+  - library/organization/skills/methodology/execute-issue-checkpoint/SKILL.md
+  - library/organization/projections/templates/worker-strategy.AGENTS.md
+  - tests/test_issue_checkpoint.py
+  - docs/evidence/2026-11-14-issue-checkpoint-qualification.json
+  - docs/evidence/2026-11-14-issue-checkpoint-roadmap-impact.json
+  - https://github.com/egohygiene/aether/issues/92
 work:
-  objective: Compose one roadmap-impact completion module and portable receipt through every canonical
-    agent without changing role tools or human strategic authority.
+  objective: Complete proportional issue sizing and recoverable checkpoint execution by extending the
+    existing worker strategy, without a new scheduler or permission boundary.
   success_conditions:
-  - Every canonical agent/provider handoff composes the same module exactly once; a no-change reason creates
-    no artificial edit and read-only roles remain nonmutating.
-  - Updated receipts require current input and exact canonical path; missing review references, source
-    context, role ceilings and private public-export constraints fail closed without granting authority.
-  - Roadmap partial evidence, real stable IDs, owner-directed inferred signals and separate source/release/human
-    acceptance remain explicit.
+  - Small issues remain unsplit, justified splits preserve every criterion, and existing stable checkpoints/PRs
+    produce no duplicate structure.
+  - One checkpoint at a time preserves meaningful progress and exact next action within the caller-authorized
+    batch; unreadable/unpushed/stale state and unrun checks remain explicit.
+  - The shared default-guidance entry point, specification, skill, examples and generated projections
+    agree without granting new tools or promising automatic host recovery.
   active_issue:
     provider: github
-    id: egohygiene/aether#88
-    url: https://github.com/egohygiene/aether/issues/88
+    id: egohygiene/aether#92
+    url: https://github.com/egohygiene/aether/issues/92
   next:
     kind: issue
-    id: egohygiene/aether#92
-    description: After reviewing this source checkpoint, complete bounded issue sizing and interruption/resume
-      guidance using existing continuity/issue-authoring foundations; preserve actual host capability
-      and source/release limits.
+    id: egohygiene/aether#102
+    description: Compose the optional conversation checkpoint/evidence extension with current continuity;
+      preserve source/decision provenance, bounded snapshots, private handling and explicit host/authority
+      limits.
     readiness: ready
     references:
-    - https://github.com/egohygiene/aether/issues/92
+    - https://github.com/egohygiene/aether/issues/102
     - https://github.com/egohygiene/aether/issues/105
     depends_on: []
 state:
   base:
-    revision: 28983e522dc358d82ba7ca0749c4a4c796aa142b
+    revision: 9df31e029df4e45abd5419aa670e5efe4047184f
     ref: refs/heads/main
-    verified_at: '2026-11-14T23:13:35Z'
+    verified_at: '2026-11-14T23:49:19Z'
   candidate:
-    branch: codex/roadmap-impact-reconciliation
+    branch: codex/bounded-issue-checkpoints
     revision: null
     pull_request: null
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-14T23:13:35Z'
-    default_branch_revision: 28983e522dc358d82ba7ca0749c4a4c796aa142b
+    observed_at: '2026-11-14T23:49:19Z'
+    default_branch_revision: 9df31e029df4e45abd5419aa670e5efe4047184f
     issue_state: open
     pull_request_state: not-applicable
-    notes: Observed main28983e5 includes merged129 and111 is closed.88 remains open; this local candidate
-      contains immutable source0030c54 plus later ledger/domain evidence and continuity. No PR yet exists
-      for this candidate. Hygiene60/59 and Holon109 source checkpoints have separately closed after actual
-      hosted qualification.
+    notes: Observed main9df31e0 includes merged130 and88 is closed.92 remains open and this local candidate
+      has no PR yet; implementation source835561f is separate from its later report/continuity commit.
+      Organization profile25 closed after actual rendered readback; remaining24 receiving labels and Empathy110
+      owner-consumption prerequisites remain open.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-14T23:13:35Z'
+  reviewed_at: '2026-11-14T23:49:19Z'
   reviewed_by: Codex
   evidence:
   - command: ./aether test
     outcome: passed
-    notes: 334 full tests pass,11 existing optional/native skips. No new skip or gate suppression.
-    observed_at: '2026-11-14T23:13:35Z'
-  - command: python -m unittest tests.test_roadmap_impact tests.test_provider_projections tests.test_continuity_integration
+    notes: 340 full tests pass with11 existing optional/native skips; no new skip or suppressed gate.
+    observed_at: '2026-11-14T23:49:19Z'
+  - command: python -m unittest tests.test_issue_checkpoint tests.test_provider_projections tests.test_continuity_integration
       -q
     outcome: passed
-    notes: 34 focused tests pass, including actual generated outputs, role tool ceilings, shared module
-      idempotency/duplicates, receipt branch/path/intent-reference/privacy controls and CLI refusal.
-    observed_at: '2026-11-14T23:13:35Z'
-  - command: ./aether eval run --skill reconcile-roadmap-impact --mode deterministic --format json
+    notes: 31 focused tests pass. Actual generated outputs keep singular modules and role ceilings; fixture
+      coverage/DAG and isolated saved-file/Git recovery controls pass.
+    observed_at: '2026-11-14T23:49:19Z'
+  - command: ./aether eval run --skill execute-issue-checkpoint --mode deterministic --format json
     outcome: passed
-    notes: 10 cases run and pass with zero skips/suite errors; scope is deterministic structure and declared
-      assertions, not model/host behavior.
-    observed_at: '2026-11-14T23:13:35Z'
-  - command: Catalog, provenance, schema/fixture, distribution/check, source/default/links/strict-staging
-      and immutable ledger checks
+    notes: Nine declared case/golden assertion checks pass with zero skips/errors. Scope does not include
+      model routing, live provider behavior or host effectiveness.
+    observed_at: '2026-11-14T23:49:19Z'
+  - command: Catalog/schema, provenance, distribution/check, source/default/links/strict-staging and immutable
+      ledger checks
     outcome: passed
-    notes: 39 skills/35 specs/10 agents; catalog/schema/portable mirror/provenance and generated outputs
-      pass. Strict/links have no diagnostics; default retains one historical provenance warning. All734
-      staging files/6,791,350 bytes remain unchanged.
-    observed_at: '2026-11-14T23:13:35Z'
-  - command: Pinned Hygiene1.2 ADR schema/FormatChecker and decision owner check
-    outcome: passed
-    notes: Proposed ADR-0011 metadata passes exact selected owner validation; no human acceptance is supplied.
-    observed_at: '2026-11-14T23:13:35Z'
+    notes: 40skills/35specs/10agents qualify source/generation checks; strict and links have no diagnostics,
+      default preserves the historical provenance warning. Staging raw bytes remain6,791,350 with no execution/removal
+      authority.
+    observed_at: '2026-11-14T23:49:19Z'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -157,55 +150,53 @@ Read AGENTS, the canonical sources below and verified live issue/PR state before
 
 ## Current objective and success conditions
 
-Compose one roadmap-impact completion module and portable receipt through every canonical agent without changing role tools or human strategic authority.
+Complete proportional issue sizing and recoverable checkpoint execution by extending the existing worker strategy, without a new scheduler or permission boundary.
 
-- Every canonical agent/provider handoff composes the same module exactly once; a no-change reason creates no artificial edit and read-only roles remain nonmutating.
-- Updated receipts require current input and exact canonical path; missing review references, source context, role ceilings and private public-export constraints fail closed without granting authority.
-- Roadmap partial evidence, real stable IDs, owner-directed inferred signals and separate source/release/human acceptance remain explicit.
+- Small issues remain unsplit, justified splits preserve every criterion, and existing stable checkpoints/PRs produce no duplicate structure.
+- One checkpoint at a time preserves meaningful progress and exact next action within the caller-authorized batch; unreadable/unpushed/stale state and unrun checks remain explicit.
+- The shared default-guidance entry point, specification, skill, examples and generated projections agree without granting new tools or promising automatic host recovery.
 
 ## State snapshot
 
-Observed default source `28983e522dc358d82ba7ca0749c4a4c796aa142b`. Candidate `codex/roadmap-impact-reconciliation` is a review checkpoint; its containing revision remains null intentionally.
+Observed default source `9df31e029df4e45abd5419aa670e5efe4047184f`. Candidate `codex/bounded-issue-checkpoints` is a review checkpoint; its containing revision remains null intentionally.
 
 ## Completed and material changes
 
-A draft reconcile-roadmap-impact skill composes existing roadmap authoring/specification and continuity. Every handoff emits updated, proposed, not-affected or blocked with a reason; organization impact stays an inferred owner-directed signal.
+Existing worker-strategy0.2.0 adds WRK018–021 for small-unsplit/minimal-split/existing-checkpoint recognition, full acceptance coverage, real prerequisites, meaningful saves and fresh-session verification.
 
-All10 canonical agents declare the shared skill/spec dependency. Generated GitHub, Claude, OpenCode, Codex/repository and manual Zencoder projections contain one managed module; read-only and other tool ceilings remain unchanged. Consumer prose and singular/idempotent replacement are tested.
+A thin draft execute-issue-checkpoint skill, safe handoff template, nine synthetic cases and a shared worker-strategy entry point compose existing continuity/local-validation/issue-authoring/roadmap contracts. All10 canonical agents and generated providers retain their tool ceilings.
 
-A versioned closed receipt schema and byte-identical portable projection, safe read-only validator,10 deterministic synthetic cases and nine adversarial test methods qualify structure/role/path/privacy refusals. AET-Q06 gains factual partial-source evidence while remaining planned and incomplete.
+Six new qualification methods cover declared fixture scope/DAG consistency, saved/unavailable evidence, an actual isolated process reading saved files/Git without prior chat, and singular/idempotent module generation. No actual provider state or model judgment is inferred from a fixture.
 
-The retained734-file/222-unit ledger refreshes nine canonical-owner comparisons at immutable implementation0030c546498556b2a8febb4ef50958ae79977d50. All staging blobs, historical removal records and removal authority remain unchanged.
+The retained ledger refreshes nine owner comparisons at immutable source835561fb5e54d11538e869825a5457e68e3c6582; every734-file/222-unit staging blob and historical disposition remains unchanged.
 
 ## Validation and review evidence
 
-`./aether test` — passed: 334 full tests pass,11 existing optional/native skips. No new skip or gate suppression.
+`./aether test` — passed: 340 full tests pass with11 existing optional/native skips; no new skip or suppressed gate.
 
-`python -m unittest tests.test_roadmap_impact tests.test_provider_projections tests.test_continuity_integration -q` — passed: 34 focused tests pass, including actual generated outputs, role tool ceilings, shared module idempotency/duplicates, receipt branch/path/intent-reference/privacy controls and CLI refusal.
+`python -m unittest tests.test_issue_checkpoint tests.test_provider_projections tests.test_continuity_integration -q` — passed: 31 focused tests pass. Actual generated outputs keep singular modules and role ceilings; fixture coverage/DAG and isolated saved-file/Git recovery controls pass.
 
-`./aether eval run --skill reconcile-roadmap-impact --mode deterministic --format json` — passed: 10 cases run and pass with zero skips/suite errors; scope is deterministic structure and declared assertions, not model/host behavior.
+`./aether eval run --skill execute-issue-checkpoint --mode deterministic --format json` — passed: Nine declared case/golden assertion checks pass with zero skips/errors. Scope does not include model routing, live provider behavior or host effectiveness.
 
-`Catalog, provenance, schema/fixture, distribution/check, source/default/links/strict-staging and immutable ledger checks` — passed: 39 skills/35 specs/10 agents; catalog/schema/portable mirror/provenance and generated outputs pass. Strict/links have no diagnostics; default retains one historical provenance warning. All734 staging files/6,791,350 bytes remain unchanged.
+`Catalog/schema, provenance, distribution/check, source/default/links/strict-staging and immutable ledger checks` — passed: 40skills/35specs/10agents qualify source/generation checks; strict and links have no diagnostics, default preserves the historical provenance warning. Staging raw bytes remain6,791,350 with no execution/removal authority.
 
-`Pinned Hygiene1.2 ADR schema/FormatChecker and decision owner check` — passed: Proposed ADR-0011 metadata passes exact selected owner validation; no human acceptance is supplied.
-
-ADR-Ref: proposed ADR-0011 records the shared output/composition choice with null approval; accepted Hygiene ADR policy1.2 remains independently governing. Existing legacy ADRs and proposed0008/0009/0010 keep their dispositions. Roadmap impact: updated factual partial AET-Q06 evidence; no intent/priority change or completed kit is claimed.
+ADR not required: this extends the existing worker-strategy source and shared composition pattern without adding a service, public handoff schema, architectural owner or actor permission. Existing proposed ADR-0011 governs the shared output/composition pattern without being ratified. Roadmap impact: not-affected; existing strategic IDs/states/horizons/priority and release acceptance remain intact.
 
 ## Blockers, risks, unknowns, and deferred work
 
-The draft module is static guidance and does not install/enforce a host hook. Deterministic goldens check declared structure/assertions, not model routing, strategic judgment or actual host discovery.
+Static guidance installs no recovery hook, scheduler, context warning or zero-loss guarantee. Fresh-process testing qualifies mechanical saved-file/Git recovery, not agent judgment or consumer effectiveness.
 
-Receipt validation authenticates no human review or evidence. ADR-0011 remains proposed/null approval; priority, horizon and optionality need actual human governance. Private receipts cannot emit public organization signals.
+No live issue hierarchy is created or normalized. Parent grouping, real blockers, source preparation, validation, review, merge and delivery remain separate. Stored context cannot expand current authority.
 
-Existing38 consumer installation remains not-ready and release scheduling remains failed in prior hosted evidence. No release, deployment, policy ratification, source-rights clearance, staging execution/removal or fleet adoption occurs.
+Existing38 consumer/release qualification remains not-ready in prior hosted evidence. The11 existing optional/native skips remain explicit; no release, deployment, source-rights clearance or fleet rollout occurs.
 
 ## Next dependency-ready work
 
-After reviewing this source checkpoint, complete bounded issue sizing and interruption/resume guidance using existing continuity/issue-authoring foundations; preserve actual host capability and source/release limits.
+Compose the optional conversation checkpoint/evidence extension with current continuity; preserve source/decision provenance, bounded snapshots, private handling and explicit host/authority limits.
 
 ## Parallel changes and reconciliation
 
-Preserve129 staging controls and all dated audits. Hygiene123/124 and organization72 keep their original strategy/evidence owners; Holon110 repairs its own cache boundary. No local module writes organization strategy or normalizes the fleet.
+Preserve merged130 roadmap controls,129 intake and all original audits. Historical Aniflow13 was inspected for stable link-based checkpoints and separate local/hosted evidence; its historical deferral and authority are not inherited.
 
 ## Privacy and redaction
 

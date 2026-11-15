@@ -67,6 +67,9 @@ ISSUE_AUTHORING_PATH = DECISION_IMPACT_PATH.with_name("issue-authoring.AGENTS.md
 ROADMAP_IMPACT_PATH = DECISION_IMPACT_PATH.with_name("roadmap-impact.AGENTS.md")
 ROADMAP_IMPACT_START = "<!-- BEGIN AETHER ROADMAP-IMPACT -->"
 ROADMAP_IMPACT_END = "<!-- END AETHER ROADMAP-IMPACT -->"
+WORKER_STRATEGY_PATH = DECISION_IMPACT_PATH.with_name("worker-strategy.AGENTS.md")
+WORKER_STRATEGY_START = "<!-- BEGIN AETHER WORKER-STRATEGY -->"
+WORKER_STRATEGY_END = "<!-- END AETHER WORKER-STRATEGY -->"
 ISSUE_AUTHORING_SKILL = (
     REPO_ROOT / "library/organization/skills/authoring/github-issue-authoring"
 )
@@ -374,6 +377,37 @@ def _apply_roadmap_impact(body: str) -> str:
                                  end_marker=ROADMAP_IMPACT_END, label="roadmap-impact")
 
 
+def _load_worker_strategy() -> tuple[dict[str, Any], str]:
+    text = _normalized_text(WORKER_STRATEGY_PATH).strip()
+    if (text.count(WORKER_STRATEGY_START) != 1 or text.count(WORKER_STRATEGY_END) != 1
+            or text.index(WORKER_STRATEGY_START) > text.index(WORKER_STRATEGY_END)):
+        raise ValueError("worker-strategy instruction requires one ordered marker pair")
+    matches = list(INSTRUCTION_METADATA_RE.finditer(text))
+    if len(matches) != 1:
+        raise ValueError("worker-strategy instruction requires one metadata record")
+    metadata = json.loads(matches[0].group(1))
+    expected = {"id": "worker-strategy", "version": "1.0.0", "status": "draft",
+                "skill": "execute-issue-checkpoint", "spec": "worker-strategy", "spec_version": "0.2.0"}
+    source = _normalized_text(REPO_ROOT / "library/organization/specs/methodology/worker-strategy.spec.md")
+    spec = yaml.safe_load(source.split("---", 2)[1])
+    if metadata != expected or spec["id"] != metadata["spec"] or spec["version"] != metadata["spec_version"]:
+        raise ValueError("worker-strategy module and source specification differ")
+    return metadata, text
+
+
+def _worker_strategy_provenance() -> dict[str, Any]:
+    metadata, _module = _load_worker_strategy()
+    return {**metadata, "source": _repo_relative(WORKER_STRATEGY_PATH),
+            "source_digest": {"algorithm": "sha256-utf8-lf",
+                              "value": _sha256_text(_normalized_text(WORKER_STRATEGY_PATH))}}
+
+
+def _apply_worker_strategy(body: str) -> str:
+    _metadata, module = _load_worker_strategy()
+    return _apply_managed_module(body, module, start_marker=WORKER_STRATEGY_START,
+                                 end_marker=WORKER_STRATEGY_END, label="worker-strategy")
+
+
 def _apply_managed_module(
     body: str,
     module: str,
@@ -470,7 +504,7 @@ def _remove_issue_authoring(body: str) -> str:
 
 def _apply_instruction_modules(body: str, *, issue_authoring: bool = False) -> str:
     """Apply shared modules and opt-in issue discovery exactly once."""
-    result = _apply_roadmap_impact(_apply_repository_continuity(_apply_decision_impact(body)))
+    result = _apply_worker_strategy(_apply_roadmap_impact(_apply_repository_continuity(_apply_decision_impact(body))))
     return _apply_issue_authoring(result) if issue_authoring else result
 
 
@@ -553,6 +587,7 @@ def _projection_provenance(provider: str, source: Path, source_text: str) -> dic
             _decision_impact_provenance(),
             _repository_continuity_provenance(),
             _roadmap_impact_provenance(),
+            _worker_strategy_provenance(),
         ] + ([_issue_authoring_provenance()] if agent_id == "github-issue-creator" else []),
     }
 
@@ -601,6 +636,7 @@ def _repository_guidance_projection(provider: str, title: str) -> bytes:
             _decision_impact_provenance(),
             _repository_continuity_provenance(),
             _roadmap_impact_provenance(),
+            _worker_strategy_provenance(),
             _issue_authoring_provenance(),
         ],
         "generator": GENERATOR_ID,

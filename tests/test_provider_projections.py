@@ -306,6 +306,7 @@ class ProviderProjectionTests(unittest.TestCase):
                 {
                     "*": "deny",
                     "architecture-authoring": "allow",
+                    "execute-issue-checkpoint": "allow",
                     "maintain-repository-continuity": "allow",
                     "reconcile-roadmap-impact": "allow",
                 },

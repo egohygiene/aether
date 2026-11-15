@@ -6,13 +6,15 @@
       "name": "Architect",
       "domain": "architecture",
       "status": "draft",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "skills": [
+        "execute-issue-checkpoint",
         "reconcile-roadmap-impact",
         "architecture-authoring",
         "maintain-repository-continuity"
       ],
       "specs": [
+        "worker-strategy",
         "architecture-roadmap",
         "architecture-document",
         "repository-continuity"
@@ -33,13 +35,15 @@
       "name": "arXiv Publisher",
       "domain": "publishing",
       "status": "draft",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "skills": [
+        "execute-issue-checkpoint",
         "reconcile-roadmap-impact",
         "prepare-arxiv-release",
         "maintain-repository-continuity"
       ],
       "specs": [
+        "worker-strategy",
         "architecture-roadmap",
         "arxiv-publishing",
         "repository-continuity"
@@ -61,13 +65,15 @@
       "name": "Auditor",
       "domain": "quality",
       "status": "draft",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "skills": [
+        "execute-issue-checkpoint",
         "reconcile-roadmap-impact",
         "audit-repository",
         "maintain-repository-continuity"
       ],
       "specs": [
+        "worker-strategy",
         "architecture-roadmap",
         "auditor",
         "repository-audit-data",
@@ -87,13 +93,15 @@
       "name": "Bug Fix Teammate",
       "domain": "quality",
       "status": "draft",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "skills": [
+        "execute-issue-checkpoint",
         "reconcile-roadmap-impact",
         "bug-fixing",
         "maintain-repository-continuity"
       ],
       "specs": [
+        "worker-strategy",
         "architecture-roadmap",
         "auditor",
         "repository-continuity"
@@ -114,13 +122,15 @@
       "name": "Cleanup Specialist",
       "domain": "quality",
       "status": "draft",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "skills": [
+        "execute-issue-checkpoint",
         "reconcile-roadmap-impact",
         "repository-cleanup",
         "maintain-repository-continuity"
       ],
       "specs": [
+        "worker-strategy",
         "architecture-roadmap",
         "auditor",
         "repository-continuity"
@@ -141,13 +151,15 @@
       "name": "GitHub Issue Creator",
       "domain": "authoring",
       "status": "draft",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "skills": [
+        "execute-issue-checkpoint",
         "reconcile-roadmap-impact",
         "github-issue-authoring",
         "maintain-repository-continuity"
       ],
       "specs": [
+        "worker-strategy",
         "architecture-roadmap",
         "specfile",
         "repository-continuity"
@@ -167,13 +179,15 @@
       "name": "Implementation Planner",
       "domain": "authoring",
       "status": "draft",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "skills": [
+        "execute-issue-checkpoint",
         "reconcile-roadmap-impact",
         "implementation-planning",
         "maintain-repository-continuity"
       ],
       "specs": [
+        "worker-strategy",
         "architecture-roadmap",
         "specfile",
         "repository-continuity"
@@ -194,8 +208,9 @@
       "name": "Local CI Triager",
       "domain": "quality",
       "status": "draft",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "skills": [
+        "execute-issue-checkpoint",
         "reconcile-roadmap-impact",
         "validate-repository-locally",
         "triage-local-ci-reports",
@@ -203,6 +218,7 @@
         "maintain-repository-continuity"
       ],
       "specs": [
+        "worker-strategy",
         "architecture-roadmap",
         "local-validation-evidence",
         "local-ci-triage",
@@ -223,13 +239,15 @@
       "name": "Specfile Creator",
       "domain": "authoring",
       "status": "draft",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "skills": [
+        "execute-issue-checkpoint",
         "reconcile-roadmap-impact",
         "create-specification-file",
         "maintain-repository-continuity"
       ],
       "specs": [
+        "worker-strategy",
         "architecture-roadmap",
         "specfile",
         "repository-continuity"
@@ -250,13 +268,15 @@
       "name": "Test Specialist",
       "domain": "quality",
       "status": "draft",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "skills": [
+        "execute-issue-checkpoint",
         "reconcile-roadmap-impact",
         "test-engineering",
         "maintain-repository-continuity"
       ],
       "specs": [
+        "worker-strategy",
         "architecture-roadmap",
         "auditor",
         "repository-continuity"

@@ -7,7 +7,7 @@ tools:
   - search
   - execute
 metadata:
-  aether-version: "1.1.0"
+  aether-version: "1.2.0"
   aether-status: "draft"
   aether-scope: "organization"
   aether-domain: "quality"
@@ -15,12 +15,14 @@ metadata:
   aether-created: "2026-11-13"
   aether-updated: "2026-11-14"
   aether-skills:
+    - execute-issue-checkpoint
     - reconcile-roadmap-impact
     - validate-repository-locally
     - triage-local-ci-reports
     - github-issue-authoring
     - maintain-repository-continuity
   aether-specs:
+    - worker-strategy
     - architecture-roadmap
     - local-validation-evidence
     - local-ci-triage

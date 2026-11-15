@@ -13,11 +13,12 @@ permission:
   websearch: allow
   skill:
     '*': deny
+    execute-issue-checkpoint: allow
     maintain-repository-continuity: allow
     prepare-arxiv-release: allow
     reconcile-roadmap-impact: allow
 ---
-<!-- aether-projection {"continuity_disposition":"reader-writer","generator":"library/organization/projections/build-projections.py","instruction_modules":[{"id":"decision-impact","inherits":[{"approval_url":"https://github.com/egohygiene/hygiene/pull/72","contract":"egohygiene.architecture-decision/v1","policy_version":"1.2.0","revision":"a05b14f8b9e2772124f879f818e09a911e996ad8","source_url":"https://github.com/egohygiene/hygiene/blob/a05b14f8b9e2772124f879f818e09a911e996ad8/docs/decisions/POLICY.md","status":"accepted"},{"contract":"egohygiene.repository-intelligence/v1","contract_version":"1.0.0-alpha.1","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md","status":"proposed"}],"source":"library/organization/projections/templates/decision-impact.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"7d3c1524fe643794df4b953b50d6a194a1268a0890785981fe465346398fb346"},"status":"draft","version":"0.3.0"},{"continuity_path":"CONTINUITY.md","contract":"aether.repository-continuity/v1","id":"repository-continuity","skill":"maintain-repository-continuity","source":"library/organization/instructions/repository-continuity/INSTRUCTION.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"},"status":"draft","version":"1.0.0"},{"contract":"aether.roadmap-impact/v1","id":"roadmap-impact","inherits":[{"contract":"egohygiene.organization-roadmap/v1","contract_version":"1.0.0-alpha.1","revision":"d51043f1e4d2ddc22ef4534bd0d65c0053afcbda","source_url":"https://github.com/egohygiene/hygiene/blob/d51043f1e4d2ddc22ef4534bd0d65c0053afcbda/docs/ecosystem/ORGANIZATION_ROADMAP.md","status":"proposed"}],"skill":"reconcile-roadmap-impact","source":"library/organization/projections/templates/roadmap-impact.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"b12c5ae8f0ff931ff45424915bfd86315b9f2942326bbdb05398223bf6d85811"},"status":"draft","version":"1.0.0"}],"interface":"aether.projection-interface/v1","interface_version":"1.2.0","provider":"opencode","source":"library/organization/agents/arxiv-publisher/AGENT.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"5d6ca94692a752341238925b06a4734e63f5b3b19c845102efc4d3e698019484"}} -->
+<!-- aether-projection {"continuity_disposition":"reader-writer","generator":"library/organization/projections/build-projections.py","instruction_modules":[{"id":"decision-impact","inherits":[{"approval_url":"https://github.com/egohygiene/hygiene/pull/72","contract":"egohygiene.architecture-decision/v1","policy_version":"1.2.0","revision":"a05b14f8b9e2772124f879f818e09a911e996ad8","source_url":"https://github.com/egohygiene/hygiene/blob/a05b14f8b9e2772124f879f818e09a911e996ad8/docs/decisions/POLICY.md","status":"accepted"},{"contract":"egohygiene.repository-intelligence/v1","contract_version":"1.0.0-alpha.1","revision":"5e0602265b6ac5e5165b89f418e55a3fd12f8a64","source_url":"https://github.com/egohygiene/hygiene/blob/5e0602265b6ac5e5165b89f418e55a3fd12f8a64/docs/ecosystem/REPOSITORY_INTELLIGENCE.md","status":"proposed"}],"source":"library/organization/projections/templates/decision-impact.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"7d3c1524fe643794df4b953b50d6a194a1268a0890785981fe465346398fb346"},"status":"draft","version":"0.3.0"},{"continuity_path":"CONTINUITY.md","contract":"aether.repository-continuity/v1","id":"repository-continuity","skill":"maintain-repository-continuity","source":"library/organization/instructions/repository-continuity/INSTRUCTION.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"dc2fb66bd5268af2416389fef469d2a13c91d1a6f179e6fc10a21d4f890876a8"},"status":"draft","version":"1.0.0"},{"contract":"aether.roadmap-impact/v1","id":"roadmap-impact","inherits":[{"contract":"egohygiene.organization-roadmap/v1","contract_version":"1.0.0-alpha.1","revision":"d51043f1e4d2ddc22ef4534bd0d65c0053afcbda","source_url":"https://github.com/egohygiene/hygiene/blob/d51043f1e4d2ddc22ef4534bd0d65c0053afcbda/docs/ecosystem/ORGANIZATION_ROADMAP.md","status":"proposed"}],"skill":"reconcile-roadmap-impact","source":"library/organization/projections/templates/roadmap-impact.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"b12c5ae8f0ff931ff45424915bfd86315b9f2942326bbdb05398223bf6d85811"},"status":"draft","version":"1.0.0"},{"id":"worker-strategy","skill":"execute-issue-checkpoint","source":"library/organization/projections/templates/worker-strategy.AGENTS.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"e6386e88b01dc87b55f5aefd33ab0e4b9bbde745b72abcb84da7ad3cb9d476d8"},"spec":"worker-strategy","spec_version":"0.2.0","status":"draft","version":"1.0.0"}],"interface":"aether.projection-interface/v1","interface_version":"1.2.0","provider":"opencode","source":"library/organization/agents/arxiv-publisher/AGENT.md","source_digest":{"algorithm":"sha256-utf8-lf","value":"bcd5631f778ce763601f8046de0cdccf791af127435087611d1ad05eb189cef4"}} -->
 
 ## Mission
 
@@ -164,3 +165,25 @@ blocked check and next owner. Refresh continuity after domain reconciliation.
 This draft shared module is static guidance, not an installed or enforced host
 hook. Preserve consumer prose, scoped instructions and tool permissions.
 <!-- END AETHER ROADMAP-IMPACT -->
+
+<!-- BEGIN AETHER WORKER-STRATEGY -->
+<!-- aether-instruction {"id":"worker-strategy","version":"1.0.0","status":"draft","skill":"execute-issue-checkpoint","spec":"worker-strategy","spec_version":"0.2.0"} -->
+## Bounded issue execution
+
+For authorized repository issue work, compose `execute-issue-checkpoint` with
+the selected `worker-strategy`, continuity, local-validation and roadmap-impact
+contracts. Keep small issues unsplit; preserve a larger parent with the smallest
+useful checkpoints; reuse existing stable checkpoint/PR identities. Parent links
+group scope and do not create false blockers. Preserve all original acceptance.
+
+Execute one bounded checkpoint at a time within the caller's authorized batch.
+Save meaningful progress and the exact resume action before planned handoffs;
+commit/push/update the existing draft PR only when current authority permits.
+Reverify actual branch, working tree, issue/PR and checks on fresh-session resume.
+Prepared, validated, review-ready, merged and delivered remain separate; retain
+failed/unrun/unavailable checks and parent obligations. Read-only roles gain no
+writes. Missing access, unpushed work and abrupt-loss limits stay explicit.
+
+This draft module supplies guidance, not a scheduler, installed recovery hook,
+guaranteed context warning, zero-loss promise or fleet-adoption evidence.
+<!-- END AETHER WORKER-STRATEGY -->
