@@ -10,7 +10,7 @@
   "intent_change": false,
   "roadmap": {
     "path": "ROADMAP.md",
-    "revision": "faa865ee38d70a5e0c750e5367789453f9eabcff",
+    "revision": "b5bb6032c0fbdc2a43443ee0ebbb0344a377dd29",
     "availability": "current"
   },
   "steps": [
@@ -21,7 +21,7 @@
   "evidence": [
     {
       "kind": "source",
-      "reference": "https://github.com/egohygiene/aether/blob/faa865ee38d70a5e0c750e5367789453f9eabcff/library/organization/specs/methodology/conversation-continuity.spec.md"
+      "reference": "https://github.com/egohygiene/aether/blob/b5bb6032c0fbdc2a43443ee0ebbb0344a377dd29/library/organization/specs/methodology/conversation-continuity.spec.md"
     },
     {
       "kind": "check",

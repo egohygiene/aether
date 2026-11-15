@@ -3,7 +3,7 @@
   "observed_at": "2026-11-15T00:27:56Z",
   "issue": "https://github.com/egohygiene/aether/issues/102",
   "status": "qualified-source-only",
-  "source_revision": "faa865ee38d70a5e0c750e5367789453f9eabcff",
+  "source_revision": "b5bb6032c0fbdc2a43443ee0ebbb0344a377dd29",
   "baseline_revision": "919bb4874dd9376944f6459474c01e9f3a4d93ef",
   "contract": "conversation-continuity0.1.0; aether.conversation-ledger/v1 draft",
   "validation": {
@@ -38,7 +38,16 @@
       "Missing/self/future/cyclic links and unsupported major/bounds fail admission",
       "Private entries/sources/prior segments fail public admission; private ledger stays private; unsafe references rejected",
       "Stored hostile instruction never changes context-only authority; duplicate JSON/symlink/FIFO refused; generic diagnostics withhold source content"
-    ]
+    ],
+    "pinned_environment": {
+      "status": "pass",
+      "dependencies": "requirements-dev.lock (PyYAML6.0.1/jsonschema4.10.3/attrs22.2.0/pyrsistent0.20.0)",
+      "full_tests": 359,
+      "existing_explicit_skips": 11,
+      "focused_tests": 16,
+      "catalog_schema_check": "pass",
+      "repair": "Absolute schema identifier resolves nested internal definitions in the pinned resolver; initial hosted43658350782 failed before consumer qualification and is retained as corrected source evidence."
+    }
   },
   "root_continuity": {
     "schema_unchanged": true,

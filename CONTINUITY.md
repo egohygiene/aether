@@ -7,7 +7,7 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-15T00:27:56Z'
+  updated_at: '2026-11-15T00:32:31Z'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
@@ -31,9 +31,9 @@ scope:
   - Existing continuity skill1.2.0 discovers the optional route for default-bundle67 without enabling
     it. Canonical inventory, schema mirror, catalog and generated distributions are reconciled; corpus36specs/41skills/10agents.
     ADR0012 stays proposed/null.734 retained staging files and raw bytes are unchanged.
-  - Merged132 release repair now has actual hosted read-only parse/job-creation proof at13f7508/run43657025924,
-    with tagged validation/publication skipped. Its dated source receipt is updated to retain that bounded
-    observation.38 stays open.
+  - Initial hosted schema-resolution failure under pinnedjsonschema4.10.3 is repaired with an absolute
+    schema identifier. An isolated environment from requirements-dev.lock passes catalog/schema,16 focused
+    and359 full tests with11 existing skips. New hosted exact-head proof remains pending.
   excludes: &id001
   - The extension, ledger schema and ADR0012 remain draft/proposed with null approval. Source integration
     does not authenticate user decisions, human review, private prose classification or downstream policy/adoption.
@@ -91,48 +91,54 @@ state:
   base:
     revision: 919bb4874dd9376944f6459474c01e9f3a4d93ef
     ref: refs/heads/main
-    verified_at: '2026-11-15T00:27:56Z'
+    verified_at: '2026-11-15T00:32:31Z'
   candidate:
     branch: codex/conversation-continuity-extension
     revision: null
-    pull_request: null
+    pull_request:
+      provider: github
+      id: egohygiene/aether#133
+      url: https://github.com/egohygiene/aether/pull/133
     handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-15T00:27:56Z'
+    observed_at: '2026-11-15T00:32:31Z'
     default_branch_revision: 919bb4874dd9376944f6459474c01e9f3a4d93ef
     issue_state: open
-    pull_request_state: not-applicable
-    notes: Observed main919bb48 includes merged132 source repair;38 remains open.102 is open and this
-      local sourcefaa865e has no PR yet.92 is closed at merged131. Reports/handoff are later source-bound
-      additions; containing revision remains null.
+    pull_request_state: open
+    notes: Observed main919bb48 includes merged132.133 is open at priorhead6a2c921 and initial hosted43658350782
+      exposed pinned-jsonschema relative-ID resolution failure. Local sourceb5bb6032c0fbdc2a43443ee0ebbb0344a377dd29
+      repairs both canonical/portable schema IDs; pinned catalog,16 focused and359 full tests pass with11
+      existing skips. Updated hosted proof remains pending; no source failure is attributed to the baseline
+      consumer gate.
   parallel_changes: []
 review:
   status: partial
-  reviewed_at: '2026-11-15T00:27:56Z'
+  reviewed_at: '2026-11-15T00:32:31Z'
   reviewed_by: Codex
   evidence:
   - command: ./aether test
     outcome: passed
-    notes: 359 full tests pass with11 existing optional/native skips.
-    observed_at: '2026-11-15T00:27:56Z'
+    notes: 359 full tests pass under both available and repository-pinned dependencies, with11 existing
+      optional/native skips. Native pinned catalog/schema check passes after correcting relative-ID resolution.
+    observed_at: '2026-11-15T00:32:31Z'
   - command: python -m unittest tests.test_conversation_continuity tests.test_continuity_integration -q
     outcome: passed
     notes: 16 focused methods pass, including actual isolated saved-file/Git recovery with schema-valid
       bounded checkpoint.
-    observed_at: '2026-11-15T00:27:56Z'
+    observed_at: '2026-11-15T00:32:31Z'
   - command: ./aether eval run --skill maintain-conversation-checkpoint --mode deterministic --format
       json
     outcome: passed
     notes: 12 declared structure/golden assertion cases pass withzero skips/suite errors; not model judgment.
-    observed_at: '2026-11-15T00:27:56Z'
+    observed_at: '2026-11-15T00:32:31Z'
   - command: Catalog/schema/provenance/source/links/strict-staging/distribution, portable helper and proposed
       ADR metadata checks
     outcome: passed
     notes: Actual generated package executes outside Aether with Python-I and bundled schema. Default
       source keeps only historical provenance warning.734 staging files/222units/6,791,350 raw bytes remain
       unchanged.
-    observed_at: '2026-11-15T00:27:56Z'
+    observed_at: '2026-11-15T00:32:31Z'
   environment_limitations: *id001
 privacy:
   classification: public-repository
@@ -182,11 +188,11 @@ One isolated fresh process reads authored route, a schema-valid bounded current 
 
 Existing continuity skill1.2.0 discovers the optional route for default-bundle67 without enabling it. Canonical inventory, schema mirror, catalog and generated distributions are reconciled; corpus36specs/41skills/10agents. ADR0012 stays proposed/null.734 retained staging files and raw bytes are unchanged.
 
-Merged132 release repair now has actual hosted read-only parse/job-creation proof at13f7508/run43657025924, with tagged validation/publication skipped. Its dated source receipt is updated to retain that bounded observation.38 stays open.
+Initial hosted schema-resolution failure under pinnedjsonschema4.10.3 is repaired with an absolute schema identifier. An isolated environment from requirements-dev.lock passes catalog/schema,16 focused and359 full tests with11 existing skips. New hosted exact-head proof remains pending.
 
 ## Validation and review evidence
 
-`./aether test` — passed: 359 full tests pass with11 existing optional/native skips.
+`./aether test` — passed: 359 full tests pass under both available and repository-pinned dependencies, with11 existing optional/native skips. Native pinned catalog/schema check passes after correcting relative-ID resolution.
 
 `python -m unittest tests.test_conversation_continuity tests.test_continuity_integration -q` — passed: 16 focused methods pass, including actual isolated saved-file/Git recovery with schema-valid bounded checkpoint.
 
