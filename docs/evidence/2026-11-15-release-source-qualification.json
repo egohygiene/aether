@@ -1,0 +1,70 @@
+{
+  "schema_version": "aether.source-qualification/v1",
+  "observed_at": "2026-11-15T00:11:34Z",
+  "issue": "https://github.com/egohygiene/aether/issues/38",
+  "checkpoint": "Existing release source repair; AUDIT005\u2013010 source behavior only",
+  "status": "qualified-source-only",
+  "source_revision": "f3f6cf34cbe922101e1120f7165a73c8994277aa",
+  "baseline_revision": "aefd467e00906f6ee95a6bc27dd96ab97db3f545",
+  "validation": {
+    "full_tests": {
+      "status": "pass",
+      "total": 351,
+      "existing_explicit_skips": 11
+    },
+    "focused_release_tests": {
+      "status": "pass",
+      "total": 24
+    },
+    "actionlint": {
+      "status": "pass",
+      "version": "1.7.7",
+      "download": {
+        "source": "https://github.com/rhysd/actionlint/releases/download/v1.7.7/actionlint_1.7.7_linux_amd64.tar.gz",
+        "sha256": "023070a287cd8cccd71515fedc843f1985bf96c436b7effaecce67290e7e0757",
+        "binary_sha256": "9f7dedb4e23f89f2922073d1a6720405b7b520d4f5832ebb96f0d55a2958886c"
+      },
+      "scope": "Workflow/event/expression contexts; optional ShellCheck/Pyflakes disabled; bash syntax checked separately"
+    },
+    "source_catalog_links_shell_distribution_release_declaration_staging": {
+      "status": "pass"
+    },
+    "native_git_controls": [
+      "lightweight and annotated existing tags",
+      "selected older tag versus later dispatch source",
+      "moved remote tag refusal",
+      "wrong checkout refusal",
+      "missing tag refusal",
+      "non-default-history refusal",
+      "invalid tag/branch/commit refusal"
+    ],
+    "metadata_controls": [
+      "selected skills and governed catalogs only",
+      "draft/provider/unlisted/prior-output exclusion",
+      "exact archive and channel inventory",
+      "checksums and provenance match actual selected bytes",
+      "stale metadata refusal",
+      "repeat byte-identical metadata and tar/gzip",
+      "manifest escape/symlink/FIFO refusal",
+      "unused destination/no overwrite",
+      "canonical bracketed changelog section",
+      "full source SHA required"
+    ]
+  },
+  "hosted_job_creation": {
+    "status": "not-run",
+    "reason": "Pending exact-head PR source qualification; publication jobs must remain skipped on PR"
+  },
+  "current_real_catalog": {
+    "exit_code": 1,
+    "reason": "ERROR: no release-eligible first-party skills found; only catalog records with lifecycle.state=stable and release.included=true may be released",
+    "tag": "v0.0.1",
+    "selection": "synthetic candidate name only; no tag created"
+  },
+  "limitations": [
+    "Actual Aether catalog has no release-eligible first-party skills; metadata preparation refuses the candidate. No lifecycle/rights status, reviewed stable set, tag or release is created or promoted.",
+    "Installed GitHub CLI has no skill command. Native consumer acceptance remains blocked/not-ready; portable pilot governing dependencies and remote install/update/deprecation/rollback remain issue38 obligations.",
+    "Actionlint validates workflow expressions and native disposable-Git/metadata fixtures qualify source behavior. Hosted PR source-job creation is pending; dispatch-only tagged jobs and publication are not exercised. Token mapping is source wiring, not credential or publication proof."
+  ],
+  "adr": "No new architectural choice: implements existing explicit/manual first-party release path, owner boundaries and stable-selection rules. No replacement preparation engine, catalog lifecycle decision or public schema is introduced."
+}

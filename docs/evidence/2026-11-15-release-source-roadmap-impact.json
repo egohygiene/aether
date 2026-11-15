@@ -1,0 +1,35 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "updated",
+  "reason": "Adds factual partial source-repair evidence to existing release job and provenance steps. Their states, strategic identity, horizon, priority and unmet release/consumer acceptance remain unchanged.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "f3f6cf34cbe922101e1120f7165a73c8994277aa",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q02",
+    "AET-Q04"
+  ],
+  "changed_paths": [
+    "ROADMAP.md"
+  ],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "https://github.com/egohygiene/aether/blob/f3f6cf34cbe922101e1120f7165a73c8994277aa/.github/workflows/release-first-party-skills.yml"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/evidence/2026-11-15-release-source-qualification.json"
+    }
+  ],
+  "organization_signals": []
+}
