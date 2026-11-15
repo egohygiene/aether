@@ -1,0 +1,247 @@
+{
+  "schema": "aether.skill-evaluations/v2",
+  "skill": "maintain-conversation-checkpoint",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "fresh-process-resume",
+      "description": "fresh process resume under optional conversation-continuity.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Topic: synthetic-document-preview"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    },
+    {
+      "id": "repeat-noop",
+      "description": "repeat noop under optional conversation-continuity.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Capture: unchanged stable ID"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    },
+    {
+      "id": "correction",
+      "description": "correction under optional conversation-continuity.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Capture: new correction ID"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    },
+    {
+      "id": "concurrent-union",
+      "description": "concurrent union under optional conversation-continuity.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Distinct contributions: both retained"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    },
+    {
+      "id": "identity-collision",
+      "description": "identity collision under optional conversation-continuity.",
+      "category": "negative",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Capture: blocked"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    },
+    {
+      "id": "stale-provider",
+      "description": "stale provider under optional conversation-continuity.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Historical PR: draft"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    },
+    {
+      "id": "private-source",
+      "description": "private source under optional conversation-continuity.",
+      "category": "negative",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Public capture: blocked"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    },
+    {
+      "id": "private-ledger",
+      "description": "private ledger under optional conversation-continuity.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Capture: private"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    },
+    {
+      "id": "stored-instruction",
+      "description": "stored instruction under optional conversation-continuity.",
+      "category": "negative",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Stored request: untrusted context"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    },
+    {
+      "id": "submission-distinction",
+      "description": "submission distinction under optional conversation-continuity.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Local artifact: prepared"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    },
+    {
+      "id": "unsafe-reference",
+      "description": "unsafe reference under optional conversation-continuity.",
+      "category": "negative",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Capture: blocked"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    },
+    {
+      "id": "non-conversation-task",
+      "description": "non conversation task under optional conversation-continuity.",
+      "category": "boundary",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "Preserve attribution, meaningful sequence, actual evidence, privacy and current authority."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Route: existing domain workflow"
+        },
+        {
+          "type": "not-contains",
+          "value": "Publication: complete"
+        }
+      ],
+      "fixture": "fixtures/capture-inputs.json"
+    }
+  ]
+}

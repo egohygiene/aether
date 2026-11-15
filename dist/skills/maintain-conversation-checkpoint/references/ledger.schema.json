@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aether.conversation-ledger/v1",
+  "title": "Optional conversation evidence ledger; context only",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "repository",
+    "visibility",
+    "authority",
+    "onboarding",
+    "checkpoint_path",
+    "prior_segments",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "aether.conversation-ledger/v1"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$"
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "private"
+      ]
+    },
+    "authority": {
+      "const": "context-only-no-permissions"
+    },
+    "onboarding": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "checkpoint_path": {
+      "const": "CONTINUITY.md"
+    },
+    "prior_segments": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "entries": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "reference",
+        "revision",
+        "observed_at",
+        "visibility"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "user-note",
+            "artifact",
+            "check",
+            "issue",
+            "pull-request",
+            "decision",
+            "provider",
+            "prior-segment"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "revision": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "visibility": {
+          "enum": [
+            "public",
+            "private"
+          ]
+        }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "recorded_at",
+        "topic",
+        "interaction",
+        "kind",
+        "summary",
+        "state",
+        "visibility",
+        "provenance",
+        "state_evidence",
+        "reply_to",
+        "corrects",
+        "supersedes",
+        "validation",
+        "open_questions",
+        "next_action"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^cp-[a-z0-9-]{4,64}$"
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "interaction": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        },
+        "kind": {
+          "enum": [
+            "user-statement",
+            "user-decision",
+            "agent-interpretation",
+            "agent-proposal",
+            "attempt",
+            "feedback",
+            "observation",
+            "validation",
+            "unknown",
+            "deferred",
+            "correction",
+            "next-action"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1400
+        },
+        "state": {
+          "enum": [
+            "requested",
+            "proposed",
+            "prepared",
+            "validated",
+            "merged",
+            "published",
+            "provider-submitted",
+            "unknown",
+            "deferred"
+          ]
+        },
+        "visibility": {
+          "enum": [
+            "public",
+            "private"
+          ]
+        },
+        "provenance": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        },
+        "state_evidence": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        },
+        "reply_to": {
+          "type": "array",
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^cp-[a-z0-9-]{4,64}$"
+          }
+        },
+        "corrects": {
+          "type": "array",
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^cp-[a-z0-9-]{4,64}$"
+          }
+        },
+        "supersedes": {
+          "type": "array",
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^cp-[a-z0-9-]{4,64}$"
+          }
+        },
+        "validation": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "command",
+              "outcome"
+            ],
+            "properties": {
+              "command": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              },
+              "outcome": {
+                "enum": [
+                  "passed",
+                  "failed",
+                  "not-run",
+                  "unavailable"
+                ]
+              }
+            }
+          }
+        },
+        "open_questions": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          }
+        },
+        "next_action": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        }
+      }
+    }
+  }
+}

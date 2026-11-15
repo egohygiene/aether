@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/maintain-repository-continuity",
-  "artifact_version": "1.1.0",
+  "artifact_version": "1.2.0",
   "compatibility": {
     "required_tools": [
       "git"
@@ -24,6 +24,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "1746b29afa62d7a523d87675430730553079e82cf42e46a6ebe7cf8c82d29e8b"
+    "value": "be69550f2be03b68d210426d2e411f0e10134d788b8b4869f3bc200f2a727835"
   }
 }

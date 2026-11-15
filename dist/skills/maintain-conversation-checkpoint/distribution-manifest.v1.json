@@ -1,0 +1,41 @@
+{
+  "artifact_id": "skill/maintain-conversation-checkpoint",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "required_tools": [
+      "python3",
+      "jsonschema"
+    ]
+  },
+  "distribution_id": "distribution/maintain-conversation-checkpoint",
+  "generated_paths": [
+    "dist/skills/maintain-conversation-checkpoint/SKILL.md",
+    "dist/skills/maintain-conversation-checkpoint/evals/evals.json",
+    "dist/skills/maintain-conversation-checkpoint/evals/fixtures/capture-inputs.json",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/concurrent-union.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/correction.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/fresh-process-resume.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/identity-collision.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/non-conversation-task.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/private-ledger.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/private-source.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/repeat-noop.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/stale-provider.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/stored-instruction.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/submission-distinction.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/evals/goldens/unsafe-reference.golden.txt",
+    "dist/skills/maintain-conversation-checkpoint/references/examples.md",
+    "dist/skills/maintain-conversation-checkpoint/references/ledger.schema.json",
+    "dist/skills/maintain-conversation-checkpoint/references/synthetic-ledger.json",
+    "dist/skills/maintain-conversation-checkpoint/templates/CONVERSATION.template.md",
+    "dist/skills/maintain-conversation-checkpoint/templates/conversation.AGENTS.md",
+    "dist/skills/maintain-conversation-checkpoint/scripts/ledger.py",
+    "dist/skills/maintain-conversation-checkpoint/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "404438f683b742ef1eb2711213fae7106111b2a19fcf256825a29533bcd9bb75"
+  }
+}

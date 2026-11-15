@@ -36,6 +36,7 @@ SCHEMA_FILES = [
     "aether.staging-disposition-record.v1.schema.json",
     "aether.staging-residual-ledger.v1.schema.json",
     "aether.roadmap-impact.v1.schema.json",
+    "aether.conversation-ledger.v1.schema.json",
     "aether.evaluation-definition.v1.schema.json",
     "aether.evaluation-result.v1.schema.json",
     "aether.social-surface-catalog.v1.schema.json",
@@ -230,6 +231,10 @@ def main() -> int:
     errors.extend(validate_fixtures(validators))
     roadmap_schema = SCHEMAS_DIR / "aether.roadmap-impact.v1.schema.json"
     portable_schema = SKILLS_DIR / "architecture/reconcile-roadmap-impact/references/receipt.schema.json"
+    conversation_schema = SCHEMAS_DIR / "aether.conversation-ledger.v1.schema.json"
+    conversation_portable = SKILLS_DIR / "methodology/maintain-conversation-checkpoint/references/ledger.schema.json"
+    if conversation_schema.read_bytes() != conversation_portable.read_bytes():
+        errors.append("Portable conversation ledger schema differs from canonical catalog source")
     if roadmap_schema.read_bytes() != portable_schema.read_bytes():
         errors.append("Portable roadmap-impact schema differs from its canonical catalog source")
     errors.extend(validate_catalog(validators))

@@ -1265,7 +1265,54 @@
       "title": "Implementation Planning"
     },
     {
-      "artifact_version": "1.1.0",
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/conversation-continuity"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Captures or resumes meaningful discussion checkpoints in an explicitly opted-in repository. Use when attributed intent, iteration, corrections and unanswered questions must survive across sessions; do not archive raw chat or replace live work state.",
+      "domain": "methodology",
+      "generated_distribution_paths": [
+        "dist/skills/maintain-conversation-checkpoint/SKILL.md"
+      ],
+      "id": "skill/maintain-conversation-checkpoint",
+      "implements_specification_id": "specification/conversation-continuity",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "404438f683b742ef1eb2711213fae7106111b2a19fcf256825a29533bcd9bb75"
+      },
+      "source_path": "library/organization/skills/methodology/maintain-conversation-checkpoint/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "methodology",
+        "skill"
+      ],
+      "title": "Maintain Conversation Checkpoint"
+    },
+    {
+      "artifact_version": "1.2.0",
       "compatibility": {
         "required_tools": []
       },
@@ -1301,7 +1348,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "1746b29afa62d7a523d87675430730553079e82cf42e46a6ebe7cf8c82d29e8b"
+        "value": "be69550f2be03b68d210426d2e411f0e10134d788b8b4869f3bc200f2a727835"
       },
       "source_path": "library/organization/skills/methodology/maintain-repository-continuity/SKILL.md",
       "supersedes_ids": [],
@@ -3174,6 +3221,59 @@
         "read-only"
       ],
       "title": "Repository Auditor Specification"
+    },
+    {
+      "artifact_version": "0.1.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/repository-continuity",
+        "specification/worker-strategy"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "This draft extends `repository-continuity`1.0.0 without changing its schema, required sections, 16,384-byte/240-line bounds or precedence. Consumers opt in through their scoped AGENTS guidance \u2192 authored conversation onboarding page \u2192 root current checkpoint and separate discussion ledger \u2192 canonical artifacts. No file or empty directory is required in a repository that has not opted in.",
+      "domain": "methodology",
+      "generated_distribution_paths": [
+        "dist/specs/conversation-continuity.spec.md"
+      ],
+      "id": "specification/conversation-continuity",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "specification/repository-journal",
+        "specification/local-validation-evidence"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "21b02c8ac07804483b7caefd376965a0b925f9372dce90ec361f67d0969cc658"
+      },
+      "source_path": "library/organization/specs/methodology/conversation-continuity.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "continuity",
+        "conversation",
+        "provenance",
+        "privacy"
+      ],
+      "title": "Optional Conversation Continuity Extension"
     },
     {
       "artifact_version": "1.0.0",

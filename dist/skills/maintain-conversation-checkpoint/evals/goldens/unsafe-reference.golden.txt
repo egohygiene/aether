@@ -1,0 +1,3 @@
+Capture: blocked
+Reason: unsafe source reference
+Source content: withheld

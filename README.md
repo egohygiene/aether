@@ -49,9 +49,9 @@ Generated artifacts:
 
 ## 4) First-party catalog summary
 
-The earlier November14 snapshot at merged main `2e69182` contained38 skills. The roadmap-impact and bounded-checkpoint packages add two skills since that snapshot; the following current counts were recomputed from canonical source on2026-11-14 UTC and do not establish maturity or release readiness:
-- 35 specifications (`find library/organization/specs -name "*.spec.md"`)
-- 40 skills (`find library/organization/skills -name "SKILL.md"`)
+The earlier November14 snapshot at merged main `2e69182` contained38 skills. The roadmap-impact, bounded-checkpoint and optional conversation packages add three skills since that snapshot; the following current counts were recomputed from canonical source on2026-11-15 UTC and do not establish maturity or release readiness:
+- 36 specifications (`find library/organization/specs -name "*.spec.md"`)
+- 41 skills (`find library/organization/skills -name "SKILL.md"`)
 - 10 canonical agent profiles (`find library/organization/agents -name "AGENT.md"`)
 - 1 canonical instruction module (`find library/organization/instructions -name "INSTRUCTION.md"`)
 
@@ -60,6 +60,8 @@ Start with [AGENTS.md](AGENTS.md), [META.md](META.md) and [ARCHITECTURE.md](ARCH
 Machine-readable catalog and provenance:
 - `catalog/first-party/catalog.v1.json`
 - `catalog/external/approved-skills.v1.json`
+
+Conversation onboarding is an [optional extension](library/organization/specs/methodology/conversation-continuity.spec.md): a consumer-selected authored route links the bounded current checkpoint to attributed discussion evidence and canonical artifacts. The [thin skill and templates](library/organization/skills/methodology/maintain-conversation-checkpoint/SKILL.md) add no required repository files, archive service, host recovery hook or new permissions.
 
 Before PR handoff, the shared [roadmap-impact skill](library/organization/skills/architecture/reconcile-roadmap-impact/SKILL.md) records updated/proposed/not-affected/blocked while preserving role permissions and human strategy authority.
 
