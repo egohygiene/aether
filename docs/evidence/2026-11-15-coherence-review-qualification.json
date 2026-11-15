@@ -1,0 +1,66 @@
+{
+  "schema_version": "aether.source-qualification/v1",
+  "observed_at": "2026-11-15T02:31:57.907542+00:00",
+  "issue": "https://github.com/egohygiene/aether/issues/87",
+  "status": "qualified-source-only",
+  "source_revision": "ba9081395e51b03ee9552925dfc0383bef1257a6",
+  "baseline_revision": "bf3a738abb37cd341686ce265fbce65feacdf865",
+  "contract": "Existing architecture-coherence-review/v1 alpha.1; specification and skill 1.0.1 remain draft",
+  "validation": {
+    "repository_pinned_full_tests": {
+      "status": "pass",
+      "total": 391,
+      "existing_explicit_skips": 11
+    },
+    "focused_scenario_package_continuity": {
+      "status": "pass",
+      "total": 27
+    },
+    "declared_deterministic_cases": {
+      "status": "pass",
+      "cases": 9,
+      "skipped": 0,
+      "suite_errors": 0,
+      "scope": "Structure/resource assertions; native semantic tests run separately."
+    },
+    "portable_generated_helper": {
+      "standalone_examples_passed": 6,
+      "human_ratification_created": false,
+      "runtime": "isolated Python; standard-library helper and locked owner resources"
+    },
+    "catalog_schema_graph_links_source_strict_staging_distribution": {
+      "status": "pass",
+      "historical_warning": "AETHER_PROVENANCE_009 retained"
+    },
+    "owner_source": {
+      "status": "byte-identical",
+      "existing_lock_revision": "d11580e9a9c5d78b9a5d21474deaa612712a0fb9",
+      "independently_qualified_owner_revision": "1c2bb79e6624a81f7187bd1ee99bee1ea3de1583",
+      "verified_resources": 4,
+      "pin_changed": false
+    },
+    "fixture_cases": [
+      "coherent",
+      "over-engineered",
+      "contradictory",
+      "incomplete",
+      "stale",
+      "insufficient-evidence"
+    ],
+    "native_controls": [
+      "Both schema and reference-helper admit all six authored inputs",
+      "Coherent recommendation remains not-reviewed; no certification or authority inferred",
+      "Consequential complexity/ownership concerns retain evidence and credible alternative tradeoffs",
+      "Partial/blocked reviews cannot recommend ratify or carry a completion timestamp",
+      "Expired supplied human claim yields stale freshness and unverified evidence with null human disposition",
+      "Ordinary revision mismatch does not invent materiality or trusted authority",
+      "Existing 13 native package controls retain exact digests,public admission,unsafe input refusal and human-only import boundary"
+    ]
+  },
+  "limitations": [
+    "Six scenarios are authored fictional inputs, not actual architectural judgments or real reviews. Native structural/semantic success does not establish model reasoning, source truth, host adoption or human understanding.",
+    "The specification and skill remain draft. Hygiene applicability/governance policy and the exact source lock are unchanged. No trusted human context is constructed and no architecture is ratified or changed.",
+    "Actual human UX, owner policy selection, authentic provider verification, first real review and downstream adoption remain separate. The Aether #38 consumer/release gate stays not-ready with 11 existing optional/native skips."
+  ],
+  "decision_impact": "ADR not required: qualifies existing draft contract/procedure and unchanged owner resources without new schema, authority, owner, runtime or strategy."
+}

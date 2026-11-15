@@ -3,12 +3,12 @@ schema: aether.specification/v1
 id: architecture-coherence-review
 title: Architecture Coherence Review Contract
 kind: specification
-version: 1.0.0
+version: 1.0.1
 status: draft
 owners:
   - egohygiene
 created: 2026-11-10
-updated: 2026-11-10
+updated: 2026-11-15
 domain: architecture
 tags:
   - architecture-coherence
@@ -198,11 +198,14 @@ and governance policy; Observatory owns normalized query/projection; Relay owns
 delivery/rendering; Reflector owns campaign orchestration and human-alignment
 continuation. No provider adapter or authentication service is added here.
 
-Static source/schema/syntax review is permitted for the current batch. User
-instructions defer behavioral tests, skill evaluations, runtime/source
-execution, builds, native acceptance and CI. Catalog/dist regeneration and the
-shared continuity/decision reconciliation belong to the integrator. Their
-absence is pending qualification, not a pass or acceptance.
+The original source batch deferred execution. Subsequent package qualification
+runs native schema/helper controls and deterministic skill assertions. Six
+fictional authored scenarios cover coherent, over-engineered, contradictory,
+incomplete, stale and insufficient-evidence architecture inputs. Qualification
+preserves the closed contract, exact owner source lock, generated distributions,
+immutable assessment subject and human-only trust boundary. Native admission
+checks do not establish model judgment, actual host adoption or real human
+ratification; those outcomes remain independently qualified.
 
 ## Risks, acceptance and open questions
 
@@ -213,8 +216,9 @@ helpers. No current repository or organization is ratified by this change.
 
 Source acceptance requires the portable artifact and skill, immutable digest,
 explicit unknowns, separate recommendation/human state, and human-only import
-boundary. Runtime negative cases, actual human UX, owner policy selection,
-provider verification/retention and first real review remain unqualified.
+boundary. Deterministic negative cases are qualified. Actual human UX, owner policy
+selection, provider verification/retention and the first real review remain
+unqualified.
 Future organization sanity sweeps should select an explicit public roster and
 exact revisions, preserve per-repository and organization authority separately,
 and produce review candidates without fabricating ratification.

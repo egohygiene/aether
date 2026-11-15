@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/review-architecture-coherence",
-  "artifact_version": "1.0.0",
+  "artifact_version": "1.0.1",
   "compatibility": {
     "required_tools": []
   },
@@ -9,6 +9,13 @@
     "dist/skills/review-architecture-coherence/SKILL.md",
     "dist/skills/review-architecture-coherence/evals/evals.json",
     "dist/skills/review-architecture-coherence/references/contract-and-human-boundary.md",
+    "dist/skills/review-architecture-coherence/references/examples/coherent.json",
+    "dist/skills/review-architecture-coherence/references/examples/contradictory.json",
+    "dist/skills/review-architecture-coherence/references/examples/incomplete.json",
+    "dist/skills/review-architecture-coherence/references/examples/insufficient-evidence.json",
+    "dist/skills/review-architecture-coherence/references/examples/over-engineered.json",
+    "dist/skills/review-architecture-coherence/references/examples/stale.json",
+    "dist/skills/review-architecture-coherence/references/scenario-qualification.md",
     "dist/skills/review-architecture-coherence/templates/REVIEW.template.md",
     "dist/skills/review-architecture-coherence/scripts/architecture-coherence-governance.v1.schema.json",
     "dist/skills/review-architecture-coherence/scripts/architecture-coherence-material-change.v1.schema.json",
@@ -22,6 +29,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "6a21ca69ddafa01edc46b5e812f72eb303e26412c639b121c686879c3aaf1fbe"
+    "value": "09604541c8247698789da24cdd0dbdff0c3c61cfd45ebcd2dde22d3303ee7274"
   }
 }

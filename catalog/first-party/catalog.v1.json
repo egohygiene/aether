@@ -1686,7 +1686,7 @@
       "title": "Repository Cleanup"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.0.1",
       "compatibility": {
         "required_tools": []
       },
@@ -1722,7 +1722,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "6a21ca69ddafa01edc46b5e812f72eb303e26412c639b121c686879c3aaf1fbe"
+        "value": "09604541c8247698789da24cdd0dbdff0c3c61cfd45ebcd2dde22d3303ee7274"
       },
       "source_path": "library/organization/skills/architecture/review-architecture-coherence/SKILL.md",
       "supersedes_ids": [],
@@ -2075,7 +2075,7 @@
       "title": "Architecture Document Specification"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.0.1",
       "compatibility": {
         "required_tools": []
       },
@@ -2115,7 +2115,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "6676d05ac90be62a2128e5cc4d1d5479afc743dece5718ef71ab5f3e279b3a9a"
+        "value": "591cef178e30e5b4de6743f5656c951dc1cb0cc364b183faa41a5250a1da7e9b"
       },
       "source_path": "library/organization/specs/architecture/architecture-coherence-review.spec.md",
       "supersedes_ids": [],

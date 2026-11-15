@@ -1,0 +1,240 @@
+{
+  "schema": "egohygiene.architecture-coherence-review/v1",
+  "contract_version": "1.0.0-alpha.1",
+  "id": "synthetic-incomplete",
+  "visibility": "public",
+  "scope": {
+    "kind": "repository",
+    "key": "egohygiene/aether",
+    "repositories": [
+      "egohygiene/aether"
+    ]
+  },
+  "represented_revisions": [
+    {
+      "repository": "egohygiene/aether",
+      "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "generated_at": "2026-11-14T10:00:00Z",
+  "reviewer": {
+    "kind": "ai",
+    "provider": null,
+    "model": null,
+    "method": "Synthetic local contract fixture; no real review occurred.",
+    "independent_challenge": "not-performed"
+  },
+  "execution": {
+    "status": "partial",
+    "completed_at": null,
+    "limitations": [
+      "The fictional runtime/deployment source was not supplied."
+    ]
+  },
+  "sources": [
+    {
+      "id": "architecture",
+      "repository": "egohygiene/aether",
+      "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "path": "ARCHITECTURE.md",
+      "kind": "architecture",
+      "origin": "canonical",
+      "visibility": "public",
+      "url": "https://github.com/egohygiene/aether/blob/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ARCHITECTURE.md"
+    }
+  ],
+  "explanation": {
+    "system": "The fixture represents a repository of reusable contracts.",
+    "boundaries": "The source library owns its public contracts.",
+    "flows": "Consumers read versioned artifacts from the library.",
+    "rationale": "One declared source avoids duplicated contract ownership.",
+    "summary": "The synthetic evidence supports a bounded explanation."
+  },
+  "components": [
+    {
+      "id": "library",
+      "name": "Contract library",
+      "responsibility": "Own reusable draft artifacts.",
+      "owner": "Ego Hygiene",
+      "evidence": [
+        "architecture"
+      ]
+    }
+  ],
+  "relationships": [],
+  "dimensions": [
+    {
+      "id": "purpose",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "responsibility-boundaries",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "source-of-truth",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "dependency-direction",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "cohesion",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "duplicate-ownership",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "speculative-abstractions",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "missing-ownership",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "coupling",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "documentation-divergence",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "decision-consistency",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "replaceability",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "operational-plausibility",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "security-privacy-trust",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "maintainability",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "justified-complexity",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    },
+    {
+      "id": "simplest-credible-alternative",
+      "status": "unknown",
+      "summary": "This synthetic fixture declares the dimension without claiming real assessment.",
+      "evidence": [],
+      "confidence": "unknown"
+    }
+  ],
+  "assumptions": [],
+  "strengths": [
+    {
+      "id": "single-owner",
+      "summary": "The fixture names one contract owner.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "low"
+    }
+  ],
+  "concerns": [
+    {
+      "id": "coupling-concern",
+      "category": "risky",
+      "importance": "consequential",
+      "summary": "Consumers may couple to implementation details.",
+      "detail": "The synthetic review asks whether a smaller contract boundary suffices.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "low",
+      "alternative_ids": [
+        "narrow-contract"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "consumer-boundary",
+      "question": "Which public fields do consumers need?",
+      "owner": null,
+      "evidence": [
+        "architecture"
+      ]
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "narrow-contract",
+      "summary": "Expose a smaller portable record.",
+      "tradeoffs": "A narrow record reduces coupling but requires explicit adaptation.",
+      "why_not_chosen": "Consumer evidence is incomplete in this synthetic fixture.",
+      "evidence": [
+        "architecture"
+      ],
+      "confidence": "low"
+    }
+  ],
+  "recommendation": {
+    "disposition": "defer",
+    "reason": "Missing runtime evidence prevents a completed review."
+  },
+  "governance": null
+}

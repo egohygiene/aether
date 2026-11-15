@@ -1,0 +1,32 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "Qualifies existing architecture-review scenarios within AET-Q01 without changing strategic IDs, priority, horizon, policy authority or release acceptance.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "ba9081395e51b03ee9552925dfc0383bef1257a6",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q01"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "https://github.com/egohygiene/aether/blob/ba9081395e51b03ee9552925dfc0383bef1257a6/library/organization/specs/architecture/architecture-coherence-review.spec.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/evidence/2026-11-15-coherence-review-qualification.json"
+    }
+  ],
+  "organization_signals": []
+}
