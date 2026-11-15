@@ -1,0 +1,4 @@
+Result: no exploration capture
+Authority: exploratory-only
+Automatic promotion: not-performed
+Canonical source: consumer repository

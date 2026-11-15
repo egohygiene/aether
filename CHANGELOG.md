@@ -12,6 +12,12 @@ This repository follows release-tag based versioning for install pinning and rel
 
 ### Added
 
+- Optional repository Exploration Note authoring contract, small editable template,
+  thin skill and create-only helper with idempotence and authored-content protection.
+  A reviewed Aether canary stays draft/parked; no automatic issue or garden promotion.
+
+### Added
+
 - Draft opt-in conversation-continuity extension, onboarding/instruction templates,
   bounded discussion-ledger schema, read-only validator and synthetic iteration,
   correction, concurrency, privacy and isolated fresh-process examples. Root

@@ -1,0 +1,4 @@
+Result: downstream link only
+Authority: exploratory-only
+Automatic promotion: not-performed
+Canonical source: consumer repository

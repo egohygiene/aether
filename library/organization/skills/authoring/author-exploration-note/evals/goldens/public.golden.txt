@@ -1,0 +1,4 @@
+Result: public-safe synthetic sources
+Authority: exploratory-only
+Automatic promotion: not-performed
+Canonical source: consumer repository

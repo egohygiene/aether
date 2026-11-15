@@ -1,0 +1,271 @@
+{
+  "schema": "aether.skill-evaluations/v2",
+  "skill": "author-exploration-note",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "create",
+      "description": "create within optional authored-note scope.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve tentative status, provenance, privacy and authored content; no automatic promotion."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Result: draft created"
+        },
+        {
+          "type": "contains",
+          "value": "Automatic promotion: not-performed"
+        },
+        {
+          "type": "not-contains",
+          "value": "Architecture: accepted"
+        }
+      ],
+      "fixture": "fixtures/notes.json"
+    },
+    {
+      "id": "revise",
+      "description": "revise within optional authored-note scope.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve tentative status, provenance, privacy and authored content; no automatic promotion."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Result: authored correction retained"
+        },
+        {
+          "type": "contains",
+          "value": "Automatic promotion: not-performed"
+        },
+        {
+          "type": "not-contains",
+          "value": "Architecture: accepted"
+        }
+      ],
+      "fixture": "fixtures/notes.json"
+    },
+    {
+      "id": "park",
+      "description": "park within optional authored-note scope.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve tentative status, provenance, privacy and authored content; no automatic promotion."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Result: parked; no action"
+        },
+        {
+          "type": "contains",
+          "value": "Automatic promotion: not-performed"
+        },
+        {
+          "type": "not-contains",
+          "value": "Architecture: accepted"
+        }
+      ],
+      "fixture": "fixtures/notes.json"
+    },
+    {
+      "id": "graduate-link",
+      "description": "graduate link within optional authored-note scope.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve tentative status, provenance, privacy and authored content; no automatic promotion."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Result: downstream link only"
+        },
+        {
+          "type": "contains",
+          "value": "Automatic promotion: not-performed"
+        },
+        {
+          "type": "not-contains",
+          "value": "Architecture: accepted"
+        }
+      ],
+      "fixture": "fixtures/notes.json"
+    },
+    {
+      "id": "duplicate",
+      "description": "duplicate within optional authored-note scope.",
+      "category": "negative",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve tentative status, provenance, privacy and authored content; no automatic promotion."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Result: blocked duplicate identity"
+        },
+        {
+          "type": "contains",
+          "value": "Automatic promotion: not-performed"
+        },
+        {
+          "type": "not-contains",
+          "value": "Architecture: accepted"
+        }
+      ],
+      "fixture": "fixtures/notes.json"
+    },
+    {
+      "id": "conflicting-decision",
+      "description": "conflicting decision within optional authored-note scope.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve tentative status, provenance, privacy and authored content; no automatic promotion."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Result: preserve canonical decision"
+        },
+        {
+          "type": "contains",
+          "value": "Automatic promotion: not-performed"
+        },
+        {
+          "type": "not-contains",
+          "value": "Architecture: accepted"
+        }
+      ],
+      "fixture": "fixtures/notes.json"
+    },
+    {
+      "id": "missing-source",
+      "description": "missing source within optional authored-note scope.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve tentative status, provenance, privacy and authored content; no automatic promotion."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Result: partial; source unavailable"
+        },
+        {
+          "type": "contains",
+          "value": "Automatic promotion: not-performed"
+        },
+        {
+          "type": "not-contains",
+          "value": "Architecture: accepted"
+        }
+      ],
+      "fixture": "fixtures/notes.json"
+    },
+    {
+      "id": "public",
+      "description": "public within optional authored-note scope.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve tentative status, provenance, privacy and authored content; no automatic promotion."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Result: public-safe synthetic sources"
+        },
+        {
+          "type": "contains",
+          "value": "Automatic promotion: not-performed"
+        },
+        {
+          "type": "not-contains",
+          "value": "Architecture: accepted"
+        }
+      ],
+      "fixture": "fixtures/notes.json"
+    },
+    {
+      "id": "private",
+      "description": "private within optional authored-note scope.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve tentative status, provenance, privacy and authored content; no automatic promotion."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Result: private remains private"
+        },
+        {
+          "type": "contains",
+          "value": "Automatic promotion: not-performed"
+        },
+        {
+          "type": "not-contains",
+          "value": "Architecture: accepted"
+        }
+      ],
+      "fixture": "fixtures/notes.json"
+    },
+    {
+      "id": "private-to-public",
+      "description": "private to public within optional authored-note scope.",
+      "category": "negative",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve tentative status, provenance, privacy and authored content; no automatic promotion."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Result: blocked private source"
+        },
+        {
+          "type": "contains",
+          "value": "Automatic promotion: not-performed"
+        },
+        {
+          "type": "not-contains",
+          "value": "Architecture: accepted"
+        }
+      ],
+      "fixture": "fixtures/notes.json"
+    },
+    {
+      "id": "non-exploration-task",
+      "description": "non exploration task within optional authored-note scope.",
+      "category": "boundary",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "Preserve tentative status, provenance, privacy and authored content; no automatic promotion."
+      ],
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Result: no exploration capture"
+        },
+        {
+          "type": "contains",
+          "value": "Automatic promotion: not-performed"
+        },
+        {
+          "type": "not-contains",
+          "value": "Architecture: accepted"
+        }
+      ],
+      "fixture": "fixtures/notes.json"
+    }
+  ]
+}

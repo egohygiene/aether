@@ -1,0 +1,4 @@
+Result: partial; source unavailable
+Authority: exploratory-only
+Automatic promotion: not-performed
+Canonical source: consumer repository
