@@ -1,0 +1,177 @@
+{
+  "schema": "aether.repository-audit-report/v1",
+  "contract_version": "1.0.0",
+  "audit_id": "synthetic-resolved",
+  "visibility": "public",
+  "scope": {
+    "kind": "repository",
+    "repositories": [
+      {
+        "full_name": "example-org/library",
+        "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "visibility": "public"
+      }
+    ],
+    "include": [
+      "Declared synthetic source fixture"
+    ],
+    "exclude": [
+      "Provider discovery and publication"
+    ],
+    "inspected": [
+      "Synthetic supplied capture"
+    ],
+    "uninspected": []
+  },
+  "profiles": {
+    "registry_version": "1.0.0",
+    "registry_sha256": "58fd660134444c480d16c48c106b1572974fd2243beedfe665962c96fccfe525",
+    "requested": [
+      {
+        "id": "implementation-quality",
+        "version": "1.0.0"
+      }
+    ],
+    "resolved": [
+      {
+        "id": "implementation-quality",
+        "version": "1.0.0"
+      }
+    ]
+  },
+  "started_at": "2026-11-15T00:00:00Z",
+  "completed_at": "2026-11-15T00:01:00Z",
+  "completion": {
+    "state": "complete",
+    "reason": null,
+    "continuation": [],
+    "profiles": [
+      {
+        "profile": {
+          "id": "implementation-quality",
+          "version": "1.0.0"
+        },
+        "state": "complete",
+        "reason": null
+      }
+    ]
+  },
+  "findings": [
+    {
+      "id": "AUDIT-001",
+      "visibility": "public",
+      "repository": "example-org/library",
+      "title": "Synthetic evidence-backed defect",
+      "classification": "confirmed-defect",
+      "nature": "defect",
+      "severity": "low",
+      "confidence": "high",
+      "status": "confirmed",
+      "area": "fixture",
+      "effort": "small",
+      "impact": "low",
+      "observation": "The synthetic capture records the stated fixture condition.",
+      "why_it_matters": "Demonstrates an independently modeled finding.",
+      "recommendation": "Inspect the supplied fixture.",
+      "suggested_validation": [
+        "Verify source independently before taking action."
+      ],
+      "dependencies": [],
+      "evidence_classification": "observed",
+      "evidence_refs": [
+        "EVIDENCE-1"
+      ],
+      "source_profile": {
+        "id": "implementation-quality",
+        "version": "1.0.0"
+      },
+      "missing_evidence": [],
+      "history": {
+        "delta": "resolved",
+        "prior_audit_id": "synthetic-previous",
+        "prior_finding_id": "AUDIT-001",
+        "evidence_classification": "observed",
+        "evidence_refs": [
+          "EVIDENCE-1",
+          "EVIDENCE-2"
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVIDENCE-1",
+      "classification": "observed",
+      "kind": "source",
+      "repository": "example-org/library",
+      "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "uri": null,
+      "path": "fixtures/captured-input.json",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "observed_at": "2026-11-15T00:00:00Z",
+      "summary": "Synthetic supplied source; no actual execution claim."
+    },
+    {
+      "id": "EVIDENCE-2",
+      "classification": "observed",
+      "kind": "prior-audit",
+      "repository": "example-org/library",
+      "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "uri": "https://example.org/audits/previous.md",
+      "path": null,
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "observed_at": "2026-11-15T00:00:00Z",
+      "summary": "Synthetic supplied source; no actual execution claim."
+    }
+  ],
+  "positive_observations": {
+    "finding_ids": [],
+    "absence_reason": "This synthetic case defines no positive observation."
+  },
+  "candidate_issues": [
+    {
+      "id": "CANDIDATE-001",
+      "status": "suggested",
+      "finding_ids": [
+        "AUDIT-001"
+      ],
+      "priority": "low",
+      "outcome": "Inspect and independently reproduce the synthetic condition.",
+      "acceptance_criteria": [
+        "Retain actual evidence before remediation."
+      ],
+      "dependencies": []
+    }
+  ],
+  "prior_audits": [
+    {
+      "audit_id": "synthetic-previous",
+      "uri": "https://example.org/audits/previous.md",
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "relationship": "predecessor",
+      "evidence_classification": "observed"
+    }
+  ],
+  "provenance": {
+    "producer": {
+      "name": "synthetic-fixture",
+      "version": "1.0.0",
+      "uri": null
+    },
+    "tools": [],
+    "commands": [],
+    "limitations": [
+      "Synthetic authoring example; no real audit, execution, provider identity or policy approval."
+    ],
+    "privacy": {
+      "contains_sensitive_data": false,
+      "redactions": []
+    },
+    "execution": "read-only"
+  },
+  "canonical_report": {
+    "path": "audits/resolved-20261115T000000Z.md",
+    "uri": null,
+    "sha256": "003c0d8a34c093a414ffd8d0d4391cb7d414ffec5be5493d2ae783b0426600cd"
+  }
+}

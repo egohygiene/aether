@@ -28,7 +28,7 @@ class AuditPackageContractTests(unittest.TestCase):
     def test_package_identity_resources_and_draft_are_consistent(self):
         source = frontmatter(PACKAGE / "SKILL.md")
         suite = json.loads((PACKAGE / "evals/evals.json").read_text())
-        self.assertEqual(source["metadata"]["aether-version"], "1.2.0")
+        self.assertEqual(source["metadata"]["aether-version"], "1.2.1")
         self.assertEqual(suite["version"], source["metadata"]["aether-version"])
         self.assertEqual(suite["skill"], source["name"])
         self.assertEqual(source["metadata"]["aether-status"], "draft")

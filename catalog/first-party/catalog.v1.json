@@ -49,7 +49,7 @@
       "title": "Architecture Authoring"
     },
     {
-      "artifact_version": "1.2.0",
+      "artifact_version": "1.2.1",
       "compatibility": {
         "required_tools": []
       },
@@ -85,7 +85,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "878fd5df844188ec1f1dd8db31a61f9bd0d7f1c92558814bd0fc0a53e8892212"
+        "value": "d35c6eca19e2498305447696f85996d9845e86f1bf7e18cc0f0567ee216c1d99"
       },
       "source_path": "library/organization/skills/quality/audit-repository/SKILL.md",
       "supersedes_ids": [],
@@ -3642,7 +3642,7 @@
       "title": "Reflective Development System Specification"
     },
     {
-      "artifact_version": "1.0.0",
+      "artifact_version": "1.0.1",
       "compatibility": {
         "required_tools": []
       },
@@ -3682,7 +3682,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "b361d567e08dddcae6bf160bcaff61e3fa27d6138fa4da9867725d5186936464"
+        "value": "4b97b4dc3d9410aeb0d43185ab4f5620f300f02679e66c18380cb1bf8bfe0539"
       },
       "source_path": "library/organization/specs/quality/repository-audit-data.spec.md",
       "supersedes_ids": [],

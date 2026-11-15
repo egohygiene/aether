@@ -3,14 +3,14 @@ name: audit-repository
 description: Audits an explicitly scoped repository or public organization roster through composable profiles, preserving evidence, uncertainty, strengths and suggestion-only follow-up in immutable reports and typed sidecars. Use when a structured repository audit or an explicitly authorized organization audit is requested.
 license: MIT
 metadata:
-  aether-version: "1.2.0"
+  aether-version: "1.2.1"
   aether-status: "draft"
   aether-spec-id: "repository-audit-data"
   aether-scope: "organization"
   aether-domain: "quality"
   aether-owners: "egohygiene"
   aether-created: "2026-08-02"
-  aether-updated: "2026-11-14"
+  aether-updated: "2026-11-15"
   aether-executable-resources:
     - "scripts/audit_contract.py"
   aether-distribution-resources:
@@ -147,7 +147,9 @@ meaningful staged/canonical delta under Aether #86/#68. It retains observed
 diagnostics, current prior-audit checks, strengths, bounded backlog and partial
 reporting while rejecting monolith paths and staged agent edit/execute tools.
 Historical staged files remain migration evidence; none is promoted or deleted.
-Single/multiple/holistic/experimental profile fixtures, malformed/stale/partial/
-blocked/not-applicable cases, dependency closure and actual host/discovery
-qualification remain unexecuted. Source reconciliation or a version bump does
-not promote this draft skill.
+The [checkpoint examples and adoption guide](references/checkpoint-adoption.md)
+cover repository/organization, holistic/experimental, stale/partial/blocked and
+not-applicable cases with native structural and semantic tests. This is fixture
+qualification, independently of actual host installation/discovery or model
+behavior. Source reconciliation, passing fixtures or a version bump do not
+promote this draft skill.

@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/audit-repository",
-  "artifact_version": "1.2.0",
+  "artifact_version": "1.2.1",
   "compatibility": {
     "required_tools": []
   },
@@ -10,6 +10,21 @@
     "dist/skills/audit-repository/evals/evals.json",
     "dist/skills/audit-repository/references/audit-data-contract.md",
     "dist/skills/audit-repository/references/audit-profiles.v1.json",
+    "dist/skills/audit-repository/references/checkpoint-adoption.md",
+    "dist/skills/audit-repository/references/examples/blocked-20261115T000000Z.md",
+    "dist/skills/audit-repository/references/examples/blocked.json",
+    "dist/skills/audit-repository/references/examples/experimental-20261115T000000Z.md",
+    "dist/skills/audit-repository/references/examples/experimental.json",
+    "dist/skills/audit-repository/references/examples/holistic-partial-20261115T000000Z.md",
+    "dist/skills/audit-repository/references/examples/holistic-partial.json",
+    "dist/skills/audit-repository/references/examples/not-applicable-20261115T000000Z.md",
+    "dist/skills/audit-repository/references/examples/not-applicable.json",
+    "dist/skills/audit-repository/references/examples/organization-stale-partial-20261115T000000Z.md",
+    "dist/skills/audit-repository/references/examples/organization-stale-partial.json",
+    "dist/skills/audit-repository/references/examples/repository-complete-20261115T000000Z.md",
+    "dist/skills/audit-repository/references/examples/repository-complete.json",
+    "dist/skills/audit-repository/references/examples/resolved-20261115T000000Z.md",
+    "dist/skills/audit-repository/references/examples/resolved.json",
     "dist/skills/audit-repository/references/finding-classification-guide.md",
     "dist/skills/audit-repository/references/staged-reconciliation.md",
     "dist/skills/audit-repository/references/validation-checklist.md",
@@ -23,6 +38,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "878fd5df844188ec1f1dd8db31a61f9bd0d7f1c92558814bd0fc0a53e8892212"
+    "value": "d35c6eca19e2498305447696f85996d9845e86f1bf7e18cc0f0567ee216c1d99"
   }
 }

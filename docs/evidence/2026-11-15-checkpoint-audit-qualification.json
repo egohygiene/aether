@@ -1,0 +1,53 @@
+{
+  "schema_version": "aether.source-qualification/v1",
+  "observed_at": "2026-11-15T02:02:29Z",
+  "issue": "https://github.com/egohygiene/aether/issues/68",
+  "status": "qualified-source-only",
+  "source_revision": "f5ea0a704b31f301567e9ea9fa3372faa13ce244",
+  "baseline_revision": "bd23fda5ed15621aadcb898877edd3c6a34641c5",
+  "contract": "Existing draft audit report/profile contracts1.0.0; extension 1.0.1 and skill1.2.1 retain draft lifecycle",
+  "validation": {
+    "repository_pinned_full_tests": {
+      "status": "pass",
+      "total": 385,
+      "existing_explicit_skips": 11
+    },
+    "focused_report_package_continuity": {
+      "status": "pass",
+      "total": 36
+    },
+    "declared_deterministic_cases": {
+      "status": "pass",
+      "cases": 8,
+      "skipped": 0,
+      "suite_errors": 0,
+      "scope": "Structure/assertions only; native report controls run separately."
+    },
+    "portable_generated_helper": {
+      "standalone_examples_passed": 7,
+      "missing_provenance_refused": true,
+      "runtime": "Python isolated; standard-library helper only"
+    },
+    "catalog_schema_provenance_source_links_strict_distribution": {
+      "status": "pass",
+      "existing_warning": "AETHER_PROVENANCE_009 historical lock algorithm remains unknown"
+    },
+    "fixture_controls": [
+      "Both JSON schemas and all 7 supplied report models validate against closed reference semantics",
+      "Actual synthetic Markdown hashes bind canonical narrative fixture bytes",
+      "Repository and explicitly rosters organization scope; stale historical captures remain partial",
+      "Profile composition, blocked/unknown/not-applicable and experiment separation",
+      "Missing provenance, malformed findings, dangling evidence, version drift and unsafe paths rejected",
+      "Confirmed policy and command claims require observed evidence of the corresponding kind",
+      "Reported resolution requires hash/URI-bound prior artifact plus distinct current-revision comparison evidence",
+      "Public roster admission and suggestion-only issue state; summary omits narrative and provider mutations"
+    ]
+  },
+  "limitations": [
+    "Source definition and synthetic reference-helper qualification only; no actual audit, remote roster authentication, model behavior, host installation/discovery or fleet adoption is established.",
+    "The registry, extension, skill and agent remain draft. Approved auditor 2.0.0 bytes, historical reports and staged source are unchanged.86 keeps its separate skill-maturity and host qualification acceptance.",
+    "A caller-owned freshness policy and independent source/hash/privacy verification remain necessary; schema/helper admission does not prove truth, execution, resolution, conformance or human acceptance.",
+    "38 retains its not-ready consumer/release gate, including11 existing optional/native skips."
+  ],
+  "decision_impact": "ADR not required: qualifies existing draft data/spec/helper boundaries; introduces no new public schema, authority, owner or architectural decision."
+}

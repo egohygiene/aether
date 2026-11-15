@@ -1,0 +1,117 @@
+{
+  "schema": "aether.repository-audit-report/v1",
+  "contract_version": "1.0.0",
+  "audit_id": "synthetic-holistic-partial",
+  "visibility": "public",
+  "scope": {
+    "kind": "repository",
+    "repositories": [
+      {
+        "full_name": "example-org/library",
+        "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "visibility": "public"
+      }
+    ],
+    "include": [
+      "Declared synthetic source fixture"
+    ],
+    "exclude": [
+      "Provider discovery and publication"
+    ],
+    "inspected": [
+      "Synthetic supplied capture"
+    ],
+    "uninspected": [
+      "Feature owner input"
+    ]
+  },
+  "profiles": {
+    "registry_version": "1.0.0",
+    "registry_sha256": "58fd660134444c480d16c48c106b1572974fd2243beedfe665962c96fccfe525",
+    "requested": [
+      {
+        "id": "holistic",
+        "version": "1.0.0"
+      }
+    ],
+    "resolved": [
+      {
+        "id": "contract-drift",
+        "version": "1.0.0"
+      },
+      {
+        "id": "feature-opportunity",
+        "version": "1.0.0"
+      },
+      {
+        "id": "implementation-quality",
+        "version": "1.0.0"
+      }
+    ]
+  },
+  "started_at": "2026-11-15T00:00:00Z",
+  "completed_at": "2026-11-15T00:01:00Z",
+  "completion": {
+    "state": "partial",
+    "reason": "One of the stable profiles remains blocked.",
+    "continuation": [
+      "Obtain the feature owner input."
+    ],
+    "profiles": [
+      {
+        "profile": {
+          "id": "contract-drift",
+          "version": "1.0.0"
+        },
+        "state": "complete",
+        "reason": null
+      },
+      {
+        "profile": {
+          "id": "feature-opportunity",
+          "version": "1.0.0"
+        },
+        "state": "blocked",
+        "reason": "Feature owner input is missing."
+      },
+      {
+        "profile": {
+          "id": "implementation-quality",
+          "version": "1.0.0"
+        },
+        "state": "complete",
+        "reason": null
+      }
+    ]
+  },
+  "findings": [],
+  "evidence": [],
+  "positive_observations": {
+    "finding_ids": [],
+    "absence_reason": "This synthetic case defines no positive observation."
+  },
+  "candidate_issues": [],
+  "prior_audits": [],
+  "provenance": {
+    "producer": {
+      "name": "synthetic-fixture",
+      "version": "1.0.0",
+      "uri": null
+    },
+    "tools": [],
+    "commands": [],
+    "limitations": [
+      "Synthetic authoring example; no real audit, execution, provider identity or policy approval."
+    ],
+    "privacy": {
+      "contains_sensitive_data": false,
+      "redactions": []
+    },
+    "execution": "read-only"
+  },
+  "canonical_report": {
+    "path": "audits/holistic-partial-20261115T000000Z.md",
+    "uri": null,
+    "sha256": "c0f3fe6bbd608202ee014e873f5f8d766a6a83ffb3af46a054e2a850777f1a73"
+  }
+}

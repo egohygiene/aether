@@ -3,12 +3,12 @@ schema: aether.specification/v1
 id: repository-audit-data
 title: Composable Audit Profiles and Checkpoint Data
 kind: specification
-version: 1.0.0
+version: 1.0.1
 status: draft
 owners:
   - egohygiene
 created: 2026-11-09
-updated: 2026-11-09
+updated: 2026-11-15
 domain: quality
 tags:
   - audit
@@ -186,12 +186,23 @@ metadata. Consumers preserve old reports and reference their limitations while
 adopting this separately pinned interface. Product-specific agents, tools and
 paths are not imported into the portable contract.
 
-## Qualification remaining
+## Definition and fixture qualification
 
-The staged/canonical source reconciliation is recorded in the skill's
-`references/staged-reconciliation.md`; historical staged files are retained.
-Single/multi-profile, holistic, experimental, partial, blocked, unsupported,
-not-applicable, stale evidence and malformed-input fixtures, dependency-graph
-validation, consumer host/discovery execution and deterministic qualification
-remain deferred. Source/schema inspection and generated catalog/distribution
-bytes do not promote any draft artifact or prove those behaviors.
+The examples in the skill's references/examples directory exercise repository,
+organization/stale-partial, holistic-partial, blocked, not-applicable,
+experimental and explicitly compared finding history. They are fictional input,
+not actual audits. Native tests validate both JSON Schemas and reference-helper
+cross-field semantics, bind each actual example Markdown hash, and reject
+missing provenance, malformed findings, unsupported execution claims, unsafe
+references and unbound reported resolution. Historical audits remain unchanged.
+
+A caller must supply the freshness policy. The stale example retains its old
+observation clock, missing current input and partial completion; structural
+validation does not decide that old evidence is current. Complete describes
+scope, with no pass or conformance field inferred from it.
+
+See the skill's references/checkpoint-adoption.md for the exact consumer and
+product-source migration boundaries. Consumer installation/discovery, model
+behavior, owner production-validator integration and fleet adoption remain
+separate unqualified outcomes. The extension, skill and agent remain draft;
+fixture execution supplies no human lifecycle decision under #86.
