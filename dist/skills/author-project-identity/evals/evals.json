@@ -1,0 +1,169 @@
+{
+  "schema": "aether.skill-evaluations/v2",
+  "skill": "author-project-identity",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "new-v1-source",
+      "description": "A maintainer supplies real project facts and approved SVG sources, requesting a separate v1 starter.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Prepare a separate candidate with the compatible explicit initializer",
+        "Validate actual source before authorized generation",
+        "Keep source/output/public-kit evidence distinct"
+      ],
+      "prohibited": [
+        "Treat an incomplete starter as an approved kit"
+      ],
+      "fixture": "fixtures/new-v1-source.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Use the pinned compatible v1-init interface to prepare a separate candidate."
+        }
+      ]
+    },
+    {
+      "id": "missing-artwork-rights",
+      "description": "An owner likes an image but cannot identify its creator or reuse permission.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Record creator and rights as unresolved",
+        "Keep visual selection separate from permission",
+        "Retain a review candidate"
+      ],
+      "prohibited": [
+        "Infer artwork permission from the software MIT license"
+      ],
+      "fixture": "fixtures/missing-artwork-rights.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Keep creator and rights unknown."
+        }
+      ]
+    },
+    {
+      "id": "legacy-source-preserved",
+      "description": "The consumer has existing v0 identity.toml and asks for a v1 review candidate.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Recognize v0 source",
+        "Preserve it and use separate explicit v1 preparation"
+      ],
+      "prohibited": [
+        "Overwrite legacy source or reinterpret legacy init as migration"
+      ],
+      "fixture": "fixtures/legacy-source-preserved.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Recognize the existing v0 source."
+        }
+      ]
+    },
+    {
+      "id": "check-only-stale-output",
+      "description": "A read-only verification request finds selected generated outputs out of date.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Retain the actual output-verification evidence",
+        "Keep the worktree read-only"
+      ],
+      "prohibited": [
+        "Regenerate or recover as a lint-time repair"
+      ],
+      "fixture": "fixtures/check-only-stale-output.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Keep the source and generated worktree read-only."
+        }
+      ]
+    },
+    {
+      "id": "missing-python",
+      "description": "The chosen native v1 bridge cannot locate its required Python runtime.",
+      "category": "failure",
+      "trigger": "should-trigger",
+      "expected": [
+        "Report an execution prerequisite failure",
+        "Preserve source and separate runtime failure from invalid project source"
+      ],
+      "prohibited": [
+        "Install Python implicitly or treat the check as passed"
+      ],
+      "fixture": "fixtures/missing-python.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Report the Python runtime prerequisite as unavailable."
+        }
+      ]
+    },
+    {
+      "id": "reviewed-upgrade",
+      "description": "A consumer selects a newer immutable Identity implementation and changed profiles.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Review source/schema/profile changes and changed exact subjects",
+        "Retain prior pins and rollback material",
+        "Run checks against actual updated source"
+      ],
+      "prohibited": [
+        "Relabel an old receipt as proof for the new implementation"
+      ],
+      "fixture": "fixtures/reviewed-upgrade.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Review the new immutable implementation and profile changes."
+        }
+      ]
+    },
+    {
+      "id": "generic-feature-spec",
+      "description": "The user wants an implementation specification for a database backup feature.",
+      "category": "negative",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "Route to general specification authoring"
+      ],
+      "prohibited": [
+        "Create project branding as a side effect"
+      ],
+      "fixture": "fixtures/generic-feature-spec.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Route this request to create-specification-file."
+        }
+      ]
+    },
+    {
+      "id": "release-request",
+      "description": "After authoring a brand candidate, the caller discusses publishing binaries and gh skills.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Keep binary and skill releases separate",
+        "Use their reviewed release/publication handoffs"
+      ],
+      "prohibited": [
+        "Treat candidate authoring or package preflight as release authorization/readiness"
+      ],
+      "fixture": "fixtures/release-request.json",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "The Identity Rust binary and Aether skill have separate release contracts."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "checked_files": 9,
+  "findings": [],
+  "scope": "Declared source-file hashes only; this does not verify Git HEAD, a binary, installation, approval, release, or complete project identity.",
+  "selected_revision": "afc368003bfc6a2101051229efd237c8d6fadf71",
+  "source_repository": "egohygiene/identity",
+  "status": "verified",
+  "checker_sha256": "c5b71b96c5a90c448b8d812b446e98eb8647d97254f21057c89d9479c51096a6",
+  "lock_sha256": "7dfa65ed77884d2078905bbe307c2ee89646448fdd0dadfaa3d16d170b6eec69",
+  "observation": "Actual pinned Git resource bytes were materialized into a separate local tree; the copied distribution helper ran under Python -I outside Aether."
+}

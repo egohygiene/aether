@@ -1,0 +1,3 @@
+Authored expected response; not an observed agent run.
+
+Keep the source and generated worktree read-only. Retain the actual stale-output evidence; do not regenerate, recover, or classify an unrelated runtime failure as drift.

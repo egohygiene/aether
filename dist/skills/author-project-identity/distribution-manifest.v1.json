@@ -1,0 +1,42 @@
+{
+  "artifact_id": "skill/author-project-identity",
+  "artifact_version": "1.0.0",
+  "compatibility": {
+    "notes": "Use an immutable compatible Identity implementation for execution; its current embedded v1 validator requires Python 3.11+.",
+    "required_tools": []
+  },
+  "distribution_id": "distribution/author-project-identity",
+  "generated_paths": [
+    "dist/skills/author-project-identity/SKILL.md",
+    "dist/skills/author-project-identity/evals/evals.json",
+    "dist/skills/author-project-identity/evals/fixtures/check-only-stale-output.json",
+    "dist/skills/author-project-identity/evals/fixtures/generic-feature-spec.json",
+    "dist/skills/author-project-identity/evals/fixtures/legacy-source-preserved.json",
+    "dist/skills/author-project-identity/evals/fixtures/missing-artwork-rights.json",
+    "dist/skills/author-project-identity/evals/fixtures/missing-python.json",
+    "dist/skills/author-project-identity/evals/fixtures/new-v1-source.json",
+    "dist/skills/author-project-identity/evals/fixtures/release-request.json",
+    "dist/skills/author-project-identity/evals/fixtures/reviewed-upgrade.json",
+    "dist/skills/author-project-identity/evals/goldens/check-only-stale-output.golden.txt",
+    "dist/skills/author-project-identity/evals/goldens/generic-feature-spec.golden.txt",
+    "dist/skills/author-project-identity/evals/goldens/legacy-source-preserved.golden.txt",
+    "dist/skills/author-project-identity/evals/goldens/missing-artwork-rights.golden.txt",
+    "dist/skills/author-project-identity/evals/goldens/missing-python.golden.txt",
+    "dist/skills/author-project-identity/evals/goldens/new-v1-source.golden.txt",
+    "dist/skills/author-project-identity/evals/goldens/release-request.golden.txt",
+    "dist/skills/author-project-identity/evals/goldens/reviewed-upgrade.golden.txt",
+    "dist/skills/author-project-identity/references/identity-cli-and-capabilities.md",
+    "dist/skills/author-project-identity/references/identity-source-lock.json",
+    "dist/skills/author-project-identity/references/validation-checklist.md",
+    "dist/skills/author-project-identity/templates/OWNER_INTAKE.template.md",
+    "dist/skills/author-project-identity/scripts/verify_identity_source.py",
+    "dist/skills/author-project-identity/references/project-identity-authoring.spec.md",
+    "dist/skills/author-project-identity/distribution-manifest.v1.json"
+  ],
+  "generator": "library/organization/skills/build-distributions.py",
+  "schema_version": "aether.distribution-manifest/v1",
+  "source_digest": {
+    "algorithm": "sha256-utf8-lf",
+    "value": "756e88cf9292429a8bc4a169b17fc90fe57547b4dc9abb4eb9e1ad235378a09b"
+  }
+}

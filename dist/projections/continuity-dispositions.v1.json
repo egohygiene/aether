@@ -3,7 +3,7 @@
   "schema_version": "aether.continuity-dispositions/v1",
   "contract": "aether.repository-continuity/v1",
   "composition_skill": "maintain-repository-continuity",
-  "reviewed_at": "2026-11-15",
+  "reviewed_at": "2026-11-22",
   "scope": {
     "canonical_skills": "library/organization/skills/**/SKILL.md",
     "canonical_agents": "library/organization/agents/*/AGENT.md",
@@ -61,6 +61,20 @@
         "That an exploration, template, link, review or passing check accepts architecture, authorizes a task or publishes knowledge"
       ],
       "rationale": "Optional repository-owned note authoring composes current handoff and preserves distinct tentative knowledge; no installation or promotion authority."
+    },
+    {
+      "id": "author-project-identity",
+      "source": "library/organization/skills/authoring/author-project-identity/SKILL.md",
+      "disposition": "reader-writer",
+      "startup_read": true,
+      "pre_pr_write": true,
+      "domain_evidence": [
+        "Identity source choices, exact subjects/pins, applicability, actual validation evidence and remaining owner decisions"
+      ],
+      "never_claim": [
+        "Invented rights/approvals, producer support, comprehensive kit readiness, installation, publication or policy activation from a source pass"
+      ],
+      "rationale": "Authorized consumer identity authoring updates canonical source/candidates; check-only tasks retain a read-only boundary."
     },
     {
       "id": "bug-fixing",

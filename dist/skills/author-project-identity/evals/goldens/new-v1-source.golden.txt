@@ -1,0 +1,3 @@
+Authored expected response; not an observed agent run.
+
+Use the pinned compatible v1-init interface to prepare a separate candidate. Preserve actual approval subjects. Run the authoritative source validator, then separately assess producer support and selected-output verification. No published kit is established.

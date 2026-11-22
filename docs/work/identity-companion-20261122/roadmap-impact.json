@@ -1,0 +1,36 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "The draft Identity companion is a bounded authoring-corpus addition within AET-Q01; strategic sequence, stable step IDs, maturity and release gates remain unchanged.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "3c836942bc2af10baaaf8936b114d4c9f4f59be8",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q01"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "library/organization/specs/authoring/project-identity-authoring.spec.md"
+    },
+    {
+      "kind": "source",
+      "reference": "library/organization/skills/authoring/author-project-identity/SKILL.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/identity-companion-20261122/VALIDATION.md"
+    }
+  ],
+  "organization_signals": []
+}

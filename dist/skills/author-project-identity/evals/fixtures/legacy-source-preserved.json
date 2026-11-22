@@ -1,0 +1,5 @@
+{
+  "kind": "authored-scenario-not-an-agent-run",
+  "scenario": "The consumer has existing v0 identity.toml and asks for a v1 review candidate.",
+  "expected_routing": "should-trigger"
+}

@@ -1,0 +1,3 @@
+Authored expected response; not an observed agent run.
+
+Report the Python runtime prerequisite as unavailable. Do not install it implicitly, claim a successful check, or relabel execution failure as invalid project source.
