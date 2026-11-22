@@ -1,24 +1,23 @@
 ---
 name: create-repository-journal
-description: Produces a bounded, evidence-labelled repository activity journal from supplied context. Use when scheduled or manual repository reporting needs a reviewable summary; do not use for repository changes or message delivery.
+description: Produces a bounded, evidence-labelled repository activity journal from
+  supplied context. Use when scheduled or manual repository reporting needs a reviewable
+  summary; do not use for repository changes or message delivery.
 license: MIT
 compatibility:
   required_tools:
-    - python3
+  - python3
 metadata:
-  aether-version: "1.0.0"
-  aether-status: "draft"
-  aether-spec-id: "repository-journal"
-  aether-scope: "organization"
-  aether-domain: "quality"
-  aether-owners: "egohygiene"
-  aether-created: "2026-08-30"
-  aether-updated: "2026-08-30"
+  aether-version: 1.0.0
+  aether-status: draft
+  aether-spec-id: repository-journal
+  aether-scope: organization
+  aether-domain: quality
+  aether-owners: egohygiene
+  aether-created: '2026-08-30'
+  aether-updated: '2026-08-30'
   aether-executable-resources:
-    - "scripts/repository-journal.py"
-  aether-distribution-resources:
-    - source: "catalog/schemas/aether.repository-journal.v1.schema.json"
-      destination: "references/aether.repository-journal.v1.schema.json"
+  - scripts/repository-journal.py
 ---
 
 # Create Repository Journal

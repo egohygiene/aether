@@ -61,6 +61,28 @@ Codex-compatible runtimes.
 | `aether-owners` | string | Owning team or user handle |
 | `aether-created` | string (date) | ISO 8601 creation date |
 | `aether-updated` | string (date) | ISO 8601 last-updated date |
+| `aether-distribution-resources` | list of source/destination mappings | Build-only repository resources to bundle at package-local destinations; consumed during generation and omitted from exported frontmatter |
+
+#### Build-only resource projection
+
+Canonical source may declare `metadata.aether-distribution-resources`. The
+distribution builder validates and copies every declared resource before
+omitting only this build instruction from generated `SKILL.md`; it is not a
+runtime dependency on the canonical repository. Update runtime instructions
+to use the bundled destination rather than the declaration's source path.
+
+For these opted-in skills the generated YAML header is deterministically
+serialized with all other field values retained, and the complete normalized
+Markdown body is unchanged. Skills without this key remain verbatim UTF-8/LF
+copies. Companion resources retain their original bytes. This is the sole
+build-only frontmatter projection; it does not remove genuine runtime paths,
+installer tracking, unknown metadata or historical prose to satisfy validation.
+
+The existing distribution manifest's `source_digest` still hashes canonical
+`SKILL.md` with UTF-8/LF normalization. It does not claim to hash the projected
+export. Generated inventory and release payload hashes retain their separate
+roles; no manifest schema fields, canonical authoring bytes or artifact maturity
+are changed by this projection.
 
 ### `allowed-tools` (experimental, optional)
 
@@ -138,7 +160,7 @@ metadata:
 
 ## Validation
 
-Run the deterministic validator to check all 34 canonical skills:
+Run the deterministic validator to check the current canonical skill corpus:
 
 ```sh
 python3 library/organization/skills/validate-skills.py

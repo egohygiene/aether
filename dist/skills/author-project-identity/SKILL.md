@@ -1,22 +1,23 @@
 ---
 name: author-project-identity
-description: Authors or updates consumer-owned project identity, collects real brand facts, prepares explicit v1 candidates and delegates checks to a pinned Identity implementation. Use when authoring, initializing, adopting or reviewing project identity; not for generic specification writing or automatic brand approval/publication.
+description: Authors or updates consumer-owned project identity, collects real brand
+  facts, prepares explicit v1 candidates and delegates checks to a pinned Identity
+  implementation. Use when authoring, initializing, adopting or reviewing project
+  identity; not for generic specification writing or automatic brand approval/publication.
 license: MIT
-compatibility: Use an immutable compatible Identity implementation for execution; its current embedded v1 validator requires Python 3.11+.
+compatibility: Use an immutable compatible Identity implementation for execution;
+  its current embedded v1 validator requires Python 3.11+.
 metadata:
-  aether-version: "1.0.0"
-  aether-status: "draft"
-  aether-spec-id: "project-identity-authoring"
-  aether-scope: "organization"
-  aether-domain: "authoring"
-  aether-owners: "egohygiene"
-  aether-created: "2026-11-22"
-  aether-updated: "2026-11-22"
+  aether-version: 1.0.0
+  aether-status: draft
+  aether-spec-id: project-identity-authoring
+  aether-scope: organization
+  aether-domain: authoring
+  aether-owners: egohygiene
+  aether-created: '2026-11-22'
+  aether-updated: '2026-11-22'
   aether-executable-resources:
-    - "scripts/verify_identity_source.py"
-  aether-distribution-resources:
-    - source: "library/organization/specs/authoring/project-identity-authoring.spec.md"
-      destination: "references/project-identity-authoring.spec.md"
+  - scripts/verify_identity_source.py
 ---
 
 # Author Project Identity

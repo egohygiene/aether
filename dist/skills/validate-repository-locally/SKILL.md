@@ -1,19 +1,19 @@
 ---
 name: validate-repository-locally
-description: Plans and executes best-effort local repository validation, adapts to observed runtime capabilities, and writes truthful evidence when remote CI is unavailable or deferred. Use when preparing a change or pull request with as much local confidence as the current environment permits; do not use for a single narrow test-design request.
+description: Plans and executes best-effort local repository validation, adapts to
+  observed runtime capabilities, and writes truthful evidence when remote CI is unavailable
+  or deferred. Use when preparing a change or pull request with as much local confidence
+  as the current environment permits; do not use for a single narrow test-design request.
 license: MIT
 metadata:
-  aether-version: "1.1.0"
-  aether-status: "draft"
-  aether-spec-id: "local-validation-evidence"
-  aether-scope: "organization"
-  aether-domain: "quality"
-  aether-owners: "egohygiene"
-  aether-created: "2026-09-10"
-  aether-updated: "2026-09-10"
-  aether-distribution-resources:
-    - source: "catalog/schemas/aether.local-validation-evidence.v1.schema.json"
-      destination: "references/aether.local-validation-evidence.v1.schema.json"
+  aether-version: 1.1.0
+  aether-status: draft
+  aether-spec-id: local-validation-evidence
+  aether-scope: organization
+  aether-domain: quality
+  aether-owners: egohygiene
+  aether-created: '2026-09-10'
+  aether-updated: '2026-09-10'
 ---
 
 # Validate Repository Locally

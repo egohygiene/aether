@@ -1,22 +1,23 @@
 ---
 name: maintain-repository-continuity
-description: Creates, reads, reconciles, compacts, and verifies a repository-root CONTINUITY.md operational handoff. Use when resuming repository work in a fresh session, repairing stale task state, or preparing an authorized repository change for pull-request review; do not use for conversation archiving, roadmap authoring, automatic merges, publication, or unrelated read-only questions.
+description: Creates, reads, reconciles, compacts, and verifies a repository-root
+  CONTINUITY.md operational handoff. Use when resuming repository work in a fresh
+  session, repairing stale task state, or preparing an authorized repository change
+  for pull-request review; do not use for conversation archiving, roadmap authoring,
+  automatic merges, publication, or unrelated read-only questions.
 license: MIT
 compatibility:
   required_tools:
-    - git
+  - git
 metadata:
-  aether-version: "1.2.0"
-  aether-status: "draft"
-  aether-spec-id: "repository-continuity"
-  aether-scope: "organization"
-  aether-domain: "methodology"
-  aether-owners: "egohygiene"
-  aether-created: "2026-09-08"
-  aether-updated: "2026-11-15"
-  aether-distribution-resources:
-    - source: "catalog/schemas/aether.repository-continuity.v1.schema.json"
-      destination: "references/aether.repository-continuity.v1.schema.json"
+  aether-version: 1.2.0
+  aether-status: draft
+  aether-spec-id: repository-continuity
+  aether-scope: organization
+  aether-domain: methodology
+  aether-owners: egohygiene
+  aether-created: '2026-09-08'
+  aether-updated: '2026-11-15'
 ---
 
 # Maintain repository continuity

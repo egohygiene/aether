@@ -1,24 +1,24 @@
 ---
 name: prepare-social-campaign-handoff
-description: Prepares and reviews deterministic social campaign handoff packets from approved Identity social artifacts and a pinned Aether catalog. Use when platform-specific candidate copy and creative inputs need a human approval gate before export; do not use for posting, scheduling, account access, ad buying, or analytics.
+description: Prepares and reviews deterministic social campaign handoff packets from
+  approved Identity social artifacts and a pinned Aether catalog. Use when platform-specific
+  candidate copy and creative inputs need a human approval gate before export; do
+  not use for posting, scheduling, account access, ad buying, or analytics.
 license: MIT
 compatibility:
   required_tools:
-    - python3
+  - python3
 metadata:
-  aether-version: "1.1.0"
-  aether-status: "experimental"
-  aether-spec-id: "social-campaign-handoff"
-  aether-scope: "organization"
-  aether-domain: "marketing"
-  aether-owners: "egohygiene"
-  aether-created: "2026-08-29"
-  aether-updated: "2026-09-08"
+  aether-version: 1.1.0
+  aether-status: experimental
+  aether-spec-id: social-campaign-handoff
+  aether-scope: organization
+  aether-domain: marketing
+  aether-owners: egohygiene
+  aether-created: '2026-08-29'
+  aether-updated: '2026-09-08'
   aether-executable-resources:
-    - "scripts/campaign-handoff.py"
-  aether-distribution-resources:
-    - source: "catalog/schemas/aether.social-campaign-handoff.v1.schema.json"
-      destination: "references/aether.social-campaign-handoff.v1.schema.json"
+  - scripts/campaign-handoff.py
 ---
 
 # Prepare a social campaign handoff

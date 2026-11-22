@@ -17,7 +17,7 @@ For each canonical skill at:
 This script writes a self-contained distribution package at:
 
     dist/skills/<skill-name>/
-    ├── SKILL.md                           # copied verbatim from canonical source
+    ├── SKILL.md                           # portable projection of canonical source
     ├── evals/                             # copied verbatim (when present)
     ├── references/                        # copied verbatim (when present)
     ├── templates/                         # copied verbatim (when present)
@@ -34,6 +34,9 @@ Rules
 5. Frontmatter may declare narrowly scoped repository resources for a portable
    package in ``metadata.aether-distribution-resources``. Each resource must
    name a repository-relative source file and a package-relative destination.
+   This build-only key is consumed and omitted from exported SKILL.md. Only
+   opted-in frontmatter is deterministically serialized; body bytes and all
+   other field values are retained. Ordinary skills remain verbatim LF copies.
 6. If ``--check`` is passed the script prints OK/DRIFT lines and exits non-zero
    on any drift without writing anything.
 7. Generation/I/O failures and unexpected entries in the owned subtree fail
@@ -65,6 +68,7 @@ FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 GENERATOR_ID = "library/organization/skills/build-distributions.py"
 COMPANION_DIRS = ("evals", "references", "templates", "scripts")
 STABLE_ID_RE = re.compile(r"^[a-z](?:[a-z0-9-]*[a-z0-9])?$")
+DISTRIBUTION_RESOURCES_KEY = "aether-distribution-resources"
 
 
 # ---------------------------------------------------------------------------
@@ -96,6 +100,30 @@ def _read_frontmatter(path: Path, content: bytes | None = None) -> dict:
     return value
 
 
+def _portable_skill_content(source_content: bytes, frontmatter: dict) -> bytes:
+    """Consume the single build-only declaration without changing source.
+
+    The source digest continues to identify canonical bytes, not this export.
+    Re-serialize only opted-in headers; retain every other field value and the
+    complete normalized body. Skills without the key remain byte-for-byte LF
+    copies, including their comments and formatting.
+    """
+    metadata = frontmatter.get("metadata")
+    if not isinstance(metadata, dict) or DISTRIBUTION_RESOURCES_KEY not in metadata:
+        return source_content
+    match = FRONTMATTER_RE.match(source_content.decode("utf-8"))
+    if match is None:
+        raise ValueError("portable skill projection requires YAML frontmatter")
+    projected = dict(frontmatter)
+    projected["metadata"] = {
+        key: value for key, value in metadata.items()
+        if key != DISTRIBUTION_RESOURCES_KEY
+    }
+    header = yaml.safe_dump(projected, sort_keys=False, allow_unicode=True)
+    body = source_content.decode("utf-8")[match.end():]
+    return ("---\n" + header + "---\n" + body).encode("utf-8")
+
+
 def _distribution_resources(frontmatter: dict) -> list[tuple[Path, Path]]:
     """Return validated (repository source, package destination) resources.
 
@@ -106,7 +134,7 @@ def _distribution_resources(frontmatter: dict) -> list[tuple[Path, Path]]:
     metadata = frontmatter.get("metadata")
     if not isinstance(metadata, dict):
         return []
-    resources = metadata.get("aether-distribution-resources", [])
+    resources = metadata.get(DISTRIBUTION_RESOURCES_KEY, [])
     if resources is None:
         return []
     if not isinstance(resources, list):
@@ -317,7 +345,7 @@ def _build_skill_dist(skill_name: str, source_dir: Path) -> dict[str, bytes]:
         raise ValueError("explicit resource destination collides with owned skill output")
     paths.extend(resource_paths)
     paths.append(manifest_path)
-    out = {prefix + "SKILL.md": source_content}
+    out = {prefix + "SKILL.md": _portable_skill_content(source_content, fm)}
     for path in companions:
         out[prefix + path.relative_to(source_dir).as_posix()] = path.read_bytes()
     for source, destination in resources:

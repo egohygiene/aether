@@ -1,23 +1,21 @@
 ---
 name: audit-repository
-description: Audits an explicitly scoped repository or public organization roster through composable profiles, preserving evidence, uncertainty, strengths and suggestion-only follow-up in immutable reports and typed sidecars. Use when a structured repository audit or an explicitly authorized organization audit is requested.
+description: Audits an explicitly scoped repository or public organization roster
+  through composable profiles, preserving evidence, uncertainty, strengths and suggestion-only
+  follow-up in immutable reports and typed sidecars. Use when a structured repository
+  audit or an explicitly authorized organization audit is requested.
 license: MIT
 metadata:
-  aether-version: "1.2.1"
-  aether-status: "draft"
-  aether-spec-id: "repository-audit-data"
-  aether-scope: "organization"
-  aether-domain: "quality"
-  aether-owners: "egohygiene"
-  aether-created: "2026-08-02"
-  aether-updated: "2026-11-15"
+  aether-version: 1.2.1
+  aether-status: draft
+  aether-spec-id: repository-audit-data
+  aether-scope: organization
+  aether-domain: quality
+  aether-owners: egohygiene
+  aether-created: '2026-08-02'
+  aether-updated: '2026-11-15'
   aether-executable-resources:
-    - "scripts/audit_contract.py"
-  aether-distribution-resources:
-    - source: "catalog/schemas/aether.audit-profile-registry.v1.schema.json"
-      destination: "references/aether.audit-profile-registry.v1.schema.json"
-    - source: "catalog/schemas/aether.repository-audit-report.v1.schema.json"
-      destination: "references/aether.repository-audit-report.v1.schema.json"
+  - scripts/audit_contract.py
 ---
 
 # Audit Repository

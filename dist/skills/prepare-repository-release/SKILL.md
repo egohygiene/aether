@@ -1,26 +1,23 @@
 ---
 name: prepare-repository-release
-description: Authors or reviews a versioned repository release declaration and changelog plan. Use when establishing, migrating, or checking a semantic release convention; do not use to publish packages, tags, images, sites, or archives.
+description: Authors or reviews a versioned repository release declaration and changelog
+  plan. Use when establishing, migrating, or checking a semantic release convention;
+  do not use to publish packages, tags, images, sites, or archives.
 license: MIT
 compatibility:
   required_tools:
-    - python3
+  - python3
 metadata:
-  aether-version: "1.1.0"
-  aether-status: "draft"
-  aether-spec-id: "repository-release"
-  aether-scope: "organization"
-  aether-domain: "publishing"
-  aether-owners: "egohygiene"
-  aether-created: "2026-08-31"
-  aether-updated: "2026-09-08"
+  aether-version: 1.1.0
+  aether-status: draft
+  aether-spec-id: repository-release
+  aether-scope: organization
+  aether-domain: publishing
+  aether-owners: egohygiene
+  aether-created: '2026-08-31'
+  aether-updated: '2026-09-08'
   aether-executable-resources:
-    - "scripts/validate-release-declaration.py"
-  aether-distribution-resources:
-    - source: "catalog/schemas/aether.repository-release.v1.schema.json"
-      destination: "references/aether.repository-release.v1.schema.json"
-    - source: "library/organization/specs/release/validate.py"
-      destination: "scripts/validate-release-declaration.py"
+  - scripts/validate-release-declaration.py
 ---
 
 # Prepare Repository Release

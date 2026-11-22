@@ -1,22 +1,19 @@
 ---
 name: social-surface-specs
-description: Select and explain pinned social-media or advertising creative surfaces from a provenance-governed offline catalog. Use when work needs platform placement, dimensions, media limits, safe zones, or organic-versus-advertising distinctions.
+description: Select and explain pinned social-media or advertising creative surfaces
+  from a provenance-governed offline catalog. Use when work needs platform placement,
+  dimensions, media limits, safe zones, or organic-versus-advertising distinctions.
 license: MIT
 metadata:
-  aether-version: "1.0.1"
-  aether-status: "experimental"
-  aether-scope: "organization"
-  aether-domain: "marketing"
-  aether-owners: "egohygiene"
-  aether-created: "2026-08-29"
-  aether-updated: "2026-08-29"
+  aether-version: 1.0.1
+  aether-status: experimental
+  aether-scope: organization
+  aether-domain: marketing
+  aether-owners: egohygiene
+  aether-created: '2026-08-29'
+  aether-updated: '2026-08-29'
   aether-executable-resources:
-    - "scripts/query-social-surfaces.py"
-  aether-distribution-resources:
-    - source: "catalog/social-surfaces/catalog.v1.json"
-      destination: "references/social-surface-catalog.v1.json"
-    - source: "catalog/social-surfaces/query.py"
-      destination: "scripts/query-social-surfaces.py"
+  - scripts/query-social-surfaces.py
 ---
 
 # Social-surface specifications

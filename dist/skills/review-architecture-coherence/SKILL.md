@@ -1,22 +1,23 @@
 ---
 name: review-architecture-coherence
-description: Reconstructs a repository, subsystem, or organization architecture from exact source revisions and prepares a portable evidence-based explanation and coherence assessment for its human alignment authority. Use when reviewing architecture drift, ownership or dependency concerns, consequential design changes, or an explicit sanity review; never use it to imply AI ratification or authorize implementation.
+description: Reconstructs a repository, subsystem, or organization architecture from
+  exact source revisions and prepares a portable evidence-based explanation and coherence
+  assessment for its human alignment authority. Use when reviewing architecture drift,
+  ownership or dependency concerns, consequential design changes, or an explicit sanity
+  review; never use it to imply AI ratification or authorize implementation.
 license: MIT
 metadata:
-  aether-version: "1.0.1"
-  aether-status: "draft"
-  aether-spec-id: "architecture-coherence-review"
-  aether-scope: "organization"
-  aether-domain: "architecture"
-  aether-owners: "egohygiene"
-  aether-created: "2026-11-10"
-  aether-updated: "2026-11-15"
+  aether-version: 1.0.1
+  aether-status: draft
+  aether-spec-id: architecture-coherence-review
+  aether-scope: organization
+  aether-domain: architecture
+  aether-owners: egohygiene
+  aether-created: '2026-11-10'
+  aether-updated: '2026-11-15'
   aether-executable-resources:
-    - "scripts/architecture_coherence.py"
-    - "scripts/architecture_coherence_governance.py"
-  aether-distribution-resources:
-    - source: "catalog/schemas/aether.architecture-coherence-review.v1.schema.json"
-      destination: "references/aether.architecture-coherence-review.v1.schema.json"
+  - scripts/architecture_coherence.py
+  - scripts/architecture_coherence_governance.py
 ---
 
 # Review Architecture Coherence
