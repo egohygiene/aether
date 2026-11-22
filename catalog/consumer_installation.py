@@ -21,7 +21,7 @@ from typing import Any
 
 import yaml
 
-from aether_validator import validate_portable_skill_package
+from aether_validator import FRONTMATTER_RE, validate_portable_skill_package
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 REPORT_SCHEMA = "aether.consumer-installation-readiness/v1"
@@ -60,16 +60,18 @@ class _UnambiguousLoader(yaml.SafeLoader):
 
 def _skill_parts(data: bytes) -> tuple[dict[str, Any], str]:
     text = data.decode("utf-8")
-    if not text.startswith("---\n"):
-        raise ValueError("Skill frontmatter must start with a YAML delimiter")
+    match = FRONTMATTER_RE.match(text)
+    if match is None:
+        raise ValueError("Skill frontmatter requires complete YAML delimiter lines")
     try:
-        _opening, header, body = text.split("---\n", 2)
-        frontmatter = yaml.load(header, Loader=_UnambiguousLoader)
+        # Use the same anchored delimiter grammar as strict portable validation.
+        # A literal '---' inside a YAML scalar is header content, not a boundary.
+        frontmatter = yaml.load(match.group(1), Loader=_UnambiguousLoader)
     except yaml.YAMLError as error:
         raise ValueError("Skill frontmatter is invalid or ambiguous") from error
     if not isinstance(frontmatter, dict):
         raise ValueError("Skill frontmatter must be a mapping")
-    return frontmatter, body
+    return frontmatter, text[match.end():]
 
 
 def _same_yaml_value(left: Any, right: Any) -> bool:
@@ -196,12 +198,10 @@ def _verify_materialization(
 
 
 def _frontmatter(path: Path) -> dict[str, Any]:
-    text = path.read_text(encoding="utf-8")
-    if not text.startswith("---\n"):
+    try:
+        return _skill_parts(path.read_bytes())[0]
+    except (ValueError, UnicodeError):
         return {}
-    _, fm, _rest = text.split("---\n", 2)
-    data = yaml.safe_load(fm) or {}
-    return data if isinstance(data, dict) else {}
 
 
 def _tree_lines(root: Path) -> list[str]:
@@ -683,9 +683,7 @@ class ConsumerInstallationHarness:
                 rendered = rendered.replace(needle, replacement)
             if rendered.startswith("---\n"):
                 try:
-                    _, fm, body = rendered.split("---\n", 2)
-                    if not isinstance(yaml.safe_load(fm), dict):
-                        return False
+                    _fm, body = _skill_parts(rendered.encode("utf-8"))
                     if "#" not in body:
                         return False
                 except Exception:  # noqa: BLE001

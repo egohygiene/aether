@@ -58,6 +58,25 @@ def install_export(source: Path, destination: Path) -> None:
     )
 
 
+def multiline_header(skill: str) -> str:
+    return ("---\nmetadata:\n  version: '1.0.0'\ndescription: |\n"
+            "  Use when documenting a literal ---\n"
+            "  inside a multiline description.\n"
+            f"name: {skill}\n---\n\n# Synthetic\n")
+
+
+def historical_truncated_install(source: Path, destination: Path) -> None:
+    """Reproduce the reviewed old substring-delimiter error, not valid CLI behavior."""
+    shutil.copytree(source, destination, dirs_exist_ok=True)
+    _opening, truncated, body = (source / "SKILL.md").read_text().split("---\n", 2)
+    fm = yaml.safe_load(truncated)
+    fm.setdefault("metadata", {})["local-path"] = str(source)
+    (destination / "SKILL.md").write_text(
+        "---\n" + yaml.safe_dump(fm, sort_keys=False) + "---\n" + body,
+        encoding="utf-8",
+    )
+
+
 class SimulatedConsumer(ConsumerInstallationHarness):
     """Model only the external adapter; run real harness/report/check logic."""
 
@@ -223,6 +242,46 @@ class TestConsumerInstallationE2E(unittest.TestCase):
                                     for check in scenario["checks"]))
                 self.assertFalse(report["qualification"]["complete"])
                 shutil.rmtree(h.report_root)
+
+    def test_full_harness_preserves_multiline_description_with_literal_delimiter(self):
+        h = self.harness()
+        original = h.run_command
+
+        def multiline_build(cwd, *args):
+            result = original(cwd, *args)
+            if "build" in args:
+                skill = PILOT_SKILLS[0][0]
+                (h.dist_root / "skills" / skill / "SKILL.md").write_text(multiline_header(skill))
+            return result
+
+        with patch.object(h, "run_command", side_effect=multiline_build):
+            report = h.run()
+        self.assertEqual(report["scenarios"]["portable-package-validation"]["status"], "pass")
+        self.assertTrue(report["qualification"]["complete"])
+
+    def test_full_harness_rejects_header_semantic_drift_hidden_by_old_substring_parser(self):
+        h = self.harness()
+        original = h.run_command
+
+        def broken_adapter(cwd, *args):
+            result = original(cwd, *args)
+            if "build" in args:
+                skill = PILOT_SKILLS[0][0]
+                (h.dist_root / "skills" / skill / "SKILL.md").write_text(multiline_header(skill))
+            elif args[:3] == ("gh", "skill", "install") and "--help" not in args:
+                skill = args[4]
+                if skill == PILOT_SKILLS[0][0]:
+                    path = next(path for name, _agent, path in PILOT_SKILLS if name == skill)
+                    historical_truncated_install(h.dist_root / "skills" / skill, cwd / path)
+            return result
+
+        with patch.object(h, "run_command", side_effect=broken_adapter):
+            report = h.run()
+        scenario = report["scenarios"]["portable-package-validation"]
+        self.assertEqual(scenario["source_validation_results"][PILOT_SKILLS[0][0]], [])
+        self.assertTrue(any(check["id"] == "materialization-" + PILOT_SKILLS[0][0]
+                            and check["status"] == "fail" for check in scenario["checks"]))
+        self.assertFalse(report["qualification"]["complete"])
 
     def test_local_scope_cannot_activate_remote_work_from_ambient_environment(self):
         with patch.dict(os.environ, {"AETHER_E2E_REMOTE_TAG": "v1.0.0", "AETHER_E2E_REMOTE_COMMIT": "a" * 40}):
@@ -458,6 +517,19 @@ class TestInstalledMaterialization(unittest.TestCase):
         for header in samples:
             with self.subTest(header=header), self.assertRaises(ValueError):
                 _skill_parts(("---\n" + header + "---\n# Body\n").encode())
+
+    def test_literal_delimiter_in_multiline_header_cannot_hide_semantic_changes(self):
+        path = self.source / "SKILL.md"
+        path.write_text(multiline_header("sample-skill"))
+        self.frozen = _package_snapshot(self.source, self.dist)
+        install_export(self.source, self.installed)
+        self.assertTrue(self.verify()["tracking_matches_selected_source"])
+        fm, _body = _skill_parts((self.installed / "SKILL.md").read_bytes())
+        self.assertEqual(fm["name"], "sample-skill")
+        self.assertIn("literal ---\n", fm["description"])
+        historical_truncated_install(self.source, self.installed)
+        with self.assertRaisesRegex(ValueError, "semantic frontmatter"):
+            self.verify()
 
     def test_reserved_source_tracking_collision_is_not_treated_as_injected_metadata(self):
         path = self.source / "SKILL.md"
