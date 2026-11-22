@@ -1,0 +1,460 @@
+{
+  "capabilities": {
+    "gh-skill-install": {
+      "available": true,
+      "probe": {
+        "command": "gh skill install --help",
+        "cwd": "<REPO_ROOT>",
+        "exit_code": 0,
+        "output_truncated": false,
+        "status": "pass",
+        "stderr": "",
+        "stdout": "Install agent skills from a GitHub repository or local directory into\nyour local environment. Skills are placed in a host-specific directory\nat either project scope (inside the current git repository) or user\nscope (in your home directory, available everywhere).\n\nA wide range of AI coding agents are supported, including GitHub\nCopilot, Claude Code, Cursor, Codex, Gemini CLI, Antigravity, Amp,\nGoose, Junie, OpenCode, Windsurf, and many more.\n\nSupported `--agent` values:\n\n  - GitHub Copilot (github-copilot)\n  - Claude Code (claude-code)\n  - Cursor (cursor)\n  - Codex (codex)\n  - Gemini CLI (gemini-cli)\n  - Antigravity (antigravity)\n  - Antigravity CLI (antigravity-cli)\n  - Antigravity 2.0 (antigravity2.0)\n  - AdaL (adal)\n  - Amp (amp)\n  - Augment (augment)\n  - IBM Bob (bob)\n  - Cline (cline)\n  - CodeBuddy (codebuddy)\n  - Command Code (command-code)\n  - Continue (continue)\n  - Cortex Code (cortex)\n  - Crush (crush)\n  - Deep Agents (deepagents)\n  - Droid (droid)\n  - Firebender (firebender)\n  - Goose (goose)\n  - iFlow CLI (iflow-cli)\n  - Junie (junie)\n  - Kilo Code (kilo)\n  - Kimi Code CLI (kimi-cli)\n  - Kiro CLI (kiro-cli)\n  - Kode (kode)\n  - MCPJam (mcpjam)\n  - Mistral Vibe (mistral-vibe)\n  - Mux (mux)\n  - Neovate (neovate)\n  - OpenClaw (openclaw)\n  - OpenCode (opencode)\n  - OpenHands (openhands)\n  - Pi (pi)\n  - Pochi (pochi)\n  - Qoder (qoder)\n  - Qwen Code (qwen-code)\n  - Replit (replit)\n  - Roo Code (roo)\n  - Trae (trae)\n  - Trae CN (trae-cn)\n  - Universal (universal)\n  - Warp (warp)\n  - Windsurf (windsurf)\n  - Zencoder (zencoder)\n\nUse `--agent` and `--scope` to control placement, or `--dir` for a\ncustom directory. The default scope is `project`, and the default\nagent is `github-copilot` (when running non-interactively).\n\nAt project scope, several agents (including GitHub Copilot, Cursor,\nCodex, Gemini CLI, Antigravity, Amp, Cline, OpenCode, and Warp) share\nthe `.agents/skills` directory. If you select multiple hosts that\nresolve to the same destination, each skill is installed there only once.\n\nThe first argument is a GitHub repository in `OWNER/REPO` format.\nUse `--from-local` to install from a local directory instead.\nLocal skills are auto-discovered using the same conventions as remote\nrepositories, and files are copied (not symlinked) with local-path\ntracking metadata injected into frontmatter.\n\nSkills are discovered automatically using the `skills/*/SKILL.md` convention\ndefined by the Agent Skills specification, including when the `skills/`\ndirectory is nested under a prefix (e.g. `terraform/code-generation/skills/...`).\nFor more information on the specification,\nsee: https://agentskills.io/specification\n\nThe skill argument can be a name, a namespaced name (`author/skill`),\nor an exact path within the repository (`skills/author/skill`,\n`packages/agent-skills/code-review`, or any `.../SKILL.md` path).\nNamespaced names with one slash are matched by name. Use a `SKILL.md`\nsuffix to force a one-directory path outside the standard conventions.\n\nPerformance tip: when installing from a large repository with many\nskills, providing an exact path instead of a skill name avoids a\nfull tree traversal of the repository, making the install significantly faster.\n\nWhen a skill name is provided without a version, the CLI resolves the\nversion in this order:\n\n  1. Latest tagged release in the repository\n  2. Default branch HEAD\n\nTo pin to a specific version, either append `@VERSION` to the skill\nname or use the `--pin` flag. The version is resolved as a git tag or commit SHA.\n\nInstalled skills have source tracking metadata injected into their\nfrontmatter. This metadata identifies the source repository and\nenables `gh skill update` to detect changes.\n\nWhen run interactively, the command prompts for any missing arguments.\n\nUse `--all` to install every discovered skill from the repository\nwithout prompting for skill selection. When run non-interactively,\n`repository` is required; without a skill name or `--all` the\nmatching skills are listed (as tab-separated values when piped) so you can\nbrowse or filter them with tools like `grep` before re-running with\na specific skill.\n\n\nUSAGE\n  gh skill install <repository> [<skill[@version]>] [flags]\n\nALIASES\n  gh skill add, gh skills add\n\nFLAGS\n      --agent string        Target agent (see supported values above)\n      --all                 Install all skills without prompting for skill selection\n      --allow-hidden-dirs   Include skills in hidden directories (e.g. .claude/skills/, .agents/skills/)\n      --dir string          Install to a custom directory (overrides --agent and --scope)\n  -f, --force               Overwrite existing skills without prompting\n      --from-local          Treat the argument as a local directory path instead of a repository\n      --pin string          Pin to a specific git tag or commit SHA\n      --scope string        Installation scope: {project|user} (default \"project\")\n      --upstream            Install from the upstream source when a re-published skill is detected\n\nINHERITED FLAGS\n  --help   Show help for command\n\nEXAMPLES\n  # Interactive: choose repo, skill, and agent\n  $ gh skill install\n  \n  # Choose a skill from the repo interactively\n  $ gh skill install github/awesome-copilot\n  \n  # List available skills non-interactively (e.g. to pipe into grep)\n  $ gh skill install github/awesome-copilot | grep review\n  \n  # Install a specific skill\n  $ gh skill install github/awesome-copilot git-commit\n  \n  # Install all skills from a repository\n  $ gh skill install github/awesome-copilot --all\n  \n  # Install a specific version\n  $ gh skill install github/awesome-copilot git-commit@v1.2.0\n  \n  # Install from a large namespaced repo by path (efficient, skips full discovery)\n  $ gh skill install github/awesome-copilot skills/monalisa/code-review\n  \n  # Install from a non-standard nested path (efficient, skips full discovery)\n  $ gh skill install monalisa/skills-repo packages/agent-skills/code-review\n  \n  # Install from a local directory\n  $ gh skill install ./my-skills-repo --from-local\n  \n  # Install a specific local skill\n  $ gh skill install ./my-skills-repo git-commit --from-local\n  \n  # Install for Claude Code at user scope\n  $ gh skill install github/awesome-copilot git-commit --agent claude-code --scope user\n  \n  # Pin to a specific git ref\n  $ gh skill install github/awesome-copilot git-commit --pin v2.0.0\n  \n  # Install skills from hidden directories (e.g. .claude/skills/)\n  $ gh skill install owner/repo --allow-hidden-dirs\n\nLEARN MORE\n  Use `gh <command> <subcommand> --help` for more information about a command.\n  Read the manual at https://cli.github.com/manual\n  Learn about exit codes using `gh help exit-codes`\n  Learn about accessibility experiences using `gh help accessibility`\n\n"
+      }
+    },
+    "gh-skill-list": {
+      "available": true,
+      "probe": {
+        "command": "gh skill list --help",
+        "cwd": "<REPO_ROOT>",
+        "exit_code": 0,
+        "output_truncated": false,
+        "status": "pass",
+        "stderr": "",
+        "stdout": "List installed agent skills across known agent host directories.\n\nBy default, scans all supported agent hosts in both project and user scope.\nUse `--agent` to scan one host, `--scope` to scan only project or user\nscope, or `--dir` to scan a custom skills directory.\n\nProject-scope skills are discovered relative to the current git repository\nroot. User-scope skills are discovered relative to your home directory.\n\nFor more information about output formatting flags, see `gh help formatting`.\n\nUSAGE\n  gh skill list [flags]\n\nALIASES\n  gh skill ls, gh skills ls\n\nFLAGS\n      --agent string      Filter by target agent: {github-copilot|claude-code|cursor|codex|gemini-cli|antigravity|antigravity-cli|antigravity2.0|adal|amp|augment|bob|cline|codebuddy|command-code|continue|cortex|crush|deepagents|droid|firebender|goose|iflow-cli|junie|kilo|kimi-cli|kiro-cli|kode|mcpjam|mistral-vibe|mux|neovate|openclaw|opencode|openhands|pi|pochi|qoder|qwen-code|replit|roo|trae|trae-cn|universal|warp|windsurf|zencoder}\n      --dir string        Scan a custom directory for installed skills\n  -q, --jq expression     Filter JSON output using a jq expression\n      --json fields       Output JSON with the specified fields\n      --scope string      Filter by installation scope: {project|user}\n  -t, --template string   Format JSON output using a Go template; see \"gh help formatting\"\n\nINHERITED FLAGS\n  --help   Show help for command\n\nJSON FIELDS\n  agentHosts, path, pinned, scope, skillName, sourceURL, version\n\nEXAMPLES\n  # List all installed skills\n  $ gh skill list\n  \n  # List skills installed for GitHub Copilot\n  $ gh skill list --agent github-copilot\n  \n  # List user-scope skills\n  $ gh skill list --scope user\n  \n  # List skills as JSON\n  $ gh skill list --json skillName,sourceURL,scope,version,pinned,path\n\nLEARN MORE\n  Use `gh <command> <subcommand> --help` for more information about a command.\n  Read the manual at https://cli.github.com/manual\n  Learn about exit codes using `gh help exit-codes`\n  Learn about accessibility experiences using `gh help accessibility`\n\n"
+      }
+    },
+    "gh-skill-publish": {
+      "available": true,
+      "probe": {
+        "command": "gh skill publish --help",
+        "cwd": "<REPO_ROOT>",
+        "exit_code": 0,
+        "output_truncated": false,
+        "status": "pass",
+        "stderr": "",
+        "stdout": "Validate a local repository's skills against the Agent Skills specification\nand publish them by creating a GitHub release.\n\nSkills are discovered using the same conventions as install:\n\n  - `skills/*/SKILL.md`\n  - `skills/{scope}/*/SKILL.md`\n  - `*/SKILL.md` (root-level)\n  - `plugins/{scope}/skills/*/SKILL.md`\n\nValidation checks include:\n\n  - Skill names match the strict agentskills.io naming rules\n  - Each skill name matches its directory name\n  - Required frontmatter fields (name, description) are present\n  - allowed-tools is a string, not an array\n  - Install metadata (`metadata.github-*`) is stripped if present\n\nAfter validation passes, publish will interactively guide you through:\n\n  - Adding the `agent-skills` topic to the repository\n  - Choosing a version tag (semver recommended)\n  - Creating a GitHub release with auto-generated notes\n\nUse `--dry-run` to validate without publishing.\nUse `--tag` to publish non-interactively with a specific tag.\nUse `--fix` to automatically strip install metadata from committed files\nwithout publishing. Review and commit the changes, then run publish again.\n\n\nUSAGE\n  gh skill publish [<directory>] [flags]\n\nFLAGS\n  --dry-run      Validate without publishing\n  --fix          Auto-fix issues where possible without publishing (e.g. strip install metadata)\n  --tag string   Version tag for the release (e.g. v1.0.0)\n\nINHERITED FLAGS\n  --help   Show help for command\n\nEXAMPLES\n  # Validate and publish interactively\n  $ gh skill publish\n  \n  # Publish with a specific tag (non-interactive)\n  $ gh skill publish --tag v1.0.0\n  \n  # Validate only (no publish)\n  $ gh skill publish --dry-run\n  \n  # Strip install metadata without publishing\n  $ gh skill publish --fix\n\nLEARN MORE\n  Use `gh <command> <subcommand> --help` for more information about a command.\n  Read the manual at https://cli.github.com/manual\n  Learn about exit codes using `gh help exit-codes`\n  Learn about accessibility experiences using `gh help accessibility`\n\n"
+      }
+    },
+    "gh-skill-update": {
+      "available": true,
+      "probe": {
+        "command": "gh skill update --help",
+        "cwd": "<REPO_ROOT>",
+        "exit_code": 0,
+        "output_truncated": false,
+        "status": "pass",
+        "stderr": "",
+        "stdout": "Checks installed skills for available updates by comparing the local\ntree SHA (from `SKILL.md` frontmatter) against the remote repository.\n\nScans all known agent host directories (Copilot, Claude, Cursor, Codex,\nGemini, Antigravity) in both project and user scope automatically.\n\nWithout arguments, checks all installed skills. With skill names,\nchecks only those specific skills.\n\nPinned skills (installed with `--pin`) are skipped with a notice.\nUse `--unpin` to clear the pinned version and include those skills\nin the update.\n\nSkills without GitHub metadata (e.g. installed manually or by another\ntool) are prompted for their source repository in interactive mode.\nWith `--all` or in non-interactive mode, they are skipped with a notice.\nThe update re-downloads the skill with metadata injected, so future\nupdates work automatically.\n\nWith `--force`, re-downloads skills even when the remote version matches\nthe local tree SHA. This overwrites locally modified skill files with\ntheir original content, but does not remove extra files added locally.\n\nIn interactive mode, shows which skills have updates and asks for\nconfirmation before proceeding. With `--all`, updates without prompting.\nWith `--dry-run`, reports available updates without modifying any files.\n\n\nUSAGE\n  gh skill update [<skill>...] [flags]\n\nFLAGS\n  --all          Update all skills without prompting\n  --dir string   Scan a custom directory for installed skills\n  --dry-run      Report available updates without modifying files\n  --force        Re-download even if already up to date\n  --unpin        Clear pinned version and include pinned skills in update\n\nINHERITED FLAGS\n  --help   Show help for command\n\nEXAMPLES\n  # Check and update all skills interactively\n  $ gh skill update\n  \n  # Update specific skills\n  $ gh skill update mcp-cli git-commit\n  \n  # Update all without prompting\n  $ gh skill update --all\n  \n  # Re-download all skills (restore locally modified files)\n  $ gh skill update --force --all\n  \n  # Check for updates without applying (read-only)\n  $ gh skill update --dry-run\n  \n  # Unpin skills and update them to latest\n  $ gh skill update --unpin\n\nLEARN MORE\n  Use `gh <command> <subcommand> --help` for more information about a command.\n  Read the manual at https://cli.github.com/manual\n  Learn about exit codes using `gh help exit-codes`\n  Learn about accessibility experiences using `gh help accessibility`\n\n"
+      }
+    },
+    "git": {
+      "available": true,
+      "probe": {
+        "command": "git --version",
+        "cwd": "<REPO_ROOT>",
+        "exit_code": 0,
+        "output_truncated": false,
+        "status": "pass",
+        "stderr": "",
+        "stdout": "git version 2.52.0\n"
+      }
+    },
+    "immutable-remote-selection": {
+      "available": false,
+      "reason": "Release qualification requires explicit repository, stable tag and full commit"
+    }
+  },
+  "generated_at": "2026-11-22T18:32:16.425651+00:00",
+  "local_status": "ready",
+  "overall_status": "not-ready",
+  "pilot_skills": [
+    "author-project-identity"
+  ],
+  "qualification": {
+    "complete": true,
+    "required_scenarios": [
+      "distribution-build",
+      "clean-local-distribution-install",
+      "portable-package-validation",
+      "publish-validation",
+      "removal-cleanup"
+    ],
+    "scope": "local"
+  },
+  "repository": "egohygiene/aether",
+  "scenarios": {
+    "clean-local-distribution-install": {
+      "checks": [
+        {
+          "details": {},
+          "id": "install-author-project-identity",
+          "message": "Install author-project-identity for codex",
+          "status": "pass"
+        },
+        {
+          "details": {
+            "expected_path": ".agents/skills/author-project-identity"
+          },
+          "id": "path-author-project-identity",
+          "message": "Installed path exists for author-project-identity",
+          "status": "pass"
+        },
+        {
+          "details": {},
+          "id": "list-author-project-identity",
+          "message": "gh skill list returns author-project-identity",
+          "status": "pass"
+        },
+        {
+          "details": {},
+          "id": "scope-author-project-identity",
+          "message": "author-project-identity installs at project scope",
+          "status": "pass"
+        },
+        {
+          "details": {
+            "path": "<FIXTURE_ROOT>/consumer-local/.agents/skills/author-project-identity"
+          },
+          "id": "placement-author-project-identity",
+          "message": "author-project-identity is placed in the expected host directory",
+          "status": "pass"
+        }
+      ],
+      "fixture_tree": [
+        ".agents/",
+        ".agents/skills/",
+        ".agents/skills/author-project-identity/",
+        ".agents/skills/author-project-identity/SKILL.md",
+        ".agents/skills/author-project-identity/distribution-manifest.v1.json",
+        ".agents/skills/author-project-identity/evals/",
+        ".agents/skills/author-project-identity/evals/evals.json",
+        ".agents/skills/author-project-identity/evals/fixtures/",
+        ".agents/skills/author-project-identity/evals/fixtures/check-only-stale-output.json",
+        ".agents/skills/author-project-identity/evals/fixtures/generic-feature-spec.json",
+        ".agents/skills/author-project-identity/evals/fixtures/legacy-source-preserved.json",
+        ".agents/skills/author-project-identity/evals/fixtures/missing-artwork-rights.json",
+        ".agents/skills/author-project-identity/evals/fixtures/missing-python.json",
+        ".agents/skills/author-project-identity/evals/fixtures/new-v1-source.json",
+        ".agents/skills/author-project-identity/evals/fixtures/release-request.json",
+        ".agents/skills/author-project-identity/evals/fixtures/reviewed-upgrade.json",
+        ".agents/skills/author-project-identity/evals/goldens/",
+        ".agents/skills/author-project-identity/evals/goldens/check-only-stale-output.golden.txt",
+        ".agents/skills/author-project-identity/evals/goldens/generic-feature-spec.golden.txt",
+        ".agents/skills/author-project-identity/evals/goldens/legacy-source-preserved.golden.txt",
+        ".agents/skills/author-project-identity/evals/goldens/missing-artwork-rights.golden.txt",
+        ".agents/skills/author-project-identity/evals/goldens/missing-python.golden.txt",
+        ".agents/skills/author-project-identity/evals/goldens/new-v1-source.golden.txt",
+        ".agents/skills/author-project-identity/evals/goldens/release-request.golden.txt",
+        ".agents/skills/author-project-identity/evals/goldens/reviewed-upgrade.golden.txt",
+        ".agents/skills/author-project-identity/references/",
+        ".agents/skills/author-project-identity/references/identity-cli-and-capabilities.md",
+        ".agents/skills/author-project-identity/references/identity-source-lock.json",
+        ".agents/skills/author-project-identity/references/project-identity-authoring.spec.md",
+        ".agents/skills/author-project-identity/references/validation-checklist.md",
+        ".agents/skills/author-project-identity/scripts/",
+        ".agents/skills/author-project-identity/scripts/verify_identity_source.py",
+        ".agents/skills/author-project-identity/templates/",
+        ".agents/skills/author-project-identity/templates/OWNER_INTAKE.template.md",
+        ".git/",
+        ".git/HEAD",
+        ".git/config",
+        ".git/description",
+        ".git/hooks/",
+        ".git/hooks/applypatch-msg.sample",
+        ".git/hooks/commit-msg.sample",
+        ".git/hooks/fsmonitor-watchman.sample",
+        ".git/hooks/post-update.sample",
+        ".git/hooks/pre-applypatch.sample",
+        ".git/hooks/pre-commit.sample",
+        ".git/hooks/pre-merge-commit.sample",
+        ".git/hooks/pre-push.sample",
+        ".git/hooks/pre-rebase.sample",
+        ".git/hooks/pre-receive.sample",
+        ".git/hooks/prepare-commit-msg.sample",
+        ".git/hooks/push-to-checkout.sample",
+        ".git/hooks/sendemail-validate.sample",
+        ".git/hooks/update.sample",
+        ".git/info/",
+        ".git/info/exclude",
+        ".git/objects/",
+        ".git/objects/info/",
+        ".git/objects/pack/",
+        ".git/refs/",
+        ".git/refs/heads/",
+        ".git/refs/tags/"
+      ],
+      "id": "clean-local-distribution-install",
+      "status": "pass",
+      "steps": [
+        {
+          "command": "git init -q",
+          "cwd": "<FIXTURE_ROOT>/consumer-local",
+          "exit_code": 0,
+          "output_truncated": false,
+          "status": "pass",
+          "stderr": "",
+          "stdout": ""
+        },
+        {
+          "command": "gh skill install <FIXTURE_ROOT>/dist author-project-identity --from-local --agent codex",
+          "cwd": "<FIXTURE_ROOT>/consumer-local",
+          "exit_code": 0,
+          "output_truncated": false,
+          "status": "pass",
+          "stderr": "\n! Skills are not verified by GitHub and may contain prompt injections, hidden instructions, or malicious scripts. Always review skill contents before use.\n\n\n  author-project-identity/\n  \u251c\u2500\u2500 SKILL.md\n  \u251c\u2500\u2500 distribution-manifest.v1.json\n  \u251c\u2500\u2500 evals/\n  \u2502   \u251c\u2500\u2500 evals.json\n  \u2502   \u251c\u2500\u2500 fixtures/\n  \u2502   \u2502   \u251c\u2500\u2500 check-only-stale-output.json\n  \u2502   \u2502   \u251c\u2500\u2500 generic-feature-spec.json\n  \u2502   \u2502   \u251c\u2500\u2500 legacy-source-preserved.json\n  \u2502   \u2502   \u251c\u2500\u2500 missing-artwork-rights.json\n  \u2502   \u2502   \u251c\u2500\u2500 missing-python.json\n  \u2502   \u2502   \u251c\u2500\u2500 new-v1-source.json\n  \u2502   \u2502   \u251c\u2500\u2500 release-request.json\n  \u2502   \u2502   \u2514\u2500\u2500 reviewed-upgrade.json\n  \u2502   \u2514\u2500\u2500 goldens/\n  \u2502       \u251c\u2500\u2500 check-only-stale-output.golden.txt\n  \u2502       \u251c\u2500\u2500 generic-feature-spec.golden.txt\n  \u2502       \u251c\u2500\u2500 legacy-source-preserved.golden.txt\n  \u2502       \u251c\u2500\u2500 missing-artwork-rights.golden.txt\n  \u2502       \u251c\u2500\u2500 missing-python.golden.txt\n  \u2502       \u251c\u2500\u2500 new-v1-source.golden.txt\n  \u2502       \u251c\u2500\u2500 release-request.golden.txt\n  \u2502       \u2514\u2500\u2500 reviewed-upgrade.golden.txt\n  \u251c\u2500\u2500 references/\n  \u2502   \u251c\u2500\u2500 identity-cli-and-capabilities.md\n  \u2502   \u251c\u2500\u2500 identity-source-lock.json\n  \u2502   \u251c\u2500\u2500 project-identity-authoring.spec.md\n  \u2502   \u2514\u2500\u2500 validation-checklist.md\n  \u251c\u2500\u2500 scripts/\n  \u2502   \u2514\u2500\u2500 verify_identity_source.py\n  \u2514\u2500\u2500 templates/\n      \u2514\u2500\u2500 OWNER_INTAKE.template.md\n\n! Skills may contain prompt injections or malicious scripts.\n  Review the installed files before use.\n",
+          "stdout": "Installed author-project-identity (from <FIXTURE_ROOT>/dist) in .agents/skills\n"
+        },
+        {
+          "command": "gh skill list --json skillName,path,scope,pinned,sourceURL,version",
+          "cwd": "<FIXTURE_ROOT>/consumer-local",
+          "exit_code": 0,
+          "output_truncated": false,
+          "status": "pass",
+          "stderr": "",
+          "stdout": "[{\"path\":\"<FIXTURE_ROOT>/consumer-local/.agents/skills/author-project-identity\",\"pinned\":false,\"scope\":\"project\",\"skillName\":\"author-project-identity\",\"sourceURL\":\"<FIXTURE_ROOT>/dist/skills/author-project-identity\",\"version\":\"\"},{\"path\":\"<HOME>/.codex/skills/builtins/documents\",\"pinned\":false,\"scope\":\"user\",\"skillName\":\"builtins/documents\",\"sourceURL\":\"\",\"version\":\"\"},{\"path\":\"<HOME>/.codex/skills/builtins/pdf\",\"pinned\":false,\"scope\":\"user\",\"skillName\":\"builtins/pdf\",\"sourceURL\":\"\",\"version\":\"\"},{\"path\":\"<HOME>/.codex/skills/builtins/presentations\",\"pinned\":false,\"scope\":\"user\",\"skillName\":\"builtins/presentations\",\"sourceURL\":\"\",\"version\":\"\"},{\"path\":\"<HOME>/.codex/skills/builtins/spreadsheets\",\"pinned\":false,\"scope\":\"user\",\"skillName\":\"builtins/spreadsheets\",\"sourceURL\":\"\",\"version\":\"\"}]\n"
+        }
+      ]
+    },
+    "distribution-build": {
+      "checks": [
+        {
+          "details": {},
+          "id": "nonempty-pilot-selection",
+          "message": "Qualification selects at least one concrete skill",
+          "status": "pass"
+        }
+      ],
+      "id": "distribution-build",
+      "status": "pass",
+      "steps": [
+        {
+          "command": "<PYTHON> ./aether distribution build --output-directory <FIXTURE_ROOT>/dist",
+          "cwd": "<REPO_ROOT>",
+          "exit_code": 0,
+          "output_truncated": false,
+          "status": "pass",
+          "stderr": "",
+          "stdout": "wrote  <FIXTURE_ROOT>/dist/specs/architecture-coherence-review.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-document.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-ontology.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-personal-model.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-design-system.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-design.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-architecture.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-foundations.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-methodology.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-roadmap.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-system.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-decisions.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-manifesto.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-pillars.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-principles.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-purpose.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-vision.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-ai-constitution.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-epistemology.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-meta.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/architecture-set.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/exploration-note-authoring.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/project-identity-authoring.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/specfile.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/cross-agent-evidence.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/social-campaign-handoff.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/conversation-continuity.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/reflector.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/repository-continuity.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/worker-strategy.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/arxiv-publishing.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/auditor.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/diagnosis-record.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/local-ci-triage.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/local-validation-evidence.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/repository-audit-data.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/repository-journal.spec.md\nwrote  <FIXTURE_ROOT>/dist/specs/repository-release.spec.md\n\n38 file(s) written for 38 specification(s).\nwrote  <FIXTURE_ROOT>/dist/skills/architecture-authoring/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/architecture-authoring/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/architecture-authoring/references/document-sequencing.md\nwrote  <FIXTURE_ROOT>/dist/skills/architecture-authoring/references/relationship-model.md\nwrote  <FIXTURE_ROOT>/dist/skills/architecture-authoring/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/architecture-authoring/templates/architecture-document.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/architecture-authoring/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-ai-constitution-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-ai-constitution-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-ai-constitution-document/references/examples-and-antipatterns.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-ai-constitution-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-ai-constitution-document/templates/AI_CONSTITUTION.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-ai-constitution-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-architecture-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-architecture-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-architecture-document/references/authoring-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-architecture-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-architecture-document/templates/ARCHITECTURE.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-architecture-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/fixtures/existing-decision-reference.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/fixtures/historical-reconstruction-with-gaps.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/fixtures/later-outcome-correction.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/fixtures/legacy-index-migration.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/fixtures/missing-skill-and-validator.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/fixtures/new-proposal.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/fixtures/proposed-supersession.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/fixtures/routine-implementation.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/fixtures/supported-historical-record.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/goldens/existing-decision-reference.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/goldens/historical-reconstruction-with-gaps.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/goldens/later-outcome-correction.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/goldens/legacy-index-migration.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/goldens/missing-skill-and-validator.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/goldens/new-proposal.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/goldens/proposed-supersession.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/goldens/routine-implementation.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/evals/goldens/supported-historical-record.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/references/adoption.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/references/decision-record-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/references/four-digit-migration.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/references/policy-selection.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/templates/ADR.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/templates/DECISIONS.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/templates/INDEX.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/templates/MIGRATION.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/templates/policy-reference.template.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-decisions-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-document/references/experience-philosophy-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-document/templates/DESIGN.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-system-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-system-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-system-document/references/design-system-boundaries.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-system-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-system-document/templates/DESIGN_SYSTEM.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-design-system-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-epistemology-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-epistemology-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-epistemology-document/references/examples-and-antipatterns.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-epistemology-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-epistemology-document/templates/EPISTEMOLOGY.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-epistemology-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-foundations-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-foundations-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-foundations-document/references/authoring-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-foundations-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-foundations-document/templates/FOUNDATIONS.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-foundations-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-manifesto-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-manifesto-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-manifesto-document/references/examples-and-antipatterns.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-manifesto-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-manifesto-document/templates/MANIFESTO.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-manifesto-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-meta-architecture-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-meta-architecture-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-meta-architecture-document/references/examples-and-antipatterns.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-meta-architecture-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-meta-architecture-document/templates/META.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-meta-architecture-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-methodology-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-methodology-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-methodology-document/references/authoring-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-methodology-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-methodology-document/templates/METHODOLOGY.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-methodology-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-ontology-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-ontology-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-ontology-document/references/concept-modeling-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-ontology-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-ontology-document/templates/ONTOLOGY.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-ontology-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-personal-model-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-personal-model-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-personal-model-document/references/human-model-safeguards.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-personal-model-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-personal-model-document/templates/PERSONAL_MODEL.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-personal-model-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-pillars-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-pillars-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-pillars-document/references/examples-and-antipatterns.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-pillars-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-pillars-document/templates/PILLARS.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-pillars-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-principles-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-principles-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-principles-document/references/examples-and-antipatterns.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-principles-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-principles-document/templates/PRINCIPLES.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-principles-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-purpose-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-purpose-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-purpose-document/references/examples-and-antipatterns.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-purpose-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-purpose-document/templates/PURPOSE.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-purpose-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-roadmap-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-roadmap-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-roadmap-document/references/authoring-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-roadmap-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-roadmap-document/templates/ROADMAP.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-roadmap-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-system-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-system-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-system-document/references/authoring-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-system-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-system-document/templates/SYSTEM.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-system-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-vision-document/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-vision-document/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-vision-document/references/examples-and-antipatterns.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-vision-document/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-vision-document/templates/VISION.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-vision-document/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/fixtures/cases.json\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/goldens/complete-factual-step.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/goldens/human-priority-proposal.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/goldens/missing-source.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/goldens/nonrepository-task.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/goldens/organization-proposal.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/goldens/partial-progress.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/goldens/private-source.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/goldens/read-only-discovery.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/goldens/routine-maintenance.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/evals/goldens/stale-source.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/references/receipt.md\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/references/receipt.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/templates/receipt.template.json\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/scripts/validate_receipt.py\nwrote  <FIXTURE_ROOT>/dist/skills/reconcile-roadmap-impact/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/references/contract-and-human-boundary.md\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/references/examples/coherent.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/references/examples/contradictory.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/references/examples/incomplete.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/references/examples/insufficient-evidence.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/references/examples/over-engineered.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/references/examples/stale.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/references/scenario-qualification.md\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/templates/REVIEW.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/scripts/architecture-coherence-governance.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/scripts/architecture-coherence-material-change.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/scripts/architecture_coherence.py\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/scripts/architecture_coherence_governance.py\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/scripts/governance.lock.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/references/aether.architecture-coherence-review.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/review-architecture-coherence/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/fixtures/notes.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/goldens/conflicting-decision.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/goldens/create.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/goldens/duplicate.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/goldens/graduate-link.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/goldens/missing-source.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/goldens/non-exploration-task.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/goldens/park.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/goldens/private-to-public.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/goldens/private.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/goldens/public.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/evals/goldens/revise.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/references/examples.md\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/templates/EXPLORATION.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/scripts/note.py\nwrote  <FIXTURE_ROOT>/dist/skills/author-exploration-note/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/fixtures/check-only-stale-output.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/fixtures/generic-feature-spec.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/fixtures/legacy-source-preserved.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/fixtures/missing-artwork-rights.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/fixtures/missing-python.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/fixtures/new-v1-source.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/fixtures/release-request.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/fixtures/reviewed-upgrade.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/goldens/check-only-stale-output.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/goldens/generic-feature-spec.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/goldens/legacy-source-preserved.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/goldens/missing-artwork-rights.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/goldens/missing-python.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/goldens/new-v1-source.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/goldens/release-request.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/evals/goldens/reviewed-upgrade.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/references/identity-cli-and-capabilities.md\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/references/identity-source-lock.json\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/templates/OWNER_INTAKE.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/scripts/verify_identity_source.py\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/references/project-identity-authoring.spec.md\nwrote  <FIXTURE_ROOT>/dist/skills/author-project-identity/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-specification-file/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-specification-file/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-specification-file/references/specification-authoring-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-specification-file/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-specification-file/templates/SPECIFICATION.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-specification-file/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/references/canonical-issue-titles.md\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/references/copy-ready-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/references/issue-title-contract/cases.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/references/issue-title-contract/label-catalog.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/references/issue-title-contract/selection.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/references/issue-title-contract/semantics.txt\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/references/issue-title-contract/title-contract.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/references/issue-title-contract/title-contract.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/templates/GITHUB_ISSUE.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/scripts/verify_title_contract.py\nwrote  <FIXTURE_ROOT>/dist/skills/github-issue-authoring/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/implementation-planning/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/implementation-planning/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/implementation-planning/references/phase-design-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/implementation-planning/templates/IMPLEMENTATION_PLAN.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/implementation-planning/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/skill-authoring/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/skill-authoring/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/skill-authoring/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/skill-authoring/templates/SKILL.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/skill-authoring/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-social-campaign-handoff/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-social-campaign-handoff/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-social-campaign-handoff/references/campaign-handoff-contract.md\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-social-campaign-handoff/references/examples/organization-announcement.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-social-campaign-handoff/references/examples/product-release.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-social-campaign-handoff/references/review-and-export-safety.md\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-social-campaign-handoff/templates/campaign-brief.template.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-social-campaign-handoff/scripts/campaign-handoff.py\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-social-campaign-handoff/references/aether.social-campaign-handoff.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-social-campaign-handoff/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/social-surface-specs/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/social-surface-specs/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/social-surface-specs/references/catalog-contract.md\nwrote  <FIXTURE_ROOT>/dist/skills/social-surface-specs/references/freshness-and-rights.md\nwrote  <FIXTURE_ROOT>/dist/skills/social-surface-specs/templates/social-surface-review.md\nwrote  <FIXTURE_ROOT>/dist/skills/social-surface-specs/references/social-surface-catalog.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/social-surface-specs/scripts/query-social-surfaces.py\nwrote  <FIXTURE_ROOT>/dist/skills/social-surface-specs/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/evals/fixtures/cases.json\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/evals/goldens/existing-checkpoints-noop.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/evals/goldens/group-without-blocker.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/evals/goldens/nonrepository-request.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/evals/goldens/provider-unavailable.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/evals/goldens/read-only-session.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/evals/goldens/saved-draft-resume.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/evals/goldens/small-unsplit.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/evals/goldens/stale-concurrent-state.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/evals/goldens/two-useful-checkpoints.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/references/examples.md\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/templates/HANDOFF.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/execute-issue-checkpoint/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/fixtures/capture-inputs.json\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/concurrent-union.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/correction.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/fresh-process-resume.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/identity-collision.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/non-conversation-task.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/private-ledger.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/private-source.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/repeat-noop.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/stale-provider.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/stored-instruction.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/submission-distinction.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/evals/goldens/unsafe-reference.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/references/examples.md\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/references/ledger.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/references/synthetic-ledger.json\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/templates/CONVERSATION.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/templates/conversation.AGENTS.md\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/scripts/ledger.py\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-conversation-checkpoint/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-repository-continuity/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-repository-continuity/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-repository-continuity/evals/fixtures/repository-routing.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-repository-continuity/evals/goldens/fresh-session-resume.golden.txt\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-repository-continuity/references/antidote-migration.md\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-repository-continuity/references/contract-and-authoring-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-repository-continuity/references/privacy-and-trust.md\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-repository-continuity/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-repository-continuity/templates/CONTINUITY.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-repository-continuity/references/aether.repository-continuity.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/maintain-repository-continuity/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/orchestrate-reflective-development/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/orchestrate-reflective-development/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/orchestrate-reflective-development/references/recursion-and-synchronization-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/orchestrate-reflective-development/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/orchestrate-reflective-development/templates/REFLECTIVE_CYCLE.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/orchestrate-reflective-development/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-arxiv-release/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-arxiv-release/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-arxiv-release/references/official-arxiv-baseline.md\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-arxiv-release/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-arxiv-release/templates/ARXIV_RELEASE_MANIFEST.template.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-arxiv-release/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-repository-release/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-repository-release/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-repository-release/references/release-authoring.md\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-repository-release/templates/repository-release.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-repository-release/references/aether.repository-release.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-repository-release/scripts/validate-release-declaration.py\nwrote  <FIXTURE_ROOT>/dist/skills/prepare-repository-release/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/audit-data-contract.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/audit-profiles.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/checkpoint-adoption.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/blocked-20261115T000000Z.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/blocked.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/experimental-20261115T000000Z.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/experimental.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/holistic-partial-20261115T000000Z.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/holistic-partial.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/not-applicable-20261115T000000Z.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/not-applicable.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/organization-stale-partial-20261115T000000Z.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/organization-stale-partial.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/repository-complete-20261115T000000Z.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/repository-complete.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/resolved-20261115T000000Z.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/examples/resolved.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/finding-classification-guide.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/staged-reconciliation.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/validation-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/templates/AUDIT.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/scripts/audit_contract.py\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/aether.audit-profile-registry.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/references/aether.repository-audit-report.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/audit-repository/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/bug-fixing/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/bug-fixing/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/bug-fixing/references/regression-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/bug-fixing/templates/BUG_FIX_REPORT.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/bug-fixing/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-diagnosis-record/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-diagnosis-record/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-diagnosis-record/references/record-contract.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-diagnosis-record/templates/DIAGNOSIS_RECORD.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-diagnosis-record/references/aether.diagnosis-record.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-diagnosis-record/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-repository-journal/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-repository-journal/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-repository-journal/references/report-contract.md\nwrote  <FIXTURE_ROOT>/dist/skills/create-repository-journal/templates/repository-journal-input.template.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-repository-journal/scripts/repository-journal.py\nwrote  <FIXTURE_ROOT>/dist/skills/create-repository-journal/references/aether.repository-journal.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/create-repository-journal/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/repository-cleanup/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/repository-cleanup/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/repository-cleanup/references/classification-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/repository-cleanup/templates/CLEANUP_PLAN.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/repository-cleanup/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/test-engineering/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/test-engineering/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/test-engineering/references/determinism-checklist.md\nwrote  <FIXTURE_ROOT>/dist/skills/test-engineering/templates/TEST_PLAN.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/test-engineering/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/triage-local-ci-reports/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/triage-local-ci-reports/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/triage-local-ci-reports/references/report-to-findings.md\nwrote  <FIXTURE_ROOT>/dist/skills/triage-local-ci-reports/templates/diagnoses.template.json\nwrote  <FIXTURE_ROOT>/dist/skills/triage-local-ci-reports/scripts/triage-local-ci.py\nwrote  <FIXTURE_ROOT>/dist/skills/triage-local-ci-reports/distribution-manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/skills/validate-repository-locally/SKILL.md\nwrote  <FIXTURE_ROOT>/dist/skills/validate-repository-locally/evals/evals.json\nwrote  <FIXTURE_ROOT>/dist/skills/validate-repository-locally/references/execution-adapters.md\nwrote  <FIXTURE_ROOT>/dist/skills/validate-repository-locally/templates/LOCAL_VALIDATION_REPORT.template.md\nwrote  <FIXTURE_ROOT>/dist/skills/validate-repository-locally/references/aether.local-validation-evidence.v1.schema.json\nwrote  <FIXTURE_ROOT>/dist/skills/validate-repository-locally/distribution-manifest.v1.json\n\n400 file(s) written for 43 skill(s).\nwrote  <FIXTURE_ROOT>/dist/claude/repository/.claude/agents/architect.md\nwrote  <FIXTURE_ROOT>/dist/claude/repository/.claude/agents/arxiv-publisher.md\nwrote  <FIXTURE_ROOT>/dist/claude/repository/.claude/agents/auditor.md\nwrote  <FIXTURE_ROOT>/dist/claude/repository/.claude/agents/bug-fix-teammate.md\nwrote  <FIXTURE_ROOT>/dist/claude/repository/.claude/agents/cleanup-specialist.md\nwrote  <FIXTURE_ROOT>/dist/claude/repository/.claude/agents/github-issue-creator.md\nwrote  <FIXTURE_ROOT>/dist/claude/repository/.claude/agents/implementation-planner.md\nwrote  <FIXTURE_ROOT>/dist/claude/repository/.claude/agents/local-ci-triager.md\nwrote  <FIXTURE_ROOT>/dist/claude/repository/.claude/agents/specfile-creator.md\nwrote  <FIXTURE_ROOT>/dist/claude/repository/.claude/agents/test-specialist.md\nwrote  <FIXTURE_ROOT>/dist/claude/repository/CLAUDE.md\nwrote  <FIXTURE_ROOT>/dist/codex/repository/AGENTS.md\nwrote  <FIXTURE_ROOT>/dist/fixtures/repository-instructions/AGENTS.md\nwrote  <FIXTURE_ROOT>/dist/github/organization/agents/architect.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/organization/agents/arxiv-publisher.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/organization/agents/auditor.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/organization/agents/bug-fix-teammate.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/organization/agents/cleanup-specialist.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/organization/agents/github-issue-creator.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/organization/agents/implementation-planner.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/organization/agents/local-ci-triager.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/organization/agents/specfile-creator.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/organization/agents/test-specialist.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/repository/.github/agents/architect.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/repository/.github/agents/arxiv-publisher.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/repository/.github/agents/auditor.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/repository/.github/agents/bug-fix-teammate.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/repository/.github/agents/cleanup-specialist.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/repository/.github/agents/github-issue-creator.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/repository/.github/agents/implementation-planner.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/repository/.github/agents/local-ci-triager.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/repository/.github/agents/specfile-creator.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/repository/.github/agents/test-specialist.agent.md\nwrote  <FIXTURE_ROOT>/dist/github/repository/.github/copilot-instructions.md\nwrote  <FIXTURE_ROOT>/dist/mcp/github/.mcp.json\nwrote  <FIXTURE_ROOT>/dist/opencode/repository/.opencode/agents/architect.md\nwrote  <FIXTURE_ROOT>/dist/opencode/repository/.opencode/agents/arxiv-publisher.md\nwrote  <FIXTURE_ROOT>/dist/opencode/repository/.opencode/agents/auditor.md\nwrote  <FIXTURE_ROOT>/dist/opencode/repository/.opencode/agents/bug-fix-teammate.md\nwrote  <FIXTURE_ROOT>/dist/opencode/repository/.opencode/agents/cleanup-specialist.md\nwrote  <FIXTURE_ROOT>/dist/opencode/repository/.opencode/agents/github-issue-creator.md\nwrote  <FIXTURE_ROOT>/dist/opencode/repository/.opencode/agents/implementation-planner.md\nwrote  <FIXTURE_ROOT>/dist/opencode/repository/.opencode/agents/local-ci-triager.md\nwrote  <FIXTURE_ROOT>/dist/opencode/repository/.opencode/agents/specfile-creator.md\nwrote  <FIXTURE_ROOT>/dist/opencode/repository/.opencode/agents/test-specialist.md\nwrote  <FIXTURE_ROOT>/dist/projections/continuity-dispositions.v1.json\nwrote  <FIXTURE_ROOT>/dist/projections/manifest.v1.json\nwrote  <FIXTURE_ROOT>/dist/zencoder/manual-import/agents.json\n\n48 provider projection file(s) written.\nwrote  <FIXTURE_ROOT>/dist/catalogs/social-surface-specs/catalog.v1.json\nwrote  <FIXTURE_ROOT>/dist/catalogs/social-surface-specs/distribution-manifest.v1.json\n2 social-surface distribution file(s) written.\n"
+        }
+      ]
+    },
+    "pinned-remote-release-install": {
+      "checks": [],
+      "id": "pinned-remote-release-install",
+      "reason": "Remote acceptance is not selected by local qualification",
+      "status": "skip",
+      "steps": []
+    },
+    "portable-package-validation": {
+      "checks": [
+        {
+          "details": {
+            "diagnostics": [],
+            "scope": "pristine-export"
+          },
+          "id": "portable-export-author-project-identity",
+          "message": "Strict portable validation of the pristine export before installation",
+          "status": "pass"
+        },
+        {
+          "details": {
+            "body_separator": "one-blank-lf-omitted",
+            "directory_count": 6,
+            "file_count": 25,
+            "scope": "installed instance matches pristine export plus verified local CLI tracking",
+            "tracking_field": "metadata.local-path",
+            "tracking_matches_selected_source": true
+          },
+          "id": "materialization-author-project-identity",
+          "message": "Installed instance matches its frozen source and verified CLI tracking",
+          "status": "pass"
+        },
+        {
+          "details": {},
+          "id": "manifest-author-project-identity",
+          "message": "Nonempty manifest inventory accounts for every installed file in author-project-identity",
+          "status": "pass"
+        },
+        {
+          "details": {
+            "categories": [
+              "boundary",
+              "failure",
+              "insufficient-evidence",
+              "negative",
+              "positive"
+            ]
+          },
+          "id": "routing-author-project-identity",
+          "message": "author-project-identity evals cover positive and negative routing cases",
+          "status": "pass"
+        },
+        {
+          "details": {},
+          "id": "frontmatter-author-project-identity",
+          "message": "author-project-identity frontmatter is discoverable and routing-oriented",
+          "status": "pass"
+        },
+        {
+          "details": {},
+          "id": "templates-author-project-identity",
+          "message": "author-project-identity templates render into structurally valid sample artifacts",
+          "status": "pass"
+        }
+      ],
+      "id": "portable-package-validation",
+      "installed_observations": {
+        "author-project-identity": {
+          "diagnostics": [
+            {
+              "artifact_id": "skill/author-project-identity",
+              "context": {
+                "field": "metadata.local-path"
+              },
+              "file": "SKILL.md",
+              "guidance": "Installed packages must not retain absolute local path metadata.",
+              "line": 1,
+              "message": "Portable skill package leaks an absolute local source path.",
+              "rule_id": "AETHER_PORTABLE_006",
+              "severity": "error"
+            },
+            {
+              "artifact_id": "skill/author-project-identity",
+              "context": {},
+              "file": "SKILL.md",
+              "guidance": "Strip local filesystem paths from installed package contents.",
+              "line": null,
+              "message": "Portable package contains an absolute local filesystem path.",
+              "rule_id": "AETHER_PORTABLE_017",
+              "severity": "error"
+            }
+          ],
+          "host_tracking_verified": true,
+          "portable_status": "fail",
+          "scope": "raw-installed-instance"
+        }
+      },
+      "source_validation_results": {
+        "author-project-identity": []
+      },
+      "status": "pass",
+      "steps": [],
+      "validation_results": {
+        "author-project-identity": [
+          {
+            "artifact_id": "skill/author-project-identity",
+            "context": {
+              "field": "metadata.local-path"
+            },
+            "file": "SKILL.md",
+            "guidance": "Installed packages must not retain absolute local path metadata.",
+            "line": 1,
+            "message": "Portable skill package leaks an absolute local source path.",
+            "rule_id": "AETHER_PORTABLE_006",
+            "severity": "error"
+          },
+          {
+            "artifact_id": "skill/author-project-identity",
+            "context": {},
+            "file": "SKILL.md",
+            "guidance": "Strip local filesystem paths from installed package contents.",
+            "line": null,
+            "message": "Portable package contains an absolute local filesystem path.",
+            "rule_id": "AETHER_PORTABLE_017",
+            "severity": "error"
+          }
+        ]
+      },
+      "validation_scope": "strict pristine export and exact installed-host materialization"
+    },
+    "publish-validation": {
+      "checks": [
+        {
+          "details": {},
+          "id": "publish-dry-run",
+          "message": "gh skill publish <dist> --dry-run succeeds",
+          "status": "pass"
+        }
+      ],
+      "id": "publish-validation",
+      "status": "pass",
+      "steps": [
+        {
+          "command": "gh skill publish <FIXTURE_ROOT>/dist --dry-run",
+          "cwd": "<REPO_ROOT>",
+          "exit_code": 0,
+          "output_truncated": false,
+          "status": "pass",
+          "stderr": "\nDry run complete. Use without --dry-run to publish.\n",
+          "stdout": "warning\t\tnot a git repository. Initialize with: git init && gh repo create\n"
+        }
+      ]
+    },
+    "removal-cleanup": {
+      "checks": [
+        {
+          "details": {},
+          "id": "unrelated-skill-preserved",
+          "message": "Manual cleanup preserves unrelated local skills",
+          "status": "pass"
+        },
+        {
+          "details": {},
+          "id": "installed-skills-removed",
+          "message": "Manual cleanup removes the installed pilot skills",
+          "status": "pass"
+        }
+      ],
+      "fixture_tree": [
+        ".agents/",
+        ".agents/skills/",
+        ".agents/skills/unrelated-local/",
+        ".agents/skills/unrelated-local/SKILL.md",
+        ".git/",
+        ".git/HEAD",
+        ".git/config",
+        ".git/description",
+        ".git/hooks/",
+        ".git/hooks/applypatch-msg.sample",
+        ".git/hooks/commit-msg.sample",
+        ".git/hooks/fsmonitor-watchman.sample",
+        ".git/hooks/post-update.sample",
+        ".git/hooks/pre-applypatch.sample",
+        ".git/hooks/pre-commit.sample",
+        ".git/hooks/pre-merge-commit.sample",
+        ".git/hooks/pre-push.sample",
+        ".git/hooks/pre-rebase.sample",
+        ".git/hooks/pre-receive.sample",
+        ".git/hooks/prepare-commit-msg.sample",
+        ".git/hooks/push-to-checkout.sample",
+        ".git/hooks/sendemail-validate.sample",
+        ".git/hooks/update.sample",
+        ".git/info/",
+        ".git/info/exclude",
+        ".git/objects/",
+        ".git/objects/info/",
+        ".git/objects/pack/",
+        ".git/refs/",
+        ".git/refs/heads/",
+        ".git/refs/tags/"
+      ],
+      "id": "removal-cleanup",
+      "status": "pass",
+      "steps": []
+    },
+    "update-behavior": {
+      "checks": [],
+      "id": "update-behavior",
+      "reason": "Remote acceptance is not selected by local qualification",
+      "status": "skip",
+      "steps": []
+    }
+  },
+  "schema_version": "aether.consumer-installation-readiness/v1",
+  "tool_versions": {
+    "gh": "gh version 2.96.0 (2026-07-02)\nhttps://github.com/cli/cli/releases/tag/v2.96.0",
+    "git": "git version 2.52.0",
+    "python": "Python 3.12.14"
+  }
+}
