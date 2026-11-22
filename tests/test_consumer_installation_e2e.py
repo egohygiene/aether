@@ -13,12 +13,49 @@ import time
 import unittest
 from unittest.mock import patch
 
+import yaml
+
 from catalog.consumer_installation import (
     ConsumerInstallationHarness, LOCAL_REQUIRED, PILOT_SKILLS, RELEASE_REQUIRED,
-    REPORT_SCHEMA, main,
+    REPORT_SCHEMA, _package_snapshot, _skill_parts, _verify_materialization, main,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def write_export(root: Path, skill: str) -> Path:
+    package = root / "skills" / skill
+    for folder in ("references", "templates", "evals"):
+        (package / folder).mkdir(parents=True, exist_ok=True)
+    (package / "SKILL.md").write_text(
+        f"---\nname: {skill}\ndescription: Use when testing a synthetic package.\n"
+        "metadata:\n  version: '1.0.0'\n---\n\n# Synthetic\n",
+        encoding="utf-8",
+    )
+    (package / "references/guide.md").write_text("# Portable guide\n", encoding="utf-8")
+    (package / "templates/sample.md").write_text("# Sample\n", encoding="utf-8")
+    (package / "evals/evals.json").write_text(json.dumps({
+        "cases": [{"category": "positive"}, {"category": "negative"}],
+    }), encoding="utf-8")
+    paths = [f"dist/skills/{skill}/{path}" for path in
+             ("SKILL.md", "references/guide.md", "templates/sample.md", "evals/evals.json",
+              "distribution-manifest.v1.json")]
+    (package / "distribution-manifest.v1.json").write_text(json.dumps({
+        "schema_version": "aether.distribution-manifest/v1", "generated_paths": paths,
+    }), encoding="utf-8")
+    return package
+
+
+def install_export(source: Path, destination: Path) -> None:
+    """Model the actually observed gh local header/separator transformation."""
+    shutil.copytree(source, destination, dirs_exist_ok=True)
+    fm, body = _skill_parts((source / "SKILL.md").read_bytes())
+    fm.setdefault("metadata", {})["local-path"] = str(source)
+    if body.startswith("\n"):
+        body = body[1:]
+    (destination / "SKILL.md").write_text(
+        "---\n" + yaml.safe_dump(fm, sort_keys=False) + "---\n" + body, encoding="utf-8",
+    )
 
 
 class SimulatedConsumer(ConsumerInstallationHarness):
@@ -42,6 +79,8 @@ class SimulatedConsumer(ConsumerInstallationHarness):
                 result.update(status="fail", exit_code=1)
             else:
                 self.dist_root.mkdir()
+                for name, _agent, _path in PILOT_SKILLS:
+                    write_export(self.dist_root, name)
         elif args[0:3] == ("gh", "skill", "install"):
             if "install" in self.failures:
                 result.update(status="fail", exit_code=1)
@@ -49,14 +88,7 @@ class SimulatedConsumer(ConsumerInstallationHarness):
                 skill = args[4]
                 path = next(path for name, _, path in PILOT_SKILLS if name == skill)
                 package = cwd / path
-                (package / "evals").mkdir(parents=True)
-                (package / "SKILL.md").write_text("---\nname: synthetic\ndescription: Use when testing a synthetic package.\n---\n# Synthetic\n")
-                (package / "distribution-manifest.v1.json").write_text(json.dumps({
-                    "generated_paths": [f"dist/skills/{skill}/SKILL.md"],
-                }))
-                (package / "evals/evals.json").write_text(json.dumps({
-                    "cases": [{"category": "positive"}, {"category": "negative"}],
-                }))
+                install_export(self.dist_root / "skills" / skill, package)
         elif args[0:3] == ("gh", "skill", "list"):
             result["stdout"] = json.dumps([
                 {"skillName": name, "path": str(cwd / path), "scope": "project", "pinned": True}
@@ -129,6 +161,68 @@ class TestConsumerInstallationE2E(unittest.TestCase):
         report = self.run_harness(self.harness(), [diagnostic])
         self.assertEqual(report["scenarios"]["portable-package-validation"]["status"], "fail")
         self.assertFalse(report["qualification"]["complete"])
+
+    def test_real_pristine_validator_and_verified_host_tracking_have_separate_scopes(self):
+        h = self.harness()
+        report = h.run()
+        scenario = report["scenarios"]["portable-package-validation"]
+        self.assertEqual(scenario["status"], "pass")
+        self.assertTrue(report["qualification"]["complete"])
+        self.assertEqual(report["overall_status"], "not-ready")
+        for skill, _agent, _path in PILOT_SKILLS:
+            self.assertEqual(scenario["source_validation_results"][skill], [])
+            observation = scenario["installed_observations"][skill]
+            self.assertEqual(observation["portable_status"], "fail")
+            self.assertEqual({d["rule_id"] for d in observation["diagnostics"]},
+                             {"AETHER_PORTABLE_006", "AETHER_PORTABLE_017"})
+            self.assertTrue(observation["host_tracking_verified"])
+
+    def test_source_mutation_after_installer_cannot_replace_the_frozen_expected_export(self):
+        h = self.harness()
+        original_install = h._clean_local_distribution_install
+
+        def mutate_after_install():
+            original_install()
+            skill = PILOT_SKILLS[0][0]
+            (h.dist_root / "skills" / skill / "references/guide.md").write_text("changed\n")
+
+        with patch.object(h, "_clean_local_distribution_install", side_effect=mutate_after_install):
+            report = self.run_harness(h)
+        self.assertEqual(report["scenarios"]["portable-package-validation"]["status"], "fail")
+        self.assertFalse(report["qualification"]["complete"])
+
+    def test_empty_skill_selection_cannot_vacuously_qualify(self):
+        with patch("catalog.consumer_installation.PILOT_SKILLS", []):
+            report = self.run_harness(self.harness())
+        self.assertEqual(report["scenarios"]["distribution-build"]["status"], "fail")
+        self.assertFalse(report["qualification"]["complete"])
+
+    def test_empty_duplicate_or_incomplete_manifest_cannot_vacuously_qualify(self):
+        for mode in ("empty", "duplicate", "omitted"):
+            with self.subTest(mode=mode):
+                h = self.harness()
+                original = h.run_command
+
+                def corrupt_build(cwd, *args):
+                    result = original(cwd, *args)
+                    if "build" in args:
+                        skill = PILOT_SKILLS[0][0]
+                        path = h.dist_root / "skills" / skill / "distribution-manifest.v1.json"
+                        manifest = json.loads(path.read_text())
+                        paths = manifest["generated_paths"]
+                        manifest["generated_paths"] = [] if mode == "empty" else (
+                            paths + [paths[0]] if mode == "duplicate" else paths[1:])
+                        path.write_text(json.dumps(manifest))
+                    return result
+
+                with patch.object(h, "run_command", side_effect=corrupt_build):
+                    report = self.run_harness(h)
+                scenario = report["scenarios"]["portable-package-validation"]
+                self.assertEqual(scenario["status"], "fail")
+                self.assertTrue(any(check["id"].startswith("manifest-") and check["status"] == "fail"
+                                    for check in scenario["checks"]))
+                self.assertFalse(report["qualification"]["complete"])
+                shutil.rmtree(h.report_root)
 
     def test_local_scope_cannot_activate_remote_work_from_ambient_environment(self):
         with patch.dict(os.environ, {"AETHER_E2E_REMOTE_TAG": "v1.0.0", "AETHER_E2E_REMOTE_COMMIT": "a" * 40}):
@@ -234,6 +328,158 @@ class TestConsumerInstallationE2E(unittest.TestCase):
                     result = main(["--output", str(h.report_root)])
                 self.assertEqual(result, expected)
                 shutil.rmtree(h.report_root)
+
+
+@unittest.skipUnless(os.name == "posix", "Host qualification uses POSIX no-follow reads")
+class TestInstalledMaterialization(unittest.TestCase):
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.base = Path(self.temporary.name)
+        self.dist = self.base / "dist"
+        self.consumer = self.base / "consumer"
+        self.consumer.mkdir()
+        self.source = write_export(self.dist, "sample-skill")
+        self.installed = self.consumer / ".agents/skills/sample-skill"
+        self.frozen = _package_snapshot(self.source, self.dist)
+        install_export(self.source, self.installed)
+
+    def verify(self):
+        return _verify_materialization(
+            self.frozen, _package_snapshot(self.installed, self.consumer), self.source,
+        )
+
+    def edit_header(self, mutate, body=None):
+        path = self.installed / "SKILL.md"
+        fm, original_body = _skill_parts(path.read_bytes())
+        mutate(fm)
+        path.write_text("---\n" + yaml.safe_dump(fm, sort_keys=False) + "---\n" +
+                        (original_body if body is None else body), encoding="utf-8")
+
+    def test_exact_tracking_and_observed_separator_pass_without_source_or_instance_writes(self):
+        before_source = _package_snapshot(self.source, self.dist)
+        before_install = _package_snapshot(self.installed, self.consumer)
+        result = self.verify()
+        self.assertTrue(result["tracking_matches_selected_source"])
+        self.assertEqual(result["body_separator"], "one-blank-lf-omitted")
+        self.assertEqual(_package_snapshot(self.source, self.dist), before_source)
+        self.assertEqual(_package_snapshot(self.installed, self.consumer), before_install)
+        self.assertEqual(_skill_parts((self.installed / "SKILL.md").read_bytes())[0]
+                         ["metadata"]["local-path"], str(self.source))
+
+    def test_wrong_missing_relative_or_aliased_tracking_is_rejected(self):
+        original = (self.installed / "SKILL.md").read_bytes()
+        for value in (str(self.base / "wrong"), "../sample-skill", str(self.source / ".." / self.source.name), None):
+            with self.subTest(value=value):
+                (self.installed / "SKILL.md").write_bytes(original)
+                def change(fm):
+                    if value is None:
+                        fm["metadata"].pop("local-path")
+                    else:
+                        fm["metadata"]["local-path"] = value
+                self.edit_header(change)
+                with self.assertRaises(ValueError):
+                    self.verify()
+
+    def test_changed_ordinary_fields_or_extra_metadata_are_rejected(self):
+        original = (self.installed / "SKILL.md").read_bytes()
+        mutations = [lambda fm: fm.update(description="Changed. Use when testing."),
+                     lambda fm: fm.update(unexpected="extra"),
+                     lambda fm: fm["metadata"].update(version="2.0.0"),
+                     lambda fm: fm["metadata"].update(other_path="/tmp/unexpected")]
+        for mutate in mutations:
+            (self.installed / "SKILL.md").write_bytes(original)
+            self.edit_header(mutate)
+            with self.assertRaises(ValueError):
+                self.verify()
+
+    def test_boolean_cannot_impersonate_an_ordinary_numeric_metadata_value(self):
+        path = self.source / "SKILL.md"
+        fm, body = _skill_parts(path.read_bytes())
+        fm["metadata"]["counter"] = 1
+        path.write_text("---\n" + yaml.safe_dump(fm, sort_keys=False) + "---\n" + body)
+        self.frozen = _package_snapshot(self.source, self.dist)
+        install_export(self.source, self.installed)
+        self.edit_header(lambda fm: fm["metadata"].update(counter=True))
+        with self.assertRaises(ValueError):
+            self.verify()
+
+    def test_unexpected_body_bytes_indentation_and_blank_lines_are_rejected(self):
+        _fm, body = _skill_parts((self.installed / "SKILL.md").read_bytes())
+        original = (self.installed / "SKILL.md").read_bytes()
+        for changed in ("    " + body, "\n\n" + body, body + "Extra instruction\n", body.rstrip("\n")):
+            (self.installed / "SKILL.md").write_bytes(original)
+            self.edit_header(lambda _fm: None, body=changed)
+            with self.assertRaises(ValueError):
+                self.verify()
+        # Exact original body is permitted as well as the single observed LF removal.
+        (self.installed / "SKILL.md").write_bytes(original)
+        self.edit_header(lambda _fm: None, body=_skill_parts(self.frozen["files"]["SKILL.md"])[1])
+        self.assertEqual(self.verify()["body_separator"], "unchanged")
+
+    def test_resource_changes_extra_files_missing_files_and_empty_dirs_are_rejected(self):
+        target = self.installed / "references/guide.md"
+        original = target.read_bytes()
+        target.write_bytes(b"changed\n")
+        with self.assertRaises(ValueError): self.verify()
+        target.write_bytes(original)
+        extra = self.installed / "extra.txt"
+        extra.write_text("extra\n")
+        with self.assertRaises(ValueError): self.verify()
+        extra.unlink()
+        target.unlink()
+        with self.assertRaises(ValueError): self.verify()
+        target.write_bytes(original)
+        extra_dir = self.installed / "extra-empty"
+        extra_dir.mkdir()
+        with self.assertRaises(ValueError): self.verify()
+
+    def test_leaf_parent_and_package_links_are_rejected(self):
+        target = self.installed / "references/guide.md"
+        target.unlink()
+        target.symlink_to(self.source / "references/guide.md")
+        with self.assertRaises((OSError, ValueError)): self.verify()
+        target.unlink()
+        target.write_text("# Portable guide\n")
+        shutil.rmtree(self.installed / "references")
+        (self.installed / "references").symlink_to(self.source / "references", target_is_directory=True)
+        with self.assertRaises((OSError, ValueError)): self.verify()
+        (self.installed / "references").unlink()
+        (self.installed / "references").mkdir()
+        (self.installed / "references/guide.md").write_text("# Portable guide\n")
+        moved = self.base / "moved"
+        self.installed.rename(moved)
+        self.installed.symlink_to(moved, target_is_directory=True)
+        with self.assertRaises((OSError, ValueError)): self.verify()
+
+    def test_ambiguous_duplicate_alias_and_merge_frontmatter_are_rejected(self):
+        samples = ["name: first\nname: second\n", "metadata: &meta {}\nextra: *meta\n",
+                   "metadata:\n  <<: {local-path: x}\n", "metadata:\n  local-path: x\n  local-path: y\n"]
+        for header in samples:
+            with self.subTest(header=header), self.assertRaises(ValueError):
+                _skill_parts(("---\n" + header + "---\n# Body\n").encode())
+
+    def test_reserved_source_tracking_collision_is_not_treated_as_injected_metadata(self):
+        path = self.source / "SKILL.md"
+        fm, body = _skill_parts(path.read_bytes())
+        fm["metadata"]["local-path"] = str(self.source)
+        path.write_text("---\n" + yaml.safe_dump(fm, sort_keys=False) + "---\n" + body)
+        self.frozen = _package_snapshot(self.source, self.dist)
+        with self.assertRaises(ValueError): self.verify()
+
+    def test_file_entry_and_depth_bounds_fail_closed(self):
+        for field, value in (("MAX_PACKAGE_FILE_BYTES", 8), ("MAX_PACKAGE_ENTRIES", 2), ("MAX_PACKAGE_BYTES", 8)):
+            with patch("catalog.consumer_installation." + field, value), self.assertRaises(ValueError):
+                _package_snapshot(self.installed, self.consumer)
+        deep = self.installed.joinpath(*(["deep"] * 66))
+        deep.mkdir(parents=True)
+        with self.assertRaisesRegex(ValueError, "depth"):
+            _package_snapshot(self.installed, self.consumer)
+
+    def test_special_inputs_are_rejected_before_a_potentially_blocking_read(self):
+        os.mkfifo(self.installed / "unexpected-pipe")
+        with self.assertRaisesRegex(ValueError, "non-regular"):
+            _package_snapshot(self.installed, self.consumer)
 
 
 if __name__ == "__main__":

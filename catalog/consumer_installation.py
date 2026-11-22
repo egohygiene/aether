@@ -9,6 +9,7 @@ import re
 import selectors
 import shutil
 import signal
+import stat
 import subprocess
 import sys
 import tempfile
@@ -34,6 +35,164 @@ LOCAL_REQUIRED = (
     "portable-package-validation", "publish-validation", "removal-cleanup",
 )
 RELEASE_REQUIRED = (*LOCAL_REQUIRED, "pinned-remote-release-install", "update-behavior")
+MAX_PACKAGE_ENTRIES = 4096
+MAX_PACKAGE_FILE_BYTES = 8 * 1024 * 1024
+MAX_PACKAGE_BYTES = 64 * 1024 * 1024
+
+
+class _UnambiguousLoader(yaml.SafeLoader):
+    """Reject YAML aliases, merge keys and duplicate/non-string mapping keys."""
+
+    def compose_node(self, parent, index):
+        if self.check_event(yaml.AliasEvent):
+            raise ValueError("Skill frontmatter aliases are unsupported for host comparison")
+        return super().compose_node(parent, index)
+
+    def construct_mapping(self, node, deep=False):
+        result = {}
+        for key_node, value_node in node.value:
+            key = self.construct_object(key_node, deep=deep)
+            if not isinstance(key, str) or key == "<<" or key in result:
+                raise ValueError("Skill frontmatter has ambiguous mapping keys")
+            result[key] = self.construct_object(value_node, deep=deep)
+        return result
+
+
+def _skill_parts(data: bytes) -> tuple[dict[str, Any], str]:
+    text = data.decode("utf-8")
+    if not text.startswith("---\n"):
+        raise ValueError("Skill frontmatter must start with a YAML delimiter")
+    try:
+        _opening, header, body = text.split("---\n", 2)
+        frontmatter = yaml.load(header, Loader=_UnambiguousLoader)
+    except yaml.YAMLError as error:
+        raise ValueError("Skill frontmatter is invalid or ambiguous") from error
+    if not isinstance(frontmatter, dict):
+        raise ValueError("Skill frontmatter must be a mapping")
+    return frontmatter, body
+
+
+def _same_yaml_value(left: Any, right: Any) -> bool:
+    """Compare values without treating YAML booleans and numbers as equal."""
+    if type(left) is not type(right):
+        return False
+    if isinstance(left, dict):
+        return left.keys() == right.keys() and all(_same_yaml_value(left[key], right[key]) for key in left)
+    if isinstance(left, list):
+        return len(left) == len(right) and all(_same_yaml_value(a, b) for a, b in zip(left, right))
+    return left == right
+
+
+def _package_snapshot(root: Path, boundary: Path) -> dict[str, Any]:
+    """Read a bounded regular-file package through no-follow directory handles.
+
+    This adapter already targets POSIX process groups. Descriptor-relative reads
+    also prevent a package link from redirecting verification outside its fixture.
+    A snapshot observes these bytes; it is not a lock against later mutation.
+    """
+    if os.name != "posix" or not hasattr(os, "O_NOFOLLOW"):
+        raise ValueError("Host materialization qualification requires POSIX no-follow reads")
+    relative = root.relative_to(boundary)
+    if ".." in relative.parts:
+        raise ValueError("Package root escapes its selected fixture")
+    directory_flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    directory = os.open(boundary, directory_flags)
+    files: dict[str, bytes] = {}
+    directories: set[str] = set()
+    total = 0
+    entries = 0
+
+    def walk(fd: int, prefix: str = "") -> None:
+        nonlocal total, entries
+        if prefix.count("/") > 64:
+            raise ValueError("Package directory-depth bound exceeded")
+        with os.scandir(fd) as iterator:
+            children = []
+            for child in iterator:
+                entries += 1
+                if entries > MAX_PACKAGE_ENTRIES:
+                    raise ValueError("Package entry bound exceeded")
+                children.append(child)
+        for child in sorted(children, key=lambda entry: entry.name):
+            rel = prefix + child.name
+            info = os.stat(child.name, dir_fd=fd, follow_symlinks=False)
+            if stat.S_ISDIR(info.st_mode):
+                directories.add(rel)
+                child_fd = os.open(child.name, directory_flags, dir_fd=fd)
+                try:
+                    walk(child_fd, rel + "/")
+                finally:
+                    os.close(child_fd)
+            elif stat.S_ISREG(info.st_mode):
+                file_fd = os.open(child.name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=fd)
+                try:
+                    before = os.fstat(file_fd)
+                    if not stat.S_ISREG(before.st_mode) or before.st_size > MAX_PACKAGE_FILE_BYTES:
+                        raise ValueError("Package file type or size is unsupported")
+                    chunks = []
+                    size = 0
+                    while chunk := os.read(file_fd, min(65536, MAX_PACKAGE_FILE_BYTES + 1 - size)):
+                        chunks.append(chunk)
+                        size += len(chunk)
+                        if size > MAX_PACKAGE_FILE_BYTES:
+                            raise ValueError("Package file bound exceeded")
+                    after = os.fstat(file_fd)
+                    if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
+                        raise ValueError("Package file changed during verification")
+                    total += size
+                    if total > MAX_PACKAGE_BYTES:
+                        raise ValueError("Package total-byte bound exceeded")
+                    files[rel] = b"".join(chunks)
+                finally:
+                    os.close(file_fd)
+            else:
+                raise ValueError("Package contains a link or non-regular input")
+
+    try:
+        for part in relative.parts:
+            child_fd = os.open(part, directory_flags, dir_fd=directory)
+            os.close(directory)
+            directory = child_fd
+        walk(directory)
+    finally:
+        os.close(directory)
+    if "SKILL.md" not in files:
+        raise ValueError("Package is missing SKILL.md")
+    return {"files": files, "directories": directories}
+
+
+def _verify_materialization(
+    source: dict[str, Any], installed: dict[str, Any], expected_source: Path,
+) -> dict[str, Any]:
+    """Admit only the observed local CLI transformation, without rewriting it."""
+    source_files, installed_files = source["files"], installed["files"]
+    if source_files.keys() != installed_files.keys() or source["directories"] != installed["directories"]:
+        raise ValueError("Installed file/directory inventory differs from the selected export")
+    if any(data != installed_files[name] for name, data in source_files.items() if name != "SKILL.md"):
+        raise ValueError("Installed resource bytes differ from the selected export")
+    expected, expected_body = _skill_parts(source_files["SKILL.md"])
+    actual, actual_body = _skill_parts(installed_files["SKILL.md"])
+    expected_metadata = expected.get("metadata", {})
+    actual_metadata = actual.get("metadata")
+    if not isinstance(expected_metadata, dict) or "local-path" in expected_metadata:
+        raise ValueError("Selected export collides with reserved installer tracking metadata")
+    if not isinstance(actual_metadata, dict) or actual_metadata.get("local-path") != str(expected_source):
+        raise ValueError("Installed tracking does not identify the exact selected source")
+    # Work on parsed copies only. Never remove tracking from the real installation.
+    actual_metadata.pop("local-path")
+    if not expected_metadata and "metadata" not in expected and not actual_metadata:
+        actual.pop("metadata")
+    if not _same_yaml_value(expected, actual):
+        raise ValueError("Installed semantic frontmatter differs beyond verified tracking")
+    # gh 2.96.0 omits exactly one blank separator after the frontmatter. Do not
+    # strip general whitespace: indentation and additional Markdown bytes matter.
+    allowed_bodies = (expected_body, expected_body[1:]) if expected_body.startswith("\n") else (expected_body,)
+    if actual_body not in allowed_bodies:
+        raise ValueError("Installed body differs beyond the observed single blank separator")
+    return {"file_count": len(source_files), "directory_count": len(source["directories"]),
+            "tracking_field": "metadata.local-path", "tracking_matches_selected_source": True,
+            "body_separator": "one-blank-lf-omitted" if actual_body != expected_body else "unchanged",
+            "scope": "installed instance matches pristine export plus verified local CLI tracking"}
 
 
 def _frontmatter(path: Path) -> dict[str, Any]:
@@ -87,6 +246,7 @@ class ConsumerInstallationHarness:
         }
         self.scenarios: dict[str, Any] = {}
         self.capabilities: dict[str, Any] = {}
+        self.pristine_packages: dict[str, Any] = {}
 
     def cleanup(self) -> None:
         shutil.rmtree(self.fixture_root, ignore_errors=True)
@@ -283,8 +443,26 @@ class ConsumerInstallationHarness:
     def _build_distribution(self) -> None:
         scenario = {"id": "distribution-build", "status": "pass", "steps": [], "checks": []}
         self.scenarios[scenario["id"]] = scenario
-        self._step(scenario, self.repo_root, sys.executable, "./aether", "distribution", "build",
-                   "--output-directory", self.dist_root.as_posix())
+        step = self._step(scenario, self.repo_root, sys.executable, "./aether", "distribution", "build",
+                          "--output-directory", self.dist_root.as_posix())
+        if step["status"] != "pass":
+            return
+        self.check(scenario, "nonempty-pilot-selection", bool(PILOT_SKILLS),
+                   "Qualification selects at least one concrete skill")
+        # Freeze every selected export before running any installer. Keep
+        # semantic portability failures distinct from a successful build.
+        for skill_name, _agent, _path in PILOT_SKILLS:
+            package = self.dist_root / "skills" / skill_name
+            try:
+                snapshot = _package_snapshot(package, self.dist_root)
+                _skill_parts(snapshot["files"]["SKILL.md"])
+                diagnostics = [asdict(diag) for diag in validate_portable_skill_package(package)]
+                self.pristine_packages[skill_name] = {
+                    "path": package, "snapshot": snapshot, "diagnostics": diagnostics,
+                }
+            except (OSError, ValueError, UnicodeError, RecursionError) as error:
+                self.check(scenario, f"snapshot-{skill_name}", False,
+                           "Cannot safely snapshot the selected export", reason=str(error))
 
     def _clean_local_distribution_install(self) -> None:
         scenario = {
@@ -372,12 +550,14 @@ class ConsumerInstallationHarness:
             "status": "pass",
             "steps": [],
             "checks": [],
+            "validation_scope": "strict pristine export and exact installed-host materialization",
         }
         self.scenarios[scenario["id"]] = scenario
         if not self._require(scenario, dependencies=("clean-local-distribution-install",)):
             return
 
         package_results = {}
+        source_results = {}
         for skill_name, _agent, expected_path in PILOT_SKILLS:
             package_dir = self.local_consumer / expected_path
             if not package_dir.exists():
@@ -388,23 +568,65 @@ class ConsumerInstallationHarness:
                     f"Portable package directory missing for {skill_name}",
                 )
                 continue
+            selected = self.pristine_packages.get(skill_name)
+            if selected is None:
+                self.check(scenario, f"source-{skill_name}", False,
+                           "No frozen pre-install export exists for this skill")
+                continue
+            source_diagnostics = selected["diagnostics"]
+            source_results[skill_name] = source_diagnostics
+            self.check(
+                scenario, f"portable-export-{skill_name}",
+                not any(diag["severity"] == "error" for diag in source_diagnostics),
+                "Strict portable validation of the pristine export before installation",
+                scope="pristine-export", diagnostics=source_diagnostics,
+            )
+            try:
+                current_source = _package_snapshot(selected["path"], self.dist_root)
+                if current_source != selected["snapshot"]:
+                    raise ValueError("Selected export changed after its pre-install snapshot")
+                installed_snapshot = _package_snapshot(package_dir, self.local_consumer)
+                materialization = _verify_materialization(
+                    selected["snapshot"], installed_snapshot, selected["path"],
+                )
+            except (OSError, ValueError, UnicodeError, RecursionError) as error:
+                self.check(scenario, f"materialization-{skill_name}", False,
+                           "Installed instance does not match the selected export", reason=str(error))
+                # Never pass an unsafe linked/special tree to a validator that
+                # reads files by path, or treat a failed comparison as waived.
+                continue
+            self.check(scenario, f"materialization-{skill_name}", True,
+                       "Installed instance matches its frozen source and verified CLI tracking",
+                       **materialization)
             diagnostics = [asdict(diag) for diag in validate_portable_skill_package(package_dir)]
             package_results[skill_name] = diagnostics
-            self.check(
-                scenario,
-                f"portable-{skill_name}",
-                not any(diag["severity"] == "error" for diag in diagnostics),
-                f"Portable validator passes for {skill_name}",
-                diagnostics=diagnostics,
-            )
+            # Raw installed diagnostics are retained as observations, never
+            # relabeled as a pristine portable pass or silently filtered. A
+            # host instance intentionally carries the verified local source
+            # path; the actual gate above proves export portability and exact
+            # materialization separately without rewriting that instance.
+            scenario.setdefault("installed_observations", {})[skill_name] = {
+                "scope": "raw-installed-instance",
+                "portable_status": "fail" if any(diag["severity"] == "error" for diag in diagnostics) else "pass",
+                "diagnostics": diagnostics,
+                "host_tracking_verified": True,
+            }
             manifest_path = package_dir / "distribution-manifest.v1.json"
             if manifest_path.exists():
                 manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                paths = manifest.get("generated_paths")
+                prefix = f"dist/skills/{skill_name}/"
+                inventory_valid = (
+                    isinstance(paths, list) and bool(paths)
+                    and all(isinstance(path, str) and path.startswith(prefix) for path in paths)
+                    and len(set(paths)) == len(paths)
+                    and {path.removeprefix(prefix) for path in paths} == installed_snapshot["files"].keys()
+                )
                 self.check(
                     scenario,
                     f"manifest-{skill_name}",
-                    all((package_dir / Path(path).relative_to(f"dist/skills/{skill_name}")).exists() for path in manifest["generated_paths"]),
-                    f"Manifest resources resolve for {skill_name}",
+                    inventory_valid,
+                    f"Nonempty manifest inventory accounts for every installed file in {skill_name}",
                 )
             else:
                 self.check(
@@ -440,6 +662,7 @@ class ConsumerInstallationHarness:
                 f"{skill_name} templates render into structurally valid sample artifacts",
             )
         scenario["validation_results"] = package_results
+        scenario["source_validation_results"] = source_results
 
     def _render_templates(self, package_dir: Path) -> bool:
         replacements = {
