@@ -1,0 +1,230 @@
+{
+  "cli": {
+    "acquisition": "Preinstalled binary selected through command-scoped PATH; no tool installation.",
+    "authenticity": "Observed file hash and self-reported version only; no independent signature verification.",
+    "name": "gh",
+    "release_date": "2026-07-02",
+    "sha256": "56b8bbbb27b066ecb33dbef9a256dc9d1314adaeff0908a752feba6c34053b40",
+    "version": "2.96.0"
+  },
+  "host": {
+    "architecture": "x86_64",
+    "os": "Linux"
+  },
+  "kind": "local-qualification-observation",
+  "limits": [
+    "Local adapter command execution is not stable artifact selection or actual model behavior.",
+    "No user-scope install, global tool configuration, remote install/update or publication action was selected.",
+    "Strict portable validator and all existing release gates remain unchanged."
+  ],
+  "local_installation": {
+    "agent": "codex",
+    "receipt": "consumer-companion-observation.json",
+    "scope": "project",
+    "selection": "Only the process-local PILOT_SKILLS input was replaced with the companion tuple; harness source and readiness rules were unchanged.",
+    "status": "pass"
+  },
+  "not_run": [
+    "remote-install",
+    "remote-update",
+    "skill-publication",
+    "release-creation",
+    "stable-promotion",
+    "observed-agent-authoring",
+    "native-OS-matrix",
+    "hosted-CI"
+  ],
+  "observed_at": "2026-11-22T06:59:42.832577+00:00",
+  "overall_status": "not-ready",
+  "package": {
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "756e88cf9292429a8bc4a169b17fc90fe57547b4dc9abb4eb9e1ad235378a09b",
+        "size_bytes": 5785
+      },
+      {
+        "path": "distribution-manifest.v1.json",
+        "sha256": "2aad1845c4e5e2041d0481586fa3e8d8f27c39a34f4b97a7055f655dc45aa60a",
+        "size_bytes": 2658
+      },
+      {
+        "path": "evals/evals.json",
+        "sha256": "e3fea1167d8452299dea857d3aea677b584099f4072181dc085db96a1a0660e1",
+        "size_bytes": 5572
+      },
+      {
+        "path": "evals/fixtures/check-only-stale-output.json",
+        "sha256": "8ee27d7ff675b20ab109b5e5b4c1e44727ad4eeed889a665956d7825aa671fb7",
+        "size_bytes": 187
+      },
+      {
+        "path": "evals/fixtures/generic-feature-spec.json",
+        "sha256": "a128c660b026ed7eaa8ca6fe5ee33ab0d2812e060f1a9d0b78033e9710eb3733",
+        "size_bytes": 190
+      },
+      {
+        "path": "evals/fixtures/legacy-source-preserved.json",
+        "sha256": "f4403314d76cd6881834c9fd5f25b273fe2a03bf77d2760044cec1b0f0043612",
+        "size_bytes": 187
+      },
+      {
+        "path": "evals/fixtures/missing-artwork-rights.json",
+        "sha256": "260d0bb2fd11d0013b2cb79fdc8ac2ed08d88cfb66d58c388a373f13351855b3",
+        "size_bytes": 185
+      },
+      {
+        "path": "evals/fixtures/missing-python.json",
+        "sha256": "d4c0c3a01c3d7c4793f0c65856cb60ca34ffe52b0b5932a4a907b5d3a756d9e0",
+        "size_bytes": 179
+      },
+      {
+        "path": "evals/fixtures/new-v1-source.json",
+        "sha256": "8d6573bf84d047f97108f4da167f220da9289e13676242a17abaac5c955055f9",
+        "size_bytes": 209
+      },
+      {
+        "path": "evals/fixtures/release-request.json",
+        "sha256": "e066cff561cfb577924c1ae83e319e671c54f09263679e5d41f9464e046484e0",
+        "size_bytes": 199
+      },
+      {
+        "path": "evals/fixtures/reviewed-upgrade.json",
+        "sha256": "47df4344ebe8fad629bc74a8b345dae27f8fdb1d2f751dd13f44d84080b4a43f",
+        "size_bytes": 191
+      },
+      {
+        "path": "evals/goldens/check-only-stale-output.golden.txt",
+        "sha256": "2ffc637edfedd2d621b0aefaeba74e1cd25ad57bd821a215250c29d74add9a57",
+        "size_bytes": 226
+      },
+      {
+        "path": "evals/goldens/generic-feature-spec.golden.txt",
+        "sha256": "304daf162dbc6daafef410000aaeb6c033b2708bdacb735a0c72bef3303bc11b",
+        "size_bytes": 204
+      },
+      {
+        "path": "evals/goldens/legacy-source-preserved.golden.txt",
+        "sha256": "b24d91305d8447d362b362c2a78d1966698c45ce684930a3a158f75f6b94edc4",
+        "size_bytes": 217
+      },
+      {
+        "path": "evals/goldens/missing-artwork-rights.golden.txt",
+        "sha256": "d041d4a4ccbdd8c9630306eb5fca18043cead91e0be1de5be219d81e79f5b7c5",
+        "size_bytes": 267
+      },
+      {
+        "path": "evals/goldens/missing-python.golden.txt",
+        "sha256": "1f61a4cb66a8b5a5510611757ed298c1564df5b58757eb7b0571444e68b0d6e5",
+        "size_bytes": 223
+      },
+      {
+        "path": "evals/goldens/new-v1-source.golden.txt",
+        "sha256": "f747c052b5cb9e4d28a36d376001d21e035f830b14475a607af2c6c7a21dac4b",
+        "size_bytes": 315
+      },
+      {
+        "path": "evals/goldens/release-request.golden.txt",
+        "sha256": "191df8550f5465dce017d7dd740ec752f4a6dc497c44a6a7ba8607e5db608b45",
+        "size_bytes": 288
+      },
+      {
+        "path": "evals/goldens/reviewed-upgrade.golden.txt",
+        "sha256": "b37e3a0369875e41daaf0decb9913b00582299a82af9c8afd01172722740e3fd",
+        "size_bytes": 275
+      },
+      {
+        "path": "references/identity-cli-and-capabilities.md",
+        "sha256": "0d87c2eb2aba596223ca7d8db57b17f34b31f812cd68feef4a3f5c3f16a72bb4",
+        "size_bytes": 5642
+      },
+      {
+        "path": "references/identity-source-lock.json",
+        "sha256": "7dfa65ed77884d2078905bbe307c2ee89646448fdd0dadfaa3d16d170b6eec69",
+        "size_bytes": 3746
+      },
+      {
+        "path": "references/project-identity-authoring.spec.md",
+        "sha256": "e100e8d380fceb684facdb58855ae683598a4c810776c333db4601da7cd139af",
+        "size_bytes": 13727
+      },
+      {
+        "path": "references/validation-checklist.md",
+        "sha256": "3273cab134f8ee0e87e6e8782774a941a5617f662c8475aa75787090f9353fd7",
+        "size_bytes": 2784
+      },
+      {
+        "path": "scripts/verify_identity_source.py",
+        "sha256": "c5b71b96c5a90c448b8d812b446e98eb8647d97254f21057c89d9479c51096a6",
+        "size_bytes": 5366
+      },
+      {
+        "path": "templates/OWNER_INTAKE.template.md",
+        "sha256": "75d68edabddb202e66aeab23f247d028d9548c9c5241122d0479a30b63249fb9",
+        "size_bytes": 1883
+      }
+    ],
+    "generated_paths": [
+      "dist/skills/author-project-identity/SKILL.md",
+      "dist/skills/author-project-identity/evals/evals.json",
+      "dist/skills/author-project-identity/evals/fixtures/check-only-stale-output.json",
+      "dist/skills/author-project-identity/evals/fixtures/generic-feature-spec.json",
+      "dist/skills/author-project-identity/evals/fixtures/legacy-source-preserved.json",
+      "dist/skills/author-project-identity/evals/fixtures/missing-artwork-rights.json",
+      "dist/skills/author-project-identity/evals/fixtures/missing-python.json",
+      "dist/skills/author-project-identity/evals/fixtures/new-v1-source.json",
+      "dist/skills/author-project-identity/evals/fixtures/release-request.json",
+      "dist/skills/author-project-identity/evals/fixtures/reviewed-upgrade.json",
+      "dist/skills/author-project-identity/evals/goldens/check-only-stale-output.golden.txt",
+      "dist/skills/author-project-identity/evals/goldens/generic-feature-spec.golden.txt",
+      "dist/skills/author-project-identity/evals/goldens/legacy-source-preserved.golden.txt",
+      "dist/skills/author-project-identity/evals/goldens/missing-artwork-rights.golden.txt",
+      "dist/skills/author-project-identity/evals/goldens/missing-python.golden.txt",
+      "dist/skills/author-project-identity/evals/goldens/new-v1-source.golden.txt",
+      "dist/skills/author-project-identity/evals/goldens/release-request.golden.txt",
+      "dist/skills/author-project-identity/evals/goldens/reviewed-upgrade.golden.txt",
+      "dist/skills/author-project-identity/references/identity-cli-and-capabilities.md",
+      "dist/skills/author-project-identity/references/identity-source-lock.json",
+      "dist/skills/author-project-identity/references/validation-checklist.md",
+      "dist/skills/author-project-identity/templates/OWNER_INTAKE.template.md",
+      "dist/skills/author-project-identity/scripts/verify_identity_source.py",
+      "dist/skills/author-project-identity/references/project-identity-authoring.spec.md",
+      "dist/skills/author-project-identity/distribution-manifest.v1.json"
+    ],
+    "id": "skill/author-project-identity",
+    "maturity": "draft",
+    "source_digest": {
+      "algorithm": "sha256-utf8-lf",
+      "value": "756e88cf9292429a8bc4a169b17fc90fe57547b4dc9abb4eb9e1ad235378a09b"
+    },
+    "version": "1.0.0"
+  },
+  "pristine_portability": {
+    "cause": "Generated SKILL.md retains canonical metadata.aether-distribution-resources.source under the declared verbatim-copy behavior.",
+    "command": "validate_portable_skill_package(Path(\"dist/skills/author-project-identity\"))",
+    "diagnostics": [
+      {
+        "artifact_id": "skill/author-project-identity",
+        "context": {},
+        "file": "SKILL.md",
+        "guidance": "Installed packages must not reference canonical source paths at runtime.",
+        "line": null,
+        "message": "Portable package leaks a canonical-source-only path.",
+        "rule_id": "AETHER_PORTABLE_015",
+        "severity": "error"
+      }
+    ],
+    "status": "fail"
+  },
+  "raw_installed_portability": {
+    "cause": "The pristine compile-time metadata remains; actual local installation additionally injects absolute metadata.local-path tracking.",
+    "rule_ids": [
+      "AETHER_PORTABLE_006",
+      "AETHER_PORTABLE_015",
+      "AETHER_PORTABLE_017"
+    ],
+    "status": "fail"
+  },
+  "repository": "egohygiene/aether",
+  "source_revision": "625aa5389473e05d5317fa7181db48117ef0cc42"
+}

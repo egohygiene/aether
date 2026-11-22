@@ -1,6 +1,7 @@
 # Identity companion skill
 
-Status: **draft source and package; actual host/install/publication qualification pending**.
+Status: **draft; local host installation and publish dry-run observed, strict
+portability and complete release qualification still fail/remain pending**.
 
 The [`author-project-identity` skill](../library/organization/skills/authoring/author-project-identity/SKILL.md)
 helps an agent collect project facts in small batches, preserve actual rights
@@ -46,11 +47,22 @@ Select a reviewed compatible implementation rather than assuming a package or
 schema version means every later command is present. Preserve canonical source,
 candidates and generated output separately.
 
-Actual `gh skill` install/update/publish-dry-run qualification requires a CLI
-that exposes the compatible preview commands. The installed CLI observed for
-this checkpoint is 2.46.0 and has no `skill` subcommand. Local package copying,
-Python helper tests and authored evaluation assertions do not substitute for
-that host gate or prove model behavior.
+Actual `gh skill` qualification requires a CLI that exposes the compatible
+preview commands. The earlier PATH-selected CLI was 2.46.0 and had no `skill`
+subcommand. A later local checkpoint selected an already installed **2.96.0**
+through command-scoped PATH and actually ran companion project installation,
+listing, publish `--dry-run` and cleanup. This is an additional available CLI,
+not a claim that the default CLI or user configuration was upgraded.
+
+The [dated qualification record](work/identity-companion-host-20261122/VALIDATION.md)
+retains **not-ready**. The pristine generated package fails strict portability
+because its verbatim `SKILL.md` contains a canonical build-resource source
+directive. The installed instance additionally contains CLI-injected absolute
+`metadata.local-path` tracking. No validator rule or release gate was weakened.
+The historical three-pilot run retains its own portable/provenance failures.
+Remote installation/update, publication, stable promotion and observed agent
+authoring remain unqualified. Local package copying, helper tests and authored
+evaluation assertions do not prove those outcomes.
 
 Follow [Aether's release and pinning guide](release-and-pinning-guide.md) for
 stable artifact selection, immutable repository tags, actual consumer gates,
