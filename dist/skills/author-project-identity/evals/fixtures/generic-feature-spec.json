@@ -1,0 +1,5 @@
+{
+  "kind": "authored-scenario-not-an-agent-run",
+  "scenario": "The user wants an implementation specification for a database backup feature.",
+  "expected_routing": "should-not-trigger"
+}

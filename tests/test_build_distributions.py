@@ -189,6 +189,24 @@ class TestBuildManifest(unittest.TestCase):
         manifest = bd._build_manifest("x", fm, src, [])
         self.assertEqual(manifest["compatibility"], {"required_tools": []})
 
+    def test_manifest_preserves_agent_skills_compatibility_text(self):
+        src = self._make_source()
+        text = "Requires a reviewed Identity implementation and Python 3.11+."
+        manifest = bd._build_manifest("x", {"compatibility": text}, src, [])
+        self.assertEqual(manifest["compatibility"], {"required_tools": [], "notes": text})
+
+    def test_manifest_keeps_legacy_compatibility_mapping_without_mutation(self):
+        src = self._make_source()
+        declared = {"notes": "Existing mapped guidance."}
+        manifest = bd._build_manifest("x", {"compatibility": declared}, src, [])
+        self.assertEqual(manifest["compatibility"], {"required_tools": [], **declared})
+        self.assertEqual(declared, {"notes": "Existing mapped guidance."})
+
+    def test_manifest_rejects_invalid_compatibility_type(self):
+        src = self._make_source()
+        with self.assertRaisesRegex(ValueError, "compatibility"):
+            bd._build_manifest("x", {"compatibility": ["python"]}, src, [])
+
     def test_manifest_generator_field(self):
         src = self._make_source()
         fm = {}

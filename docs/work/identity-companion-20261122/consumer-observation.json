@@ -1,0 +1,18 @@
+{
+  "schema": "identity-companion-consumer-observation/v1",
+  "scope": "local",
+  "qualification_complete": false,
+  "local_status": "not-ready",
+  "overall_status": "not-ready",
+  "observed_cli": "gh 2.46.0",
+  "scenario_statuses": {
+    "clean-local-distribution-install": "blocked",
+    "distribution-build": "pass",
+    "pinned-remote-release-install": "skip",
+    "portable-package-validation": "blocked",
+    "publish-validation": "blocked",
+    "removal-cleanup": "blocked",
+    "update-behavior": "skip"
+  },
+  "limitation": "Actual gh skill install/list/update/publish preview commands are unavailable. Distribution building and isolated helper execution do not satisfy host installation or publication."
+}

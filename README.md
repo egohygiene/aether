@@ -49,9 +49,9 @@ Generated artifacts:
 
 ## 4) First-party catalog summary
 
-The earlier November14 snapshot at merged main `2e69182` contained38 skills. The roadmap-impact, bounded-checkpoint, optional conversation and exploration packages add four skills since that snapshot; the following current counts were recomputed from canonical source on2026-11-15 UTC and do not establish maturity or release readiness:
-- 37 specifications (`find library/organization/specs -name "*.spec.md"`)
-- 42 skills (`find library/organization/skills -name "SKILL.md"`)
+The earlier November14 snapshot at merged main `2e69182` contained38 skills. The roadmap-impact, bounded-checkpoint, optional conversation and exploration packages added four skills; the Identity companion adds one more. The following current counts were recomputed from canonical source on2026-11-22 and do not establish maturity or release readiness:
+- 38 specifications (`find library/organization/specs -name "*.spec.md"`)
+- 43 skills (`find library/organization/skills -name "SKILL.md"`)
 - 10 canonical agent profiles (`find library/organization/agents -name "AGENT.md"`)
 - 1 canonical instruction module (`find library/organization/instructions -name "INSTRUCTION.md"`)
 
@@ -64,6 +64,11 @@ Machine-readable catalog and provenance:
 Conversation onboarding is an [optional extension](library/organization/specs/methodology/conversation-continuity.spec.md): a consumer-selected authored route links the bounded current checkpoint to attributed discussion evidence and canonical artifacts. The [thin skill and templates](library/organization/skills/methodology/maintain-conversation-checkpoint/SKILL.md) add no required repository files, archive service, host recovery hook or new permissions.
 
 Tentative repository ideas can use the optional [exploration-note authoring package](library/organization/skills/authoring/author-exploration-note/SKILL.md). Notes stay consumer-owned and draft; parked ideas create no issue or rollout obligation.
+
+The draft [Identity companion](docs/identity-companion.md) guides agents through
+project-owned identity authoring, explicit v1 candidate preparation and
+delegated validation using a pinned compatible Identity implementation. The
+skill package does not install the separately released Rust tool or its runtime.
 
 Before PR handoff, the shared [roadmap-impact skill](library/organization/skills/architecture/reconcile-roadmap-impact/SKILL.md) records updated/proposed/not-affected/blocked while preserving role permissions and human strategy authority.
 

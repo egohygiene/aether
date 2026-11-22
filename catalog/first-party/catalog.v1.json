@@ -143,6 +143,53 @@
       "title": "Author Exploration Note"
     },
     {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/project-identity-authoring"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Authors or updates consumer-owned project identity, collects real brand facts, prepares explicit v1 candidates and delegates checks to a pinned Identity implementation. Use when authoring, initializing, adopting or reviewing project identity; not for generic specification writing or automatic brand approval/publication.",
+      "domain": "authoring",
+      "generated_distribution_paths": [
+        "dist/skills/author-project-identity/SKILL.md"
+      ],
+      "id": "skill/author-project-identity",
+      "implements_specification_id": "specification/project-identity-authoring",
+      "kind": "skill",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "756e88cf9292429a8bc4a169b17fc90fe57547b4dc9abb4eb9e1ad235378a09b"
+      },
+      "source_path": "library/organization/skills/authoring/author-project-identity/SKILL.md",
+      "supersedes_ids": [],
+      "tags": [
+        "authoring",
+        "skill"
+      ],
+      "title": "Author Project Identity"
+    },
+    {
       "artifact_version": "1.1.0",
       "compatibility": {
         "required_tools": []
@@ -3587,6 +3634,58 @@
         "developer-experience"
       ],
       "title": "Local Validation Evidence Specification"
+    },
+    {
+      "artifact_version": "1.0.0",
+      "compatibility": {
+        "required_tools": []
+      },
+      "dependencies": [
+        "specification/specfile"
+      ],
+      "deprecation": {
+        "replacement_id": null
+      },
+      "description": "Guide an agent through collecting real project facts, preparing reviewable Identity source and checking the selected contract with compatible tools. This is the governing workflow for `author-project-identity`, not another specification-file authoring standard or an independent brand schema.",
+      "domain": "authoring",
+      "generated_distribution_paths": [
+        "dist/specs/project-identity-authoring.spec.md"
+      ],
+      "id": "specification/project-identity-authoring",
+      "implements_specification_id": null,
+      "kind": "specification",
+      "license": "MIT",
+      "lifecycle": {
+        "state": "draft"
+      },
+      "owner": {
+        "maintainers": [
+          "egohygiene"
+        ],
+        "primary": "egohygiene"
+      },
+      "related_ids": [
+        "skill/author-project-identity",
+        "skill/maintain-repository-continuity"
+      ],
+      "release": {
+        "included": false,
+        "reason": "Only stable artifacts are releasable under catalog policy."
+      },
+      "scope": "organization",
+      "source_digest": {
+        "algorithm": "sha256-utf8-lf",
+        "value": "e100e8d380fceb684facdb58855ae683598a4c810776c333db4601da7cd139af"
+      },
+      "source_path": "library/organization/specs/authoring/project-identity-authoring.spec.md",
+      "supersedes_ids": [],
+      "tags": [
+        "identity",
+        "authoring",
+        "validation",
+        "brand-kit"
+      ],
+      "title": "Project Identity Authoring and Validation Workflow"
     },
     {
       "artifact_version": "2.0.0",

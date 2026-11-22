@@ -1,0 +1,78 @@
+{
+  "schema": "aether.identity-source-lock/v1",
+  "repository": "egohygiene/identity",
+  "revision": "afc368003bfc6a2101051229efd237c8d6fadf71",
+  "observed_on": "2026-11-22",
+  "hash_algorithm": "sha256-raw-bytes",
+  "scope": "Selected upstream reference/source resources; not binary authentication, Git HEAD verification, or release qualification.",
+  "observed_release": {
+    "tag": "v1.0.0",
+    "explicit_v1_initializer_included": false,
+    "release_check_required_before_use": true
+  },
+  "resources": [
+    {
+      "path": "contracts/v1/project.schema.json",
+      "sha256": "2594d307fb644fe59b6dd06ef937872f0bc17a38536dcc4e1e0d452ad060015a",
+      "size_bytes": 4308,
+      "git_blob": "72bad127b0702eb35b4e98cb68ed2ea456654c77",
+      "url": "https://github.com/egohygiene/identity/blob/afc368003bfc6a2101051229efd237c8d6fadf71/contracts/v1/project.schema.json"
+    },
+    {
+      "path": "contracts/v1/tokens.schema.json",
+      "sha256": "07046647158b32cd77d003aa0e57d2874185b5484ad6c2db4a75c573ca429430",
+      "size_bytes": 4699,
+      "git_blob": "1c31f84068e66e3b5c557c946e88066a2545dbae",
+      "url": "https://github.com/egohygiene/identity/blob/afc368003bfc6a2101051229efd237c8d6fadf71/contracts/v1/tokens.schema.json"
+    },
+    {
+      "path": "docs/contracts/IDENTITY_V1.md",
+      "sha256": "e30e8bf0ff164f8522c8bb53c63eeabc7545bdf3153d327490dae1989d89077e",
+      "size_bytes": 14572,
+      "git_blob": "1e421b2b28fa9848bb62624b1e18ad350041a6d0",
+      "url": "https://github.com/egohygiene/identity/blob/afc368003bfc6a2101051229efd237c8d6fadf71/docs/contracts/IDENTITY_V1.md"
+    },
+    {
+      "path": "docs/contracts/SOURCE_DIGEST_V1.md",
+      "sha256": "473c96bbbed62d587a8ab18cec0bc76f9c28eba0c3ce2129b2c7ea94d5c318f0",
+      "size_bytes": 8965,
+      "git_blob": "4c6801bc4a1cf45a93c214198dd4e6f0c04559b6",
+      "url": "https://github.com/egohygiene/identity/blob/afc368003bfc6a2101051229efd237c8d6fadf71/docs/contracts/SOURCE_DIGEST_V1.md"
+    },
+    {
+      "path": "docs/consumers/AUTHORING.md",
+      "sha256": "61aace064546e53ca3ad4ac0c879c4dddd5c5291e3acd9dd485be56412f582d5",
+      "size_bytes": 28023,
+      "git_blob": "4efe53ac7692e88920983061405e4fd97dea8415",
+      "url": "https://github.com/egohygiene/identity/blob/afc368003bfc6a2101051229efd237c8d6fadf71/docs/consumers/AUTHORING.md"
+    },
+    {
+      "path": "docs/consumers/V1_INITIALIZATION.md",
+      "sha256": "0611dbb81a5c4b567e1bfb49765ea95a920b23480693488996aa4c1b816b6fd5",
+      "size_bytes": 5077,
+      "git_blob": "8181426fe609bba15f40c61135b7091d6566fafc",
+      "url": "https://github.com/egohygiene/identity/blob/afc368003bfc6a2101051229efd237c8d6fadf71/docs/consumers/V1_INITIALIZATION.md"
+    },
+    {
+      "path": "src/cli.rs",
+      "sha256": "4ffa8c27cdfb6fd8e5a4062feac4ca614dceedd020ffc069591e945b4bedd1d7",
+      "size_bytes": 5003,
+      "git_blob": "91361596a38d2bf6261013c7d16ae84dad7f23d4",
+      "url": "https://github.com/egohygiene/identity/blob/afc368003bfc6a2101051229efd237c8d6fadf71/src/cli.rs"
+    },
+    {
+      "path": "src/v1_consumer.rs",
+      "sha256": "c82e1eafc5c5d2c06d460d10a4b6c823540d8c687acb55bcf100821fe7d450c7",
+      "size_bytes": 23155,
+      "git_blob": "597702cecead0eebda21e77f1807b1e069cda3f0",
+      "url": "https://github.com/egohygiene/identity/blob/afc368003bfc6a2101051229efd237c8d6fadf71/src/v1_consumer.rs"
+    },
+    {
+      "path": "scripts/validate_identity.py",
+      "sha256": "aea7ba3ff1f331acb0cf2d05501c56c4d89c15ad41c8c57b4fd7448b323175f5",
+      "size_bytes": 188773,
+      "git_blob": "38d87eaa2c77027446416a83995638be239d798f",
+      "url": "https://github.com/egohygiene/identity/blob/afc368003bfc6a2101051229efd237c8d6fadf71/scripts/validate_identity.py"
+    }
+  ]
+}

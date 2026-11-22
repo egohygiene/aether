@@ -1,0 +1,5 @@
+{
+  "kind": "authored-scenario-not-an-agent-run",
+  "scenario": "An owner likes an image but cannot identify its creator or reuse permission.",
+  "expected_routing": "should-trigger"
+}

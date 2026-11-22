@@ -1,0 +1,3 @@
+Authored expected response; not an observed agent run.
+
+Recognize the existing v0 source. Preserve identity.toml unchanged. Use explicit v1-init into a disjoint new candidate, with no automatic migration or adoption.

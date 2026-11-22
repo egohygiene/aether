@@ -1,0 +1,5 @@
+{
+  "kind": "authored-scenario-not-an-agent-run",
+  "scenario": "After authoring a brand candidate, the caller discusses publishing binaries and gh skills.",
+  "expected_routing": "should-trigger"
+}

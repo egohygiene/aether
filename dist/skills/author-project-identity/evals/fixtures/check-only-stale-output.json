@@ -1,0 +1,5 @@
+{
+  "kind": "authored-scenario-not-an-agent-run",
+  "scenario": "A read-only verification request finds selected generated outputs out of date.",
+  "expected_routing": "should-trigger"
+}

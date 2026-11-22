@@ -1,0 +1,3 @@
+Authored expected response; not an observed agent run.
+
+The Identity Rust binary and Aether skill have separate release contracts. Report candidate and check evidence; route publication to the reviewed release handoff. This authoring workflow supplies no automatic publication authority.

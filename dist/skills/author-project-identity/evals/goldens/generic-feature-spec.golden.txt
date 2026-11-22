@@ -1,0 +1,3 @@
+Authored expected response; not an observed agent run.
+
+Route this request to create-specification-file. The Identity authoring companion is not the workflow for a generic database feature specification.

@@ -223,9 +223,17 @@ def _build_manifest(
 ) -> dict:
     artifact_id = f"skill/{skill_name}"
     artifact_version = (fm.get("metadata") or {}).get("aether-version", "0.0.0")
-    compatibility = fm.get("compatibility") or {"required_tools": []}
-    if "required_tools" not in compatibility:
-        compatibility = {"required_tools": [], **compatibility}
+    declared_compatibility = fm.get("compatibility")
+    if isinstance(declared_compatibility, str):
+        # Agent Skills uses a prose string; the distribution schema uses notes.
+        compatibility = {"required_tools": [], "notes": declared_compatibility}
+    elif declared_compatibility is None:
+        compatibility = {"required_tools": []}
+    elif isinstance(declared_compatibility, dict):
+        # Preserve the existing Aether mapping shape without mutating source.
+        compatibility = {"required_tools": [], **declared_compatibility}
+    else:
+        raise ValueError("skill compatibility must be a string or mapping")
 
     return {
         "schema_version": "aether.distribution-manifest/v1",

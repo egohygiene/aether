@@ -1,0 +1,5 @@
+{
+  "kind": "authored-scenario-not-an-agent-run",
+  "scenario": "The chosen native v1 bridge cannot locate its required Python runtime.",
+  "expected_routing": "should-trigger"
+}

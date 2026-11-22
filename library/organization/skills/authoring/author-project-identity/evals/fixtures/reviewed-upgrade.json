@@ -1,0 +1,5 @@
+{
+  "kind": "authored-scenario-not-an-agent-run",
+  "scenario": "A consumer selects a newer immutable Identity implementation and changed profiles.",
+  "expected_routing": "should-trigger"
+}

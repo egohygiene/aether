@@ -1,0 +1,3 @@
+Authored expected response; not an observed agent run.
+
+Review the new immutable implementation and profile changes. Preserve prior pins and rollback material; review changed subjects and validate the actual candidate. Old execution evidence does not qualify the new source.

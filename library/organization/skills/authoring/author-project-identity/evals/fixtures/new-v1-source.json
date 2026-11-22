@@ -1,0 +1,5 @@
+{
+  "kind": "authored-scenario-not-an-agent-run",
+  "scenario": "A maintainer supplies real project facts and approved SVG sources, requesting a separate v1 starter.",
+  "expected_routing": "should-trigger"
+}
