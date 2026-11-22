@@ -67,3 +67,12 @@ observe actual authoring/installation behavior before promotion/publication.
 Upgrade the Identity pin only after reviewing source/CLI/schema differences
 and binary/runtime evidence. Identity's broader release preparation remains
 under its #98/#116 owners and separate version/tag history.
+
+## Later local host observation
+
+The [separate 2026-11-22 host checkpoint](../identity-companion-host-20261122/VALIDATION.md)
+actually exercised a preinstalled gh 2.96.0 without changing the default CLI.
+It supersedes the adapter-unavailable limitation for that selected binary only;
+the earlier 2.46.0 run above remains historical evidence. Actual local commands
+run, while strict pristine/installed portability and complete release readiness
+remain failed or unqualified in the new receipts.

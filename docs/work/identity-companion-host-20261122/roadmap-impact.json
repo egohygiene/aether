@@ -1,0 +1,41 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "Actual local gh 2.96.0 companion commands refine existing AET-Q01/AET-Q05 and issue38 evidence, while strict portability remains failed and remote/stable-release acceptance unqualified; strategic sequence and intent are unchanged.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "625aa5389473e05d5317fa7181db48117ef0cc42",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q01",
+    "AET-Q05"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "check",
+      "reference": "docs/work/identity-companion-host-20261122/VALIDATION.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/identity-companion-host-20261122/consumer-companion-observation.json"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/identity-companion-host-20261122/package-observation.json"
+    },
+    {
+      "kind": "source",
+      "reference": "https://github.com/egohygiene/aether/issues/38"
+    }
+  ],
+  "organization_signals": []
+}
