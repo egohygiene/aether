@@ -1,19 +1,19 @@
 ---
 name: create-diagnosis-record
-description: Creates or updates an evidence-labelled technical diagnosis record from supplied logs, code, commands, and debugging context. Use when an investigation needs a durable, resumable trace without implying that a root cause is confirmed or a fix is authorized.
+description: Creates or updates an evidence-labelled technical diagnosis record from
+  supplied logs, code, commands, and debugging context. Use when an investigation
+  needs a durable, resumable trace without implying that a root cause is confirmed
+  or a fix is authorized.
 license: MIT
 metadata:
-  aether-version: "1.1.0"
-  aether-status: "draft"
-  aether-spec-id: "diagnosis-record"
-  aether-scope: "organization"
-  aether-domain: "quality"
-  aether-owners: "egohygiene"
-  aether-created: "2026-09-04"
-  aether-updated: "2026-09-10"
-  aether-distribution-resources:
-    - source: "catalog/schemas/aether.diagnosis-record.v1.schema.json"
-      destination: "references/aether.diagnosis-record.v1.schema.json"
+  aether-version: 1.1.0
+  aether-status: draft
+  aether-spec-id: diagnosis-record
+  aether-scope: organization
+  aether-domain: quality
+  aether-owners: egohygiene
+  aether-created: '2026-09-04'
+  aether-updated: '2026-09-10'
 ---
 
 # Create Diagnosis Record

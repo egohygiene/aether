@@ -1,0 +1,41 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "The bounded build-only metadata projection repairs existing AET-Q01/AET-Q05 and issue38 export portability while installed-host, historical pilot and stable/remote release acceptance remain open; strategic sequence and intent are unchanged.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "e5a67e581857122a8131fe8a24d1c7e6c1fa1170",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q01",
+    "AET-Q05"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "library/organization/skills/build-distributions.py"
+    },
+    {
+      "kind": "source",
+      "reference": "library/organization/skills/SKILL-CONTRACT.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/38/export-projection-20261122/VALIDATION.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/38/export-projection-20261122/projection-observation.json"
+    }
+  ],
+  "organization_signals": []
+}

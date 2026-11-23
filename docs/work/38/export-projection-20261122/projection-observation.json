@@ -1,0 +1,308 @@
+{
+  "checkpoint": "aether-38-build-only-metadata-projection",
+  "observed_at": "2026-11-22T18:18:08.244349+00:00",
+  "base_revision": "e5a67e581857122a8131fe8a24d1c7e6c1fa1170",
+  "declaring_skills": [
+    {
+      "skill": "review-architecture-coherence",
+      "canonical_source_sha256_utf8_lf": "09604541c8247698789da24cdd0dbdff0c3c61cfd45ebcd2dde22d3303ee7274",
+      "projected_skill_sha256": "aa7ac86ea14c38340baf80cef5ef9a8321c0f828868e7b617718eab44f21bfb8",
+      "body_sha256_utf8_lf": "ea1f0eabbaa7227e27fc5d6cea2999a6ae962a87c81fe3c5e51fc30a3baa8712",
+      "canonical_unchanged": true,
+      "ordinary_frontmatter_values_unchanged": true,
+      "body_unchanged": true,
+      "manifest_unchanged": true,
+      "resources": [
+        {
+          "destination": "references/aether.architecture-coherence-review.v1.schema.json",
+          "sha256": "5875e2563bac3a0d987781aef69742598cd5d840b838759e8abca1efeb61f810",
+          "size_bytes": 30558
+        }
+      ],
+      "remaining_pristine_diagnostics": []
+    },
+    {
+      "skill": "author-project-identity",
+      "canonical_source_sha256_utf8_lf": "756e88cf9292429a8bc4a169b17fc90fe57547b4dc9abb4eb9e1ad235378a09b",
+      "projected_skill_sha256": "dc26e18ff7249bbad700607423b850800c6e021ae055057c7f9eba6076d69f5f",
+      "body_sha256_utf8_lf": "807dad408da57589021e10facef0f503bca2247439059fa4bcc3f13b4f56e762",
+      "canonical_unchanged": true,
+      "ordinary_frontmatter_values_unchanged": true,
+      "body_unchanged": true,
+      "manifest_unchanged": true,
+      "resources": [
+        {
+          "destination": "references/project-identity-authoring.spec.md",
+          "sha256": "e100e8d380fceb684facdb58855ae683598a4c810776c333db4601da7cd139af",
+          "size_bytes": 13727
+        }
+      ],
+      "remaining_pristine_diagnostics": []
+    },
+    {
+      "skill": "prepare-social-campaign-handoff",
+      "canonical_source_sha256_utf8_lf": "9c7d1e0c84dfebe09d694eaddcbf1f255300a85ee046b2bd7256af7f7b71e555",
+      "projected_skill_sha256": "b5ad9f16caefdd8f02511a2e940b380c312bf88fc9979b01da5ba24b2e7c0845",
+      "body_sha256_utf8_lf": "9444fcf0840113c4c0aa3b5dce9e546f816968899d702f5e167e9016cfee5387",
+      "canonical_unchanged": true,
+      "ordinary_frontmatter_values_unchanged": true,
+      "body_unchanged": true,
+      "manifest_unchanged": true,
+      "resources": [
+        {
+          "destination": "references/aether.social-campaign-handoff.v1.schema.json",
+          "sha256": "f9414a8d4426d6cd35bba721481d5ae0a1783cf1b94a88cd76ba0851b7a887d2",
+          "size_bytes": 13671
+        }
+      ],
+      "remaining_pristine_diagnostics": []
+    },
+    {
+      "skill": "social-surface-specs",
+      "canonical_source_sha256_utf8_lf": "33c29870108626a5f73267f97120d389447f52c96bb7d2587feeb6519b724b33",
+      "projected_skill_sha256": "1152421764c1e6a775f1277d9a7fcd56e1c57d35d83d6bceb30db7006d1c452a",
+      "body_sha256_utf8_lf": "e2d6282a72bbc53a6a9433fe5548a3c8a29e7b6b41daa5dedfe8afb31316e0f6",
+      "canonical_unchanged": true,
+      "ordinary_frontmatter_values_unchanged": true,
+      "body_unchanged": true,
+      "manifest_unchanged": true,
+      "resources": [
+        {
+          "destination": "references/social-surface-catalog.v1.json",
+          "sha256": "cc8186add31b923ceabdd0516c8f959823b36a0397262c2a03a1eef6d380e17e",
+          "size_bytes": 1421
+        },
+        {
+          "destination": "scripts/query-social-surfaces.py",
+          "sha256": "597697c278cb182aa1c83a3b0f3057e077068b9f7f96b1d0fcd7d944c76a253b",
+          "size_bytes": 4423
+        }
+      ],
+      "remaining_pristine_diagnostics": []
+    },
+    {
+      "skill": "maintain-repository-continuity",
+      "canonical_source_sha256_utf8_lf": "be69550f2be03b68d210426d2e411f0e10134d788b8b4869f3bc200f2a727835",
+      "projected_skill_sha256": "70c8233dc52d35a68b3f0aac36793a5b3372df5febcd8cff9a1193797243a927",
+      "body_sha256_utf8_lf": "799143a8bdce77d559271ad8688bc612fc07ff54e67f2d856496d9857ea0f7ae",
+      "canonical_unchanged": true,
+      "ordinary_frontmatter_values_unchanged": true,
+      "body_unchanged": true,
+      "manifest_unchanged": true,
+      "resources": [
+        {
+          "destination": "references/aether.repository-continuity.v1.schema.json",
+          "sha256": "a725e004fe0db2bf96a968c6e3f300d37ecf8b00b9a0923be5c5f4c529655916",
+          "size_bytes": 16853
+        }
+      ],
+      "remaining_pristine_diagnostics": []
+    },
+    {
+      "skill": "prepare-repository-release",
+      "canonical_source_sha256_utf8_lf": "e3bc75cb295e137b7106c70ee6ee664b0cdeaa88aa8b19a28e0b50f2117af00c",
+      "projected_skill_sha256": "2b4d5f7bd54d93008aa838c152a4d675961ecbba9d126d709988ca3a00a43790",
+      "body_sha256_utf8_lf": "4efcdccf122a534887136b2526fd85054213733f2983b0e4ab8380f593a3addc",
+      "canonical_unchanged": true,
+      "ordinary_frontmatter_values_unchanged": true,
+      "body_unchanged": true,
+      "manifest_unchanged": true,
+      "resources": [
+        {
+          "destination": "references/aether.repository-release.v1.schema.json",
+          "sha256": "8431ea7651336aa7695aee5b9aedce536b1e7c76c3cb15927f64a6206f9cc1f5",
+          "size_bytes": 7442
+        },
+        {
+          "destination": "scripts/validate-release-declaration.py",
+          "sha256": "055f6b4e808cb8dcc32cd45a855a3a338999daf69fd438a42b54abb281a0663d",
+          "size_bytes": 11367
+        }
+      ],
+      "remaining_pristine_diagnostics": []
+    },
+    {
+      "skill": "audit-repository",
+      "canonical_source_sha256_utf8_lf": "d35c6eca19e2498305447696f85996d9845e86f1bf7e18cc0f0567ee216c1d99",
+      "projected_skill_sha256": "5c243b0883cf3941fc3baac7ce9dd001d34e7cc1b9ee0657ad66001d4e37c27f",
+      "body_sha256_utf8_lf": "9d35946c6d311ef58503e255e30821e6ca8fd70dbbdba11cabcbc2119ac2b75f",
+      "canonical_unchanged": true,
+      "ordinary_frontmatter_values_unchanged": true,
+      "body_unchanged": true,
+      "manifest_unchanged": true,
+      "resources": [
+        {
+          "destination": "references/aether.audit-profile-registry.v1.schema.json",
+          "sha256": "ad1335fe7662d91308d3d501197df70fac00892de40da8820538631b0f80312d",
+          "size_bytes": 4041
+        },
+        {
+          "destination": "references/aether.repository-audit-report.v1.schema.json",
+          "sha256": "060446225135d573da15d4c31a6a59a89e04665e0c3cce43f8373b1e465bc96b",
+          "size_bytes": 26155
+        }
+      ],
+      "remaining_pristine_diagnostics": [
+        {
+          "rule": "AETHER_PORTABLE_016",
+          "file": "SKILL.md"
+        },
+        {
+          "rule": "AETHER_PORTABLE_015",
+          "file": "references/staged-reconciliation.md"
+        },
+        {
+          "rule": "AETHER_PORTABLE_016",
+          "file": "references/staged-reconciliation.md"
+        }
+      ]
+    },
+    {
+      "skill": "create-diagnosis-record",
+      "canonical_source_sha256_utf8_lf": "264bb7efd5021619afd62d650595c5ee180684f371b976fbefad5c24fc4a2b54",
+      "projected_skill_sha256": "08947fe3775da7897cea30d829672df61e133905198ad5051d65830af0b1dddb",
+      "body_sha256_utf8_lf": "7febf49a0cfe93f2a1a80f8cacaffc61da948a1a8ac2c50a18113747fc1b4e37",
+      "canonical_unchanged": true,
+      "ordinary_frontmatter_values_unchanged": true,
+      "body_unchanged": true,
+      "manifest_unchanged": true,
+      "resources": [
+        {
+          "destination": "references/aether.diagnosis-record.v1.schema.json",
+          "sha256": "e84bb047a51b398e94847b291a9dfefb1aaa38d0f8fefda5764a2f233080abf8",
+          "size_bytes": 4231
+        }
+      ],
+      "remaining_pristine_diagnostics": []
+    },
+    {
+      "skill": "create-repository-journal",
+      "canonical_source_sha256_utf8_lf": "20478640d878d5d9b4d06e934f6a72f825e7292bec9acfc78c909e4f8f4702c7",
+      "projected_skill_sha256": "f6893ae5c49c83075a47f9bd38b8e4e838811ceb7420cd5c3ce0691d4a594e39",
+      "body_sha256_utf8_lf": "e280e83fc445b6a7d6c5ca34d66db7704af57b9a0cf11681682c46b46ba73139",
+      "canonical_unchanged": true,
+      "ordinary_frontmatter_values_unchanged": true,
+      "body_unchanged": true,
+      "manifest_unchanged": true,
+      "resources": [
+        {
+          "destination": "references/aether.repository-journal.v1.schema.json",
+          "sha256": "8788ec86d062baf73d6320f080643396abc5d4dadd69996b88b6493b6d2c654e",
+          "size_bytes": 1518
+        }
+      ],
+      "remaining_pristine_diagnostics": [
+        {
+          "rule": "AETHER_PORTABLE_015",
+          "file": "scripts/repository-journal.py"
+        }
+      ]
+    },
+    {
+      "skill": "validate-repository-locally",
+      "canonical_source_sha256_utf8_lf": "aaa79f32f4fefba82c83ecb6c96c771d3997ddd70ee16cb4fbb65814bc9f9682",
+      "projected_skill_sha256": "cba8777b9366fef915fe22f1503884bb4ce563626e48f44c9bde2073e069a07a",
+      "body_sha256_utf8_lf": "000acf6849a1c84f23ad6856a58a4adca94f18ad2cc345340f497b6dfabdfebd",
+      "canonical_unchanged": true,
+      "ordinary_frontmatter_values_unchanged": true,
+      "body_unchanged": true,
+      "manifest_unchanged": true,
+      "resources": [
+        {
+          "destination": "references/aether.local-validation-evidence.v1.schema.json",
+          "sha256": "91d0329ab24881fc86006748f3ec98fca2f432772f4e769cdacd04eed2e811a6",
+          "size_bytes": 11434
+        }
+      ],
+      "remaining_pristine_diagnostics": []
+    }
+  ],
+  "ordinary_skill_exports_unchanged": [
+    "architecture-authoring",
+    "create-ai-constitution-document",
+    "create-architecture-document",
+    "create-decisions-document",
+    "create-design-document",
+    "create-design-system-document",
+    "create-epistemology-document",
+    "create-foundations-document",
+    "create-manifesto-document",
+    "create-meta-architecture-document",
+    "create-methodology-document",
+    "create-ontology-document",
+    "create-personal-model-document",
+    "create-pillars-document",
+    "create-principles-document",
+    "create-purpose-document",
+    "create-roadmap-document",
+    "create-system-document",
+    "create-vision-document",
+    "reconcile-roadmap-impact",
+    "author-exploration-note",
+    "create-specification-file",
+    "github-issue-authoring",
+    "implementation-planning",
+    "skill-authoring",
+    "execute-issue-checkpoint",
+    "maintain-conversation-checkpoint",
+    "orchestrate-reflective-development",
+    "prepare-arxiv-release",
+    "bug-fixing",
+    "repository-cleanup",
+    "test-engineering",
+    "triage-local-ci-reports"
+  ],
+  "changed_generated_paths": [
+    "dist/skills/audit-repository/SKILL.md",
+    "dist/skills/author-project-identity/SKILL.md",
+    "dist/skills/create-diagnosis-record/SKILL.md",
+    "dist/skills/create-repository-journal/SKILL.md",
+    "dist/skills/maintain-repository-continuity/SKILL.md",
+    "dist/skills/prepare-repository-release/SKILL.md",
+    "dist/skills/prepare-social-campaign-handoff/SKILL.md",
+    "dist/skills/review-architecture-coherence/SKILL.md",
+    "dist/skills/social-surface-specs/SKILL.md",
+    "dist/skills/validate-repository-locally/SKILL.md"
+  ],
+  "canonical_skills_unchanged": true,
+  "manifest_schema_changed": false,
+  "strict_validator_changed": false,
+  "companion_pristine_portability": "passed; zero diagnostics",
+  "limits": [
+    "Other historical skill runtime/provenance findings are retained.",
+    "Installed-host tracking and actual local/release qualification are separate checkpoints.",
+    "No maturity/version/tag/release/remote-install or publication change."
+  ],
+  "builder": {
+    "path": "library/organization/skills/build-distributions.py",
+    "sha256": "9fb7f35a3a772fb05c284aec9d761f1722edc22da1ffb943b3992ddc8963700d"
+  },
+  "checks": [
+    {
+      "command": "python3 -m unittest discover --start-directory tests --pattern test_build_distributions.py --verbose",
+      "exit_code": 0,
+      "tests": 42
+    },
+    {
+      "command": "./aether test",
+      "exit_code": 0,
+      "tests": 410,
+      "passed": 399,
+      "skipped": 11
+    },
+    {
+      "command": "./aether validate --format text",
+      "exit_code": 0,
+      "retained_warning": "AETHER_PROVENANCE_009"
+    },
+    {
+      "command": "./aether catalog generate",
+      "exit_code": 0,
+      "catalog_changed": false
+    },
+    {
+      "command": "./aether distribution build --output-directory dist; --check",
+      "exit_code": 0
+    }
+  ]
+}

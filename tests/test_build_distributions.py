@@ -14,6 +14,8 @@ import unittest
 from unittest import mock
 from pathlib import Path
 
+import yaml
+
 
 # ---------------------------------------------------------------------------
 # Load the module under test without relying on installed packages
@@ -297,6 +299,139 @@ class TestBuildSkillDist(unittest.TestCase):
             file_map["dist/skills/my-skill/references/example.v1.json"],
             b'{"version": 1}\n',
         )
+
+    def test_build_only_metadata_is_projected_without_losing_source_identity(self):
+        skill_dir = _make_skill(self._tmp, "my-skill")
+        resource = self._tmp / "library/organization/specs/example.spec.md"
+        _write(resource, "# Bundled governing specification\n")
+        skill_md = skill_dir / "SKILL.md"
+        original = skill_md.read_text().replace(
+            "metadata:\n",
+            "metadata:\n"
+            "  aether-distribution-resources:\n"
+            "    - source: library/organization/specs/example.spec.md\n"
+            "      destination: references/example.spec.md\n"
+            "  extension-note: 'Keep this ordinary metadata: 🪪'\n",
+        ).replace("A test skill.", "A test skill.\n\nLiteral body spacing.  \n")
+        skill_md.write_text(original)
+        canonical = skill_md.read_bytes()
+        canonical_fm = bd._read_frontmatter(skill_md, canonical)
+        before_fm = json.loads(json.dumps(canonical_fm))
+        first = bd._build_skill_dist("my-skill", skill_dir)
+        second = bd._build_skill_dist("my-skill", skill_dir)
+        exported = first["dist/skills/my-skill/SKILL.md"]
+        exported_fm = bd._read_frontmatter(skill_md, exported)
+
+        expected_fm = json.loads(json.dumps(canonical_fm))
+        del expected_fm["metadata"]["aether-distribution-resources"]
+        self.assertEqual(exported_fm, expected_fm)
+        self.assertEqual(canonical_fm, before_fm)
+        self.assertEqual(skill_md.read_bytes(), canonical)
+        self.assertEqual(first, second)
+        self.assertEqual(
+            exported.decode().split("---\n", 2)[2],
+            canonical.decode().split("---\n", 2)[2],
+        )
+        manifest = json.loads(first["dist/skills/my-skill/distribution-manifest.v1.json"])
+        self.assertEqual(manifest["source_digest"]["value"], hashlib.sha256(canonical).hexdigest())
+        self.assertNotEqual(manifest["source_digest"]["value"], hashlib.sha256(exported).hexdigest())
+        self.assertEqual(first["dist/skills/my-skill/references/example.spec.md"], resource.read_bytes())
+
+        # Stage the real builder's result outside its source tree. The unchanged
+        # strict validator must admit the self-contained pristine package.
+        from aether_validator import validate_portable_skill_package
+        package = self._tmp / "consumer/my-skill"
+        for name, contents in first.items():
+            destination = package / Path(name).relative_to("dist/skills/my-skill")
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes(contents)
+        self.assertEqual(validate_portable_skill_package(package), [])
+
+    def test_projection_does_not_hide_real_runtime_or_installer_paths(self):
+        from aether_validator import validate_portable_skill_package
+        skill_dir = _make_skill(self._tmp, "my-skill")
+        skill_md = skill_dir / "SKILL.md"
+        skill_md.write_text(skill_md.read_text().replace(
+            "metadata:\n",
+            "metadata:\n  aether-distribution-resources: []\n"
+            "  local-path: /home/example/source\n",
+        ) + "\nRuntime instruction: read library/organization/unbundled.md.\n")
+        generated = bd._build_skill_dist("my-skill", skill_dir)
+        exported = generated["dist/skills/my-skill/SKILL.md"]
+        self.assertIn(b"library/organization/unbundled.md", exported)
+        self.assertIn(b"/home/example/source", exported)
+        package = self._tmp / "consumer/my-skill"
+        for name, contents in generated.items():
+            destination = package / Path(name).relative_to("dist/skills/my-skill")
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes(contents)
+        rules = {d.rule_id for d in validate_portable_skill_package(package)}
+        self.assertTrue({"AETHER_PORTABLE_006", "AETHER_PORTABLE_015", "AETHER_PORTABLE_017"} <= rules)
+
+    def test_projection_accepts_only_build_metadata_even_when_empty_or_flow_style(self):
+        for declaration in ("[]", "null"):
+            with self.subTest(declaration=declaration):
+                source = (
+                    "---\nname: test\n"
+                    f"metadata: {{aether-distribution-resources: {declaration}, aether-version: '1.0.0'}}\n"
+                    "---\n\nBody preserved.\n"
+                ).encode()
+                fm = yaml.safe_load(source.decode().split("---\n", 2)[1])
+                out = bd._portable_skill_content(source, fm)
+                self.assertEqual(bd._read_frontmatter(Path("SKILL.md"), out), {
+                    "name": "test", "metadata": {"aether-version": "1.0.0"},
+                })
+                self.assertTrue(out.endswith(b"\nBody preserved.\n"))
+        source = b"---\nname: x\nmetadata: {aether-distribution-resources: []}\n---\nbody\n"
+        fm = bd._read_frontmatter(Path("SKILL.md"), source)
+        out = bd._portable_skill_content(source, fm)
+        self.assertEqual(bd._read_frontmatter(Path("SKILL.md"), out)["metadata"], {})
+
+    def test_projection_cannot_hide_invalid_or_colliding_resource_declarations(self):
+        resource = self._tmp / "catalog/example.json"
+        _write(resource, "{}\n")
+        for declaration, message in (
+            ("not-a-list", "must be a list"),
+            ([{"source": "catalog/example.json", "destination": "SKILL.md"}], "collides"),
+            ([{"source": "catalog/example.json", "destination": "../outside.json"}], "escapes package"),
+        ):
+            with self.subTest(declaration=declaration):
+                skill_dir = _make_skill(self._tmp, "my-skill")
+                skill_md = skill_dir / "SKILL.md"
+                fm = bd._read_frontmatter(skill_md)
+                fm["metadata"]["aether-distribution-resources"] = declaration
+                skill_md.write_text("---\n" + yaml.safe_dump(fm, sort_keys=False) + "---\nbody\n")
+                with self.assertRaisesRegex(ValueError, message):
+                    bd._build_skill_dist("my-skill", skill_dir)
+
+    def test_all_declaring_skills_project_only_the_build_key_and_keep_resources(self):
+        repository = Path(__file__).resolve().parents[1]
+        declared = []
+        with mock.patch.object(bd, "REPO_ROOT", repository):
+            for skill_md in sorted((repository / "library/organization/skills").rglob("SKILL.md")):
+                canonical = bd._normalized_bytes(skill_md)
+                fm = bd._read_frontmatter(skill_md, canonical)
+                before = skill_md.read_bytes()
+                generated = bd._build_skill_dist(skill_md.parent.name, skill_md.parent)
+                key = f"dist/skills/{skill_md.parent.name}/SKILL.md"
+                resources = (fm.get("metadata") or {}).get("aether-distribution-resources")
+                if "aether-distribution-resources" not in (fm.get("metadata") or {}):
+                    self.assertEqual(generated[key], canonical, skill_md.parent.name)
+                    continue
+                declared.append(skill_md.parent.name)
+                projected = bd._read_frontmatter(skill_md, generated[key])
+                expected = dict(fm)
+                expected["metadata"] = dict(fm["metadata"])
+                del expected["metadata"]["aether-distribution-resources"]
+                self.assertEqual(projected, expected, skill_md.parent.name)
+                self.assertEqual(skill_md.read_bytes(), before, skill_md.parent.name)
+                self.assertEqual(generated[key].decode().split("---\n", 2)[2], canonical.decode().split("---\n", 2)[2])
+                manifest = json.loads(generated[f"dist/skills/{skill_md.parent.name}/distribution-manifest.v1.json"])
+                self.assertEqual(manifest["source_digest"]["value"], hashlib.sha256(canonical).hexdigest())
+                for resource in resources or []:
+                    output = f"dist/skills/{skill_md.parent.name}/{resource['destination']}"
+                    self.assertEqual(generated[output], (repository / resource["source"]).read_bytes())
+        self.assertTrue(declared, "the production corpus must exercise the build-only projection")
 
     def test_rejects_distribution_resource_path_escape(self):
         skill_dir = _make_skill(self._tmp, "my-skill")
