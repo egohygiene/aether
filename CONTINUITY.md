@@ -7,24 +7,25 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-23T06:07:56.997250+00:00'
+  updated_at: '2026-11-23T06:17:44.387505+00:00'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Make the two architecture pilots portable with exact complete governing resources while preserving
-    original requirements, source history and draft lifecycle.
+  purpose: Integrate portable architecture and audit governing resources, regenerate projections and qualify
+    the unchanged default three-pilot local consumer gate.
   includes:
-  - Authored draft parent/child locator clarification, exact package-local parent/set/schema closure and
-    stable governing metadata.
-  - Exact repository-only pre-change source and unresolved comparison mapping; no generated content rewriting.
-  - Actual selected two-pilot local install/materialization/dry-run/cleanup and preserved remote/combined/release
-    limits.
+  - Compose independently reviewed architecture/audit source histories without changing approved auditor,
+    staging bytes or global validator.
+  - Regenerate the combined canonical catalog and full tracked distributions from source; keep exact domain
+    receipts tied to8848/084.
+  - Execute current full source checks and the unchanged production default three-pilot local harness
+    before handoff.
   excludes:
-  - No portable-validator, builder, installed-host adapter or stable/ADR lifecycle rule changes.
-  - No staged modification/deletion/promotion, global/user installation, remote qualification, tags/releases,
-    hosted dispatch or publication.
+  - No remote install/update, stable promotion, release/tag/publication, hosted workflow or new human/ADR
+    acceptance.
+  - No global portability waiver, builder rewrite, approved auditor/staging edit or source-location change.
   precedence:
   - user-and-runtime-instructions
   - scoped-repository-instructions
@@ -34,105 +35,103 @@ scope:
   canonical_sources:
   - AGENTS.md
   - ROADMAP.md
-  - DECISIONS.md
-  - library/organization/skills/architecture/architecture-authoring/SKILL.md
-  - library/organization/skills/architecture/create-architecture-document/SKILL.md
-  - library/organization/specs/architecture/document.spec.md
-  - library/organization/specs/architecture/foundation/architecture.spec.md
-  - library/organization/specs/architecture/set.spec.md
-  - library/organization/specs/architecture/architecture-document.schema.json
+  - library/organization/skills/quality/audit-repository/SKILL.md
+  - library/organization/specs/authoring/specfile.spec.md
+  - library/organization/specs/quality/auditor.spec.md
+  - library/organization/specs/quality/repository-audit-data.spec.md
+  - docs/work/38/audit-portability-20261123/HISTORY.md
+  - docs/work/38/audit-portability-20261123/source-history.json
+  - docs/work/38/audit-portability-20261123/VALIDATION.md
+  - docs/work/38/audit-portability-20261123/consumer-audit.json
+  - docs/work/38/audit-portability-20261123/observation.json
+  - docs/work/38/audit-portability-20261123/roadmap-impact.json
   - docs/work/38/architecture-portability-20261123/HISTORY.md
   - docs/work/38/architecture-portability-20261123/VALIDATION.md
   - docs/work/38/architecture-portability-20261123/qualification.json
-  - docs/work/38/architecture-portability-20261123/consumer-local.json
-  - docs/work/38/architecture-portability-20261123/roadmap-impact.json
+  - catalog/consumer_installation.py
+  - aether_validator.py
 work:
-  objective: Make the two architecture pilots portable with exact complete governing resources while preserving
-    original requirements, source history and draft lifecycle.
+  objective: Integrate portable architecture and audit governing resources, regenerate projections and
+    qualify the unchanged default three-pilot local consumer gate.
   success_conditions:
-  - Both real exported architecture packages pass strict pristine validation and retain byte-identical
-    governing resources.
-  - Missing parent/schema/set fails without canonical fallback; all tagged normative paragraphs and original
-    graph/lifecycle metadata remain preserved.
-  - Actual scoped local CLI stages pass, with full tests and exact source-bound observations; no remote/combined/release
-    inference.
+  - Preserve both reviewed source histories and approved/staged/validator authority boundaries.
+  - Regenerate derived catalogs/distributions without hand-editing output and run current full/source/drift
+    checks.
+  - Run the actual unchanged default3pilot local gate from a clean integrated code commit, retain source/file
+    hashes and honest remote/overall readiness.
   active_issue:
     provider: github
     id: egohygiene/aether#38
     url: https://github.com/egohygiene/aether/issues/38
   next:
     kind: action
-    id: integrate-original-three-pilot-local-gate
-    description: Review and integrate this architecture checkpoint with the separately owned audit checkpoint,
-      regenerate combined outputs and rerun the unchanged original three-pilot local gate; preserve remote/stable-release
-      acceptance.
+    id: regenerate-integrated-projections-and-run-default-pilots
+    description: Finish the source merge, regenerate catalog/dist, commit the exact integrated code, then
+      run full local source checks and unchanged default three-pilot consumer harness.
     readiness: ready
     references:
+    - https://github.com/egohygiene/aether/pull/143
     - https://github.com/egohygiene/aether/issues/38
     depends_on: []
 state:
   base:
-    revision: dc3549c8a23bed5fb551a458a22605e7e0777822
-    ref: refs/heads/main
-    verified_at: '2026-11-23T06:07:56.997250+00:00'
+    revision: 1473f9be497289d0a973a0980dd13e12e2accf39
+    ref: refs/heads/codex/38-portable-architecture-20261123
+    verified_at: '2026-11-23T06:17:44.387505+00:00'
   candidate:
-    branch: codex/38-portable-architecture-20261123
+    branch: codex/38-portable-audit-stack-20261123
     revision: null
     pull_request: null
-    handoff_state: ready-for-review
+    handoff_state: in-progress
   live:
     status: verified
-    observed_at: '2026-11-23T06:07:56.997250+00:00'
+    observed_at: '2026-11-23T06:17:44.387505+00:00'
     default_branch_revision: dc3549c8a23bed5fb551a458a22605e7e0777822
     issue_state: open
     pull_request_state: not-applicable
-    notes: Fresh provider reads verify merged141/142 main dc3549 and open38; no open Aether PR exists
-      at observation. This architecture candidate has no PR yet; parent owns integration/publication.
-      No release or lifecycle promotion.
-  parallel_changes: []
+    notes: Main dc3549c verified; parent draft143 is open at1473f9b. Earlier141/142 merged. This integration
+      child has no PR yet. Combined full/default-pilot execution is pending, not inferred from domain
+      receipts.
+  parallel_changes:
+  - provider: github
+    id: egohygiene/aether#143
+    url: https://github.com/egohygiene/aether/pull/143
+  - provider: github
+    id: egohygiene/identity#167
+    url: https://github.com/egohygiene/identity/pull/167
 review:
   status: partial
-  reviewed_at: '2026-11-23T06:07:56.997250+00:00'
+  reviewed_at: '2026-11-23T06:05:15.987048+00:00'
   reviewed_by: Codex
   evidence:
-  - command: Seven real architecture package controls and eight continuity integration controls
+  - command: Focused audit package/report/portable-governance suites
     outcome: passed
-    observed_at: '2026-11-23T06:07:56.997250+00:00'
-    notes: Actual builder/strict validator, exact resources, missing-parent/schema/set even after inventory
-      tampering, unchanged015/016 rejection, schema governance and six archived originals. Eval revisions
-      aligned without changing cases.
-  - command: ./aether test at8848f2f19904f5cc432d6438e8f6dedbcc17bbe8
+    observed_at: '2026-11-23T06:05:15.987048+00:00'
+    notes: 33tests pass, including five actual export/closure/missing-resource/strict-path/history/requirements
+      controls. Exact eight archives and eight unchanged boundaries match baseline Git objects.
+  - command: ./aether validate --skills --specifications --evals --links --json-files --staging --format
+      text
     outcome: passed
-    observed_at: '2026-11-23T06:07:56.997250+00:00'
-    notes: 435discovered:424passed/11existing optional-native skips in20.224s. Earlier old-eval revision
-      failure retained and resolved; no new remote/native OS claim.
-  - command: Actual gh2.96 ConsumerInstallationHarness local scope with process-local first two architecture
-      entries
+    observed_at: '2026-11-23T06:05:15.987048+00:00'
+    notes: Zero selected source-domain diagnostics; this excludes deferred combined catalog/distribution
+      qualification.
+  - command: Actual existing gh2.96 consumer harness, local scope, process-local audit-only selection
+      at clean084adf4234f7f97a16891069b42f7dbfae8b9e28
     outcome: passed
-    observed_at: '2026-11-23T06:07:56.997250+00:00'
-    notes: All5required local scenarios pass; localready/complete, overallnot-ready as remote skipped.
-      Raw006/017 tracking observations retained; exact installed semantic/resource inventories pass. Production
-      three-pilot list remains unchanged.
-  - command: Canonical source/link/JSON, catalog/distribution drift, protected inputs and whitespace
+    observed_at: '2026-11-23T06:05:15.987048+00:00'
+    notes: All5 required local scenarios pass; localready/complete. Exact30-file materialization matches;
+      raw006/017 remain visible. Remote install/update skipped and overallnot-ready.
+  - command: Independent source/Section4 review; receipt/hash/privacy/roadmap structure checks
     outcome: passed
-    observed_at: '2026-11-23T06:07:56.997250+00:00'
-    notes: Only historical AETHER_PROVENANCE_009 warning; link/JSON0diagnostics. Staging/decisions/set/schema/global
-      validator/builder/host adapter unchanged. All20package hashes and independent source review match.
-  - command: Roadmap-impact reconciliation against actual diff and existing AET-Q01/AET-Q05
-    outcome: passed
-    observed_at: '2026-11-23T06:07:56.997250+00:00'
-    notes: Single not-affected receipt; no roadmap mutation, strategic completion, maturity or human disposition
-      inferred.
+    observed_at: '2026-11-23T06:05:15.987048+00:00'
+    notes: No authority/requirements relaxation; approved/staged bytes unchanged. Actual report hash and30
+      package file hashes retained, public scan clean. One roadmap receipt not-affected AET-Q01/AET-Q05.
   environment_limitations:
-  - The source-bound actual consumer/test selection is8848f2f; this later handoff does not relabel it
-    as a new run.
-  - The audit sibling/combined three-pilot check, remote install/update/rollback and stable-release acceptance
-    remain separate.
-  - CLI filesystem installation is not model authoring, automatic host discovery, native OS matrix or
-    signer authentication.
-  - Historical Issue016 provider mapping is unverified; original staged comparison and ADR0005 human deletion
-    gate remain intact.
-  - Pinned continuity structure is narrower than official released EgoLint conformance.
+  - Combined regeneration, full source suite and default-three-pilot actual gate remain pending at this
+    pre-qualification merge checkpoint.
+  - Earlier clean084audit and8848architecture domain executions retain their exact sources; integration
+    does not relabel them.
+  - Remote/stable/release/model behavior and official released EgoLint conformance remain separate.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -151,48 +150,48 @@ privacy:
 
 ## Purpose and precedence
 
-User/runtime and scoped instructions, live work state and canonical source outrank this operational snapshot. This is a draft architecture package checkpoint, not stable policy or release acceptance.
+User/runtime and scoped instructions, verified live state and canonical source outrank this bounded handoff. This is authorized source maintenance, not audit execution or human approval.
 
 ## Resume protocol
 
-Read AGENTS, the four authored canonical sources, their history/validation packet and live issue/PR state. Earlier141→142 are merged atdc3549. Preserve unrelated dirty checkouts and immutable prior observations.
+Read AGENTS, the selected sources, HISTORY and VALIDATION. Verify main, issue38 and current drafts. Prior141/142 are merged atdc3549c; preserve unrelated checkouts and historical evidence.
 
 ## Current objective and success conditions
 
-Make the two architecture pilots portable with exact complete governing resources while preserving original requirements, source history and draft lifecycle.
+Integrate portable architecture and audit governing resources, regenerate projections and qualify the unchanged default three-pilot local consumer gate.
 
 ## State snapshot
 
-Base/main isdc3549c8a23bed5fb551a458a22605e7e0777822. Candidate codex/38-portable-architecture-20261123 has null containing revision/pre-PR reference. Actual clean tested source is8848f2f19904f5cc432d6438e8f6dedbcc17bbe8; later evidence is not relabeled execution.
+Stack base is parent143 at1473f9be497289d0a973a0980dd13e12e2accf39. Main remains dc3549c8a23bed5fb551a458a22605e7e0777822. Candidate codex/38-portable-audit-stack-20261123 has null containing revision/PR while integration and current qualification are in progress.
 
 ## Completed and material changes
 
-Draft parent2.1.1 and child1.1.1 clarify existing stable identity/source-versus-installed locators. Draft skills1.2.0 package three/four governing resources, including unchanged set1.0.0/schema. Relative parent/schema/set links resolve in canonical and installed hierarchies. Six original Git blobs and former paths remain repository-only. Tagged normative paragraphs, original graph/owner/status/creation metadata and staged bytes remain unchanged. The old comparison ordinal has no invented provider mapping or retirement authority.
+The merge composes the two reviewed architecture pilots with the audit governing closure/history. Existing approved auditor, read/search-only agent, staging bytes, builder/validator and decisions stay preserved. Exact domain qualification remains8848architecture and084audit; combined generated output/current acceptance is not yet claimed.
 
 ## Validation and review evidence
 
-Seven package/eight continuity controls pass. Full435suite:424pass/11existing skips. Actual compatible CLI local5/5pass with exact installed materialization; overallnot-ready preserves remote skips/raw006/017. Source validation retains only old009warning; links/JSON, catalog/dist drift, protected inputs and whitespace pass. Independent source review reproduced/closed the wrong provider inference and confirms exact history/requirements/negative controls. Read the source-bound packet for all20file hashes and scoped results.
+Focused33tests and selected source validation pass. Actual gh2.96 local audit gate passes all5scenarios, strict export and exact30file materialization; raw installed006/017 remain observations. Overallnot-ready retains remote skips. Independent source/requirements review clears; exact report/package hashes, history Git objects and privacy checks pass. See domain records; no full repository or combined cohort claim.
 
 ## Blockers, risks, unknowns, and deferred work
 
-This architecture-only cohort does not qualify the third audit pilot, whole original cohort, remote/update/rollback, stable payload or actual model use. Native host matrix/discovery and independent CLI authenticity remain unobserved. Historical comparison mapping is unknown, never completed by this portability change. Existing ADR0002/0006 conflict and proposed0009 remain untouched.
+Finish combined catalog/dist regeneration and current full/default-three-pilot checks. Earlier domain local success does not establish this integrated gate. Remote install/update/rollback, stable release, observed model use and hosted/native matrices remain independent.
 
 ## Next dependency-ready work
 
-Review this draft, integrate the separately reviewed audit checkpoint, regenerate combined catalog/distributions and execute the original unchanged three-pilot local gate. Then retain existing remote/stable/consumer release acceptance under38; do not infer authority or completion from local readiness.
+Regenerate canonical catalog and full distributions, inspect derived-only changes, commit clean integrated code and execute the full local/default-three-pilot checks. Retain truthful overallnot-ready when remote scenarios remain skipped.
 
 ## Parallel changes and reconciliation
 
-The audit worker owns audit-repository, draft specfile/audit-data, approved-byte-preserving closure and its own history. Both branches regenerate their own evidence; parent must reconcile shared catalog/dist and root continuity semantically. No open peer PR was observed; known in-progress branches are not called merged.
+This child follows Aether draft143. Identity draft167 is independently owned by the parent. Both architecture and audit source receipts remain intact and source-bound; continuity is reconciled by current combined objective rather than concatenated history.
 
 ## Privacy and redaction
 
-Public artifact facts, synthetic controls and sanitized local reports only. No private transcript, credentials, environment values, HOME repurposing or personal paths are stored. Actual cleanup preserves unrelated fixture content and user/global state.
+Public source facts, exact safe historical artifacts and sanitized fixture/report paths only. No user/global install, default CLI change, private transcript, environment/proxy/token values or private host topology is committed.
 
 ## Handoff update protocol
 
-Reverify live state after domain checks and before parent PR handoff. Reference ADR0001/0002/0004/0005 and existing source/host contracts. Single roadmap disposition is not-affected, AET-Q01/AET-Q05. Validate pinned schema,12headings and16384-byte/240-line budgets. No ADR lifecycle promotion or duplicate issue.
+After domain validation, reverify live state and schema/twelve headings/budgets before parent PR handoff. Decision impact references preserved ADR0001/0002/0004/0005; no new owner/channel/lifecycle/versioning boundary. Roadmap not-affected AET-Q01/AET-Q05, with partial local progress distinct from strategic release completion.
 
 ## Compaction and supersession
 
-Git, archived originals and the existing issue retain history. Replace current operational prose on integration; preserve exact source/results and unresolved human/release boundaries.
+Git, issue38 and the source-bound work records retain original versions and observations. Replace current-state prose rather than append chronology; preserve every pending release/consumer obligation.

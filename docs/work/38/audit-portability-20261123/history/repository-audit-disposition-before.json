@@ -1,0 +1,9 @@
+{
+  "staging_path": ".staging/skills/repository-audit/SKILL.md",
+  "disposition": "preserve-migration-evidence",
+  "reason": "Aether #86/#68 reconcile the staged procedure into the existing draft audit-repository skill and separately draft profile/report extension. The staged file remains historical source; no deletion, lifecycle promotion or duplicate agent is performed. Exact source hashes and per-behavior dispositions are recorded in the canonical reconciliation guide.",
+  "lock_reference": "library/organization/skills/quality/audit-repository/references/staged-reconciliation.md",
+  "hash_status": "reconstructed",
+  "hash_algorithm": "sha256-utf8-lf",
+  "trust_classification": "restricted"
+}

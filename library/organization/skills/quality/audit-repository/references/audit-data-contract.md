@@ -1,7 +1,7 @@
 # Audit profile and sidecar interface
 
 The approved `auditor` 2.0.0 specification owns audit behavior. The separately
-**draft** `repository-audit-data` 1.0.0 extension owns composable profile and
+**draft** `repository-audit-data` 1.0.2 extension owns composable profile and
 checkpoint data semantics. The skill and read-only auditor remain draft.
 
 ## Exact portable resources
@@ -10,9 +10,13 @@ The package contains `scripts/audit_contract.py` and
 `references/audit-profiles.v1.json`. Distribution resources mirror the canonical
 `catalog/schemas/aether.audit-profile-registry.v1.schema.json` and
 `catalog/schemas/aether.repository-audit-report.v1.schema.json` into references.
-All four resources must be selected from the same reviewed immutable Aether
-revision with exact file SHA-256 checks. Never import a consumer-selected module
-or execute arbitrary report text.
+The governing resources are `references/governance/specfile.spec.md` 2.0.1
+(draft), `references/governance/auditor.spec.md` 2.0.0 (approved) and
+`references/governance/repository-audit-data.spec.md` 1.0.2 (draft). They close
+the extension/foundation's declared governing dependencies without requiring
+the publisher's source tree. All seven resources must be selected from the
+same reviewed immutable Aether revision with exact file SHA-256 checks.
+Never import a consumer-selected module or execute arbitrary report text.
 
 The standard-library API is:
 

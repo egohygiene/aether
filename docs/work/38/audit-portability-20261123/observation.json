@@ -1,0 +1,177 @@
+{
+  "recordKind": "Scoped local audit consumer qualification and reproducible unchanged-source package observation; not all-pilot/remote release acceptance",
+  "observedAt": "2026-11-23T06:02:44.227816+00:00",
+  "representedSource": "084adf4234f7f97a16891069b42f7dbfae8b9e28",
+  "baselineRevision": "dc3549c8a23bed5fb551a458a22605e7e0777822",
+  "worktreeCleanDuringActualRun": true,
+  "context": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "selectedPilot": "audit-repository only, through a process-local existing harness selection; production pilot list unchanged"
+  },
+  "gh": {
+    "version": "gh version 2.96.0 (2026-07-02)",
+    "binarySha256": "56b8bbbb27b066ecb33dbef9a256dc9d1314adaeff0908a752feba6c34053b40",
+    "limit": "Observed existing binary identity/version, not independent signature authenticity."
+  },
+  "report": {
+    "path": "consumer-audit.json",
+    "bytes": 77188,
+    "sha256": "e634bd7e998a3e98bfd1d07893bceed3d6771d00a94ec81b53d98d0339716aee",
+    "localStatus": "ready",
+    "overallStatus": "not-ready"
+  },
+  "validator": {
+    "path": "aether_validator.py",
+    "sha256": "e2007ae05e6b7125935c318472094ab6247470e74385b166ff7418bf188a00b5",
+    "unchangedFromBaseline": true
+  },
+  "packageFiles": {
+    "SKILL.md": {
+      "bytes": 8350,
+      "sha256": "d1d021e02e37340264736df9cf37d9cd06fac9f0418cde99cff0415a763b9cc8"
+    },
+    "distribution-manifest.v1.json": {
+      "bytes": 2795,
+      "sha256": "e217501b68d1b014c73a2871ccc7afb2fd4a4eb3e346046f91b94c014672c2f7"
+    },
+    "evals/evals.json": {
+      "bytes": 4540,
+      "sha256": "e804f2c1ccb2e885fb9e31a878fdc5f6f92dfdf9475a9ab9ec178145fe92a754"
+    },
+    "references/aether.audit-profile-registry.v1.schema.json": {
+      "bytes": 4041,
+      "sha256": "ad1335fe7662d91308d3d501197df70fac00892de40da8820538631b0f80312d"
+    },
+    "references/aether.repository-audit-report.v1.schema.json": {
+      "bytes": 26155,
+      "sha256": "060446225135d573da15d4c31a6a59a89e04665e0c3cce43f8373b1e465bc96b"
+    },
+    "references/audit-data-contract.md": {
+      "bytes": 5012,
+      "sha256": "445765153edf257b14b4a445f24da2a5f10b64db5c99fdece6e2147a96369a47"
+    },
+    "references/audit-profiles.v1.json": {
+      "bytes": 5101,
+      "sha256": "dde4d72db9e0a952e1e10b01b8fdfa7cfecd4c001095af8b23d9f821ea789737"
+    },
+    "references/checkpoint-adoption.md": {
+      "bytes": 5135,
+      "sha256": "e98959144d8fcf3d86486edc65cff6916caff69b3cad70bf1977cefd2c4861d6"
+    },
+    "references/examples/blocked-20261115T000000Z.md": {
+      "bytes": 244,
+      "sha256": "2423ab359913bb8abe0961efa2f85422bf890f46cc193c6723255544b7c08887"
+    },
+    "references/examples/blocked.json": {
+      "bytes": 2255,
+      "sha256": "55e62fc20c737996c518c3b81272111baf3ec8562a737cc9b6efb430ee9ba61c"
+    },
+    "references/examples/experimental-20261115T000000Z.md": {
+      "bytes": 268,
+      "sha256": "fd3e3b5edfa2cd30209c696b6879f2432386e9ea47eabb89f21588992084bcb9"
+    },
+    "references/examples/experimental.json": {
+      "bytes": 3366,
+      "sha256": "03a251997df1af0c4dc6890ec16137d0ba5a41f61c553c729585a78ec7ae003c"
+    },
+    "references/examples/holistic-partial-20261115T000000Z.md": {
+      "bytes": 237,
+      "sha256": "c0f3fe6bbd608202ee014e873f5f8d766a6a83ffb3af46a054e2a850777f1a73"
+    },
+    "references/examples/holistic-partial.json": {
+      "bytes": 2762,
+      "sha256": "bcedcae755942917eecefa1b704ddf570061bf49be858b0d63a8eae85124cac5"
+    },
+    "references/examples/not-applicable-20261115T000000Z.md": {
+      "bytes": 290,
+      "sha256": "04cbb76d05655677b8f30ef53a40c2b42257fec26244ef807d17f09eb2497e04"
+    },
+    "references/examples/not-applicable.json": {
+      "bytes": 2303,
+      "sha256": "0df6aae479178e2b3f0ef9b42a9e919f16b3993f76c0936a0b28986cf5822a39"
+    },
+    "references/examples/organization-stale-partial-20261115T000000Z.md": {
+      "bytes": 288,
+      "sha256": "81538729e4ffe3e0e87fd4efbc0d06fe76c3fb18e7b96e3b72098d9784fd5cde"
+    },
+    "references/examples/organization-stale-partial.json": {
+      "bytes": 3272,
+      "sha256": "926bd3fe6c103f76768d7f61e2ebd8d85c796f40123d5bbb93b77db2c875f606"
+    },
+    "references/examples/repository-complete-20261115T000000Z.md": {
+      "bytes": 273,
+      "sha256": "d17331890c21a42f7c2aa87a485ad285376f388ac2c3bc53e7d3a962b8094924"
+    },
+    "references/examples/repository-complete.json": {
+      "bytes": 4134,
+      "sha256": "0a2fb849564124833ac4cf57ec56f23ac3b4a3a799a296f89d15a2eb48a6c5a3"
+    },
+    "references/examples/resolved-20261115T000000Z.md": {
+      "bytes": 262,
+      "sha256": "003c0d8a34c093a414ffd8d0d4391cb7d414ffec5be5493d2ae783b0426600cd"
+    },
+    "references/examples/resolved.json": {
+      "bytes": 4946,
+      "sha256": "38fd0f48596bad90f7d8e71df41ee99e0fe253ff7464d8a2daa7812adc4b710c"
+    },
+    "references/finding-classification-guide.md": {
+      "bytes": 1964,
+      "sha256": "2486279d7c7ec7567e1c88db6b28e4c8d14d9559b868175f854e508b4fc751fd"
+    },
+    "references/governance/auditor.spec.md": {
+      "bytes": 6551,
+      "sha256": "f9f4d56673cefac4233fad4d53c78d1ba0726201b7e097bb78f67a721b81e62f"
+    },
+    "references/governance/repository-audit-data.spec.md": {
+      "bytes": 12292,
+      "sha256": "83e8b0f6e3c0d96d1c7402b35cb6e2ef5ae2a0f86bd954e679fc55ba06d7a5bc"
+    },
+    "references/governance/specfile.spec.md": {
+      "bytes": 7975,
+      "sha256": "7caded2b94704de3f9b16dccbb81692685972fc5426454bf2d9c9428ad1c9139"
+    },
+    "references/staged-reconciliation.md": {
+      "bytes": 3402,
+      "sha256": "64cd7adf4d26873096fde952444f2fdb378c5fe6e6ec31bbdbcd55d0321996a7"
+    },
+    "references/validation-checklist.md": {
+      "bytes": 2091,
+      "sha256": "4a3d43119184a5c2c6f548aa47872f7676d9cac8389c083c21caaf961595dc6c"
+    },
+    "scripts/audit_contract.py": {
+      "bytes": 30778,
+      "sha256": "a700d9469cae02e9f929bc076cfb37940f3c64349380c0142efe94a7a83e0b85"
+    },
+    "templates/AUDIT.template.md": {
+      "bytes": 1756,
+      "sha256": "1668f9edd2e8509a923d8fdb955510a5acfbdc030c6d5c3b8551c90aeba06ff5"
+    }
+  },
+  "packageObservationLimit": "Recomputed deterministically from unchanged clean tested source; actual harness separately froze its source and compared all30 installed files, admitting only verified host tracking/separator behavior.",
+  "checks": [
+    {
+      "name": "focused audit package/report/portable-governance tests",
+      "command": "python3 -m unittest tests.test_audit_package_contract tests.test_audit_report_contract tests.test_audit_portable_governance -v",
+      "exitCode": 0,
+      "tests": 33
+    },
+    {
+      "name": "source domain validation",
+      "command": "./aether validate --skills --specifications --evals --links --json-files --staging --format text",
+      "exitCode": 0,
+      "diagnostics": 0
+    },
+    {
+      "name": "actual local consumer harness",
+      "command": "Existing ConsumerInstallationHarness(scope=local), process-local audit-only PILOT_SKILLS selection, qualified gh2.96 through command-scoped PATH",
+      "localRequiredScenariosPassed": 5,
+      "remoteScenarios": "skipped, not inferred"
+    }
+  ],
+  "deferred": [
+    "Combined canonical catalog/dist regeneration and full repository checks belong to parent integration.",
+    "Architecture pilots, whole three-pilot acceptance, remote install/update/deprecation/rollback and observed agent behavior retain separate checks.",
+    "No release, stable promotion, hosted workflow, source/staging deletion or new human approval."
+  ]
+}

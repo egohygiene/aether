@@ -3,12 +3,12 @@ schema: aether.specification/v1
 id: repository-audit-data
 title: Composable Audit Profiles and Checkpoint Data
 kind: specification
-version: 1.0.1
+version: 1.0.2
 status: draft
 owners:
   - egohygiene
 created: 2026-11-09
-updated: 2026-11-15
+updated: 2026-11-23
 domain: quality
 tags:
   - audit
@@ -48,12 +48,21 @@ history, supply missing evidence or authorize any action. Machine validity is
 structural admission, not proof that observations, execution, severity, policy
 interpretation, reported resolution or human acceptance are true.
 
-## Canonical sources
+## Source identities and portable resource mapping
 
-- `catalog/schemas/aether.audit-profile-registry.v1.schema.json`
-- `catalog/schemas/aether.repository-audit-report.v1.schema.json`
-- `library/organization/skills/quality/audit-repository/references/audit-profiles.v1.json`
-- `library/organization/skills/quality/audit-repository/scripts/audit_contract.py`
+Canonical ownership is resolved by the declared contract and artifact IDs,
+not by assuming that a consumer cloned the publisher's source layout. The
+`audit-repository` package binds those owners to these package-root resources:
+
+| Owner / governing identity | Package-local resource |
+| --- | --- |
+| `aether.audit-profile-registry/v1` | `references/aether.audit-profile-registry.v1.schema.json` |
+| `aether.repository-audit-report/v1` | `references/aether.repository-audit-report.v1.schema.json` |
+| selected draft audit profile registry | `references/audit-profiles.v1.json` |
+| selected audit reference helper | `scripts/audit_contract.py` |
+| `specfile` 2.0.1, draft | `references/governance/specfile.spec.md` |
+| `auditor` 2.0.0, approved | `references/governance/auditor.spec.md` |
+| this draft extension 1.0.2 | `references/governance/repository-audit-data.spec.md` |
 
 The schemas own closed data structure. The standalone standard-library helper
 owns exact profile resolution and cross-field reference semantics. Consumers
@@ -61,6 +70,13 @@ pin these public resources together to one immutable Aether revision and
 verify exact source bytes before importing the helper. The helper performs no
 provider discovery, repository scan, command execution, issue mutation or
 artifact publication.
+
+The mapping does not move canonical sources or establish a second authority.
+The approved foundation remains byte-identical and its declared `specfile`
+dependency stays explicit. The package includes that draft authoring standard
+and the approved foundation, as well as this extension, so governing closure
+does not depend on an absent source file. Artifact content revisions and
+machine contract versions are distinct; both machine contracts remain 1.0.0.
 
 ## Profiles and composition
 
