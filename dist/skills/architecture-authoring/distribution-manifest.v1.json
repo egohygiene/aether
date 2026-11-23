@@ -1,6 +1,6 @@
 {
   "artifact_id": "skill/architecture-authoring",
-  "artifact_version": "1.1.0",
+  "artifact_version": "1.2.0",
   "compatibility": {
     "required_tools": []
   },
@@ -12,12 +12,15 @@
     "dist/skills/architecture-authoring/references/relationship-model.md",
     "dist/skills/architecture-authoring/references/validation-checklist.md",
     "dist/skills/architecture-authoring/templates/architecture-document.template.md",
+    "dist/skills/architecture-authoring/references/architecture/architecture-document.schema.json",
+    "dist/skills/architecture-authoring/references/architecture/document.spec.md",
+    "dist/skills/architecture-authoring/references/architecture/set.spec.md",
     "dist/skills/architecture-authoring/distribution-manifest.v1.json"
   ],
   "generator": "library/organization/skills/build-distributions.py",
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "eeb8e5c9be4e7950250d44af26e5e5e2623cd82e575409b3919a4f2424b47666"
+    "value": "e9ff1aec5eda7ad02324d02a1eaf218481ff9724d69fe025e40f0d6ba5800a34"
   }
 }

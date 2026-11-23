@@ -3,14 +3,23 @@ name: create-architecture-document
 description: Creates or updates ARCHITECTURE.md from repository evidence. Use when a project needs to define, repair, or review its structural organization, boundaries, and dependency rules.
 license: MIT
 metadata:
-  aether-version: "1.1.0"
+  aether-version: "1.2.0"
   aether-status: "draft"
   aether-spec-id: "architecture-architecture"
   aether-scope: "organization"
   aether-domain: "architecture"
   aether-owners: "egohygiene"
   aether-created: "2026-08-01"
-  aether-updated: "2026-09-08"
+  aether-updated: "2026-11-23"
+  aether-distribution-resources:
+    - source: "library/organization/specs/architecture/document.spec.md"
+      destination: "references/architecture/document.spec.md"
+    - source: "library/organization/specs/architecture/foundation/architecture.spec.md"
+      destination: "references/architecture/foundation/architecture.spec.md"
+    - source: "library/organization/specs/architecture/set.spec.md"
+      destination: "references/architecture/set.spec.md"
+    - source: "library/organization/specs/architecture/architecture-document.schema.json"
+      destination: "references/architecture/architecture-document.schema.json"
 ---
 
 # Create Architecture Document
@@ -77,7 +86,15 @@ Missing evidence must be recorded rather than invented.
 
 ## Workflow
 
-1. Read `library/organization/specs/architecture/foundation/architecture.spec.md`.
+1. Read bundled `architecture-architecture` 1.1.1 at
+   `references/architecture/foundation/architecture.spec.md` and its
+   `architecture-document` 2.1.1 parent at
+   `references/architecture/document.spec.md`. The package also includes
+   `references/architecture/architecture-document.schema.json` and
+   `architecture-set` 1.0.0 at `references/architecture/set.spec.md` for their
+   existing structural and set-level requirements. Canonical-source invocation
+   may resolve the same resources through the declared build-resource mapping;
+   missing governing resources block completion.
 2. Read the upstream documents that define purpose, foundations, and the current system model.
 3. Identify the stable structural units, layers, or subsystems that actually organize the project.
 4. Separate system inventory from structural organization so `SYSTEM.md` and `ARCHITECTURE.md` do not become duplicates.

@@ -1,0 +1,4 @@
+# Governing-resource projections preserve exact canonical bytes, including
+# pre-existing terminal blank lines. Keep all other whitespace checks active.
+dist/skills/architecture-authoring/references/architecture/** -text whitespace=-blank-at-eof
+dist/skills/create-architecture-document/references/architecture/** -text whitespace=-blank-at-eof

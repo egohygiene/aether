@@ -2,7 +2,7 @@
   "schema_version": "aether.artifact-catalog/v1",
   "artifacts": [
     {
-      "artifact_version": "1.1.0",
+      "artifact_version": "1.2.0",
       "compatibility": {
         "required_tools": []
       },
@@ -38,7 +38,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "eeb8e5c9be4e7950250d44af26e5e5e2623cd82e575409b3919a4f2424b47666"
+        "value": "e9ff1aec5eda7ad02324d02a1eaf218481ff9724d69fe025e40f0d6ba5800a34"
       },
       "source_path": "library/organization/skills/architecture/architecture-authoring/SKILL.md",
       "supersedes_ids": [],
@@ -282,7 +282,7 @@
       "title": "Create AI Constitution Document"
     },
     {
-      "artifact_version": "1.1.0",
+      "artifact_version": "1.2.0",
       "compatibility": {
         "required_tools": []
       },
@@ -318,7 +318,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "81b647f97f7a6f1f6f76f57b921e380e745dcc5d0446ccbe050978dbc0d0b1c2"
+        "value": "389fe1d3778fdc13e23540fdcd09241e0ba34044165df39bb6fc496b77c3b0eb"
       },
       "source_path": "library/organization/skills/architecture/create-architecture-document/SKILL.md",
       "supersedes_ids": [],
@@ -2067,7 +2067,7 @@
       "title": "AI Constitution Architecture Document Specification"
     },
     {
-      "artifact_version": "1.1.0",
+      "artifact_version": "1.1.1",
       "compatibility": {
         "required_tools": []
       },
@@ -2108,7 +2108,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "5b5bfa5b664f30c14a1c69fbfef5f44fc4744c3a733649555aae7a8cf1dedc82"
+        "value": "c5845d1cb1430df97861c3c8b3e4ab123896450a6024a4cb4c5707dfc26a73ed"
       },
       "source_path": "library/organization/specs/architecture/foundation/architecture.spec.md",
       "supersedes_ids": [],
@@ -2357,7 +2357,7 @@
       "title": "Design System Architecture Document Specification"
     },
     {
-      "artifact_version": "2.1.0",
+      "artifact_version": "2.1.1",
       "compatibility": {
         "required_tools": []
       },
@@ -2410,7 +2410,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "ef8c712ac8a45c823f20066853057eb7525a48af3a05083658382e9836c28bef"
+        "value": "debbdf92c488ec3b682633aac0fa190f07415b9867eb6351bc04cb0de0f77d53"
       },
       "source_path": "library/organization/specs/architecture/document.spec.md",
       "supersedes_ids": [],
