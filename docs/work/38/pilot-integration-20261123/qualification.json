@@ -1,0 +1,325 @@
+{
+  "recordKind": "Actual unchanged default three-pilot local CLI plus complete integrated repository checks; not remote release/model acceptance",
+  "baseRevision": "1473f9be497289d0a973a0980dd13e12e2accf39",
+  "mainRevisionAtIntegration": "dc3549c8a23bed5fb551a458a22605e7e0777822",
+  "codeRevision": "9fd9f438d08fd88a9ba2102d1205191c91afce77",
+  "codeWorktreeCleanDuringActualRun": true,
+  "recordedAt": "2026-11-23T06:25:01.010686+00:00",
+  "reportGeneratedAtStart": "2026-11-23T06:21:55.639856+00:00",
+  "context": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "scope": "local",
+    "selection": "Unmodified production default PILOT_SKILLS; standard python3 -m catalog.consumer_installation CLI, no monkeypatch or reduced cohort."
+  },
+  "pilotSkills": [
+    "architecture-authoring",
+    "create-architecture-document",
+    "audit-repository"
+  ],
+  "cli": {
+    "version": "gh version 2.96.0 (2026-07-02)",
+    "sha256": "56b8bbbb27b066ecb33dbef9a256dc9d1314adaeff0908a752feba6c34053b40",
+    "selection": "Command-scoped PATH to existing gh2.96; default CLI/HOME/user/global skill configuration unchanged.",
+    "limit": "Observed binary bytes/version, not independent signer authenticity."
+  },
+  "consumerReport": {
+    "path": "consumer-local.json",
+    "bytes": 94504,
+    "sha256": "735be30dd49b2dd69568fce1f6a76614fcc1347f9c2e8f3c0fb2e169ea1b8fb5",
+    "cliExitCode": 0,
+    "localStatus": "ready",
+    "overallStatus": "not-ready",
+    "scope": "local",
+    "qualificationComplete": true,
+    "scenarioStatuses": {
+      "clean-local-distribution-install": "pass",
+      "distribution-build": "pass",
+      "pinned-remote-release-install": "skip",
+      "portable-package-validation": "pass",
+      "publish-validation": "pass",
+      "removal-cleanup": "pass",
+      "update-behavior": "skip"
+    }
+  },
+  "checks": {
+    "fullSuite": {
+      "discovered": 440,
+      "passed": 429,
+      "existingSkips": 11,
+      "durationSeconds": 20.656,
+      "exitCode": 0
+    },
+    "fullSourceValidation": {
+      "exitCode": 0,
+      "historicalWarnings": [
+        "AETHER_PROVENANCE_009"
+      ]
+    },
+    "linksAndJson": {
+      "exitCode": 0,
+      "diagnostics": 0
+    },
+    "catalogAndDistributionDrift": "passed",
+    "stagingLedger": "passed; exact immutable reconstruction/current source bindings",
+    "whitespaceAndProtectedSources": "passed"
+  },
+  "packages": {
+    "architecture-authoring": {
+      "SKILL.md": {
+        "bytes": 6000,
+        "sha256": "d185b194cbee15c08729c8801d36a3125d6d94e88de6f32753b77606b73d7481"
+      },
+      "distribution-manifest.v1.json": {
+        "bytes": 1243,
+        "sha256": "4ec831a4885735a01a10030007c65dbf99c76e725439187b57c517577b7c1ac1"
+      },
+      "evals/evals.json": {
+        "bytes": 2163,
+        "sha256": "8827dc4f77424f819ee966c61d90c3e8c446b47eea6138949d90bfd766cbea00"
+      },
+      "references/architecture/architecture-document.schema.json": {
+        "bytes": 2044,
+        "sha256": "7c4e3045cd9946c99d1e1056fcdda4171e04f1c0e5545934f8e1b15c97ff1b8a"
+      },
+      "references/architecture/document.spec.md": {
+        "bytes": 22198,
+        "sha256": "debbdf92c488ec3b682633aac0fa190f07415b9867eb6351bc04cb0de0f77d53"
+      },
+      "references/architecture/set.spec.md": {
+        "bytes": 8630,
+        "sha256": "dbbeaf6235d43fd924e088282def1d3dcd4f9dd072e04db1aa04a383dbd478c2"
+      },
+      "references/document-sequencing.md": {
+        "bytes": 474,
+        "sha256": "22f754847e2d7237ab1c471d04005f2cb1a726530fbd6e876af7c57c870b46be"
+      },
+      "references/relationship-model.md": {
+        "bytes": 586,
+        "sha256": "0ea74733b7d959d977a6a8e79df3c4ff539b918b6bfdaa90ef7b09d167168784"
+      },
+      "references/validation-checklist.md": {
+        "bytes": 807,
+        "sha256": "aff4b670c504a328fb76d50b097cb44fcbca2212d14562a3b6a7bf6d98f72a94"
+      },
+      "templates/architecture-document.template.md": {
+        "bytes": 584,
+        "sha256": "a8b0ad9a45fc8433d2e44a8eb6acaf9200d8cecab2bbed2afb0bc1de8e0526f3"
+      }
+    },
+    "create-architecture-document": {
+      "SKILL.md": {
+        "bytes": 5615,
+        "sha256": "a6f929305a6d396ac0b2abf17ea1943bafbe7cbf2615ad9c84f7c687ff30a251"
+      },
+      "distribution-manifest.v1.json": {
+        "bytes": 1325,
+        "sha256": "5eaec0096a8f8a5757b0750d96cff40bbd3804c6eacb6fed6aece18df38a1ef0"
+      },
+      "evals/evals.json": {
+        "bytes": 2694,
+        "sha256": "93afde1fb026c811ffcef0eec16dc12532053b5fad7aec71e875d9f982abd60d"
+      },
+      "references/architecture/architecture-document.schema.json": {
+        "bytes": 2044,
+        "sha256": "7c4e3045cd9946c99d1e1056fcdda4171e04f1c0e5545934f8e1b15c97ff1b8a"
+      },
+      "references/architecture/document.spec.md": {
+        "bytes": 22198,
+        "sha256": "debbdf92c488ec3b682633aac0fa190f07415b9867eb6351bc04cb0de0f77d53"
+      },
+      "references/architecture/foundation/architecture.spec.md": {
+        "bytes": 7812,
+        "sha256": "c5845d1cb1430df97861c3c8b3e4ab123896450a6024a4cb4c5707dfc26a73ed"
+      },
+      "references/architecture/set.spec.md": {
+        "bytes": 8630,
+        "sha256": "dbbeaf6235d43fd924e088282def1d3dcd4f9dd072e04db1aa04a383dbd478c2"
+      },
+      "references/authoring-guide.md": {
+        "bytes": 1543,
+        "sha256": "2276d71f41cafacb5b7dd478a2e75ed9e1a5a0d2aeba6f324f180608ab19684e"
+      },
+      "references/validation-checklist.md": {
+        "bytes": 1399,
+        "sha256": "7df814ce44ad96c8ca3bfa00bf15ed7fb21b39dd87168a6a9d876b5ad43fa57d"
+      },
+      "templates/ARCHITECTURE.template.md": {
+        "bytes": 690,
+        "sha256": "f665a6543b03163d7e441b1cb59b97d65ea3d44d04144889ddc22c28b5e16ee6"
+      }
+    },
+    "audit-repository": {
+      "SKILL.md": {
+        "bytes": 8350,
+        "sha256": "d1d021e02e37340264736df9cf37d9cd06fac9f0418cde99cff0415a763b9cc8"
+      },
+      "distribution-manifest.v1.json": {
+        "bytes": 2795,
+        "sha256": "e217501b68d1b014c73a2871ccc7afb2fd4a4eb3e346046f91b94c014672c2f7"
+      },
+      "evals/evals.json": {
+        "bytes": 4540,
+        "sha256": "e804f2c1ccb2e885fb9e31a878fdc5f6f92dfdf9475a9ab9ec178145fe92a754"
+      },
+      "references/aether.audit-profile-registry.v1.schema.json": {
+        "bytes": 4041,
+        "sha256": "ad1335fe7662d91308d3d501197df70fac00892de40da8820538631b0f80312d"
+      },
+      "references/aether.repository-audit-report.v1.schema.json": {
+        "bytes": 26155,
+        "sha256": "060446225135d573da15d4c31a6a59a89e04665e0c3cce43f8373b1e465bc96b"
+      },
+      "references/audit-data-contract.md": {
+        "bytes": 5012,
+        "sha256": "445765153edf257b14b4a445f24da2a5f10b64db5c99fdece6e2147a96369a47"
+      },
+      "references/audit-profiles.v1.json": {
+        "bytes": 5101,
+        "sha256": "dde4d72db9e0a952e1e10b01b8fdfa7cfecd4c001095af8b23d9f821ea789737"
+      },
+      "references/checkpoint-adoption.md": {
+        "bytes": 5135,
+        "sha256": "e98959144d8fcf3d86486edc65cff6916caff69b3cad70bf1977cefd2c4861d6"
+      },
+      "references/examples/blocked-20261115T000000Z.md": {
+        "bytes": 244,
+        "sha256": "2423ab359913bb8abe0961efa2f85422bf890f46cc193c6723255544b7c08887"
+      },
+      "references/examples/blocked.json": {
+        "bytes": 2255,
+        "sha256": "55e62fc20c737996c518c3b81272111baf3ec8562a737cc9b6efb430ee9ba61c"
+      },
+      "references/examples/experimental-20261115T000000Z.md": {
+        "bytes": 268,
+        "sha256": "fd3e3b5edfa2cd30209c696b6879f2432386e9ea47eabb89f21588992084bcb9"
+      },
+      "references/examples/experimental.json": {
+        "bytes": 3366,
+        "sha256": "03a251997df1af0c4dc6890ec16137d0ba5a41f61c553c729585a78ec7ae003c"
+      },
+      "references/examples/holistic-partial-20261115T000000Z.md": {
+        "bytes": 237,
+        "sha256": "c0f3fe6bbd608202ee014e873f5f8d766a6a83ffb3af46a054e2a850777f1a73"
+      },
+      "references/examples/holistic-partial.json": {
+        "bytes": 2762,
+        "sha256": "bcedcae755942917eecefa1b704ddf570061bf49be858b0d63a8eae85124cac5"
+      },
+      "references/examples/not-applicable-20261115T000000Z.md": {
+        "bytes": 290,
+        "sha256": "04cbb76d05655677b8f30ef53a40c2b42257fec26244ef807d17f09eb2497e04"
+      },
+      "references/examples/not-applicable.json": {
+        "bytes": 2303,
+        "sha256": "0df6aae479178e2b3f0ef9b42a9e919f16b3993f76c0936a0b28986cf5822a39"
+      },
+      "references/examples/organization-stale-partial-20261115T000000Z.md": {
+        "bytes": 288,
+        "sha256": "81538729e4ffe3e0e87fd4efbc0d06fe76c3fb18e7b96e3b72098d9784fd5cde"
+      },
+      "references/examples/organization-stale-partial.json": {
+        "bytes": 3272,
+        "sha256": "926bd3fe6c103f76768d7f61e2ebd8d85c796f40123d5bbb93b77db2c875f606"
+      },
+      "references/examples/repository-complete-20261115T000000Z.md": {
+        "bytes": 273,
+        "sha256": "d17331890c21a42f7c2aa87a485ad285376f388ac2c3bc53e7d3a962b8094924"
+      },
+      "references/examples/repository-complete.json": {
+        "bytes": 4134,
+        "sha256": "0a2fb849564124833ac4cf57ec56f23ac3b4a3a799a296f89d15a2eb48a6c5a3"
+      },
+      "references/examples/resolved-20261115T000000Z.md": {
+        "bytes": 262,
+        "sha256": "003c0d8a34c093a414ffd8d0d4391cb7d414ffec5be5493d2ae783b0426600cd"
+      },
+      "references/examples/resolved.json": {
+        "bytes": 4946,
+        "sha256": "38fd0f48596bad90f7d8e71df41ee99e0fe253ff7464d8a2daa7812adc4b710c"
+      },
+      "references/finding-classification-guide.md": {
+        "bytes": 1964,
+        "sha256": "2486279d7c7ec7567e1c88db6b28e4c8d14d9559b868175f854e508b4fc751fd"
+      },
+      "references/governance/auditor.spec.md": {
+        "bytes": 6551,
+        "sha256": "f9f4d56673cefac4233fad4d53c78d1ba0726201b7e097bb78f67a721b81e62f"
+      },
+      "references/governance/repository-audit-data.spec.md": {
+        "bytes": 12292,
+        "sha256": "83e8b0f6e3c0d96d1c7402b35cb6e2ef5ae2a0f86bd954e679fc55ba06d7a5bc"
+      },
+      "references/governance/specfile.spec.md": {
+        "bytes": 7975,
+        "sha256": "7caded2b94704de3f9b16dccbb81692685972fc5426454bf2d9c9428ad1c9139"
+      },
+      "references/staged-reconciliation.md": {
+        "bytes": 3402,
+        "sha256": "64cd7adf4d26873096fde952444f2fdb378c5fe6e6ec31bbdbcd55d0321996a7"
+      },
+      "references/validation-checklist.md": {
+        "bytes": 2091,
+        "sha256": "4a3d43119184a5c2c6f548aa47872f7676d9cac8389c083c21caaf961595dc6c"
+      },
+      "scripts/audit_contract.py": {
+        "bytes": 30778,
+        "sha256": "a700d9469cae02e9f929bc076cfb37940f3c64349380c0142efe94a7a83e0b85"
+      },
+      "templates/AUDIT.template.md": {
+        "bytes": 1756,
+        "sha256": "1668f9edd2e8509a923d8fdb955510a5acfbdc030c6d5c3b8551c90aeba06ff5"
+      }
+    }
+  },
+  "unchangedSourceBindings": {
+    "aether_validator.py": "e2007ae05e6b7125935c318472094ab6247470e74385b166ff7418bf188a00b5",
+    "catalog/consumer_installation.py": "3a2cc7a32b610a89a7c41665e290eccdd131b3294b9a8ae91ebc2aefe3ba74e2",
+    "library/organization/skills/build-distributions.py": "9fb7f35a3a772fb05c284aec9d761f1722edc22da1ffb943b3992ddc8963700d",
+    "library/organization/specs/quality/auditor.spec.md": "f9f4d56673cefac4233fad4d53c78d1ba0726201b7e097bb78f67a721b81e62f",
+    "library/organization/agents/auditor/AGENT.md": "5b460370cc9286ac9d34d306a8e135804a06cb50dbf66dbbc56a3dbc9c34715d",
+    "catalog/staging_ledger.py": "8ffb4649457c1befd1daa057b9faf245e9ae421b5071ee7c45413f67327c2f3b"
+  },
+  "protectedStagingAndDecisions": "All .staging/ and DECISIONS/docs-decisions bytes equal merged main; no removal/transfer/lifecycle authority changed.",
+  "rawLogs": {
+    "full-tests-before-ledger-refresh.log": {
+      "bytes": 165526,
+      "sha256": "fe8d769b842e59f0a2b6146b0dc7be3655ebf6802dc9fb6b37a02c1c76aaeb15"
+    },
+    "full-tests-final.log": {
+      "bytes": 164374,
+      "sha256": "2953b4e39c65848889858e440b06bcf2df9946f0c0222c6b00688e312fb33229"
+    },
+    "source-validation-final.log": {
+      "bytes": 313,
+      "sha256": "e6a937a6ffecb2246c421c11dd038eb363eb55233d3bae538f8f5275b3aa23e6"
+    },
+    "links-json-final.log": {
+      "bytes": 38,
+      "sha256": "abd804d99b9ea17336d9dad34c89dcc1dec052ae29cb7079a04e0801ced03daa"
+    },
+    "catalog-drift-final.log": {
+      "bytes": 23,
+      "sha256": "6d1e192473b77c9e17f1d647cb4af6eb789cf66d70dc320fa2a325f8396c0d8f"
+    },
+    "distribution-drift-final.log": {
+      "bytes": 36969,
+      "sha256": "62c4aa8249b1d2abef161109de824b5f481ed1faba88de8783d92611f70f09ac"
+    },
+    "staging-ledger-final.log": {
+      "bytes": 33,
+      "sha256": "9054a16a40cad92475d959529bd515e967092bfc29d312d3cad3d2c7058c909c"
+    },
+    "default-consumer-cli-final.log": {
+      "bytes": 389,
+      "sha256": "03fa3f08319c1b4b1d9db946e74ab24f829c43befb9690cd42329982bf4b6dd4"
+    }
+  },
+  "rawLogRetention": "Task-local private logs; only hashes/lengths and sanitized consumer report are public.",
+  "limits": [
+    "Local qualification is complete for all three selected pilots, not a remote install/update/rollback or release pass.",
+    "Raw installed006/017 tracking remains visible; only pristine exports are called strictly portable.",
+    "Earlier domain receipts remain tied to084audit/8848architecture; no later integration is relabeled as those executions.",
+    "No hosted dispatch, stable/ADR promotion, tag/release/publication, observed model behavior or native host matrix is inferred."
+  ]
+}

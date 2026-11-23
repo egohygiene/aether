@@ -1,0 +1,41 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "Combined portable pilot governing resources and actual default three-pilot local acceptance advance the existing AET-Q01/AET-Q05 consumer work. Strategic release/downstream-pinned acceptance still requires selected stable artifacts, immutable publication and remote/consumer proof; no intent, horizon, owner or maturity changes.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "1473f9be497289d0a973a0980dd13e12e2accf39",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q01",
+    "AET-Q05"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "check",
+      "reference": "docs/work/38/pilot-integration-20261123/VALIDATION.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/38/pilot-integration-20261123/consumer-local.json"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/38/pilot-integration-20261123/qualification.json"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/38/pilot-integration-20261123/ledger-reconciliation.json"
+    }
+  ],
+  "organization_signals": []
+}

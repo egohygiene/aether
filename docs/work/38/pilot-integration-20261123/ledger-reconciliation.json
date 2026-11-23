@@ -1,0 +1,53 @@
+{
+  "recordKind": "Exact current-view reconciliation after portable-history source pointers changed; no staged-byte/disposition/authority change",
+  "oldLedgerRetainedAtRevision": "1e21edb52fc6da03b30b3a0003d21cc83e9d941b",
+  "newLedgerGeneratedFromRevision": "1e21edb52fc6da03b30b3a0003d21cc83e9d941b",
+  "oldLedgerSha256": "ffb25a4e28e068b494643d66eaf30467ed5a6d4cc968035a7dc83ef432e24845",
+  "newLedgerSha256": "313e4ff47be72b22a5fa33782d202e0a20db0e4a2b1515072fb7ce08942b3c0e",
+  "changedOwnerInputs": [
+    {
+      "path": "catalog/first-party/staging-dispositions/auditor-agent.json",
+      "before": "50344801d964a48d0f12223f90a7fcd4526134c506b13f69195a6add39a0ef48",
+      "after": "f59c551de43ae527d9c2b5fba930b87f6a5a121a715bb7d645d075e102a79dd5"
+    },
+    {
+      "path": "catalog/first-party/staging-dispositions/repository-audit.json",
+      "before": "207ddb81b6718f07623bdb84d126c2a93edabc66298d3b412fd31eee981d3eb3",
+      "after": "4b7e8d8205e68e8fbf435d68b0c2236d32f4cc3598b5bc1b2b894c4ce79b2fda"
+    }
+  ],
+  "unchangedStagingTree": "02941cf65a1cb3c62b9a497373f24badad041b6b",
+  "unchangedTotals": {
+    "files": 734,
+    "bytes": 6791350,
+    "units": 222,
+    "current_skill_roots": 186,
+    "historical_removed_skill_roots": 6,
+    "by_bucket": {
+      "agents": 13,
+      "hooks": 26,
+      "instructions": 2,
+      "integrations": 42,
+      "manifests": 2,
+      "scripts": 2,
+      "skills": 641,
+      "specs": 6
+    }
+  },
+  "unchangedUnitAndAuthoritySections": true,
+  "ledgerGeneratorUnchanged": true,
+  "failedFullSuite": {
+    "representedSource": "1e21edb52fc6da03b30b3a0003d21cc83e9d941b",
+    "discovered": 440,
+    "failures": 1,
+    "existingSkips": 11,
+    "durationSeconds": 20.461,
+    "test": "test_current_canonical_ledger_covers_all_buckets_and_nine_agent_deltas",
+    "reason": "Two current owner/disposition source hashes still named old source-pointer records.",
+    "rawLog": {
+      "bytes": 165526,
+      "sha256": "fe8d769b842e59f0a2b6146b0dc7be3655ebf6802dc9fb6b37a02c1c76aaeb15"
+    }
+  },
+  "repair": "Existing catalog.staging_ledger generate at immutable integrated1e21; only represented source and two owner hashes change. Human Markdown is regenerated from the same data."
+}

@@ -3,14 +3,14 @@ name: audit-repository
 description: Audits an explicitly scoped repository or public organization roster through composable profiles, preserving evidence, uncertainty, strengths and suggestion-only follow-up in immutable reports and typed sidecars. Use when a structured repository audit or an explicitly authorized organization audit is requested.
 license: MIT
 metadata:
-  aether-version: "1.2.1"
+  aether-version: "1.2.2"
   aether-status: "draft"
   aether-spec-id: "repository-audit-data"
   aether-scope: "organization"
   aether-domain: "quality"
   aether-owners: "egohygiene"
   aether-created: "2026-08-02"
-  aether-updated: "2026-11-15"
+  aether-updated: "2026-11-23"
   aether-executable-resources:
     - "scripts/audit_contract.py"
   aether-distribution-resources:
@@ -18,6 +18,12 @@ metadata:
       destination: "references/aether.audit-profile-registry.v1.schema.json"
     - source: "catalog/schemas/aether.repository-audit-report.v1.schema.json"
       destination: "references/aether.repository-audit-report.v1.schema.json"
+    - source: "library/organization/specs/authoring/specfile.spec.md"
+      destination: "references/governance/specfile.spec.md"
+    - source: "library/organization/specs/quality/auditor.spec.md"
+      destination: "references/governance/auditor.spec.md"
+    - source: "library/organization/specs/quality/repository-audit-data.spec.md"
+      destination: "references/governance/repository-audit-data.spec.md"
 ---
 
 # Audit Repository
@@ -37,10 +43,22 @@ authorized repository-changing workflow takes ownership of that handoff.
 ## Purpose
 
 Execute one reusable procedure governed by approved `auditor` 2.0.0. The draft
-`repository-audit-data` 1.0.0 extension supplies composable profile/data
+`repository-audit-data` 1.0.2 extension supplies composable profile/data
 interfaces and depends on that approved foundation; it does not change its
 human lifecycle. This skill remains **draft** pending deterministic and host
 qualification under [Aether #86](https://github.com/egohygiene/aether/issues/86).
+
+Load the exact package-local governing resources before following this procedure:
+
+| Governing ID/version | Package-local resource | Lifecycle |
+| --- | --- | --- |
+| `specfile` 2.0.1 | `references/governance/specfile.spec.md` | draft authoring standard |
+| `auditor` 2.0.0 | `references/governance/auditor.spec.md` | unchanged approved audit foundation |
+| `repository-audit-data` 1.0.2 | `references/governance/repository-audit-data.spec.md` | draft data extension |
+
+The extension's `auditor`/`specfile` and foundation's `specfile` dependencies
+resolve within that same selection. Copies are byte-identical to their selected
+canonical sources; a package, install or version bump supplies no new approval.
 
 Primary question:
 
@@ -138,8 +156,11 @@ and separately authorized downstream actions.
 
 ## Staged reconciliation and remaining maturity
 
-A staged candidate at `.staging/skills/repository-audit/` covers similar
-ground under the name `repository-audit`. The canonical skill is named
+The retained staged candidate named `repository-audit` covers similar ground.
+Its portable source identity, exact hash and behavior dispositions are retained
+in the [source reconciliation](references/staged-reconciliation.md), with the
+full historical source-path mapping kept in Aether's repository-only evidence.
+The canonical skill is named
 `audit-repository` and is governed by the `auditor` specification.
 
 The [source reconciliation](references/staged-reconciliation.md) records the

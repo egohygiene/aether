@@ -1,7 +1,7 @@
 {
   "schema_version": "aether.staging-residual-ledger/v1",
   "source": {
-    "revision": "27ae1db51943a39835a87d6f678026877a821800",
+    "revision": "1e21edb52fc6da03b30b3a0003d21cc83e9d941b",
     "staging_tree": "02941cf65a1cb3c62b9a497373f24badad041b6b",
     "hash_algorithm": "sha256-raw-git-blob",
     "generator": "catalog.staging_ledger/v1"
@@ -13,7 +13,7 @@
     },
     {
       "path": "catalog/first-party/staging-dispositions/auditor-agent.json",
-      "sha256": "50344801d964a48d0f12223f90a7fcd4526134c506b13f69195a6add39a0ef48"
+      "sha256": "f59c551de43ae527d9c2b5fba930b87f6a5a121a715bb7d645d075e102a79dd5"
     },
     {
       "path": "catalog/first-party/staging-dispositions/bug-fixing.json",
@@ -61,7 +61,7 @@
     },
     {
       "path": "catalog/first-party/staging-dispositions/repository-audit.json",
-      "sha256": "207ddb81b6718f07623bdb84d126c2a93edabc66298d3b412fd31eee981d3eb3"
+      "sha256": "4b7e8d8205e68e8fbf435d68b0c2236d32f4cc3598b5bc1b2b894c4ce79b2fda"
     },
     {
       "path": "catalog/first-party/staging-dispositions/repository-cleanup.json",

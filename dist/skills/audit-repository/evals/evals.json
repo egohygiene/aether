@@ -1,7 +1,7 @@
 {
   "schema": "aether.skill-evaluations/v2",
   "skill": "audit-repository",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "cases": [
     {
       "id": "single-profile",
@@ -116,6 +116,16 @@
           "type": "file-exists",
           "value": "references/checkpoint-adoption.md"
         }
+      ]
+    },
+    {
+      "id": "portable-governing-closure",
+      "description": "Use the installed audit package without a publisher source checkout.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Resolve specfile2.0.1, unchanged approved auditor2.0.0 and draft repository-audit-data1.0.2 from the exact selected package resources",
+        "Preserve staged identities, digests, restrictions and read-only authority without loading archival source paths"
       ]
     }
   ]

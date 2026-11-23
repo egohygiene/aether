@@ -49,7 +49,7 @@
       "title": "Architecture Authoring"
     },
     {
-      "artifact_version": "1.2.1",
+      "artifact_version": "1.2.2",
       "compatibility": {
         "required_tools": []
       },
@@ -85,7 +85,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "d35c6eca19e2498305447696f85996d9845e86f1bf7e18cc0f0567ee216c1d99"
+        "value": "8747e3ebd483289253f9b882cac0db6e018a42dfdfa58d25417dc382f5525caf"
       },
       "source_path": "library/organization/skills/quality/audit-repository/SKILL.md",
       "supersedes_ids": [],
@@ -3741,7 +3741,7 @@
       "title": "Reflective Development System Specification"
     },
     {
-      "artifact_version": "1.0.1",
+      "artifact_version": "1.0.2",
       "compatibility": {
         "required_tools": []
       },
@@ -3781,7 +3781,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "4b97b4dc3d9410aeb0d43185ab4f5620f300f02679e66c18380cb1bf8bfe0539"
+        "value": "83e8b0f6e3c0d96d1c7402b35cb6e2ef5ae2a0f86bd954e679fc55ba06d7a5bc"
       },
       "source_path": "library/organization/specs/quality/repository-audit-data.spec.md",
       "supersedes_ids": [],
@@ -3991,7 +3991,7 @@
       "title": "Review-gated social campaign handoff specification"
     },
     {
-      "artifact_version": "2.0.0",
+      "artifact_version": "2.0.1",
       "compatibility": {
         "required_tools": []
       },
@@ -4030,7 +4030,7 @@
       "scope": "organization",
       "source_digest": {
         "algorithm": "sha256-utf8-lf",
-        "value": "ab1526ba0a27f67ab359ef7a8b57f59271e05a1297ef6f25e984963a7817d985"
+        "value": "7caded2b94704de3f9b16dccbb81692685972fc5426454bf2d9c9428ad1c9139"
       },
       "source_path": "library/organization/specs/authoring/specfile.spec.md",
       "supersedes_ids": [],
