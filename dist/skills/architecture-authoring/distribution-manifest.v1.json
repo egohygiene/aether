@@ -21,6 +21,6 @@
   "schema_version": "aether.distribution-manifest/v1",
   "source_digest": {
     "algorithm": "sha256-utf8-lf",
-    "value": "e9ff1aec5eda7ad02324d02a1eaf218481ff9724d69fe025e40f0d6ba5800a34"
+    "value": "2d2b4487d4ed35abe1c65795ce647c25d4b73d529591bfa004dd24685d69a203"
   }
 }

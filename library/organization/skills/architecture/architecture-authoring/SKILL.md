@@ -157,7 +157,9 @@ The canonical skill owns architecture-document selection, sequencing and
 validation; the candidate may contain additional detail or divergent framing.
 This portable edition does not promote, retire or delete that candidate.
 
-[Issue 16](https://github.com/egohygiene/aether/issues/16) retains the comparison
-and review obligation. Repository-only source history records the exact former
-locator and bytes. Compare unique guidance before any separately authorized
-retirement; do not replace canonical source with the candidate wholesale.
+The historical comparison obligation remains unresolved; its old ordinal is
+not a verified current provider issue identity. Repository-only source history
+records the exact former locator and bytes. Compare unique guidance before any
+separately authorized retirement; do not replace canonical source with the
+candidate wholesale. [Issue 38](https://github.com/egohygiene/aether/issues/38)
+tracks this portability repair, not comparison completion or retirement.

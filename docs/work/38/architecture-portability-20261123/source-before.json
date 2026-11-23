@@ -25,6 +25,18 @@
       "archive": "source-before/architecture-architecture.spec.md",
       "bytes": 7633,
       "sha256": "5b5bfa5b664f30c14a1c69fbfef5f44fc4744c3a733649555aae7a8cf1dedc82"
+    },
+    {
+      "source": "library/organization/skills/architecture/architecture-authoring/evals/evals.json",
+      "archive": "source-before/architecture-authoring.evals.json",
+      "bytes": 2163,
+      "sha256": "de1d6f28f09a44316814399bdf52598d68ac4268c5fdcff4a511d8976f8117f2"
+    },
+    {
+      "source": "library/organization/skills/architecture/create-architecture-document/evals/evals.json",
+      "archive": "source-before/create-architecture-document.evals.json",
+      "bytes": 2694,
+      "sha256": "8f9d246c1a748e81d531f30a7cefa786af05e676d00432c9e6e50539c925782c"
     }
   ],
   "unchangedSourceSha256": {
@@ -32,5 +44,6 @@
     "library/organization/specs/architecture/architecture-document.schema.json": "7c4e3045cd9946c99d1e1056fcdda4171e04f1c0e5545934f8e1b15c97ff1b8a",
     ".staging/skills/architecture-authoring/SKILL.md": "762bdb29d439e6a5aa20e864e34bf475b0de6420f9a17f91f800dd4644d84604",
     "DECISIONS.md": "752acd86778ff7c402abf6bc55f116ccb9d578e18062d289abcaaa24ff6e653a"
-  }
+  },
+  "legacyComparisonProviderMapping": null
 }
