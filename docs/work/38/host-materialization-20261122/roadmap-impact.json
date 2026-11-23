@@ -1,0 +1,41 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "Strict pristine export and verified installed-host tracking acceptance advance the existing AET-Q01/AET-Q05 consumer work; direct companion local readiness passes but original pilot, remote and stable-release acceptance remain incomplete. No strategic sequence, owner, maturity or intent is changed.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "26a8ff90feb4344a7a5836540c55d872da3736a9",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q01",
+    "AET-Q05"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "catalog/consumer_installation.py"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/38/host-materialization-20261122/VALIDATION.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/38/host-materialization-20261122/consumer-companion.json"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/38/host-materialization-20261122/consumer-pilots.json"
+    }
+  ],
+  "organization_signals": []
+}

@@ -1,7 +1,7 @@
 # Identity companion skill
 
-Status: **draft; local host installation and publish dry-run observed, strict
-portability and complete release qualification still fail/remain pending**.
+Status: **draft; the direct companion's local export/materialization gate passes
+in the current candidate; complete release qualification remains pending**.
 
 The [`author-project-identity` skill](../library/organization/skills/authoring/author-project-identity/SKILL.md)
 helps an agent collect project facts in small batches, preserve actual rights
@@ -54,12 +54,17 @@ through command-scoped PATH and actually ran companion project installation,
 listing, publish `--dry-run` and cleanup. This is an additional available CLI,
 not a claim that the default CLI or user configuration was upgraded.
 
-The [dated qualification record](work/identity-companion-host-20261122/VALIDATION.md)
-retains **not-ready**. The pristine generated package fails strict portability
-because its verbatim `SKILL.md` contains a canonical build-resource source
-directive. The installed instance additionally contains CLI-injected absolute
-`metadata.local-path` tracking. No validator rule or release gate was weakened.
-The historical three-pilot run retains its own portable/provenance failures.
+The [earlier qualification record](work/identity-companion-host-20261122/VALIDATION.md)
+retains its original **not-ready** result. The
+[projection and installed-host repair](work/38/host-materialization-20261122/VALIDATION.md)
+now proves strict pristine companion portability and exact actual installed
+materialization. The build-only resource directive is consumed by generation;
+the real installation keeps its precisely verified `metadata.local-path`
+tracking. Its raw portable diagnostics remain recorded as host observations,
+rather than a false raw portable pass. No validator rule was weakened.
+The direct companion reports `local_status: ready` with all local scenarios
+complete, while `overall_status` remains **not-ready**. The historical
+three-pilot run retains its own portable/provenance failures.
 Remote installation/update, publication, stable promotion and observed agent
 authoring remain unqualified. Local package copying, helper tests and authored
 evaluation assertions do not prove those outcomes.

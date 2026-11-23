@@ -1,0 +1,183 @@
+{
+  "actual_local_companion": {
+    "all_required_scenarios_pass": true,
+    "installed_materialization_matches_selected_source": true,
+    "overall_release_status": "not-ready",
+    "raw_installed_portability_status": "fail",
+    "raw_installed_rules": [
+      "AETHER_PORTABLE_006",
+      "AETHER_PORTABLE_017"
+    ],
+    "real_installed_tracking_rewritten": false,
+    "remote_scenarios": "skipped",
+    "validation_copy_created": false
+  },
+  "adapter_file_sha256": "3a2cc7a32b610a89a7c41665e290eccdd131b3294b9a8ae91ebc2aefe3ba74e2",
+  "adapter_revision": "b2132bfd0a1cc6d68f7a1c6e1def881b63441584",
+  "builder_base_revision": "26a8ff90feb4344a7a5836540c55d872da3736a9",
+  "cli": {
+    "independent_signature_authentication": "not-qualified",
+    "self_reported_version": "2.96.0",
+    "sha256": "56b8bbbb27b066ecb33dbef9a256dc9d1314adaeff0908a752feba6c34053b40"
+  },
+  "historical_pilots": {
+    "local_status": "not-ready",
+    "materialization_matches": true,
+    "retained_pristine_rules": [
+      "AETHER_PORTABLE_015",
+      "AETHER_PORTABLE_016"
+    ]
+  },
+  "limits": [
+    "Local command qualification is not observed agent authoring or automatic discovery.",
+    "No remote install/update, global install/configuration, stable promotion, tag, release, hosted CI or deployment.",
+    "Snapshot and remote/source observations are time-bounded, not locks against later mutation."
+  ],
+  "record_kind": "local consumer adapter qualification; not a release or host/model behavior certificate",
+  "skill": {
+    "files": [
+      {
+        "bytes": 5589,
+        "path": "SKILL.md",
+        "sha256": "dc26e18ff7249bbad700607423b850800c6e021ae055057c7f9eba6076d69f5f"
+      },
+      {
+        "bytes": 2658,
+        "path": "distribution-manifest.v1.json",
+        "sha256": "2aad1845c4e5e2041d0481586fa3e8d8f27c39a34f4b97a7055f655dc45aa60a"
+      },
+      {
+        "bytes": 5572,
+        "path": "evals/evals.json",
+        "sha256": "e3fea1167d8452299dea857d3aea677b584099f4072181dc085db96a1a0660e1"
+      },
+      {
+        "bytes": 187,
+        "path": "evals/fixtures/check-only-stale-output.json",
+        "sha256": "8ee27d7ff675b20ab109b5e5b4c1e44727ad4eeed889a665956d7825aa671fb7"
+      },
+      {
+        "bytes": 190,
+        "path": "evals/fixtures/generic-feature-spec.json",
+        "sha256": "a128c660b026ed7eaa8ca6fe5ee33ab0d2812e060f1a9d0b78033e9710eb3733"
+      },
+      {
+        "bytes": 187,
+        "path": "evals/fixtures/legacy-source-preserved.json",
+        "sha256": "f4403314d76cd6881834c9fd5f25b273fe2a03bf77d2760044cec1b0f0043612"
+      },
+      {
+        "bytes": 185,
+        "path": "evals/fixtures/missing-artwork-rights.json",
+        "sha256": "260d0bb2fd11d0013b2cb79fdc8ac2ed08d88cfb66d58c388a373f13351855b3"
+      },
+      {
+        "bytes": 179,
+        "path": "evals/fixtures/missing-python.json",
+        "sha256": "d4c0c3a01c3d7c4793f0c65856cb60ca34ffe52b0b5932a4a907b5d3a756d9e0"
+      },
+      {
+        "bytes": 209,
+        "path": "evals/fixtures/new-v1-source.json",
+        "sha256": "8d6573bf84d047f97108f4da167f220da9289e13676242a17abaac5c955055f9"
+      },
+      {
+        "bytes": 199,
+        "path": "evals/fixtures/release-request.json",
+        "sha256": "e066cff561cfb577924c1ae83e319e671c54f09263679e5d41f9464e046484e0"
+      },
+      {
+        "bytes": 191,
+        "path": "evals/fixtures/reviewed-upgrade.json",
+        "sha256": "47df4344ebe8fad629bc74a8b345dae27f8fdb1d2f751dd13f44d84080b4a43f"
+      },
+      {
+        "bytes": 226,
+        "path": "evals/goldens/check-only-stale-output.golden.txt",
+        "sha256": "2ffc637edfedd2d621b0aefaeba74e1cd25ad57bd821a215250c29d74add9a57"
+      },
+      {
+        "bytes": 204,
+        "path": "evals/goldens/generic-feature-spec.golden.txt",
+        "sha256": "304daf162dbc6daafef410000aaeb6c033b2708bdacb735a0c72bef3303bc11b"
+      },
+      {
+        "bytes": 217,
+        "path": "evals/goldens/legacy-source-preserved.golden.txt",
+        "sha256": "b24d91305d8447d362b362c2a78d1966698c45ce684930a3a158f75f6b94edc4"
+      },
+      {
+        "bytes": 267,
+        "path": "evals/goldens/missing-artwork-rights.golden.txt",
+        "sha256": "d041d4a4ccbdd8c9630306eb5fca18043cead91e0be1de5be219d81e79f5b7c5"
+      },
+      {
+        "bytes": 223,
+        "path": "evals/goldens/missing-python.golden.txt",
+        "sha256": "1f61a4cb66a8b5a5510611757ed298c1564df5b58757eb7b0571444e68b0d6e5"
+      },
+      {
+        "bytes": 315,
+        "path": "evals/goldens/new-v1-source.golden.txt",
+        "sha256": "f747c052b5cb9e4d28a36d376001d21e035f830b14475a607af2c6c7a21dac4b"
+      },
+      {
+        "bytes": 288,
+        "path": "evals/goldens/release-request.golden.txt",
+        "sha256": "191df8550f5465dce017d7dd740ec752f4a6dc497c44a6a7ba8607e5db608b45"
+      },
+      {
+        "bytes": 275,
+        "path": "evals/goldens/reviewed-upgrade.golden.txt",
+        "sha256": "b37e3a0369875e41daaf0decb9913b00582299a82af9c8afd01172722740e3fd"
+      },
+      {
+        "bytes": 5642,
+        "path": "references/identity-cli-and-capabilities.md",
+        "sha256": "0d87c2eb2aba596223ca7d8db57b17f34b31f812cd68feef4a3f5c3f16a72bb4"
+      },
+      {
+        "bytes": 3746,
+        "path": "references/identity-source-lock.json",
+        "sha256": "7dfa65ed77884d2078905bbe307c2ee89646448fdd0dadfaa3d16d170b6eec69"
+      },
+      {
+        "bytes": 13727,
+        "path": "references/project-identity-authoring.spec.md",
+        "sha256": "e100e8d380fceb684facdb58855ae683598a4c810776c333db4601da7cd139af"
+      },
+      {
+        "bytes": 2784,
+        "path": "references/validation-checklist.md",
+        "sha256": "3273cab134f8ee0e87e6e8782774a941a5617f662c8475aa75787090f9353fd7"
+      },
+      {
+        "bytes": 5366,
+        "path": "scripts/verify_identity_source.py",
+        "sha256": "c5b71b96c5a90c448b8d812b446e98eb8647d97254f21057c89d9479c51096a6"
+      },
+      {
+        "bytes": 1883,
+        "path": "templates/OWNER_INTAKE.template.md",
+        "sha256": "75d68edabddb202e66aeab23f247d028d9548c9c5241122d0479a30b63249fb9"
+      }
+    ],
+    "manifest_canonical_source_digest": {
+      "algorithm": "sha256-utf8-lf",
+      "value": "756e88cf9292429a8bc4a169b17fc90fe57547b4dc9abb4eb9e1ad235378a09b"
+    },
+    "maturity": "draft",
+    "name": "author-project-identity",
+    "stable_release_included": false,
+    "strict_pristine_diagnostics": [],
+    "version": "1.0.0"
+  },
+  "strict_validator_sha256": "e2007ae05e6b7125935c318472094ab6247470e74385b166ff7418bf188a00b5",
+  "tests": {
+    "anchored_multiline_header_regression": "actual previous parser is rejected by the new full-harness negative test; positive literal-delimiter description preserved",
+    "existing_optional_native_skips": 11,
+    "focused_adapter_controls": 32,
+    "full_suite_total": 428,
+    "passed": 417
+  }
+}

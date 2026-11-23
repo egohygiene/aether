@@ -63,6 +63,22 @@ Either prevents qualification. Exit codes are 0 for all required selected
 scenarios passing, 1 for incomplete qualification and 2 for invalid arguments or
 an unavailable output directory. Existing receipts are never overwritten.
 
+The `portable-package-validation` scenario distinguishes two contracts. It
+strictly validates and freezes every pristine export before any installer runs,
+then verifies the installed instance's complete inventory/resources, typed
+semantic frontmatter and body against that snapshot. Local gh source tracking
+must identify the exact selected package; only that verified `metadata.local-path`
+field and the observed single blank-LF separator omission are admitted. Source
+mutation, links, unexpected fields/files, changed content and ambiguous YAML
+fail qualification. A nonempty, unique manifest must account for every file.
+
+Raw installed portability diagnostics remain in `installed_observations` and
+`validation_results`. They can report absolute host tracking while the strict
+pristine export and verified materialization checks pass. The adapter neither
+rewrites the real installation nor globally allows private paths; tracking
+remains available to the actual update mechanism. This is local materialization
+acceptance, not a claim that the raw installed tree is a portable export.
+
 Local scope requires all five local scenarios. It leaves remote scenarios
 explicitly skipped and `overall_status: not-ready`, even if `local_status: ready`.
 Use `qualification.complete` together with its `scope` and required scenario list
