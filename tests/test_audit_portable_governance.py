@@ -93,12 +93,27 @@ class AuditPortableGovernanceTests(unittest.TestCase):
         record = json.loads((HISTORY / "source-history.json").read_text())
         self.assertEqual(record["baselineRevision"], BASE)
         self.assertEqual(len(record["archived"]), 8)
+        self.assertEqual({item["source_path"] for item in record["archived"]}, {
+            "library/organization/skills/quality/audit-repository/SKILL.md",
+            "library/organization/skills/quality/audit-repository/references/staged-reconciliation.md",
+            "library/organization/skills/quality/audit-repository/references/audit-data-contract.md",
+            "library/organization/specs/quality/repository-audit-data.spec.md",
+            "library/organization/specs/authoring/specfile.spec.md",
+            "library/organization/skills/quality/audit-repository/evals/evals.json",
+            "catalog/first-party/staging-dispositions/repository-audit.json",
+            "catalog/first-party/staging-dispositions/auditor-agent.json",
+        })
         for item in record["archived"]:
             with self.subTest(source=item["source_path"]):
                 content = (ROOT / item["archive_path"]).read_bytes()
                 self.assertEqual(content, source_at_baseline(item["source_path"]))
                 self.assertEqual(len(content), item["bytes"])
                 self.assertEqual(hashlib.sha256(content).hexdigest(), item["sha256"])
+        self.assertEqual(len(record["unchanged"]), 8)
+        self.assertEqual({item["id"] for item in record["unchanged"]}, {
+            "staged-repository-audit-skill", "staged-auditor-agent", "auditor", "auditor-agent",
+            "audit-contract-helper", "audit-profile-registry", "audit-profile-schema", "audit-report-schema",
+        })
         for item in record["unchanged"]:
             with self.subTest(unchanged=item["id"]):
                 content = (ROOT / item["source_path"]).read_bytes()
