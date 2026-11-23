@@ -3,12 +3,12 @@ schema: aether.specification/v1
 id: architecture-document
 title: Architecture Document Specification Standard
 kind: specification
-version: 2.1.0
+version: 2.1.1
 status: draft
 owners:
   - egohygiene
 created: 2026-07-18
-updated: 2026-08-19
+updated: 2026-11-23
 domain: architecture
 tags:
   - architecture
@@ -96,9 +96,10 @@ Its goals are to:
 - preserve provenance, assumptions, and unresolved questions
 
 This specification applies to canonical organization-owned architecture
-specifications beneath:
-
-    library/organization/specs/architecture/
+specifications identified by their stable artifact metadata in the selected
+Aether catalog or bundle. Canonical source placement and an installed package's
+layout locate those artifacts; neither placement defines their identity or
+changes the governing requirements.
 
 It also governs architecture documents produced from those specifications when
 they are materialized into consumer repositories.
@@ -316,7 +317,7 @@ Metadata constraints:
 ## 6.1 Materialized Architecture Document Metadata
 
 Every repository-specific architecture document shall contain YAML frontmatter
-that validates against `architecture-document.schema.json` and includes:
+that validates against [architecture-document.schema.json](architecture-document.schema.json) and includes:
 
 - `schema: aether.architecture-document/v1`
 - a stable, scope-prefixed `id`
@@ -333,7 +334,9 @@ Materialized identifiers are repository-specific. Governing specification
 identifiers are organization-wide. The materialized document shall not copy the
 specification identifier as its own identifier.
 
-Selection and set-level behavior are governed by `architecture-set`.
+Selection and set-level behavior are governed by
+[`architecture-set`](set.spec.md). Resolve the versions selected by the bundle
+or catalog; missing required resources shall remain explicit blocked inputs.
 
 ## 7. Standard Specification Structure
 
@@ -650,18 +653,11 @@ installation, and future Pace synchronization and drift detection.
 
 ## 22. Related Artifacts
 
-This specification is the parent contract for canonical architecture
-specifications beneath:
-
-    library/organization/specs/architecture/
-
-Related artifact families include:
-
-    library/organization/skills/architecture/
-    library/organization/agents/architecture/
-    library/organization/prompts/architecture/
-    library/organization/instructions/
-    library/organization/policies/
+This specification is the parent contract for canonical organization-owned
+architecture specifications. Related artifact families are architecture skills,
+architecture agents, architecture prompts, reusable instructions and policies.
+Their identifiers and owner catalogs establish their relationships; a consumer
+does not need a particular source-checkout directory layout to apply them.
 
 Expected related artifacts include the architecture-authoring skill, architect
 agent, relationship maps, document templates, validation tooling, focused

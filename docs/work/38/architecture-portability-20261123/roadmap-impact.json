@@ -1,0 +1,41 @@
+{
+  "schema_version": "aether.roadmap-impact/v1",
+  "contract_version": "1.0.0",
+  "repository": "egohygiene/aether",
+  "visibility": "public",
+  "role": "reader-writer",
+  "disposition": "not-affected",
+  "reason": "Portable complete governing resources and exact local installation advance existing AET-Q01/AET-Q05 work; remote/stable release and broader consumer acceptance remain open, with no strategic intent, dependency, horizon, owner or maturity change.",
+  "materiality": "non-material",
+  "intent_change": false,
+  "roadmap": {
+    "path": "ROADMAP.md",
+    "revision": "dc3549c8a23bed5fb551a458a22605e7e0777822",
+    "availability": "current"
+  },
+  "steps": [
+    "AET-Q01",
+    "AET-Q05"
+  ],
+  "changed_paths": [],
+  "proposed_changes": [],
+  "evidence": [
+    {
+      "kind": "source",
+      "reference": "library/organization/skills/architecture/architecture-authoring/SKILL.md"
+    },
+    {
+      "kind": "source",
+      "reference": "library/organization/specs/architecture/document.spec.md"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/38/architecture-portability-20261123/qualification.json"
+    },
+    {
+      "kind": "check",
+      "reference": "docs/work/38/architecture-portability-20261123/consumer-local.json"
+    }
+  ],
+  "organization_signals": []
+}

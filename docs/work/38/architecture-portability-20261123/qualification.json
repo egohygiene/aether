@@ -1,0 +1,168 @@
+{
+  "recordKind": "Actual local CLI and deterministic architecture package qualification; not a release or model-authoring proof",
+  "baseRevision": "dc3549c8a23bed5fb551a458a22605e7e0777822",
+  "testedRevision": "8848f2f19904f5cc432d6438e8f6dedbcc17bbe8",
+  "worktreeCleanAtStart": true,
+  "recordedAt": "2026-11-23T06:06:16.585845+00:00",
+  "reportGeneratedAtStart": "2026-11-23T06:00:01.077448+00:00",
+  "platform": {
+    "system": "Linux",
+    "machine": "x86_64"
+  },
+  "selection": {
+    "skills": [
+      "architecture-authoring",
+      "create-architecture-document"
+    ],
+    "method": "Process-local PILOT_SKILLS[:2] through unmodified ConsumerInstallationHarness; production three-pilot list unchanged",
+    "scope": "local"
+  },
+  "cli": {
+    "observedVersion": "gh version 2.96.0 (2026-07-02)\nhttps://github.com/cli/cli/releases/tag/v2.96.0",
+    "sha256": "56b8bbbb27b066ecb33dbef9a256dc9d1314adaeff0908a752feba6c34053b40",
+    "selection": "Command-scoped PATH to already installed binary; default CLI/HOME/global skill state unchanged",
+    "limit": "Observed binary bytes/self-reported version, not independent signature authentication"
+  },
+  "consumerReport": {
+    "path": "consumer-local.json",
+    "sha256": "ff24d2ff4e3060f4eea7e575e019134ab5f508aa82b8a43234b73f6869d28425",
+    "localStatus": "ready",
+    "overallStatus": "not-ready",
+    "requiredLocalScenarios": [
+      "distribution-build",
+      "clean-local-distribution-install",
+      "portable-package-validation",
+      "publish-validation",
+      "removal-cleanup"
+    ],
+    "complete": true
+  },
+  "checks": {
+    "focusedPackageControls": {
+      "passed": 7
+    },
+    "continuityIntegrationControls": {
+      "passed": 8
+    },
+    "fullSuite": {
+      "discovered": 435,
+      "passed": 424,
+      "existingSkips": 11,
+      "durationSeconds": 20.224,
+      "rawLogSha256": "ac0a23937077adb9ee31df1e43af7c6c47080a6bda16982a35afe3d47e7544af"
+    },
+    "sourceValidation": "passed; only preserved AETHER_PROVENANCE_009 warning",
+    "linksAndJson": "passed; zero diagnostics",
+    "catalogAndDistributionDrift": "passed",
+    "protectedStageGovernanceSchemaSetValidatorHarnessBytes": "unchanged from base"
+  },
+  "resolvedFindings": [
+    {
+      "sourceRevision": "60a9778be1239e0e7203ed65015c6c8b15084f16",
+      "finding": "Existing continuity suite required eval version to match new skill version; first full run failed one case",
+      "resolution": "Aligned only both eval revision fields, retained exact original cases and archived bytes",
+      "failedRawLogSha256": "317d60591f06de1032a9cd46bf369e83c8422607c331e37574047976eeac29e7"
+    },
+    {
+      "finding": "Historical Issue016 ordinal was incorrectly inferred to be current provider issue16",
+      "resolution": "Removed inferred link; provider mapping stays null, original text/locator retained, comparison obligation remains unresolved"
+    }
+  ],
+  "packages": {
+    "architecture-authoring": {
+      "SKILL.md": {
+        "bytes": 6000,
+        "sha256": "d185b194cbee15c08729c8801d36a3125d6d94e88de6f32753b77606b73d7481"
+      },
+      "distribution-manifest.v1.json": {
+        "bytes": 1243,
+        "sha256": "4ec831a4885735a01a10030007c65dbf99c76e725439187b57c517577b7c1ac1"
+      },
+      "evals/evals.json": {
+        "bytes": 2163,
+        "sha256": "8827dc4f77424f819ee966c61d90c3e8c446b47eea6138949d90bfd766cbea00"
+      },
+      "references/architecture/architecture-document.schema.json": {
+        "bytes": 2044,
+        "sha256": "7c4e3045cd9946c99d1e1056fcdda4171e04f1c0e5545934f8e1b15c97ff1b8a"
+      },
+      "references/architecture/document.spec.md": {
+        "bytes": 22198,
+        "sha256": "debbdf92c488ec3b682633aac0fa190f07415b9867eb6351bc04cb0de0f77d53"
+      },
+      "references/architecture/set.spec.md": {
+        "bytes": 8630,
+        "sha256": "dbbeaf6235d43fd924e088282def1d3dcd4f9dd072e04db1aa04a383dbd478c2"
+      },
+      "references/document-sequencing.md": {
+        "bytes": 474,
+        "sha256": "22f754847e2d7237ab1c471d04005f2cb1a726530fbd6e876af7c57c870b46be"
+      },
+      "references/relationship-model.md": {
+        "bytes": 586,
+        "sha256": "0ea74733b7d959d977a6a8e79df3c4ff539b918b6bfdaa90ef7b09d167168784"
+      },
+      "references/validation-checklist.md": {
+        "bytes": 807,
+        "sha256": "aff4b670c504a328fb76d50b097cb44fcbca2212d14562a3b6a7bf6d98f72a94"
+      },
+      "templates/architecture-document.template.md": {
+        "bytes": 584,
+        "sha256": "a8b0ad9a45fc8433d2e44a8eb6acaf9200d8cecab2bbed2afb0bc1de8e0526f3"
+      }
+    },
+    "create-architecture-document": {
+      "SKILL.md": {
+        "bytes": 5615,
+        "sha256": "a6f929305a6d396ac0b2abf17ea1943bafbe7cbf2615ad9c84f7c687ff30a251"
+      },
+      "distribution-manifest.v1.json": {
+        "bytes": 1325,
+        "sha256": "5eaec0096a8f8a5757b0750d96cff40bbd3804c6eacb6fed6aece18df38a1ef0"
+      },
+      "evals/evals.json": {
+        "bytes": 2694,
+        "sha256": "93afde1fb026c811ffcef0eec16dc12532053b5fad7aec71e875d9f982abd60d"
+      },
+      "references/architecture/architecture-document.schema.json": {
+        "bytes": 2044,
+        "sha256": "7c4e3045cd9946c99d1e1056fcdda4171e04f1c0e5545934f8e1b15c97ff1b8a"
+      },
+      "references/architecture/document.spec.md": {
+        "bytes": 22198,
+        "sha256": "debbdf92c488ec3b682633aac0fa190f07415b9867eb6351bc04cb0de0f77d53"
+      },
+      "references/architecture/foundation/architecture.spec.md": {
+        "bytes": 7812,
+        "sha256": "c5845d1cb1430df97861c3c8b3e4ab123896450a6024a4cb4c5707dfc26a73ed"
+      },
+      "references/architecture/set.spec.md": {
+        "bytes": 8630,
+        "sha256": "dbbeaf6235d43fd924e088282def1d3dcd4f9dd072e04db1aa04a383dbd478c2"
+      },
+      "references/authoring-guide.md": {
+        "bytes": 1543,
+        "sha256": "2276d71f41cafacb5b7dd478a2e75ed9e1a5a0d2aeba6f324f180608ab19684e"
+      },
+      "references/validation-checklist.md": {
+        "bytes": 1399,
+        "sha256": "7df814ce44ad96c8ca3bfa00bf15ed7fb21b39dd87168a6a9d876b5ad43fa57d"
+      },
+      "templates/ARCHITECTURE.template.md": {
+        "bytes": 690,
+        "sha256": "f665a6543b03163d7e441b1cb59b97d65ea3d44d04144889ddc22c28b5e16ee6"
+      }
+    }
+  },
+  "sourceBindings": {
+    "historyManifestSha256": "5ce888dc7ce563e7579608567ec41391da835afa3b7fa7b7ffbf5ed9f9d6a40e",
+    "portableValidatorSha256": "e2007ae05e6b7125935c318472094ab6247470e74385b166ff7418bf188a00b5",
+    "installedMaterializationAdapterSha256": "3a2cc7a32b610a89a7c41665e290eccdd131b3294b9a8ae91ebc2aefe3ba74e2"
+  },
+  "limits": [
+    "Raw installed006/017 host-tracking observations are retained, not called strict portable passes.",
+    "This selected architecture cohort is not the untouched third audit pilot or full three-pilot integration.",
+    "Remote installation/update/rollback, stable eligibility/publication, actual model authoring and host discovery/OS matrix remain unqualified.",
+    "No lifecycle/ADR promotion, staged deletion, tag, release, hosted dispatch or global/user installation."
+  ]
+}

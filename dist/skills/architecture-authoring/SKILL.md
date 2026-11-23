@@ -1,16 +1,18 @@
 ---
 name: architecture-authoring
-description: Guides selection, sequencing, authoring, updating, and validation of architecture documents for a repository, product, platform, or organization. Use when establishing, repairing, or planning a set of architecture documents.
+description: Guides selection, sequencing, authoring, updating, and validation of
+  architecture documents for a repository, product, platform, or organization. Use
+  when establishing, repairing, or planning a set of architecture documents.
 license: MIT
 metadata:
-  aether-version: "1.1.0"
-  aether-status: "draft"
-  aether-spec-id: "architecture-document"
-  aether-scope: "organization"
-  aether-domain: "architecture"
-  aether-owners: "egohygiene"
-  aether-created: "2026-08-01"
-  aether-updated: "2026-09-08"
+  aether-version: 1.2.0
+  aether-status: draft
+  aether-spec-id: architecture-document
+  aether-scope: organization
+  aether-domain: architecture
+  aether-owners: egohygiene
+  aether-created: '2026-08-01'
+  aether-updated: '2026-11-23'
 ---
 
 # Architecture Authoring
@@ -76,11 +78,17 @@ boundaries, and runtime configuration.
 
 ### 2. Resolve Applicable Specifications
 
-Read:
+Read the bundled `architecture-document` 2.1.1 parent contract at
+`references/architecture/document.spec.md`, `architecture-set` 1.0.0 at
+`references/architecture/set.spec.md`, and their structural schema at
+`references/architecture/architecture-document.schema.json`.
 
-    library/organization/specs/architecture/document.spec.md
-
-Then resolve each document-specific specification.
+Then resolve each selected document-specific specification by identifier and
+version from the applicable bundle or catalog. A canonical-source invocation
+may resolve the same resources through the declared build-resource mapping;
+installed use needs only the package-local files. Missing governing resources
+or document-specific specifications are blocked inputs, not permission to
+invent their requirements or claim complete set validation.
 
 ### 3. Build the Architecture Graph
 
@@ -139,11 +147,14 @@ are selected, changed documents pass validation, and unresolved work is visible.
 
 ## Staged Variant
 
-A staged candidate at `.staging/skills/architecture-authoring/` carries the
-same skill name. The canonical skill defines the orchestrator role for
-architecture-document selection, sequencing, and validation. The staged
-candidate may contain additional workflow detail or divergent framing.
+A historical staged candidate carries the same `architecture-authoring` name.
+The canonical skill owns architecture-document selection, sequencing and
+validation; the candidate may contain additional detail or divergent framing.
+This portable edition does not promote, retire or delete that candidate.
 
-Issue 016 should compare the two and extract any unique content from the
-staged copy before retiring it. Do not copy the staged file wholesale into
-canonical source.
+The historical comparison obligation remains unresolved; its old ordinal is
+not a verified current provider issue identity. Repository-only source history
+records the exact former locator and bytes. Compare unique guidance before any
+separately authorized retirement; do not replace canonical source with the
+candidate wholesale. [Issue 38](https://github.com/egohygiene/aether/issues/38)
+tracks this portability repair, not comparison completion or retirement.

@@ -3,12 +3,12 @@ schema: aether.specification/v1
 id: architecture-architecture
 title: Architecture Document Specification
 kind: specification
-version: 1.1.0
+version: 1.1.1
 status: draft
 owners:
   - egohygiene
 created: 2026-07-18
-updated: 2026-08-02
+updated: 2026-11-23
 domain: architecture
 tags:
   - architecture
@@ -46,9 +46,10 @@ organization supports the project's goals.
 
 ### Conformance
 
-This specification conforms to:
-
-    .github/specs/architecture/document.spec.md
+This specification conforms to
+[`architecture-document` 2.1.1](../document.spec.md). The parent identifier
+remains the declared dependency; this relative resource link resolves in both
+the canonical hierarchy and the corresponding installed package hierarchy.
 
 Any justified deviations shall be explicitly documented.
 
