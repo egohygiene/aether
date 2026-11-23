@@ -3,12 +3,12 @@ schema: aether.specification/v1
 id: specfile
 title: Specification File Standard
 kind: specification
-version: 2.0.0
+version: 2.0.1
 status: draft
 owners:
   - egohygiene
 created: 2026-07-18
-updated: 2026-08-02
+updated: 2026-11-23
 domain: authoring
 tags:
   - specification
@@ -114,10 +114,17 @@ Repository-local specifications commonly live under:
 
     .github/specs/
 
-Reusable Aether specifications live under:
+Reusable Aether specifications retain the first-party or community canonical
+source locations declared by Aether's owning repository architecture and
+catalog. This portability clarification neither moves those sources nor
+relaxes their existing placement. Repository source layout remains with its
+owner; a reusable file-format contract does not require an installation to
+reproduce the publisher's source tree.
 
-    library/organization/specs/
-    library/community/specs/
+An installed package resolves each governing specification by its exact
+artifact ID/version and declared package-local resource mapping from the same
+immutable source selection. Such byte-identical distributed copies are
+projections, not additional canonical locations or independent authority.
 
 ## 5. Metadata Contract
 

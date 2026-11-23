@@ -1,0 +1,110 @@
+{
+  "recordKind": "Repository-only exact pre-change source and migration mapping; not installed runtime content or lifecycle approval",
+  "baselineRevision": "dc3549c8a23bed5fb551a458a22605e7e0777822",
+  "historicalReconciliationBaseline": "5077797448d32a59b06eabe4b38f091137d58052",
+  "archived": [
+    {
+      "source_path": "library/organization/skills/quality/audit-repository/SKILL.md",
+      "archive_path": "docs/work/38/audit-portability-20261123/history/audit-repository-1.2.1.SKILL.md",
+      "bytes": 7794,
+      "sha256": "d35c6eca19e2498305447696f85996d9845e86f1bf7e18cc0f0567ee216c1d99"
+    },
+    {
+      "source_path": "library/organization/skills/quality/audit-repository/references/staged-reconciliation.md",
+      "archive_path": "docs/work/38/audit-portability-20261123/history/staged-reconciliation-before.md",
+      "bytes": 2610,
+      "sha256": "1e136cb483d3f7e6681163385458cf56d2823734aeaa6fda24c2de9c4881b99b"
+    },
+    {
+      "source_path": "library/organization/skills/quality/audit-repository/references/audit-data-contract.md",
+      "archive_path": "docs/work/38/audit-portability-20261123/history/audit-data-contract-before.md",
+      "bytes": 4680,
+      "sha256": "cabcaa538cd2282ba32aa1ca8a7703a8b04d6a093d7f656c1daec6c8d2e0ec2e"
+    },
+    {
+      "source_path": "library/organization/specs/quality/repository-audit-data.spec.md",
+      "archive_path": "docs/work/38/audit-portability-20261123/history/repository-audit-data-1.0.1.spec.md",
+      "bytes": 11234,
+      "sha256": "4b97b4dc3d9410aeb0d43185ab4f5620f300f02679e66c18380cb1bf8bfe0539"
+    },
+    {
+      "source_path": "library/organization/specs/authoring/specfile.spec.md",
+      "archive_path": "docs/work/38/audit-portability-20261123/history/specfile-2.0.0.spec.md",
+      "bytes": 7372,
+      "sha256": "ab1526ba0a27f67ab359ef7a8b57f59271e05a1297ef6f25e984963a7817d985"
+    },
+    {
+      "source_path": "library/organization/skills/quality/audit-repository/evals/evals.json",
+      "archive_path": "docs/work/38/audit-portability-20261123/history/audit-repository-1.2.1.evals.json",
+      "bytes": 4032,
+      "sha256": "3e22780ce129d7f83b1fc984b1e57d16426483bb7c2bb1a981357d0baefb9906"
+    },
+    {
+      "source_path": "catalog/first-party/staging-dispositions/repository-audit.json",
+      "archive_path": "docs/work/38/audit-portability-20261123/history/repository-audit-disposition-before.json",
+      "bytes": 704,
+      "sha256": "207ddb81b6718f07623bdb84d126c2a93edabc66298d3b412fd31eee981d3eb3"
+    },
+    {
+      "source_path": "catalog/first-party/staging-dispositions/auditor-agent.json",
+      "archive_path": "docs/work/38/audit-portability-20261123/history/auditor-agent-disposition-before.json",
+      "bytes": 684,
+      "sha256": "50344801d964a48d0f12223f90a7fcd4526134c506b13f69195a6add39a0ef48"
+    }
+  ],
+  "unchanged": [
+    {
+      "id": "staged-repository-audit-skill",
+      "source_path": ".staging/skills/repository-audit/SKILL.md",
+      "bytes": 2449,
+      "sha256": "af9f21603e9f99f9e732083fd3a1f673234162155f9fc37cef212f9bb047a7ef"
+    },
+    {
+      "id": "staged-auditor-agent",
+      "source_path": ".staging/agents/auditor.agent.md",
+      "bytes": 2123,
+      "sha256": "0ae0ca6b156c6dc1a5764a2d7d53f45075ba4b0849e5cdcdbb1f4e351b214928"
+    },
+    {
+      "id": "auditor",
+      "source_path": "library/organization/specs/quality/auditor.spec.md",
+      "bytes": 6551,
+      "sha256": "f9f4d56673cefac4233fad4d53c78d1ba0726201b7e097bb78f67a721b81e62f"
+    },
+    {
+      "id": "auditor-agent",
+      "source_path": "library/organization/agents/auditor/AGENT.md",
+      "bytes": 3720,
+      "sha256": "5b460370cc9286ac9d34d306a8e135804a06cb50dbf66dbbc56a3dbc9c34715d"
+    },
+    {
+      "id": "audit-contract-helper",
+      "source_path": "library/organization/skills/quality/audit-repository/scripts/audit_contract.py",
+      "bytes": 30778,
+      "sha256": "a700d9469cae02e9f929bc076cfb37940f3c64349380c0142efe94a7a83e0b85"
+    },
+    {
+      "id": "audit-profile-registry",
+      "source_path": "library/organization/skills/quality/audit-repository/references/audit-profiles.v1.json",
+      "bytes": 5101,
+      "sha256": "dde4d72db9e0a952e1e10b01b8fdfa7cfecd4c001095af8b23d9f821ea789737"
+    },
+    {
+      "id": "audit-profile-schema",
+      "source_path": "catalog/schemas/aether.audit-profile-registry.v1.schema.json",
+      "bytes": 4041,
+      "sha256": "ad1335fe7662d91308d3d501197df70fac00892de40da8820538631b0f80312d"
+    },
+    {
+      "id": "audit-report-schema",
+      "source_path": "catalog/schemas/aether.repository-audit-report.v1.schema.json",
+      "bytes": 26155,
+      "sha256": "060446225135d573da15d4c31a6a59a89e04665e0c3cce43f8373b1e465bc96b"
+    }
+  ],
+  "limits": [
+    "The original staging hash_status remains reconstructed/restricted.",
+    "Approved auditor2.0.0 bytes, status and declared specfile dependency remain unchanged.",
+    "History is retained outside installed packages; no source is promoted or deleted."
+  ]
+}

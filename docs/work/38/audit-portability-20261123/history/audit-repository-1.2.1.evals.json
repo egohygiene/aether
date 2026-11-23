@@ -1,0 +1,122 @@
+{
+  "schema": "aether.skill-evaluations/v2",
+  "skill": "audit-repository",
+  "version": "1.2.1",
+  "cases": [
+    {
+      "id": "single-profile",
+      "description": "Audit repository contract drift at an exact supplied revision.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Resolve the selected contract-drift leaf with its exact registry version",
+        "Preserve scope and observed/inferred evidence labels"
+      ],
+      "assertions": [
+        {
+          "type": "file-exists",
+          "value": "scripts/audit_contract.py"
+        },
+        {
+          "type": "file-exists",
+          "value": "references/audit-profiles.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "holistic-and-experiments",
+      "description": "Run the holistic profile, then separately opt into experimental opportunities.",
+      "category": "positive",
+      "trigger": "should-trigger",
+      "expected": [
+        "Compose stable leaves without duplicating the generic procedure",
+        "Keep experiments opt-in and informational"
+      ],
+      "assertions": [
+        {
+          "type": "file-exists",
+          "value": "references/audit-data-contract.md"
+        }
+      ]
+    },
+    {
+      "id": "blocked-scope",
+      "description": "The selected repository revision or required evidence is unavailable.",
+      "category": "insufficient-evidence",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve blocked or unknown completion and uninspected scope",
+        "Never invent evidence or successful checks"
+      ]
+    },
+    {
+      "id": "read-only-suggestions",
+      "description": "An audit finding suggests a source fix and a new GitHub issue.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Return suggestions to a separately authorized writer",
+        "Do not gain edit, execute or provider-write authority"
+      ],
+      "assertions": [
+        {
+          "type": "file-exists",
+          "value": "references/audit-data-contract.md"
+        }
+      ]
+    },
+    {
+      "id": "single-file-review",
+      "description": "Review one small code diff without a structured repository audit.",
+      "category": "negative",
+      "trigger": "should-not-trigger",
+      "expected": [
+        "Route toward targeted code review rather than broadening audit scope"
+      ]
+    },
+    {
+      "id": "repeat-and-history",
+      "description": "Compare an existing immutable audit with a new represented source.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Preserve historical report bytes and bind explicit comparison evidence",
+        "Keep unknown or not-compared history when prior evidence is missing"
+      ]
+    },
+    {
+      "id": "unverified-command-claim",
+      "description": "A supplied report says validation passed but includes only recommended evidence.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Do not convert a supplied claim into observed execution",
+        "Keep host execution and consumer qualification unverified"
+      ]
+    },
+    {
+      "id": "checkpoint-data-fixtures",
+      "description": "Inspect reusable repository and organization checkpoints with explicit stale/partial/blocked evidence.",
+      "category": "boundary",
+      "trigger": "should-trigger",
+      "expected": [
+        "Keep old capture clocks and unresolved scope visible",
+        "Validate authored findings without inferring execution, resolution, policy acceptance or issue creation"
+      ],
+      "assertions": [
+        {
+          "type": "file-exists",
+          "value": "references/examples/repository-complete.json"
+        },
+        {
+          "type": "file-exists",
+          "value": "references/examples/organization-stale-partial.json"
+        },
+        {
+          "type": "file-exists",
+          "value": "references/checkpoint-adoption.md"
+        }
+      ]
+    }
+  ]
+}
