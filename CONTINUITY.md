@@ -7,21 +7,21 @@ repository:
   continuity_path: CONTINUITY.md
 document:
   status: active
-  updated_at: '2026-11-23T06:17:44.387505+00:00'
+  updated_at: '2026-11-23T06:27:35.975705+00:00'
   max_bytes: 16384
   max_lines: 240
   stale_reason: null
   superseded_by: null
 scope:
-  purpose: Integrate portable architecture and audit governing resources, regenerate projections and qualify
-    the unchanged default three-pilot local consumer gate.
+  purpose: Retain complete combined source checks and actual unchanged default three-pilot local acceptance,
+    with exact remaining remote/release scope.
   includes:
-  - Compose independently reviewed architecture/audit source histories without changing approved auditor,
-    staging bytes or global validator.
-  - Regenerate the combined canonical catalog and full tracked distributions from source; keep exact domain
-    receipts tied to8848/084.
-  - Execute current full source checks and the unchanged production default three-pilot local harness
-    before handoff.
+  - Integrated reviewed architecture/audit governing closure and exact retained source histories, with
+    generated catalog/dist.
+  - Actual full440-test/source/drift checks and unchanged default three-pilot CLI at clean9fd9f43;50 package-file
+    bindings.
+  - Current staging-ledger reconciliation of two changed owner-history pointers while preserving all734
+    staged files,222 units, dispositions and authority.
   excludes:
   - No remote install/update, stable promotion, release/tag/publication, hosted workflow or new human/ADR
     acceptance.
@@ -50,24 +50,29 @@ scope:
   - docs/work/38/architecture-portability-20261123/qualification.json
   - catalog/consumer_installation.py
   - aether_validator.py
+  - docs/work/38/pilot-integration-20261123/VALIDATION.md
+  - docs/work/38/pilot-integration-20261123/consumer-local.json
+  - docs/work/38/pilot-integration-20261123/qualification.json
+  - docs/work/38/pilot-integration-20261123/ledger-reconciliation.json
+  - docs/work/38/pilot-integration-20261123/roadmap-impact.json
 work:
-  objective: Integrate portable architecture and audit governing resources, regenerate projections and
-    qualify the unchanged default three-pilot local consumer gate.
+  objective: Retain complete combined source checks and actual unchanged default three-pilot local acceptance,
+    with exact remaining remote/release scope.
   success_conditions:
-  - Preserve both reviewed source histories and approved/staged/validator authority boundaries.
-  - Regenerate derived catalogs/distributions without hand-editing output and run current full/source/drift
+  - Preserve reviewed source histories, approved auditor/staged bytes and global validator/adapter boundaries.
+  - Regenerate catalog/full distributions and pass current source, full suite, drift, ledger and protected-input
     checks.
-  - Run the actual unchanged default3pilot local gate from a clean integrated code commit, retain source/file
-    hashes and honest remote/overall readiness.
+  - Run actual unmodified default three-pilot local CLI from one clean integrated source; retain all5local
+    passes and honest remoteskip/overallnot-ready.
   active_issue:
     provider: github
     id: egohygiene/aether#38
     url: https://github.com/egohygiene/aether/issues/38
   next:
     kind: action
-    id: regenerate-integrated-projections-and-run-default-pilots
-    description: Finish the source merge, regenerate catalog/dist, commit the exact integrated code, then
-      run full local source checks and unchanged default three-pilot consumer harness.
+    id: review-local-pilot-proof-and-select-remaining-remote-release-work
+    description: Review parent143 and this child against exact9fd proof, then prepare eligible artifact/release/remote-consumption
+      selection under existing38; no publication or maturity is authorized by local success.
     readiness: ready
     references:
     - https://github.com/egohygiene/aether/pull/143
@@ -77,21 +82,21 @@ state:
   base:
     revision: 1473f9be497289d0a973a0980dd13e12e2accf39
     ref: refs/heads/codex/38-portable-architecture-20261123
-    verified_at: '2026-11-23T06:17:44.387505+00:00'
+    verified_at: '2026-11-23T06:27:35.975705+00:00'
   candidate:
     branch: codex/38-portable-audit-stack-20261123
     revision: null
     pull_request: null
-    handoff_state: in-progress
+    handoff_state: ready-for-review
   live:
     status: verified
-    observed_at: '2026-11-23T06:17:44.387505+00:00'
+    observed_at: '2026-11-23T06:27:35.975705+00:00'
     default_branch_revision: dc3549c8a23bed5fb551a458a22605e7e0777822
     issue_state: open
     pull_request_state: not-applicable
-    notes: Main dc3549c verified; parent draft143 is open at1473f9b. Earlier141/142 merged. This integration
-      child has no PR yet. Combined full/default-pilot execution is pending, not inferred from domain
-      receipts.
+    notes: Main dc3549c and open parent draft143 at1473f9b freshly verified; issue38 open. Earlier141/142
+      merged. This child has no PR yet. Actual clean9fd default-three-pilot local acceptance passes; overall
+      release readiness remains not-ready with remote skips.
   parallel_changes:
   - provider: github
     id: egohygiene/aether#143
@@ -101,37 +106,41 @@ state:
     url: https://github.com/egohygiene/identity/pull/167
 review:
   status: partial
-  reviewed_at: '2026-11-23T06:05:15.987048+00:00'
+  reviewed_at: '2026-11-23T06:27:35.975705+00:00'
   reviewed_by: Codex
   evidence:
-  - command: Focused audit package/report/portable-governance suites
+  - command: ./aether test at clean9fd9f438d08fd88a9ba2102d1205191c91afce77
     outcome: passed
-    observed_at: '2026-11-23T06:05:15.987048+00:00'
-    notes: 33tests pass, including five actual export/closure/missing-resource/strict-path/history/requirements
-      controls. Exact eight archives and eight unchanged boundaries match baseline Git objects.
-  - command: ./aether validate --skills --specifications --evals --links --json-files --staging --format
-      text
+    observed_at: '2026-11-23T06:27:35.975705+00:00'
+    notes: 440discovered:429passed/11existingoptional-native skips,20.656seconds. Earlier1e21 fullsuite
+      found one stale current-ledger owner-input failure, retained and repaired via existing generator.
+  - command: Full source, links/JSON, canonical catalog/full distribution drift, ledger and whitespace
+      checks
     outcome: passed
-    observed_at: '2026-11-23T06:05:15.987048+00:00'
-    notes: Zero selected source-domain diagnostics; this excludes deferred combined catalog/distribution
-      qualification.
-  - command: Actual existing gh2.96 consumer harness, local scope, process-local audit-only selection
-      at clean084adf4234f7f97a16891069b42f7dbfae8b9e28
+    observed_at: '2026-11-23T06:27:35.975705+00:00'
+    notes: Only historical AETHER_PROVENANCE_009 warning. Links/JSON zero diagnostics, drift/check exit0,
+      protected sources unchanged.
+  - command: Unmodified standard python3 -m catalog.consumer_installation --scope local with existing
+      gh2.96 scoped PATH at clean9fd
     outcome: passed
-    observed_at: '2026-11-23T06:05:15.987048+00:00'
-    notes: All5 required local scenarios pass; localready/complete. Exact30-file materialization matches;
-      raw006/017 remain visible. Remote install/update skipped and overallnot-ready.
-  - command: Independent source/Section4 review; receipt/hash/privacy/roadmap structure checks
+    observed_at: '2026-11-23T06:27:35.975705+00:00'
+    notes: CLIexit0, production default3pilots,all5localscenarios pass, strictpristine0 and50filematerialization.
+      Raw006/017 retained; remoteinstall/update skipped; overallnot-ready.
+  - command: Immutable staging-ledger reconstruction and independent source/history/ledger review
     outcome: passed
-    observed_at: '2026-11-23T06:05:15.987048+00:00'
-    notes: No authority/requirements relaxation; approved/staged bytes unchanged. Actual report hash and30
-      package file hashes retained, public scan clean. One roadmap receipt not-affected AET-Q01/AET-Q05.
+    observed_at: '2026-11-23T06:27:35.975705+00:00'
+    notes: Only sourceRev+2owner-inputhashes refresh;734files/222units/186current6absent/9agent/4pendingtransfer/authority
+      unchanged. Original8848/084domain receipts retain scope. Public50file/report/source/loghash checks
+      and privacy scan pass.
   environment_limitations:
-  - Combined regeneration, full source suite and default-three-pilot actual gate remain pending at this
-    pre-qualification merge checkpoint.
-  - Earlier clean084audit and8848architecture domain executions retain their exact sources; integration
-    does not relabel them.
-  - Remote/stable/release/model behavior and official released EgoLint conformance remain separate.
+  - Local default three-pilot acceptance is complete; remote install/update/rollback, eligible stable
+    selection, model authoring/discovery and release/publication remain unqualified.
+  - Earlier domain receipts8848/084 and first integrated1e21 failure remain historical; actual final combined
+    code is9fd. Later evidence additions are not relabeled as another execution.
+  - CLI hash/version observes existing binary bytes, not independent signer authenticity; snapshots are
+    not mutation locks.
+  - Official released EgoLint continuity conformance is not claimed; pinned schema/headings/budgets remain
+    structural.
 privacy:
   classification: public-repository
   contains_sensitive_data: false
@@ -158,31 +167,31 @@ Read AGENTS, the selected sources, HISTORY and VALIDATION. Verify main, issue38 
 
 ## Current objective and success conditions
 
-Integrate portable architecture and audit governing resources, regenerate projections and qualify the unchanged default three-pilot local consumer gate.
+Retain complete combined source checks and actual unchanged default three-pilot local acceptance, with exact remaining remote/release scope.
 
 ## State snapshot
 
-Stack base is parent143 at1473f9be497289d0a973a0980dd13e12e2accf39. Main remains dc3549c8a23bed5fb551a458a22605e7e0777822. Candidate codex/38-portable-audit-stack-20261123 has null containing revision/PR while integration and current qualification are in progress.
+Parent draft143 is at1473f9be497289d0a973a0980dd13e12e2accf39; main remains dc3549c8a23bed5fb551a458a22605e7e0777822. Candidate codex/38-portable-audit-stack-20261123 has null containing revision/PR at handoff. Actual current combined execution represents clean9fd9f438d08fd88a9ba2102d1205191c91afce77; prior8848/084domain records retain their sources.
 
 ## Completed and material changes
 
-The merge composes the two reviewed architecture pilots with the audit governing closure/history. Existing approved auditor, read/search-only agent, staging bytes, builder/validator and decisions stay preserved. Exact domain qualification remains8848architecture and084audit; combined generated output/current acceptance is not yet claimed.
+Reviewed architecture and audit governing resources are integrated and all derived catalog/distribution output regenerated. Approved auditor/read-only agent/staging/validator/builder/adapter/decisions remain unchanged. Existing ledger generator refreshes only sourceRev and two changed owner-history input hashes; all734files/222units, dispositions and authority remain intact.
 
 ## Validation and review evidence
 
-Focused33tests and selected source validation pass. Actual gh2.96 local audit gate passes all5scenarios, strict export and exact30file materialization; raw installed006/017 remain observations. Overallnot-ready retains remote skips. Independent source/requirements review clears; exact report/package hashes, history Git objects and privacy checks pass. See domain records; no full repository or combined cohort claim.
+At clean9fd, full440tests pass429with11existing skips; full source checks retain only historic009warning, links/JSON/drift/ledger/whitespace pass. Standard unchanged default3pilot CLI exits0 with all5local scenarios and50exact files; raw006/017 remain visible and overallnot-ready retains remoteskip. The initial1e21 fullsuite ledger failure, its exact repair and all source/report/log/file hashes are retained in the combined work record. Independent source/history/ledger review is clear.
 
 ## Blockers, risks, unknowns, and deferred work
 
-Finish combined catalog/dist regeneration and current full/default-three-pilot checks. Earlier domain local success does not establish this integrated gate. Remote install/update/rollback, stable release, observed model use and hosted/native matrices remain independent.
+Local default-three-pilot acceptance is complete. Remote installation/update/deprecation/rollback, stable artifact eligibility, immutable release/downstream use, observed model behavior and host OS matrix remain separate. No local pass supplies human lifecycle, retirement or publication authority.
 
 ## Next dependency-ready work
 
-Regenerate canonical catalog and full distributions, inspect derived-only changes, commit clean integrated code and execute the full local/default-three-pilot checks. Retain truthful overallnot-ready when remote scenarios remain skipped.
+Review parent143 and this child against the exact combined receipt, then prepare the next eligible artifact/remote-release qualification selection within38. Preserve publication/maturity gates and all unresolved historical comparison/authority records.
 
 ## Parallel changes and reconciliation
 
-This child follows Aether draft143. Identity draft167 is independently owned by the parent. Both architecture and audit source receipts remain intact and source-bound; continuity is reconciled by current combined objective rather than concatenated history.
+This child follows Aether143; Identity167 remains independently owned by the parent. Original architecture/audit records and both source histories are preserved. Current combined continuity replaces prior single-domain snapshots semantically; no earlier receipt is relabeled.
 
 ## Privacy and redaction
 
